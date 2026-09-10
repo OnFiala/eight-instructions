@@ -159,4 +159,7 @@ explicitly; we do not invent a percentage of a computer that is "really Brainfuc
 Future builds must move the frontier materially. There is no promised sequence
 of an OS, database, browser or cloud. For now: **eight instructions → this → ???**
 
+[Publication identity and hosting boundary](records/001/publication.json) ·
+[How the Site is published](docs/publication.md).
+
 MIT licensed. [Why and what was referenced](docs/references.md).

@@ -87,6 +87,16 @@
     "regenerationAndGitDiff": "PASS"
   },
   "publicSite": {
-    "status": "pending"
+    "status": "PASS",
+    "receipt": "publication.json",
+    "anonymousResponses": 18,
+    "exactRuntimeDataStyleMatches": 17,
+    "html": "Original source plus one provider security-script insertion",
+    "publicBrowserAndImageRoundTrip": "PASS"
+  },
+  "releaseMetadataCI": {
+    "status": "PASS",
+    "commit": "dbfad70d6aea86d10cc41a52eac6402ab179b6a4",
+    "url": "https://github.com/OnFiala/eight-instructions/actions/runs/34514204736"
   }
 }

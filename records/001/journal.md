@@ -153,3 +153,19 @@ Append observations as they happen. No deliberately broken commits are required.
   Linux CI 94.23 s. These are environment-specific observations.
 - The following seal changes build/public evidence, not executable code. Exact
   public deployment and asset verification are appended in publication.json.
+
+- Full Sites source-history push failed with HTTP 413 despite a 446 KiB Git pack.
+  The precise server size policy was not established. Kept the entire public
+  GitHub history and generated a hash-bound projection of its 19 Site files.
+  That push, version save and public deployment succeeded. This projection is
+  transport packaging, not a replacement development history.
+- Public version 1 completed at 18:30:42 UTC. Anonymous requests received all 18
+  public assets: 17 exactly matched canonical bytes; HTML retained the original
+  source with one Cloudflare challenge-platform security-script insertion.
+- On the public Site, the real sample returned cost 20, a visible road change
+  returned 21, and a newly compiled GCD program returned 21. A publicly exported
+  final-kernel image worked both in a new CLI process and after public browser
+  restart/import: GCD 9, generation 2, route cost 21. No console errors observed.
+- Publication receipt binds canonical, transport, saved-version and live asset
+  identities. No X post was prepared or published. No protocol violation or human
+  production-code repair occurred.

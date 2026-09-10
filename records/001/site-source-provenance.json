@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "tools/stage-site.mjs",
+  "canonicalRepository": "https://github.com/OnFiala/eight-instructions",
+  "canonicalCommit": "dbfad70d6aea86d10cc41a52eac6402ab179b6a4",
+  "files": {
+    ".openai/hosting.json": "623d50b4d65c75c3f5c233d2be00032824829ef2a7fbc30316c617aa473c6842",
+    "dist/client.mjs": "4f72099cbd9d5a6199b2bc0f22d4c46204480dbc000afcd66a33516195806b4d",
+    "dist/engine.mjs": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c",
+    "dist/executor.wasm": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+    "dist/favicon.svg": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35",
+    "dist/history.json": "735b9191bc3a119a62d4dde8e48fc9998d37a80ae08a9234549fbfd35fed6bb5",
+    "dist/images.mjs": "ca9864fc021d259ac7a829bc6d8e3254dab1f121c8db77f7464460aa18aead5e",
+    "dist/index.html": "527937315903b83d831d90cbcb9e6f7f14c963e0dcc595727dfcc2714809fb8d",
+    "dist/kernel-map.json": "b6669b33da4428daaea67f122165e9a60cf160541840b05d8dbe9a0402962866",
+    "dist/kernel.bf.gz": "5f82af6a2c83f7277275848198586966dbdd5f39fdd18288c6984e8dc016b1d5",
+    "dist/programs/core.thread": "1e2d70f7ef755e62da0259b5dd5a4bb1996353678bb2ed57a6823fa0be11f41f",
+    "dist/programs/dispatch.thread": "0360bd028765e4a6d06e37e2d7bc640bfab6e8f26c5fe31b5c7f66957b3a135a",
+    "dist/programs/store.thread": "ff1b9d440b5f8e08e06428683ff3832fedd26a9486e2790ebd4c42c42fdcd9fc",
+    "dist/programs/system.json": "509c0efc16f391715eb293ad23cae981915f5071b9e2fa898818c4824b0e22e5",
+    "dist/site.mjs": "d7932da86f11dd5022bf290e9742051a1bb4d4927e2cf55a16bc02f319138e19",
+    "dist/style.css": "b3f16454f9bee49c51c8f05e42d2ff04d4a49157de36b452cdec07871a971f17",
+    "dist/wasm-engine.mjs": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8",
+    "dist/webmcp.mjs": "c37acfa6f941328157e4ba9df60262f620c3ce5f25f3edb1811051477f3bcd78",
+    "dist/worker.mjs": "0386fd17e0e47f4bbc68d8f856e040447fd31755ea954bc6a098f229f84a651b"
+  },
+  "reason": "Exact committed Site assets only; the full engineering history remains on GitHub."
+}

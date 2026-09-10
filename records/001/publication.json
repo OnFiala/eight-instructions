@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "title": "Build 001 public publication receipt",
+  "language": "Brainfuck (BF) programming language",
+  "implementationCommit": "36b047b2951c24993d0e4995e65339ecb9db2b5d",
+  "canonicalSiteAssetsCommit": "dbfad70d6aea86d10cc41a52eac6402ab179b6a4",
+  "siteSourceProjectionCommit": "c2dd81a7d16b0e56b582f8e0a26e61941ee7cc0c",
+  "siteProjectId": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0",
+  "siteVersionId": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0~appgver_cfddaac3f0dc8191ac82285c8499e907",
+  "siteVersionNumber": 1,
+  "deploymentId": "appgdep_6aa2f7371e0c81919fd5bcad3b5420ec",
+  "deploymentStatus": "succeeded",
+  "deploymentCompletedAt": "2026-09-10T18:30:42.425802+00:00",
+  "siteURL": "https://eight-instructions.andrewxix.chatgpt.site",
+  "repositoryURL": "https://github.com/OnFiala/eight-instructions",
+  "repositoryVisibility": "PUBLIC",
+  "siteAccess": "public",
+  "siteAccessRevision": 2,
+  "archiveContentHash": "sha256:3456b7608212c92ba04e90006a49a8af45ace3d5f5865e3991f1cec1bd68aa02",
+  "archiveFileCount": 19,
+  "sourceMapping": "site-source-provenance.json",
+  "anonymousAssetVerification": {
+    "verifiedAt": "2026-09-10T18:35:17.202660+00:00",
+    "url": "https://eight-instructions.andrewxix.chatgpt.site",
+    "authentication": "No cookies, Authorization headers, account session or Sites bypass token supplied.",
+    "canonicalCommit": "dbfad70d6aea86d10cc41a52eac6402ab179b6a4",
+    "publicFilesVerified": 18,
+    "assets": [
+      {
+        "path": "client.mjs",
+        "status": 200,
+        "sha256": "4f72099cbd9d5a6199b2bc0f22d4c46204480dbc000afcd66a33516195806b4d",
+        "canonicalSha256": "4f72099cbd9d5a6199b2bc0f22d4c46204480dbc000afcd66a33516195806b4d",
+        "bytes": 1155,
+        "contentType": "text/javascript",
+        "exactMatch": true
+      },
+      {
+        "path": "engine.mjs",
+        "status": 200,
+        "sha256": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c",
+        "canonicalSha256": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c",
+        "bytes": 6256,
+        "contentType": "text/javascript",
+        "exactMatch": true
+      },
+      {
+        "path": "executor.wasm",
+        "status": 200,
+        "sha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+        "canonicalSha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+        "bytes": 744,
+        "contentType": "application/wasm",
+        "exactMatch": true
+      },
+      {
+        "path": "favicon.svg",
+        "status": 200,
+        "sha256": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35",
+        "canonicalSha256": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35",
+        "bytes": 240,
+        "contentType": "image/svg+xml",
+        "exactMatch": true
+      },
+      {
+        "path": "history.json",
+        "status": 200,
+        "sha256": "735b9191bc3a119a62d4dde8e48fc9998d37a80ae08a9234549fbfd35fed6bb5",
+        "canonicalSha256": "735b9191bc3a119a62d4dde8e48fc9998d37a80ae08a9234549fbfd35fed6bb5",
+        "bytes": 378,
+        "contentType": "application/json",
+        "exactMatch": true
+      },
+      {
+        "path": "images.mjs",
+        "status": 200,
+        "sha256": "ca9864fc021d259ac7a829bc6d8e3254dab1f121c8db77f7464460aa18aead5e",
+        "canonicalSha256": "ca9864fc021d259ac7a829bc6d8e3254dab1f121c8db77f7464460aa18aead5e",
+        "bytes": 3428,
+        "contentType": "text/javascript",
+        "exactMatch": true
+      },
+      {
+        "path": "index.html",
+        "status": 200,
+        "sha256": "6ad87006074b7271ee3b5d94b5ac205ddb987ab0edd0ac1d2ce00826955e30ae",
+        "canonicalSha256": "527937315903b83d831d90cbcb9e6f7f14c963e0dcc595727dfcc2714809fb8d",
+        "bytes": 19529,
+        "contentType": "text/html",
+        "exactMatch": false,
+        "differences": [
+          {
+            "operation": "insert",
+            "sourceOffset": 18497,
+            "removedBytes": 0,
+            "addedBytes": 938
+          }
+        ]
+      },
+      {
+        "path": "kernel-map.json",
+        "status": 200,
+        "sha256": "b6669b33da4428daaea67f122165e9a60cf160541840b05d8dbe9a0402962866",
+        "canonicalSha256": "b6669b33da4428daaea67f122165e9a60cf160541840b05d8dbe9a0402962866",
+        "bytes": 2678,
+        "contentType": "application/json",
+        "exactMatch": true
+      },
+      {
+        "path": "kernel.bf.gz",
+        "status": 200,
+        "sha256": "5f82af6a2c83f7277275848198586966dbdd5f39fdd18288c6984e8dc016b1d5",
+        "canonicalSha256": "5f82af6a2c83f7277275848198586966dbdd5f39fdd18288c6984e8dc016b1d5",
+        "bytes": 123878,
+        "contentType": "application/octet-stream",
+        "exactMatch": true,
+        "decompressedBytes": 44899153,
+        "kernelSha256": "de6c26450f7aa1398fc0f5d08995e653f355badea9f1df08a0b203db35c37d87"
+      },
+      {
+        "path": "programs/core.thread",
+        "status": 200,
+        "sha256": "1e2d70f7ef755e62da0259b5dd5a4bb1996353678bb2ed57a6823fa0be11f41f",
+        "canonicalSha256": "1e2d70f7ef755e62da0259b5dd5a4bb1996353678bb2ed57a6823fa0be11f41f",
+        "bytes": 428,
+        "contentType": "application/octet-stream",
+        "exactMatch": true
+      },
+      {
+        "path": "programs/dispatch.thread",
+        "status": 200,
+        "sha256": "0360bd028765e4a6d06e37e2d7bc640bfab6e8f26c5fe31b5c7f66957b3a135a",
+        "canonicalSha256": "0360bd028765e4a6d06e37e2d7bc640bfab6e8f26c5fe31b5c7f66957b3a135a",
+        "bytes": 3293,
+        "contentType": "application/octet-stream",
+        "exactMatch": true
+      },
+      {
+        "path": "programs/store.thread",
+        "status": 200,
+        "sha256": "ff1b9d440b5f8e08e06428683ff3832fedd26a9486e2790ebd4c42c42fdcd9fc",
+        "canonicalSha256": "ff1b9d440b5f8e08e06428683ff3832fedd26a9486e2790ebd4c42c42fdcd9fc",
+        "bytes": 2756,
+        "contentType": "application/octet-stream",
+        "exactMatch": true
+      },
+      {
+        "path": "programs/system.json",
+        "status": 200,
+        "sha256": "509c0efc16f391715eb293ad23cae981915f5071b9e2fa898818c4824b0e22e5",
+        "canonicalSha256": "509c0efc16f391715eb293ad23cae981915f5071b9e2fa898818c4824b0e22e5",
+        "bytes": 154,
+        "contentType": "application/json",
+        "exactMatch": true
+      },
+      {
+        "path": "site.mjs",
+        "status": 200,
+        "sha256": "d7932da86f11dd5022bf290e9742051a1bb4d4927e2cf55a16bc02f319138e19",
+        "canonicalSha256": "d7932da86f11dd5022bf290e9742051a1bb4d4927e2cf55a16bc02f319138e19",
+        "bytes": 14591,
+        "contentType": "text/javascript",
+        "exactMatch": true
+      },
+      {
+        "path": "style.css",
+        "status": 200,
+        "sha256": "b3f16454f9bee49c51c8f05e42d2ff04d4a49157de36b452cdec07871a971f17",
+        "canonicalSha256": "b3f16454f9bee49c51c8f05e42d2ff04d4a49157de36b452cdec07871a971f17",
+        "bytes": 22197,
+        "contentType": "text/css",
+        "exactMatch": true
+      },
+      {
+        "path": "wasm-engine.mjs",
+        "status": 200,
+        "sha256": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8",
+        "canonicalSha256": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8",
+        "bytes": 2890,
+        "contentType": "text/javascript",
+        "exactMatch": true
+      },
+      {
+        "path": "webmcp.mjs",
+        "status": 200,
+        "sha256": "c37acfa6f941328157e4ba9df60262f620c3ce5f25f3edb1811051477f3bcd78",
+        "canonicalSha256": "c37acfa6f941328157e4ba9df60262f620c3ce5f25f3edb1811051477f3bcd78",
+        "bytes": 1826,
+        "contentType": "text/javascript",
+        "exactMatch": true
+      },
+      {
+        "path": "worker.mjs",
+        "status": 200,
+        "sha256": "0386fd17e0e47f4bbc68d8f856e040447fd31755ea954bc6a098f229f84a651b",
+        "canonicalSha256": "0386fd17e0e47f4bbc68d8f856e040447fd31755ea954bc6a098f229f84a651b",
+        "bytes": 5549,
+        "contentType": "text/javascript",
+        "exactMatch": true
+      }
+    ]
+  },
+  "htmlException": {
+    "exactProjectSourcePreserved": true,
+    "change": "One insertion, no source deletions or replacements",
+    "providerScript": "/cdn-cgi/challenge-platform/scripts/jsd/main.js",
+    "insertedCharacters": 938,
+    "scope": "Cloudflare hosting security; not project guest/application logic"
+  },
+  "publicBrowserVerification": {
+    "status": "PASS",
+    "buildStatusDisplayed": "PASS",
+    "testsDisplayed": 50,
+    "initialRoute": {
+      "cost": 20,
+      "path": [
+        0,
+        2,
+        1,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "sampleNetworkRouteAndRecordOutputMs": 5437.5999999996275
+    },
+    "visibleStageRoadResult": {
+      "cost": 21,
+      "path": [
+        0,
+        2,
+        4,
+        5,
+        11
+      ]
+    },
+    "newNativeProgram": "GCD compiled on the public machine; 1071 462 gcd returned 21",
+    "imageExport": "A real 320425-byte image with the final kernel hash was downloaded from the public UI",
+    "imageRoundTrip": "After restart and import, 81 36 gcd returned 9; committed generation 2 retained route cost 21 and the changed road",
+    "newCLIProcess": "Loaded the public browser image, returned GCD 9 and route cost 21",
+    "consoleErrorsObserved": 0,
+    "note": "Browser timings include worker scheduling and differ from isolated CLI benchmarks. Browser automation file selection was slow; final restored behavior was verified."
+  },
+  "hostingRepair": {
+    "failure": "Complete source-history push returned HTTP 413",
+    "resolution": "Exact committed Site assets projected into a separate Sites transport repository; all public GitHub development commits retained",
+    "serverLimitKnown": false
+  },
+  "recordedAt": "2026-09-10T18:45:36.817113+00:00"
+}

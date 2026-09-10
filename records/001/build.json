@@ -105,7 +105,7 @@
     "repository": "https://github.com/OnFiala/eight-instructions",
     "site": "https://eight-instructions.andrewxix.chatgpt.site",
     "receipt": "publication.json",
-    "state": "Deployment identity and anonymous verification are appended after the exact source is published."
+    "state": "PASS: public access, exact runtime assets and live browser/image behavior verified; see publication.json"
   },
   "repairDebugCycles": {
     "approximateCount": 11,
@@ -128,5 +128,12 @@
     "Linear dictionary to native chained hash lookup",
     "Flat code access to native paged program counters",
     "Linear record handling to open-addressed format-2 store; unpublished development images retained their own library"
-  ]
+  ],
+  "development": {
+    "meaningfulEngineeringAndEvidenceCommits": 17,
+    "countScope": "Includes the final publication receipt commit. The Sites transport projection has its own additional generated-source commit and is not counted as engineering work.",
+    "completePublicHistoryRetained": true,
+    "humanProductionCodeRepairs": 0,
+    "secondCodingModels": 0
+  }
 }
