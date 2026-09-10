@@ -6,7 +6,7 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from tools.emitter import BF, Array
+from tools.emitter import BF, Array, PagedArray
 
 ROOT = Path(__file__).resolve().parents[1]
 WORDS = {
@@ -24,18 +24,18 @@ WORDS = {
 class Kernel:
     def __init__(self):
         b = self.b = BF()
-        names = 'running sp rp cp dp here mode start control err ip op arg ch length overflow found kind word number valid negative i j k a z x y q rem tmp tracing binding definition hash defhash'.split()
+        names = 'running sp rp cp dp here mode start control err ip op arg ch length overflow found kind word number valid negative i j k a z x y q rem tmp tracing binding definition hash defhash ip_hi ip_lo cp_hi cp_lo start_hi start_lo arg_hi arg_lo word_hi word_lo'.split()
         for name in names:
             setattr(self, name, b.cell(name))
         base = 512
         self.arrays = {}
-        for name, size in [('token', 24), ('buckets', 256), ('data', 256), ('returns', 256),
-                           ('controls', 128), ('dictionary', 7168), ('code', 8192),
+        for name, size in [('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
+                           ('controls', 128), ('dictionary', 8192), ('code', 8192),
                            ('heap', 4096), ('store', 4096)]:
-            arr = Array(b, base, size, name)
+            arr = (PagedArray if name == 'code' else Array)(b, base, size, name)
             self.arrays[name] = arr
             setattr(self, name, arr)
-            base += (size+1)*4
+            base += (size+1)*arr.stride
         self.cells = base + 64
 
     @contextmanager
@@ -52,7 +52,9 @@ class Kernel:
             b.text(f'!E{n} ')
             with b.when(self.mode):
                 b.copy(self.start, self.cp)
-            for c in [self.sp, self.rp, self.ip, self.mode, self.control]:
+                b.copy(self.start_hi, self.cp_hi)
+                b.copy(self.start_lo, self.cp_lo)
+            for c in [self.sp, self.rp, self.ip, self.ip_hi, self.ip_lo, self.mode, self.control]:
                 b.clear(c)
             b.set(self.err, n)
 
@@ -72,16 +74,71 @@ class Kernel:
         self.b.add(self.sp, -1)
         self.data.get(self.sp, v)
 
+    def advance(self, high, low, flat=None):
+        b = self.b
+        b.add(low)
+        if flat is not None: b.add(flat)
+        with self.case(low, 64):
+            b.clear(low)
+            b.add(high)
+
     def emit_code(self, v):
-        self.check_limit(self.cp, self.code.size, 5)
+        self.check_limit(self.cp_hi, 128, 5)
         with self.b.zero(self.err):
-            self.code.put(self.cp, v)
-            self.b.add(self.cp)
+            self.code.put(self.cp_hi, self.cp_lo, v)
+            self.advance(self.cp_hi, self.cp_lo, self.cp)
 
     def emit_n(self, n):
         with self.b.temps() as t:
             self.b.set(t, n)
             self.emit_code(t)
+
+    def split(self, flat, high, low):
+        with self.b.temps() as radix:
+            self.b.set(radix, 64)
+            self.divmod(flat, radix, high, low)
+
+    def emit_address(self, flat):
+        with self.b.temps(2) as (high, low):
+            self.split(flat, high, low)
+            self.emit_code(high)
+            self.emit_code(low)
+
+    def patch(self, flat):
+        with self.b.temps(2) as (high, low):
+            self.split(flat, high, low)
+            self.code.put(high, low, self.cp_hi)
+            self.advance(high, low)
+            self.code.put(high, low, self.cp_lo)
+
+    def fetch(self, out):
+        b = self.b
+        with b.temps(2) as (valid, lower):
+            b.lt(self.ip_hi, self.cp_hi, valid)
+            with b.temps() as equal:
+                b.eq(self.ip_hi, self.cp_hi, equal)
+                with b.when(equal):
+                    b.lt(self.ip_lo, self.cp_lo, lower)
+                    b.copy(lower, valid)
+            with b.zero(valid): self.error(7)
+            with b.zero(self.err):
+                self.code.get(self.ip_hi, self.ip_lo, out)
+                self.advance(self.ip_hi, self.ip_lo, self.ip)
+
+    def jump(self, high, low):
+        b = self.b
+        b.copy(high, self.ip_hi)
+        b.copy(low, self.ip_lo)
+        b.copy(low, self.ip)
+        with b.temps() as t:
+            b.copy(high, t)
+            b.move(t, self.ip, 64)
+
+    def start_definition(self):
+        b = self.b
+        b.copy(self.cp, self.start)
+        b.copy(self.cp_hi, self.start_hi)
+        b.copy(self.cp_lo, self.start_lo)
 
     def divmod(self, numerator, denominator, quotient, remainder):
         b = self.b
@@ -172,13 +229,13 @@ class Kernel:
                 b.add(self.i, -1)
                 b.clear(self.k)
                 b.copy(self.i, t)
-                b.move(t, self.k, 28)
+                b.move(t, self.k, 32)
                 self.dictionary.get(self.k, n)
                 b.eq(n, self.length, same)
                 with b.when(same):
                     b.clear(self.j)
                     b.copy(self.k, self.x)
-                    b.add(self.x, 4)
+                    b.add(self.x, 6)
                     b.lt(self.j, self.length, n)
                     with b.loop(n):
                         self.dictionary.get(self.x, v)
@@ -195,9 +252,13 @@ class Kernel:
                     self.dictionary.get(t, self.kind)
                     b.add(t)
                     self.dictionary.get(t, self.word)
+                    b.add(t)
+                    self.dictionary.get(t, self.word_hi)
+                    b.add(t)
+                    self.dictionary.get(t, self.word_lo)
                     b.clear(self.i)
                 with b.zero(same):
-                    b.add(self.k, 3)
+                    b.add(self.k, 5)
                     self.dictionary.get(self.k, self.i)
 
     def parse_number(self):
@@ -251,13 +312,17 @@ class Kernel:
             with b.temps() as t:
                 b.clear(self.k)
                 b.copy(self.dp, t)
-                b.move(t, self.k, 28)
+                b.move(t, self.k, 32)
             self.dictionary.put(self.k, self.length)
             b.add(self.k)
             b.set(self.a, 1)
             self.dictionary.put(self.k, self.a)
             b.add(self.k)
             self.dictionary.put(self.k, self.start)
+            b.add(self.k)
+            self.dictionary.put(self.k, self.start_hi)
+            b.add(self.k)
+            self.dictionary.put(self.k, self.start_lo)
             b.add(self.k)
             self.buckets.get(self.hash, self.a)
             self.dictionary.put(self.k, self.a)
@@ -320,7 +385,7 @@ class Kernel:
             with b.when(self.mode): self.error(6)
             with b.zero(self.err):
                 b.set(self.mode, 1)
-                b.copy(self.cp, self.start)
+                self.start_definition()
         with self.case(self.word, 101):
             with self.case(self.mode, 0): self.error(6)
             with b.when(self.control): self.error(6)
@@ -342,27 +407,30 @@ class Kernel:
                 self.emit_n(5)
                 self.control_push(1, self.cp)
                 self.emit_n(0)
+                self.emit_n(0)
             with self.case(self.word, 103):
                 self.control_pop([1])
                 with b.zero(self.err):
                     self.emit_n(4)
                     b.copy(self.cp, self.x)
                     self.emit_n(0)
-                    self.code.put(self.arg, self.cp)
+                    self.emit_n(0)
+                    self.patch(self.arg)
                     self.control_push(2, self.x)
             with self.case(self.word, 104):
                 self.control_pop([1, 2])
-                with b.zero(self.err): self.code.put(self.arg, self.cp)
+                with b.zero(self.err): self.patch(self.arg)
             with self.case(self.word, 105): self.control_push(3, self.cp)
             for word, op in [(106, 5), (107, 4)]:
                 with self.case(self.word, word):
                     self.control_pop([3])
                     with b.zero(self.err):
                         self.emit_n(op)
-                        self.emit_code(self.arg)
+                        self.emit_address(self.arg)
             with self.case(self.word, 108):
                 self.emit_n(2)
-                self.emit_code(self.start)
+                self.emit_code(self.start_hi)
+                self.emit_code(self.start_lo)
             for word, mode in [(109, 3), (110, 4)]:
                 with self.case(self.word, word):
                     with b.when(self.mode): self.error(6)
@@ -373,11 +441,12 @@ class Kernel:
                         with b.zero(self.sp): self.error(2)
                         with b.zero(self.err): self.pop(self.binding)
                     with b.zero(self.err):
-                        b.copy(self.cp, self.start)
+                        self.start_definition()
                         b.set(self.mode, mode)
             with self.case(self.word, 111):
                 self.emit_n(5)
                 self.control_push(4, self.cp)
+                self.emit_n(0)
                 self.emit_n(0)
             with self.case(self.word, 112):
                 self.control_pop([4])
@@ -386,8 +455,8 @@ class Kernel:
                     self.control_pop([3])
                     with b.zero(self.err):
                         self.emit_n(4)
-                        self.emit_code(self.arg)
-                        self.code.put(self.x, self.cp)
+                        self.emit_address(self.arg)
+                        self.patch(self.x)
             with self.case(self.word, 113):
                 with b.temps() as go:
                     b.set(go, 1)
@@ -430,32 +499,38 @@ class Kernel:
                 self.decimal(self.sp)
                 b.text('\n')
             with self.primitive(1, 0, 1):
-                self.code.get(self.ip, self.a)
-                b.add(self.ip)
-                self.push(self.a)
+                self.fetch(self.a)
+                with b.zero(self.err): self.push(self.a)
             with self.primitive(2):
-                self.check_limit(self.rp, 256, 2)
+                self.check_limit(self.rp, 511, 2)
                 with b.zero(self.err):
-                    b.copy(self.ip, self.a)
                     with b.when(self.ip):
-                        self.code.get(self.ip, self.arg)
-                        b.add(self.a)
-                    self.returns.put(self.rp, self.a)
-                    b.add(self.rp)
-                    b.copy(self.arg, self.ip)
+                        self.fetch(self.arg_hi)
+                        self.fetch(self.arg_lo)
+                    with b.zero(self.err):
+                        self.returns.put(self.rp, self.ip_hi)
+                        b.add(self.rp)
+                        self.returns.put(self.rp, self.ip_lo)
+                        b.add(self.rp)
+                        self.jump(self.arg_hi, self.arg_lo)
             with self.primitive(3):
                 with b.zero(self.rp): self.error(7)
                 with b.zero(self.err):
                     b.add(self.rp, -1)
-                    self.returns.get(self.rp, self.ip)
+                    self.returns.get(self.rp, self.arg_lo)
+                    b.add(self.rp, -1)
+                    self.returns.get(self.rp, self.arg_hi)
+                    self.jump(self.arg_hi, self.arg_lo)
             with self.primitive(4):
-                self.code.get(self.ip, self.a)
-                b.copy(self.a, self.ip)
+                self.fetch(self.arg_hi)
+                self.fetch(self.arg_lo)
+                with b.zero(self.err): self.jump(self.arg_hi, self.arg_lo)
             with self.primitive(5, 1):
                 self.pop(self.a)
-                self.code.get(self.ip, self.x)
-                b.add(self.ip)
-                with b.zero(self.a): b.copy(self.x, self.ip)
+                self.fetch(self.arg_hi)
+                self.fetch(self.arg_lo)
+                with b.zero(self.err):
+                    with b.zero(self.a): self.jump(self.arg_hi, self.arg_lo)
             for op, factor in [(6, 1), (7, -1)]:
                 with self.primitive(op, 2, 1):
                     self.pop(self.y)
@@ -525,9 +600,9 @@ class Kernel:
                 with b.loop(self.z):
                     b.clear(self.k)
                     b.copy(self.i, self.a)
-                    b.move(self.a, self.k, 28)
+                    b.move(self.a, self.k, 32)
                     self.dictionary.get(self.k, self.x)
-                    b.add(self.k, 4)
+                    b.add(self.k, 6)
                     with b.loop(self.x):
                         self.dictionary.get(self.k, self.a)
                         b.at(self.a)
@@ -550,6 +625,8 @@ class Kernel:
             with self.primitive(27):
                 b.clear(self.running)
                 b.clear(self.ip)
+                b.clear(self.ip_hi)
+                b.clear(self.ip_lo)
                 b.clear(self.rp)
             with self.primitive(28, 1):
                 self.pop(self.a)
@@ -568,23 +645,19 @@ class Kernel:
                 self.push(self.x)
             b.clear(self.op)
             with b.when(self.ip):
-                with b.temps() as in_code:
-                    b.lt(self.ip, self.cp, in_code)
-                    with b.zero(in_code): self.error(7)
-                with b.zero(self.err):
-                    self.code.get(self.ip, self.op)
-                    b.add(self.ip)
+                self.fetch(self.op)
 
     def build(self):
         b = self.b
         b.set(self.running, 1)
+        b.set(self.cp_lo, 1)
         b.set(self.cp, 1)  # zero is the top-level return sentinel
         b.set(self.dp, len(WORDS))
         heads = {}
         for i, (name, op) in enumerate(WORDS.items()):
             bucket = sum(name.encode('ascii')) % 256
-            for j, value in enumerate([len(name), 2 if op >= 100 else 0, op, heads.get(bucket, 0), *name.encode('ascii')]):
-                b.set(self.dictionary.base+(i*28+j)*4+2, value)
+            for j, value in enumerate([len(name), 2 if op >= 100 else 0, op, 0, 0, heads.get(bucket, 0), *name.encode('ascii')]):
+                b.set(self.dictionary.base+(i*32+j)*4+2, value)
             heads[bucket] = i+1
         for bucket, head in heads.items():
             b.set(self.buckets.base+bucket*4+2, head)
@@ -616,12 +689,14 @@ class Kernel:
                                             with self.case(self.kind, 0): self.emit_code(self.word)
                                             with self.case(self.kind, 1):
                                                 self.emit_n(2)
-                                                self.emit_code(self.word)
+                                                self.emit_code(self.word_hi)
+                                                self.emit_code(self.word_lo)
                                         with b.zero(self.mode):
                                             with self.case(self.kind, 0): b.copy(self.word, self.op)
                                             with self.case(self.kind, 1):
                                                 b.set(self.op, 2)
-                                                b.copy(self.word, self.arg)
+                                                b.copy(self.word_hi, self.arg_hi)
+                                                b.copy(self.word_lo, self.arg_lo)
                             with b.zero(self.found):
                                 self.parse_number()
                                 with b.zero(self.valid): self.error(1)
@@ -637,7 +712,7 @@ class Kernel:
         return b.source(), {
             'dialect': {'cell_bits': 16, 'wrapping': True, 'io_bits': 8, 'eof': 0, 'tape_cells': self.cells},
             'registers': b.names,
-            'arrays': {name: {'base': a.base, 'size': a.size, 'stride': 4, 'value_lane': 2} for name, a in self.arrays.items()},
+            'arrays': {name: {'base': a.base, 'size': a.size, 'stride': a.stride, 'value_lane': 2} for name, a in self.arrays.items()},
             'primitives': WORDS,
         }
 

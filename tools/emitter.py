@@ -157,6 +157,7 @@ class Array:
     """
     def __init__(self, b, base, size, name):
         self.b, self.base, self.size, self.name = b, base, size, name
+        self.stride = 4
 
     def access(self, index, value, write=False):
         b, p = self.b, self.base
@@ -181,3 +182,38 @@ class Array:
 
     def put(self, index, value):
         self.access(index, value, True)
+
+
+class PagedArray:
+    """Six-lane BF memory with a page and offset address; 64 words per page.
+
+    Both walks, cargo transfer and return are emitted Brainfuck. Callers own the
+    two address components. No host-side random access primitive is introduced.
+    """
+    def __init__(self, b, base, size, name):
+        self.b, self.base, self.size, self.name = b, base, size, name
+        self.stride = 6
+
+    def access(self, high, low, value, write=False):
+        b, p, hop = self.b, self.base, 64*6
+        right, left = '>'*hop, '<'*hop
+        b.copy(high, p)
+        b.copy(low, p+4)
+        b.clear(p+3)
+        if write: b.copy(value, p+3)
+        b.at(p)
+        b.raw('[-[-'+right+'+'+left+']>>>[-'+right+'+'+left+']>[-'+right+'+'+left+']'+ '>'*(hop-3)+'+<]')
+        # At page base lane 0. Walk the low part, leaving separate breadcrumbs.
+        b.raw('>>>>[-[->>>>>>+<<<<<<]<[->>>>>>+<<<<<<]>>>>>>>>+<]')
+        b.raw('<<<<')  # target lane 0
+        if write: b.raw('>>[-]>[-<+>]<<<')
+        else: b.raw('>>[->+<<<+>>]<<[->>+<<]')
+        # Return low part from lane 5, then page part from lane 1.
+        b.raw('>>>>>[-<<[-<<<<<<+>>>>>>]<<<<]<<<<')
+        b.raw('[->>[-'+left+'+'+right+']'+'<'*(hop+2)+']', end=p+1)
+        if not write:
+            b.clear(value)
+            b.move(p+3, value)
+
+    def get(self, high, low, out): self.access(high, low, out)
+    def put(self, high, low, value): self.access(high, low, value, True)

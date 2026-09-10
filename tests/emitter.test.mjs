@@ -23,3 +23,17 @@ print(b.source())
   assert.deepEqual(m.output, [77,78,79,94,140,77,140, 0,1,1,0,0,0,0,1,1,0,0,0,0,0,221]);
   for (let i=0;i<64;i++) for(const lane of [0,1,3]) assert.equal(m.tape[512+i*4+lane], 0);
 });
+
+test('paged native memory walks page and word lanes and clears all breadcrumbs', () => {
+  const source=execFileSync('python3',['-c',`
+from tools.emitter import BF,PagedArray
+b=BF();h,l,v,r=[b.cell() for _ in range(4)];a=PagedArray(b,512,8192,'pages')
+for hi,lo in [(0,0),(0,63),(1,0),(1,63),(3,19),(127,63),(0,0)]:
+ b.set(h,hi);b.set(l,lo);b.set(v,hi+lo+7);a.put(h,l,v);a.get(h,l,r);b.at(r);b.raw('.')
+print(b.source())
+`],{cwd:new URL('..',import.meta.url),encoding:'utf8',maxBuffer:20e6});
+  const m=new Machine(compile(source),{cells:50000});m.feed([],{eof:true});
+  assert.equal(m.run({fuel:1e12,blocks:1e7}),'halted');
+  assert.deepEqual(m.output,[7,70,8,71,29,197,7]);
+  for(let i=0;i<8192;i++)for(const lane of [0,1,3,4,5])assert.equal(m.tape[512+i*6+lane],0);
+});

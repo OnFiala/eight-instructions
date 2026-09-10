@@ -4,7 +4,7 @@
     "wrapping": true,
     "io_bits": 8,
     "eof": 0,
-    "tape_cells": 98500
+    "tape_cells": 120006
   },
   "registers": {
     "running": 0,
@@ -43,7 +43,17 @@
     "binding": 33,
     "definition": 34,
     "hash": 35,
-    "defhash": 36
+    "defhash": 36,
+    "ip_hi": 37,
+    "ip_lo": 38,
+    "cp_hi": 39,
+    "cp_lo": 40,
+    "start_hi": 41,
+    "start_lo": 42,
+    "arg_hi": 43,
+    "arg_lo": 44,
+    "word_hi": 45,
+    "word_lo": 46
   },
   "arrays": {
     "token": {
@@ -66,36 +76,36 @@
     },
     "returns": {
       "base": 2668,
-      "size": 256,
+      "size": 512,
       "stride": 4,
       "value_lane": 2
     },
     "controls": {
-      "base": 3696,
+      "base": 4720,
       "size": 128,
       "stride": 4,
       "value_lane": 2
     },
     "dictionary": {
-      "base": 4212,
-      "size": 7168,
-      "stride": 4,
-      "value_lane": 2
-    },
-    "code": {
-      "base": 32888,
+      "base": 5236,
       "size": 8192,
       "stride": 4,
       "value_lane": 2
     },
+    "code": {
+      "base": 38008,
+      "size": 8192,
+      "stride": 6,
+      "value_lane": 2
+    },
     "heap": {
-      "base": 65660,
+      "base": 87166,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "store": {
-      "base": 82048,
+      "base": 103554,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
@@ -143,6 +153,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "09bf3fe0fd61f43e374d8d2f196a6b20da00702b6982cd59984a405a6788198c",
-  "instructions": 18769724
+  "sha256": "f8a61c64986774ce06c5216bdbe638b7a5715a8d768d91e04fe1d41d9e85b93b",
+  "instructions": 35535532
 }

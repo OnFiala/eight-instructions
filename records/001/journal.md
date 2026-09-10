@@ -47,3 +47,10 @@ Append observations as they happen. No deliberately broken commits are required.
   instruction. A six-lane paged tape primitive now passes page-boundary and
   breadcrumb-cleanliness tests. The next revision will use native page/offset
   program counters and branch operands; guest source syntax remains unchanged.
+- Native paging preserved all 22 tests. The same sample/network/route workload
+  fell from 41.12 s to 13.45 s; changing one committed road and rerouting took
+  6.76 s. The altered route cost was 21, path 0 2 4 5 11. These are individual
+  development observations, not a statistical benchmark or cross-host promise.
+- Runtime code addresses now use page/offset pairs. Existing Thread source syntax
+  and tested behavior survive; early kernel images intentionally have incompatible
+  kernel hashes. No user images had been published at this stage.

@@ -49,3 +49,21 @@ implementing multi-byte arithmetic. This is not a claim of 8-bit portability.
 
 This is an initial architecture decision, committed before kernel implementation.
 Actual limits and execution evidence will be documented after tests.
+
+## Measured revisions during Build #001
+
+The initial linear dictionary was replaced by a native 256-bucket chained hash
+table after application compilation hit a work budget. Hashing, collision checks
+and publication are Brainfuck operations. Redefinition publishes a new dictionary
+entry; already-compiled calls retain their previous target.
+
+Code uses 128 pages of 64 words. Program counters, calls and returns carry page
+and offset components. Six tape lanes implement page travel, local travel, value,
+cargo and separate return breadcrumbs. The executor knows none of this layout.
+This reduced the observed first application run from 41.12 to 13.45 seconds.
+
+The 721-byte WebAssembly executor is a generic acceleration backend for the same
+operation stream as the JS executor. It is assembled from `runtime/executor.wat`
+using pinned WABT. It neither compiles nor executes Thread directly. Literal
+Brainfuck execution remains a differential reference. Node and the browser use
+the same kernel, executor and machine-image format.
