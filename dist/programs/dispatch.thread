@@ -1,0 +1,127 @@
+\ Dispatch: a mutable transport network in the transactional store.
+\ Up to 32 nodes and 128 directed roads. Costs are 1..1000, node IDs 0..31.
+\ Edge key = from*32+to, value = cost. Zero matrix entries mean no road.
+32 constant max-nodes
+variable nodes
+12 nodes !
+here constant distances 32 allot
+here constant previous 32 allot
+here constant visited 32 allot
+here constant path 32 allot
+here constant matrix 1024 allot
+variable source
+variable target
+variable chosen
+variable best
+variable candidate
+variable weight
+variable row
+variable col
+variable turns
+variable path-size
+variable road-from
+variable road-to
+variable road-cost
+
+: node-ok nodes @ < assert ;
+: edge-key swap 32 * + ;
+: road
+  road-to ! road-from ! road-cost !
+  road-to @ node-ok road-from @ node-ok
+  road-cost @ 0 > road-cost @ 1000 <= and assert
+  road-cost @ road-from @ road-to @ edge-key db-put
+;
+: close-road 2dup node-ok node-ok edge-key db-delete ;
+
+: graph-load
+  nodes @ 0 > nodes @ max-nodes <= and assert
+  0 matrix 1024 fill
+  0 row !
+  begin row @ db-capacity < while
+    row @ db-live? if
+      row @ db-key-at dup 1024 < assert
+      row @ db-value-at dup 0 > over 1000 <= and assert
+      swap matrix + !
+    then
+    1 row +!
+  repeat
+;
+
+: route-init
+  65535 distances max-nodes fill 65535 previous max-nodes fill
+  0 visited max-nodes fill
+  0 distances source @ + !
+;
+
+: nearest
+  65535 best ! 65535 candidate ! 0 row !
+  begin row @ nodes @ < while
+    visited row @ + @ 0= if
+      distances row @ + @ best @ < if
+        distances row @ + @ best ! row @ candidate !
+      then
+    then
+    1 row +!
+  repeat candidate @
+;
+
+: solve
+  0 turns !
+  begin turns @ nodes @ < while
+    nearest dup 65535 = if drop exit then chosen !
+    1 visited chosen @ + !
+    0 col !
+    begin col @ nodes @ < while
+      matrix chosen @ 32 * col @ + + @ dup if
+        weight ! distances chosen @ + @ weight @ + candidate !
+        candidate @ distances col @ + @ < if
+          candidate @ distances col @ + ! chosen @ previous col @ + !
+        then
+      else drop then
+      1 col +!
+    repeat
+    1 turns +!
+  repeat
+;
+
+: make-path
+  0 path-size ! target @ row !
+  begin row @ 65535 = 0= while
+    path-size @ max-nodes < assert
+    row @ path path-size @ + ! 1 path-size +!
+    previous row @ + @ row !
+  repeat
+;
+
+: report-route
+  distances target @ + @ dup 65535 = if
+    drop ." UNREACHABLE" cr exit
+  then
+  ." COST " . cr ." PATH "
+  make-path
+  begin path-size @ 0 > while
+    -1 path-size +! path path-size @ + @ .
+  repeat cr
+;
+
+: route
+  target ! source ! source @ node-ok target @ node-ok
+  graph-load route-init solve report-route
+;
+
+: network
+  ." NODES " nodes @ . cr ." ROADS " db-count . cr
+  ." GENERATION " db-generation . cr ." STAGED " tx? . cr
+;
+
+: sample
+  12 nodes ! tx-begin db-clear
+  4 0 1 road assert 2 0 2 road assert 1 2 1 road assert
+  5 1 3 road assert 8 2 3 road assert 3 2 4 road assert
+  2 4 3 road assert 6 3 5 road assert 4 4 5 road assert
+  3 5 6 road assert 7 4 7 road assert 2 7 6 road assert
+  5 6 8 road assert 2 7 8 road assert 3 8 9 road assert
+  4 9 10 road assert 1 10 11 road assert 12 5 11 road assert
+  9 3 9 road assert 7 1 7 road assert
+  tx-commit
+;
