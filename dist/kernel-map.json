@@ -1,0 +1,138 @@
+{
+  "dialect": {
+    "cell_bits": 16,
+    "wrapping": true,
+    "io_bits": 8,
+    "eof": 0,
+    "tape_cells": 93376
+  },
+  "registers": {
+    "running": 0,
+    "sp": 1,
+    "rp": 2,
+    "cp": 3,
+    "dp": 4,
+    "here": 5,
+    "mode": 6,
+    "start": 7,
+    "control": 8,
+    "err": 9,
+    "ip": 10,
+    "op": 11,
+    "arg": 12,
+    "ch": 13,
+    "length": 14,
+    "overflow": 15,
+    "found": 16,
+    "kind": 17,
+    "word": 18,
+    "number": 19,
+    "valid": 20,
+    "negative": 21,
+    "i": 22,
+    "j": 23,
+    "k": 24,
+    "a": 25,
+    "z": 26,
+    "x": 27,
+    "y": 28,
+    "q": 29,
+    "rem": 30,
+    "tmp": 31,
+    "tracing": 32,
+    "binding": 33,
+    "definition": 34
+  },
+  "arrays": {
+    "token": {
+      "base": 512,
+      "size": 24,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "data": {
+      "base": 612,
+      "size": 256,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "returns": {
+      "base": 1640,
+      "size": 256,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "controls": {
+      "base": 2668,
+      "size": 128,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "dictionary": {
+      "base": 3184,
+      "size": 6144,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "code": {
+      "base": 27764,
+      "size": 8192,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "heap": {
+      "base": 60536,
+      "size": 4096,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "store": {
+      "base": 76924,
+      "size": 4096,
+      "stride": 4,
+      "value_lane": 2
+    }
+  },
+  "primitives": {
+    "+": 6,
+    "-": 7,
+    "*": 8,
+    "/mod": 9,
+    "=": 10,
+    "<": 11,
+    "dup": 12,
+    "drop": 13,
+    "swap": 14,
+    "over": 15,
+    "@": 16,
+    "!": 17,
+    "p@": 18,
+    "p!": 19,
+    "emit": 20,
+    ".": 21,
+    "depth": 22,
+    "words": 23,
+    "here": 24,
+    "allot": 25,
+    "trace": 26,
+    "bye": 27,
+    "assert": 28,
+    "0=": 29,
+    "exit": 3,
+    ":": 100,
+    ";": 101,
+    "if": 102,
+    "else": 103,
+    "then": 104,
+    "begin": 105,
+    "until": 106,
+    "again": 107,
+    "recurse": 108,
+    "variable": 109,
+    "constant": 110,
+    "while": 111,
+    "repeat": 112
+  },
+  "sha256": "b922037db6868f79b10d0831902e6b071fa9ff541f2f91ed453dfcac76731fc3",
+  "instructions": 14715148
+}

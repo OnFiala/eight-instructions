@@ -3,7 +3,7 @@ export const ENGINE_VERSION = 1;
 const COMMANDS = new Set('><+-.,[]');
 
 export function compile(source, { optimize = true } = {}) {
-  const code = [...source].filter(c => COMMANDS.has(c)).join('');
+  const code = source.replace(/[^><+\-.,\[\]]/g, '');
   const match = new Map(), stack = [];
   for (let i = 0; i < code.length; i++) {
     if (code[i] === '[') stack.push(i);
