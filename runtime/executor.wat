@@ -39,8 +39,10 @@
         (br_if $done (i32.ge_u (global.get $pc) (global.get $count)))
         (local.set $op (i32.add (global.get $base) (i32.mul (global.get $pc) (i32.const 32))))
         (local.set $kind (i32.load (local.get $op)))
-        (if (i32.and (i32.eq (local.get $kind) (i32.const 5)) (i32.eqz (call $available)))
-          (then (return (i32.const 1))))
+        (if (i32.eq (local.get $kind) (i32.const 5))
+          (then
+            (if (i32.eqz (call $available))
+              (then (return (i32.const 1))))))
         (local.set $addr (i32.shl (global.get $p) (i32.const 1)))
         (local.set $value (i32.load16_u (local.get $addr)))
         (local.set $n (i32.load offset=4 (local.get $op)))

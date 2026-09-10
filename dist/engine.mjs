@@ -1,6 +1,5 @@
 // Generic Brainfuck execution only. No guest language or application knowledge.
 export const ENGINE_VERSION = 1;
-const COMMANDS = new Set('><+-.,[]');
 
 export function compile(source, { optimize = true } = {}) {
   const code = source.replace(/[^><+\-.,\[\]]/g, '');
@@ -54,6 +53,7 @@ export function compile(source, { optimize = true } = {}) {
 export class Machine {
   constructor(program, { cells = 160000, maxOutput = 1048576 } = {}) {
     if (!Number.isSafeInteger(cells) || cells < 1 || cells > 1000000) throw new RangeError('Invalid tape size');
+    if (!Number.isSafeInteger(maxOutput) || maxOutput < 1 || maxOutput > 1048576) throw new RangeError('Invalid output limit');
     this.program = program; this.tape = new Uint16Array(cells);
     this.pc = 0; this.pointer = 0; this.steps = 0; this.blocks = 0; this.highWater = 0;
     this.input = []; this.inputAt = 0; this.eof = false; this.output = [];
@@ -61,8 +61,10 @@ export class Machine {
   }
   feed(bytes, { eof = false } = {}) {
     if (this.eof && bytes.length) throw new Error('Input already closed');
-    this.input = this.input.slice(this.inputAt).concat(Array.from(bytes)); this.inputAt = 0;
-    if (this.input.some(x => !Number.isInteger(x) || x < 0 || x > 255)) throw new TypeError('Input must be bytes');
+    const pending = this.input.slice(this.inputAt).concat(Array.from(bytes));
+    if (pending.length > 1048576) throw new RangeError('Input limit exceeded');
+    if (pending.some(x => !Number.isInteger(x) || x < 0 || x > 255)) throw new TypeError('Input must be bytes');
+    this.input = pending; this.inputAt = 0;
     this.eof ||= eof;
     if (this.state === 'input') this.state = 'ready';
   }
@@ -71,6 +73,9 @@ export class Machine {
     this.highWater = Math.max(this.highWater, this.pointer+max);
   }
   run({ fuel = 1e12, blocks = 1e8 } = {}) {
+    if (![fuel,blocks].every(n => Number.isSafeInteger(n) && n >= 0)) throw new RangeError('Invalid execution budget');
+    fuel = Math.min(fuel, Number.MAX_SAFE_INTEGER-this.steps);
+    blocks = Math.min(blocks, Number.MAX_SAFE_INTEGER-this.blocks);
     const limit = this.steps + fuel, blockLimit = this.blocks + blocks;
     this.state = 'running';
     while (this.pc < this.program.ops.length) {

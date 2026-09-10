@@ -23,6 +23,13 @@ test('bounds checks retain intermediate pointer motion', () => {
 test('resource budget interrupts a divergent program', () => {
   const m = new Machine(compile('+[]')); assert.equal(m.run({ fuel: 500 }), 'budget'); assert.equal(m.steps, 500);
 });
+test('invalid limits and bytes fail without corrupting queued input',()=>{
+  const m=new Machine(compile(',.,.'));m.feed([65]);
+  assert.throws(()=>m.feed([256]),/bytes/);assert.deepEqual(m.input,[65]);
+  for(const fuel of [-1,NaN,Infinity,1.5])assert.throws(()=>m.run({fuel}),/budget/);
+  assert.throws(()=>m.feed(new Uint8Array(1048577)),/Input limit/);
+  assert.equal(m.run(),'input');assert.deepEqual(m.output,[65]);
+});
 test('optimized loops match literal execution, including instruction counts', () => {
   let seed = 713;
   const random = n => { seed = (Math.imul(seed, 1664525)+1013904223) >>> 0; return seed % n; };

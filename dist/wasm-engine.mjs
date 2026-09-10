@@ -37,6 +37,9 @@ export class WasmMachine extends Machine {
     this.instance.exports.configure(this.tape.length,base,program.ops.length);
   }
   run({fuel=1e12,blocks=1e8}={}) {
+    if(![fuel,blocks].every(n=>Number.isSafeInteger(n)&&n>=0))throw new RangeError('Invalid execution budget');
+    fuel=Math.min(fuel,Number.MAX_SAFE_INTEGER-this.steps);
+    blocks=Math.min(blocks,Number.MAX_SAFE_INTEGER-this.blocks);
     const e=this.instance.exports;
     for (const k of ['pc','pointer','steps','blocks','highWater']) e[k].value=this[k];
     const status=e.run(fuel,blocks);
