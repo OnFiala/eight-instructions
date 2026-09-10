@@ -55,3 +55,12 @@ test('EOF closes ordinary execution and rejects unfinished compilation', () => {
   const m=session('12 .', {eof:true}); assert.equal(m.state,'halted'); assert.equal(output(m),'Thread / 8 Instructions\n12 ');
   const n=session(': unfinished 7 ', {eof:true}); assert.equal(n.state,'halted'); assert.match(output(n),/!E6/);
 });
+test('bounded bulk memory handles overlap in both directions',()=>{
+  const m=expect('7 0 5 fill 9 5 ! 0 1 6 move 0 @ . 1 @ . 6 @ . 1 0 6 move 5 @ . 44 4095 1 pfill 4095 p@ . 0 4096 0 fill', '7 7 9 9 44 ');
+  assert.match(send(m,'0 4095 2 fill '),/!E3/);
+  assert.match(send(m,'0 0 65535 move '),/!E3/);
+  assert.equal(send(m,'4095 p@ . '),'44 ');
+});
+test('strings compile natively and dictionary collisions and shadowing remain sound',()=>{
+  expect(': ab 12 ; : ba 19 ; : old ab ; : ab 27 ; old . ab . ba . : greet ." Hello world" ; greet ." !"', '12 27 19 Hello world!');
+});

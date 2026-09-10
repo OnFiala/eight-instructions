@@ -138,6 +138,10 @@
     "0=": 29,
     "exit": 3,
     "rot": 30,
+    "fill": 31,
+    "pfill": 32,
+    "move": 33,
+    "pmove": 34,
     ":": 100,
     ";": 101,
     "if": 102,
@@ -153,6 +157,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "f8a61c64986774ce06c5216bdbe638b7a5715a8d768d91e04fe1d41d9e85b93b",
-  "instructions": 35535532
+  "sha256": "ef0f8b72a379fc2aacb939fea555066998a91216dc2b3ffffe4e40b623621b29",
+  "instructions": 44647142
 }

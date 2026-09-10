@@ -54,3 +54,32 @@ Append observations as they happen. No deliberately broken commits are required.
 - Runtime code addresses now use page/offset pairs. Existing Thread source syntax
   and tested behavior survive; early kernel images intentionally have incompatible
   kernel hashes. No user images had been published at this stage.
+
+## Storage, images and adversarial application tests
+
+- Added native bulk fill and overlap-safe move operations. Transaction copying
+  and graph initialization use these ordinary memory primitives. The sample run
+  measured 8.58 s; changing and rerouting one road measured 2.18 s.
+- Saved a real image to disk, then loaded it in a new Node process. It retained
+  the network, generation and compiled program and reproduced the same route.
+- A separately authored literal C interpreter executed the full generated kernel
+  for a user-defined square function: 1,439,337,295 raw instructions. Its output
+  matched the runtime. This reference performs no RLE or affine optimization.
+- Application stress: 32-node / 31-edge maximum path and random networks passed
+  against a Bellman-Ford oracle. One of nine storage/application tests failed:
+  inserting 128 records reached the 1e14-instruction budget after 47.41 s.
+- Replaced linear free-slot search with BF-native open addressing and tombstones.
+  This is a real store-format revision (1 to 2), before public release. Added
+  collision, deletion-chain and native format/index integrity checks. Previous
+  development images retain their own old compiled library; loading a new
+  incompatible library is rejected by its schema check.
+- The current session's platform metadata reports gpt-6-astra and xhigh, matching
+  the founding prompt. No other coding agent has participated.
+- The revised full-capacity store test passed in 5.62 s, including capacity refusal,
+  update, deletion and slot reuse. All 12 storage/application/reference tests in
+  that run passed. Collision chains and schema corruption are explicitly covered.
+- Self-audit found the Wasm interpreter's input-availability import was evaluated
+  for every generic operation by an eager boolean expression. Changed it to a
+  conditional import only at a comma instruction; differential checks still pass.
+- Input validation now rejects malformed bytes without changing queued input;
+  execution budgets are validated and counters stop before losing integer precision.

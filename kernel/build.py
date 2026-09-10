@@ -1,6 +1,8 @@
 """Emit Thread's compiler and runtime as Brainfuck. No guest execution in Python."""
 import argparse
+import gzip
 import hashlib
+import io
 import json
 import sys
 from contextlib import contextmanager
@@ -15,6 +17,7 @@ WORDS = {
     '@': 16, '!': 17, 'p@': 18, 'p!': 19, 'emit': 20, '.': 21,
     'depth': 22, 'words': 23, 'here': 24, 'allot': 25, 'trace': 26,
     'bye': 27, 'assert': 28, '0=': 29, 'exit': 3, 'rot': 30,
+    'fill': 31, 'pfill': 32, 'move': 33, 'pmove': 34,
     ':': 100, ';': 101, 'if': 102, 'else': 103, 'then': 104,
     'begin': 105, 'until': 106, 'again': 107, 'recurse': 108,
     'variable': 109, 'constant': 110, 'while': 111, 'repeat': 112, '."': 113,
@@ -356,7 +359,7 @@ class Kernel:
 
     def control_push(self, tag, address):
         b = self.b
-        self.check_limit(self.control, 126, 6)
+        self.check_limit(self.control, 127, 6)
         with b.zero(self.err):
             self.controls.put(self.control, address)
             b.add(self.control)
@@ -643,6 +646,60 @@ class Kernel:
                 self.push(self.y)
                 self.push(self.a)
                 self.push(self.x)
+            for op, array in [(31, self.heap), (32, self.store)]:
+                with self.primitive(op, 3):
+                    self.pop(self.z)
+                    self.pop(self.x)
+                    self.pop(self.a)
+                    self.check_limit(self.z, array.size+1)
+                    self.check_limit(self.x, array.size+1)
+                    with b.zero(self.err):
+                        b.copy(self.x, self.y)
+                        with b.temps() as t:
+                            b.copy(self.z, t)
+                            b.move(t, self.y)
+                        self.check_limit(self.y, array.size+1)
+                        with b.zero(self.err):
+                            with b.loop(self.z):
+                                array.put(self.x, self.a)
+                                b.add(self.x)
+                                b.add(self.z, -1)
+            for op, array in [(33, self.heap), (34, self.store)]:
+                with self.primitive(op, 3):
+                    self.pop(self.z)
+                    self.pop(self.y)
+                    self.pop(self.x)
+                    for value in [self.x, self.y, self.z]:
+                        self.check_limit(value, array.size+1)
+                    with b.zero(self.err):
+                        for start in [self.x, self.y]:
+                            with b.temps(2) as (end, t):
+                                b.copy(start, end)
+                                b.copy(self.z, t)
+                                b.move(t, end)
+                                self.check_limit(end, array.size+1)
+                        with b.zero(self.err):
+                            with b.temps() as backward:
+                                b.lt(self.x, self.y, backward)
+                                with b.when(backward):
+                                    with b.temps() as t:
+                                        b.copy(self.z, t)
+                                        b.move(t, self.x)
+                                        b.copy(self.z, t)
+                                        b.move(t, self.y)
+                                    with b.loop(self.z):
+                                        b.add(self.x, -1)
+                                        b.add(self.y, -1)
+                                        array.get(self.x, self.a)
+                                        array.put(self.y, self.a)
+                                        b.add(self.z, -1)
+                                with b.zero(backward):
+                                    with b.loop(self.z):
+                                        array.get(self.x, self.a)
+                                        array.put(self.y, self.a)
+                                        b.add(self.x)
+                                        b.add(self.y)
+                                        b.add(self.z, -1)
             b.clear(self.op)
             with b.when(self.ip):
                 self.fetch(self.op)
@@ -724,14 +781,19 @@ def main():
     source, layout = Kernel().build()
     layout['sha256'] = hashlib.sha256(source.encode()).hexdigest()
     layout['instructions'] = len(source.strip())
-    outputs = {'dist/kernel.bf': source, 'dist/kernel-map.json': json.dumps(layout, indent=2)+'\n'}
+    compressed = io.BytesIO()
+    with gzip.GzipFile(fileobj=compressed, mode='wb', filename='', mtime=0, compresslevel=9) as archive:
+        archive.write(source.encode())
+    outputs = {'artifacts/kernel.bf': source.encode(), 'dist/kernel.bf.gz': compressed.getvalue(),
+               'dist/kernel-map.json': (json.dumps(layout, indent=2)+'\n').encode()}
     for file, content in outputs.items():
         path = ROOT/file
         if args.check:
-            if not path.exists() or path.read_text() != content:
+            if not path.exists() or path.read_bytes() != content:
                 raise SystemExit(f'Non-reproducible artifact: {file}')
         else:
-            path.write_text(content)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(content)
     print(json.dumps({'instructions': layout['instructions'], 'sha256': layout['sha256'], 'cells': layout['dialect']['tape_cells']}))
 
 

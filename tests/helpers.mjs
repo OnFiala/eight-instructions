@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { compile, Machine } from '../dist/engine.mjs';
-export const source = readFileSync(new URL('../dist/kernel.bf', import.meta.url), 'utf8');
+export const source = readFileSync(new URL('../artifacts/kernel.bf', import.meta.url), 'utf8');
 export const layout = JSON.parse(readFileSync(new URL('../dist/kernel-map.json', import.meta.url), 'utf8'));
 export const compiled = compile(source);
 export function session(text = '', { eof = false, fuel = 1e13, blocks = 2e8 } = {}) {

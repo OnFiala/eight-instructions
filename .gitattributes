@@ -1,2 +1,3 @@
-dist/kernel.bf linguist-generated=true
+artifacts/kernel.bf linguist-generated=true
+dist/kernel.bf.gz linguist-generated=true
 dist/kernel-map.json linguist-generated=true

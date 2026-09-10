@@ -35,8 +35,7 @@ variable road-cost
 
 : graph-load
   nodes @ 0 > nodes @ max-nodes <= and assert
-  0 row !
-  begin row @ 1024 < while 0 matrix row @ + ! 1 row +! repeat
+  0 matrix 1024 fill
   0 row !
   begin row @ db-capacity < while
     row @ db-live? if
@@ -49,11 +48,8 @@ variable road-cost
 ;
 
 : route-init
-  0 row !
-  begin row @ max-nodes < while
-    65535 distances row @ + ! 65535 previous row @ + !
-    0 visited row @ + ! 1 row +!
-  repeat
+  65535 distances max-nodes fill 65535 previous max-nodes fill
+  0 visited max-nodes fill
   0 distances source @ + !
 ;
 
@@ -129,4 +125,3 @@ variable road-cost
   9 3 9 road assert 7 1 7 road assert
   tx-commit
 ;
-
