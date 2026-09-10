@@ -4,7 +4,7 @@
     "wrapping": true,
     "io_bits": 8,
     "eof": 0,
-    "tape_cells": 93376
+    "tape_cells": 98500
   },
   "registers": {
     "running": 0,
@@ -41,7 +41,9 @@
     "tmp": 31,
     "tracing": 32,
     "binding": 33,
-    "definition": 34
+    "definition": 34,
+    "hash": 35,
+    "defhash": 36
   },
   "arrays": {
     "token": {
@@ -50,44 +52,50 @@
       "stride": 4,
       "value_lane": 2
     },
-    "data": {
+    "buckets": {
       "base": 612,
       "size": 256,
       "stride": 4,
       "value_lane": 2
     },
-    "returns": {
+    "data": {
       "base": 1640,
       "size": 256,
       "stride": 4,
       "value_lane": 2
     },
-    "controls": {
+    "returns": {
       "base": 2668,
+      "size": 256,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "controls": {
+      "base": 3696,
       "size": 128,
       "stride": 4,
       "value_lane": 2
     },
     "dictionary": {
-      "base": 3184,
-      "size": 6144,
+      "base": 4212,
+      "size": 7168,
       "stride": 4,
       "value_lane": 2
     },
     "code": {
-      "base": 27764,
+      "base": 32888,
       "size": 8192,
       "stride": 4,
       "value_lane": 2
     },
     "heap": {
-      "base": 60536,
+      "base": 65660,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "store": {
-      "base": 76924,
+      "base": 82048,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
@@ -135,6 +143,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "15464ded3d0e845609f01df6289dfb21a4e3cd709ed391a660fe91b60ff6eef3",
-  "instructions": 15605306
+  "sha256": "09bf3fe0fd61f43e374d8d2f196a6b20da00702b6982cd59984a405a6788198c",
+  "instructions": 18769724
 }

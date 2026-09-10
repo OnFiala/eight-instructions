@@ -24,13 +24,13 @@ WORDS = {
 class Kernel:
     def __init__(self):
         b = self.b = BF()
-        names = 'running sp rp cp dp here mode start control err ip op arg ch length overflow found kind word number valid negative i j k a z x y q rem tmp tracing binding definition'.split()
+        names = 'running sp rp cp dp here mode start control err ip op arg ch length overflow found kind word number valid negative i j k a z x y q rem tmp tracing binding definition hash defhash'.split()
         for name in names:
             setattr(self, name, b.cell(name))
         base = 512
         self.arrays = {}
-        for name, size in [('token', 24), ('data', 256), ('returns', 256),
-                           ('controls', 128), ('dictionary', 6144), ('code', 8192),
+        for name, size in [('token', 24), ('buckets', 256), ('data', 256), ('returns', 256),
+                           ('controls', 128), ('dictionary', 7168), ('code', 8192),
                            ('heap', 4096), ('store', 4096)]:
             arr = Array(b, base, size, name)
             self.arrays[name] = arr
@@ -126,6 +126,7 @@ class Kernel:
         b = self.b
         b.clear(self.length)
         b.clear(self.overflow)
+        b.clear(self.hash)
         with b.temps(3) as (go, space, limit):
             b.set(go, 1)
             b.set(limit, 33)
@@ -148,6 +149,12 @@ class Kernel:
                 b.lt(self.length, space, limit)
                 with b.when(limit):
                     self.token.put(self.length, self.ch)
+                    with b.temps(3) as (byte, modulus, small):
+                        b.copy(self.ch, byte)
+                        b.move(byte, self.hash)
+                        b.set(modulus, 256)
+                        b.lt(self.hash, modulus, small)
+                        with b.zero(small): b.add(self.hash, -256)
                     b.add(self.length)
                 with b.zero(limit): b.set(self.overflow, 1)
                 self.read()
@@ -159,23 +166,19 @@ class Kernel:
     def lookup(self):
         b = self.b
         b.clear(self.found)
-        b.clear(self.i)
-        with b.temps(5) as (go, same, n, v, t):
-            b.lt(self.i, self.dp, go)
-            with b.loop(go):
-                b.copy(self.i, self.j)
-                # Entry is [length, kind, code, 21 name bytes].
+        self.buckets.get(self.hash, self.i)
+        with b.temps(4) as (same, n, v, t):
+            with b.loop(self.i):
+                b.add(self.i, -1)
                 b.clear(self.k)
                 b.copy(self.i, t)
-                with b.loop(t):
-                    b.add(t, -1)
-                    b.add(self.k, 24)
+                b.move(t, self.k, 28)
                 self.dictionary.get(self.k, n)
                 b.eq(n, self.length, same)
                 with b.when(same):
                     b.clear(self.j)
                     b.copy(self.k, self.x)
-                    b.add(self.x, 3)
+                    b.add(self.x, 4)
                     b.lt(self.j, self.length, n)
                     with b.loop(n):
                         self.dictionary.get(self.x, v)
@@ -185,14 +188,17 @@ class Kernel:
                         b.add(self.x)
                         b.add(self.j)
                         b.lt(self.j, self.length, n)
-                    with b.when(same):
-                        b.set(self.found, 1)
-                        b.add(self.k)
-                        self.dictionary.get(self.k, self.kind)
-                        b.add(self.k)
-                        self.dictionary.get(self.k, self.word)
-                b.add(self.i)
-                b.lt(self.i, self.dp, go)
+                with b.when(same):
+                    b.set(self.found, 1)
+                    b.copy(self.k, t)
+                    b.add(t)
+                    self.dictionary.get(t, self.kind)
+                    b.add(t)
+                    self.dictionary.get(t, self.word)
+                    b.clear(self.i)
+                with b.zero(same):
+                    b.add(self.k, 3)
+                    self.dictionary.get(self.k, self.i)
 
     def parse_number(self):
         b = self.b
@@ -239,19 +245,23 @@ class Kernel:
         b = self.b
         b.copy(self.mode, self.definition)
         self.check_limit(self.dp, 256, 5)
-        self.check_limit(self.length, 22, 1)
+        self.check_limit(self.length, 24, 1)
         with b.zero(self.err):
             b.copy(self.dp, self.k)
             with b.temps() as t:
                 b.clear(self.k)
                 b.copy(self.dp, t)
-                b.move(t, self.k, 24)
+                b.move(t, self.k, 28)
             self.dictionary.put(self.k, self.length)
             b.add(self.k)
             b.set(self.a, 1)
             self.dictionary.put(self.k, self.a)
             b.add(self.k)
             self.dictionary.put(self.k, self.start)
+            b.add(self.k)
+            self.buckets.get(self.hash, self.a)
+            self.dictionary.put(self.k, self.a)
+            b.copy(self.hash, self.defhash)
             b.add(self.k)
             b.clear(self.i)
             b.lt(self.i, self.length, self.z)
@@ -272,8 +282,12 @@ class Kernel:
                             b.clear(self.a)
                             self.heap.put(self.here, self.a)
                             b.add(self.here)
-                        b.add(self.dp)
+                        self.publish()
                         b.clear(self.mode)
+
+    def publish(self):
+        self.b.add(self.dp)
+        self.buckets.put(self.defhash, self.dp)
 
     def control_push(self, tag, address):
         b = self.b
@@ -313,7 +327,7 @@ class Kernel:
             with b.zero(self.err):
                 self.emit_n(3)
                 with b.zero(self.err):
-                    b.add(self.dp)
+                    self.publish()
                     b.clear(self.mode)
         with b.temps() as special:
             b.set(special, 101)
@@ -511,9 +525,9 @@ class Kernel:
                 with b.loop(self.z):
                     b.clear(self.k)
                     b.copy(self.i, self.a)
-                    b.move(self.a, self.k, 24)
+                    b.move(self.a, self.k, 28)
                     self.dictionary.get(self.k, self.x)
-                    b.add(self.k, 3)
+                    b.add(self.k, 4)
                     with b.loop(self.x):
                         self.dictionary.get(self.k, self.a)
                         b.at(self.a)
@@ -566,9 +580,14 @@ class Kernel:
         b.set(self.running, 1)
         b.set(self.cp, 1)  # zero is the top-level return sentinel
         b.set(self.dp, len(WORDS))
+        heads = {}
         for i, (name, op) in enumerate(WORDS.items()):
-            for j, value in enumerate([len(name), 2 if op >= 100 else 0, op, *name.encode('ascii')]):
-                b.set(self.dictionary.base+(i*24+j)*4+2, value)
+            bucket = sum(name.encode('ascii')) % 256
+            for j, value in enumerate([len(name), 2 if op >= 100 else 0, op, heads.get(bucket, 0), *name.encode('ascii')]):
+                b.set(self.dictionary.base+(i*28+j)*4+2, value)
+            heads[bucket] = i+1
+        for bucket, head in heads.items():
+            b.set(self.buckets.base+bucket*4+2, head)
         b.text('Thread / 8 Instructions\n')
         with b.loop(self.running):
             b.clear(self.err)

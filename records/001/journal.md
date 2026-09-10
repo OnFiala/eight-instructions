@@ -37,3 +37,13 @@ Append observations as they happen. No deliberately broken commits are required.
 - Chose a BF-native 256-bucket chained dictionary. Runtime token hashing, lookup,
   publication and links stay entirely in generated Brainfuck. Built-in dictionary
   initializers are bootstrap constants. No host parser or application shortcut.
+- After hashing, the whole 6,176-byte library/application input compiled to 118
+  dictionary entries and 1,661 code cells in 2.99 seconds on the JS backend.
+- A generic WebAssembly backend passed 150 differential programs plus streaming,
+  bounds and nested-loop checks. The first full sample/network/route run completed
+  in 41.12 seconds there, returning cost 20 and path 0 2 1 7 8 9 10 11. This
+  was correct output, but not acceptable interactive performance.
+- The next bottleneck was repeated linear access to code memory for each guest
+  instruction. A six-lane paged tape primitive now passes page-boundary and
+  breadcrumb-cleanliness tests. The next revision will use native page/offset
+  program counters and branch operands; guest source syntax remains unchanged.
