@@ -141,3 +141,15 @@ Append observations as they happen. No deliberately broken commits are required.
   deletion, update and reuse. Observed workload: 34.74 s, 429,824,504,751,225 BF
   instructions, six bounded execution calls before the final checks. This is an
   explicit worst-case limitation, not an assertion of fast worst-case lookup.
+
+## Reproduction and publication seal
+
+- Final implementation candidate `36b047b2951c24993d0e4995e65339ecb9db2b5d`
+  passed 50/50 locally, in a fresh clone downloaded from public GitHub, and in
+  Linux GitHub Actions. The clone ran its demo before installing any dependency,
+  saved state, then a new process changed a road and returned cost 21.
+- Both independent environments regenerated/checked identical artifacts and left
+  the tracked tree clean. Local suite duration was 54.16 s, clean clone 54.19 s,
+  Linux CI 94.23 s. These are environment-specific observations.
+- The following seal changes build/public evidence, not executable code. Exact
+  public deployment and asset verification are appended in publication.json.

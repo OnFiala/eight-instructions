@@ -4,10 +4,10 @@
     {
       "number": 1,
       "title": "General-purpose computing environment",
-      "status": "LOCAL PASS",
+      "status": "PASS",
       "summary": "A compiler, transactional data store and dynamic route planner built on the Brainfuck (BF) programming language.",
       "testsPassed": 50,
-      "testedCommit": null
+      "testedCommit": "36b047b2951c24993d0e4995e65339ecb9db2b5d"
     }
   ]
 }

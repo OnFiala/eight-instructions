@@ -7,8 +7,10 @@ We gave Astra xHigh this deeply inconvenient starting point and asked it to buil
 increasingly serious computing systems. The human supplies challenges, writes no
 production code and provides no code repairs. There is no predefined finish line.
 
-**Build #001: General-purpose computing environment.** The native implementation
-passes 50 tests, including deliberately hostile workloads.
+**Build #001 — PASS: General-purpose computing environment.**
+All 50 tests pass locally, in a clean public clone and in
+[Linux CI](https://github.com/OnFiala/eight-instructions/actions/runs/34513686769),
+including deliberately hostile workloads.
 
 [Try the live machine](https://eight-instructions.andrewxix.chatgpt.site) ·
 [Read the build record](records/001/build.json) · [Permanent protocol](PROTOCOL.md)

@@ -2,15 +2,15 @@
   "schemaVersion": 1,
   "number": 1,
   "title": "General-purpose computing environment",
-  "status": "LOCAL PASS",
+  "status": "PASS",
   "summary": "A compiler, transactional data store and dynamic route planner built on the Brainfuck (BF) programming language.",
   "model": "gpt-6-astra",
   "reasoningMode": "xhigh",
   "soleEngineeringAgent": true,
   "originalChallenge": "challenge.md",
   "startingGitCommit": "fea361222cfbc9ab1a17123a19d9b533a301437d",
-  "endingGitCommit": null,
-  "commitConvention": "Starting commit establishes the experiment. Ending commit is the tested implementation/evidence candidate before the final record-sealing commit; Git cannot embed its own final hash. A build-001 tag identifies the closure commit.",
+  "endingGitCommit": "36b047b2951c24993d0e4995e65339ecb9db2b5d",
+  "commitConvention": "The starting commit establishes the experiment. The ending commit is the exact implementation/evidence candidate verified in a clean public clone and Linux CI. Subsequent commits seal metadata and append the deployment receipt without changing executable code. The build-001 tag identifies final closure; the Site receipt records its exact deployed source commit.",
   "humanInterventions": [],
   "protocolViolations": [],
   "architecture": "Thread is a Forth-inspired interactive compiler and threaded runtime generated into pure eight-command Brainfuck with 16-bit cells. Native Thread programs implement transactional indexed storage and Dispatch. Generic JS/Wasm executors provide instruction execution and byte I/O.",
@@ -57,7 +57,7 @@
     "testsPassed": 50,
     "testsFailed": 0,
     "regressions": "50/50 current tests pass; no known remaining regression",
-    "reproducibility": "Deterministic local regeneration PASS; clean public clone and Linux CI pending",
+    "reproducibility": "PASS: deterministic regeneration and 50/50 tests in the authoring tree, clean public clone, and Linux CI; see verification.json",
     "boundaryAudit": "PASS: 56 classified components and mutation checks; heuristic review gates, not formal proof",
     "selfAudit": "PASS within documented scope; sole-agent review, see self-audit.md",
     "localRun": {
@@ -96,7 +96,7 @@
     "Sole-agent review, finite tests and heuristic audit do not constitute independent proof",
     "A deliberately full collision chain took about 35 to 37 seconds and multiple bounded runs; no fast worst-case claim"
   ],
-  "finalAssessment": "The native capability bar is met and 50 tests pass. Public reproduction and publication remain explicit closure checks.",
+  "finalAssessment": "PASS for the bounded Build 001 capability bar: a programmable native compiler/runtime with reusable software, transactional indexed data, serializable continuation, interaction, inspection and dynamic graph computation. Limitations and failed attempts are explicit. Publication identity is recorded separately in publication.json.",
   "nextFrontier": {
     "title": "Native source workspace with a reclaiming module loader",
     "reason": "Store editable source and named modules inside the constrained system, recompile from native storage and reclaim replaced code/data without invalidating live references; substantially harder state ownership and compatibility than whole-machine snapshots."
@@ -104,7 +104,8 @@
   "publication": {
     "repository": "https://github.com/OnFiala/eight-instructions",
     "site": "https://eight-instructions.andrewxix.chatgpt.site",
-    "state": "Pending final verification"
+    "receipt": "publication.json",
+    "state": "Deployment identity and anonymous verification are appended after the exact source is published."
   },
   "repairDebugCycles": {
     "approximateCount": 11,

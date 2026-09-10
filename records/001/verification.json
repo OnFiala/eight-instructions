@@ -38,10 +38,53 @@
     "scope": "UI observations preceded the final arithmetic kernel revision; final public-asset behavior is verified separately in the publication receipt."
   },
   "cleanClone": {
-    "status": "pending"
+    "status": "PASS",
+    "commit": "36b047b2951c24993d0e4995e65339ecb9db2b5d",
+    "source": "https://github.com/OnFiala/eight-instructions.git",
+    "commands": [
+      "node runtime/cli.mjs --demo --save roundtrip.8i --metrics",
+      "node runtime/cli.mjs --load roundtrip.8i --eval \"100 1 7 stage-road tx-commit 0 11 route\" --metrics",
+      "npm ci --ignore-scripts",
+      "npm run verify",
+      "git diff --exit-code"
+    ],
+    "testsPassed": 50,
+    "testsFailed": 0,
+    "testDurationMs": 54188.73625,
+    "initialRoute": {
+      "cost": 20,
+      "path": [
+        0,
+        2,
+        1,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    },
+    "restoredChangedRoute": {
+      "cost": 21,
+      "path": [
+        0,
+        2,
+        4,
+        5,
+        11
+      ]
+    },
+    "trackedTreeUnchanged": true
   },
   "linuxCI": {
-    "status": "pending"
+    "status": "PASS",
+    "commit": "36b047b2951c24993d0e4995e65339ecb9db2b5d",
+    "url": "https://github.com/OnFiala/eight-instructions/actions/runs/34513686769",
+    "testsPassed": 50,
+    "testsFailed": 0,
+    "testDurationMs": 94232.495944,
+    "completedAt": "2026-09-10T18:22:02Z",
+    "regenerationAndGitDiff": "PASS"
   },
   "publicSite": {
     "status": "pending"
