@@ -14,10 +14,10 @@ WORDS = {
     'dup': 12, 'drop': 13, 'swap': 14, 'over': 15,
     '@': 16, '!': 17, 'p@': 18, 'p!': 19, 'emit': 20, '.': 21,
     'depth': 22, 'words': 23, 'here': 24, 'allot': 25, 'trace': 26,
-    'bye': 27, 'assert': 28, '0=': 29, 'exit': 3,
+    'bye': 27, 'assert': 28, '0=': 29, 'exit': 3, 'rot': 30,
     ':': 100, ';': 101, 'if': 102, 'else': 103, 'then': 104,
     'begin': 105, 'until': 106, 'again': 107, 'recurse': 108,
-    'variable': 109, 'constant': 110, 'while': 111, 'repeat': 112,
+    'variable': 109, 'constant': 110, 'while': 111, 'repeat': 112, '."': 113,
 }
 
 
@@ -320,6 +320,7 @@ class Kernel:
             b.lt(special, self.word, special)
             with self.case(self.word, 109): b.clear(special)
             with self.case(self.word, 110): b.clear(special)
+            with self.case(self.word, 113): b.clear(special)
             with b.when(special):
                 with self.case(self.mode, 0): self.error(6)
         with b.zero(self.err):
@@ -373,6 +374,24 @@ class Kernel:
                         self.emit_n(4)
                         self.emit_code(self.arg)
                         self.code.put(self.x, self.cp)
+            with self.case(self.word, 113):
+                with b.temps() as go:
+                    b.set(go, 1)
+                    with b.loop(go):
+                        self.read()
+                        with self.case(self.ch, 34): b.clear(go)
+                        with self.case(self.ch, 0):
+                            self.error(9)
+                            b.clear(go)
+                            b.clear(self.running)
+                        with b.when(go):
+                            with b.when(self.mode):
+                                self.emit_n(1)
+                                self.emit_code(self.ch)
+                                self.emit_n(20)
+                            with b.zero(self.mode):
+                                b.at(self.ch)
+                                b.raw('.')
 
     @contextmanager
     def primitive(self, op, inputs=0, outputs=0):
@@ -526,6 +545,13 @@ class Kernel:
                 b.clear(self.a)
                 with b.zero(self.x): b.set(self.a, 1)
                 self.push(self.a)
+            with self.primitive(30, 3, 3):
+                self.pop(self.a)
+                self.pop(self.y)
+                self.pop(self.x)
+                self.push(self.y)
+                self.push(self.a)
+                self.push(self.x)
             b.clear(self.op)
             with b.when(self.ip):
                 with b.temps() as in_code:

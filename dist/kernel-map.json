@@ -119,6 +119,7 @@
     "assert": 28,
     "0=": 29,
     "exit": 3,
+    "rot": 30,
     ":": 100,
     ";": 101,
     "if": 102,
@@ -131,8 +132,9 @@
     "variable": 109,
     "constant": 110,
     "while": 111,
-    "repeat": 112
+    "repeat": 112,
+    ".\"": 113
   },
-  "sha256": "b922037db6868f79b10d0831902e6b071fa9ff541f2f91ed453dfcac76731fc3",
-  "instructions": 14715148
+  "sha256": "15464ded3d0e845609f01df6289dfb21a4e3cd709ed391a660fe91b60ff6eef3",
+  "instructions": 15605306
 }

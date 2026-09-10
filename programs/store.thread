@@ -1,0 +1,115 @@
+\ Transactional 128-record uint16 key/value store; all logic runs in Brainfuck.
+\ Persistent cells 0..383 committed, 384..767 staging, 768..771 header.
+\ Header: transaction flag, commit generation, format version, magic.
+128 constant db-capacity
+384 constant db-span
+variable db-key
+variable db-value
+variable db-index
+variable db-cursor
+variable db-total
+variable db-copy
+
+: tx? 768 p@ ;
+: db-generation 769 p@ ;
+: db-base tx? if db-span else 0 then ;
+: db-slot 3 * db-base + ;
+: db-live? db-slot p@ ;
+: db-key-at db-slot 1+ p@ ;
+: db-value-at db-slot 2 + p@ ;
+
+: db-init
+  771 p@ 0= if 21553 771 p! 1 770 p! then
+  771 p@ 21553 = assert 770 p@ 1 = assert
+;
+
+: db-find
+  db-key ! 0 db-cursor !
+  begin db-cursor @ db-capacity < while
+    db-cursor @ db-live? if
+      db-cursor @ db-key-at db-key @ = if db-cursor @ exit then
+    then
+    1 db-cursor +!
+  repeat
+  65535
+;
+
+: db-empty
+  0 db-cursor !
+  begin db-cursor @ db-capacity < while
+    db-cursor @ db-live? 0= if db-cursor @ exit then
+    1 db-cursor +!
+  repeat
+  65535
+;
+
+: db-get
+  db-find dup 65535 = if drop 0 0 else db-value-at 1 then
+;
+
+: db-put
+  tx? assert db-key ! db-value !
+  db-key @ db-find dup 65535 = if drop db-empty then
+  dup 65535 = if drop 0 exit then
+  db-slot db-index !
+  1 db-index @ p!
+  db-key @ db-index @ 1+ p!
+  db-value @ db-index @ 2 + p!
+  1
+;
+
+: db-delete
+  tx? assert db-find dup 65535 = if drop 0 else db-slot 0 swap p! 1 then
+;
+
+: db-count
+  0 db-total ! 0 db-cursor !
+  begin db-cursor @ db-capacity < while
+    db-cursor @ db-live? if 1 db-total +! then
+    1 db-cursor +!
+  repeat db-total @
+;
+
+: db-sum
+  0 db-total ! 0 db-cursor !
+  begin db-cursor @ db-capacity < while
+    db-cursor @ db-live? if db-cursor @ db-value-at db-total +! then
+    1 db-cursor +!
+  repeat db-total @
+;
+
+: db-list
+  0 db-cursor !
+  begin db-cursor @ db-capacity < while
+    db-cursor @ db-live? if
+      db-cursor @ db-key-at . db-cursor @ db-value-at . cr
+    then
+    1 db-cursor +!
+  repeat
+;
+
+: tx-begin
+  tx? 0= assert 0 db-copy !
+  begin db-copy @ db-span < while
+    db-copy @ p@ db-copy @ db-span + p! 1 db-copy +!
+  repeat 1 768 p!
+;
+
+: tx-commit
+  tx? assert 0 db-copy !
+  begin db-copy @ db-span < while
+    db-copy @ db-span + p@ db-copy @ p! 1 db-copy +!
+  repeat 0 768 p! db-generation 1+ 769 p!
+;
+
+: tx-abort tx? assert 0 768 p! ;
+
+: db-clear
+  tx? assert 0 db-copy !
+  begin db-copy @ db-span < while
+    0 db-copy @ db-span + p! 1 db-copy +!
+  repeat
+;
+
+db-init
+
