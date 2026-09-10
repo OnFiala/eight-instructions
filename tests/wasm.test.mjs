@@ -33,5 +33,7 @@ test('Wasm pause, streaming input, output caps and work limits',()=>{
     assert.deepEqual(m.output,[72,73]);
     const loop=create('+[]',{cells:64});assert.equal(loop.run({fuel:73}),'budget');assert.equal(loop.steps,73);
     const out=create('...',{cells:64,maxOutput:2});assert.throws(()=>out.run(),/Output limit/);
+    assert.equal(out.steps,2);assert.equal(out.state,'error');assert.deepEqual([...out.drain()],[0,0]);
+    assert.equal(out.run(),'halted');assert.deepEqual(out.output,[0]);assert.equal(out.steps,3);assert.equal(out.blocks,3);
   }
 });

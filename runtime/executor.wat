@@ -89,7 +89,10 @@
         (if (i32.eq (local.get $kind) (i32.const 6))
           (then
             (if (call $write (i32.and (local.get $value) (i32.const 255)))
-              (then (return (i32.const 4))))))
+              (then
+                (global.set $steps (f64.sub (global.get $steps) (local.get $cost)))
+                (global.set $blocks (f64.sub (global.get $blocks) (f64.const 1)))
+                (return (i32.const 4))))))
         (global.set $pc (local.get $next))
         (br $dispatch)))
     (i32.const 0))

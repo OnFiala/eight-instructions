@@ -62,7 +62,7 @@ and offset components. Six tape lanes implement page travel, local travel, value
 cargo and separate return breadcrumbs. The executor knows none of this layout.
 This reduced the observed first application run from 41.12 to 13.45 seconds.
 
-The 723-byte WebAssembly executor is a generic acceleration backend for the same
+The 744-byte WebAssembly executor is a generic acceleration backend for the same
 operation stream as the JS executor. It is assembled from `runtime/executor.wat`
 using pinned WABT. It neither compiles nor executes Thread directly. Literal
 Brainfuck execution remains a differential reference. Node and the browser use

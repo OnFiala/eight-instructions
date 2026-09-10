@@ -83,3 +83,26 @@ Append observations as they happen. No deliberately broken commits are required.
   conditional import only at a comma instruction; differential checks still pass.
 - Input validation now rejects malformed bytes without changing queued input;
   execution budgets are validated and counters stop before losing integer precision.
+
+## Browser integration and final boundary audit
+
+- The visible interface and optional WebMCP tools run the same real worker and
+  generated kernel. The native sample returned cost 20; staging a road at cost
+  100 returned cost 21; abort restored cost 20. The host only submits source,
+  parses emitted records and draws the emitted path.
+- Moved convenience transaction-start behavior for road buttons into native
+  `stage-road` / `stage-close` words, keeping transaction policy inside Thread.
+- Browser-worker protocol tests use the actual production worker and Wasm, with
+  only transport adapted to Node. They cover busy refusal, pause, step, image
+  validation, and continuation across terminated/new worker lifetimes.
+- One new worker test initially wrote without a required transaction and then
+  expected stored data. Corrected the test fixture to begin and commit a native
+  transaction; no production persistence defect was concealed by that correction.
+- Capacity attacks filled all 256 dictionary entries, exhausted code and nested
+  controls, filled the heap and sent oversized tokens. Rejected definitions stayed
+  unpublished; previous words and allocation checkpoints survived.
+- Self-audit found that reaching an output cap incremented the diagnostic counter
+  before refusing the output instruction. Resuming would count that instruction
+  twice. Corrected both generic backends, then verified drain/resume produces
+  exactly three bytes and three instructions for a capped three-output program.
+  The generic Wasm binary is now 744 bytes.

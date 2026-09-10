@@ -99,7 +99,10 @@ export class Machine {
         case ']': if (t[p]) { this.pc = op.target; continue; } break;
         case ',': t[p] = this.inputAt < this.input.length ? this.input[this.inputAt++] : 0; break;
         case '.':
-          if (this.output.length >= this.maxOutput) throw new RangeError('Output limit exceeded');
+          if (this.output.length >= this.maxOutput) {
+            this.steps-=cost;this.blocks--;this.state='error';
+            throw new RangeError('Output limit exceeded');
+          }
           this.output.push(t[p] & 255); break;
         default: throw new Error('Unknown executor operation');
       }
