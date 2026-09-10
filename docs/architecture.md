@@ -21,7 +21,7 @@ implementing multi-byte arithmetic. This is not a claim of 8-bit portability.
 2. `kernel/build.py`: the auditable kernel source expressed in emitter operations.
    It emits tokenization, dictionary search, integer parsing, compilation, stacks,
    control-flow patching, dispatch, bounds checks, arithmetic, and diagnostics.
-3. `dist/kernel.bf`: deterministic executable made exclusively of eight commands.
+3. `artifacts/kernel.bf`: deterministic executable made exclusively of eight commands.
 4. `dist/engine.mjs`: generic Brainfuck execution shared by Node and browser. It
    may coalesce pointer/arithmetic runs and optimize affine loops, never recognize
    Thread words, opcodes, application algorithms, or privileged host escapes.
@@ -47,8 +47,8 @@ implementing multi-byte arithmetic. This is not a claim of 8-bit portability.
   Differential execution against an unoptimized interpreter is required.
 - MIT keeps reuse simple; no external architecture or challenge solution is copied.
 
-This is an initial architecture decision, committed before kernel implementation.
-Actual limits and execution evidence will be documented after tests.
+The initial architecture was committed before implementation. Limits are specified
+in the language guide; the build record contains execution evidence and revisions.
 
 ## Measured revisions during Build #001
 
@@ -62,7 +62,7 @@ and offset components. Six tape lanes implement page travel, local travel, value
 cargo and separate return breadcrumbs. The executor knows none of this layout.
 This reduced the observed first application run from 41.12 to 13.45 seconds.
 
-The 721-byte WebAssembly executor is a generic acceleration backend for the same
+The 723-byte WebAssembly executor is a generic acceleration backend for the same
 operation stream as the JS executor. It is assembled from `runtime/executor.wat`
 using pinned WABT. It neither compiles nor executes Thread directly. Literal
 Brainfuck execution remains a differential reference. Node and the browser use

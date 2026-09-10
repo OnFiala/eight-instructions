@@ -26,10 +26,10 @@ function checkPath(result,edges,start,end) {
 test('Dispatch combines transactions, native compilation and dynamic route changes',async()=>{
   const m=await fresh();command(m,'sample');
   assert.deepEqual(route(command(m,'0 11 route')),{cost:20,path:[0,2,1,7,8,9,10,11]});
-  command(m,'tx-begin 100 1 7 road assert');
+  command(m,'100 1 7 stage-road');
   assert.deepEqual(route(command(m,'0 11 route')),{cost:21,path:[0,2,4,5,11]});
   command(m,'tx-abort');assert.equal(route(command(m,'0 11 route')).cost,20);
-  command(m,'tx-begin 1 7 close-road assert tx-commit');assert.equal(route(command(m,'0 11 route')).cost,21);
+  command(m,'1 7 stage-close tx-commit');assert.equal(route(command(m,'0 11 route')).cost,21);
   assert.equal(word(m,'sp'),0);
 });
 test('zero-distance, unreachable nodes and invalid road states',async()=>{

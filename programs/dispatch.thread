@@ -32,6 +32,8 @@ variable road-cost
   road-cost @ road-from @ road-to @ edge-key db-put
 ;
 : close-road 2dup node-ok node-ok edge-key db-delete ;
+: stage-road tx? 0= if tx-begin then road assert ;
+: stage-close tx? 0= if tx-begin then close-road assert ;
 
 : graph-load
   nodes @ 0 > nodes @ max-nodes <= and assert

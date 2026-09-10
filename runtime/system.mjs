@@ -16,8 +16,11 @@ export function loadKernel() {
     if(programHash!==map.sha256)throw new Error('Kernel artifact hash mismatch');
     const program=compile(source),module=new WebAssembly.Module(wasmBytes),boot=JSON.parse(bootBytes);
     const libraries=(await Promise.all(boot.libraries.map(name=>readFile(new URL('programs/'+name,root),'utf8')))).join('\n');
-    return {source,map,program,programHash,libraries,
-      create:(cells=map.dialect.tape_cells,backend='wasm')=>backend==='js'?new Machine(program,{cells}):new WasmMachine(program,module,{cells}),
+    return {map,program,programHash,libraries,
+      create:(cells=map.dialect.tape_cells,backend='wasm')=>{
+        if(cells!==map.dialect.tape_cells)throw new Error('Image tape size is incompatible with this kernel');
+        return backend==='js'?new Machine(program,{cells}):new WasmMachine(program,module,{cells});
+      },
     };
   })();
 }
