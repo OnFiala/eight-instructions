@@ -143,7 +143,7 @@ class Kernel:
         b.copy(self.cp_hi, self.start_hi)
         b.copy(self.cp_lo, self.start_lo)
 
-    def divmod(self, numerator, denominator, quotient, remainder):
+    def divmod(self, numerator, denominator, quotient, remainder, wide=False):
         b = self.b
         with b.temps(3) as (less, go, sub):
             b.copy(numerator, remainder)
@@ -159,6 +159,28 @@ class Kernel:
                     b.set(go, 1)
                 with b.when(less):
                     b.clear(go)
+                if wide:
+                    with self.case(quotient, 8): b.clear(go)
+            if wide:
+                with self.case(quotient, 8):
+                    # Large quotients use 16 bounded binary candidate steps.
+                    # Scaling is guarded before multiplication to prevent wrap.
+                    # These operations execute in BF, never in the host runtime.
+                    with b.temps(4) as (safe, limit, scaled, source):
+                        for bit in range(15, -1, -1):
+                            if bit:
+                                b.set(limit, (65535 >> bit) + 1)
+                                b.lt(denominator, limit, safe)
+                            else:
+                                b.set(safe, 1)
+                            with b.when(safe):
+                                b.clear(scaled)
+                                b.copy(denominator, source)
+                                b.move(source, scaled, 1 << bit)
+                                b.lt(remainder, scaled, less)
+                                with b.zero(less):
+                                    b.move(scaled, remainder, -1)
+                                    b.add(quotient, 1 << bit)
 
     def decimal(self, value):
         b = self.b
@@ -550,7 +572,7 @@ class Kernel:
                 self.pop(self.x)
                 with b.zero(self.y): self.error(4)
                 with b.zero(self.err):
-                    self.divmod(self.x, self.y, self.q, self.rem)
+                    self.divmod(self.x, self.y, self.q, self.rem, wide=True)
                     self.push(self.rem)
                     self.push(self.q)
             for op, method in [(10, b.eq), (11, b.lt)]:

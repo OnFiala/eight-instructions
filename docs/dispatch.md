@@ -38,6 +38,7 @@ choose a route.
 
 Tests use a separately written Bellman-Ford oracle, verify every returned edge
 and path sum, exercise random 8/16/24-node networks and the full 32-node chain,
+plus a cyclic 32-node network at the full 128-road capacity,
 and test invalid costs, invalid nodes, unreachable destinations and transaction
 rollback. They run the actual generated Brainfuck kernel, not a guest-language mock.
 

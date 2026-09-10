@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {fresh,command,word,kernel} from './system-helpers.mjs';
 import {encodeImage,decodeImage} from '../dist/images.mjs';
+import {execute} from '../runtime/system.mjs';
 
 test('transactional insert, update, missing keys, zero values and deletion',async()=>{
   const m=await fresh();
@@ -61,4 +62,19 @@ test('native format and index integrity checks reject invalid store state',async
   command(m,'db-check');assert.match(command(m,'99 770 p! db-check',{allowError:true}),/!E8/);
   command(m,'2 770 p!');assert.match(command(m,'3 0 p! db-check',{allowError:true}),/!E8/);
   command(m,'0 0 p! db-check');
+});
+test('adversarial full-table collisions finish through bounded image-resumable execution',async t=>{
+  let m=await fresh();const started=performance.now(),initial=m.steps;
+  execute(m,': collide 0 begin dup 128 < while dup 1 + over 512 * db-put assert 1 + repeat drop ; tx-begin collide tx-commit db-check\n',{fuel:5e12,blocks:1e10});
+  assert.equal(m.state,'budget');
+  m=await decodeImage(await encodeImage(m,kernel.programHash),{program:kernel.program,programHash:kernel.programHash,create:kernel.create});
+  let chunks=1;
+  while(m.state==='budget'&&chunks<16){
+    const before=m.steps;m.run({fuel:1e14,blocks:1e10});assert.ok(m.steps>before);chunks++;
+  }
+  assert.equal(m.state,'input');assert.doesNotMatch(new TextDecoder().decode(m.drain()),/!E\d+ /);
+  assert.equal(command(m,'db-count . 0 db-get . . 65024 db-get . .'),'128 1 1 1 128 ');
+  command(m,'tx-begin 0 db-delete assert 777 65024 db-put assert 42 65535 db-put assert tx-commit');
+  assert.equal(command(m,'db-count . 65024 db-get . . 65535 db-get . .'),'128 1 777 1 42 ');
+  t.diagnostic(JSON.stringify({stress:'128 keys in one initial bucket',elapsedMs:performance.now()-started,brainfuckInstructions:m.steps-initial,boundedRuns:chunks}));
 });

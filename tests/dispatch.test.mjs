@@ -60,3 +60,13 @@ test('random weighted networks agree with Bellman-Ford and valid path reconstruc
     }
   }
 });
+test('full-capacity 128-road cyclic network agrees with an independent oracle',async()=>{
+  const n=32,m=await fresh(),edges=[];
+  for(let a=0;a<n;a++)for(const offset of [1,3,7,11])edges.push([a,(a+offset)%n,1+(a*17+offset*29)%1000]);
+  command(m,`${n} nodes ! tx-begin db-clear `+edges.map(([a,b,w])=>`${w} ${a} ${b} road assert`).join(' ')+' tx-commit db-check');
+  assert.equal(command(m,'db-count .'),'128 ');
+  for(const [start,end]of [[0,31],[5,28],[31,0]]){
+    const result=route(command(m,`${start} ${end} route`));
+    assert.equal(result.cost,oracle(n,edges,start,end));checkPath(result,edges,start,end);
+  }
+});

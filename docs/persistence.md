@@ -27,8 +27,13 @@ Sums and generation counters wrap at 65536 like other Thread arithmetic.
 
 Format 2 uses open addressing, initial bucket `key mod 128`, linear probing and
 tombstones. Lookups continue through a tombstone and stop at an empty slot or
-after 128 probes. There are no infinite probe loops. Worst-case colliding keys
-can still be slow; the index is neither cryptographic nor denial-of-service safe.
+after 128 probes. Insertion remembers the first reusable slot during lookup
+while continuing to check for an existing key; it does not scan twice. There are
+no infinite probe loops. Worst-case colliding keys
+can still be slow enough to require several bounded runs. The hostile 128-key
+collision test saves and restores a paused image and continues to completion; the
+default per-run work limit is preserved. The index is neither cryptographic nor
+denial-of-service safe.
 
 | Persistent word range | Role |
 | --- | --- |

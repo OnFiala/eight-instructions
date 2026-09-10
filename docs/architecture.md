@@ -40,7 +40,7 @@ implementing multi-byte arithmetic. This is not a claim of 8-bit portability.
   the kernel. It is named Thread; compatibility with standard Forth is not claimed.
 - Separate bounded stacks, code, dictionary, heap, and persistent-store regions
   make ownership and bounds inspectable. Addressed access is itself Brainfuck.
-- A minimal structured generator is unavoidable bootstrap tooling for this first
+- Structured generation is the chosen bootstrap approach for this first
   build. Its substantial size and maintenance responsibility remain host-side
   and are reported openly. Generation is not self-hosting.
 - A generic runtime may accelerate language-independent Brainfuck operations.
@@ -67,3 +67,11 @@ operation stream as the JS executor. It is assembled from `runtime/executor.wat`
 using pinned WABT. It neither compiles nor executes Thread directly. Literal
 Brainfuck execution remains a differential reference. Node and the browser use
 the same kernel, executor and machine-image format.
+
+The final native arithmetic revision uses direct subtraction for small quotients
+and guarded binary candidates for large `/mod` quotients. Internal decimal
+formatting keeps its inexpensive small-digit path. A universal binary replacement
+was rejected after it made small full-kernel literal workloads substantially more
+expensive. The store now remembers a reusable slot during lookup, avoiding a
+second insertion probe. Fully colliding 128-record workloads still require
+multiple bounded runs; images can preserve progress between them.

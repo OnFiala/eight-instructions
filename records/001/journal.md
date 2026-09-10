@@ -106,3 +106,38 @@ Append observations as they happen. No deliberately broken commits are required.
   twice. Corrected both generic backends, then verified drain/resume produces
   exactly three bytes and three instructions for a capped three-output program.
   The generic Wasm binary is now 744 bytes.
+
+## Deliberately hostile final workloads
+
+- After the 47-test milestone, added a 32-node graph with the full 128 directed
+  roads and three oracle-checked cyclic routes. It passed in a 21.17-second test
+  run (including compilation, insertion, integrity and all three route queries).
+- A new store workload maps all 128 large keys (`i * 512`) to the same initial
+  bucket. Its insert/commit/integrity sequence exhausted the 1e14-instruction
+  per-command work limit after 16.07 seconds. This exposed a much less favorable
+  workload than consecutive-key capacity testing. The machine paused; it did not
+  produce a false success result.
+- Tried a fully unrolled 16-bit binary division for every internal division.
+  Arithmetic cases passed, but small-number work became more expensive: the
+  literal full-kernel test exceeded its 10-billion-instruction limit, the raw
+  kernel grew to 50,577,467 commands, and the collision workload still hit its
+  budget. Rejected the universal replacement; this failed attempt is retained here.
+- Chose an adaptive native `/mod`: at most eight direct subtractions, then guarded
+  binary candidate subtraction for a large remaining quotient. Decimal formatting
+  and internal small division retain their previous path. All scaling and
+  arithmetic are generated Brainfuck, with no application/native host shortcut.
+- Removed the store's separate second probe for insertion. `db-find` now remembers
+  the first reusable slot while proving the key absent, including tombstones.
+  The on-tape format remains version 2; this is an algorithm change, not a data
+  migration. The regenerated kernel hash changes, so pre-release development
+  images must use their original kernel as the image contract already requires.
+- The adaptive division passed 119 operand pairs covering every bit width,
+  overflow guards and randomized operands. The independent literal full-kernel
+  reference also passed again (1,453,328,957 instructions for the square fixture).
+- The combined collision workload still exceeds one default work budget. Kept
+  that limit unchanged and made the stress test exercise actual continuation:
+  save a deliberately budget-paused image, restore it, then finish in bounded
+  chunks with progress checks. All 128 colliding records survived, along with
+  deletion, update and reuse. Observed workload: 34.74 s, 429,824,504,751,225 BF
+  instructions, six bounded execution calls before the final checks. This is an
+  explicit worst-case limitation, not an assertion of fast worst-case lookup.
