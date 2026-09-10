@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-10T17:56:00.922Z",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M5",
+    "node": "v22.22.0",
+    "backend": "generic WebAssembly"
+  },
+  "methodology": "Three sequential fresh machines in one process; kernel host loading measured separately once. Every boot compiles raw native libraries. Warm OS/filesystem; no startup image. Wall times are local observations, not speed guarantees. Concurrent host activity is uncontrolled.",
+  "hostKernelLoadMs": 277.94575,
+  "summary": {
+    "boot": {
+      "medianMs": 1040.636375,
+      "minMs": 1022.5729590000001,
+      "maxMs": 1584.750333,
+      "brainfuckInstructions": 615277714609,
+      "deterministicInstructionCount": true
+    },
+    "sample": {
+      "medianMs": 325.62274999999954,
+      "minMs": 309.954833,
+      "maxMs": 325.8690829999996,
+      "brainfuckInstructions": 1840737681326,
+      "deterministicInstructionCount": true
+    },
+    "route": {
+      "medianMs": 986.2582499999999,
+      "minMs": 957.3343329999998,
+      "maxMs": 999.5895,
+      "brainfuckInstructions": 5770871083581,
+      "deterministicInstructionCount": true
+    },
+    "changeAndRoute": {
+      "medianMs": 1031.179666,
+      "minMs": 986.9812499999998,
+      "maxMs": 1037.0061670000005,
+      "brainfuckInstructions": 5868128447546,
+      "deterministicInstructionCount": true
+    },
+    "fullStore": {
+      "medianMs": 1357.5292090000003,
+      "minMs": 1330.408958,
+      "maxMs": 1364.8714579999996,
+      "brainfuckInstructions": 8880001280831,
+      "deterministicInstructionCount": true
+    }
+  },
+  "samples": [
+    [
+      {
+        "name": "boot",
+        "elapsedMs": 1584.750333,
+        "brainfuckInstructions": 615277714609,
+        "executorBlocks": 272275134,
+        "output": "Thread / 8 Instructions\n"
+      },
+      {
+        "name": "sample",
+        "elapsedMs": 309.954833,
+        "brainfuckInstructions": 1840737681326,
+        "executorBlocks": 84659958,
+        "output": "NODES 12 \nROADS 20 \nGENERATION 1 \nSTAGED 0 \n"
+      },
+      {
+        "name": "route",
+        "elapsedMs": 957.3343329999998,
+        "brainfuckInstructions": 5770871083581,
+        "executorBlocks": 258585102,
+        "output": "COST 20 \nPATH 0 2 1 7 8 9 10 11 \n"
+      },
+      {
+        "name": "changeAndRoute",
+        "elapsedMs": 986.9812499999998,
+        "brainfuckInstructions": 5868128447546,
+        "executorBlocks": 266999561,
+        "output": "COST 21 \nPATH 0 2 4 5 11 \n"
+      },
+      {
+        "name": "fullStore",
+        "elapsedMs": 1330.408958,
+        "brainfuckInstructions": 8880001280831,
+        "executorBlocks": 347622075,
+        "output": "128 "
+      }
+    ],
+    [
+      {
+        "name": "boot",
+        "elapsedMs": 1022.5729590000001,
+        "brainfuckInstructions": 615277714609,
+        "executorBlocks": 272275134,
+        "output": "Thread / 8 Instructions\n"
+      },
+      {
+        "name": "sample",
+        "elapsedMs": 325.62274999999954,
+        "brainfuckInstructions": 1840737681326,
+        "executorBlocks": 84659958,
+        "output": "NODES 12 \nROADS 20 \nGENERATION 1 \nSTAGED 0 \n"
+      },
+      {
+        "name": "route",
+        "elapsedMs": 986.2582499999999,
+        "brainfuckInstructions": 5770871083581,
+        "executorBlocks": 258585102,
+        "output": "COST 20 \nPATH 0 2 1 7 8 9 10 11 \n"
+      },
+      {
+        "name": "changeAndRoute",
+        "elapsedMs": 1037.0061670000005,
+        "brainfuckInstructions": 5868128447546,
+        "executorBlocks": 266999561,
+        "output": "COST 21 \nPATH 0 2 4 5 11 \n"
+      },
+      {
+        "name": "fullStore",
+        "elapsedMs": 1357.5292090000003,
+        "brainfuckInstructions": 8880001280831,
+        "executorBlocks": 347622075,
+        "output": "128 "
+      }
+    ],
+    [
+      {
+        "name": "boot",
+        "elapsedMs": 1040.636375,
+        "brainfuckInstructions": 615277714609,
+        "executorBlocks": 272275134,
+        "output": "Thread / 8 Instructions\n"
+      },
+      {
+        "name": "sample",
+        "elapsedMs": 325.8690829999996,
+        "brainfuckInstructions": 1840737681326,
+        "executorBlocks": 84659958,
+        "output": "NODES 12 \nROADS 20 \nGENERATION 1 \nSTAGED 0 \n"
+      },
+      {
+        "name": "route",
+        "elapsedMs": 999.5895,
+        "brainfuckInstructions": 5770871083581,
+        "executorBlocks": 258585102,
+        "output": "COST 20 \nPATH 0 2 1 7 8 9 10 11 \n"
+      },
+      {
+        "name": "changeAndRoute",
+        "elapsedMs": 1031.179666,
+        "brainfuckInstructions": 5868128447546,
+        "executorBlocks": 266999561,
+        "output": "COST 21 \nPATH 0 2 4 5 11 \n"
+      },
+      {
+        "name": "fullStore",
+        "elapsedMs": 1364.8714579999996,
+        "brainfuckInstructions": 8880001280831,
+        "executorBlocks": 347622075,
+        "output": "128 "
+      }
+    ]
+  ],
+  "memory": {
+    "guestTapeCells": 120006,
+    "guestTapeBytes": 240012,
+    "processRSSAfterWorkloads": 274366464,
+    "scope": "RSS includes three machine allocations, JIT, kernel source and runtime; it is not guest memory or a peak measurement."
+  },
+  "kernelSha256": "ef0f8b72a379fc2aacb939fea555066998a91216dc2b3ffffe4e40b623621b29",
+  "sourceBytesByLayer": {
+    "verification-tool": 42332,
+    "deployment-config": 88,
+    "generated-kernel": 44647143,
+    "runtime-adapter": 18527,
+    "executor": 15003,
+    "generated-executor": 744,
+    "presentation": 56962,
+    "generated-map": 2678,
+    "generated-kernel-transport": 120574,
+    "packaged-native-program": 6507,
+    "packaged-source-list": 154,
+    "bootstrap-kernel": 33080,
+    "build-config": 1597,
+    "native-program": 6507,
+    "native-source-list": 154,
+    "build-tool": 3361,
+    "bootstrap-tool": 6459
+  },
+  "buildDependencies": {
+    "wabt": "1.0.39"
+  },
+  "hostRuntimeDependencies": [],
+  "responsibilityMetric": "Named responsibilities in boundary.json; no percentage-native metric."
+}

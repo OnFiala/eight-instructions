@@ -1,0 +1,207 @@
+{
+  "schemaVersion": 1,
+  "measuredAt": "2026-09-10T18:16:27.789Z",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "cpu": "Apple M5",
+    "node": "v22.22.0",
+    "backend": "generic WebAssembly"
+  },
+  "methodology": "Three sequential fresh machines in one process; kernel host loading measured separately once. Every boot compiles raw native libraries. Warm OS/filesystem; no startup image. Wall times are local observations, not speed guarantees. Concurrent host activity is uncontrolled.",
+  "hostKernelLoadMs": 284.127209,
+  "summary": {
+    "boot": {
+      "medianMs": 1038.067916,
+      "minMs": 1034.5169589999996,
+      "maxMs": 1611.784416,
+      "brainfuckInstructions": 624756600366,
+      "deterministicInstructionCount": true
+    },
+    "sample": {
+      "medianMs": 315.7861670000002,
+      "minMs": 311.7666249999993,
+      "maxMs": 316.58845799999995,
+      "brainfuckInstructions": 2506473977441,
+      "deterministicInstructionCount": true
+    },
+    "route": {
+      "medianMs": 1029.0555829999998,
+      "minMs": 1013.0487919999996,
+      "maxMs": 1037.9806669999998,
+      "brainfuckInstructions": 6160111716308,
+      "deterministicInstructionCount": true
+    },
+    "changeAndRoute": {
+      "medianMs": 1056.478959,
+      "minMs": 1043.2821659999995,
+      "maxMs": 1070.4935000000005,
+      "brainfuckInstructions": 6269612201130,
+      "deterministicInstructionCount": true
+    },
+    "fullStore": {
+      "medianMs": 1214.2394999999997,
+      "minMs": 1200.710083,
+      "maxMs": 1216.6115,
+      "brainfuckInstructions": 14925688811077,
+      "deterministicInstructionCount": true
+    }
+  },
+  "samples": [
+    [
+      {
+        "name": "boot",
+        "elapsedMs": 1611.784416,
+        "brainfuckInstructions": 624756600366,
+        "executorBlocks": 270050554,
+        "output": "Thread / 8 Instructions\n"
+      },
+      {
+        "name": "sample",
+        "elapsedMs": 316.58845799999995,
+        "brainfuckInstructions": 2506473977441,
+        "executorBlocks": 80578621,
+        "output": "NODES 12 \nROADS 20 \nGENERATION 1 \nSTAGED 0 \n"
+      },
+      {
+        "name": "route",
+        "elapsedMs": 1029.0555829999998,
+        "brainfuckInstructions": 6160111716308,
+        "executorBlocks": 263498471,
+        "output": "COST 20 \nPATH 0 2 1 7 8 9 10 11 \n"
+      },
+      {
+        "name": "changeAndRoute",
+        "elapsedMs": 1043.2821659999995,
+        "brainfuckInstructions": 6269612201130,
+        "executorBlocks": 271775710,
+        "output": "COST 21 \nPATH 0 2 4 5 11 \n"
+      },
+      {
+        "name": "fullStore",
+        "elapsedMs": 1216.6115,
+        "brainfuckInstructions": 14925688811077,
+        "executorBlocks": 307195166,
+        "output": "128 "
+      }
+    ],
+    [
+      {
+        "name": "boot",
+        "elapsedMs": 1034.5169589999996,
+        "brainfuckInstructions": 624756600366,
+        "executorBlocks": 270050554,
+        "output": "Thread / 8 Instructions\n"
+      },
+      {
+        "name": "sample",
+        "elapsedMs": 311.7666249999993,
+        "brainfuckInstructions": 2506473977441,
+        "executorBlocks": 80578621,
+        "output": "NODES 12 \nROADS 20 \nGENERATION 1 \nSTAGED 0 \n"
+      },
+      {
+        "name": "route",
+        "elapsedMs": 1013.0487919999996,
+        "brainfuckInstructions": 6160111716308,
+        "executorBlocks": 263498471,
+        "output": "COST 20 \nPATH 0 2 1 7 8 9 10 11 \n"
+      },
+      {
+        "name": "changeAndRoute",
+        "elapsedMs": 1056.478959,
+        "brainfuckInstructions": 6269612201130,
+        "executorBlocks": 271775710,
+        "output": "COST 21 \nPATH 0 2 4 5 11 \n"
+      },
+      {
+        "name": "fullStore",
+        "elapsedMs": 1214.2394999999997,
+        "brainfuckInstructions": 14925688811077,
+        "executorBlocks": 307195166,
+        "output": "128 "
+      }
+    ],
+    [
+      {
+        "name": "boot",
+        "elapsedMs": 1038.067916,
+        "brainfuckInstructions": 624756600366,
+        "executorBlocks": 270050554,
+        "output": "Thread / 8 Instructions\n"
+      },
+      {
+        "name": "sample",
+        "elapsedMs": 315.7861670000002,
+        "brainfuckInstructions": 2506473977441,
+        "executorBlocks": 80578621,
+        "output": "NODES 12 \nROADS 20 \nGENERATION 1 \nSTAGED 0 \n"
+      },
+      {
+        "name": "route",
+        "elapsedMs": 1037.9806669999998,
+        "brainfuckInstructions": 6160111716308,
+        "executorBlocks": 263498471,
+        "output": "COST 20 \nPATH 0 2 1 7 8 9 10 11 \n"
+      },
+      {
+        "name": "changeAndRoute",
+        "elapsedMs": 1070.4935000000005,
+        "brainfuckInstructions": 6269612201130,
+        "executorBlocks": 271775710,
+        "output": "COST 21 \nPATH 0 2 4 5 11 \n"
+      },
+      {
+        "name": "fullStore",
+        "elapsedMs": 1200.710083,
+        "brainfuckInstructions": 14925688811077,
+        "executorBlocks": 307195166,
+        "output": "128 "
+      }
+    ]
+  ],
+  "memory": {
+    "guestTapeCells": 120006,
+    "guestTapeBytes": 240012,
+    "executorLinearMemoryBytes": 3014656,
+    "processRSSAfterWorkloads": 276692992,
+    "scope": "Wasm linear memory includes tape and packed generic operations. RSS includes process, JIT and kernel/runtime allocations after three sequential machines; it is not guest memory or a peak measurement."
+  },
+  "kernelSha256": "de6c26450f7aa1398fc0f5d08995e653f355badea9f1df08a0b203db35c37d87",
+  "sourceBytesByLayer": {
+    "verification-tool": 45552,
+    "deployment-config": 88,
+    "generated-kernel": 44899153,
+    "runtime-adapter": 18527,
+    "executor": 15003,
+    "generated-executor": 744,
+    "presentation": 57445,
+    "generated-map": 2678,
+    "generated-kernel-transport": 123878,
+    "packaged-native-program": 6477,
+    "packaged-source-list": 154,
+    "bootstrap-kernel": 34323,
+    "build-config": 1770,
+    "native-program": 6477,
+    "native-source-list": 154,
+    "build-tool": 3361,
+    "bootstrap-tool": 6459,
+    "public-evidence": 346
+  },
+  "buildDependencies": {
+    "wabt": "1.0.39"
+  },
+  "hostRuntimeDependencies": [],
+  "responsibilityMetric": "Named responsibilities in boundary.json; no percentage-native metric.",
+  "sourceInventoryRecordedAt": "2026-09-10T18:19:40.392118+00:00",
+  "artifactDigests": {
+    "kernel/build.py": "a5f1b8a67e501c7f9623075788a309c2be8a26744b2cbdf9498a0b67c14a0cc0",
+    "tools/emitter.py": "cf87366f99f52d76449e6351721bd5a2c16b7a0f6392c08b9db1a2005f43fc53",
+    "runtime/executor.wat": "b534718af5e2bfde96c30c39fa2b6b7ffc0fb9cd92a4268c7933151584e2f5a5",
+    "dist/executor.wasm": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+    "programs/core.thread": "1e2d70f7ef755e62da0259b5dd5a4bb1996353678bb2ed57a6823fa0be11f41f",
+    "programs/store.thread": "ff1b9d440b5f8e08e06428683ff3832fedd26a9486e2790ebd4c42c42fdcd9fc",
+    "programs/dispatch.thread": "0360bd028765e4a6d06e37e2d7bc640bfab6e8f26c5fe31b5c7f66957b3a135a"
+  },
+  "countInterpretation": "Original BF command count under the documented semantics, including work combined by generic optimizations. Not a CPU instruction count or literal hardware instruction-rate claim."
+}

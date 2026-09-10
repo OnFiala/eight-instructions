@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "number": 1,
+  "title": "General-purpose computing environment",
+  "status": "LOCAL PASS",
+  "summary": "A compiler, transactional data store and dynamic route planner built on the Brainfuck (BF) programming language.",
+  "model": "gpt-6-astra",
+  "reasoningMode": "xhigh",
+  "soleEngineeringAgent": true,
+  "originalChallenge": "challenge.md",
+  "startingGitCommit": "fea361222cfbc9ab1a17123a19d9b533a301437d",
+  "endingGitCommit": null,
+  "commitConvention": "Starting commit establishes the experiment. Ending commit is the tested implementation/evidence candidate before the final record-sealing commit; Git cannot embed its own final hash. A build-001 tag identifies the closure commit.",
+  "humanInterventions": [],
+  "protocolViolations": [],
+  "architecture": "Thread is a Forth-inspired interactive compiler and threaded runtime generated into pure eight-command Brainfuck with 16-bit cells. Native Thread programs implement transactional indexed storage and Dispatch. Generic JS/Wasm executors provide instruction execution and byte I/O.",
+  "majorDecisions": [
+    "MIT permissive licensing",
+    "16-bit bounded-cell Brainfuck dialect",
+    "Native compiler and reusable definitions, with no host compiler for guest source",
+    "Separate bounded data/return/control stacks, code, dictionary, heap and store",
+    "Paged native code addresses",
+    "Native hash dictionary and open-addressed store",
+    "Generic Wasm acceleration with literal differential references",
+    "Whole-machine continuation images with atomic host file saves",
+    "Dynamic public browser execution using the identical artifacts"
+  ],
+  "acceptanceCriteria": [
+    "Compile and execute new reusable programs entirely inside the BF kernel",
+    "Structured control flow, recursion, variables, bounded memory and recoverable diagnostics",
+    "Persistent abstraction supports updates, transactions, capacity refusal and integrity checks",
+    "Save real programs, data and paused continuation; resume across process lifetimes",
+    "Dynamic non-trivial route application responds to changed input",
+    "Interactive CLI and public browser editor, output, pause, step and inspection",
+    "Deterministic artifacts, real-kernel regressions, independent literal reference and algorithmic oracles",
+    "Auditable host boundary, real development history, complete records and public Site/repository"
+  ],
+  "brainfuckNativeResponsibilities": [
+    "Source tokenization and unsigned number parsing",
+    "Hash dictionary lookup and publication",
+    "Compilation, control-flow patching and code dispatch",
+    "Reusable functions, recursion and defining words",
+    "Arithmetic, stack and address checks, bulk memory",
+    "Indexed records, tombstones, staged/committed views, integrity validation",
+    "Graph validation, Dijkstra distances, predecessor/path reconstruction",
+    "Native trace and diagnostics"
+  ],
+  "hostResponsibilities": [
+    "Python bootstrap specification and assembler",
+    "Generic BF execution and optimization, Wasm packing/compilation",
+    "Byte I/O, work limits and process/worker lifecycle",
+    "Opaque machine image validation, encoding, hashing and file durability",
+    "Editor, forms, emitted-record/path rendering and optional WebMCP discovery",
+    "Static asset hosting, build tools, CI and independent test oracles"
+  ],
+  "verification": {
+    "testsPassed": 50,
+    "testsFailed": 0,
+    "regressions": "50/50 current tests pass; no known remaining regression",
+    "reproducibility": "Deterministic local regeneration PASS; clean public clone and Linux CI pending",
+    "boundaryAudit": "PASS: 56 classified components and mutation checks; heuristic review gates, not formal proof",
+    "selfAudit": "PASS within documented scope; sole-agent review, see self-audit.md",
+    "localRun": {
+      "command": "npm run verify",
+      "exitCode": 0,
+      "testsPassed": 50,
+      "testsFailed": 0,
+      "testDurationMs": 54155.12325,
+      "generatedKernelInstructions": 44899152,
+      "kernelSha256": "de6c26450f7aa1398fc0f5d08995e653f355badea9f1df08a0b203db35c37d87",
+      "wasmBytes": 744,
+      "boundaryClassifications": 56,
+      "literalReferenceInstructions": 1453328957,
+      "rawLog": "test-results.txt",
+      "stress": {
+        "fullCollisionWorkloadMs": 36694.440958,
+        "fullCollisionInstructions": 429824504751225,
+        "boundedRuns": 6,
+        "maxGraphRoads": 128,
+        "divisionOracleCases": 119
+      }
+    }
+  },
+  "failuresAndRepairs": "journal.md",
+  "metrics": "metrics.json",
+  "externalReferences": "../../docs/references.md",
+  "knownLimitations": [
+    "16-bit wrapping integers and byte I/O",
+    "Fixed 256-entry dictionary, 8192-word code, 4096-word heap and 4096-word store",
+    "128 records; Dispatch supports 32 nodes and 128 directed roads with weights 1 through 1000",
+    "Monotonic allocation and dictionary growth; no reclaiming allocator",
+    "Single execution stream; no process isolation, sockets, user permissions or multitasking",
+    "Generated kernel uses substantial Python bootstrap tooling; not self-hosting or 8-bit portable",
+    "tx-commit is guest commit; explicit image save/export provides external durability",
+    "Images are integrity-checked but not authenticated or encrypted; same kernel/mode required",
+    "Sole-agent review, finite tests and heuristic audit do not constitute independent proof",
+    "A deliberately full collision chain took about 35 to 37 seconds and multiple bounded runs; no fast worst-case claim"
+  ],
+  "finalAssessment": "The native capability bar is met and 50 tests pass. Public reproduction and publication remain explicit closure checks.",
+  "nextFrontier": {
+    "title": "Native source workspace with a reclaiming module loader",
+    "reason": "Store editable source and named modules inside the constrained system, recompile from native storage and reclaim replaced code/data without invalidating live references; substantially harder state ownership and compatibility than whole-machine snapshots."
+  },
+  "publication": {
+    "repository": "https://github.com/OnFiala/eight-instructions",
+    "site": "https://eight-instructions.andrewxix.chatgpt.site",
+    "state": "Pending final verification"
+  },
+  "repairDebugCycles": {
+    "approximateCount": 11,
+    "method": "Grouped corrective engineering episodes, excluding ordinary feature authoring, authentication diagnosis and a corrected test fixture; not a count of every edit or tool failure.",
+    "episodes": [
+      "Generator runtime-register versus constant correction",
+      "Hash dictionary after compilation work limit",
+      "Paged native code after slow linear dispatch",
+      "Native bulk memory for transactions",
+      "Indexed format-2 store after full-capacity failure",
+      "Conditional Wasm input callback",
+      "Atomic byte input and precise work-budget validation",
+      "Worker pause, output and no-progress limits plus visible error handling",
+      "Exact counters after output-cap resume",
+      "Rejected universal binary division and retained adaptive native division",
+      "Single-pass insertion probing and bounded image continuation for hostile collisions"
+    ]
+  },
+  "architectureMigrations": [
+    "Linear dictionary to native chained hash lookup",
+    "Flat code access to native paged program counters",
+    "Linear record handling to open-addressed format-2 store; unpublished development images retained their own library"
+  ]
+}

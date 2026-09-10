@@ -1,0 +1,318 @@
+{
+  "schemaVersion": 1,
+  "languageIntroduction": "Brainfuck (BF) programming language",
+  "nativeResponsibilities": [
+    "tokenization and integer parsing",
+    "word hashing and collision checks",
+    "compilation and control patching",
+    "calls, recursion and instruction dispatch",
+    "bounded stacks, heap and store operations",
+    "transaction copying, commit and abort",
+    "open-addressed key/value indexing and integrity checks",
+    "graph validation, shortest paths and reconstruction"
+  ],
+  "hostRuntimeDependencies": [],
+  "buildDependencies": {
+    "wabt": "1.0.39"
+  },
+  "limitsOfAudit": "An inspectable inventory and review gate, not a semantic proof or a hostile-contributor security boundary. A reviewer can change a hash; that does not establish protocol compliance. Generated artifacts and raw source copies have separate reproducibility checks.",
+  "components": [
+    {
+      "path": ".github/workflows/verify.yml",
+      "layer": "verification-tool",
+      "reason": "Linux reproducibility pipeline with pinned official action revisions and identical local checks."
+    },
+    {
+      "path": ".openai/hosting.json",
+      "layer": "deployment-config",
+      "reason": "Sites project identity and static asset directory; no credentials or runtime secrets."
+    },
+    {
+      "path": "artifacts/kernel.bf",
+      "layer": "generated-kernel",
+      "reason": "Executable native kernel, exclusively eight commands; regenerated and hash checked during verification."
+    },
+    {
+      "path": "dist/client.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Generic request correlation and lifecycle bridge between visible UI or WebMCP and the same execution worker.",
+      "reviewedSha256": "4f72099cbd9d5a6199b2bc0f22d4c46204480dbc000afcd66a33516195806b4d"
+    },
+    {
+      "path": "dist/engine.mjs",
+      "layer": "executor",
+      "reason": "Generic eight-command semantics, syntax checking, run coalescing and affine-loop execution; no Thread or application ABI.",
+      "reviewedSha256": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c"
+    },
+    {
+      "path": "dist/executor.wasm",
+      "layer": "generated-executor",
+      "reason": "Deterministic compilation of the reviewed generic WAT executor using pinned WABT.",
+      "reviewedSha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712"
+    },
+    {
+      "path": "dist/favicon.svg",
+      "layer": "presentation",
+      "reason": "Small vector project mark for browser identification.",
+      "reviewedSha256": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35"
+    },
+    {
+      "path": "dist/images.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Serializes and validates complete opaque tape/continuation images; host cryptography, encoding and byte transport.",
+      "reviewedSha256": "ca9864fc021d259ac7a829bc6d8e3254dab1f121c8db77f7464460aa18aead5e"
+    },
+    {
+      "path": "dist/index.html",
+      "layer": "presentation",
+      "reason": "Human-readable experiment narrative, source editor, forms, output and progressive technical evidence.",
+      "reviewedSha256": "527937315903b83d831d90cbcb9e6f7f14c963e0dcc595727dfcc2714809fb8d"
+    },
+    {
+      "path": "dist/kernel-map.json",
+      "layer": "generated-map",
+      "reason": "Deterministic tape/register metadata and dialect/hash for inspection and compatible image validation."
+    },
+    {
+      "path": "dist/kernel.bf.gz",
+      "layer": "generated-kernel-transport",
+      "reason": "Deterministic gzip transport of the exact raw kernel, verified after decompression; no precomputed machine image."
+    },
+    {
+      "path": "dist/programs/core.thread",
+      "layer": "packaged-native-program",
+      "reason": "Byte-identical public copy of the canonical native source, checked during verification."
+    },
+    {
+      "path": "dist/programs/dispatch.thread",
+      "layer": "packaged-native-program",
+      "reason": "Byte-identical public copy of the canonical native source, checked during verification."
+    },
+    {
+      "path": "dist/programs/store.thread",
+      "layer": "packaged-native-program",
+      "reason": "Byte-identical public copy of the canonical native source, checked during verification."
+    },
+    {
+      "path": "dist/programs/system.json",
+      "layer": "packaged-source-list",
+      "reason": "Byte-identical public copy of the canonical raw-library list."
+    },
+    {
+      "path": "dist/site.mjs",
+      "layer": "presentation",
+      "reason": "Browser editor and controls format source, display raw output, and render guest-emitted graph records/path; no route or database algorithm.",
+      "reviewedSha256": "d7932da86f11dd5022bf290e9742051a1bb4d4927e2cf55a16bc02f319138e19"
+    },
+    {
+      "path": "dist/style.css",
+      "layer": "presentation",
+      "reason": "Responsive visual layout, keyboard focus, legibility and reduced-motion presentation.",
+      "reviewedSha256": "b3f16454f9bee49c51c8f05e42d2ff04d4a49157de36b452cdec07871a971f17"
+    },
+    {
+      "path": "dist/wasm-engine.mjs",
+      "layer": "executor",
+      "reason": "Packs the same generic BF operations into Wasm memory and bridges bounded byte I/O for practical execution speed.",
+      "reviewedSha256": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8"
+    },
+    {
+      "path": "dist/webmcp.mjs",
+      "layer": "presentation",
+      "reason": "Optional browser tool discovery validates source/state requests and forwards to the same visible controls; no additional computation path.",
+      "reviewedSha256": "c37acfa6f941328157e4ba9df60262f620c3ce5f25f3edb1811051477f3bcd78"
+    },
+    {
+      "path": "dist/worker.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Browser worker loads verified assets and runs bounded generic execution asynchronously; raw source, pause, resume and image RPC only.",
+      "reviewedSha256": "0386fd17e0e47f4bbc68d8f856e040447fd31755ea954bc6a098f229f84a651b"
+    },
+    {
+      "path": "kernel/build.py",
+      "layer": "bootstrap-kernel",
+      "reason": "Authored kernel specification emits native tokenization, compiler, dictionary, stacks, paged code, arithmetic and diagnostics; it cannot read guest source or workloads.",
+      "reviewedSha256": "a5f1b8a67e501c7f9623075788a309c2be8a26744b2cbdf9498a0b67c14a0cc0"
+    },
+    {
+      "path": "package-lock.json",
+      "layer": "build-config",
+      "reason": "Pinned reproducible build dependency integrity and metadata."
+    },
+    {
+      "path": "package.json",
+      "layer": "build-config",
+      "reason": "Explicit scripts and exact build-only dependency; no runtime package dependencies."
+    },
+    {
+      "path": "programs/core.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source compiled and executed by the Brainfuck kernel; owns reusable language utilities."
+    },
+    {
+      "path": "programs/dispatch.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source compiled and executed by the Brainfuck kernel; owns mutable graph validation, Dijkstra shortest paths and predecessor reconstruction."
+    },
+    {
+      "path": "programs/store.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source compiled and executed by the Brainfuck kernel; owns indexed key/value data, transaction state, format validation and integrity checks."
+    },
+    {
+      "path": "programs/system.json",
+      "layer": "native-source-list",
+      "reason": "Ordered list of raw native libraries to compile at boot; no compiled guest image."
+    },
+    {
+      "path": "runtime/cli.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Terminal/file input, raw output, generic stepping/inspection and explicit whole-machine save/load; all other input goes to the kernel.",
+      "reviewedSha256": "64a9c4583a33b428f7c438d3af2f94b20eef6d8003f94edf0a7b958c4465086a"
+    },
+    {
+      "path": "runtime/executor.wat",
+      "layer": "executor",
+      "reason": "Generic eight-command dispatch in WebAssembly; language-independent acceleration, verified against literal interpretation.",
+      "reviewedSha256": "b534718af5e2bfde96c30c39fa2b6b7ffc0fb9cd92a4268c7933151584e2f5a5"
+    },
+    {
+      "path": "runtime/files.mjs",
+      "layer": "runtime-adapter",
+      "reason": "OS file descriptors, fsync and atomic rename provide explicit durable file saves unavailable to Brainfuck.",
+      "reviewedSha256": "17ac2def915f498f38fee42047b15458849b3a9182c2bc0ee790f58dc4409ea4"
+    },
+    {
+      "path": "runtime/system.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Loads and verifies kernel assets, instantiates a generic executor, and supplies unchanged native source bytes.",
+      "reviewedSha256": "e4b9f80188e2ddcd8eb212fb1443193b42dd600d359f6bce13e59ddab00e9ce1"
+    },
+    {
+      "path": "tests/audit.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/browser-worker-harness.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/capacity.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/dispatch.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/emitter.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/engine.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/helpers.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/images.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/kernel.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/reference.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/store.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/system-helpers.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/wasm.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/webmcp.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/worker.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tools/audit.mjs",
+      "layer": "verification-tool",
+      "reason": "Checks file classification, reviewed host digests, dependency drift and selected forbidden escape patterns."
+    },
+    {
+      "path": "tools/build-executor.mjs",
+      "layer": "build-tool",
+      "reason": "Assembles the generic WAT executor and checks deterministic binary output."
+    },
+    {
+      "path": "tools/build-history.mjs",
+      "layer": "build-tool",
+      "reason": "Builds the public history view from canonical records without inventing capabilities."
+    },
+    {
+      "path": "tools/emitter.py",
+      "layer": "bootstrap-tool",
+      "reason": "Structured tape assembler emits only Brainfuck commands; required to author the first kernel without manually maintaining millions of pointer operations.",
+      "reviewedSha256": "cf87366f99f52d76449e6351721bd5a2c16b7a0f6392c08b9db1a2005f43fc53"
+    },
+    {
+      "path": "tools/measure.mjs",
+      "layer": "verification-tool",
+      "reason": "Runs real kernel workloads and records time, raw instruction counts, host environment and source categories."
+    },
+    {
+      "path": "tools/package-assets.mjs",
+      "layer": "build-tool",
+      "reason": "Copies raw guest source bytes without compiling or evaluating them."
+    },
+    {
+      "path": "tools/reference.c",
+      "layer": "verification-tool",
+      "reason": "Independent test-only literal BF interpreter; no optimization or production import."
+    },
+    {
+      "path": "tools/serve.mjs",
+      "layer": "build-tool",
+      "reason": "Loopback-only static file server for local interface verification."
+    },
+    {
+      "path": "dist/history.json",
+      "layer": "public-evidence",
+      "reason": "Generated public view of canonical experiment records; supports arbitrary future build counts."
+    },
+    {
+      "path": "tests/arithmetic.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Checks native division outputs in actual tape cells against integer arithmetic across all bit widths and randomized operands."
+    }
+  ]
+}

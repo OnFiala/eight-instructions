@@ -1,0 +1,320 @@
+
+> eight-instructions@0.1.0 verify
+> python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/audit.mjs && node --test tests/*.test.mjs
+
+{"instructions": 44899152, "sha256": "de6c26450f7aa1398fc0f5d08995e653f355badea9f1df08a0b203db35c37d87", "cells": 120006}
+Generic BF executor: 744 bytes
+Raw program assets match their canonical sources.
+Public history matches canonical build records.
+Boundary audit PASS: 56 classified sources. Hashes are review gates, not a semantic proof.
+TAP version 13
+# Subtest: native unsigned division matches integer arithmetic across all bit widths and overflow guards
+ok 1 - native unsigned division matches integer arithmetic across all bit widths and overflow guards
+  ---
+  duration_ms: 2997.660333
+  type: 'test'
+  ...
+# Subtest: boundary guard rejects new executable files, changed host code and extra kernel commands
+ok 2 - boundary guard rejects new executable files, changed host code and extra kernel commands
+  ---
+  duration_ms: 1.931667
+  type: 'test'
+  ...
+# Subtest: dictionary capacity refuses publication without corrupting existing words
+ok 3 - dictionary capacity refuses publication without corrupting existing words
+  ---
+  duration_ms: 2844.433291
+  type: 'test'
+  ...
+# Subtest: code and nested control exhaustion roll back incomplete definitions
+ok 4 - code and nested control exhaustion roll back incomplete definitions
+  ---
+  duration_ms: 1792.971208
+  type: 'test'
+  ...
+# Subtest: heap exhaustion and overlong tokens refuse mutation and recover
+ok 5 - heap exhaustion and overlong tokens refuse mutation and recover
+  ---
+  duration_ms: 30.668458
+  type: 'test'
+  ...
+# Subtest: Dispatch combines transactions, native compilation and dynamic route changes
+ok 6 - Dispatch combines transactions, native compilation and dynamic route changes
+  ---
+  duration_ms: 6498.876959
+  type: 'test'
+  ...
+# Subtest: zero-distance, unreachable nodes and invalid road states
+ok 7 - zero-distance, unreachable nodes and invalid road states
+  ---
+  duration_ms: 2898.576
+  type: 'test'
+  ...
+# Subtest: maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+ok 8 - maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+  ---
+  duration_ms: 6983.685292
+  type: 'test'
+  ...
+# Subtest: random weighted networks agree with Bellman-Ford and valid path reconstruction
+ok 9 - random weighted networks agree with Bellman-Ford and valid path reconstruction
+  ---
+  duration_ms: 17914.806458
+  type: 'test'
+  ...
+# Subtest: full-capacity 128-road cyclic network agrees with an independent oracle
+ok 10 - full-capacity 128-road cyclic network agrees with an independent oracle
+  ---
+  duration_ms: 19321.052916
+  type: 'test'
+  ...
+# Subtest: generated addressed memory and arithmetic execute on the real BF machine
+ok 11 - generated addressed memory and arithmetic execute on the real BF machine
+  ---
+  duration_ms: 45.860791
+  type: 'test'
+  ...
+# Subtest: paged native memory walks page and word lanes and clears all breadcrumbs
+ok 12 - paged native memory walks page and word lanes and clears all breadcrumbs
+  ---
+  duration_ms: 36.675625
+  type: 'test'
+  ...
+# Subtest: bracket validation
+ok 13 - bracket validation
+  ---
+  duration_ms: 0.738
+  type: 'test'
+  ...
+# Subtest: uint16 wrap, low-byte output, input pause and EOF
+ok 14 - uint16 wrap, low-byte output, input pause and EOF
+  ---
+  duration_ms: 0.702667
+  type: 'test'
+  ...
+# Subtest: bounds checks retain intermediate pointer motion
+ok 15 - bounds checks retain intermediate pointer motion
+  ---
+  duration_ms: 0.269292
+  type: 'test'
+  ...
+# Subtest: resource budget interrupts a divergent program
+ok 16 - resource budget interrupts a divergent program
+  ---
+  duration_ms: 0.096042
+  type: 'test'
+  ...
+# Subtest: invalid limits and bytes fail without corrupting queued input
+ok 17 - invalid limits and bytes fail without corrupting queued input
+  ---
+  duration_ms: 43.306958
+  type: 'test'
+  ...
+# Subtest: optimized loops match literal execution, including instruction counts
+ok 18 - optimized loops match literal execution, including instruction counts
+  ---
+  duration_ms: 8.862459
+  type: 'test'
+  ...
+# Subtest: machine images resume partial input and preserve full uint16 state
+ok 19 - machine images resume partial input and preserve full uint16 state
+  ---
+  duration_ms: 7.463458
+  type: 'test'
+  ...
+# Subtest: image corruption, incompatible kernels and invalid machine state are rejected
+ok 20 - image corruption, incompatible kernels and invalid machine state are rejected
+  ---
+  duration_ms: 3.780375
+  type: 'test'
+  ...
+# Subtest: budget images resume without replaying input or output
+ok 21 - budget images resume without replaying input or output
+  ---
+  duration_ms: 1.023041
+  type: 'test'
+  ...
+# Subtest: OS image replacement is atomic and leaves no temporary files
+ok 22 - OS image replacement is atomic and leaves no temporary files
+  ---
+  duration_ms: 28.560709
+  type: 'test'
+  ...
+# Subtest: numeric parsing and unsigned arithmetic
+ok 23 - numeric parsing and unsigned arithmetic
+  ---
+  duration_ms: 170.34875
+  type: 'test'
+  ...
+# Subtest: stack combinators, equality and unsigned comparison
+ok 24 - stack combinators, equality and unsigned comparison
+  ---
+  duration_ms: 43.255833
+  type: 'test'
+  ...
+# Subtest: native definitions, calls and source compilation
+ok 25 - native definitions, calls and source compilation
+  ---
+  duration_ms: 23.191834
+  type: 'test'
+  ...
+# Subtest: native conditionals and nested branching
+ok 26 - native conditionals and nested branching
+  ---
+  duration_ms: 49.304792
+  type: 'test'
+  ...
+# Subtest: loops and recursive definitions
+ok 27 - loops and recursive definitions
+  ---
+  duration_ms: 62.484959
+  type: 'test'
+  ...
+# Subtest: native defining words, while/repeat and early return
+ok 28 - native defining words, while/repeat and early return
+  ---
+  duration_ms: 77.472042
+  type: 'test'
+  ...
+# Subtest: separate bounded heap and persistent regions
+ok 29 - separate bounded heap and persistent regions
+  ---
+  duration_ms: 37.303667
+  type: 'test'
+  ...
+# Subtest: comments and partial tokens across interactive input chunks
+ok 30 - comments and partial tokens across interactive input chunks
+  ---
+  duration_ms: 2.096708
+  type: 'test'
+  ...
+# Subtest: diagnostic recovery and rejected input
+ok 31 - diagnostic recovery and rejected input
+  ---
+  duration_ms: 58.03825
+  type: 'test'
+  ...
+# Subtest: malformed definitions are unpublished and roll back code allocation
+ok 32 - malformed definitions are unpublished and roll back code allocation
+  ---
+  duration_ms: 28.713542
+  type: 'test'
+  ...
+# Subtest: resource exhaustion: data and return stack protection
+ok 33 - resource exhaustion: data and return stack protection
+  ---
+  duration_ms: 189.222834
+  type: 'test'
+  ...
+# Subtest: EOF closes ordinary execution and rejects unfinished compilation
+ok 34 - EOF closes ordinary execution and rejects unfinished compilation
+  ---
+  duration_ms: 13.504167
+  type: 'test'
+  ...
+# Subtest: bounded bulk memory handles overlap in both directions
+ok 35 - bounded bulk memory handles overlap in both directions
+  ---
+  duration_ms: 64.223167
+  type: 'test'
+  ...
+# Subtest: strings compile natively and dictionary collisions and shadowing remain sound
+ok 36 - strings compile natively and dictionary collisions and shadowing remain sound
+  ---
+  duration_ms: 58.366042
+  type: 'test'
+  ...
+# Subtest: the entire generated kernel agrees with an independent literal C executor
+ok 37 - the entire generated kernel agrees with an independent literal C executor
+  ---
+  duration_ms: 1650.1625
+  type: 'test'
+  ...
+# Subtest: transactional insert, update, missing keys, zero values and deletion
+ok 38 - transactional insert, update, missing keys, zero values and deletion
+  ---
+  duration_ms: 2669.602834
+  type: 'test'
+  ...
+# Subtest: abort restores the committed view; writes require an explicit transaction
+ok 39 - abort restores the committed view; writes require an explicit transaction
+  ---
+  duration_ms: 152.265666
+  type: 'test'
+  ...
+# Subtest: full store refuses record 129, updates existing keys, reuses deleted slots
+ok 40 - full store refuses record 129, updates existing keys, reuses deleted slots
+  ---
+  duration_ms: 1974.8105
+  type: 'test'
+  ...
+# Subtest: deterministic mixed operations agree with an independent map oracle
+ok 41 - deterministic mixed operations agree with an independent map oracle
+  ---
+  duration_ms: 734.778334
+  type: 'test'
+  ...
+# Subtest: full kernel image retains definitions, committed records and an open transaction
+ok 42 - full kernel image retains definitions, committed records and an open transaction
+  ---
+  duration_ms: 123.7715
+  type: 'test'
+  ...
+# Subtest: collisions survive tombstones without duplicate keys or broken lookup chains
+ok 43 - collisions survive tombstones without duplicate keys or broken lookup chains
+  ---
+  duration_ms: 482.654209
+  type: 'test'
+  ...
+# Subtest: native format and index integrity checks reject invalid store state
+ok 44 - native format and index integrity checks reject invalid store state
+  ---
+  duration_ms: 400.582542
+  type: 'test'
+  ...
+# Subtest: adversarial full-table collisions finish through bounded image-resumable execution
+ok 45 - adversarial full-table collisions finish through bounded image-resumable execution
+  ---
+  duration_ms: 36710.471416
+  type: 'test'
+  ...
+# {"stress":"128 keys in one initial bucket","elapsedMs":36694.440958,"brainfuckInstructions":429824504751225,"boundedRuns":6}
+# Subtest: Wasm backend is equivalent to literal BF for 150 deterministic programs
+ok 46 - Wasm backend is equivalent to literal BF for 150 deterministic programs
+  ---
+  duration_ms: 24.904958
+  type: 'test'
+  ...
+# Subtest: Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+ok 47 - Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+  ---
+  duration_ms: 0.6145
+  type: 'test'
+  ...
+# Subtest: Wasm pause, streaming input, output caps and work limits
+ok 48 - Wasm pause, streaming input, output caps and work limits
+  ---
+  duration_ms: 0.599
+  type: 'test'
+  ...
+# Subtest: WebMCP has the same source/state routes, validates before effects, and closes registration
+ok 49 - WebMCP has the same source/state routes, validates before effects, and closes registration
+  ---
+  duration_ms: 1.262792
+  type: 'test'
+  ...
+# Subtest: browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+ok 50 - browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+  ---
+  duration_ms: 4370.096583
+  type: 'test'
+  ...
+1..50
+# tests 50
+# suites 0
+# pass 50
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 54155.12325

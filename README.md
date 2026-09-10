@@ -7,8 +7,11 @@ We gave Astra xHigh this deeply inconvenient starting point and asked it to buil
 increasingly serious computing systems. The human supplies challenges, writes no
 production code and provides no code repairs. There is no predefined finish line.
 
-**Build #001: General-purpose computing environment.** Release verification and
-the public Site are being completed. The implementation and tests below run now.
+**Build #001: General-purpose computing environment.** The native implementation
+passes 50 tests, including deliberately hostile workloads.
+
+[Try the live machine](https://eight-instructions.andrewxix.chatgpt.site) ·
+[Read the build record](records/001/build.json) · [Permanent protocol](PROTOCOL.md)
 
 ## What actually exists
 
@@ -23,7 +26,7 @@ new shortest paths, abort a transaction, save the whole machine, restart the
 process and continue using both your data and your compiled programs.
 
 This is a small computing environment, not a modern operating system. It uses
-16-bit cells, byte I/O and fixed capacities. It is slow. Those facts belong in the
+16-bit cells, byte I/O and fixed capacities. Worst-case workloads are slow. Those facts belong in the
 experiment, alongside the working parts.
 
 ## Run it
@@ -113,9 +116,31 @@ independent-executor tests. GitHub Actions runs the same verification on Linux.
 
 Canonical native guest source lives in [programs](programs/), the kernel
 specification in [kernel/build.py](kernel/build.py), its raw executable in
-[artifacts/kernel.bf](artifacts/kernel.bf), and the literal command semantics in
+[artifacts/kernel.bf](artifacts/kernel.bf), and the generic command semantics in
 [dist/engine.mjs](dist/engine.mjs). The compressed public artifact decompresses to
 the exact same bytes and hash. No network, model API or API key is needed to run.
+
+## Measured, including the ugly parts
+
+On an Apple M5 with Node 22, three fresh-machine runs measured median native
+library boot at **1.04 s**, route calculation at **1.03 s**, and a changed road plus
+rerouting at **1.06 s**. The ordinary full-store workload took **1.21 s**.
+A separate hostile workload forced all 128 large keys into one initial bucket:
+**35–37 s**, including integrity checks and several bounded runs with an image
+checkpoint. It completed correctly; the default work limits were not increased.
+
+The final kernel contains **44,899,152 eight-command instructions** (44,899,153
+source bytes) and transports as a **123,878-byte gzip**. The tape is **240,012
+bytes**. Wasm linear memory, including generic operation data, is **3,014,656
+bytes**; the measured Node process RSS was about **277 MB**, not a peak or a guest
+memory figure. The bootstrap specification and assembler are about 40 KB of
+Python source, and native application/library source is about 6.5 KB.
+
+Reported instruction counts count original Brainfuck command executions; a generic
+optimized block can represent many of them. They are not CPU instruction counts
+or a claim that the processor literally executes trillions of instructions each
+second. [Raw samples and methodology](records/001/metrics.json) keep host loading,
+guest work, source categories and memory scopes distinct. Wall times vary by host.
 
 ## Experiment records
 

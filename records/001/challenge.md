@@ -2,7 +2,9 @@
 
 Model requested: Astra. Reasoning requested: xHigh. Sole engineering agent.
 
-Original human challenge:
+The subject is the **Brainfuck (BF) programming language**.
+
+Original human challenge (verbatim core request):
 
 > Starting from the Brainfuck programming language as the constrained execution
 > substrate, design and build a usable general-purpose computing environment
