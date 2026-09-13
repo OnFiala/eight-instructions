@@ -16,12 +16,12 @@
   ],
   "protocolViolations": [],
   "verification": {
-    "testsPassed": null,
-    "testsFailed": null,
-    "regressions": "Full final suite in progress. Baseline50 retained; focused suites and native/literal tests documented in journal.",
-    "boundaryAudit": "124-component author-reviewed inventory; heuristic checks only.",
+    "testsPassed": 74,
+    "testsFailed": 0,
+    "regressions": "74/74 local tests pass on final three-bridge native sources; original50 retained. Linux CI formatting repair and final visual candidate pending exact-head CI.",
+    "boundaryAudit": "129-component author-reviewed inventory; heuristic checks only.",
     "selfAudit": "Same Astra author; not an independent audit.",
-    "visual": "Reference comparison and browser workflow in progress."
+    "visual": "Iterative comparison and actual browser testing; release visual gate remains open."
   },
   "metrics": "metrics.json",
   "failuresAndRepairs": "journal.md",

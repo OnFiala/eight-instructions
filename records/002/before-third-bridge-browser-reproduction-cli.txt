@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "kernelSha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98",
+  "runs": [
+    {
+      "label": "Original",
+      "inputs": 3,
+      "outputSha256": "56e2814fdd66f22ff49a53901b559177b5bee352c62c9adc762c4fd3eb19bc23",
+      "elapsedMs": 9497.818166,
+      "state": "input",
+      "steps": 48255839590134
+    },
+    {
+      "label": "Editor source",
+      "inputs": 5,
+      "outputSha256": "060477259a693828b7f72916f6ca94c16a48d7669ef4f857dbf63a8d3267f423",
+      "elapsedMs": 7471.674208,
+      "state": "input",
+      "steps": 51887734996878
+    }
+  ]
+}

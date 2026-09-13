@@ -37,10 +37,28 @@
       "reason": "Executable native kernel, exclusively eight commands; regenerated and hash checked during verification."
     },
     {
+      "path": "dist/assets/city/cafe-house.png",
+      "layer": "presentation",
+      "reason": "Original image_gen isolated house appearance. Placed as decorative architecture without road connections, collision, routing or state; original bytes/origin in asset-provenance.json.",
+      "reviewedSha256": "e6c98c6e7197b125e6c7614ce0d8d273f6bfd3aac22038a00aec6751ae8f9103"
+    },
+    {
       "path": "dist/assets/city/depot-block.png",
       "layer": "presentation",
       "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
       "reviewedSha256": "95c79cb021442ac148e3a9c72efe95b346f3ae953af1fc6d8f702a9561114399"
+    },
+    {
+      "path": "dist/assets/city/flat-house.png",
+      "layer": "presentation",
+      "reason": "Original image_gen decorative architecture or fountain. No roads, guest memory, routing, vehicle movement or simulated water; original bytes and exact origin in records/002/asset-provenance.json.",
+      "reviewedSha256": "993b83e40f975830fdd442a6d40c64e6970ea0d516c7850e7e6ce0f4e6804ff0"
+    },
+    {
+      "path": "dist/assets/city/fountain.png",
+      "layer": "presentation",
+      "reason": "Original image_gen decorative architecture or fountain. No roads, guest memory, routing, vehicle movement or simulated water; original bytes and exact origin in records/002/asset-provenance.json.",
+      "reviewedSha256": "560b7771b7a569fdd30a7b2db523cc0d935854b0da2157ee98dc109e1e603981"
     },
     {
       "path": "dist/assets/city/harbor-bridge.png",
@@ -49,22 +67,10 @@
       "reviewedSha256": "65c8bba41b7fd77cfe883e6f34948240346bb42e4f27ea1e977900a0de08fbee"
     },
     {
-      "path": "dist/assets/city/homes-block.png",
-      "layer": "presentation",
-      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
-      "reviewedSha256": "46893a78cf8027f187036e5dab1a6377e711cb719a59891b41d40ab85c122979"
-    },
-    {
       "path": "dist/assets/city/linden-tree.png",
       "layer": "presentation",
       "reason": "Original image_gen RGBA tree appearance. Planted at purely decorative renderer coordinates with no roads, collision, routes or guest state; original bytes and origin in asset-provenance.json.",
       "reviewedSha256": "d2b3cd838adebd1df3b37a32da050ec95e976befc86a730ec77dc755f36efc18"
-    },
-    {
-      "path": "dist/assets/city/market-block.png",
-      "layer": "presentation",
-      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
-      "reviewedSha256": "1f131c11d2bd6555a7e9bbfdb803e17e335920189f59d4253804e5610e20acda"
     },
     {
       "path": "dist/assets/city/north-bridge.png",
@@ -75,8 +81,14 @@
     {
       "path": "dist/assets/city/oldtown-block.png",
       "layer": "presentation",
-      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
+      "reason": "Original image_gen decorative architecture or fountain. No roads, guest memory, routing, vehicle movement or simulated water; original bytes and exact origin in records/002/asset-provenance.json.",
       "reviewedSha256": "7176e6cbb4ec5eb348c20ba83b9cb8f3c172fdba35905fbdb95fcd0f07dea197"
+    },
+    {
+      "path": "dist/assets/city/stone-house.png",
+      "layer": "presentation",
+      "reason": "Original image_gen isolated house appearance. Placed as decorative architecture without road connections, collision, routing or state; original bytes/origin in asset-provenance.json.",
+      "reviewedSha256": "7d743b0534006453b7723ffad6d6de5fed5f6a62cd561ea8fc5e0faf5c6b97fd"
     },
     {
       "path": "dist/assets/city/university-block.png",
@@ -225,7 +237,7 @@
       "path": "dist/build-001/index.html",
       "layer": "presentation",
       "reason": "Preserved Build001: Human-readable experiment narrative, source editor, forms, output and progressive technical evidence. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
-      "reviewedSha256": "509efa5c48cb1937382e62489970e68f0e9bcf57a18f9e2f5ad309bd304da1b8"
+      "reviewedSha256": "0d087fe1a930856b3fa57f253453056e59570f33944c917c4833c4cfebab28dc"
     },
     {
       "path": "dist/build-001/kernel-map.json",
@@ -291,7 +303,7 @@
       "path": "dist/city-scene.mjs",
       "layer": "presentation",
       "reason": "Projects BF-emitted coordinates and directed road/path records. Composites graphical sprites and decorative materials; interpolates only between two observed positions. No future step, route, delivery, collision or module semantics are computed.",
-      "reviewedSha256": "0377a2103f972564fe64204e32c8e0b4b3d161e072d678d94866d581ebec87a8"
+      "reviewedSha256": "9fd4e68e91045c7cd3c975a9cc0b68526c9313c7f27d29b2b9a85218e4595ebd"
     },
     {
       "path": "dist/client.mjs",
@@ -332,7 +344,7 @@
       "path": "dist/index.html",
       "layer": "presentation",
       "reason": "Human-readable experiment narrative, source editor, forms, output and progressive technical evidence.",
-      "reviewedSha256": "c4f17aa3ebfda1d8ee133bf336cb26719a398e34230e4aecdc01e632d125cf3c"
+      "reviewedSha256": "3fce60bec306ea4bde27ec2217debdadee39a0225d8f01fe779812e74607675d"
     },
     {
       "path": "dist/kernel-map.json",
@@ -410,7 +422,7 @@
       "path": "dist/style.css",
       "layer": "presentation",
       "reason": "Responsive visual layout, keyboard focus, legibility and reduced-motion presentation.",
-      "reviewedSha256": "19bb686818b3300dc4b4588160a78d6c7f7fb893bc90756b3570bb82bb73da60"
+      "reviewedSha256": "bd3f6ed19d23b17c44e9d85bbeaad2a112ccc96ad20ab4fb37a98f3f213ada72"
     },
     {
       "path": "dist/wasm-engine.mjs",

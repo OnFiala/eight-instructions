@@ -2,7 +2,7 @@
 
 V první etapě vznikl malý výpočetní svět v Brainfucku: mohl spouštět programy, uchovávat data, hledat cesty a uložit celý svůj stav do souboru. Druhá etapa přidává něco praktičtějšího. Program může mít vlastní uložený zdroj a několik živých verzí. Můžete ho změnit, aniž byste zahodili rozpracovanou práci, a paměť po nepotřebných verzích znovu použít.
 
-Na webu je z toho malé doručovací město. Vidíte silnice, dvě cesty přes kanál a tři dodávky. Jejich trasy a kroky počítá skutečný BF stroj. Obraz může mezi dvěma známými polohami plynule přecházet; nový krok ale někdy potřebuje několik sekund výpočtu.
+Na webu je z toho malé doručovací město. Vidíte silnice, tři mosty přes kanál a tři dodávky. Jejich trasy a kroky počítá skutečný BF stroj. Obraz může mezi dvěma známými polohami plynule přecházet; nový krok ale někdy potřebuje několik sekund výpočtu.
 
 Zkuste jeden přesně opakovatelný experiment. Původní pravidlo počítá cenu silnice jako dobu průjezdu plus mýto. První dodávce vyjde trasa z depa přes placený Harbor Bridge do Central Square, se skóre **15**. V editoru najdete tento zdroj:
 

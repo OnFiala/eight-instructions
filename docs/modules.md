@@ -106,7 +106,7 @@ the exact continuation; it is not a safe point at which to enqueue another chang
 
 ## City contract
 
-The city has16 nodes, capacity48 directed roads (44 initially), three vehicles and
+The city has16 nodes, capacity48 directed roads (46 initially), three vehicles and
 one current destination per vehicle. Positive route scores are bounded to1..1023.
 Duration/toll edits and road opening/closure are data inputs, separate from code
 edits. The initial paid bridge stays open in both policy comparisons.

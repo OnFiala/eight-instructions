@@ -1,0 +1,12 @@
+
+> eight-instructions@0.2.0 verify
+> python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-legacy.mjs --check && node tools/audit.mjs && node --test tests/*.test.mjs
+
+{"instructions": 52564890, "sha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98", "cells": 169164}
+Generic BF executor: 744 bytes
+Raw program assets match their canonical sources.
+Public history matches canonical build records.
+Build 001 archive: 17 verbatim runtime/assets, one explicitly relocated historical HTML page.
+Unclassified executable or presentation source: dist/assets/city/homes-block.png
+Unclassified executable or presentation source: dist/assets/city/market-block.png
+Unclassified executable or presentation source: dist/assets/city/oldtown-block.png

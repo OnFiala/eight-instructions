@@ -5,18 +5,18 @@
     {
       "label": "Original",
       "inputs": 3,
-      "outputSha256": "56e2814fdd66f22ff49a53901b559177b5bee352c62c9adc762c4fd3eb19bc23",
-      "elapsedMs": 9149.746416,
+      "outputSha256": "5b10f5eeabe4b144abff1b3965d226a159c171a15ae222d79a9495496f4bd2cb",
+      "elapsedMs": 9753.549,
       "state": "input",
-      "steps": 46121784533491
+      "steps": 46738199949613
     },
     {
       "label": "Toll-averse source",
       "inputs": 4,
-      "outputSha256": "6078dd7f7ef5b07ba68f72e0a4e8f2632eca8a189d7a7fb5676f4e58f4fd22fd",
-      "elapsedMs": 7149.745208,
+      "outputSha256": "f2cb653d0c4c15424ca0a48a96ba0a3533286fa8d5195c8b3bea71c28afc52ba",
+      "elapsedMs": 7553.114374999999,
       "state": "input",
-      "steps": 49677685744099
+      "steps": 50472916898727
     }
   ]
 }

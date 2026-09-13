@@ -62,3 +62,21 @@ Status: implementation in progress. No Build 002 release or performance claim ye
 - Fixed two host orchestration findings: imported mid-trip city state must not silently replace the comparison's original open-bridge baseline; and a hard-paused transcript must not be advertised as complete replay evidence. Session persistence and comparison snapshots now have separate explicit ownership.
 - Chrome extension file selection failed with its missing file-URL capability. No permissions changed. The ordinary file chooser in the existing Codex browser successfully imported the actual Chrome export: all61 source bytes, activev2/rollbackv1 and three half-complete pinnedv1 journeys survived. Step3 arrived at nodes8/4/1; a corrupt image was refused while retaining that city. File chooser capability limitation is distinct from application import behavior.
 - Added two original image_gen bridge assets, aligned to native road endpoints. Camera iterations exposed clipped outer vehicles, overly large blank ground slabs and reference capture artifacts. Refined view and isolated decorative plazas; no extra road connection is introduced. Final visual review remains pending.
+
+## Reference comparison reopened the visual gate
+
+The side-by-side review still showed a material difference: too-small multi-building sprites and too much empty ground compared with the approved city. Kept the visual gate open and requested two isolated house assets so individual buildings can have the reference's scale. This is not a new design selection. The narrow layout, focus and reduced-motion checks already pass within their limited scope.
+
+Added a real third bridge to the native city input, edges44/45 between5 and6, duration12, toll0. Capacity remains48; the original two bridges retain their edge IDs and values. This is guest data, not a renderer-invented connection. Its intended weight preserves the demonstrated original and toll-averse primary choices; tests must confirm this, not assume it. Updated the fixed-capacity adversarial setup to fill the new46-road baseline to47 before refusing a two-road addition. Prior74-test, metrics and replay receipts are preserved with before-third-bridge prefixes. Regenerate/retest all changed native-output evidence and bind the final artifacts separately.
+
+## Linux CI portability repair
+
+The first pushed UI milestone f2c64749 failed two reference tests on GCC: `-Werror=misleading-indentation` rejected a same-line `if ...; fclose(...)` in tools/reference.c:68. Clang had accepted it. Split the statements onto separate lines without changing semantics or weakening compiler flags. Full original log: ci-first-failure.txt. The remaining72 tests, including450 reclaim cycles, passed on that runner. New exact-source CI is still required. A brief camera-edit syntax typo was caught by node --check and corrected before browser reload; no published artifact was affected.
+
+## Final three-bridge native verification
+
+All74 tests passed, zero skipped or failed, 578980.073ms. The450-cycle test compiled9000 cumulative words, retained40 words at end and zero versions after deletion, reused slots1/3/2 within six fixed arenas. Residentcode7078/dictionary162 and tape169164 remained fixed; stress elapsed457751.376ms includes concurrent test activity. Rebuilt three-bridge reproduction bundle passes fresh CLI replay. Separate three-run final measurement is metrics.json; no other project test or browser command intentionally ran during these samples.
+
+## Visual comparison iteration
+
+Replaced sparse compound blocks with varied isolated houses, a detailed fountain, larger trees, finer paving, depth/shadows and a flatter camera. The southwest historic quarter reuses the original unmodified oldtown graphic at larger scale, filling the foreground identified by the overlay. Road connectivity still comes exclusively from the46 native edges. Vans are drawn as a legibility overlay above decorative foliage at exactly their observed positions. Native source and final benchmark remain unchanged. New screenshots and responsive QA are required for this renderer candidate.

@@ -29,7 +29,7 @@ safe point; an invalid candidate leaves the active version usable and returns it
 arena. One previous version is retained for rollback. Pins and dependent programs
 retain older versions until their last reference is released.
 
-Living Dispatch makes those capabilities visible: 16 intersections, 44 initial
+Living Dispatch makes those capabilities visible: 16 intersections, 46 initial
 directed roads (capacity 48), three vans, one destination per van, native Dijkstra
 and deterministic logical steps. Changing code preserves the city and an in-flight
 van's current road, progress and captured duration. Its next departure uses the

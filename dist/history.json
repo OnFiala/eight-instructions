@@ -14,7 +14,7 @@
       "title": "A city you can reprogram",
       "status": "PARTIAL",
       "summary": "Named source, typed modules, safe version replacement and reclaiming inside the Brainfuck programming language, demonstrated by a native delivery city. Final visual and publication verification remains in progress.",
-      "testsPassed": null,
+      "testsPassed": 74,
       "testedCommit": null
     }
   ]

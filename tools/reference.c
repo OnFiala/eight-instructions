@@ -65,7 +65,8 @@ int main(int argc, char **argv) {
         high = (size_t)read_le(state, 8); steps = read_le(state, 8);
         if (pc >= length || pointer >= cells || high >= cells || high < pointer) fail("invalid state");
         for (size_t i = 0; i < cells; i++) tape[i] = (uint16_t)read_le(state, 2);
-        if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+        if (fgetc(state) != EOF) fail("excess state bytes");
+        fclose(state);
     }
     uint64_t initial_steps = steps;
     while (pc < length) {

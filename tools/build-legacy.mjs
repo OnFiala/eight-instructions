@@ -8,11 +8,11 @@ import {sha256} from '../dist/images.mjs';
 const check=process.argv.includes('--check'),root=new URL('../',import.meta.url);
 const commit='6d7c6b0cb7fa73eda0504ef0d2cc10b1429c5dd0';
 const files=execFileSync('git',['ls-tree','-r','--name-only',commit,'dist'],{cwd:root}).toString().trim().split('\n');
-const receipt={tag:'build-001',commit,relocation:'Runtime, raw sources and assets are verbatim. HTML local asset URLs are relative, GitHub source links target build-001, and a historical banner is added. The original HTML remains in the tag.',files:[]};
+const receipt={tag:'build-001',commit,relocation:'Runtime, raw sources and assets are verbatim. HTML local asset URLs are relative, GitHub source links target build-001, a historical banner is added, and the CLI recipe explicitly checks out build-001. The original HTML remains in the tag.',files:[]};
 for(const path of files) {
   const original=execFileSync('git',['show',`${commit}:${path}`],{cwd:root,maxBuffer:10e6});let content=original;
   if(path==='dist/index.html') {
-    const html=original.toString().replace(/(href|src)="\/(?!\/)/g,'$1="./').replaceAll('/blob/main/','/blob/build-001/').replaceAll('/tree/main/','/tree/build-001/').replace('<body>','<body>\n<div style="padding:12px 24px;background:#d7fa73;color:#10170b;font:13px/1.5 system-ui;text-align:center">Historical Build 001 · original kernel and runtime · <a href="../" style="color:inherit">Return to Build 002 →</a></div>');
+    const html=original.toString().replace(/(href|src)="\/(?!\/)/g,'$1="./').replaceAll('/blob/main/','/blob/build-001/').replaceAll('/tree/main/','/tree/build-001/').replace('cd eight-instructions\nnode runtime/cli.mjs', 'cd eight-instructions\ngit checkout build-001\nnode runtime/cli.mjs').replace('<body>','<body>\n<div style="padding:12px 24px;background:#d7fa73;color:#10170b;font:13px/1.5 system-ui;text-align:center">Historical Build 001 · original kernel and runtime · <a href="../" style="color:inherit">Return to Build 002 →</a></div>');
     content=Buffer.from(html);
   }
   const dest='dist/build-001/'+path.slice(5),url=new URL(dest,root);

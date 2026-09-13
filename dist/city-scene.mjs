@@ -1,8 +1,8 @@
 // Presentation only: project emitted coordinates, draw emitted roads and paths,
 // and interpolate between two already observed vehicle positions. No future
 // guest state, route, job, delivery or collision is calculated here.
-const assets=['university-block','market-block','depot-block','homes-block','warehouse-block','oldtown-block','harbor-bridge','north-bridge','linden-tree'];
-const labels={0:'Westgate',1:'North Quay',2:'University',3:'East Market',4:'North Park',5:'Riverside Market',6:'Midtown',7:'East Warehouse',8:'West Heights',9:'Harbor West',10:'Harbor East',11:'Logistics Hub',12:'DEPOT',13:'Old Town',14:'Riverside South',15:'Central Square'};
+const assets=['university-block','oldtown-block','depot-block','warehouse-block','harbor-bridge','north-bridge','linden-tree','stone-house','cafe-house','flat-house','fountain'];
+const labels={0:'Westgate',1:'North Quay',2:'North Campus',3:'University',4:'North Park',5:'Riverside Market',6:'Midtown',7:'Campus Gate',8:'West Heights',9:'Harbor West',10:'Harbor East',11:'Logistics Hub',12:'DEPOT',13:'Old Town',14:'Riverside South',15:'Central Square'};
 export const placeName=id=>labels[id]??`Node ${id}`;
 
 async function sprite(name) {
@@ -43,7 +43,7 @@ export class CityScene {
   resize() {
     const rect=this.canvas.getBoundingClientRect();this.w=rect.width;this.h=rect.height;
     this.dpr=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(this.w*this.dpr);this.canvas.height=Math.round(this.h*this.dpr);
-    this.s=this.w/134;this.sy=this.s*.74;this.origin={x:this.w*.50,y:Math.max(0,this.h-this.canvas.parentElement.clientHeight)-this.h*.025};
+    this.s=this.w/124;this.sy=this.s*.58;this.origin={x:this.w*.50,y:Math.max(0,this.h-this.canvas.parentElement.clientHeight)+this.h*.025};
     this.draw(performance.now());
   }
   project(x,z,height=0){return {x:this.origin.x+(x+z-60)*this.s,y:this.origin.y+(z-x+60)*this.sy-height*this.s};}
@@ -87,20 +87,45 @@ export class CityScene {
   }
   ground() {
     const c=this.ctx;
-    this.tile(-2,-20,62,86,'#182529',-1.6);
-    this.tile(-2,-20,26,86,'#333f36');this.tile(34,-3,62,86,'#333f36');
-    this.tile(16,-20,40,0,'#333f36');this.tile(20,64,62,86,'#333f36');
+    this.tile(-30,20,-4,58,'#1b2928',-1.7);this.tile(-30,20,-4,58,'#465049');
+    this.tile(-6,-8,26,75,'#1b2928',-1.7);this.tile(34,-8,78,75,'#1b2928',-1.7);
+    this.tile(-6,-8,26,75,'#465049');this.tile(34,-8,78,75,'#465049');
+    this.tile(26,-8,34,75,'#12313b',-.2);
+
     this.tile(26,-3,34,64,'#12313b',-.2);
+    // Deterministic paving texture and inset gardens: no decorative road network.
+    for(const [xa,xb,za,zb] of [[-30,-4,20,58],[-6,26,-8,75],[34,78,-8,75]]) {
+      for(let x=xa;x<xb;x+=.8)for(let z=za;z<zb;z+=.8) {
+        const shade=59+((Math.floor(x*2)*13+Math.floor(z*2)*7)%4+4)%4;
+        this.tile(x+.025,z+.025,Math.min(x+.77,xb),Math.min(z+.77,zb),`rgb(${shade},${shade+6},${shade+2})`);
+      }
+    }
+    for(const [x,z] of [[4,4],[4,24],[44,4],[44,24]]) {
+      this.tile(x-1,z-1,x+13,z+13,'#5c6452',.06);
+      this.tile(x-.65,z-.65,x+12.65,z+12.65,'#344c2f',.08);
+      this.tile(x+.6,z+.6,x+11.4,z+11.4,'#4d5547',.10);
+    }
     // Decorative peripheral plazas have no roadway or simulation role.
-    for(const [x,z,k] of [[10,-10,.65],[30,-10,.65],[25,77,.72],[45,77,.72]]) {
+    for(const [x,z,k] of [[17,-5,.65],[50,72,.65],[20,70,.72],[40,72,.72]]) {
       this.tile(x-9*k,z-9*k,x+9*k,z+9*k,'#243430',-1.5);
       this.tile(x-9*k,z-9*k,x+9*k,z+9*k,'#667064',-.1);
+    }
+    for(const [a,b] of [[23,26],[34,37]]) {
+      this.tile(a,-3,b,64,'#636b5e');
+      for(let z=-3;z<64;z+=1.5)this.line(this.project(a,z),this.project(b,z),'#89907a',this.s*.035);
+      for(const x of [a,a+1.5,b])this.line(this.project(x,-3),this.project(x,64),'#8a907b',this.s*.035);
     }
     for(const x of [26,34]) {
       this.line(this.project(x,-3,-.8),this.project(x,64,-.8),'#59666a',this.s*.65);
       this.line(this.project(x,-3),this.project(x,64),'#a49d87',this.s*.7);
       for(let z=-3;z<64;z+=2.2)this.line(this.project(x-.18,z),this.project(x+.18,z),'#d0c3a3',this.s*.07);
       for(let z=5;z<60;z+=10){const p=this.project(x,z),q=this.project(x,z,2.1);this.line(p,q,'#49564d',this.s*.12);c.save();c.shadowColor='#ffcc6f';c.shadowBlur=this.s*1.4;c.fillStyle='#ffdda0';c.beginPath();c.arc(q.x,q.y,this.s*.17,0,Math.PI*2);c.fill();c.restore();}
+    }
+    for(const [xa,xb,za,zb] of [[-30,-6,20,58],[-6,26,58,75],[34,78,58,75]]) {
+      const a=this.project(xa,za),b=this.project(xa,zb),d=this.project(xb,zb);
+      const aa=this.project(xa,za,-1.7),bb=this.project(xa,zb,-1.7),dd=this.project(xb,zb,-1.7);
+      this.polygon([a,b,bb,aa],'#29332f');this.polygon([b,d,dd,bb],'#353d35');
+      this.line(b,d,'#92947d',this.s*.14);this.line(a,b,'#707866',this.s*.1);
     }
     // Water glints are a decorative material, with no simulated movement or state.
     c.globalAlpha=.25;
@@ -161,12 +186,23 @@ export class CityScene {
     for(let i=1;i<vehicle.path.length;i++) {
       const road=this.state.roads.find(r=>r.from===vehicle.path[i-1]&&r.to===vehicle.path[i]);if(!road)continue;
       c.beginPath();for(let j=0;j<=20;j++){const p=this.roadPoint(road,j/20);j?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y);}
-      c.shadowColor='#d5fc66';c.shadowBlur=this.s*1.1;c.strokeStyle='rgba(200,246,92,.35)';c.lineWidth=this.s*1.15;c.stroke();
-      c.shadowBlur=0;c.strokeStyle='#d4fa75';c.lineWidth=this.s*.42;c.stroke();
+      c.shadowColor=road.open?'#d5fc66':'#eebc77';c.shadowBlur=this.s*1.1;c.strokeStyle='rgba(200,246,92,.35)';c.lineWidth=this.s*1.15;c.stroke();
+      c.shadowBlur=0;c.strokeStyle=road.open?'#d4fa75':'#eebc77';c.setLineDash(road.open?[]:[this.s*.7,this.s*.45]);c.lineWidth=this.s*.64;c.stroke();c.setLineDash([]);
       const p=this.roadPoint(road,.60),q=this.roadPoint(road,.62),a=Math.atan2(q.y-p.y,q.x-p.x);
       c.save();c.translate(p.x,p.y);c.rotate(a);c.beginPath();c.moveTo(-this.s*.65,-this.s*.42);c.lineTo(0,0);c.lineTo(-this.s*.65,this.s*.42);c.strokeStyle='#e0ff8d';c.lineWidth=this.s*.26;c.stroke();c.restore();
     }
     c.restore();
+  }
+  drawHouse(name,x,z,scale=1) {
+    const sprite=this.sprites.get(name);if(!sprite)return;
+    const p=this.project(x,z),width=this.s*13.5*scale,height=width/sprite.width*sprite.height;
+    this.ctx.save();this.ctx.shadowColor='#071007a0';this.ctx.shadowBlur=this.s;this.ctx.shadowOffsetX=this.s*1.2;this.ctx.shadowOffsetY=this.sy*.8;
+    this.ctx.drawImage(sprite,p.x-width/2,p.y+this.sy*3*scale-height*.97,width,height);this.ctx.restore();
+  }
+  drawFountain(x,z) {
+    const sprite=this.sprites.get('fountain');if(!sprite)return;
+    const p=this.project(x,z),width=this.s*8,height=width/sprite.width*sprite.height;
+    this.ctx.drawImage(sprite,p.x-width/2,p.y+this.sy*2-height*.84,width,height);
   }
   drawBuilding(name,x,z,scale=1) {
     const sprite=this.sprites.get(name);if(!sprite)return;
@@ -176,7 +212,7 @@ export class CityScene {
   }
   drawTree(x,z,scale=1) {
     const sprite=this.sprites.get('linden-tree');if(!sprite)return;
-    const p=this.project(x,z),width=this.s*3.8*scale,height=width/sprite.width*sprite.height;
+    const p=this.project(x,z),width=this.s*5.8*scale,height=width/sprite.width*sprite.height;
     this.ctx.save();this.ctx.shadowColor='#06120abb';this.ctx.shadowBlur=this.s*.65;this.ctx.shadowOffsetX=this.s*.55;this.ctx.shadowOffsetY=this.s*.38;
     this.ctx.drawImage(sprite,p.x-width/2,p.y-height*.965,width,height);this.ctx.restore();
   }
@@ -190,7 +226,7 @@ export class CityScene {
     }
     const mirror=spriteName==='van-front-left';
     const sprite=this.sprites.get(mirror?'van-front-right':spriteName);if(!sprite)return;
-    const width=this.s*6,height=width/sprite.width*sprite.height;
+    const width=this.s*7.2,height=width/sprite.width*sprite.height;
     this.ctx.save();this.ctx.shadowColor='rgba(0,0,0,.65)';this.ctx.shadowBlur=this.s*.55;
     this.ctx.translate(point.x,point.y);if(mirror)this.ctx.scale(-1,1);
     this.ctx.drawImage(sprite,-width*.5,-height*.71,width,height);this.ctx.restore();
@@ -198,22 +234,22 @@ export class CityScene {
   drawLabels() {
     if(!this.state)return;
     const c=this.ctx,selected=this.state.vehicles.find(v=>v.id===this.selected);
-    const show=new Set(this.w<600?[12]:[12,4,2,7,11,15,8]);if(selected){show.add(selected.node);show.add(selected.goal);}
+    const show=new Set(this.w<600?[12]:[12,4,3,7,11,15,8]);if(selected){show.add(selected.node);show.add(selected.goal);}
     for(const node of this.state.nodes) {
       if(!show.has(node.id))continue;
-      const p=this.project(node.x,node.z),radius=Math.max(9,this.s*1.65),k=this.w/1050,offset=node.id===12?{x:-74*k,y:-51*k}:node.id===15?{x:-125*k,y:-3*k}:[4,8].includes(node.id)?{x:-54*k,y:-24*k}:{x:0,y:-8};
+      const p=this.project(node.x,node.z),radius=Math.max(9,this.s*1.65),k=this.w/1050,offset=node.id===12?{x:-74*k,y:-51*k}:node.id===15?{x:-125*k,y:-3*k}:node.id===3?{x:0,y:14}:[4,8].includes(node.id)?{x:-54*k,y:-24*k}:{x:0,y:-8};
       if(node.id===12||node.id===15)this.line(p,{x:p.x+offset.x,y:p.y+offset.y},'#adc683',1);
       c.save();c.translate(p.x+offset.x,p.y+offset.y);c.shadowColor='#000';c.shadowBlur=8;
       c.beginPath();c.arc(0,0,radius,0,Math.PI*2);c.fillStyle='#151c18';c.fill();c.strokeStyle=selected?.goal===node.id?'#e3ff96':'#c8e476';c.lineWidth=2;c.stroke();
       c.shadowBlur=0;c.font=`650 ${Math.max(12,this.s*1.85)}px InterVariable, sans-serif`;c.textAlign='center';c.textBaseline='middle';c.fillStyle='#f5f6e9';c.fillText(String(node.id),0,.5);
-      c.font=`520 ${Math.max(11,this.s*1.55)}px InterVariable, sans-serif`;c.textAlign='left';
+      c.font=`520 ${Math.max(11,this.s*1.75)}px InterVariable, sans-serif`;c.textAlign='left';
       const lines=placeName(node.id).split(' '),labelX=radius+8,labelY=-2;
       if(lines.length>1){c.fillText(lines[0],labelX,labelY-5);c.fillText(lines.slice(1).join(' '),labelX,labelY+12);}else c.fillText(placeName(node.id),labelX,labelY);
       c.restore();
     }
-    for(const [from,to,title] of [[1,2,'North Bridge'],[9,10,'Harbor Bridge']]) {
+    for(const [from,to,title] of [[1,2,'North Bridge'],[5,6,'Market Bridge'],[9,10,'Harbor Bridge']]) {
       const road=this.state.roads.find(r=>r.from===from&&r.to===to);if(!road)continue;
-      const p=this.roadPoint(road,.5);c.save();c.font=`520 ${Math.max(11,this.s*1.52)}px InterVariable, sans-serif`;c.shadowColor='#000';c.shadowBlur=7;c.fillStyle='#f2f2e8';c.fillText(title,p.x+13,p.y+28);
+      const p=this.roadPoint(road,.5);c.save();c.font=`520 ${Math.max(11,this.s*1.65)}px InterVariable, sans-serif`;c.shadowColor='#000';c.shadowBlur=7;c.fillStyle='#f2f2e8';c.fillText(title,p.x+13,p.y+28);
       c.fillStyle=road.open?(road.toll?'#ffcc75':'#d6f77a'):'#ffad73';c.fillText(road.open?(road.toll?`Toll ${road.toll}`:'Free'):'Closed to departures',p.x+13,p.y+46);c.restore();
     }
   }
@@ -222,24 +258,43 @@ export class CityScene {
     cancelAnimationFrame(this.frame);const c=this.ctx;c.setTransform(this.dpr,0,0,this.dpr,0,0);c.clearRect(0,0,this.w,this.h);
     this.ground();this.drawRoads();this.drawBridges();this.drawRoute();this.drawRoadMarks();
     const objects=[
-      ['market-block',10,10],['homes-block',10,30],['depot-block',10,50],
-      ['university-block',50,10],['oldtown-block',50,30],['warehouse-block',50,50],
-      ['homes-block',10,-10,.65],['market-block',30,-10,.65],
-      ['oldtown-block',25,77,.72],['homes-block',45,77,.72],
+      ['oldtown-block',-14,36,1.07],['depot-block',10,50],['university-block',65,23],['warehouse-block',50,50,1.03],
     ].map(([name,x,z,scale=1])=>({depth:z-x+60+9*scale,draw:()=>this.drawBuilding(name,x,z,scale)}));
+    const houses=[
+      ['flat-house',5,5],['cafe-house',14,13],['cafe-house',5,14,.8],['stone-house',14,5,.72],
+      ['flat-house',5,25],['cafe-house',14,26,.92],['stone-house',12,35,.9],
+      ['flat-house',45,6,.95],['cafe-house',54,14],
+      ['flat-house',45,25,.95],['cafe-house',54,34],['flat-house',54,25,.82],
+      ['cafe-house',17,-8],['flat-house',33,-5,1.05],
+      ['flat-house',20,71],['cafe-house',40,72],['stone-house',50,73,.85],['cafe-house',-3,31,.85],['flat-house',-3,50,.85],['flat-house',68,48,.95],['stone-house',68,65,.85],['flat-house',5,70,.9],
+    ];
+    for(const [name,x,z,scale=1] of houses)objects.push({depth:z-x+60+4*scale,draw:()=>this.drawHouse(name,x,z,scale)});
+    for(const [x,z] of [[5,15],[45,35],[15,69]])objects.push({depth:z-x+60+2,draw:()=>this.drawFountain(x,z)});
     const trees=[];
+    // Fixed ornamental planting never supplies graph edges or guest state.
+    for(const [x,z] of [[4,4],[4,24],[44,4],[44,24]])for(const [dx,dz] of [[0,5],[0,9],[7,13],[11,12],[13,8]])trees.push([x+dx,z+dz]);
+    for(const z of [3,8,13,25,30,35])trees.push([18,z],[42,z]);
+    for(const x of [3,8,13,48,53,57])trees.push([x,57]);
+    for(const z of [3,8,13,23,28,33])trees.push([63,z]);
     for(const x of [24,36])for(const z of [6,13,22,29,48,56])trees.push([x,z]);
-    for(const x of [0,5,10,15,20,25,30,35])trees.push([x,-18]);
-    for(const z of [66,71,76,81])trees.push([16,z],[60,z]);
+    for(const x of [8,14,20,38,44,50,56,62,68,74])trees.push([x,-5]);
+    for(const z of [64,69,73])trees.push([16,z],[60,z]);
+    for(const z of [8,14,20,26,32,38,44,50,56,62])trees.push([75,z],[-4,z]);
     for(const x of [21,28,35,42,49,56])trees.push([x,65]);
     for(const [x,z] of trees)objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.85+((x*7+z*3)%7+7)%7*.035)});
+    for(const x of [9,15,21])for(const z of [68,72])objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.85)});
+    const vehicleObjects=[];
     const t=this.motion.matches?1:Math.min(1,(now-this.transition)/650),smooth=t*t*(3-2*t);
     for(const vehicle of this.state?.vehicles??[]) {
       const p=this.vehiclePoint(this.state,vehicle),old=this.previous?.vehicles.find(v=>v.id===vehicle.id);
       if(old&&t<1){const q=this.vehiclePoint(this.previous,old);p.x=q.x+(p.x-q.x)*smooth;p.y=q.y+(p.y-q.y)*smooth;}
-      objects.push({depth:p.worldZ-p.worldX+60,draw:()=>this.drawVehicle(vehicle,p)});
+      vehicleObjects.push({depth:p.worldZ-p.worldX+60,draw:()=>this.drawVehicle(vehicle,p)});
     }
-    objects.sort((a,b)=>a.depth-b.depth).forEach(o=>o.draw());this.drawLabels();
+    objects.sort((a,b)=>a.depth-b.depth).forEach(o=>o.draw());
+    // Vehicles are a legibility overlay at their observed coordinates, above foliage.
+    vehicleObjects.sort((a,b)=>a.depth-b.depth).forEach(o=>o.draw());this.drawLabels();
+    // Fade the decorative rear edge below the title without moving any guest data.
+    c.save();c.globalCompositeOperation='destination-in';const fade=c.createLinearGradient(0,0,0,72);fade.addColorStop(0,'#0000');fade.addColorStop(1,'#000');c.fillStyle=fade;c.fillRect(0,0,this.w,this.h);c.restore();
     if(t<1&&this.previous&&!this.motion.matches)this.frame=requestAnimationFrame(time=>this.draw(time));
   }
   close(){cancelAnimationFrame(this.frame);this.resizeObserver.disconnect();}

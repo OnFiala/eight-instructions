@@ -1,0 +1,542 @@
+verify	Run npm run verify	﻿2026-09-13T17:21:23.4816000Z ##[group]Run npm run verify
+verify	Run npm run verify	2026-09-13T17:21:23.4816341Z [36;1mnpm run verify[0m
+verify	Run npm run verify	2026-09-13T17:21:23.4858389Z shell: /usr/bin/bash -e {0}
+verify	Run npm run verify	2026-09-13T17:21:23.4858669Z env:
+verify	Run npm run verify	2026-09-13T17:21:23.4858948Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-13T17:21:23.4859390Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+verify	Run npm run verify	2026-09-13T17:21:23.4859815Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-13T17:21:23.4860199Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-13T17:21:23.4860577Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-13T17:21:23.4860985Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+verify	Run npm run verify	2026-09-13T17:21:23.4861314Z ##[endgroup]
+verify	Run npm run verify	2026-09-13T17:21:23.5867438Z 
+verify	Run npm run verify	2026-09-13T17:21:23.5868234Z > eight-instructions@0.2.0 verify
+verify	Run npm run verify	2026-09-13T17:21:23.5870427Z > python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-legacy.mjs --check && node tools/audit.mjs && node --test tests/*.test.mjs
+verify	Run npm run verify	2026-09-13T17:21:23.5872004Z 
+verify	Run npm run verify	2026-09-13T17:21:24.2675106Z {"instructions": 52564890, "sha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98", "cells": 169164}
+verify	Run npm run verify	2026-09-13T17:21:24.3612020Z Generic BF executor: 744 bytes
+verify	Run npm run verify	2026-09-13T17:21:24.3969102Z Raw program assets match their canonical sources.
+verify	Run npm run verify	2026-09-13T17:21:24.4285569Z Public history matches canonical build records.
+verify	Run npm run verify	2026-09-13T17:21:24.5319193Z Build 001 archive: 17 verbatim runtime/assets, one explicitly relocated historical HTML page.
+verify	Run npm run verify	2026-09-13T17:21:25.0986709Z Boundary audit PASS: 127 classified sources. Hashes are review gates, not a semantic proof.
+verify	Run npm run verify	2026-09-13T17:21:25.1632755Z TAP version 13
+verify	Run npm run verify	2026-09-13T17:21:35.9184418Z # Subtest: native unsigned division matches integer arithmetic across all bit widths and overflow guards
+verify	Run npm run verify	2026-09-13T17:21:35.9203294Z ok 1 - native unsigned division matches integer arithmetic across all bit widths and overflow guards
+verify	Run npm run verify	2026-09-13T17:21:35.9238066Z   ---
+verify	Run npm run verify	2026-09-13T17:21:35.9258171Z   duration_ms: 9844.363699
+verify	Run npm run verify	2026-09-13T17:21:35.9278409Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:21:35.9318728Z   ...
+verify	Run npm run verify	2026-09-13T17:21:35.9558697Z # Subtest: boundary guard rejects new executable files, changed host code and extra kernel commands
+verify	Run npm run verify	2026-09-13T17:21:35.9598552Z ok 2 - boundary guard rejects new executable files, changed host code and extra kernel commands
+verify	Run npm run verify	2026-09-13T17:21:35.9618079Z   ---
+verify	Run npm run verify	2026-09-13T17:21:35.9628331Z   duration_ms: 3.407418
+verify	Run npm run verify	2026-09-13T17:21:35.9629175Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:21:35.9647964Z   ...
+verify	Run npm run verify	2026-09-13T17:21:40.3233092Z # Subtest: dictionary capacity refuses publication without corrupting existing words
+verify	Run npm run verify	2026-09-13T17:21:40.3257854Z ok 3 - dictionary capacity refuses publication without corrupting existing words
+verify	Run npm run verify	2026-09-13T17:21:40.3288317Z   ---
+verify	Run npm run verify	2026-09-13T17:21:40.3289016Z   duration_ms: 5552.616278
+verify	Run npm run verify	2026-09-13T17:21:40.3294068Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:21:40.3294715Z   ...
+verify	Run npm run verify	2026-09-13T17:21:40.3295937Z # Subtest: code and nested control exhaustion roll back incomplete definitions
+verify	Run npm run verify	2026-09-13T17:21:40.3318667Z ok 4 - code and nested control exhaustion roll back incomplete definitions
+verify	Run npm run verify	2026-09-13T17:21:40.3348230Z   ---
+verify	Run npm run verify	2026-09-13T17:21:40.3378183Z   duration_ms: 8222.715769
+verify	Run npm run verify	2026-09-13T17:21:40.3398007Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:21:40.3408143Z   ...
+verify	Run npm run verify	2026-09-13T17:21:40.4053666Z # Subtest: heap exhaustion and overlong tokens refuse mutation and recover
+verify	Run npm run verify	2026-09-13T17:21:40.4062126Z ok 5 - heap exhaustion and overlong tokens refuse mutation and recover
+verify	Run npm run verify	2026-09-13T17:21:40.4065551Z   ---
+verify	Run npm run verify	2026-09-13T17:21:40.4069689Z   duration_ms: 84.627347
+verify	Run npm run verify	2026-09-13T17:21:40.4070366Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:21:40.4082180Z   ...
+verify	Run npm run verify	2026-09-13T17:23:49.5172238Z # Subtest: new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+verify	Run npm run verify	2026-09-13T17:23:49.5192241Z ok 6 - new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+verify	Run npm run verify	2026-09-13T17:23:49.5194109Z   ---
+verify	Run npm run verify	2026-09-13T17:23:49.5194640Z   duration_ms: 142906.597639
+verify	Run npm run verify	2026-09-13T17:23:49.5195187Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:23:49.5195645Z   ...
+verify	Run npm run verify	2026-09-13T17:24:56.3544011Z # Subtest: native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+verify	Run npm run verify	2026-09-13T17:24:56.3545963Z ok 7 - native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+verify	Run npm run verify	2026-09-13T17:24:56.3546954Z   ---
+verify	Run npm run verify	2026-09-13T17:24:56.3548032Z   duration_ms: 66837.270856
+verify	Run npm run verify	2026-09-13T17:24:56.3550855Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:24:56.3551742Z   ...
+verify	Run npm run verify	2026-09-13T17:25:06.3362422Z # Subtest: a refused road pair at fixed capacity preserves all road data
+verify	Run npm run verify	2026-09-13T17:25:06.3370630Z ok 8 - a refused road pair at fixed capacity preserves all road data
+verify	Run npm run verify	2026-09-13T17:25:06.3371723Z   ---
+verify	Run npm run verify	2026-09-13T17:25:06.3372516Z   duration_ms: 2283.083385
+verify	Run npm run verify	2026-09-13T17:25:06.3373155Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:06.3373711Z   ...
+verify	Run npm run verify	2026-09-13T17:25:08.9943005Z # Subtest: safe-point, serial and pin refusals preserve the active version and bounded references
+verify	Run npm run verify	2026-09-13T17:25:08.9968800Z ok 9 - safe-point, serial and pin refusals preserve the active version and bounded references
+verify	Run npm run verify	2026-09-13T17:25:08.9969950Z   ---
+verify	Run npm run verify	2026-09-13T17:25:08.9998290Z   duration_ms: 10354.926046
+verify	Run npm run verify	2026-09-13T17:25:09.0028828Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:09.0044344Z   ...
+verify	Run npm run verify	2026-09-13T17:25:17.7913842Z # Subtest: presentation retains serial identity after arena reuse; source framing cannot forge active state
+verify	Run npm run verify	2026-09-13T17:25:17.7954701Z ok 10 - presentation retains serial identity after arena reuse; source framing cannot forge active state
+verify	Run npm run verify	2026-09-13T17:25:17.7958164Z   ---
+verify	Run npm run verify	2026-09-13T17:25:17.7958685Z   duration_ms: 8799.318547
+verify	Run npm run verify	2026-09-13T17:25:17.7959227Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:17.7959697Z   ...
+verify	Run npm run verify	2026-09-13T17:25:30.6710750Z # Subtest: removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+verify	Run npm run verify	2026-09-13T17:25:30.6728653Z ok 11 - removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+verify	Run npm run verify	2026-09-13T17:25:30.6736026Z   ---
+verify	Run npm run verify	2026-09-13T17:25:30.6736646Z   duration_ms: 12879.37521
+verify	Run npm run verify	2026-09-13T17:25:30.6737202Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:30.6737910Z   ...
+verify	Run npm run verify	2026-09-13T17:25:33.8837934Z # Subtest: road edits invalidate the native cost cache even when the 16-bit generation wraps
+verify	Run npm run verify	2026-09-13T17:25:33.8842584Z ok 12 - road edits invalidate the native cost cache even when the 16-bit generation wraps
+verify	Run npm run verify	2026-09-13T17:25:33.8843525Z   ---
+verify	Run npm run verify	2026-09-13T17:25:33.8844091Z   duration_ms: 3214.33592
+verify	Run npm run verify	2026-09-13T17:25:33.8844656Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:33.8845759Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9004551Z # Subtest: two programs from one initial image change routes with the same open toll bridge
+verify	Run npm run verify	2026-09-13T17:25:46.9015904Z ok 13 - two programs from one initial image change routes with the same open toll bridge
+verify	Run npm run verify	2026-09-13T17:25:46.9016989Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9017727Z   duration_ms: 63868.969336
+verify	Run npm run verify	2026-09-13T17:25:46.9018490Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9019057Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9020170Z # Subtest: in-flight cars retain their edge and old version across swaps, then release it at arrival
+verify	Run npm run verify	2026-09-13T17:25:46.9021699Z ok 14 - in-flight cars retain their edge and old version across swaps, then release it at arrival
+verify	Run npm run verify	2026-09-13T17:25:46.9022667Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9023245Z   duration_ms: 39563.445643
+verify	Run npm run verify	2026-09-13T17:25:46.9023848Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9024398Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9025573Z # Subtest: paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+verify	Run npm run verify	2026-09-13T17:25:46.9027323Z ok 15 - paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+verify	Run npm run verify	2026-09-13T17:25:46.9028528Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9029060Z   duration_ms: 78100.246846
+verify	Run npm run verify	2026-09-13T17:25:46.9029666Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9030187Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9031233Z # Subtest: closure is a separate native data experiment and cannot teleport an in-flight vehicle
+verify	Run npm run verify	2026-09-13T17:25:46.9033309Z ok 16 - closure is a separate native data experiment and cannot teleport an in-flight vehicle
+verify	Run npm run verify	2026-09-13T17:25:46.9034274Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9034807Z   duration_ms: 39449.625822
+verify	Run npm run verify	2026-09-13T17:25:46.9035473Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9036003Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9037058Z # Subtest: changing road duration preserves the duration already committed to an in-flight vehicle
+verify	Run npm run verify	2026-09-13T17:25:46.9038695Z ok 17 - changing road duration preserves the duration already committed to an in-flight vehicle
+verify	Run npm run verify	2026-09-13T17:25:46.9039671Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9040209Z   duration_ms: 28540.925801
+verify	Run npm run verify	2026-09-13T17:25:46.9040827Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9041351Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9163524Z # Subtest: Dispatch combines transactions, native compilation and dynamic route changes
+verify	Run npm run verify	2026-09-13T17:25:46.9216028Z ok 18 - Dispatch combines transactions, native compilation and dynamic route changes
+verify	Run npm run verify	2026-09-13T17:25:46.9234159Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9299994Z   duration_ms: 24574.435815
+verify	Run npm run verify	2026-09-13T17:25:46.9428427Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9465151Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9523718Z # Subtest: zero-distance, unreachable nodes and invalid road states
+verify	Run npm run verify	2026-09-13T17:25:46.9528821Z ok 19 - zero-distance, unreachable nodes and invalid road states
+verify	Run npm run verify	2026-09-13T17:25:46.9529593Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9530083Z   duration_ms: 11652.088947
+verify	Run npm run verify	2026-09-13T17:25:46.9548245Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9548822Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9549714Z # Subtest: maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+verify	Run npm run verify	2026-09-13T17:25:46.9550825Z ok 20 - maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+verify	Run npm run verify	2026-09-13T17:25:46.9551606Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9552090Z   duration_ms: 27975.623842
+verify	Run npm run verify	2026-09-13T17:25:46.9552622Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9553092Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9554006Z # Subtest: random weighted networks agree with Bellman-Ford and valid path reconstruction
+verify	Run npm run verify	2026-09-13T17:25:46.9555298Z ok 21 - random weighted networks agree with Bellman-Ford and valid path reconstruction
+verify	Run npm run verify	2026-09-13T17:25:46.9556135Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9556596Z   duration_ms: 70148.771315
+verify	Run npm run verify	2026-09-13T17:25:46.9557129Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9557720Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9558560Z # Subtest: full-capacity 128-road cyclic network agrees with an independent oracle
+verify	Run npm run verify	2026-09-13T17:25:46.9559745Z ok 22 - full-capacity 128-road cyclic network agrees with an independent oracle
+verify	Run npm run verify	2026-09-13T17:25:46.9560521Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9560981Z   duration_ms: 49664.788906
+verify	Run npm run verify	2026-09-13T17:25:46.9561494Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9561943Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9563226Z # Subtest: generated addressed memory and arithmetic execute on the real BF machine
+verify	Run npm run verify	2026-09-13T17:25:46.9564422Z ok 23 - generated addressed memory and arithmetic execute on the real BF machine
+verify	Run npm run verify	2026-09-13T17:25:46.9565227Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9565688Z   duration_ms: 48.059039
+verify	Run npm run verify	2026-09-13T17:25:46.9566206Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9566733Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9567870Z # Subtest: paged native memory walks page and word lanes and clears all breadcrumbs
+verify	Run npm run verify	2026-09-13T17:25:46.9569056Z ok 24 - paged native memory walks page and word lanes and clears all breadcrumbs
+verify	Run npm run verify	2026-09-13T17:25:46.9569835Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9570294Z   duration_ms: 31.752727
+verify	Run npm run verify	2026-09-13T17:25:46.9570814Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9571264Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9571752Z # Subtest: bracket validation
+verify	Run npm run verify	2026-09-13T17:25:46.9572335Z ok 25 - bracket validation
+verify	Run npm run verify	2026-09-13T17:25:46.9572845Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9573310Z   duration_ms: 1.314553
+verify	Run npm run verify	2026-09-13T17:25:46.9573807Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9595106Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9595793Z # Subtest: uint16 wrap, low-byte output, input pause and EOF
+verify	Run npm run verify	2026-09-13T17:25:46.9596532Z ok 26 - uint16 wrap, low-byte output, input pause and EOF
+verify	Run npm run verify	2026-09-13T17:25:46.9597031Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9597333Z   duration_ms: 1.209848
+verify	Run npm run verify	2026-09-13T17:25:46.9597882Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9598452Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9599003Z # Subtest: bounds checks retain intermediate pointer motion
+verify	Run npm run verify	2026-09-13T17:25:46.9599775Z ok 27 - bounds checks retain intermediate pointer motion
+verify	Run npm run verify	2026-09-13T17:25:46.9600271Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9600576Z   duration_ms: 1.484014
+verify	Run npm run verify	2026-09-13T17:25:46.9600923Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9601230Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9601751Z # Subtest: resource budget interrupts a divergent program
+verify	Run npm run verify	2026-09-13T17:25:46.9602461Z ok 28 - resource budget interrupts a divergent program
+verify	Run npm run verify	2026-09-13T17:25:46.9602944Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9603241Z   duration_ms: 0.306103
+verify	Run npm run verify	2026-09-13T17:25:46.9603587Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9603901Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9604524Z # Subtest: invalid limits and bytes fail without corrupting queued input
+verify	Run npm run verify	2026-09-13T17:25:46.9605425Z ok 29 - invalid limits and bytes fail without corrupting queued input
+verify	Run npm run verify	2026-09-13T17:25:46.9605984Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9606290Z   duration_ms: 54.179989
+verify	Run npm run verify	2026-09-13T17:25:46.9606645Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9606953Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9607770Z # Subtest: optimized loops match literal execution, including instruction counts
+verify	Run npm run verify	2026-09-13T17:25:46.9608787Z ok 30 - optimized loops match literal execution, including instruction counts
+verify	Run npm run verify	2026-09-13T17:25:46.9609405Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9609704Z   duration_ms: 21.53713
+verify	Run npm run verify	2026-09-13T17:25:46.9610047Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9610347Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9610991Z # Subtest: machine images resume partial input and preserve full uint16 state
+verify	Run npm run verify	2026-09-13T17:25:46.9611933Z ok 31 - machine images resume partial input and preserve full uint16 state
+verify	Run npm run verify	2026-09-13T17:25:46.9612537Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9612829Z   duration_ms: 7.85955
+verify	Run npm run verify	2026-09-13T17:25:46.9613171Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9613465Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9614197Z # Subtest: image corruption, incompatible kernels and invalid machine state are rejected
+verify	Run npm run verify	2026-09-13T17:25:46.9615299Z ok 32 - image corruption, incompatible kernels and invalid machine state are rejected
+verify	Run npm run verify	2026-09-13T17:25:46.9615962Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9616257Z   duration_ms: 3.583407
+verify	Run npm run verify	2026-09-13T17:25:46.9616594Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9616891Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9617454Z # Subtest: budget images resume without replaying input or output
+verify	Run npm run verify	2026-09-13T17:25:46.9618833Z ok 33 - budget images resume without replaying input or output
+verify	Run npm run verify	2026-09-13T17:25:46.9619372Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9619664Z   duration_ms: 1.359891
+verify	Run npm run verify	2026-09-13T17:25:46.9620001Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9620314Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9620918Z # Subtest: OS image replacement is atomic and leaves no temporary files
+verify	Run npm run verify	2026-09-13T17:25:46.9621994Z ok 34 - OS image replacement is atomic and leaves no temporary files
+verify	Run npm run verify	2026-09-13T17:25:46.9622552Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9622853Z   duration_ms: 6.847403
+verify	Run npm run verify	2026-09-13T17:25:46.9623193Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9623493Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9623952Z # Subtest: numeric parsing and unsigned arithmetic
+verify	Run npm run verify	2026-09-13T17:25:46.9624586Z ok 35 - numeric parsing and unsigned arithmetic
+verify	Run npm run verify	2026-09-13T17:25:46.9625045Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9625348Z   duration_ms: 257.082114
+verify	Run npm run verify	2026-09-13T17:25:46.9625703Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9625995Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9626526Z # Subtest: stack combinators, equality and unsigned comparison
+verify	Run npm run verify	2026-09-13T17:25:46.9627280Z ok 36 - stack combinators, equality and unsigned comparison
+verify	Run npm run verify	2026-09-13T17:25:46.9627939Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9628242Z   duration_ms: 60.165858
+verify	Run npm run verify	2026-09-13T17:25:46.9628595Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9628888Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9629391Z # Subtest: native definitions, calls and source compilation
+verify	Run npm run verify	2026-09-13T17:25:46.9630116Z ok 37 - native definitions, calls and source compilation
+verify	Run npm run verify	2026-09-13T17:25:46.9630601Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9630896Z   duration_ms: 54.758734
+verify	Run npm run verify	2026-09-13T17:25:46.9631244Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9631537Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9631990Z # Subtest: native conditionals and nested branching
+verify	Run npm run verify	2026-09-13T17:25:46.9632631Z ok 38 - native conditionals and nested branching
+verify	Run npm run verify	2026-09-13T17:25:46.9633253Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9633556Z   duration_ms: 106.202838
+verify	Run npm run verify	2026-09-13T17:25:46.9633915Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9634210Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9634625Z # Subtest: loops and recursive definitions
+verify	Run npm run verify	2026-09-13T17:25:46.9635180Z ok 39 - loops and recursive definitions
+verify	Run npm run verify	2026-09-13T17:25:46.9635670Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9635968Z   duration_ms: 108.648263
+verify	Run npm run verify	2026-09-13T17:25:46.9636324Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9636617Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9637158Z # Subtest: native defining words, while/repeat and early return
+verify	Run npm run verify	2026-09-13T17:25:46.9638063Z ok 40 - native defining words, while/repeat and early return
+verify	Run npm run verify	2026-09-13T17:25:46.9638584Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9638876Z   duration_ms: 138.542258
+verify	Run npm run verify	2026-09-13T17:25:46.9639228Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9639520Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9640001Z # Subtest: separate bounded heap and persistent regions
+verify	Run npm run verify	2026-09-13T17:25:46.9640677Z ok 41 - separate bounded heap and persistent regions
+verify	Run npm run verify	2026-09-13T17:25:46.9641153Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9641446Z   duration_ms: 56.944115
+verify	Run npm run verify	2026-09-13T17:25:46.9641796Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9642086Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9642675Z # Subtest: comments and partial tokens across interactive input chunks
+verify	Run npm run verify	2026-09-13T17:25:46.9643541Z ok 42 - comments and partial tokens across interactive input chunks
+verify	Run npm run verify	2026-09-13T17:25:46.9644088Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9644377Z   duration_ms: 5.083285
+verify	Run npm run verify	2026-09-13T17:25:46.9644719Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9645008Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9645447Z # Subtest: diagnostic recovery and rejected input
+verify	Run npm run verify	2026-09-13T17:25:46.9646063Z ok 43 - diagnostic recovery and rejected input
+verify	Run npm run verify	2026-09-13T17:25:46.9646513Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9646804Z   duration_ms: 88.297487
+verify	Run npm run verify	2026-09-13T17:25:46.9647155Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9647445Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9648913Z # Subtest: malformed definitions are unpublished and roll back code allocation
+verify	Run npm run verify	2026-09-13T17:25:46.9649905Z ok 44 - malformed definitions are unpublished and roll back code allocation
+verify	Run npm run verify	2026-09-13T17:25:46.9650522Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9650824Z   duration_ms: 46.152691
+verify	Run npm run verify	2026-09-13T17:25:46.9651189Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9651489Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9652041Z # Subtest: resource exhaustion: data and return stack protection
+verify	Run npm run verify	2026-09-13T17:25:46.9652859Z ok 45 - resource exhaustion: data and return stack protection
+verify	Run npm run verify	2026-09-13T17:25:46.9653372Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9653664Z   duration_ms: 294.22174
+verify	Run npm run verify	2026-09-13T17:25:46.9654009Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9654305Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9654922Z # Subtest: EOF closes ordinary execution and rejects unfinished compilation
+verify	Run npm run verify	2026-09-13T17:25:46.9656033Z ok 46 - EOF closes ordinary execution and rejects unfinished compilation
+verify	Run npm run verify	2026-09-13T17:25:46.9656615Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9656913Z   duration_ms: 17.428917
+verify	Run npm run verify	2026-09-13T17:25:46.9657260Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9657698Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9658253Z # Subtest: bounded bulk memory handles overlap in both directions
+verify	Run npm run verify	2026-09-13T17:25:46.9659063Z ok 47 - bounded bulk memory handles overlap in both directions
+verify	Run npm run verify	2026-09-13T17:25:46.9659579Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9659876Z   duration_ms: 114.808089
+verify	Run npm run verify	2026-09-13T17:25:46.9660226Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9660522Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9661247Z # Subtest: strings compile natively and dictionary collisions and shadowing remain sound
+verify	Run npm run verify	2026-09-13T17:25:46.9662353Z ok 48 - strings compile natively and dictionary collisions and shadowing remain sound
+verify	Run npm run verify	2026-09-13T17:25:46.9663003Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9663294Z   duration_ms: 109.682622
+verify	Run npm run verify	2026-09-13T17:25:46.9663638Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9663937Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9664792Z # Subtest: preserved Build001 kernel runs and restores its images; Build002 rejects the old kernel identity
+verify	Run npm run verify	2026-09-13T17:25:46.9666123Z ok 49 - preserved Build001 kernel runs and restores its images; Build002 rejects the old kernel identity
+verify	Run npm run verify	2026-09-13T17:25:46.9666873Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9667176Z   duration_ms: 855.770084
+verify	Run npm run verify	2026-09-13T17:25:46.9667975Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9668273Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9669952Z # /home/runner/work/eight-instructions/eight-instructions/tools/reference.c: In function ‘main’:
+verify	Run npm run verify	2026-09-13T17:25:46.9672023Z # /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:9: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+verify	Run npm run verify	2026-09-13T17:25:46.9673494Z #    68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:25:46.9674126Z #       |         ^~
+verify	Run npm run verify	2026-09-13T17:25:46.9675848Z # /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:62: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+verify	Run npm run verify	2026-09-13T17:25:46.9677409Z #    68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:25:46.9678542Z #       |                                                              ^~~~~~
+verify	Run npm run verify	2026-09-13T17:25:46.9679167Z # cc1: all warnings being treated as errors
+verify	Run npm run verify	2026-09-13T17:25:46.9680229Z # Subtest: literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+verify	Run npm run verify	2026-09-13T17:25:46.9681635Z not ok 50 - literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+verify	Run npm run verify	2026-09-13T17:25:46.9682431Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9682744Z   duration_ms: 165.981933
+verify	Run npm run verify	2026-09-13T17:25:46.9683104Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9683943Z   location: '/home/runner/work/eight-instructions/eight-instructions/tests/native-reference.test.mjs:13:1'
+verify	Run npm run verify	2026-09-13T17:25:46.9684844Z   failureType: 'testCodeFailure'
+verify	Run npm run verify	2026-09-13T17:25:46.9685255Z   error: |-
+verify	Run npm run verify	2026-09-13T17:25:46.9686541Z     Command failed: cc -O2 -std=c11 -Wall -Wextra -Werror /home/runner/work/eight-instructions/eight-instructions/tools/reference.c -o /tmp/8i-native-reference-dhPu6q/reference
+verify	Run npm run verify	2026-09-13T17:25:46.9688473Z     /home/runner/work/eight-instructions/eight-instructions/tools/reference.c: In function ‘main’:
+verify	Run npm run verify	2026-09-13T17:25:46.9690289Z     /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:9: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+verify	Run npm run verify	2026-09-13T17:25:46.9691668Z        68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:25:46.9692273Z           |         ^~
+verify	Run npm run verify	2026-09-13T17:25:46.9693818Z     /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:62: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+verify	Run npm run verify	2026-09-13T17:25:46.9695303Z        68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:25:46.9696246Z           |                                                              ^~~~~~
+verify	Run npm run verify	2026-09-13T17:25:46.9696844Z     cc1: all warnings being treated as errors
+verify	Run npm run verify	2026-09-13T17:25:46.9697279Z     
+verify	Run npm run verify	2026-09-13T17:25:46.9697702Z   code: 'ERR_TEST_FAILURE'
+verify	Run npm run verify	2026-09-13T17:25:46.9698068Z   stack: |-
+verify	Run npm run verify	2026-09-13T17:25:46.9698513Z     genericNodeError (node:internal/errors:983:15)
+verify	Run npm run verify	2026-09-13T17:25:46.9699087Z     wrappedFn (node:internal/errors:537:14)
+verify	Run npm run verify	2026-09-13T17:25:46.9699662Z     checkExecSyncError (node:child_process:916:11)
+verify	Run npm run verify	2026-09-13T17:25:46.9700245Z     execFileSync (node:child_process:952:15)
+verify	Run npm run verify	2026-09-13T17:25:46.9701412Z     TestContext.<anonymous> (file:///home/runner/work/eight-instructions/eight-instructions/tests/native-reference.test.mjs:16:46)
+verify	Run npm run verify	2026-09-13T17:25:46.9702517Z     Test.runInAsyncScope (node:async_hooks:214:14)
+verify	Run npm run verify	2026-09-13T17:25:46.9703132Z     Test.run (node:internal/test_runner/test:1047:25)
+verify	Run npm run verify	2026-09-13T17:25:46.9703753Z     Test.start (node:internal/test_runner/test:944:17)
+verify	Run npm run verify	2026-09-13T17:25:46.9704527Z     startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+verify	Run npm run verify	2026-09-13T17:25:46.9705148Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9705853Z # Subtest: length-framed stored source cannot masquerade as city or lifecycle output
+verify	Run npm run verify	2026-09-13T17:25:46.9706911Z ok 51 - length-framed stored source cannot masquerade as city or lifecycle output
+verify	Run npm run verify	2026-09-13T17:25:46.9707977Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9708283Z   duration_ms: 2.112614
+verify	Run npm run verify	2026-09-13T17:25:46.9708636Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9708936Z   ...
+verify	Run npm run verify	2026-09-13T17:25:46.9709618Z # Subtest: partial or malformed presentation frames cannot replace a complete city
+verify	Run npm run verify	2026-09-13T17:25:46.9710639Z ok 52 - partial or malformed presentation frames cannot replace a complete city
+verify	Run npm run verify	2026-09-13T17:25:46.9711270Z   ---
+verify	Run npm run verify	2026-09-13T17:25:46.9711563Z   duration_ms: 0.671112
+verify	Run npm run verify	2026-09-13T17:25:46.9711900Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:25:46.9712191Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4202442Z # {"reclaimCycles":450,"elapsedMs":842427.2557870001,"versionCapacity":6,"maxObservedLive":2,"slotsUsed":[1,3,2],"compiledWordsAcrossCycles":9000,"finalLiveCodeWords":40,"afterDeleteLiveVersions":0,"platformCodeWords":7078,"platformDictionaryEntries":162,"tapeCells":169164}
+verify	Run npm run verify	2026-09-13T17:39:16.4213556Z # Subtest: 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+verify	Run npm run verify	2026-09-13T17:39:16.4219292Z ok 53 - 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+verify	Run npm run verify	2026-09-13T17:39:16.4220267Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4220631Z   duration_ms: 863866.033231
+verify	Run npm run verify	2026-09-13T17:39:16.4226200Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4227444Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4471341Z # /home/runner/work/eight-instructions/eight-instructions/tools/reference.c: In function ‘main’:
+verify	Run npm run verify	2026-09-13T17:39:16.4472761Z # /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:9: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+verify	Run npm run verify	2026-09-13T17:39:16.4473845Z #    68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:39:16.4476566Z #       |         ^~
+verify	Run npm run verify	2026-09-13T17:39:16.4478030Z # /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:62: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+verify	Run npm run verify	2026-09-13T17:39:16.4479496Z #    68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:39:16.4480283Z #       |                                                              ^~~~~~
+verify	Run npm run verify	2026-09-13T17:39:16.4480867Z # cc1: all warnings being treated as errors
+verify	Run npm run verify	2026-09-13T17:39:16.4481656Z # Subtest: the entire generated kernel agrees with an independent literal C executor
+verify	Run npm run verify	2026-09-13T17:39:16.4482648Z not ok 54 - the entire generated kernel agrees with an independent literal C executor
+verify	Run npm run verify	2026-09-13T17:39:16.4483247Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4483556Z   duration_ms: 85.603071
+verify	Run npm run verify	2026-09-13T17:39:16.4483877Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4485058Z   location: '/home/runner/work/eight-instructions/eight-instructions/tests/reference.test.mjs:9:1'
+verify	Run npm run verify	2026-09-13T17:39:16.4485855Z   failureType: 'testCodeFailure'
+verify	Run npm run verify	2026-09-13T17:39:16.4486228Z   error: |-
+verify	Run npm run verify	2026-09-13T17:39:16.4487803Z     Command failed: cc -O2 -std=c11 -Wall -Wextra -Werror /home/runner/work/eight-instructions/eight-instructions/tools/reference.c -o /home/runner/work/eight-instructions/eight-instructions/.local/reference
+verify	Run npm run verify	2026-09-13T17:39:16.4489102Z     /home/runner/work/eight-instructions/eight-instructions/tools/reference.c: In function ‘main’:
+verify	Run npm run verify	2026-09-13T17:39:16.4490202Z     /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:9: error: this ‘if’ clause does not guard... [-Werror=misleading-indentation]
+verify	Run npm run verify	2026-09-13T17:39:16.4491007Z        68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:39:16.4491378Z           |         ^~
+verify	Run npm run verify	2026-09-13T17:39:16.4492250Z     /home/runner/work/eight-instructions/eight-instructions/tools/reference.c:68:62: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+verify	Run npm run verify	2026-09-13T17:39:16.4493124Z        68 |         if (fgetc(state) != EOF) fail("excess state bytes"); fclose(state);
+verify	Run npm run verify	2026-09-13T17:39:16.4493570Z           |                                                              ^~~~~~
+verify	Run npm run verify	2026-09-13T17:39:16.4493940Z     cc1: all warnings being treated as errors
+verify	Run npm run verify	2026-09-13T17:39:16.4494431Z     
+verify	Run npm run verify	2026-09-13T17:39:16.4494632Z   code: 'ERR_TEST_FAILURE'
+verify	Run npm run verify	2026-09-13T17:39:16.4494865Z   stack: |-
+verify	Run npm run verify	2026-09-13T17:39:16.4495138Z     genericNodeError (node:internal/errors:983:15)
+verify	Run npm run verify	2026-09-13T17:39:16.4495477Z     wrappedFn (node:internal/errors:537:14)
+verify	Run npm run verify	2026-09-13T17:39:16.4495812Z     checkExecSyncError (node:child_process:916:11)
+verify	Run npm run verify	2026-09-13T17:39:16.4496152Z     execFileSync (node:child_process:952:15)
+verify	Run npm run verify	2026-09-13T17:39:16.4496771Z     TestContext.<anonymous> (file:///home/runner/work/eight-instructions/eight-instructions/tests/reference.test.mjs:12:3)
+verify	Run npm run verify	2026-09-13T17:39:16.4497381Z     Test.runInAsyncScope (node:async_hooks:214:14)
+verify	Run npm run verify	2026-09-13T17:39:16.4498156Z     Test.run (node:internal/test_runner/test:1047:25)
+verify	Run npm run verify	2026-09-13T17:39:16.4498533Z     Test.start (node:internal/test_runner/test:944:17)
+verify	Run npm run verify	2026-09-13T17:39:16.4498982Z     startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17)
+verify	Run npm run verify	2026-09-13T17:39:16.4499353Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4499764Z # Subtest: transactional insert, update, missing keys, zero values and deletion
+verify	Run npm run verify	2026-09-13T17:39:16.4500335Z ok 55 - transactional insert, update, missing keys, zero values and deletion
+verify	Run npm run verify	2026-09-13T17:39:16.4500731Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4500943Z   duration_ms: 4968.886273
+verify	Run npm run verify	2026-09-13T17:39:16.4501177Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4501373Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4501789Z # Subtest: abort restores the committed view; writes require an explicit transaction
+verify	Run npm run verify	2026-09-13T17:39:16.4502403Z ok 56 - abort restores the committed view; writes require an explicit transaction
+verify	Run npm run verify	2026-09-13T17:39:16.4502858Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4503181Z   duration_ms: 295.366111
+verify	Run npm run verify	2026-09-13T17:39:16.4503525Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4503809Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4504659Z # Subtest: full store refuses record 129, updates existing keys, reuses deleted slots
+verify	Run npm run verify	2026-09-13T17:39:16.4505642Z ok 57 - full store refuses record 129, updates existing keys, reuses deleted slots
+verify	Run npm run verify	2026-09-13T17:39:16.4506237Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4506523Z   duration_ms: 4145.646363
+verify	Run npm run verify	2026-09-13T17:39:16.4506865Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4507148Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4507932Z # Subtest: deterministic mixed operations agree with an independent map oracle
+verify	Run npm run verify	2026-09-13T17:39:16.4508893Z ok 58 - deterministic mixed operations agree with an independent map oracle
+verify	Run npm run verify	2026-09-13T17:39:16.4509461Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4509742Z   duration_ms: 1578.194168
+verify	Run npm run verify	2026-09-13T17:39:16.4510077Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4510357Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4511022Z # Subtest: full kernel image retains definitions, committed records and an open transaction
+verify	Run npm run verify	2026-09-13T17:39:16.4511904Z ok 59 - full kernel image retains definitions, committed records and an open transaction
+verify	Run npm run verify	2026-09-13T17:39:16.4512306Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4512508Z   duration_ms: 300.915288
+verify	Run npm run verify	2026-09-13T17:39:16.4512738Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4512931Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4513358Z # Subtest: collisions survive tombstones without duplicate keys or broken lookup chains
+verify	Run npm run verify	2026-09-13T17:39:16.4514044Z ok 60 - collisions survive tombstones without duplicate keys or broken lookup chains
+verify	Run npm run verify	2026-09-13T17:39:16.4514611Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4514805Z   duration_ms: 1347.062078
+verify	Run npm run verify	2026-09-13T17:39:16.4515031Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4515220Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4515600Z # Subtest: native format and index integrity checks reject invalid store state
+verify	Run npm run verify	2026-09-13T17:39:16.4516158Z ok 61 - native format and index integrity checks reject invalid store state
+verify	Run npm run verify	2026-09-13T17:39:16.4516507Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4516696Z   duration_ms: 901.6207
+verify	Run npm run verify	2026-09-13T17:39:16.4516915Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4517108Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4517818Z # Subtest: adversarial full-table collisions finish through bounded image-resumable execution
+verify	Run npm run verify	2026-09-13T17:39:16.4518510Z ok 62 - adversarial full-table collisions finish through bounded image-resumable execution
+verify	Run npm run verify	2026-09-13T17:39:16.4518920Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4519114Z   duration_ms: 101076.248035
+verify	Run npm run verify	2026-09-13T17:39:16.4519515Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4519706Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4520308Z # {"stress":"128 keys in one initial bucket","elapsedMs":101029.69596099999,"brainfuckInstructions":510598884256626,"boundedRuns":6}
+verify	Run npm run verify	2026-09-13T17:39:16.4521265Z # Subtest: Wasm backend is equivalent to literal BF for 150 deterministic programs
+verify	Run npm run verify	2026-09-13T17:39:16.4521863Z ok 63 - Wasm backend is equivalent to literal BF for 150 deterministic programs
+verify	Run npm run verify	2026-09-13T17:39:16.4522232Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4522426Z   duration_ms: 67.771865
+verify	Run npm run verify	2026-09-13T17:39:16.4522658Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4522846Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4523270Z # Subtest: Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+verify	Run npm run verify	2026-09-13T17:39:16.4523877Z ok 64 - Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+verify	Run npm run verify	2026-09-13T17:39:16.4524247Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4524489Z   duration_ms: 1.300974
+verify	Run npm run verify	2026-09-13T17:39:16.4524743Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4524947Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4525306Z # Subtest: Wasm pause, streaming input, output caps and work limits
+verify	Run npm run verify	2026-09-13T17:39:16.4525827Z ok 65 - Wasm pause, streaming input, output caps and work limits
+verify	Run npm run verify	2026-09-13T17:39:16.4526165Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4526350Z   duration_ms: 1.169269
+verify	Run npm run verify	2026-09-13T17:39:16.4526588Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4526797Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4527404Z # Subtest: WebMCP has the same source/state routes, validates before effects, and closes registration
+verify	Run npm run verify	2026-09-13T17:39:16.4528576Z ok 66 - WebMCP has the same source/state routes, validates before effects, and closes registration
+verify	Run npm run verify	2026-09-13T17:39:16.4529195Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4529695Z   duration_ms: 2.778017
+verify	Run npm run verify	2026-09-13T17:39:16.4530129Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4530518Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4531253Z # Subtest: browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+verify	Run npm run verify	2026-09-13T17:39:16.4532280Z ok 67 - browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+verify	Run npm run verify	2026-09-13T17:39:16.4533109Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4533479Z   duration_ms: 14705.439628
+verify	Run npm run verify	2026-09-13T17:39:16.4596083Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4596600Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4597261Z # Subtest: generic key and paged workspace operations execute as BF and reject boundaries
+verify	Run npm run verify	2026-09-13T17:39:16.4598407Z ok 68 - generic key and paged workspace operations execute as BF and reject boundaries
+verify	Run npm run verify	2026-09-13T17:39:16.4598973Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4599252Z   duration_ms: 169.71878
+verify	Run npm run verify	2026-09-13T17:39:16.4599553Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4599757Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4600401Z # Subtest: boot manifests accept only local raw Thread source paths
+verify	Run npm run verify	2026-09-13T17:39:16.4601186Z ok 69 - boot manifests accept only local raw Thread source paths
+verify	Run npm run verify	2026-09-13T17:39:16.4601694Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4601984Z   duration_ms: 12.675554
+verify	Run npm run verify	2026-09-13T17:39:16.4602456Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4602805Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4603437Z # Subtest: source is stored, compiled and executed in BF; arbitrary expressions and typed control
+verify	Run npm run verify	2026-09-13T17:39:16.4604293Z ok 70 - source is stored, compiled and executed in BF; arbitrary expressions and typed control
+verify	Run npm run verify	2026-09-13T17:39:16.4604765Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4605025Z   duration_ms: 45807.666837
+verify	Run npm run verify	2026-09-13T17:39:16.4605397Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4605658Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4606200Z # Subtest: invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+verify	Run npm run verify	2026-09-13T17:39:16.4607002Z ok 71 - invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+verify	Run npm run verify	2026-09-13T17:39:16.4607644Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4607936Z   duration_ms: 82303.001826
+verify	Run npm run verify	2026-09-13T17:39:16.4608272Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4608472Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4608908Z # Subtest: exact dependency binding, pins, rollback, deletion refusal and stale handles
+verify	Run npm run verify	2026-09-13T17:39:16.4609536Z ok 72 - exact dependency binding, pins, rollback, deletion refusal and stale handles
+verify	Run npm run verify	2026-09-13T17:39:16.4610159Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4610364Z   duration_ms: 4522.543554
+verify	Run npm run verify	2026-09-13T17:39:16.4610596Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4610794Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4611201Z # Subtest: all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+verify	Run npm run verify	2026-09-13T17:39:16.4611794Z ok 73 - all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+verify	Run npm run verify	2026-09-13T17:39:16.4612165Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4612350Z   duration_ms: 7358.171557
+verify	Run npm run verify	2026-09-13T17:39:16.4612570Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4612767Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4613294Z # Subtest: bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+verify	Run npm run verify	2026-09-13T17:39:16.4614097Z ok 74 - bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+verify	Run npm run verify	2026-09-13T17:39:16.4614551Z   ---
+verify	Run npm run verify	2026-09-13T17:39:16.4614744Z   duration_ms: 38478.922627
+verify	Run npm run verify	2026-09-13T17:39:16.4614978Z   type: 'test'
+verify	Run npm run verify	2026-09-13T17:39:16.4615177Z   ...
+verify	Run npm run verify	2026-09-13T17:39:16.4615356Z 1..74
+verify	Run npm run verify	2026-09-13T17:39:16.4615590Z # tests 74
+verify	Run npm run verify	2026-09-13T17:39:16.4615779Z # suites 0
+verify	Run npm run verify	2026-09-13T17:39:16.4615958Z # pass 72
+verify	Run npm run verify	2026-09-13T17:39:16.4616147Z # fail 2
+verify	Run npm run verify	2026-09-13T17:39:16.4616335Z # cancelled 0
+verify	Run npm run verify	2026-09-13T17:39:16.4616531Z # skipped 0
+verify	Run npm run verify	2026-09-13T17:39:16.4616718Z # todo 0
+verify	Run npm run verify	2026-09-13T17:39:16.4616939Z # duration_ms 1071308.782626
+verify	Run npm run verify	2026-09-13T17:39:16.4657342Z ##[error]Process completed with exit code 1.

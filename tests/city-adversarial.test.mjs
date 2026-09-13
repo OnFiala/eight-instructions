@@ -8,7 +8,7 @@ test('new conditional module and unprepared directed road costs agree with an in
   const m=await city(),source=': delivery-rule.thread dup 2 > if 7 * else 3 * then swap 2 * + 1 + ;';
   assert.match(build(m,0,source),/MODULE-PUBLISHED/);
   let seed=0x219e;const random=n=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed%n;};
-  const updates=[];for(let n=0;n<7;n++){const edge=random(44),duration=random(6)+1,toll=random(5);updates.push(`${duration} ${toll} ${edge} road-update`);}
+  const updates=[];for(let n=0;n<7;n++){const edge=random(46),duration=random(6)+1,toll=random(5);updates.push(`${duration} ${toll} ${edge} road-update`);}
   command(m,updates.join('\n'));
   const initial=await snapshot(m),roads=rows(command(m,'city-state'),'ROAD');
   const cost=r=>2*r[3]+r[4]*(r[4]>2?7:3)+1;
@@ -34,7 +34,7 @@ test('native deliveries complete, idle is emitted, and a new job resumes from th
 });
 
 test('a refused road pair at fixed capacity preserves all road data',async()=>{
-  const m=await city();command(m,'3 0 0 5 city-road 3 0 5 10 city-road 3 0 10 15 city-road');
+  const m=await city();command(m,'3 0 0 5 city-road');
   const before=rows(command(m,'city-state'),'ROAD');assert.equal(before.length,47);
   assert.match(command(m,'4 1 1 6 city-street',{allowError:true}),/!E/);
   assert.deepEqual(rows(command(m,'city-state'),'ROAD'),before);
