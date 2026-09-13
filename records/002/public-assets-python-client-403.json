@@ -1,0 +1,508 @@
+{
+  "status": "FAIL",
+  "verifiedAt": "2026-09-13T19:45:19.788003+00:00",
+  "authentication": "No cookies, Authorization headers, account session or Sites bypass token supplied.",
+  "origin": "https://eight-instructions.andrewxix.chatgpt.site/",
+  "canonicalCommit": "68c9ee195f11cbd8ea9cb4b49ba0be4090b9fa82",
+  "publicFilesVerified": 71,
+  "exactFiles": 0,
+  "assets": [
+    {
+      "path": "assets/city/cafe-house.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/depot-block.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/flat-house.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/fountain.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/harbor-bridge.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/linden-tree.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/north-bridge.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/oldtown-block.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/stone-house.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/university-block.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/van-front-right.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/van-rear-left.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/van-rear-right.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/city/warehouse-block.png",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/fonts/InterVariable.woff2",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/fonts/LICENSE-Inter.txt",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/LICENSE-Phosphor.txt",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/arrow-counter-clockwise.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/arrow-right.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/arrows-clockwise.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/caret-right.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/download-simple.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/info.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/pause.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/play.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/skip-forward.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "assets/icons/upload-simple.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/client.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/engine.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/executor.wasm",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/favicon.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/history.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/images.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/index.html",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/kernel-map.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/kernel.bf.gz",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/programs/core.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/programs/dispatch.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/programs/store.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/programs/system.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/site.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/style.css",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/wasm-engine.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/webmcp.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "build-001/worker.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "city-scene.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "client.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "engine.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "executor.wasm",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "favicon.svg",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "history.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "images.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "index.html",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "kernel-map.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "kernel.bf.gz",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "presentation.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/city-boot.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/city-state.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/city-system.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/city.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/core.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/dispatch.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/store.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/system.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "programs/workspace.thread",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "reproduction/build-002.json",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "site.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "style.css",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "wasm-engine.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "webmcp.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    },
+    {
+      "path": "worker.mjs",
+      "status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "exactMatch": false,
+      "sameOrigin": false
+    }
+  ]
+}

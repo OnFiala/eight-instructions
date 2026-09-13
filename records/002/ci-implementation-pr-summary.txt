@@ -1,0 +1,5 @@
+verify	Run npm run verify	2026-09-13T19:38:40.1381987Z # tests 74
+verify	Run npm run verify	2026-09-13T19:38:40.1382364Z # pass 74
+verify	Run npm run verify	2026-09-13T19:38:40.1382555Z # fail 0
+verify	Run npm run verify	2026-09-13T19:38:40.1382940Z # skipped 0
+verify	Run npm run verify	2026-09-13T19:38:40.1383344Z # duration_ms 1851050.432123

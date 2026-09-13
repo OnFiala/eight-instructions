@@ -1,5 +1,5 @@
 import {Client} from './client.mjs';
-import {readPresentation,diagnostics} from './presentation.mjs';
+import {readPresentation,routeEvidence,diagnostics} from './presentation.mjs';
 import {CityScene,placeName} from './city-scene.mjs';
 import {sha256} from './images.mjs';
 import {registerExperimentTools} from './webmcp.mjs';
@@ -9,7 +9,7 @@ import {registerExperimentTools} from './webmcp.mjs';
 const $=id=>document.getElementById(id),encoder=new TextEncoder();
 let client,city,workspace,busy=false,running=false,started=false,selectedModule=0,selectedVehicle=0;
 let initialImage,comparisonInitialImage,transcriptComplete=true,transcript=[],rawLog='',recentEvents=[],activeSourceSerial,comparisonBundle,identityPromise;
-let lastResult,progressAt=0,costEvidence='';
+let lastResult,progressAt=0,costTrace=null;
 const decisions=new Map();
 const scene=new CityScene($('city'),{onSelect:selectVehicle});
 scene.ready.catch(error=>notice(`Graphics could not load: ${error.message}`,'error'));
@@ -53,9 +53,10 @@ function consume(result,{animate=true}={}) {
     const view=readPresentation(result.output);
     if(view.city){city=view.city;scene.setState(city,{animate});$('city-caption').hidden=false;}
     if(view.workspace)workspace=view.workspace;
-    if(view.events.some(e=>e.kind==='COSTS'))costEvidence=view.events.filter(e=>['POLICY','COSTS','EDGE-COST'].includes(e.kind)).map(e=>e.raw).join('\n');
+    const evidence=routeEvidence(view.events,costTrace);costTrace=evidence.latest;
+    for(const {event,costEvidence} of evidence.routes)decisions.set(event.values[2],{event,costEvidence,input:result.rawInput??'(raw native input)',roads:structuredClone(view.city?.roads??city?.roads??[])});
     for(const event of view.events) {
-      recentEvents.push(event);if(event.kind==='ROUTE')decisions.set(event.values[2],{event,costEvidence,input:result.rawInput??'(raw native input)',roads:structuredClone(view.city?.roads??city?.roads??[])});
+      recentEvents.push(event);
       if(event.kind==='WS-ERROR')notice(`Module unchanged. ${diagnostics[event.values[0]]??`Native error ${event.values[0]}.`}`,'error');
       if(event.kind==='RULE-REJECTED')notice('The rule returned an unusable road score. New departures are paused; existing trips can finish. Edit the rule or undo the change.','error');
     }
@@ -199,7 +200,7 @@ $('import').addEventListener('change',async event=>{
       }
       // Accept only after the candidate produced city, lifetime and source data.
       client.close();client=candidate;accepted=true;selectedModule=selected?.id??0;
-      initialImage=image;transcriptComplete=true;transcript=[];rawLog='';recentEvents=[];decisions.clear();activeSourceSerial=active?.serial;comparisonBundle=undefined;
+      initialImage=image;transcriptComplete=true;transcript=[];rawLog='';recentEvents=[];decisions.clear();costTrace=null;activeSourceSerial=active?.serial;comparisonBundle=undefined;
       log(requestState,r);for(const read of reads)log(read.rawInput,read);
       consume(r,{animate:false});$('current-source').textContent=currentText;$('module-editor').value=draftText;
       started=true;$('boot-status').hidden=true;notice('Workspace restored in a fresh machine. Sources, versions and in-flight state came from the image.','success');
@@ -213,7 +214,7 @@ function inspectDecision() {
     const v=event.values;$('decision-summary').textContent=`Van ${v[2]+1} chose a route from ${placeName(v[3])} to ${placeName(v[4])} at logical step ${v[1]}. Version ${v[5]} produced score ${v[6]}.`;
     const values=[['Input',`source ${v[3]}, destination ${v[4]}, open directed road data at that step`],['Exact version',String(v[5])],['Decision sequence',String(v[0])],['Native path',v.slice(8).join(' → ')],['Current car pin',String(car?.version??0)]];
     $('decision-facts').replaceChildren(...values.flatMap(([title,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=title;dd.textContent=value;return [dt,dd];}));
-    $('decision-output').textContent='> '+record.input+'\n'+record.roads.map(r=>`ROAD ${r.id} ${r.from} ${r.to} ${r.duration} ${r.toll} ${r.open?1:0}`).join('\n')+'\n'+record.costEvidence+'\n'+event.raw;
+    $('decision-output').textContent='> '+record.input+'\n'+record.roads.map(r=>`ROAD ${r.id} ${r.from} ${r.to} ${r.duration} ${r.toll} ${r.open?1:0}`).join('\n')+'\n'+(record.costEvidence||'No matching cost-table trace was emitted in this session. The route and score below are actual BF output.')+'\n'+event.raw;
   } else {$('decision-summary').textContent=`No route event has been emitted for this van in the current session. BF saved decision ${car?.decision??0}, version ${car?.decisionVersion??0}, score ${car?.score??0}, path ${car?.path.join(' → ')||'none'}. Its original input history is available only if included in a reproduction transcript.`;$('decision-facts').replaceChildren();$('decision-output').textContent=rawLog.slice(-8000);}
   $('decision-dialog').showModal();
 }

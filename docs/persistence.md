@@ -124,3 +124,5 @@ imported image. A transcript interrupted by a hard native pause is not advertise
 as a complete replay; export/import a completed workspace to begin a new transcript.
 
 The city importer validates the candidate city/workspace frame and reads both the active version source and stored draft before replacing the current worker. Successful import displays that draft in the editor and records these native source reads in the session transcript. An unreadable candidate is closed without replacing the current workspace. Saved route metadata is labeled separately from a newly emitted route event; an image alone does not reconstruct the original input history.
+
+Cost-table events also belong to the presentation session, not to an imported image's history. An image can already contain a valid native route-cost cache. If a subsequent route uses it without re-emitting a table, the inspector explicitly reports that no matching cost-table trace was emitted in this session. It still shows the actual new ROUTE record and native state; it never borrows a previous worker's table or recomputes costs in JavaScript.
