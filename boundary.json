@@ -721,7 +721,8 @@
     {
       "path": "tools/stage-site.mjs",
       "layer": "build-tool",
-      "reason": "Projects exact committed Site files with per-file hashes after the full engineering-history push received HTTP 413; GitHub remains canonical."
+      "reason": "Projects exact committed Site files with per-file hashes after the full engineering-history push received HTTP 413; GitHub remains canonical.",
+      "reviewedSha256": "d88c7224854cae1a76bb567d50dabfe46cda16596e77e5cf34529dd630c0c45b"
     }
   ],
   "runtimeDependencyScope": "hostRuntimeDependencies lists external runtime npm packages; host platforms are listed separately.",

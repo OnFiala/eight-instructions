@@ -14,7 +14,9 @@
   "humanInterventions": [
     "Owner provided the challenge and selected concept1. No human production code or repairs."
   ],
-  "protocolViolations": [],
+  "protocolViolations": [
+    "Operator handling lapse: a Sites read response access-bypass field appeared in the private tool transcript before allowlist redaction. It was not persisted, used or published; public audience unchanged. See journal.md."
+  ],
   "verification": {
     "testsPassed": 74,
     "testsFailed": 0,

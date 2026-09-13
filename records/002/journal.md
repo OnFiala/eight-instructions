@@ -88,3 +88,9 @@ The new46-road Chrome export retained the61-byte custom conditional rule, active
 ### 2026-09-13 — final local interface gate
 
 Confirmed imported-session raw output byte for byte in a new CLI (five inputs,6.237s). Added fixed ornamental lamps and perimeter planting after the final source/implementation comparison; no native data changed. Regenerated1487x1058 combined comparison,50% overlay and focused city/panel/type evidence. Same-author qualitative review passed with responsive, keyboard and reduced-motion limits explicitly recorded in design-qa.md. Seven narrow image/presentation/boundary checks passed. Both Linux CI runs for4f8cc07 passed all74 tests. Public release is still pending; this entry is not a deployment claim.
+
+### 2026-09-13 — packaging preflight repair
+
+The committed-asset projection encountered Node execFileSync ENOBUFS at the first image over its default1MiB stdout limit. No version was saved or deployed. The helper now explicitly bounds individual Git output at64MiB and still fails on overflow; it does not truncate or transform assets. A fresh staging directory preserves the failed partial attempt for diagnosis. This is packaging only; native and browser computation are unchanged.
+
+A Sites read response also contained a provider access-bypass field that an incomplete diagnostic redactor allowed into the private tool transcript. It was not used for anonymous tests, persisted in project files, put in a remote URL or published to GitHub. Subsequent Site diagnostics use an explicit non-secret field allowlist. The public audience remains unchanged. This is recorded as an operator handling lapse, not hidden as a clean protocol record.
