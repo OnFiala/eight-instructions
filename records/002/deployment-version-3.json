@@ -1,0 +1,56 @@
+{
+  "canonicalCommit": "94bb507bd14a9e91d7aeb440ad3f0d90056d31bb",
+  "version": {
+    "id": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0~appgver_8579180e32dc8191bced2108238485c8",
+    "project_id": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0",
+    "version_number": 3,
+    "source": {
+      "commit_sha": "0ab3bc10a25da4cd0402284629e650955669dce3"
+    },
+    "archive_storage": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000004d8082438e005360a9c58aee",
+      "content_hash": "sha256:6cad7f250edf5a90ca182f993aeeb38f3fd59f341c5b1c9b087ce2e40e08a652",
+      "size_bytes": 28897280,
+      "file_count": 72
+    },
+    "screenshot_url": null,
+    "deployment_id": null
+  },
+  "deployment": {
+    "id": "appgdep_6aa707b3fbc08191b6019ee11ffbeab0",
+    "project_id": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0",
+    "title": "8 Instructions",
+    "version_id": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0~appgver_8579180e32dc8191bced2108238485c8",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://eight-instructions.andrewxix.chatgpt.site",
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6aa2da2a6c9081919e4eace763a4f4a0",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-09-13T20:29:52.478109+00:00"
+  },
+  "access": {
+    "id": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0",
+    "title": "8 Instructions",
+    "access_mode": "public",
+    "access_revision": 2,
+    "current_user_role": "owner",
+    "current_live_url": "https://eight-instructions.andrewxix.chatgpt.site",
+    "status": "active"
+  },
+  "uploadedArchive": {
+    "sha256": "4792df4127ed9f848827755bb96cd608f5b16c5575a42dfe03d8c37a7604a3eb",
+    "bytes": 27563416
+  },
+  "localGate": {
+    "status": "PASS",
+    "tests": 76,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 542348.846417,
+    "receipt": "repair-full-local-tests.txt"
+  },
+  "publicVerification": "PASS: anonymous asset identity, fresh native boot, custom source, refusal, actual export/import, corrected evidence and byte-exact CLI replay."
+}

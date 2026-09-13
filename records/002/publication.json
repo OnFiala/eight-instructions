@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "status": "PASS",
+  "scope": "Verified functional publication of implementation94bb507; final repository seal and metadata deployment have a separate release asset.",
+  "implementationCommit": "94bb507bd14a9e91d7aeb440ad3f0d90056d31bb",
+  "startingCommit": "6d7c6b0cb7fa73eda0504ef0d2cc10b1429c5dd0",
+  "implementationPullRequests": [
+    "https://github.com/OnFiala/eight-instructions/pull/1",
+    "https://github.com/OnFiala/eight-instructions/pull/2"
+  ],
+  "canonicalSiteAssetsCommit": "94bb507bd14a9e91d7aeb440ad3f0d90056d31bb",
+  "siteSourceProjectionCommit": "0ab3bc10a25da4cd0402284629e650955669dce3",
+  "siteProjectId": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0",
+  "siteVersionId": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0~appgver_8579180e32dc8191bced2108238485c8",
+  "siteVersionNumber": 3,
+  "deploymentId": "appgdep_6aa707b3fbc08191b6019ee11ffbeab0",
+  "deploymentCompletedAt": "2026-09-13T20:29:52.478109+00:00",
+  "siteURL": "https://eight-instructions.andrewxix.chatgpt.site",
+  "siteAccess": "public",
+  "siteAccessRevision": 2,
+  "sourceMapping": "site-source-provenance-repaired.json",
+  "deploymentReceipt": "deployment-version-3.json",
+  "anonymousAssets": "public-assets-version-3.json",
+  "archive": {
+    "uploadedGzip": {
+      "sha256": "4792df4127ed9f848827755bb96cd608f5b16c5575a42dfe03d8c37a7604a3eb",
+      "bytes": 27563416
+    },
+    "providerNormalizedTar": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_000000004d8082438e005360a9c58aee",
+      "content_hash": "sha256:6cad7f250edf5a90ca182f993aeeb38f3fd59f341c5b1c9b087ce2e40e08a652",
+      "size_bytes": 28897280,
+      "file_count": 72
+    }
+  },
+  "kernelSha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98",
+  "anonymousIdentity": {
+    "files": 71,
+    "exactFiles": 69,
+    "html": "Two source HTML files preserved with provider challenge-script insertions only; direct index.html URLs redirect to their directory URLs.",
+    "authentication": "curl -q; no cookies, auth header, account session or bypass token"
+  },
+  "publicBehavior": {
+    "freshBoot": "Chrome and Codex in-app browser computed native step1, original route15, three v1 pins.",
+    "customSource": ": delivery-rule.thread\n  dup 0= if drop 2 + else 9 * + then\n;",
+    "publish": "61 source bytes stored/compiled inside BF; active v2, three v1 in-flight pins retained at step1.",
+    "refusal": "Incomplete26-byte source refused; v2, 17 live code words and both live versions retained. Failed candidate arena remains free.",
+    "export": "Actual version3 Chrome download public-v3-inflight.8i;451513 bytes;SHA256889f3f9c3b80797b391a068926785c6cacc901f61073e8c5d867c434337f0e2a. Byte-identical to the same previous native input sequence.",
+    "import": "New worker restored stored/active source, versions, three half-trips at step2. Step3 arrived at8/4/1; step4 used v2, path8,4,5,6,7,11,15, score34.",
+    "repairedInspector": "Actual ROUTE v2 score34; explicitly unavailable earlier costs; no borrowed v1 table.",
+    "corruptImport": "Truncated JSON refused with city unchanged; subsequent step3 completed old segments.",
+    "freshCLI": "Actual new exported image returned status1/result47 for duration2/toll5; preserved sources, both versions and pins.",
+    "comparison": "Two fresh machines from same initial open-bridge image, same three logical steps; scores15/22.",
+    "downloadedReplay": "public-v3-reproduction.json was downloaded from the public UI and verified byte-exact in new CLI; public-v3-reproduction-cli.txt.",
+    "browserConsole": "No warning/error entries observed in the bounded browser logs inspected."
+  },
+  "visualEvidence": {
+    "localReferenceReview": "../../design-qa.md",
+    "publicScreenshot": "visuals/public-version-3-desktop.png",
+    "publicScreenshotViewport": [
+      1487,
+      1058
+    ],
+    "publicScreenshotDpr": 2,
+    "scope": "Actual imported city/error state. Local reference comparison includes DPR1 initial state and overlays. Qualitative same-author judgment, not pixel equality."
+  },
+  "operatorLimitations": [
+    "Chrome screenshot CDP commands timed out during repaired release. Public screenshot captured through the working Codex browser.",
+    "One Chrome automation click had no effect; keyboard activation succeeded. No application console error was observed.",
+    "Chrome file selection lacked extension permission; real file import was verified in Codex browser without changing permissions."
+  ],
+  "failedFirstPublication": "deployment-version-2.json",
+  "exercisedRollback": "rollback-after-evidence-defect.json",
+  "finalMetadataSeal": {
+    "tag": "build-002",
+    "release": "https://github.com/OnFiala/eight-instructions/releases/tag/build-002",
+    "receiptAsset": "https://github.com/OnFiala/eight-instructions/releases/download/build-002/final-deployment.json",
+    "meaning": "The separate final receipt binds the normal PR merge/tag and final metadata projection. No self-referencing commit or future deployment ID is fabricated here."
+  },
+  "recordedAt": "2026-09-13T20:43:04.749563+00:00"
+}

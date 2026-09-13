@@ -57,6 +57,33 @@ export function readPresentation(output) {
   return result;
 }
 
+// Associate displayed evidence in stream order. This never evaluates a cost.
+// A restored image can contain a native cache without its earlier event history.
+export function routeEvidence(events,previous=null) {
+  let latest=previous,pending=null,policies=[];
+  const routes=[];
+  for(const event of events) {
+    const n=event.values;
+    if(['ROAD-CHANGED','ROAD-UPDATED','RULE-REJECTED'].includes(event.kind)) {
+      latest=null;pending=null;policies=[];
+    } else if(event.kind==='POLICY') {
+      latest=null;policies.push(event);
+    } else if(event.kind==='COSTS') {
+      latest=null;
+      pending={serial:n[1],expected:n[3],edges:new Set(),lines:[...policies.filter(p=>p.values[1]===n[1]).map(p=>p.raw),event.raw]};
+      policies=[];
+      if(n[3]===0){latest={serial:n[1],text:pending.lines.join('\n')};pending=null;}
+    } else if(event.kind==='EDGE-COST'&&pending) {
+      if(pending.edges.has(n[0])||pending.expected>48){pending=null;continue;}
+      pending.edges.add(n[0]);pending.lines.push(event.raw);
+      if(pending.edges.size===pending.expected){latest={serial:pending.serial,text:pending.lines.join('\n')};pending=null;}
+    } else if(event.kind==='ROUTE') {
+      routes.push({event,costEvidence:latest?.serial===n[5]?latest.text:''});
+    }
+  }
+  return {latest,routes};
+}
+
 export const diagnostics={
   1:'This module does not exist.',2:'No free version arena, or this program exceeds its code capacity.',
   3:'Use a matching module name starting with a lowercase letter; names and tokens are at most 23 bytes.',

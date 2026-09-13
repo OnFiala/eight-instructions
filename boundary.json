@@ -359,8 +359,8 @@
     {
       "path": "dist/presentation.mjs",
       "layer": "presentation",
-      "reason": "Length-framed decoder and shape validation for actual guest output. Joins version serials and source text for display; no compiler, allocation, routing or simulation.",
-      "reviewedSha256": "ea8f553c7e08aedd3441624164a7dfdcd217524ad454c8bf1423b71816d0dc20"
+      "reason": "Length-framed decoder and shape validation for actual guest output. Joins version serials and source text for display; no compiler, allocation, routing or simulation. Complete cost-table traces are associated with native route events by stream order and emitted version; no score is evaluated. Missing imported history stays unavailable.",
+      "reviewedSha256": "6fbd4af8e51bdf6a6453f31e9cf720617460100fe127d1499fdd2ab8533b1004"
     },
     {
       "path": "dist/programs/city-boot.thread",
@@ -416,7 +416,7 @@
       "path": "dist/site.mjs",
       "layer": "presentation",
       "reason": "Edits text and frames raw I/O; waits for native storage acknowledgement before requesting compilation. Displays BF state and diagnostics. Comparison restores two opaque images and sends common raw steps; bundles record actual outputs. All application computation remains inside BF.",
-      "reviewedSha256": "e118287da58b28b3b42b835a442907cad2049ff1dbf4ae1baf6e514cf268faf2"
+      "reviewedSha256": "b4c3cc4d9992b97966fd59916bf976069076e2154353f57346951237ff178d0c"
     },
     {
       "path": "dist/style.css",

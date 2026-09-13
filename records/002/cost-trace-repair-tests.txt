@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: machine images resume partial input and preserve full uint16 state
+ok 1 - machine images resume partial input and preserve full uint16 state
+  ---
+  duration_ms: 3.406167
+  type: 'test'
+  ...
+# Subtest: image corruption, incompatible kernels and invalid machine state are rejected
+ok 2 - image corruption, incompatible kernels and invalid machine state are rejected
+  ---
+  duration_ms: 1.656208
+  type: 'test'
+  ...
+# Subtest: budget images resume without replaying input or output
+ok 3 - budget images resume without replaying input or output
+  ---
+  duration_ms: 0.467208
+  type: 'test'
+  ...
+# Subtest: OS image replacement is atomic and leaves no temporary files
+ok 4 - OS image replacement is atomic and leaves no temporary files
+  ---
+  duration_ms: 21.238542
+  type: 'test'
+  ...
+# Subtest: length-framed stored source cannot masquerade as city or lifecycle output
+ok 5 - length-framed stored source cannot masquerade as city or lifecycle output
+  ---
+  duration_ms: 1.052375
+  type: 'test'
+  ...
+# Subtest: partial or malformed presentation frames cannot replace a complete city
+ok 6 - partial or malformed presentation frames cannot replace a complete city
+  ---
+  duration_ms: 0.147917
+  type: 'test'
+  ...
+# Subtest: route evidence cannot borrow a different version or a pre-import cost trace
+ok 7 - route evidence cannot borrow a different version or a pre-import cost trace
+  ---
+  duration_ms: 0.231916
+  type: 'test'
+  ...
+# Subtest: each route captures only the complete cost table preceding it
+ok 8 - each route captures only the complete cost table preceding it
+  ---
+  duration_ms: 0.124792
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 86.89875

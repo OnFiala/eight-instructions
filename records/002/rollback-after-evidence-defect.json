@@ -1,0 +1,19 @@
+{
+  "status": "succeeded",
+  "reason": "The post-import decision inspector attached the previous worker's v1 cost trace to a correct v2 native route. Native state and computation were preserved; the public evidence gate failed.",
+  "deployment": {
+    "id": "appgdep_6aa702bbebe881919b525ce0bab75e35",
+    "project_id": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0",
+    "title": "8 Instructions",
+    "version_id": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0~appgver_cfddaac3f0dc8191ac82285c8499e907",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://eight-instructions.andrewxix.chatgpt.site",
+    "screenshot_asset_pointer": "sediment://file_000000006cb881f5b0a1a0c3bdba9ed3",
+    "provider_deployment_id": "site---6aa2da2a6c9081919e4eace763a4f4a0",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-09-13T20:09:13.043405+00:00"
+  },
+  "anonymousKernelSha256": "de6c26450f7aa1398fc0f5d08995e653f355badea9f1df08a0b203db35c37d87"
+}

@@ -69,3 +69,5 @@ onto an existing native road; it cannot introduce a connection. Renderer code wa
 prediction of future positions, delivery decisions, hidden event replays and imports
 of test tools. Road geometry is drawn only from native node/edge records. Decorative
 quays, lights and materials do not introduce road connections.
+
+The first Build002 live review found a presentation-cache defect: imported v2 routes inherited a v1 cost trace from the previous worker. The site was rolled back. `routeEvidence` now associates complete native table events with route events in stream order and by emitted version, without evaluating any cost. A new import starts an empty evidence session. Unavailable historical table output is shown as unavailable. Regression tests cover stale version/session evidence, incomplete tables, ordering and road-change invalidation.
