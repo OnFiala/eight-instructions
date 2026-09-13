@@ -10,7 +10,7 @@ requires the documented build/test dependencies.
 
 ## Exact source without an oversized history transfer
 
-The first attempt to push the complete engineering repository to Sites returned
+During Build 001, the first attempt to push the complete engineering repository to Sites returned
 HTTP 413. Its compressed Git pack was about 446 KiB; the precise server-side size
 policy was not established. The public GitHub push and clean clone succeeded.
 Do not infer that the GitHub history was lost or replaced.
@@ -40,7 +40,7 @@ file-level mapping. The `build-001` tag identifies final repository closure.
 
 ## Platform behavior and rollback
 
-The observed public response preserved 17 runtime/data/style files byte for byte.
+The Build 001 public response preserved 17 runtime/data/style files byte for byte.
 The HTML contained the original source plus a Cloudflare challenge-platform script
 insertion. That hosting security code is provider-controlled; it is not a guest
 compiler, data store or route solver. Public HTML response hashes may consequently
@@ -52,7 +52,7 @@ and Sites/Cloudflare hosting. There are zero external **runtime npm packages**;
 this does not mean a browser or hosting platform contains no other code.
 
 To roll back a future deployment, redeploy a previously verified saved Site
-version and its matching source/asset identity. To reproduce this build locally,
+version and its matching source/asset identity. To reproduce the historical first build locally,
 check out `build-001`; older development kernels remain in Git. Machine images
 must use their own matching kernel hash. Do not silently load an old image into
 a changed kernel or rewrite public records to conceal a failed publication.
@@ -77,3 +77,23 @@ refused source and actual export/import in the public browser. A successful depl
 response alone does not complete this gate. The publication receipt is appended
 only after the result is observed; if live verification fails, repair or redeploy
 the previous verified version before claiming success.
+
+The Build 002 archive is produced from its exact committed projection using the
+installed Sites `package-site.mjs` helper. On macOS use `COPYFILE_DISABLE=1` so
+AppleDouble resource metadata does not enter the archive. Validate the 71 public
+files against `source-provenance.json`, plus the normalized hosting manifest. The
+uploaded gzip hash and provider-normalized tar hash are different identities;
+record both. No general size-limit conclusion follows from the Build 001 413.
+
+For anonymous artifact checks, the release used `curl -q` with no cookies or
+authentication, `Accept-Encoding: identity`, and HTTPS-only redirects. The
+`index.html` paths normally redirect to their canonical directory URLs. A Python
+urllib client received 403; that failed client attempt is retained separately.
+The successful public checks use the ordinary browser and curl clients without
+any bypass token or access change.
+
+The first Build 002 publication passed file identity but failed live decision
+evidence after import. The saved Build 001 rollback was actually exercised; see
+`records/002/rollback-after-evidence-defect.json`. Preserve that failure alongside
+the later repair. A functional release receipt and a final metadata-deployment
+receipt distinguish implementation, repository closure and public projection.

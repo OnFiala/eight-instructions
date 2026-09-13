@@ -1,4 +1,4 @@
-# A native source workspace (Build 002, in development)
+# A native source workspace — Build 002
 
 The **Brainfuck (BF) programming language** executes the whole system. General
 Thread is compiled by the existing BF kernel. `programs/workspace.thread` is a
@@ -15,14 +15,14 @@ intentionally modifying the module manager with `w!`.
 ## Actual inputs and outputs
 
 Start the city with `node runtime/cli.mjs --city --eval 'city-state'`. The native
-boot sources create module0, `delivery-rule.thread`, with two arguments (duration,
+boot sources create module 0, `delivery-rule.thread`, with two arguments (duration,
 toll) and one result (route score). The initial source is:
 
 ```text
 : delivery-rule.thread + ;
 ```
 
-The following raw Thread input stores a new30-byte source in BF, compiles from
+The following raw Thread input stores a new 30-byte source in BF, compiles from
 that stored source and publishes it between complete calls:
 
 ```text
@@ -31,13 +31,13 @@ that stored source and publishes it between complete calls:
 2 5 0 module-run . .
 ```
 
-The last line returns status1 and result42. The host counts and transports input
+The last line returns status 1 and result 42. The host counts and transports input
 bytes; source ownership and compilation occur after the bytes enter BF. A draft
 may be invalid while its previously compiled active version stays usable.
 
 | Operation | Native meaning |
 | --- | --- |
-| `inputs outputs length module-create NAME` | Allocate a module with a unique exact byte name; consume precisely length raw name bytes. Arity0..8. |
+| `inputs outputs length module-create NAME` | Allocate a module with a unique exact byte name; consume precisely length raw name bytes. Arity 0..8. |
 | `length id source-write SOURCE` | Consume precisely length raw ASCII bytes; atomically replace the draft after validation. |
 | `id source-read` | Emit the stored draft with its exact length. |
 | `id module-compile` | Compile a fresh candidate, publish on success, or release it on failure. |
@@ -52,25 +52,25 @@ may be invalid while its previously compiled active version stays usable.
 
 Whitespace after the calling word is the delimiter consumed by the base tokenizer.
 The next byte begins the raw name/source. The length is bytes, not Unicode code
-points. Raw source rejects NUL and non-ASCII input; capacity is256 bytes. The file
+points. Raw source rejects NUL and non-ASCII input; capacity is 256 bytes. The file
 `programs/city-boot.thread` is a real example consumed by both browser and CLI.
 
 ## Language profile and compatibility
 
 Source contains exactly one `: module-name … ;` definition with the same full
 name as its module. Names start with a lowercase ASCII letter, reserving numeric
-spellings for literals. Tokens are at most23 bytes. Decimal literals follow Thread's
+spellings for literals. Tokens are at most 23 bytes. Decimal literals follow Thread's
 16-bit unsigned/wrapping convention, including negative spellings. The compiler
 supports `+ - * /mod = < dup drop swap over rot 0= > <= >= and or / mod min max`
 and `if else then begin until while repeat`. Backslash comments end at newline.
 
 Branch joins and loop backedges must agree on stack depth. Final depth must match
-the declared output count. Structured controls are bounded to16 entries. Module
+the declared output count. Structured controls are bounded to 16 entries. Module
 calls bind the exact active version of another module and apply its declared
 arity. Self-reference, general heap/store access, raw I/O, defining words and
 arbitrary general Thread calls are outside this profile and are rejected.
 
-Evaluation uses64 values, up to16 return frames and a1024-bytecode-instruction
+Evaluation uses 64 values, up to 16 return frames and a 1,024-bytecode-instruction
 budget per root invocation, shared with nested calls. Division by zero, budget
 exhaustion and invalid runtime effects return failure and zero-valued results.
 No module write can reach the city. A valid program can still fail for particular
@@ -78,9 +78,9 @@ inputs; compilation is not a proof of totality or of useful routing scores.
 
 ## Ownership and reclamation
 
-Four module records of320 words and six version arenas of448 words occupy3968
-of the4096-word workspace region. Each module has one256-byte draft. Each version
-has its own256-byte source and128-word bytecode capacity; the remaining words
+Four module records of 320 words and six version arenas of 448 words occupy 3,968
+of the 4,096-word workspace region. Each module has one 256-byte draft. Each version
+has its own 256-byte source and 128-word bytecode capacity; the remaining words
 hold metadata and a six-entry dependency bitmap. Capacity is fixed during use.
 
 An active root, a single rollback root, each explicit pin and each dependent
@@ -96,8 +96,8 @@ A candidate must fit a free arena. Publication transfers the old active root to
 rollback, drops the former rollback root and collects anything now unreferenced.
 If all six arenas remain live, compilation refuses without changing those roots.
 Old compiled references retain old behavior. Explicit handles use a monotonically
-increasing16-bit serial; serial65535 is an exhaustion boundary, never an ABA wrap.
-Pins are bounded to60000 per version, leaving room for roots and dependencies.
+increasing 16-bit serial; serial 65,535 is an exhaustion boundary, never an ABA wrap.
+Pins are bounded to 60,000 per version, leaving room for roots and dependencies.
 
 All execution is single-threaded. External source input is accepted only after a
 complete call returns. The module manager additionally refuses lifecycle changes
@@ -106,8 +106,8 @@ the exact continuation; it is not a safe point at which to enqueue another chang
 
 ## City contract
 
-The city has16 nodes, capacity48 directed roads (46 initially), three vehicles and
-one current destination per vehicle. Positive route scores are bounded to1..1023.
+The city has 16 nodes, capacity 48 directed roads (46 initially), three vehicles and
+one current destination per vehicle. Positive route scores are bounded to 1..1,023.
 Duration/toll edits and road opening/closure are data inputs, separate from code
 edits. The initial paid bridge stays open in both policy comparisons.
 
@@ -128,20 +128,21 @@ input nodes, score and the exact path. A rejected score table blocks new departu
 while already committed road travel can finish.
 
 Snapshots contain all of this state, sources, versions and references. The kernel
-hash differs from Build001, so its images are rejected explicitly by the new
-runtime. Build001 remains reproducible at its original tag and in the verified
+hash differs from Build 001, so its images are rejected explicitly by the new
+runtime. Build 001 remains reproducible at its original tag and in the verified
 public asset archive under dist/build-001/. No automatic migration exists.
 
 ## Diagnostics
 
-`WS-ERROR` codes:1 invalid module;2 capacity;3 name/token;4 source bytes/length;
-5 incomplete or invalid structure;6 unknown/unsupported word;7 stack effect or
-stack limit;8 control structure/limit;10 live-reference refusal;11 missing/stale
-version;12 evaluation budget;13 zero divisor;14 busy evaluator;15 serial/pin limit.
+`WS-ERROR` codes:1 invalid module; 2 capacity; 3 name/token; 4 source bytes/length;
+5 incomplete or invalid structure; 6 unknown/unsupported word; 7 stack effect or
+stack limit; 8 control structure/limit; 10 live-reference refusal; 11 missing/stale
+version; 12 evaluation budget; 13 zero divisor; 14 busy evaluator; 15 serial/pin limit.
 
-Evidence currently lives in `tests/workspace.test.mjs`, `tests/reclaim.test.mjs`,
-`tests/city.test.mjs` and `records/002/`. Release verification and final measurements
-are still in progress. Do not interpret this development document as a release PASS.
+Evidence lives in `tests/workspace.test.mjs`, `tests/reclaim.test.mjs`,
+`tests/city.test.mjs` and `records/002/`. The complete local suite passes 76 tests.
+`records/002/metrics.json` contains measured fixed-capacity workloads and environment;
+`records/002/publication.json` binds the verified public behavior to source.
 
 ## Presentation records
 
@@ -159,4 +160,4 @@ arrival, while the historical serial remains. It does not keep that source alive
 A missing/uncompiled/wrong-arity city rule emits RULE-REJECTED before evaluating any
 edge. Every road edit invalidates the native cost table independently of the wrapping
 16-bit generation counter. Logical ticks, decision sequences and delivery counts
-otherwise follow the documented16-bit arithmetic; serial handles refuse exhaustion.
+otherwise follow the documented 16-bit arithmetic; serial handles refuse exhaustion.

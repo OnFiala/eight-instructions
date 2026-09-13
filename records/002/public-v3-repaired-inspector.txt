@@ -1,0 +1,67 @@
+Inspect this decision
+Close
+
+Van 1 chose a route from West Heights to Central Square at logical step 4. Version 2 produced score 34.
+
+Input
+source 8, destination 15, open directed road data at that step
+Exact version
+2
+Decision sequence
+4
+Native path
+8 → 4 → 5 → 6 → 7 → 11 → 15
+Current car pin
+2
+Exact BF presentation output
+> city-step city-state workspace-state
+ROAD 0 0 1 2 0 1
+ROAD 1 1 0 2 0 1
+ROAD 2 2 3 2 0 1
+ROAD 3 3 2 2 0 1
+ROAD 4 4 5 2 0 1
+ROAD 5 5 4 2 0 1
+ROAD 6 6 7 2 0 1
+ROAD 7 7 6 2 0 1
+ROAD 8 8 9 2 0 1
+ROAD 9 9 8 2 0 1
+ROAD 10 10 11 2 0 1
+ROAD 11 11 10 2 0 1
+ROAD 12 12 13 2 0 1
+ROAD 13 13 12 2 0 1
+ROAD 14 14 15 2 0 1
+ROAD 15 15 14 2 0 1
+ROAD 16 0 4 2 0 1
+ROAD 17 4 0 2 0 1
+ROAD 18 1 5 2 0 1
+ROAD 19 5 1 2 0 1
+ROAD 20 2 6 2 0 1
+ROAD 21 6 2 2 0 1
+ROAD 22 3 7 2 0 1
+ROAD 23 7 3 2 0 1
+ROAD 24 4 8 2 0 1
+ROAD 25 8 4 2 0 1
+ROAD 26 5 9 2 0 1
+ROAD 27 9 5 2 0 1
+ROAD 28 6 10 2 0 1
+ROAD 29 10 6 2 0 1
+ROAD 30 7 11 2 0 1
+ROAD 31 11 7 2 0 1
+ROAD 32 8 12 2 0 1
+ROAD 33 12 8 2 0 1
+ROAD 34 9 13 2 0 1
+ROAD 35 13 9 2 0 1
+ROAD 36 10 14 2 0 1
+ROAD 37 14 10 2 0 1
+ROAD 38 11 15 2 0 1
+ROAD 39 15 11 2 0 1
+ROAD 40 1 2 6 0 1
+ROAD 41 2 1 6 0 1
+ROAD 42 9 10 2 5 1
+ROAD 43 10 9 2 5 1
+ROAD 44 5 6 12 0 1
+ROAD 45 6 5 12 0 1
+No matching cost-table trace was emitted in this session. The route and score below are actual BF output.
+ROUTE 4 4 0 8 15 2 34 7 8 4 5 6 7 11 15 
+
+Scores and routes are native outputs. An old route is a record of its decision, even after a newer module has been published.

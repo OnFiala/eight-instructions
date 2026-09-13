@@ -6,12 +6,13 @@ byte and loop. Astra xHigh writes the architecture, implementation, tests, repai
 and self-review. The human supplies the challenges and visual direction, with no
 human-written production code. There is no predefined final build.
 
-**Build 002: A city you can reprogram.** Current source implements a native source
-workspace, replaceable modules and a delivery city. Release verification is in
-progress; [the build record](records/002/build.json) separates completed evidence
-from the remaining visual and publication checks.
+**Build 002: A city you can reprogram.** Store named source inside BF, replace
+programs without resetting the city, and reclaim unused versions. The
+[build record](records/002/build.json) and [public verification receipt](records/002/publication.json)
+link the implementation, tests, observed behavior and release identities.
 
 [Existing public site](https://eight-instructions.andrewxix.chatgpt.site) ·
+[Build 002 release](https://github.com/OnFiala/eight-instructions/releases/tag/build-002) ·
 [Permanent protocol](PROTOCOL.md) · [Build 001, preserved](records/001/)
 
 ## The new capability
@@ -106,7 +107,8 @@ not source-size ratios or GitHub language percentages. See the
 
 ## Evidence and practical limits
 
-The original Build 001 regression tests are retained. New tests execute actual
+All **76 required local tests pass**, including the original Build 001 regression
+cases. The release records the final GitHub CI separately. Tests execute actual
 source storage, arbitrary typed programs, failed compilation, exact old calls,
 pins, rollback, six-arena exhaustion, deletion, repeated failure, fresh-image
 continuation and deterministic delivery. A 450-cycle workload compiles **9,000
@@ -158,6 +160,10 @@ its original CLI, artifacts and 50-test release. The current default CLI and
 `--demo` also retain the original general Thread/store/Dispatch source profile.
 
 [Build 001 record](records/001/) · [Build 002 journal](records/002/journal.md) ·
+[Visual comparison](design-qa.md) · [Reproduction bundle](dist/reproduction/build-002.json) ·
+[Technical explanation, Czech](records/002/technical-cs.md) ·
+[Human explanation, Czech](records/002/human-cs.md) ·
+[Unposted X drafts](records/002/x-draft-en.md) ·
 [Persistence](docs/persistence.md) · [Publication workflow](docs/publication.md)
 
 MIT licensed. Eight instructions → this → ???

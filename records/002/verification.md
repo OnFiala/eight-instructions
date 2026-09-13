@@ -36,9 +36,9 @@ The production executor sees only BF commands and bytes. Source interpretation, 
 
 The automatic manifest audit is a heuristic review gate, not a semantic proof. Reproducible generation and differential execution are separate evidence. Sources, artifacts, local behavior, CI and deployed public bytes require their own receipts.
 
-## Remaining release gates
+## Release gates and closure
 
-The final visual comparison, exact-head CI, standard merge/tag, deployment identity and post-deployment anonymous browser checks must be completed and linked in the release record before a final PASS. This ledger does not pre-authorize a result or substitute for those checks.
+The final local visual comparison and repaired public functional verification passed. The final repository closure still uses current-head CI and normal PR merge; the immutable tag and matching final metadata deployment are bound by the final-deployment.json release asset linked from publication.json. The first failed publication and exercised rollback remain in the record.
 
 ## Final local gate closure
 
@@ -47,3 +47,11 @@ The final qualitative visual review passed: see `../../design-qa.md` and its sam
 The import candidate now reads its own active source and draft before replacing the current worker. `import-session-replay.json` replays five actual UI-transcript inputs from `browser-final-inflight.8i`; `import-session-replay-cli.txt` reports PASS with output SHA-256 `8a308daae1764080d7acc1cd35e842cc38f042c5095b9da7da3563388d0baf82`. This particular verification bundle was assembled from the observed DOM raw log because the in-app browser's download was not recovered; it is not claimed to be that downloaded file. The separate Chrome comparison download was recovered and replayed directly.
 
 `final-ui-checks.txt` passes the seven relevant image/presentation/boundary tests after the import and final renderer edits. Linux CI on4f8cc07 passed both push and PR runs, including all74 tests; the first GCC-only failure and semantics-preserving formatting repair remain recorded. Final implementation head CI and public release checks are still separate gates.
+
+## Repaired public release
+
+`repair-full-local-tests.txt`: 76/76 required checks, zero failures/skips, 542348.846417 ms. Two added presentation tests prevent stale-session/version tables, incomplete tables and wrong ordering. Native kernel and guest code are unchanged from the fully tested base.
+
+`publication.json` and `deployment-version-3.json` bind repair94bb507 to the existing public Site. `public-assets-version-3.json` verifies all71 public files anonymously, including69 exact files and two inspected HTML insertions. `public-v3-*` receipts show fresh boot, custom9/+2 source, activev2 with v1 pins, incomplete-source refusal, real export, new worker import and continued native arrivals. A damaged image was refused and the preserved city continued. `public-v3-repaired-inspector.txt` shows the actual score34 route with explicitly missing historical costs.
+
+The actual new451513-byte `public-v3-inflight.8i` is byte-identical to the same prior native sequence, and a fresh CLI returns47 for duration2/toll5. `public-v3-reproduction.json` is a new actual Chrome download from two new public calculations; `public-v3-reproduction-cli.txt` passes exact output replay for scores15/22 with Harbor Bridge open in both. The new public viewport screenshot is1487x1058 at DPR2; the original reference comparison uses the local DPR1 initial-state screenshot. Screenshot acquisition failures are operator-tool evidence, not silently counted as successful screenshots.
