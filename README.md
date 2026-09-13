@@ -1,165 +1,163 @@
 # 8 Instructions
 
 How far can one coding agent build from the **Brainfuck (BF) programming language**?
+Eight commands — `> < + - . , [ ]` — move a pointer, change memory, read/write a
+byte and loop. Astra xHigh writes the architecture, implementation, tests, repairs
+and self-review. The human supplies the challenges and visual direction, with no
+human-written production code. There is no predefined final build.
 
-It is a real programming language with eight commands: `> < + - . , [ ]`.
-We gave Astra xHigh this deeply inconvenient starting point and asked it to build
-increasingly serious computing systems. The human supplies challenges, writes no
-production code and provides no code repairs. There is no predefined finish line.
+**Build 002: A city you can reprogram.** Current source implements a native source
+workspace, replaceable modules and a delivery city. Release verification is in
+progress; [the build record](records/002/build.json) separates completed evidence
+from the remaining visual and publication checks.
 
-**Build #001 — PASS: General-purpose computing environment.**
-All 50 tests pass locally, in a clean public clone and in
-[Linux CI](https://github.com/OnFiala/eight-instructions/actions/runs/34513686769),
-including deliberately hostile workloads.
+[Existing public site](https://eight-instructions.andrewxix.chatgpt.site) ·
+[Permanent protocol](PROTOCOL.md) · [Build 001, preserved](records/001/)
 
-[Try the live machine](https://eight-instructions.andrewxix.chatgpt.site) ·
-[Read the build record](records/001/build.json) · [Permanent protocol](PROTOCOL.md)
+## The new capability
 
-## What actually exists
+**Thread** is a small stack language whose compiler and runtime execute inside a
+real BF kernel. Build 001 provided reusable words, a transactional key/value store,
+weighted routes and resumable whole-machine images. Its resident code and dictionary
+allocation were monotonic.
 
-**Thread** is an interactive programming environment. Its tokenizer, compiler,
-dictionary, reusable functions, control flow, arithmetic, stacks and memory
-operations execute as Brainfuck. You can define and run new programs without
-regenerating the kernel or using a host-language compiler for those programs.
+Build 002 adds a second, explicitly bounded **pure module profile of Thread**.
+The source manager, typed compiler, evaluator, exact-version bindings, rollback and
+reclamation are themselves Thread programs executing inside BF. Named source is
+stored on the BF tape before compilation. A successful candidate publishes at a
+safe point; an invalid candidate leaves the active version usable and returns its
+arena. One previous version is retained for rollback. Pins and dependent programs
+retain older versions until their last reference is released.
 
-On top of it is an indexed, transactional 128-record key/value store and
-**Dispatch**, a mutable weighted-network route planner. Change roads, compute
-new shortest paths, abort a transaction, save the whole machine, restart the
-process and continue using both your data and your compiled programs.
+Living Dispatch makes those capabilities visible: 16 intersections, 46 initial
+directed roads (capacity 48), three vans, one destination per van, native Dijkstra
+and deterministic logical steps. Changing code preserves the city and an in-flight
+van's current road, progress and captured duration. Its next departure uses the
+then-active program. Road closure is a separate data experiment.
 
-This is a small computing environment, not a modern operating system. It uses
-16-bit cells, byte I/O and fixed capacities. Worst-case workloads are slow. Those facts belong in the
-experiment, alongside the working parts.
+## Run the actual machine
 
-## Run it
-
-Running checked-in artifacts needs **Node.js 22 or later**, with no npm install:
+Checked-in artifacts need **Node.js 22+**, without an npm install or API key:
 
 ```sh
 git clone https://github.com/OnFiala/eight-instructions.git
 cd eight-instructions
-node runtime/cli.mjs --demo
-node runtime/cli.mjs
-```
-
-The demo builds its data and calculates a route through the actual kernel. It
-does not load a precomputed output or a guest image. Expected sample output:
-
-```text
-NODES 12
-ROADS 20
-GENERATION 1
-STAGED 0
-COST 20
-PATH 0 2 1 7 8 9 10 11
+node runtime/cli.mjs --city
 ```
 
 Inside the terminal:
 
 ```text
-sample
-0 11 route
-tx-begin 100 1 7 road assert tx-commit
-0 11 route
+city-step city-state workspace-state
+30 0 source-write : delivery-rule.thread 8 * + ;
+0 module-compile
+city-step city-state
+0 module-rollback
+/save my-city.8i
 ```
 
-The changed route costs 21 and follows `0 2 4 5 11`. These are live calculations.
-For new software, try `: gcd begin dup while swap over mod repeat drop ;` followed
-by `1071 462 gcd .`. See the [language guide](docs/language.md) for development,
-control flow, memory, source files, trace output, diagnostics and fixed limits.
+The source-write count is the exact number of following raw ASCII bytes. The
+example is 30 bytes; changing whitespace changes that count. The browser frames
+those bytes for you and waits for BF to acknowledge storage before requesting
+compilation. Read [the module language and lifetime contract](docs/modules.md).
 
-## Keep your machine
+The original source `: delivery-rule.thread + ;` scores a road as duration plus
+toll. The new source multiplies the toll by eight. From an identical initial image,
+van 1's first route changes from `12 8 9 10 11 15`, score **15**, to a route across
+the free northern bridge, score **22**. The paid bridge is **open in both runs**.
+These are native outputs, not host-selected alternatives. You can write another
+rule, change destinations or supply other road inputs without regenerating the
+kernel.
 
 ```sh
-node runtime/cli.mjs --demo --save machine.8i
-node runtime/cli.mjs --load machine.8i --eval 'network 0 11 route'
+node runtime/cli.mjs --city --eval 'city-step city-step' --save my-city.8i
+node runtime/cli.mjs --load my-city.8i --eval 'city-step city-state'
+node tools/replay.mjs dist/reproduction/build-002.json
+node tools/serve.mjs 4178
 ```
 
-`tx-commit` commits the guest database view. **Saving/exporting an image makes
-that state durable outside the current process.** Images preserve compiled code,
-data and the continuation, including an open transaction. The CLI uses atomic
-file replacement; the browser offers explicit file export/import. There is no
-server database or automatic cloud saving. Read the [persistence contract](docs/persistence.md).
+The last command serves the actual browser application on loopback. The replay
+bundle contains kernel/runtime identities, one complete initial image, branch
+inputs and byte-exact expected native output. Expected output is never imported
+by the live application. Browser-created bundles use the same offline verifier.
 
-## Where the boundary really is
+## Where the computation happens
 
-| Inside Brainfuck | Host boundary and reason |
+| Inside BF | Host responsibility and reason |
 | --- | --- |
-| Tokenization, number parsing, word lookup, compilation and branch patching | Python assembles the initial kernel into deterministic Brainfuck; it never compiles guest source or computes guest results |
-| Calls, recursion, arithmetic, bounds checks and memory operations | A generic executor implements only the eight commands; JS and Wasm backends use the same semantics |
-| Hash indexing, transactions, scans and integrity checks | OS/browser facilities save and load opaque machine images; Brainfuck has no file API |
-| Graph loading, shortest paths and path reconstruction | A browser renders the roads and path emitted by the guest and sends input bytes |
+| Thread tokenization, compilation, control flow, arithmetic and bounds checks | Python emits the initial eight-command kernel; it never consumes guest source or calculates guest answers |
+| Named source, typed module compilation, version bindings, publication, pins and reclaiming | Generic JS/Wasm implements only BF instructions, raw I/O and execution budgets |
+| Road data, costs, routing, logical ticks, vehicle progress and deliveries | Canvas draws emitted coordinates, roads, paths and states using graphical assets |
+| All source, compiled code, data and references in the tape | OS/browser facilities store an opaque tape and continuation image |
 
-The initial kernel is **generated Brainfuck**, not hand-written millions of
-commands. Its substantial Python specification and bootstrap assembler remain
-host-side build tools. That is an explicit dependency, not self-hosting. Most
-generated bytes are tape movement; source size is not a measure of sophistication.
+The native sources are [workspace.thread](programs/workspace.thread),
+[city.thread](programs/city.thread), [city-state.thread](programs/city-state.thread)
+and [the raw boot manifest](programs/city-system.json). The generic executor has
+no Thread opcode interface, module allocator, route solver or city simulation.
+Rendering can interpolate between **already observed** vehicle positions; it never
+invents the next road, delivery or logical state. Graphical assets have an explicit
+[provenance record](records/002/asset-provenance.json).
 
-The [architecture](docs/architecture.md), [permanent protocol](PROTOCOL.md) and
-[component boundary manifest](boundary.json) make these distinctions inspectable.
-Tests run real guest input through the real kernel. A separate literal C reference
-executes the full kernel and checks its output and raw instruction count.
-Finite tests and a sole-agent self-audit are evidence, not an independent proof.
+This is **generated Brainfuck**, not self-hosting. BF does not draw 3D graphics.
+The Python bootstrap is substantial and auditable. We account for responsibilities,
+not source-size ratios or GitHub language percentages. See the
+[architecture](docs/architecture.md), [component manifest](boundary.json) and
+[boundary self-review](docs/boundary-audit.md).
 
-## Reproduce and verify
+## Evidence and practical limits
+
+The original Build 001 regression tests are retained. New tests execute actual
+source storage, arbitrary typed programs, failed compilation, exact old calls,
+pins, rollback, six-arena exhaustion, deletion, repeated failure, fresh-image
+continuation and deterministic delivery. A 450-cycle workload compiles **9,000
+cumulative module code words** at fixed capacity while retaining only **40 live
+words** at its end, then deletes the module and observes zero live versions.
+
+A test-only Bellman-Ford oracle checks new module/input route workloads. A literal
+C BF interpreter checks bounded new native operations from an opaque raw
+continuation, including the entire final tape; the original full-kernel zero-tape
+reference remains. The [verification record](records/002/) states each check's
+scope. All review is by the same Astra author, not an independent audit.
+
+- Unsigned 16-bit wrapping values; fixed tape of **169,164 cells / 338,328 bytes**.
+- Four named modules; six arenas, each with 256 source bytes and 128 code words.
+- Pure module evaluation: 64 values, 16 frames, 1,024 bytecode instructions.
+- Version serial 65,535 is an explicit exhaustion boundary; handles never wrap.
+- One rollback root per module; live dependencies/pins can prevent reclamation.
+- The resident Thread dictionary/code remain monotonic. Reclaiming is for module
+  arenas, not arbitrary general Thread definitions or a general-purpose heap.
+- Single execution stream, no traffic/collision model, process isolation or backend.
+- The general Thread terminal is trusted developer access, not a security sandbox.
+- Native steps may take seconds. Frame interpolation is not BF simulation speed.
+- Explicit export makes work durable; reload without export loses local state.
+
+[Measured samples and environment](records/002/metrics.json) distinguish boot,
+source storage, compilation, route workloads, movement, reclamation, BF tape and
+host process memory. Those observations are not performance guarantees.
+
+## Verify and follow the history
 
 Full verification needs Node.js 22+, Python 3.14, a C compiler and the pinned
-development dependency used to assemble the generic Wasm executor:
+build-only WABT dependency. Literal execution and reclamation tests are deliberately
+substantial and take minutes:
 
 ```sh
 npm ci --ignore-scripts
 npm run verify
 ```
 
-`npm run generate` regenerates the kernel, compressed transport artifact, executor
-and raw Site source assets. Verification checks deterministic output and runs
-language, memory, transaction, image, capacity, randomized application and
-independent-executor tests. GitHub Actions runs the same verification on Linux.
+`npm run generate` deterministically rebuilds the kernel, generic Wasm executor,
+raw source copies, history metadata and preserved Build 001 browser archive.
+`node tools/build-reproduction.mjs` recomputes the native reproduction evidence;
+`node tools/measure-city.mjs` reruns the three-sample measurement protocol.
 
-Canonical native guest source lives in [programs](programs/), the kernel
-specification in [kernel/build.py](kernel/build.py), its raw executable in
-[artifacts/kernel.bf](artifacts/kernel.bf), and the generic command semantics in
-[dist/engine.mjs](dist/engine.mjs). The compressed public artifact decompresses to
-the exact same bytes and hash. No network, model API or API key is needed to run.
+The old kernel and browser runtime are preserved under `dist/build-001/`, with only
+HTML navigation relocated and marked historical. Build 002 explicitly rejects
+Build 001 images; there is no untested migration. Check out tag `build-001` to run
+its original CLI, artifacts and 50-test release. The current default CLI and
+`--demo` also retain the original general Thread/store/Dispatch source profile.
 
-## Measured, including the ugly parts
+[Build 001 record](records/001/) · [Build 002 journal](records/002/journal.md) ·
+[Persistence](docs/persistence.md) · [Publication workflow](docs/publication.md)
 
-On an Apple M5 with Node 22, three fresh-machine runs measured median native
-library boot at **1.04 s**, route calculation at **1.03 s**, and a changed road plus
-rerouting at **1.06 s**. The ordinary full-store workload took **1.21 s**.
-A separate hostile workload forced all 128 large keys into one initial bucket:
-**35–37 s**, including integrity checks and several bounded runs with an image
-checkpoint. It completed correctly; the default work limits were not increased.
-
-The final kernel contains **44,899,152 eight-command instructions** (44,899,153
-source bytes) and transports as a **123,878-byte gzip**. The tape is **240,012
-bytes**. Wasm linear memory, including generic operation data, is **3,014,656
-bytes**; the measured Node process RSS was about **277 MB**, not a peak or a guest
-memory figure. The bootstrap specification and assembler are about 40 KB of
-Python source, and native application/library source is about 6.5 KB.
-
-Reported instruction counts count original Brainfuck command executions; a generic
-optimized block can represent many of them. They are not CPU instruction counts
-or a claim that the processor literally executes trillions of instructions each
-second. [Raw samples and methodology](records/001/metrics.json) keep host loading,
-guest work, source categories and memory scopes distinct. Wall times vary by host.
-
-## Experiment records
-
-[Build #001's record](records/001/) preserves the challenge, decisions, tests,
-measurements, failures and repairs. [Its journal](records/001/journal.md) includes
-the original performance dead ends: full dictionary scans, linear code access
-and expensive record insertion. Git history contains the actual stages, not one
-reconstructed final commit.
-
-Metrics distinguish guest tape, executor memory, generated commands, authored
-kernel specification, host runtime and build tooling. We track responsibilities
-explicitly; we do not invent a percentage of a computer that is "really Brainfuck".
-
-Future builds must move the frontier materially. There is no promised sequence
-of an OS, database, browser or cloud. For now: **eight instructions → this → ???**
-
-[Publication identity and hosting boundary](records/001/publication.json) ·
-[How the Site is published](docs/publication.md).
-
-MIT licensed. [Why and what was referenced](docs/references.md).
+MIT licensed. Eight instructions → this → ???

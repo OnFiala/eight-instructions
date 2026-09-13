@@ -1,0 +1,52 @@
+TAP version 13
+# Subtest: new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+ok 1 - new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+  ---
+  duration_ms: 50639.860125
+  type: 'test'
+  ...
+# Subtest: native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+ok 2 - native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+  ---
+  duration_ms: 21525.664125
+  type: 'test'
+  ...
+# Subtest: a refused road pair at fixed capacity preserves all road data
+ok 3 - a refused road pair at fixed capacity preserves all road data
+  ---
+  duration_ms: 1088.879334
+  type: 'test'
+  ...
+# Subtest: safe-point, serial and pin refusals preserve the active version and bounded references
+ok 4 - safe-point, serial and pin refusals preserve the active version and bounded references
+  ---
+  duration_ms: 4889.46675
+  type: 'test'
+  ...
+# Subtest: presentation retains serial identity after arena reuse; source framing cannot forge active state
+ok 5 - presentation retains serial identity after arena reuse; source framing cannot forge active state
+  ---
+  duration_ms: 4120.85825
+  type: 'test'
+  ...
+# Subtest: removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+ok 6 - removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+  ---
+  duration_ms: 5972.472833
+  type: 'test'
+  ...
+# Subtest: road edits invalidate the native cost cache even when the 16-bit generation wraps
+ok 7 - road edits invalidate the native cost cache even when the 16-bit generation wraps
+  ---
+  duration_ms: 1501.20525
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 90146.79525

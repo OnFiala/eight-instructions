@@ -1,196 +1,261 @@
 import {Client} from './client.mjs';
+import {readPresentation,diagnostics} from './presentation.mjs';
+import {CityScene,placeName} from './city-scene.mjs';
+import {sha256} from './images.mjs';
 import {registerExperimentTools} from './webmcp.mjs';
 
-const $=id=>document.getElementById(id);
-let client,initialized=false,busy=false,lastState={state:'off'},transcript='',lastGraph;
-const number=new Intl.NumberFormat('en-US');
-const short=new Intl.NumberFormat('en-US',{notation:'compact',maximumFractionDigits:2});
-const tabs=[...document.querySelectorAll('[role="tab"]')];
-function selectTab(tab) {
-  tabs.forEach(t=>{const selected=t===tab;t.setAttribute('aria-selected',String(selected));t.tabIndex=selected?0:-1;$(t.getAttribute('aria-controls')).hidden=!selected;});
-}
-tabs.forEach((tab,index)=>{
-  tab.addEventListener('click',()=>selectTab(tab));
-  tab.addEventListener('keydown',event=>{
-    let next;if(event.key==='ArrowRight')next=(index+1)%tabs.length;if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;
-    if(event.key==='Home')next=0;if(event.key==='End')next=tabs.length-1;
-    if(next!==undefined){event.preventDefault();selectTab(tabs[next]);tabs[next].focus();}
-  });
-});
-function log(text) {
-  transcript=(transcript+text).slice(-64000);
-  $('terminal-output').textContent=transcript||'No output yet.';
-  $('terminal-output').scrollTop=$('terminal-output').scrollHeight;
-}
-function error(message) {$('run-error').textContent=message;$('run-error').hidden=false;}
+// UI orchestrates raw input and opaque snapshots. All source, lifetime, routing
+// and simulation semantics remain in the guest. No application solver lives here.
+const $=id=>document.getElementById(id),encoder=new TextEncoder();
+let client,city,workspace,busy=false,running=false,started=false,selectedModule=0,selectedVehicle=0;
+let initialImage,comparisonInitialImage,transcriptComplete=true,transcript=[],rawLog='',recentEvents=[],activeSourceSerial,comparisonBundle,identityPromise;
+let lastResult,progressAt=0,costEvidence='';
+const decisions=new Map();
+const scene=new CityScene($('city'),{onSelect:selectVehicle});
+scene.ready.catch(error=>notice(`Graphics could not load: ${error.message}`,'error'));
+const requestState='city-state workspace-state';
+const sourceWrite=(id,source)=>{const length=encoder.encode(source).length;if(length>65535)throw new Error('Source exceeds the 65,535-byte raw input frame. A stored module accepts at most 256 ASCII bytes.');return `${length} ${id} source-write ${source}`;};
+const option=(value,text)=>{const o=document.createElement('option');o.value=value;o.textContent=text;return o;};
+for(let id=0;id<16;id++)$('job-target').append(option(id,`${id} · ${placeName(id)}`));
+$('job-target').value=15;
+function notice(text,kind=''){$('notice').textContent=text;$('notice').className=`notice ${kind}`;}
 function controls() {
-  const waiting=lastState.state==='input';
-  document.querySelectorAll('.needs-machine').forEach(button=>button.disabled=busy||!initialized||!waiting);
-  for(const id of ['load-sample','run-source'])$(id).disabled=busy||(initialized&&!waiting);
-  for(const id of ['inspect','export-image','step'])$(id).disabled=busy||!initialized;
-  $('pause').disabled=!busy;$('resume').hidden=lastState.state!=='budget';$('resume').disabled=busy;
-  $('import-image').disabled=busy;$('restart').disabled=busy;$('terminal-input').disabled=busy||(initialized&&!waiting);
-  $('terminal-form').querySelector('button').disabled=busy||(initialized&&!waiting);
-  $('network-canvas').classList.toggle('computing',busy);
+  document.querySelectorAll('.machine-control').forEach(button=>button.disabled=!started||busy);
+  $('module-select').disabled=!started||busy;
+  $('import').disabled=busy;
+  $('run').disabled=!started||busy&&!running;
+  $('run').setAttribute('aria-label',running?'Pause city after this logical step':'Run city');
+  $('run').querySelector('img').src=`./assets/icons/${running?'pause':'play'}.svg`;
+  const module=workspace?.modules.find(m=>m.id===selectedModule);
+  $('rollback').disabled=!started||busy||!module?.rollbackSerial;
+  $('delete-module').disabled=!started||busy||!module?.alive;
+  $('pause-native').disabled=!busy;
+  $('resume-native').hidden=lastResult?.state!=='budget';
 }
-function showState(state) {
-  lastState=state;
-  if(state.state==='off'){
-    $('execution-time').textContent='Elapsed in this browser: —';
-    $('execution-steps').textContent='Brainfuck instructions: —';
-    $('execution-memory').textContent='Tape: —';$('debug-state').textContent='Start or import a machine to inspect it.';
+function progress(value) {
+  if(performance.now()-progressAt<500)return;progressAt=performance.now();
+  $('machine-status').textContent=`BF computing · ${(value.elapsedMs/1000).toFixed(1)} s`;
+  if(!started)$('boot-detail').textContent=`Compiling Thread inside BF · ${(value.elapsedMs/1000).toFixed(1)} s elapsed. No city state has been inferred.`;
+}
+function log(input,result) {
+  if(initialImage){transcript.push({input,output:result.output??''});if(result.state!=='input')transcriptComplete=false;}
+  rawLog+=`\n> ${input}\n${result.output??''}`;
+  $('raw-output').textContent=rawLog.slice(-140000);
+}
+async function raw(source,{record=true,target=client}={}) {
+  const result=await target.request('execute',{source});
+  if(record)log(source,result);
+  return {...result,rawInput:source};
+}
+function consume(result,{animate=true}={}) {
+  lastResult=result;
+  if(result.output) {
+    const view=readPresentation(result.output);
+    if(view.city){city=view.city;scene.setState(city,{animate});$('city-caption').hidden=false;}
+    if(view.workspace)workspace=view.workspace;
+    if(view.events.some(e=>e.kind==='COSTS'))costEvidence=view.events.filter(e=>['POLICY','COSTS','EDGE-COST'].includes(e.kind)).map(e=>e.raw).join('\n');
+    for(const event of view.events) {
+      recentEvents.push(event);if(event.kind==='ROUTE')decisions.set(event.values[2],{event,costEvidence,input:result.rawInput??'(raw native input)',roads:structuredClone(view.city?.roads??city?.roads??[])});
+      if(event.kind==='WS-ERROR')notice(`Module unchanged. ${diagnostics[event.values[0]]??`Native error ${event.values[0]}.`}`,'error');
+      if(event.kind==='RULE-REJECTED')notice('The rule returned an unusable road score. New departures are paused; existing trips can finish. Edit the rule or undo the change.','error');
+    }
+    recentEvents=recentEvents.slice(-150);
   }
-  const labels={off:'Machine is off',input:'Ready for input',budget:'Execution paused',halted:'Machine halted',error:'Executor error'};
-  $('machine-status').textContent=labels[state.state]??state.state;
-  if(state.elapsedMs!==undefined)$('execution-time').textContent=`Elapsed in this browser: ${(state.elapsedMs/1000).toFixed(2)} s`;
-  if(state.executedSteps!==undefined)$('execution-steps').textContent=`Brainfuck instructions: ${number.format(state.executedSteps)}`;
-  if(state.tapeBytes)$('execution-memory').textContent=`Tape: ${number.format(state.tapeBytes)} bytes`;
-  controls();
+  if(result.elapsedMs!==undefined)$('execution-time').textContent=`Last native operation: ${(result.elapsedMs/1000).toFixed(2)} s`;
+  if(result.cells!==undefined)$('tape-size').textContent=`BF tape: ${result.cells.toLocaleString()} cells`;
+  if(result.state==='budget') {running=false;notice('Native execution paused before completion. Resume it before sending another command. The displayed city is the last complete BF frame.','error');}
+  render();
 }
-function getClient() {
-  return client??=new Client({onProgress:progress=>{
-    $('machine-status').textContent=`Running · ${short.format(progress.executedSteps)} Brainfuck instructions`;
-    $('execution-time').textContent=`Elapsed in this browser: ${(progress.elapsedMs/1000).toFixed(2)} s`;
-  }});
+function selectVehicle(id){selectedVehicle=Number(id);$('vehicle').value=selectedVehicle;scene.select(selectedVehicle);renderCity();}
+function renderCity() {
+  if(!city)return;
+  $('tick').textContent=`STEP ${city.tick}`;
+  $('machine-status').textContent=busy?'BF computing…':city.idle?'All current jobs complete':running?'Running · native steps':'Paused · ready for a step';
+  const car=city.vehicles.find(v=>v.id===selectedVehicle);
+  $('trip').textContent=car?`${placeName(car.node)} → ${placeName(car.goal)}`:'';
+  const bridge=city.roads.find(r=>r.from===9&&r.to===10);
+  $('bridge').textContent=bridge?.open?'Close Harbor Bridge':'Open Harbor Bridge';
+  $('city').setAttribute('aria-label',`Delivery city at logical step ${city.tick}. ${city.vehicles.map(v=>`Van ${v.id+1}: last reached node ${v.node}, destination ${v.goal}, ${v.delivered} deliveries, ${v.edge===null?'stationary':`road ${v.edge}, progress ${v.progress} of ${v.duration}`}`).join('. ')}. Selected van ${selectedVehicle+1}. Its last emitted path: ${car?.path.join(', ')||'none'}.`);
 }
-async function boot() {
-  if(initialized)return;
-  $('machine-status').textContent='Loading kernel, then compiling native libraries…';
-  const result=await getClient().request('boot');initialized=true;log(result.output);showState(result);
-  if(/!E\d+ /.test(result.output??''))throw new Error('Native library compilation failed. Restart the machine; raw output contains the diagnostic.');
-  if(result.state!=='input')throw new Error('Boot paused. Resume it before sending a program.');
-}
-function afterRun(result) {
-  log(result.output??'');showState(result);
-  if(/!E\d+ /.test(result.output??''))error('The native program reported an error. The raw output includes its diagnostic code; check the language guide or undo an open transaction.');
-  if(result.reason==='limit')error('The work limit was reached. This is a paused computation, not a completed result. Resume or export its image.');
-  if(result.reason==='output-limit')error('Output reached 1 MiB and execution paused. The console keeps the last 64,000 characters. Resume to continue.');
-  if(result.state==='input'&&result.output)renderDispatch(result.output);
-}
-export async function runSource(source) {
-  if(typeof source!=='string'||!source.length||source.length>100000)throw new Error('Enter source text of at most 100,000 characters.');
-  if(busy)throw new Error('The machine is already running.');
-  busy=true;controls();$('run-error').hidden=true;
-  try {
-    await boot();
-    if(lastState.state!=='input')throw new Error('Resume the paused machine or restart before sending another program.');
-    log(`\nthread> ${source}\n`);
-    const result=await getClient().request('execute',{source});afterRun(result);
-    return {state:result.state,output:result.output.slice(-32000),outputTruncated:result.output.length>32000,
-      elapsedMs:result.elapsedMs,brainfuckInstructions:result.executedSteps,tapeBytes:result.tapeBytes};
-  } catch(e){error(e.message);throw e;} finally {busy=false;controls();}
-}
-function bind(id,fn) {$(id).addEventListener('click',()=>Promise.resolve().then(fn).catch(e=>error(e.message)));}
-function integer(id,min,max) {
-  const value=Number($(id).value);
-  if($(id).value.trim()===''||!Number.isSafeInteger(value)||value<min||value>max)throw new Error(`${$(id).closest('label')?.textContent.trim()??id} must be ${min}–${max}.`);
-  return value;
-}
-function query() {
-  return `network ${integer('route-from',0,31)} ${integer('route-to',0,31)} route ." RECORDS" cr db-list ." END" cr`;
-}
-bind('load-sample',()=>runSource('sample '+query()));
-$('route-form').addEventListener('submit',event=>{event.preventDefault();Promise.resolve().then(()=>runSource(query())).catch(e=>error(e.message));});
-bind('stage-road',()=>runSource(`${integer('road-cost',1,1000)} ${integer('road-from',0,31)} ${integer('road-to',0,31)} stage-road ${query()}`));
-bind('remove-road',()=>runSource(`${integer('road-from',0,31)} ${integer('road-to',0,31)} stage-close ${query()}`));
-bind('commit',()=>runSource('tx-commit '+query()));bind('undo',()=>runSource('tx-abort '+query()));
-bind('run-source',()=>runSource($('source-editor').value));
-$('terminal-form').addEventListener('submit',event=>{event.preventDefault();const source=$('terminal-input').value;if(!source.trim())return;$('terminal-input').value='';runSource(source).catch(e=>error(e.message));});
-bind('pause',()=>getClient().request('pause'));
-bind('resume',async()=>{
-  if(busy)return;busy=true;controls();$('run-error').hidden=true;
-  try{afterRun(await getClient().request('resume'));}finally{busy=false;controls();}
-});
-function download(contents,type,name) {
-  const url=URL.createObjectURL(new Blob([contents],{type})),a=document.createElement('a');
-  a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-}
-bind('download-source',()=>download($('source-editor').value,'text/plain','program.thread'));
-bind('export-image',async()=>{const result=await getClient().request('save');download(result.image,'application/json','eight-instructions.8i');log('\n[host] Machine image exported. Keep the downloaded file to resume later.\n');});
-$('import-image').addEventListener('change',async()=>{
-  const file=$('import-image').files[0];if(!file)return;
-  busy=true;controls();$('run-error').hidden=true;
-  try{
-    if(file.size>8e6)throw new Error('Image exceeds the 8 MB limit');
-    const result=await getClient().request('load',{image:await file.text()});initialized=true;lastGraph=undefined;
-    clearGraph();log('\n[host] Validated machine image imported. Its own programs and data are now active.\n');showState(result);
-  }catch(e){error(e.message);}finally{busy=false;$('import-image').value='';controls();}
-});
-bind('restart',async()=>{
-  if(client)client.close();client=undefined;initialized=false;transcript='';lastGraph=undefined;
-  clearGraph();showState({state:'off'});log('[host] Previous local machine discarded. Start a new one or import an image.\n');$('run-error').hidden=true;
-});
-export async function readState() {
-  if(!client||!initialized)return {state:'off'};
-  return client.request('inspect',{start:integer('tape-start',0,119990),count:16});
-}
-bind('inspect',async()=>{$('debug-state').textContent=JSON.stringify(await readState(),null,2);});
-bind('step',async()=>{
-  busy=true;controls();
-  try{afterRun(await getClient().request('step',{blocks:1000}));$('debug-state').textContent=JSON.stringify(await readState(),null,2);}finally{busy=false;controls();}
-});
-function svg(tag,attributes={},text) {
-  const element=document.createElementNS('http://www.w3.org/2000/svg',tag);
-  for(const [name,value]of Object.entries(attributes))element.setAttribute(name,String(value));
-  if(text!==undefined)element.textContent=text;return element;
-}
-function clearGraph() {
-  $('network-svg').replaceChildren();$('network-empty').hidden=false;$('route-cost').textContent='—';
-  $('route-path').textContent='Run a Dispatch command to show its current result.';$('network-count').textContent='Awaiting native output';
-  $('transaction-state').textContent='Changes stay staged until you commit or undo them.';
-}
-function renderDispatch(output) {
-  const records=/RECORDS\n([\s\S]*?)END\n/.exec(output),nodes=/NODES (\d+)/.exec(output);
-  if(!records||!nodes)return;
-  const n=Number(nodes[1]);if(n<1||n>32)return;
-  const edges=records[1].trim().split('\n').filter(Boolean).map(line=>line.trim().split(/\s+/).map(Number));
-  if(edges.some(row=>row.length!==2||!row.every(Number.isSafeInteger)||row[0]<0||row[0]>=1024||row[1]<1||row[1]>1000))return;
-  const cost=/COST (\d+)/.exec(output),path=/PATH ([\d ]+)\n/.exec(output);
-  const route=path?path[1].trim().split(/\s+/).map(Number):[];
-  if(route.some(id=>id<0||id>=n))return;
-  const staged=/STAGED (\d+)/.exec(output)?.[1]==='1';
-  lastGraph={n,edges,route};
-  $('route-cost').textContent=cost?cost[1]:output.includes('UNREACHABLE')?'∞':'—';
-  $('route-path').textContent=route.length?route.join(' → '):'No route connects these nodes.';
-  $('transaction-state').textContent=staged?'Staged view · Commit keeps these changes. Undo restores the previous roads.':'Committed view · Export an image to preserve it outside this browser.';
-  $('network-count').textContent=`${n} nodes / ${edges.length} roads`;
-  $('network-empty').hidden=true;drawGraph(lastGraph);
-}
-function drawGraph({n,edges,route}) {
-  // Geometry and highlighting only. Costs, edges and selected path came from BF.
-  const root=$('network-svg');root.replaceChildren();
-  root.setAttribute('aria-label',`Native network output: ${n} nodes, ${edges.length} directed roads. Path ${route.join(', ')||'unreachable'}.`);
-  const defs=svg('defs');
-  for(const [id,color]of [['arrow','#68716f'],['path-arrow','#d4fa3e']]){
-    const marker=svg('marker',{id,viewBox:'0 0 8 8',refX:7,refY:4,markerWidth:6,markerHeight:6,orient:'auto'});marker.append(svg('path',{d:'M0 0 L8 4 L0 8 Z',fill:color}));defs.append(marker);
-  }
-  root.append(defs);
-  const positions=Array.from({length:n},(_,i)=>({x:320+250*Math.cos(Math.PI+i*2*Math.PI/n),y:220+166*Math.sin(Math.PI+i*2*Math.PI/n)}));
-  const selected=new Set(route.slice(1).map((to,i)=>route[i]*32+to));
-  const ordered=[...edges].sort((a,b)=>Number(selected.has(a[0]))-Number(selected.has(b[0])));
-  for(const [key,weight]of ordered){
-    const from=Math.floor(key/32),to=key%32;if(from>=n||to>=n||from===to)continue;
-    const a=positions[from],b=positions[to],dx=b.x-a.x,dy=b.y-a.y,length=Math.hypot(dx,dy),ux=dx/length,uy=dy/length;
-    const start={x:a.x+ux*19,y:a.y+uy*19},end={x:b.x-ux*23,y:b.y-uy*23};
-    const bend=12+(key%3)*8,cx=(a.x+b.x)/2-uy*bend,cy=(a.y+b.y)/2+ux*bend,hot=selected.has(key);
-    root.append(svg('path',{d:`M${start.x},${start.y} Q${cx},${cy} ${end.x},${end.y}`,fill:'none',stroke:hot?'#d4fa3e':'#515a58','stroke-width':hot?3:1.4,'marker-end':`url(#${hot?'path-arrow':'arrow'})`}));
-    const x=(start.x+2*cx+end.x)/4,y=(start.y+2*cy+end.y)/4;
-    root.append(svg('rect',{x:x-13,y:y-10,width:26,height:19,rx:4,fill:'#171c1b'}));
-    root.append(svg('text',{x,y:y+4,'text-anchor':'middle',fill:hot?'#d4fa3e':'#a8b0ac','font-size':12,'font-family':'monospace'},weight));
-  }
-  positions.forEach((p,i)=>{const hot=route.includes(i);root.append(svg('circle',{cx:p.x,cy:p.y,r:17,fill:hot?'#d4fa3e':'#222926',stroke:hot?'#d4fa3e':'#6a756f','stroke-width':1.5}));root.append(svg('text',{x:p.x,y:p.y+5,'text-anchor':'middle',fill:hot?'#111315':'#eef2ec','font-size':14,'font-family':'monospace','font-weight':700},i));});
-}
-fetch(new URL('./programs/dispatch.thread',import.meta.url)).then(r=>{if(!r.ok)throw new Error();return r.text();}).then(source=>$('dispatch-source').textContent=source).catch(()=>$('dispatch-source').textContent='Source is available in the public repository.');
-fetch(new URL('./history.json',import.meta.url)).then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{
-  const builds=data.builds??[],current=builds.at(-1);if(!current)return;
-  $('proof-tests').textContent=String(current.testsPassed??'—');$('proof-status').textContent=current.status;
-  if(current.testedCommit){$('tested-commit-link').href=`https://github.com/OnFiala/eight-instructions/commit/${current.testedCommit}`;$('tested-commit-link').textContent=`Tested commit ${current.testedCommit.slice(0,7)} ↗`;}
-  $('history-list').replaceChildren(...builds.map(build=>{
-    const item=document.createElement('li'),id=document.createElement('span'),body=document.createElement('div'),title=document.createElement('h3'),description=document.createElement('p'),link=document.createElement('a');
-    id.className='history-id';id.textContent='#'+String(build.number).padStart(3,'0');title.textContent=build.title;description.textContent=build.summary;
-    link.href=`https://github.com/OnFiala/eight-instructions/tree/main/records/${String(build.number).padStart(3,'0')}`;link.textContent=`${build.status} · Open the record ↗`;link.className='text-link';
-    body.append(title,description,link);item.append(id,body);return item;
+function renderWorkspace() {
+  if(!workspace)return;
+  const current=$('module-select').value;
+  $('module-select').replaceChildren(...workspace.modules.filter(m=>m.alive).map(m=>option(m.id,m.name)));
+  if(workspace.modules.some(m=>m.alive&&m.id===selectedModule))$('module-select').value=selectedModule;
+  else if($('module-select').options.length){selectedModule=Number($('module-select').value);activeSourceSerial=undefined;}
+  else $('module-select').append(option(0,'No named modules'));
+  const module=workspace.modules.find(m=>m.id===selectedModule),active=workspace.versions.find(v=>v.serial===module?.activeSerial&&v.state===2);
+  $('active-version').textContent=active?`v${active.serial}`:'—';
+  $('current-explanation').textContent=module?.alive?`Pure road scoring: ${module.inputs} inputs → ${module.outputs} output${module.outputs===1?'':'s'}.`:'No usable module. Create or restore one to compile source.';
+  const mem=workspace.memory;$('memory-count').textContent=`${mem.liveVersions} / ${mem.versionCapacity} arenas`;
+  const roots=new Set(workspace.modules.filter(m=>m.alive).map(m=>m.activeSerial));
+  $('memory-bar').replaceChildren(...workspace.versions.map(v=>{
+    const d=document.createElement('div'),status=v.state===0?'free':roots.has(v.serial)?'active':'retained';
+    d.className=`memory-arena ${status} ${v.uses>1?'reused':''}`;
+    d.title=`Arena ${v.slot}: ${status}; ${v.codeWords} code words; ${v.sourceBytes} source bytes; ${v.pins} pins; ${v.refs} references; ${v.uses} successful allocations.`;
+    d.setAttribute('aria-label',d.title);return d;
   }));
-}).catch(()=>{$('proof-status').textContent='Evidence unavailable';});
-const cleanup=registerExperimentTools({context:document.modelContext,runSource,readState,reportError:e=>console.warn('Optional WebMCP registration failed:',e.message)});
-window.addEventListener('pagehide',cleanup,{once:true});
+  $('memory-bar').setAttribute('aria-label',`${mem.liveVersions} of ${mem.versionCapacity} native module arenas occupied; ${mem.codeWords} of ${mem.codeCapacity} code words; ${mem.sourceBytes} of ${mem.sourceCapacity} version source bytes.`);
+  $('memory-reuse').textContent=workspace.versions.some(v=>v.uses>1)?'↻ Arena reused':'Reuse on release';
+  $('memory-detail').textContent=`Code ${mem.codeWords}/${mem.codeCapacity} words · version source ${mem.sourceBytes}/${mem.sourceCapacity} B · drafts ${mem.draftBytes}/${mem.draftCapacity} B`;
+}
+function renderTrace() {
+  const stored=recentEvents.findLast(e=>e.kind==='SOURCE-STORED'),published=recentEvents.findLast(e=>e.kind==='MODULE-PUBLISHED'||e.kind==='ROLLBACK'),route=decisions.get(selectedVehicle)?.event;
+  const saved=city?.vehicles.find(v=>v.id===selectedVehicle);
+  const cards=[stored?['Source stored',`Module ${stored.values[0]} · ${stored.values[1]} bytes`]:['Source in BF','A named, persistent draft'],published?[published.kind==='ROLLBACK'?'Version restored':'Module published',published.raw]:['Ready to compile','The active version remains usable'],route?['Route computed',`v${route.values[5]} · score ${route.values[6]} · step ${route.values[1]}`]:saved?.decision?['Saved decision',`v${saved.decisionVersion} · score ${saved.score} · prior input history not in image`]:['Awaiting a departure','A real route appears after a step']];
+  $('trace').replaceChildren(...cards.map(([title,detail],i)=>{const li=document.createElement('li'),number=document.createElement('b'),div=document.createElement('div'),strong=document.createElement('strong'),span=document.createElement('span');number.textContent=i+1;strong.textContent=title;span.textContent=detail;div.append(strong,span);li.append(number,div);return li;}));
+  $('trace-mode').textContent='Actual BF output';
+}
+function render(){renderCity();renderWorkspace();renderTrace();controls();}
+async function readActiveSource() {
+  const module=workspace?.modules.find(m=>m.id===selectedModule),v=workspace?.versions.find(v=>v.serial===module?.activeSerial&&v.state===2);
+  if(!v){$('current-source').textContent='No compiled version';activeSourceSerial=undefined;return;}
+  if(activeSourceSerial===v.serial)return;
+  const result=await raw(`${v.serial} version-source`),view=readPresentation(result.output);
+  $('current-source').textContent=view.versionSource??'Native source unavailable';activeSourceSerial=v.serial;
+}
+async function refresh({animate=false}={}){consume(await raw(requestState),{animate});await readActiveSource();}
+async function action(work,{stop=true}={}) {
+  if(busy)return;if(stop)running=false;busy=true;controls();
+  try{return await work();}catch(error){running=false;notice(error.message,'error');throw error;}
+  finally{busy=false;render();}
+}
+const bind=(id,handler)=>$(id).addEventListener('click',()=>handler().catch(error=>{notice(error.message,'error');console.error(error);}));
+async function boot() {
+  if(busy)return;busy=true;started=false;running=false;initialImage=undefined;comparisonInitialImage=undefined;transcriptComplete=true;transcript=[];comparisonBundle=undefined;recentEvents=[];decisions.clear();activeSourceSerial=undefined;controls();
+  $('boot-status').hidden=false;$('retry').hidden=true;
+  client?.close();client=new Client({onProgress:progress});
+  try {
+    const result=await client.request('boot',{system:'city-system.json'});log('(boot city-system.json)',result);consume(result);
+    if(result.state!=='input'||/!E\d+|WS-ERROR/.test(result.output))throw new Error('The native boot did not complete. Inspect the raw output.');
+    await refresh();initialImage=(await client.request('save')).image;comparisonInitialImage=initialImage;
+    const first=await raw(`city-step ${requestState}`);consume(first,{animate:false});
+    started=true;$('boot-status').hidden=true;
+    const map=await fetch('./kernel-map.json').then(r=>r.json());$('tape-size').textContent=`BF tape: ${map.dialect.tape_cells.toLocaleString()} × 16 bits`;
+    notice('The first routes were computed inside BF. Edit the source and apply it; the city and moving vans keep their state.');
+  }catch(error){$('boot-detail').textContent=error.message;$('retry').hidden=false;notice(error.message,'error');}
+  finally{busy=false;render();}
+}
+async function advance(){consume(await raw(`city-step ${requestState}`));await readActiveSource();}
+async function runLoop() {
+  if(running){running=false;controls();return;}
+  running=true;controls();
+  while(running&&started) {
+    try{await action(advance,{stop:false});}catch{break;}
+    if(city?.idle||lastResult?.state==='budget'){running=false;break;}
+    // Wall-clock spacing only. One raw city-step requests one actual guest step.
+    await new Promise(resolve=>setTimeout(resolve,680));
+  }
+  controls();renderCity();
+}
+bind('run',runLoop);bind('step-city',()=>action(advance));bind('retry',boot);
+$('vehicle').addEventListener('change',event=>selectVehicle(event.target.value));
+$('module-select').addEventListener('change',()=>action(async()=>{selectedModule=Number($('module-select').value);activeSourceSerial=undefined;await readActiveSource();const r=await raw(`${selectedModule} source-read`);$('module-editor').value=readPresentation(r.output).sources.get(selectedModule)??'';}).catch(()=>{}));
+bind('apply',()=>action(async()=>{
+  const saved=await raw(sourceWrite(selectedModule,$('module-editor').value));consume(saved);
+  if(readPresentation(saved.output).events.some(e=>e.kind==='WS-ERROR')){await refresh();return;}
+  if(!readPresentation(saved.output).events.some(e=>e.kind==='SOURCE-STORED'))throw new Error('BF did not acknowledge stored source; compilation was not requested.');
+  const result=await raw(`${selectedModule} module-compile`);consume(result);await refresh();
+  if(!/WS-ERROR/.test(result.output))notice('New version published. Current road segments retain their original version; new route decisions use the active program.','success');
+}));
+bind('rollback',()=>action(async()=>{const r=await raw(`${selectedModule} module-rollback`);consume(r);await refresh();if(!/WS-ERROR/.test(r.output))notice('Previous version restored. City data and in-flight road segments are preserved.','success');}));
+bind('read-draft',()=>action(async()=>{const r=await raw(`${selectedModule} source-read`);consume(r);const text=readPresentation(r.output).sources.get(selectedModule);if(text!==undefined)$('module-editor').value=text;notice('The editor now contains the draft read from BF memory.');}));
+bind('delete-module',()=>action(async()=>{const r=await raw(`${selectedModule} module-delete`);consume(r);await refresh();if(!/WS-ERROR/.test(r.output))notice('Module removed and unreferenced version arenas released by BF.','success');}));
+$('create-form').addEventListener('submit',event=>{event.preventDefault();action(async()=>{
+  const name=$('new-module').value,r=await raw(`2 1 ${encoder.encode(name).length} module-create ${name}`);consume(r);
+  const created=readPresentation(r.output).events.find(e=>e.kind==='MODULE-CREATED');if(created){selectedModule=created.values[0];activeSourceSerial=undefined;$('module-editor').value=`: ${name}\n  +\n;`;}
+  await refresh();
+}).catch(()=>{});});
+bind('bridge',()=>action(async()=>{const open=city.roads.find(r=>r.from===9&&r.to===10)?.open;consume(await raw(`${open?0:1} bridge-state ${requestState}`));notice('Road data changed in BF. This is a separate experiment from changing code.');}));
+$('job-form').addEventListener('submit',event=>{event.preventDefault();action(async()=>{consume(await raw(`${Number($('job-target').value)} ${selectedVehicle} city-job ${requestState}`));notice('Destination assigned inside BF. Advance the city to compute the next route.');}).catch(()=>{});});
+function download(name,text,type='application/json') {
+  const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+bind('export',()=>action(async()=>{const result=await client.request('save');download(`eight-instructions-002-step-${city?.tick??'paused'}.8i`,result.image);notice('Whole workspace exported. Import the file into a new instance to continue.','success');}));
+$('import').addEventListener('change',async event=>{
+  const file=event.target.files[0];event.target.value='';if(!file)return;
+  await action(async()=>{
+    if(file.size>8e6)throw new Error('Machine image is too large.');
+    const image=await file.text(),candidate=new Client({onProgress:progress});let accepted=false;
+    try {
+      const state=await candidate.request('load',{image});
+      if(state.state!=='input')throw new Error('This city interface imports images waiting at a complete input boundary. Use the CLI to resume a machine paused inside a native operation.');
+      const r=await raw(requestState,{target:candidate,record:false}),view=readPresentation(r.output);
+      if(!view.city||!view.workspace)throw new Error('The image is compatible with the kernel but does not contain a readable Build 002 city workspace.');
+      const selected=view.workspace.modules.find(m=>m.alive&&m.id===selectedModule)??view.workspace.modules.find(m=>m.alive);
+      const active=view.workspace.versions.find(v=>v.state===2&&v.serial===selected?.activeSerial);
+      const reads=[];let currentText='No compiled version',draftText='';
+      if(active) {
+        const source=await raw(`${active.serial} version-source`,{target:candidate,record:false});
+        currentText=readPresentation(source.output).versionSource;
+        if(source.state!=='input'||currentText===undefined)throw new Error('The active version source could not be read from the image.');
+        reads.push(source);
+      }
+      if(selected) {
+        const draft=await raw(`${selected.id} source-read`,{target:candidate,record:false});
+        draftText=readPresentation(draft.output).sources.get(selected.id);
+        if(draft.state!=='input'||draftText===undefined)throw new Error('The stored draft could not be read from the image.');
+        reads.push(draft);
+      }
+      // Accept only after the candidate produced city, lifetime and source data.
+      client.close();client=candidate;accepted=true;selectedModule=selected?.id??0;
+      initialImage=image;transcriptComplete=true;transcript=[];rawLog='';recentEvents=[];decisions.clear();activeSourceSerial=active?.serial;comparisonBundle=undefined;
+      log(requestState,r);for(const read of reads)log(read.rawInput,read);
+      consume(r,{animate:false});$('current-source').textContent=currentText;$('module-editor').value=draftText;
+      started=true;$('boot-status').hidden=true;notice('Workspace restored in a fresh machine. Sources, versions and in-flight state came from the image.','success');
+    }catch(error){throw new Error(accepted?`Workspace loaded, but the interface could not finish refreshing. ${error.message}`:`Import refused. The current workspace is unchanged. ${error.message}`);}
+    finally{if(!accepted)candidate.close();}
+  }).catch(()=>{});
+});
+function inspectDecision() {
+  const record=decisions.get(selectedVehicle),event=record?.event,car=city?.vehicles.find(v=>v.id===selectedVehicle);
+  if(event) {
+    const v=event.values;$('decision-summary').textContent=`Van ${v[2]+1} chose a route from ${placeName(v[3])} to ${placeName(v[4])} at logical step ${v[1]}. Version ${v[5]} produced score ${v[6]}.`;
+    const values=[['Input',`source ${v[3]}, destination ${v[4]}, open directed road data at that step`],['Exact version',String(v[5])],['Decision sequence',String(v[0])],['Native path',v.slice(8).join(' → ')],['Current car pin',String(car?.version??0)]];
+    $('decision-facts').replaceChildren(...values.flatMap(([title,value])=>{const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=title;dd.textContent=value;return [dt,dd];}));
+    $('decision-output').textContent='> '+record.input+'\n'+record.roads.map(r=>`ROAD ${r.id} ${r.from} ${r.to} ${r.duration} ${r.toll} ${r.open?1:0}`).join('\n')+'\n'+record.costEvidence+'\n'+event.raw;
+  } else {$('decision-summary').textContent=`No route event has been emitted for this van in the current session. BF saved decision ${car?.decision??0}, version ${car?.decisionVersion??0}, score ${car?.score??0}, path ${car?.path.join(' → ')||'none'}. Its original input history is available only if included in a reproduction transcript.`;$('decision-facts').replaceChildren();$('decision-output').textContent=rawLog.slice(-8000);}
+  $('decision-dialog').showModal();
+}
+bind('inspect-decision',async()=>inspectDecision());bind('close-decision',async()=>$('decision-dialog').close());
+$('decision-dialog').addEventListener('click',e=>{if(e.target===$('decision-dialog')){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
+async function identities() {
+  return identityPromise??=Promise.all(['kernel.bf.gz','kernel-map.json','executor.wasm','engine.mjs','wasm-engine.mjs','worker.mjs','images.mjs','programs/core.thread','programs/city-state.thread','programs/workspace.thread','programs/city.thread','programs/city-boot.thread','programs/city-system.json'].map(async path=>{
+    const r=await fetch(new URL(path,import.meta.url));if(!r.ok)throw new Error(`Cannot identify ${path}`);return [path,await sha256(new Uint8Array(await r.arrayBuffer()))];
+  })).then(async pairs=>({kernelSha256:(await fetch('./kernel-map.json').then(r=>r.json())).sha256,artifactSha256:Object.fromEntries(pairs)}));
+}
+async function bundle(runs,sourceVariants=[],image=initialImage) {
+  return {schema:'8i-replay-1',build:'002',...await identities(),initialImage:image,runs,sourceVariants:await Promise.all(sourceVariants.map(async source=>({source,sha256:await sha256(source)}))),instructions:'Checkout the corresponding Build 002 source (see artifactSha256). Run: node tools/replay.mjs bundle.json. The replay loads the opaque initial image in a fresh BF executor and compares every native output byte. Browser and CLI must use identical kernel and runtime artifacts. No API key or hosted service is used.'};
+}
+bind('compare',()=>action(async()=>{
+  if(!comparisonInitialImage)throw new Error('Complete a fresh city start before comparing. This experiment uses the original open-bridge image, independently of any imported workspace.');
+  const source=$('module-editor').value,common=Array(3).fill(`city-step ${requestState}`),runs=[],views=[];
+  $('compare-status').textContent='Computing two fresh BF machines from the same initial image…';$('comparison').hidden=true;
+  for(const [label,setup] of [['Original',[]],['Editor source',[sourceWrite(0,source),'0 module-compile']]]) {
+    const worker=new Client({onProgress:value=>$('compare-status').textContent=`Fresh computation: ${label} · ${(value.elapsedMs/1000).toFixed(1)} s in this operation`});
+    try {
+      await worker.request('load',{image:comparisonInitialImage});const inputs=[...setup,...common],outputs=[],events=[];
+      for(const input of inputs){const result=await raw(input,{target:worker,record:false});if(result.state!=='input')throw new Error(`${label} did not finish its native computation.`);outputs.push(result.output);const parsed=readPresentation(result.output);events.push(...parsed.events);if(parsed.events.some(e=>e.kind==='WS-ERROR'||e.kind==='RULE-REJECTED'))throw new Error(`${label} was refused by BF. Repair the source before comparing.`);}
+      runs.push({label,inputs,expectedOutputs:outputs});views.push({label,event:events.find(e=>e.kind==='ROUTE'&&e.values[2]===0),city:readPresentation(outputs.at(-1)).city});
+    }finally{worker.close();}
+  }
+  comparisonBundle=await bundle(runs,[source],comparisonInitialImage);
+  $('comparison').replaceChildren(...views.map(({label,event,city})=>{const card=document.createElement('div');card.className='compare-card';const title=document.createElement('strong'),p=document.createElement('p'),code=document.createElement('code');title.textContent=`${label} · fresh BF calculation`;p.textContent=event?`Van 1, v${event.values[5]}, score ${event.values[6]}. Same three logical steps. Harbor Bridge ${city.roads.find(r=>r.from===9&&r.to===10)?.open?'open':'closed'}.`:'No route was emitted.';code.textContent=event?event.values.slice(8).join(' → '):'';card.append(title,p,code);return card;}));
+  $('comparison').hidden=false;$('compare-status').textContent='Completed. These are recorded results of the two fresh calculations above; subsequent city edits do not alter this comparison.';
+}));
+bind('reproduction',()=>action(async()=>{
+  if(!comparisonBundle&&!transcriptComplete)throw new Error('This session contains a paused native continuation. Export and import a completed workspace to start a new replay transcript, or compute the two-version comparison.');
+  const result=comparisonBundle??await bundle([{label:'Current session',inputs:transcript.map(r=>r.input),expectedOutputs:transcript.map(r=>r.output)}]);
+  download('eight-instructions-002-reproduction.json',JSON.stringify(result,null,2)+'\n');notice('Reproduction bundle exported with its initial image, input transcript, expected BF output and artifact identities.','success');
+}));
+bind('inspect-machine',()=>action(async()=>{$('machine-inspection').textContent=JSON.stringify(await client.request('inspect'),null,2)+'\nBF tape is fixed; these counters are not total host process memory.';}));
+$('terminal-form').addEventListener('submit',event=>{event.preventDefault();const source=$('terminal-input').value;action(async()=>{consume(await raw(source));if(lastResult.state==='input')await refresh();}).catch(()=>{});});
+bind('pause-native',async()=>{running=false;await client.request('pause');notice('Pause requested. Resume the exact native continuation before entering more source.');});
+bind('resume-native',()=>action(async()=>{consume(await client.request('resume'));if(lastResult.state==='input')await refresh();}));
+const unregister=registerExperimentTools({context:navigator.modelContext,runSource:async source=>{
+  if(!started)throw new Error('Start the visible city machine first.');
+  if(busy)throw new Error('The visible machine is busy.');
+  return action(async()=>{const r=await raw(source);consume(r);if(r.state==='input')await refresh();return r;});
+},readState:()=>client?.request('inspect')??{state:'off'},reportError:error=>console.info('Optional WebMCP unavailable:',error.message)});
+window.addEventListener('pagehide',()=>{running=false;client?.close();scene.close();unregister();},{once:true});
+boot();

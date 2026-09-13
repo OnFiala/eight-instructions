@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "kernelSha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98",
+  "runs": [
+    {
+      "label": "Original",
+      "inputs": 3,
+      "outputSha256": "5b10f5eeabe4b144abff1b3965d226a159c171a15ae222d79a9495496f4bd2cb",
+      "elapsedMs": 9753.549,
+      "state": "input",
+      "steps": 46738199949613
+    },
+    {
+      "label": "Toll-averse source",
+      "inputs": 4,
+      "outputSha256": "f2cb653d0c4c15424ca0a48a96ba0a3533286fa8d5195c8b3bea71c28afc52ba",
+      "elapsedMs": 7553.114374999999,
+      "state": "input",
+      "steps": 50472916898727
+    }
+  ]
+}

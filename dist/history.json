@@ -8,6 +8,14 @@
       "summary": "A compiler, transactional data store and dynamic route planner built on the Brainfuck (BF) programming language.",
       "testsPassed": 50,
       "testedCommit": "36b047b2951c24993d0e4995e65339ecb9db2b5d"
+    },
+    {
+      "number": 2,
+      "title": "A city you can reprogram",
+      "status": "PARTIAL",
+      "summary": "Named source, typed modules, safe version replacement and reclaiming inside the Brainfuck programming language, demonstrated by a native delivery city. Local functional and visual checks passed; publication verification is pending.",
+      "testsPassed": 74,
+      "testedCommit": null
     }
   ]
 }

@@ -1,0 +1,346 @@
+{
+  "measuredAt": "2026-09-13T18:03:43.592Z",
+  "method": "Three sequential fresh native boots in one Node process. Each named sample uses the generic Wasm BF executor, 2e14 BF-instruction / 3e10 block limit, raw source input and drained native output. Native boot includes Thread compilation; artifact load is separate and performed once. No other project test or browser command intentionally runs during these samples. This is an observed local process benchmark, not a browser/frame-rate or server claim.",
+  "environment": {
+    "host": "MacBook-Pro",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "architecture": "arm64",
+    "cpu": "Apple M5",
+    "logicalCpus": 10,
+    "ramBytes": 34359738368,
+    "node": "v22.22.0"
+  },
+  "kernelSha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98",
+  "guestTapeCells": 169164,
+  "guestTapeBytes": 338328,
+  "hostPeakRssKiB": 312176,
+  "artifactLoadMs": 387.468625,
+  "artifactSha256": {
+    "dist/kernel.bf.gz": "7f54be6b8c188928f77ddcab182c3dc575259a10e33634ea1f08bc88b02372b1",
+    "dist/executor.wasm": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+    "dist/engine.mjs": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c",
+    "dist/wasm-engine.mjs": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8",
+    "programs/core.thread": "1e2d70f7ef755e62da0259b5dd5a4bb1996353678bb2ed57a6823fa0be11f41f",
+    "programs/city-state.thread": "3cdc5c5ff4337df8ce613f0cb6e59a7664223599d2bca0253eb1c4f311dea488",
+    "programs/workspace.thread": "f5e453dc2023602bca1b1cbb41d0888df3bdab9ff700bb70c9f9b9e2c5b4b474",
+    "programs/city.thread": "3562be0c72409a95f0d66b2b7883ff6c2b6b1cb58148e4860eff092e53e84525",
+    "programs/city-boot.thread": "67ca447796b8d12ba083aa6fb3a5398a1d3e58aa506b8cd86c8a3e70b11032f6"
+  },
+  "summary": {
+    "nativeBoot": {
+      "samples": 3,
+      "minMs": 7876.062166999996,
+      "medianMs": 7884.983374999996,
+      "maxMs": 12506.818416
+    },
+    "storeSource": {
+      "samples": 3,
+      "minMs": 108.65358300000662,
+      "medianMs": 110.11316700000316,
+      "maxMs": 110.99041699999907
+    },
+    "compileAndPublish": {
+      "samples": 3,
+      "minMs": 585.1631249999919,
+      "medianMs": 590.2361250000031,
+      "maxMs": 597.210833000001
+    },
+    "coldLogicalStepThreeRoutes": {
+      "samples": 3,
+      "minMs": 4312.854500000001,
+      "medianMs": 4395.036332999996,
+      "maxMs": 4454.67275
+    },
+    "inFlightLogicalStep": {
+      "samples": 3,
+      "minMs": 31.157874999997148,
+      "medianMs": 31.262457999997423,
+      "maxMs": 32.262666999999055
+    },
+    "arrivalLogicalStep": {
+      "samples": 3,
+      "minMs": 162.25470799999312,
+      "medianMs": 162.8045409999977,
+      "maxMs": 168.875291999997
+    },
+    "warmSingleRoute": {
+      "samples": 3,
+      "minMs": 1125.5530839999992,
+      "medianMs": 1154.7561249999999,
+      "maxMs": 1482.2419999999984
+    },
+    "twentyReclaimCycles": {
+      "samples": 3,
+      "minMs": 24799.342625000005,
+      "medianMs": 25081.394541,
+      "maxMs": 25358.686999999998
+    },
+    "nativeEndState": {
+      "samples": 3,
+      "minMs": 716.5583749999932,
+      "medianMs": 721.1905420000112,
+      "maxMs": 736.4030839999978
+    }
+  },
+  "samples": [
+    {
+      "run": 1,
+      "measurements": [
+        {
+          "label": "nativeBoot",
+          "elapsedMs": 12506.818416,
+          "bfInstructions": 10385300774921,
+          "executorBlocks": 2054638011,
+          "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 26 \nMODULE-PUBLISHED 0 1 2 1 0 \nCITY-READY 16 46 3\n",
+          "hostRssBytes": 319668224,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "storeSource",
+          "elapsedMs": 110.99041699999907,
+          "bfInstructions": 471732360858,
+          "executorBlocks": 28614567,
+          "output": "SOURCE-STORED 0 30 \n",
+          "hostRssBytes": 319668224,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "compileAndPublish",
+          "elapsedMs": 597.210833000001,
+          "bfInstructions": 2112860423445,
+          "executorBlocks": 153647494,
+          "output": "MODULE-PUBLISHED 0 2 5 2 0 \n",
+          "hostRssBytes": 319668224,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "coldLogicalStepThreeRoutes",
+          "elapsedMs": 4454.67275,
+          "bfInstructions": 30331861091846,
+          "executorBlocks": 1138165579,
+          "output": "POLICY 0 2 2 0 2 \nPOLICY 0 2 6 0 6 \nPOLICY 0 2 2 5 42 \nPOLICY 0 2 12 0 12 \nCOSTS 0 2 1 46 \nEDGE-COST 0 2 0 2 \nEDGE-COST 1 2 0 2 \nEDGE-COST 2 2 0 2 \nEDGE-COST 3 2 0 2 \nEDGE-COST 4 2 0 2 \nEDGE-COST 5 2 0 2 \nEDGE-COST 6 2 0 2 \nEDGE-COST 7 2 0 2 \nEDGE-COST 8 2 0 2 \nEDGE-COST 9 2 0 2 \nEDGE-COST 10 2 0 2 \nEDGE-COST 11 2 0 2 \nEDGE-COST 12 2 0 2 \nEDGE-COST 13 2 0 2 \nEDGE-COST 14 2 0 2 \nEDGE-COST 15 2 0 2 \nEDGE-COST 16 2 0 2 \nEDGE-COST 17 2 0 2 \nEDGE-COST 18 2 0 2 \nEDGE-COST 19 2 0 2 \nEDGE-COST 20 2 0 2 \nEDGE-COST 21 2 0 2 \nEDGE-COST 22 2 0 2 \nEDGE-COST 23 2 0 2 \nEDGE-COST 24 2 0 2 \nEDGE-COST 25 2 0 2 \nEDGE-COST 26 2 0 2 \nEDGE-COST 27 2 0 2 \nEDGE-COST 28 2 0 2 \nEDGE-COST 29 2 0 2 \nEDGE-COST 30 2 0 2 \nEDGE-COST 31 2 0 2 \nEDGE-COST 32 2 0 2 \nEDGE-COST 33 2 0 2 \nEDGE-COST 34 2 0 2 \nEDGE-COST 35 2 0 2 \nEDGE-COST 36 2 0 2 \nEDGE-COST 37 2 0 2 \nEDGE-COST 38 2 0 2 \nEDGE-COST 39 2 0 2 \nEDGE-COST 40 6 0 6 \nEDGE-COST 41 6 0 6 \nEDGE-COST 42 2 5 42 \nEDGE-COST 43 2 5 42 \nEDGE-COST 44 12 0 12 \nEDGE-COST 45 12 0 12 \nROUTE 1 1 0 12 15 2 22 10 12 8 4 0 1 2 3 7 11 15 \nDEPART 1 0 33 2 \nROUTE 2 1 1 8 3 2 14 6 8 4 0 1 2 3 \nDEPART 1 1 25 2 \nROUTE 3 1 2 0 11 2 14 6 0 1 2 3 7 11 \nDEPART 1 2 0 2 \nTICK 1 \n",
+          "hostRssBytes": 266387456,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "inFlightLogicalStep",
+          "elapsedMs": 32.262666999999055,
+          "bfInstructions": 88525883244,
+          "executorBlocks": 8201163,
+          "output": "TICK 2 \n",
+          "hostRssBytes": 266616832,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "arrivalLogicalStep",
+          "elapsedMs": 168.875291999997,
+          "bfInstructions": 578785924523,
+          "executorBlocks": 42871807,
+          "output": "ARRIVE 3 0 8 \nARRIVE 3 1 4 \nARRIVE 3 2 1 \nTICK 3 \n",
+          "hostRssBytes": 266633216,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "warmSingleRoute",
+          "elapsedMs": 1482.2419999999984,
+          "bfInstructions": 8734487698696,
+          "executorBlocks": 293572086,
+          "output": "ROUTE 4 3 0 8 15 2 20 9 8 4 0 1 2 3 7 11 15 \n",
+          "hostRssBytes": 266698752,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "twentyReclaimCycles",
+          "elapsedMs": 25358.686999999998,
+          "bfInstructions": 92400602729602,
+          "executorBlocks": 6461638651,
+          "output": "SOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 3 20 3 0 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 4 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 5 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 6 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 7 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 8 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 9 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 10 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 11 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 12 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 13 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 14 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 15 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 16 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 17 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 18 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 19 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 20 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 21 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 22 20 1 1 \n",
+          "hostRssBytes": 266895360,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "nativeEndState",
+          "elapsedMs": 736.4030839999978,
+          "bfInstructions": 2158865805063,
+          "executorBlocks": 185943243,
+          "output": "CITY 3 1 4 0 22 \nNODES 16 \nNODE 0 0 0 \nNODE 1 20 0 \nNODE 2 40 0 \nNODE 3 60 0 \nNODE 4 0 20 \nNODE 5 20 20 \nNODE 6 40 20 \nNODE 7 60 20 \nNODE 8 0 40 \nNODE 9 20 40 \nNODE 10 40 40 \nNODE 11 60 40 \nNODE 12 0 60 \nNODE 13 20 60 \nNODE 14 40 60 \nNODE 15 60 60 \nROAD 0 0 1 2 0 1 \nROAD 1 1 0 2 0 1 \nROAD 2 2 3 2 0 1 \nROAD 3 3 2 2 0 1 \nROAD 4 4 5 2 0 1 \nROAD 5 5 4 2 0 1 \nROAD 6 6 7 2 0 1 \nROAD 7 7 6 2 0 1 \nROAD 8 8 9 2 0 1 \nROAD 9 9 8 2 0 1 \nROAD 10 10 11 2 0 1 \nROAD 11 11 10 2 0 1 \nROAD 12 12 13 2 0 1 \nROAD 13 13 12 2 0 1 \nROAD 14 14 15 2 0 1 \nROAD 15 15 14 2 0 1 \nROAD 16 0 4 2 0 1 \nROAD 17 4 0 2 0 1 \nROAD 18 1 5 2 0 1 \nROAD 19 5 1 2 0 1 \nROAD 20 2 6 2 0 1 \nROAD 21 6 2 2 0 1 \nROAD 22 3 7 2 0 1 \nROAD 23 7 3 2 0 1 \nROAD 24 4 8 2 0 1 \nROAD 25 8 4 2 0 1 \nROAD 26 5 9 2 0 1 \nROAD 27 9 5 2 0 1 \nROAD 28 6 10 2 0 1 \nROAD 29 10 6 2 0 1 \nROAD 30 7 11 2 0 1 \nROAD 31 11 7 2 0 1 \nROAD 32 8 12 2 0 1 \nROAD 33 12 8 2 0 1 \nROAD 34 9 13 2 0 1 \nROAD 35 13 9 2 0 1 \nROAD 36 10 14 2 0 1 \nROAD 37 14 10 2 0 1 \nROAD 38 11 15 2 0 1 \nROAD 39 15 11 2 0 1 \nROAD 40 1 2 6 0 1 \nROAD 41 2 1 6 0 1 \nROAD 42 9 10 2 5 1 \nROAD 43 10 9 2 5 1 \nROAD 44 5 6 12 0 1 \nROAD 45 6 5 12 0 1 \nVEHICLE 0 8 0 0 15 0 0 4 20 9 2 2 8 4 0 1 2 3 7 11 15 \nVEHICLE 1 4 0 0 3 0 0 2 14 6 2 2 8 4 0 1 2 3 \nVEHICLE 2 1 0 0 11 0 0 3 14 6 2 2 0 1 2 3 7 11 \nIDLE 0 \nWORKSPACE 4 6 256 128 22 \nMODULE 0 1 22 21 50 22 2 1 \nNAME 0 delivery-rule.thread\nMODULE 1 0 0 0 0 0 0 0 \nNAME 1 \nMODULE 2 0 0 0 0 0 0 0 \nNAME 2 \nMODULE 3 0 0 0 0 0 0 0 \nNAME 3 \nVERSION 1 2 0 22 1 0 20 50 8 \nVERSION 2 0 0 20 0 0 20 50 7 \nVERSION 3 2 0 21 1 0 20 50 7 \nVERSION 4 0 0 0 0 0 0 0 0 \nVERSION 5 0 0 0 0 0 0 0 0 \nVERSION 6 0 0 0 0 0 0 0 0 \nMEMORY 6 2 768 40 1536 100 1024 50 \n",
+          "hostRssBytes": 266977280,
+          "guestTapeBytes": 338328
+        }
+      ]
+    },
+    {
+      "run": 2,
+      "measurements": [
+        {
+          "label": "nativeBoot",
+          "elapsedMs": 7884.983374999996,
+          "bfInstructions": 10385300774921,
+          "executorBlocks": 2054638011,
+          "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 26 \nMODULE-PUBLISHED 0 1 2 1 0 \nCITY-READY 16 46 3\n",
+          "hostRssBytes": 292847616,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "storeSource",
+          "elapsedMs": 108.65358300000662,
+          "bfInstructions": 471732360858,
+          "executorBlocks": 28614567,
+          "output": "SOURCE-STORED 0 30 \n",
+          "hostRssBytes": 292847616,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "compileAndPublish",
+          "elapsedMs": 590.2361250000031,
+          "bfInstructions": 2112860423445,
+          "executorBlocks": 153647494,
+          "output": "MODULE-PUBLISHED 0 2 5 2 0 \n",
+          "hostRssBytes": 292847616,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "coldLogicalStepThreeRoutes",
+          "elapsedMs": 4395.036332999996,
+          "bfInstructions": 30331861091846,
+          "executorBlocks": 1138165579,
+          "output": "POLICY 0 2 2 0 2 \nPOLICY 0 2 6 0 6 \nPOLICY 0 2 2 5 42 \nPOLICY 0 2 12 0 12 \nCOSTS 0 2 1 46 \nEDGE-COST 0 2 0 2 \nEDGE-COST 1 2 0 2 \nEDGE-COST 2 2 0 2 \nEDGE-COST 3 2 0 2 \nEDGE-COST 4 2 0 2 \nEDGE-COST 5 2 0 2 \nEDGE-COST 6 2 0 2 \nEDGE-COST 7 2 0 2 \nEDGE-COST 8 2 0 2 \nEDGE-COST 9 2 0 2 \nEDGE-COST 10 2 0 2 \nEDGE-COST 11 2 0 2 \nEDGE-COST 12 2 0 2 \nEDGE-COST 13 2 0 2 \nEDGE-COST 14 2 0 2 \nEDGE-COST 15 2 0 2 \nEDGE-COST 16 2 0 2 \nEDGE-COST 17 2 0 2 \nEDGE-COST 18 2 0 2 \nEDGE-COST 19 2 0 2 \nEDGE-COST 20 2 0 2 \nEDGE-COST 21 2 0 2 \nEDGE-COST 22 2 0 2 \nEDGE-COST 23 2 0 2 \nEDGE-COST 24 2 0 2 \nEDGE-COST 25 2 0 2 \nEDGE-COST 26 2 0 2 \nEDGE-COST 27 2 0 2 \nEDGE-COST 28 2 0 2 \nEDGE-COST 29 2 0 2 \nEDGE-COST 30 2 0 2 \nEDGE-COST 31 2 0 2 \nEDGE-COST 32 2 0 2 \nEDGE-COST 33 2 0 2 \nEDGE-COST 34 2 0 2 \nEDGE-COST 35 2 0 2 \nEDGE-COST 36 2 0 2 \nEDGE-COST 37 2 0 2 \nEDGE-COST 38 2 0 2 \nEDGE-COST 39 2 0 2 \nEDGE-COST 40 6 0 6 \nEDGE-COST 41 6 0 6 \nEDGE-COST 42 2 5 42 \nEDGE-COST 43 2 5 42 \nEDGE-COST 44 12 0 12 \nEDGE-COST 45 12 0 12 \nROUTE 1 1 0 12 15 2 22 10 12 8 4 0 1 2 3 7 11 15 \nDEPART 1 0 33 2 \nROUTE 2 1 1 8 3 2 14 6 8 4 0 1 2 3 \nDEPART 1 1 25 2 \nROUTE 3 1 2 0 11 2 14 6 0 1 2 3 7 11 \nDEPART 1 2 0 2 \nTICK 1 \n",
+          "hostRssBytes": 292847616,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "inFlightLogicalStep",
+          "elapsedMs": 31.157874999997148,
+          "bfInstructions": 88525883244,
+          "executorBlocks": 8201163,
+          "output": "TICK 2 \n",
+          "hostRssBytes": 292847616,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "arrivalLogicalStep",
+          "elapsedMs": 162.8045409999977,
+          "bfInstructions": 578785924523,
+          "executorBlocks": 42871807,
+          "output": "ARRIVE 3 0 8 \nARRIVE 3 1 4 \nARRIVE 3 2 1 \nTICK 3 \n",
+          "hostRssBytes": 292847616,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "warmSingleRoute",
+          "elapsedMs": 1154.7561249999999,
+          "bfInstructions": 8734487698696,
+          "executorBlocks": 293572086,
+          "output": "ROUTE 4 3 0 8 15 2 20 9 8 4 0 1 2 3 7 11 15 \n",
+          "hostRssBytes": 292847616,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "twentyReclaimCycles",
+          "elapsedMs": 25081.394541,
+          "bfInstructions": 92400602729602,
+          "executorBlocks": 6461638651,
+          "output": "SOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 3 20 3 0 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 4 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 5 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 6 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 7 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 8 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 9 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 10 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 11 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 12 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 13 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 14 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 15 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 16 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 17 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 18 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 19 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 20 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 21 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 22 20 1 1 \n",
+          "hostRssBytes": 187383808,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "nativeEndState",
+          "elapsedMs": 716.5583749999932,
+          "bfInstructions": 2158865805063,
+          "executorBlocks": 185943243,
+          "output": "CITY 3 1 4 0 22 \nNODES 16 \nNODE 0 0 0 \nNODE 1 20 0 \nNODE 2 40 0 \nNODE 3 60 0 \nNODE 4 0 20 \nNODE 5 20 20 \nNODE 6 40 20 \nNODE 7 60 20 \nNODE 8 0 40 \nNODE 9 20 40 \nNODE 10 40 40 \nNODE 11 60 40 \nNODE 12 0 60 \nNODE 13 20 60 \nNODE 14 40 60 \nNODE 15 60 60 \nROAD 0 0 1 2 0 1 \nROAD 1 1 0 2 0 1 \nROAD 2 2 3 2 0 1 \nROAD 3 3 2 2 0 1 \nROAD 4 4 5 2 0 1 \nROAD 5 5 4 2 0 1 \nROAD 6 6 7 2 0 1 \nROAD 7 7 6 2 0 1 \nROAD 8 8 9 2 0 1 \nROAD 9 9 8 2 0 1 \nROAD 10 10 11 2 0 1 \nROAD 11 11 10 2 0 1 \nROAD 12 12 13 2 0 1 \nROAD 13 13 12 2 0 1 \nROAD 14 14 15 2 0 1 \nROAD 15 15 14 2 0 1 \nROAD 16 0 4 2 0 1 \nROAD 17 4 0 2 0 1 \nROAD 18 1 5 2 0 1 \nROAD 19 5 1 2 0 1 \nROAD 20 2 6 2 0 1 \nROAD 21 6 2 2 0 1 \nROAD 22 3 7 2 0 1 \nROAD 23 7 3 2 0 1 \nROAD 24 4 8 2 0 1 \nROAD 25 8 4 2 0 1 \nROAD 26 5 9 2 0 1 \nROAD 27 9 5 2 0 1 \nROAD 28 6 10 2 0 1 \nROAD 29 10 6 2 0 1 \nROAD 30 7 11 2 0 1 \nROAD 31 11 7 2 0 1 \nROAD 32 8 12 2 0 1 \nROAD 33 12 8 2 0 1 \nROAD 34 9 13 2 0 1 \nROAD 35 13 9 2 0 1 \nROAD 36 10 14 2 0 1 \nROAD 37 14 10 2 0 1 \nROAD 38 11 15 2 0 1 \nROAD 39 15 11 2 0 1 \nROAD 40 1 2 6 0 1 \nROAD 41 2 1 6 0 1 \nROAD 42 9 10 2 5 1 \nROAD 43 10 9 2 5 1 \nROAD 44 5 6 12 0 1 \nROAD 45 6 5 12 0 1 \nVEHICLE 0 8 0 0 15 0 0 4 20 9 2 2 8 4 0 1 2 3 7 11 15 \nVEHICLE 1 4 0 0 3 0 0 2 14 6 2 2 8 4 0 1 2 3 \nVEHICLE 2 1 0 0 11 0 0 3 14 6 2 2 0 1 2 3 7 11 \nIDLE 0 \nWORKSPACE 4 6 256 128 22 \nMODULE 0 1 22 21 50 22 2 1 \nNAME 0 delivery-rule.thread\nMODULE 1 0 0 0 0 0 0 0 \nNAME 1 \nMODULE 2 0 0 0 0 0 0 0 \nNAME 2 \nMODULE 3 0 0 0 0 0 0 0 \nNAME 3 \nVERSION 1 2 0 22 1 0 20 50 8 \nVERSION 2 0 0 20 0 0 20 50 7 \nVERSION 3 2 0 21 1 0 20 50 7 \nVERSION 4 0 0 0 0 0 0 0 0 \nVERSION 5 0 0 0 0 0 0 0 0 \nVERSION 6 0 0 0 0 0 0 0 0 \nMEMORY 6 2 768 40 1536 100 1024 50 \n",
+          "hostRssBytes": 187465728,
+          "guestTapeBytes": 338328
+        }
+      ]
+    },
+    {
+      "run": 3,
+      "measurements": [
+        {
+          "label": "nativeBoot",
+          "elapsedMs": 7876.062166999996,
+          "bfInstructions": 10385300774921,
+          "executorBlocks": 2054638011,
+          "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 26 \nMODULE-PUBLISHED 0 1 2 1 0 \nCITY-READY 16 46 3\n",
+          "hostRssBytes": 139722752,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "storeSource",
+          "elapsedMs": 110.11316700000316,
+          "bfInstructions": 471732360858,
+          "executorBlocks": 28614567,
+          "output": "SOURCE-STORED 0 30 \n",
+          "hostRssBytes": 139722752,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "compileAndPublish",
+          "elapsedMs": 585.1631249999919,
+          "bfInstructions": 2112860423445,
+          "executorBlocks": 153647494,
+          "output": "MODULE-PUBLISHED 0 2 5 2 0 \n",
+          "hostRssBytes": 139722752,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "coldLogicalStepThreeRoutes",
+          "elapsedMs": 4312.854500000001,
+          "bfInstructions": 30331861091846,
+          "executorBlocks": 1138165579,
+          "output": "POLICY 0 2 2 0 2 \nPOLICY 0 2 6 0 6 \nPOLICY 0 2 2 5 42 \nPOLICY 0 2 12 0 12 \nCOSTS 0 2 1 46 \nEDGE-COST 0 2 0 2 \nEDGE-COST 1 2 0 2 \nEDGE-COST 2 2 0 2 \nEDGE-COST 3 2 0 2 \nEDGE-COST 4 2 0 2 \nEDGE-COST 5 2 0 2 \nEDGE-COST 6 2 0 2 \nEDGE-COST 7 2 0 2 \nEDGE-COST 8 2 0 2 \nEDGE-COST 9 2 0 2 \nEDGE-COST 10 2 0 2 \nEDGE-COST 11 2 0 2 \nEDGE-COST 12 2 0 2 \nEDGE-COST 13 2 0 2 \nEDGE-COST 14 2 0 2 \nEDGE-COST 15 2 0 2 \nEDGE-COST 16 2 0 2 \nEDGE-COST 17 2 0 2 \nEDGE-COST 18 2 0 2 \nEDGE-COST 19 2 0 2 \nEDGE-COST 20 2 0 2 \nEDGE-COST 21 2 0 2 \nEDGE-COST 22 2 0 2 \nEDGE-COST 23 2 0 2 \nEDGE-COST 24 2 0 2 \nEDGE-COST 25 2 0 2 \nEDGE-COST 26 2 0 2 \nEDGE-COST 27 2 0 2 \nEDGE-COST 28 2 0 2 \nEDGE-COST 29 2 0 2 \nEDGE-COST 30 2 0 2 \nEDGE-COST 31 2 0 2 \nEDGE-COST 32 2 0 2 \nEDGE-COST 33 2 0 2 \nEDGE-COST 34 2 0 2 \nEDGE-COST 35 2 0 2 \nEDGE-COST 36 2 0 2 \nEDGE-COST 37 2 0 2 \nEDGE-COST 38 2 0 2 \nEDGE-COST 39 2 0 2 \nEDGE-COST 40 6 0 6 \nEDGE-COST 41 6 0 6 \nEDGE-COST 42 2 5 42 \nEDGE-COST 43 2 5 42 \nEDGE-COST 44 12 0 12 \nEDGE-COST 45 12 0 12 \nROUTE 1 1 0 12 15 2 22 10 12 8 4 0 1 2 3 7 11 15 \nDEPART 1 0 33 2 \nROUTE 2 1 1 8 3 2 14 6 8 4 0 1 2 3 \nDEPART 1 1 25 2 \nROUTE 3 1 2 0 11 2 14 6 0 1 2 3 7 11 \nDEPART 1 2 0 2 \nTICK 1 \n",
+          "hostRssBytes": 139755520,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "inFlightLogicalStep",
+          "elapsedMs": 31.262457999997423,
+          "bfInstructions": 88525883244,
+          "executorBlocks": 8201163,
+          "output": "TICK 2 \n",
+          "hostRssBytes": 139755520,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "arrivalLogicalStep",
+          "elapsedMs": 162.25470799999312,
+          "bfInstructions": 578785924523,
+          "executorBlocks": 42871807,
+          "output": "ARRIVE 3 0 8 \nARRIVE 3 1 4 \nARRIVE 3 2 1 \nTICK 3 \n",
+          "hostRssBytes": 139755520,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "warmSingleRoute",
+          "elapsedMs": 1125.5530839999992,
+          "bfInstructions": 8734487698696,
+          "executorBlocks": 293572086,
+          "output": "ROUTE 4 3 0 8 15 2 20 9 8 4 0 1 2 3 7 11 15 \n",
+          "hostRssBytes": 139755520,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "twentyReclaimCycles",
+          "elapsedMs": 24799.342625000005,
+          "bfInstructions": 92400602729602,
+          "executorBlocks": 6461638651,
+          "output": "SOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 3 20 3 0 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 4 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 5 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 6 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 7 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 8 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 9 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 10 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 11 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 12 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 13 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 14 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 15 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 16 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 17 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 18 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 19 20 1 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 20 20 2 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 21 20 3 1 \nSOURCE-STORED 0 50 \nMODULE-PUBLISHED 0 22 20 1 1 \n",
+          "hostRssBytes": 116621312,
+          "guestTapeBytes": 338328
+        },
+        {
+          "label": "nativeEndState",
+          "elapsedMs": 721.1905420000112,
+          "bfInstructions": 2158865805063,
+          "executorBlocks": 185943243,
+          "output": "CITY 3 1 4 0 22 \nNODES 16 \nNODE 0 0 0 \nNODE 1 20 0 \nNODE 2 40 0 \nNODE 3 60 0 \nNODE 4 0 20 \nNODE 5 20 20 \nNODE 6 40 20 \nNODE 7 60 20 \nNODE 8 0 40 \nNODE 9 20 40 \nNODE 10 40 40 \nNODE 11 60 40 \nNODE 12 0 60 \nNODE 13 20 60 \nNODE 14 40 60 \nNODE 15 60 60 \nROAD 0 0 1 2 0 1 \nROAD 1 1 0 2 0 1 \nROAD 2 2 3 2 0 1 \nROAD 3 3 2 2 0 1 \nROAD 4 4 5 2 0 1 \nROAD 5 5 4 2 0 1 \nROAD 6 6 7 2 0 1 \nROAD 7 7 6 2 0 1 \nROAD 8 8 9 2 0 1 \nROAD 9 9 8 2 0 1 \nROAD 10 10 11 2 0 1 \nROAD 11 11 10 2 0 1 \nROAD 12 12 13 2 0 1 \nROAD 13 13 12 2 0 1 \nROAD 14 14 15 2 0 1 \nROAD 15 15 14 2 0 1 \nROAD 16 0 4 2 0 1 \nROAD 17 4 0 2 0 1 \nROAD 18 1 5 2 0 1 \nROAD 19 5 1 2 0 1 \nROAD 20 2 6 2 0 1 \nROAD 21 6 2 2 0 1 \nROAD 22 3 7 2 0 1 \nROAD 23 7 3 2 0 1 \nROAD 24 4 8 2 0 1 \nROAD 25 8 4 2 0 1 \nROAD 26 5 9 2 0 1 \nROAD 27 9 5 2 0 1 \nROAD 28 6 10 2 0 1 \nROAD 29 10 6 2 0 1 \nROAD 30 7 11 2 0 1 \nROAD 31 11 7 2 0 1 \nROAD 32 8 12 2 0 1 \nROAD 33 12 8 2 0 1 \nROAD 34 9 13 2 0 1 \nROAD 35 13 9 2 0 1 \nROAD 36 10 14 2 0 1 \nROAD 37 14 10 2 0 1 \nROAD 38 11 15 2 0 1 \nROAD 39 15 11 2 0 1 \nROAD 40 1 2 6 0 1 \nROAD 41 2 1 6 0 1 \nROAD 42 9 10 2 5 1 \nROAD 43 10 9 2 5 1 \nROAD 44 5 6 12 0 1 \nROAD 45 6 5 12 0 1 \nVEHICLE 0 8 0 0 15 0 0 4 20 9 2 2 8 4 0 1 2 3 7 11 15 \nVEHICLE 1 4 0 0 3 0 0 2 14 6 2 2 8 4 0 1 2 3 \nVEHICLE 2 1 0 0 11 0 0 3 14 6 2 2 0 1 2 3 7 11 \nIDLE 0 \nWORKSPACE 4 6 256 128 22 \nMODULE 0 1 22 21 50 22 2 1 \nNAME 0 delivery-rule.thread\nMODULE 1 0 0 0 0 0 0 0 \nNAME 1 \nMODULE 2 0 0 0 0 0 0 0 \nNAME 2 \nMODULE 3 0 0 0 0 0 0 0 \nNAME 3 \nVERSION 1 2 0 22 1 0 20 50 8 \nVERSION 2 0 0 20 0 0 20 50 7 \nVERSION 3 2 0 21 1 0 20 50 7 \nVERSION 4 0 0 0 0 0 0 0 0 \nVERSION 5 0 0 0 0 0 0 0 0 \nVERSION 6 0 0 0 0 0 0 0 0 \nMEMORY 6 2 768 40 1536 100 1024 50 \n",
+          "hostRssBytes": 116621312,
+          "guestTapeBytes": 338328
+        }
+      ]
+    }
+  ]
+}

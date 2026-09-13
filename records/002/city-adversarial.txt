@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+ok 1 - new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+  ---
+  duration_ms: 51186.271
+  type: 'test'
+  ...
+# Subtest: native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+ok 2 - native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+  ---
+  duration_ms: 21870.827833
+  type: 'test'
+  ...
+# Subtest: a refused road pair at fixed capacity preserves all road data
+ok 3 - a refused road pair at fixed capacity preserves all road data
+  ---
+  duration_ms: 1082.128917
+  type: 'test'
+  ...
+# Subtest: safe-point, serial and pin refusals preserve the active version and bounded references
+ok 4 - safe-point, serial and pin refusals preserve the active version and bounded references
+  ---
+  duration_ms: 5041.598625
+  type: 'test'
+  ...
+# Subtest: presentation retains serial identity after arena reuse; source framing cannot forge active state
+ok 5 - presentation retains serial identity after arena reuse; source framing cannot forge active state
+  ---
+  duration_ms: 4267.176416
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 83863.327542

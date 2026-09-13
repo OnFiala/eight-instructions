@@ -18,6 +18,7 @@ WORDS = {
     'depth': 22, 'words': 23, 'here': 24, 'allot': 25, 'trace': 26,
     'bye': 27, 'assert': 28, '0=': 29, 'exit': 3, 'rot': 30,
     'fill': 31, 'pfill': 32, 'move': 33, 'pmove': 34,
+    'key': 35, 'w@': 36, 'w!': 37,
     ':': 100, ';': 101, 'if': 102, 'else': 103, 'then': 104,
     'begin': 105, 'until': 106, 'again': 107, 'recurse': 108,
     'variable': 109, 'constant': 110, 'while': 111, 'repeat': 112, '."': 113,
@@ -33,9 +34,9 @@ class Kernel:
         base = 512
         self.arrays = {}
         for name, size in [('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
-                           ('controls', 128), ('dictionary', 8192), ('code', 8192),
-                           ('heap', 4096), ('store', 4096)]:
-            arr = (PagedArray if name == 'code' else Array)(b, base, size, name)
+                           ('controls', 128), ('dictionary', 8192), ('code', 12288),
+                           ('heap', 4096), ('store', 4096), ('workspace', 4096)]:
+            arr = (PagedArray if name in ('code', 'workspace') else Array)(b, base, size, name)
             self.arrays[name] = arr
             setattr(self, name, arr)
             base += (size+1)*arr.stride
@@ -86,7 +87,7 @@ class Kernel:
             b.add(high)
 
     def emit_code(self, v):
-        self.check_limit(self.cp_hi, 128, 5)
+        self.check_limit(self.cp_hi, self.code.size // 64, 5)
         with self.b.zero(self.err):
             self.code.put(self.cp_hi, self.cp_lo, v)
             self.advance(self.cp_hi, self.cp_lo, self.cp)
@@ -722,6 +723,21 @@ class Kernel:
                                         b.add(self.x)
                                         b.add(self.y)
                                         b.add(self.z, -1)
+            with self.primitive(35, 0, 1):
+                self.read()
+                self.push(self.ch)
+            for op, write in [(36, False), (37, True)]:
+                with self.primitive(op, 2 if write else 1, 0 if write else 1):
+                    self.pop(self.x)
+                    if write: self.pop(self.a)
+                    self.check_limit(self.x, self.workspace.size)
+                    with b.zero(self.err):
+                        with b.temps(2) as (high, low):
+                            self.split(self.x, high, low)
+                            if write: self.workspace.put(high, low, self.a)
+                            else:
+                                self.workspace.get(high, low, self.a)
+                                self.push(self.a)
             b.clear(self.op)
             with b.when(self.ip):
                 self.fetch(self.op)

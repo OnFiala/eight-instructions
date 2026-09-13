@@ -56,3 +56,24 @@ version and its matching source/asset identity. To reproduce this build locally,
 check out `build-001`; older development kernels remain in Git. Machine images
 must use their own matching kernel hash. Do not silently load an old image into
 a changed kernel or rewrite public records to conceal a failed publication.
+
+## Build 002 release path
+
+Keep the existing project and public origin. Before any update, retain the saved,
+verified Build001 version identified by `records/001/publication.json`; redeploying
+that version is the rollback, without changing access or Git history. Preserve its
+source/runtime identity and explicit incompatibility with Build002 images.
+
+The Build002 canonical implementation is reviewed through a normal GitHub pull
+request and exact-head CI. The final implementation commit, any metadata-only
+closure, the immutable `build-002` tag, the canonical deployed-files commit and the
+Sites transport commit are recorded separately. A fresh transport projection must
+extend the existing Sites transport Git history, never force-push over it.
+
+After publication, compare anonymous HTTP responses for the kernel, generic
+runtime, Thread sources, renderer and graphics with the committed files. Record
+HTML-only provider insertions separately. Exercise fresh boot, a custom module,
+refused source and actual export/import in the public browser. A successful deploy
+response alone does not complete this gate. The publication receipt is appended
+only after the result is observed; if live verification fails, repair or redeploy
+the previous verified version before claiming success.

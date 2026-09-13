@@ -1,0 +1,174 @@
+{
+  "schemaVersion": 1,
+  "approvedReference": "reference/approved-living-dispatch.png",
+  "approvedReferenceSha256": "93acd21539f8a122bc4b66f8ce1f75048e2cf477ca14d068c00744a08c53e847",
+  "codingAuthor": "gpt-6-astra xhigh, no subagents",
+  "assetGenerator": "image_gen; exact underlying image model not exposed",
+  "artDirection": "Highly detailed realistic miniature architecture, cream stone/slate roofs, warm windows, mature olive trees, orthographic35-degree view; no app/UI/road imagery",
+  "assets": [
+    {
+      "name": "university-block",
+      "path": "dist/assets/city/university-block.png",
+      "generatorOutput": "exec-14596397-3fdb-457d-9825-4f627702454c.png",
+      "sha256": "96514dab082c8f1856f6bd02a2caa900acc8a9b9d0da98b563b2662d9c915de3",
+      "bytes": 2180268,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "market-block",
+      "path": "records/002/asset-iterations/market-block.png",
+      "generatorOutput": "exec-5f8928a2-d758-4522-9b70-ea18ba012493.png",
+      "sha256": "1f131c11d2bd6555a7e9bbfdb803e17e335920189f59d4253804e5610e20acda",
+      "bytes": 2407371,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited",
+      "finalUse": "Development iteration only; replaced by larger individual houses after reference QA."
+    },
+    {
+      "name": "depot-block",
+      "path": "dist/assets/city/depot-block.png",
+      "generatorOutput": "exec-a336f82e-d837-4ecf-ab3e-17b2fb62c5f5.png",
+      "sha256": "95c79cb021442ac148e3a9c72efe95b346f3ae953af1fc6d8f702a9561114399",
+      "bytes": 2209026,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "homes-block",
+      "path": "records/002/asset-iterations/homes-block.png",
+      "generatorOutput": "exec-1129d0ae-eb59-4b2c-a622-59df20ffd72c.png",
+      "sha256": "46893a78cf8027f187036e5dab1a6377e711cb719a59891b41d40ab85c122979",
+      "bytes": 2266408,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited",
+      "finalUse": "Development iteration only; replaced by larger individual houses after reference QA."
+    },
+    {
+      "name": "warehouse-block",
+      "path": "dist/assets/city/warehouse-block.png",
+      "generatorOutput": "exec-5ff90e71-3870-4281-97e6-14e5aa769c1c.png",
+      "sha256": "a10abbfbf1dbdb3fbb01f9db7948181a9d9eaa59f59f9c7763fdfa50015896e3",
+      "bytes": 2254230,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "oldtown-block",
+      "path": "dist/assets/city/oldtown-block.png",
+      "generatorOutput": "exec-6e8f5888-f566-495b-9645-64ce7940efa6.png",
+      "sha256": "7176e6cbb4ec5eb348c20ba83b9cb8f3c172fdba35905fbdb95fcd0f07dea197",
+      "bytes": 2382650,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited",
+      "finalUse": "Reused at larger scale as the southwest decorative historic quarter after side-by-side revealed missing foreground density. No roads or guest state."
+    },
+    {
+      "name": "van-front-right",
+      "path": "dist/assets/city/van-front-right.png",
+      "generatorOutput": "exec-0915a949-df81-4ab7-8785-d611ae5deb93.png",
+      "sha256": "05fce2dc5a5bd85b32c7af70aefba6e0a638f7d3c3dd469a54ab7441cfc821cc",
+      "bytes": 1533954,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Vehicle appearance only, positioned from observed BF state",
+      "matte": "Uniform magenta; presentation chroma compositing. Front-left view uses a horizontal presentation mirror of front-right."
+    },
+    {
+      "name": "van-rear-left",
+      "path": "dist/assets/city/van-rear-left.png",
+      "generatorOutput": "exec-3698f0c9-ba0f-4bbc-a9dd-be76816b43c3.png",
+      "sha256": "af7101ed1283a6414cb2ced6c40087b3d1108fe4b706662dc6daed8b397e9afb",
+      "bytes": 1229758,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Vehicle appearance only, positioned from observed BF state",
+      "matte": "Uniform magenta; presentation chroma compositing. Front-left view uses a horizontal presentation mirror of front-right."
+    },
+    {
+      "name": "van-rear-right",
+      "path": "dist/assets/city/van-rear-right.png",
+      "generatorOutput": "exec-1af3325d-78ab-4bd7-a9e2-6f17eaf95a59.png",
+      "sha256": "3771fd5ab29bc8f302f70f7c87de22d9a5e93ed3e7b61829bdf69a137864b8f2",
+      "bytes": 1316368,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Vehicle appearance only, positioned from observed BF state",
+      "matte": "Uniform magenta; presentation chroma compositing. Front-left view uses a horizontal presentation mirror of front-right."
+    },
+    {
+      "name": "harbor-bridge",
+      "path": "dist/assets/city/harbor-bridge.png",
+      "generatorOutput": "exec-15e23c12-9644-45cd-a420-c84971a32256.png",
+      "sha256": "65c8bba41b7fd77cfe883e6f34948240346bb42e4f27ea1e977900a0de08fbee",
+      "bytes": 2050742,
+      "origin": "image_gen with approved concept1 reference",
+      "role": "Bridge appearance only, composited and aligned to native road endpoints. No route, vehicle, closure or network baked into the asset.",
+      "matte": "Uniform magenta, originals preserved unedited."
+    },
+    {
+      "name": "north-bridge",
+      "path": "dist/assets/city/north-bridge.png",
+      "generatorOutput": "exec-cee3de2b-aabb-4ec9-9fd7-d9eb34cab2ee.png",
+      "sha256": "c05dfc9d578ceba10d7a648dd1a497a551293d67faabf5c8bc645b01c0a8c8b4",
+      "bytes": 2081958,
+      "origin": "image_gen with approved concept1 reference",
+      "role": "Bridge appearance only, composited and aligned to native road endpoints. No route, vehicle, closure or network baked into the asset.",
+      "matte": "Uniform magenta, originals preserved unedited."
+    },
+    {
+      "path": "dist/assets/city/linden-tree.png",
+      "source": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-63f74b7a-4de1-4d19-b5c8-fe3617cda253.png",
+      "sha256": "d2b3cd838adebd1df3b37a32da050ec95e976befc86a730ec77dc755f36efc18",
+      "bytes": 2714659,
+      "role": "Original RGBA linden tree; pure decorative scenery. Requested magenta matte, tool supplied real alpha. Reused at presentation-only landscape positions, no route or simulation."
+    },
+    {
+      "path": "dist/assets/city/stone-house.png",
+      "source": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-05bb7da3-2e93-4ab4-a829-ead6ae2b657d.png",
+      "sha256": "7d743b0534006453b7723ffad6d6de5fed5f6a62cd561ea8fc5e0faf5c6b97fd",
+      "bytes": 1750400,
+      "role": "Original isolated image_gen RGBA house. Larger individual architectural scale following the approved reference; purely decorative, without roads, routes or state."
+    },
+    {
+      "path": "dist/assets/city/cafe-house.png",
+      "source": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-a3803117-276b-484c-982f-fc213e82a70c.png",
+      "sha256": "e6c98c6e7197b125e6c7614ce0d8d273f6bfd3aac22038a00aec6751ae8f9103",
+      "bytes": 1770861,
+      "role": "Original isolated image_gen RGBA house. Larger individual architectural scale following the approved reference; purely decorative, without roads, routes or state."
+    },
+    {
+      "name": "fountain",
+      "path": "dist/assets/city/fountain.png",
+      "generatorOutput": "exec-68ffe89a-b1f3-41eb-b184-d02b5cf98bf0.png",
+      "sha256": "560b7771b7a569fdd30a7b2db523cc0d935854b0da2157ee98dc109e1e603981",
+      "bytes": 1808389,
+      "origin": "image_gen; exact approved concept1 supplied as reference",
+      "role": "Static decorative fountain only; no simulated water or guest state",
+      "matte": "Original RGBA transparent PNG preserved unedited"
+    },
+    {
+      "name": "flat-house",
+      "path": "dist/assets/city/flat-house.png",
+      "generatorOutput": "exec-98f6eeb4-34ac-4b7b-891e-66d64c2c1680.png",
+      "sha256": "993b83e40f975830fdd442a6d40c64e6970ea0d516c7850e7e6ce0f4e6804ff0",
+      "bytes": 2236754,
+      "origin": "image_gen; exact approved concept1 supplied as reference",
+      "role": "Decorative architecture only; no roads or guest state",
+      "matte": "Original RGBA transparent PNG preserved unedited"
+    }
+  ],
+  "rejectedAttempts": [
+    {
+      "file": "exec-460a306a-18c0-4e14-a95d-e4103089025c.png",
+      "reason": "Requested alpha was emitted as RGB with baked checkerboard; not used. Switched to explicit chroma matte for renderer compositing."
+    },
+    {
+      "file": "exec-78d6bfd3-4352-49c7-ad78-09e0290ea545.png",
+      "reason": "Generator did not produce requested uniform magenta matte; black backdrop and excessive glow rejected. Symmetric front-right asset mirrored by renderer instead."
+    }
+  ]
+}

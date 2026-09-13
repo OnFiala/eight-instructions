@@ -1,0 +1,12 @@
+Original · fresh BF calculation
+
+Van 1, v1, score 15. Same three logical steps. Harbor Bridge open.
+
+12 → 8 → 9 → 10 → 11 → 15
+Editor source · fresh BF calculation
+
+Van 1, v2, score 22. Same three logical steps. Harbor Bridge open.
+
+12 → 8 → 4 → 0 → 1 → 2 → 3 → 7 → 11 → 15
+Current bridge: Open Harbor Bridge
+Delivery city at logical step 4. Van 1: last reached node 8, destination 15, 0 deliveries, road 25, progress 0 of 2. Van 2: last reached node 4, destination 3, 0 deliveries, road 17, progress 0 of 2. Van 3: last reached node 1, destination 11, 0 deliveries, road 40, progress 0 of 6. Selected van 1. Its last emitted path: 8, 4, 0, 1, 2, 3, 7, 11, 15.

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {fresh,command,word} from './system-helpers.mjs';
+import {fresh,command,word,kernel} from './system-helpers.mjs';
 
 test('dictionary capacity refuses publication without corrupting existing words',async()=>{
   const m=await fresh(),remaining=256-word(m,'dp');
@@ -12,7 +12,8 @@ test('dictionary capacity refuses publication without corrupting existing words'
 });
 test('code and nested control exhaustion roll back incomplete definitions',async()=>{
   const m=await fresh(),cp=word(m,'cp'),dp=word(m,'dp');
-  assert.match(command(m,': huge '+'0 drop '.repeat(3000)+';',{allowError:true}),/!E5/);
+  const beyondCode=Math.ceil(kernel.map.arrays.code.size/3)+1;
+  assert.match(command(m,': huge '+'0 drop '.repeat(beyondCode)+';',{allowError:true}),/!E5/);
   assert.equal(word(m,'cp'),cp);assert.equal(word(m,'dp'),dp);
   assert.match(command(m,': nested '+'if '.repeat(65),{allowError:true}),/!E6/);
   assert.equal(word(m,'cp'),cp);assert.equal(word(m,'control'),0);
