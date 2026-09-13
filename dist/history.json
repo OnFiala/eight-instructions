@@ -13,7 +13,7 @@
       "number": 2,
       "title": "A city you can reprogram",
       "status": "PARTIAL",
-      "summary": "Named source, typed modules, safe version replacement and reclaiming inside the Brainfuck programming language, demonstrated by a native delivery city. Final visual and publication verification remains in progress.",
+      "summary": "Named source, typed modules, safe version replacement and reclaiming inside the Brainfuck programming language, demonstrated by a native delivery city. Local functional and visual checks passed; publication verification is pending.",
       "testsPassed": 74,
       "testedCommit": null
     }

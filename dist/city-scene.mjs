@@ -173,7 +173,7 @@ export class CityScene {
       if(!this.bridge(road))continue;
       const pair=[road.from,road.to].sort((a,b)=>a-b).join(':');if(seen.has(pair))continue;seen.add(pair);
       const first=this.state.nodes.find(n=>n.id===road.from),second=this.state.nodes.find(n=>n.id===road.to);
-      const a=first.x<second.x?this.roadPoint(road,0):this.roadPoint(road,1),b=first.x<second.x?this.roadPoint(road,1):this.roadPoint(road,0);
+      const a=first.x<second.x?this.roadPoint(road,.15):this.roadPoint(road,.85),b=first.x<second.x?this.roadPoint(road,.85):this.roadPoint(road,.15);
       const s=this.sprites.get(road.toll?'harbor-bridge':'north-bridge');if(!s)continue;
       const start={x:s.width*.158,y:s.height*(road.toll?.791:.805)},end={x:s.width*.901,y:s.height*(road.toll?.189:.21)};
       const dx=end.x-start.x,dy=end.y-start.y,scale=Math.hypot(b.x-a.x,b.y-a.y)/Math.hypot(dx,dy);
@@ -213,8 +213,20 @@ export class CityScene {
   drawTree(x,z,scale=1) {
     const sprite=this.sprites.get('linden-tree');if(!sprite)return;
     const p=this.project(x,z),width=this.s*5.8*scale,height=width/sprite.width*sprite.height;
-    this.ctx.save();this.ctx.shadowColor='#06120abb';this.ctx.shadowBlur=this.s*.65;this.ctx.shadowOffsetX=this.s*.55;this.ctx.shadowOffsetY=this.s*.38;
+    this.ctx.save();this.ctx.filter='brightness(.80) saturate(1.2) hue-rotate(8deg)';this.ctx.shadowColor='#06120abb';this.ctx.shadowBlur=this.s*.65;this.ctx.shadowOffsetX=this.s*.55;this.ctx.shadowOffsetY=this.s*.38;
     this.ctx.drawImage(sprite,p.x-width/2,p.y-height*.965,width,height);this.ctx.restore();
+  }
+  drawLamp(x,z) {
+    // Fixed street furniture and its pool of light have no guest semantics.
+    const c=this.ctx,p=this.project(x,z),top=this.project(x,z,2.8);
+    c.save();c.translate(p.x,p.y);c.scale(1,.58);
+    const glow=c.createRadialGradient(0,0,0,0,0,this.s*2.4);
+    glow.addColorStop(0,'#ffcd6726');glow.addColorStop(1,'#ffcd6700');
+    c.fillStyle=glow;c.beginPath();c.arc(0,0,this.s*2.4,0,Math.PI*2);c.fill();c.restore();
+    this.line(p,top,'#26312a',this.s*.16);
+    this.line(top,{x:top.x+this.s*.65,y:top.y},'#8c8a70',this.s*.12);
+    c.save();c.shadowColor='#ffc568';c.shadowBlur=this.s*1.6;c.fillStyle='#ffdda2';
+    c.fillRect(top.x+this.s*.42,top.y,this.s*.43,this.s*.15);c.restore();
   }
   drawVehicle(vehicle,point) {
     const road=this.state.roads.find(r=>r.id===vehicle.edge);
@@ -237,13 +249,14 @@ export class CityScene {
     const show=new Set(this.w<600?[12]:[12,4,3,7,11,15,8]);if(selected){show.add(selected.node);show.add(selected.goal);}
     for(const node of this.state.nodes) {
       if(!show.has(node.id))continue;
-      const p=this.project(node.x,node.z),radius=Math.max(9,this.s*1.65),k=this.w/1050,offset=node.id===12?{x:-74*k,y:-51*k}:node.id===15?{x:-125*k,y:-3*k}:node.id===3?{x:0,y:14}:[4,8].includes(node.id)?{x:-54*k,y:-24*k}:{x:0,y:-8};
+      const p=this.project(node.x,node.z),radius=Math.max(9,this.s*1.65),k=this.w/1050,offset=node.id===12?{x:-74*k,y:-51*k}:node.id===15?{x:-125*k,y:-3*k}:node.id===3?{x:0,y:14}:[4,8].includes(node.id)?{x:-(node.id===8?100:75)*k,y:-32*k}:{x:0,y:-8};
       if(node.id===12||node.id===15)this.line(p,{x:p.x+offset.x,y:p.y+offset.y},'#adc683',1);
       c.save();c.translate(p.x+offset.x,p.y+offset.y);c.shadowColor='#000';c.shadowBlur=8;
       c.beginPath();c.arc(0,0,radius,0,Math.PI*2);c.fillStyle='#151c18';c.fill();c.strokeStyle=selected?.goal===node.id?'#e3ff96':'#c8e476';c.lineWidth=2;c.stroke();
       c.shadowBlur=0;c.font=`650 ${Math.max(12,this.s*1.85)}px InterVariable, sans-serif`;c.textAlign='center';c.textBaseline='middle';c.fillStyle='#f5f6e9';c.fillText(String(node.id),0,.5);
-      c.font=`520 ${Math.max(11,this.s*1.75)}px InterVariable, sans-serif`;c.textAlign='left';
-      const lines=placeName(node.id).split(' '),labelX=radius+8,labelY=-2;
+      c.font=`520 ${Math.max(11,this.s*1.75)}px InterVariable, sans-serif`;
+      const alignLeft=this.w<600&&p.x+offset.x>this.w-95;c.textAlign=alignLeft?'right':'left';
+      const lines=placeName(node.id).split(' '),labelX=alignLeft?-radius-8:radius+8,labelY=-2;
       if(lines.length>1){c.fillText(lines[0],labelX,labelY-5);c.fillText(lines.slice(1).join(' '),labelX,labelY+12);}else c.fillText(placeName(node.id),labelX,labelY);
       c.restore();
     }
@@ -281,8 +294,11 @@ export class CityScene {
     for(const z of [64,69,73])trees.push([16,z],[60,z]);
     for(const z of [8,14,20,26,32,38,44,50,56,62])trees.push([75,z],[-4,z]);
     for(const x of [21,28,35,42,49,56])trees.push([x,65]);
+    for(const x of [-27,-22,-17,-12,-7])trees.push([x,55]);
+    for(const x of [2,8,14,20,38,44,50,56,62,68,74])trees.push([x,73]);
     for(const [x,z] of trees)objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.85+((x*7+z*3)%7+7)%7*.035)});
     for(const x of [9,15,21])for(const z of [68,72])objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.85)});
+    for(const [x,z] of [[-2,4],[-2,24],[-2,44],[18,16],[18,36],[18,56],[42,4],[42,24],[42,44],[58,16],[58,36],[58,56],[8,62],[48,62]])objects.push({depth:z-x+60,draw:()=>this.drawLamp(x,z)});
     const vehicleObjects=[];
     const t=this.motion.matches?1:Math.min(1,(now-this.transition)/650),smooth=t*t*(3-2*t);
     for(const vehicle of this.state?.vehicles??[]) {

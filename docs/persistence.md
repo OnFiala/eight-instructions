@@ -122,3 +122,5 @@ The two-version comparison always retains the original, freshly booted, open-bri
 image independently of imported city state. Session replay instead uses the last
 imported image. A transcript interrupted by a hard native pause is not advertised
 as a complete replay; export/import a completed workspace to begin a new transcript.
+
+The city importer validates the candidate city/workspace frame and reads both the active version source and stored draft before replacing the current worker. Successful import displays that draft in the editor and records these native source reads in the session transcript. An unreadable candidate is closed without replacing the current workspace. Saved route metadata is labeled separately from a newly emitted route event; an image alone does not reconstruct the original input history.

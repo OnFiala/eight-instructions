@@ -80,3 +80,11 @@ All74 tests passed, zero skipped or failed, 578980.073ms. The450-cycle test comp
 ## Visual comparison iteration
 
 Replaced sparse compound blocks with varied isolated houses, a detailed fountain, larger trees, finer paving, depth/shadows and a flatter camera. The southwest historic quarter reuses the original unmodified oldtown graphic at larger scale, filling the foreground identified by the overlay. Road connectivity still comes exclusively from the46 native edges. Vans are drawn as a legibility overlay above decorative foliage at exactly their observed positions. Native source and final benchmark remain unchanged. New screenshots and responsive QA are required for this renderer candidate.
+
+## Final browser import repair
+
+The new46-road Chrome export retained the61-byte custom conditional rule, activev2, rollbackv1, three v1 pins and half-complete segments; fresh CLI reads exactly the same state and evaluates2,5 as37. Actual browser import exposed an editor defect: active source updated correctly but the editor kept its pre-import draft. Import now reads and validates both sources in the candidate worker before committing the replacement, then installs the actual stored draft into the editor. Those native reads are recorded for replay. Restored last-decision metadata is also labeled Saved decision instead of Awaiting a departure, without inventing the missing original input history. Repeat valid/corrupt import and replay before final acceptance.
+
+### 2026-09-13 — final local interface gate
+
+Confirmed imported-session raw output byte for byte in a new CLI (five inputs,6.237s). Added fixed ornamental lamps and perimeter planting after the final source/implementation comparison; no native data changed. Regenerated1487x1058 combined comparison,50% overlay and focused city/panel/type evidence. Same-author qualitative review passed with responsive, keyboard and reduced-motion limits explicitly recorded in design-qa.md. Seven narrow image/presentation/boundary checks passed. Both Linux CI runs for4f8cc07 passed all74 tests. Public release is still pending; this entry is not a deployment claim.

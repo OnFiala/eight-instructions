@@ -101,7 +101,8 @@ function renderWorkspace() {
 }
 function renderTrace() {
   const stored=recentEvents.findLast(e=>e.kind==='SOURCE-STORED'),published=recentEvents.findLast(e=>e.kind==='MODULE-PUBLISHED'||e.kind==='ROLLBACK'),route=decisions.get(selectedVehicle)?.event;
-  const cards=[stored?['Source stored',`Module ${stored.values[0]} · ${stored.values[1]} bytes`]:['Source in BF','A named, persistent draft'],published?[published.kind==='ROLLBACK'?'Version restored':'Module published',published.raw]:['Ready to compile','The active version remains usable'],route?['Route computed',`v${route.values[5]} · score ${route.values[6]} · step ${route.values[1]}`]:['Awaiting a departure','A real route appears after a step']];
+  const saved=city?.vehicles.find(v=>v.id===selectedVehicle);
+  const cards=[stored?['Source stored',`Module ${stored.values[0]} · ${stored.values[1]} bytes`]:['Source in BF','A named, persistent draft'],published?[published.kind==='ROLLBACK'?'Version restored':'Module published',published.raw]:['Ready to compile','The active version remains usable'],route?['Route computed',`v${route.values[5]} · score ${route.values[6]} · step ${route.values[1]}`]:saved?.decision?['Saved decision',`v${saved.decisionVersion} · score ${saved.score} · prior input history not in image`]:['Awaiting a departure','A real route appears after a step']];
   $('trace').replaceChildren(...cards.map(([title,detail],i)=>{const li=document.createElement('li'),number=document.createElement('b'),div=document.createElement('div'),strong=document.createElement('strong'),span=document.createElement('span');number.textContent=i+1;strong.textContent=title;span.textContent=detail;div.append(strong,span);li.append(number,div);return li;}));
   $('trace-mode').textContent='Actual BF output';
 }
@@ -181,8 +182,28 @@ $('import').addEventListener('change',async event=>{
       if(state.state!=='input')throw new Error('This city interface imports images waiting at a complete input boundary. Use the CLI to resume a machine paused inside a native operation.');
       const r=await raw(requestState,{target:candidate,record:false}),view=readPresentation(r.output);
       if(!view.city||!view.workspace)throw new Error('The image is compatible with the kernel but does not contain a readable Build 002 city workspace.');
-      client.close();client=candidate;accepted=true;initialImage=image;transcriptComplete=true;transcript=[];rawLog='';recentEvents=[];decisions.clear();activeSourceSerial=undefined;comparisonBundle=undefined;log(requestState,r);consume(r,{animate:false});started=true;$('boot-status').hidden=true;await readActiveSource();notice('Workspace restored in a fresh machine. Sources, versions and in-flight state came from the image.','success');
-    }catch(error){throw new Error(`Import refused. The current workspace is unchanged. ${error.message}`);}
+      const selected=view.workspace.modules.find(m=>m.alive&&m.id===selectedModule)??view.workspace.modules.find(m=>m.alive);
+      const active=view.workspace.versions.find(v=>v.state===2&&v.serial===selected?.activeSerial);
+      const reads=[];let currentText='No compiled version',draftText='';
+      if(active) {
+        const source=await raw(`${active.serial} version-source`,{target:candidate,record:false});
+        currentText=readPresentation(source.output).versionSource;
+        if(source.state!=='input'||currentText===undefined)throw new Error('The active version source could not be read from the image.');
+        reads.push(source);
+      }
+      if(selected) {
+        const draft=await raw(`${selected.id} source-read`,{target:candidate,record:false});
+        draftText=readPresentation(draft.output).sources.get(selected.id);
+        if(draft.state!=='input'||draftText===undefined)throw new Error('The stored draft could not be read from the image.');
+        reads.push(draft);
+      }
+      // Accept only after the candidate produced city, lifetime and source data.
+      client.close();client=candidate;accepted=true;selectedModule=selected?.id??0;
+      initialImage=image;transcriptComplete=true;transcript=[];rawLog='';recentEvents=[];decisions.clear();activeSourceSerial=active?.serial;comparisonBundle=undefined;
+      log(requestState,r);for(const read of reads)log(read.rawInput,read);
+      consume(r,{animate:false});$('current-source').textContent=currentText;$('module-editor').value=draftText;
+      started=true;$('boot-status').hidden=true;notice('Workspace restored in a fresh machine. Sources, versions and in-flight state came from the image.','success');
+    }catch(error){throw new Error(accepted?`Workspace loaded, but the interface could not finish refreshing. ${error.message}`:`Import refused. The current workspace is unchanged. ${error.message}`);}
     finally{if(!accepted)candidate.close();}
   }).catch(()=>{});
 });

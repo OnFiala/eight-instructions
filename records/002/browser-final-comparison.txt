@@ -1,0 +1,185 @@
+- link "Skip to the program editor":
+  - /url: "#module-editor"
+- banner:
+  - link "8 INSTRUCTIONS":
+    - /url: "#"
+  - generic: SMALL PROGRAMS. REAL CONSEQUENCES.
+  - navigation "Build navigation":
+    - link "BUILD 002":
+      - /url: "#how-it-works"
+    - generic: /
+    - link "BUILD 001":
+      - /url: ./build-001/
+    - link "Source on GitHub":
+      - /url: https://github.com/OnFiala/eight-instructions
+      - text: SOURCE ↗
+- main:
+  - region "A city you can reprogram.":
+    - heading "A city you can reprogram." [level=1]
+    - paragraph: Change the program. See the consequence.
+    - complementary:
+      - strong: Brainfuck (BF) programming language
+      - paragraph:
+        - text: "Eight instructions:"
+        - code: "> < + - . , [ ]"
+        - text: A tape, a pointer, and loops. Here, they run
+        - text: the programs that run a delivery city.
+    - 'img "Delivery city at logical step 1. Van 1: last reached node 12, destination 15, 0 deliveries, road 33, progress 0 of 2. Van 2: last reached node 8, destination 3, 0 deliveries, road 25, progress 0 of 2. Van 3: last reached node 0, destination 11, 0 deliveries, road 0, progress 0 of 2. Selected van 1. Its last emitted path: 12, 8, 9, 10, 11, 15."'
+    - generic: ▴
+    - text: "N"
+    - status: Paused · ready for a step
+    - button "Run city"
+    - button "Advance one logical step"
+    - button "Export whole workspace"
+    - generic "Import workspace":
+      - generic: Import whole workspace
+      - button "Import whole workspace"
+    - generic: STEP 1
+    - generic: Last planned route
+    - combobox "Vehicle to inspect":
+      - option "Van 1" [selected]
+      - option "Van 2"
+      - option "Van 3"
+    - generic: DEPOT → Central Square
+    - complementary "Thread source module":
+      - heading "Thread source module" [level=2]
+      - combobox "Open named module":
+        - option "delivery-rule.thread" [selected]
+      - generic: v1
+      - heading "Current module" [level=3]
+      - generic: Active
+      - paragraph: "Pure road scoring: 2 inputs → 1 output."
+      - generic "Source of the active version": ": delivery-rule.thread + ;"
+      - text: Stored and compiled inside BF
+      - generic: ": ;"
+      - heading "Your next version" [level=3]
+      - generic: Editable
+      - text: Make toll roads more expensive.
+      - paragraph:
+        - text: "Input: travel time, toll → output: score."
+        - text: Edit the multiplier, or write your own rule.
+      - textbox "Make toll roads more expensive.": ": delivery-rule.thread 8 * + ;"
+      - text: Thread · up to 256 ASCII bytes ·
+      - link "Language guide ↗":
+        - /url: https://github.com/OnFiala/eight-instructions/blob/main/docs/modules.md
+      - button "Apply new module"
+      - button "Undo change" [disabled]
+      - status: Reproduction bundle exported with its initial image, input transcript, expected BF output and artifact identities.
+      - button "Inspect this decision"
+    - region "Live trace Actual BF output":
+      - heading "Live trace Actual BF output" [level=2]:
+        - text: Live trace
+        - generic: Actual BF output
+      - list:
+        - generic: "1"
+        - strong: Source stored
+        - generic: Module 0 · 26 bytes
+        - text: →
+        - generic: "2"
+        - strong: Module published
+        - generic: MODULE-PUBLISHED 0 1 2 1 0
+        - text: →
+        - generic: "3"
+        - strong: Route computed
+        - generic: v1 · score 15 · step 1
+    - region "Program memory 1 / 6 arenas":
+      - heading "Program memory 1 / 6 arenas" [level=2]:
+        - text: Program memory
+        - generic: 1 / 6 arenas
+      - generic "1 of 6 native module arenas occupied; 2 of 768 code words; 26 of 1536 version source bytes.":
+        - 'generic "Arena 1: active; 2 code words; 26 source bytes; 3 pins; 4 references; 1 successful allocations."'
+        - 'generic "Arena 2: free; 0 code words; 0 source bytes; 0 pins; 0 references; 0 successful allocations."'
+        - 'generic "Arena 3: free; 0 code words; 0 source bytes; 0 pins; 0 references; 0 successful allocations."'
+        - 'generic "Arena 4: free; 0 code words; 0 source bytes; 0 pins; 0 references; 0 successful allocations."'
+        - 'generic "Arena 5: free; 0 code words; 0 source bytes; 0 pins; 0 references; 0 successful allocations."'
+        - 'generic "Arena 6: free; 0 code words; 0 source bytes; 0 pins; 0 references; 0 successful allocations."'
+      - generic: Active
+      - generic: Retained
+      - generic: Free
+      - generic: Reuse on release
+      - paragraph: Code 2/768 words · version source 26/1536 B · drafts 26/1024 B
+    - paragraph:
+      - generic: "Last native operation: 12.00 s"
+      - generic: "BF tape: 169,164 × 16 bits"
+      - generic: Visual interpolation follows observed states.
+    - link "Try another experiment":
+      - /url: "#experiments"
+  - paragraph: KEEP THE INPUTS. CHANGE THE PROGRAM.
+  - heading "One city. Two ways through it." [level=2]
+  - heading "Compare from the same starting point." [level=3]
+  - paragraph: Run the original rule and your editor source in two fresh machines restored from the original open-bridge image, independently of your current workspace. Both receive the same three logical steps. Harbor Bridge stays open in both.
+  - button "Compute both versions"
+  - paragraph: Completed. These are recorded results of the two fresh calculations above; subsequent city edits do not alter this comparison.
+  - strong: Original · fresh BF calculation
+  - paragraph: Van 1, v1, score 15. Same three logical steps. Harbor Bridge open.
+  - code: 12 → 8 → 9 → 10 → 11 → 15
+  - strong: Editor source · fresh BF calculation
+  - paragraph: Van 1, v2, score 22. Same three logical steps. Harbor Bridge open.
+  - code: 12 → 8 → 4 → 0 → 1 → 2 → 3 → 7 → 11 → 15
+  - button "Download reproduction bundle" [active]
+  - heading "Change the world, separately." [level=3]
+  - paragraph: Closing a bridge changes road data, not the rule. Vans already on it finish their segment. New routes use the updated road state.
+  - button "Close Harbor Bridge"
+  - text: Give the selected van a destination
+  - combobox "New destination":
+    - option "0 · Westgate"
+    - option "1 · North Quay"
+    - option "2 · North Campus"
+    - option "3 · University"
+    - option "4 · North Park"
+    - option "5 · Riverside Market"
+    - option "6 · Midtown"
+    - option "7 · Campus Gate"
+    - option "8 · West Heights"
+    - option "9 · Harbor West"
+    - option "10 · Harbor East"
+    - option "11 · Logistics Hub"
+    - option "12 · DEPOT"
+    - option "13 · Old Town"
+    - option "14 · Riverside South"
+    - option "15 · Central Square" [selected]
+  - button "Assign delivery"
+  - paragraph: The city has 16 nodes, 46 initial directed roads and three vans. It models route decisions and delivery progress; it does not model collisions or traffic.
+  - paragraph: THE CITY IS THE EXAMPLE. BRAINFUCK IS THE EXPERIMENT.
+  - heading "A useful system from eight instructions." [level=2]
+  - heading "Thread gives you words." [level=3]
+  - paragraph:
+    - text: Brainfuck moves a pointer, changes a cell, reads or writes a byte, and loops. Its eight instructions are
+    - code: "> < + - . , [ ]"
+    - text: . The BF kernel implements Thread, a small stack language. Build 002 adds a source workspace, typed module compilation, exact version links and reclaimable memory in Thread, executing inside that kernel.
+  - paragraph: When you apply a rule, BF stores the text, checks it, compiles a candidate and publishes a new version. Invalid source leaves the working version in place. One rollback version is retained; live calls and dependencies retain what they still need. Freed arenas can be used again.
+  - heading "The host makes it visible." [level=3]
+  - paragraph: Python builds the initial BF kernel from an auditable generator. A generic JavaScript/WebAssembly executor runs the eight instructions. JavaScript sends raw input, saves opaque machine images and renders the BF output. It does not compile your module, solve routes or advance the city on its own.
+  - paragraph: The architecture and vehicle images are generated graphical assets. Roads, paths, counters and positions come from the running program. Smooth motion interpolates between observed positions; native logical steps can take seconds.
+  - link "Every host boundary ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/blob/main/boundary.json
+  - link "Build 002 evidence ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/tree/main/records/002
+  - link "Verified reproduction ↓":
+    - /url: ./reproduction/build-002.json
+  - link "Actual BF kernel ↓":
+    - /url: ./kernel.bf.gz
+  - link "CI ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/actions
+  - generic "Open workspace tools & raw machine output"
+  - paragraph: ONE AUTHOR. AN OPEN RECORD.
+  - heading "Each build raises the difficulty." [level=2]
+  - paragraph: Astra xHigh writes the architecture, code, tests, repairs and self-review. The human supplies the challenge and approves a visual direction. No human writes or fixes production code. Self-review is not an independent audit.
+  - link "Read the permanent protocol ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/blob/main/PROTOCOL.md
+  - list:
+    - generic: "002"
+    - heading "A city you can reprogram" [level=3]
+    - paragraph: Named source inside BF. Live version replacement. Reclaimable module arenas. A deterministic delivery city.
+    - link "Implementation & evidence ↗":
+      - /url: https://github.com/OnFiala/eight-instructions/tree/main/records/002
+    - generic: "001"
+    - heading "A computing environment" [level=3]
+    - paragraph: Thread, a transactional store, weighted routes and resumable machine images. Preserved with its original kernel and evidence.
+    - link "Run the first build ↗":
+      - /url: ./build-001/
+- contentinfo:
+  - generic: 8 INSTRUCTIONS · 2026 · MIT
+  - link "GitHub ↗":
+    - /url: https://github.com/OnFiala/eight-instructions
+  - generic: Built by Astra xHigh. The human writes the challenges.

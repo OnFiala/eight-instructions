@@ -303,7 +303,7 @@
       "path": "dist/city-scene.mjs",
       "layer": "presentation",
       "reason": "Projects BF-emitted coordinates and directed road/path records. Composites graphical sprites and decorative materials; interpolates only between two observed positions. No future step, route, delivery, collision or module semantics are computed.",
-      "reviewedSha256": "9fd4e68e91045c7cd3c975a9cc0b68526c9313c7f27d29b2b9a85218e4595ebd"
+      "reviewedSha256": "ba0f9207a2686883819c6e1b8a63477e0d2123871bf31bef1268376053ea6e2d"
     },
     {
       "path": "dist/client.mjs",
@@ -416,13 +416,13 @@
       "path": "dist/site.mjs",
       "layer": "presentation",
       "reason": "Edits text and frames raw I/O; waits for native storage acknowledgement before requesting compilation. Displays BF state and diagnostics. Comparison restores two opaque images and sends common raw steps; bundles record actual outputs. All application computation remains inside BF.",
-      "reviewedSha256": "36a33b41519dfe4cbe0ece376a7ca1c677e2476228b9fab433e15b82b2f03c70"
+      "reviewedSha256": "e118287da58b28b3b42b835a442907cad2049ff1dbf4ae1baf6e514cf268faf2"
     },
     {
       "path": "dist/style.css",
       "layer": "presentation",
       "reason": "Responsive visual layout, keyboard focus, legibility and reduced-motion presentation.",
-      "reviewedSha256": "bd3f6ed19d23b17c44e9d85bbeaad2a112ccc96ad20ab4fb37a98f3f213ada72"
+      "reviewedSha256": "9d709e20e61edf11ace276476c96d0c3407ccf6cf9a1c8dfbbfbd9a5aa254ed2"
     },
     {
       "path": "dist/wasm-engine.mjs",

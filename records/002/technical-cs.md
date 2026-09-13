@@ -54,7 +54,7 @@ Stojící auto při kroku zvolí trasu, získá pin aktivní verze a vyjede s po
 
 Konkrétní reprodukované srovnání: původní `+` dává vanu 1 cestu `12 8 9 10 11 15`, skóre 15. Zdroj `: delivery-rule.thread 8 * + ;` dává `12 8 4 0 1 2 3 7 11 15`, skóre 22. V obou případech je placený most otevřený a oba nové stroje dostaly stejné tři logické kroky. Skóre není čas jízdy: zahrnuje programově vážené mýto. [Reprodukce z prohlížeče](browser-reproduction.json) a [nový CLI replay](browser-reproduction-cli.txt) obsahují přesná data.
 
-Nový ručně zadaný uživatelský program během ověření byl `dup 0= if drop 1 + else 6 * + then`, vložený do definice `delivery-rule.thread`. Pro dobu 2 a mýto 5 v nové CLI instanci skutečně vrátil skóre 32. Po obnovení rozpracovaného snímku a původním příjezdu plánoval z uzlu 8 do 15 cestu přes severní most se skóre 28, verzí 2. Doloženo v browser-image-cli.txt a browser-decision.txt; kernel se pro tyto vstupy neregeneroval.
+Nový uživatelský program zadaný v závěrečném prohlížečovém ověření byl `dup 0= if drop 1 + else 7 * + then`, vložený do definice `delivery-rule.thread`. Pro dobu 2 a mýto 5 v nové CLI instanci skutečně vrátil skóre 37. Po obnovení rozpracovaného snímku a původním příjezdu plánoval z uzlu 8 do 15 cestu přes severní most se skóre 28, verzí 2. Doloženo v browser-final-image-cli.txt a browser-final-restored-step4.txt; kernel se pro tyto vstupy neregeneroval.
 
 ## Přesný tok od editoru k obrazu
 
@@ -70,7 +70,7 @@ Editor pouze vytvoří raw vstup s přesným počtem bajtů. BF `source-write` u
 
 ## Persistence, ověření a meze důkazu
 
-Snímek zachovává všechny zdroje, bytecode, verze, reference, data, rozpracovaný stav i obecné pokračování BF. Import běžného městského UI nejdříve ověří snímek v novém workeru a teprve po čitelném městském rámci nahradí původní stroj. Poškozený a nekompatibilní snímek jej nenahradí. Uvnitř operace pozastavený snímek lze dokončit obecným CLI; městské UI vyžaduje dokončenou vstupní hranici. Image checksum není autentizace proti úmyslnému přepsání vlastního stroje. Obecný Thread terminál umožňuje záměrně poškodit paměť; není izolací nedůvěryhodných uživatelů.
+Snímek zachovává všechny zdroje, bytecode, verze, reference, data, rozpracovaný stav i obecné pokračování BF. Import běžného městského UI nejdříve ověří snímek v novém workeru a teprve po čitelném městském rámci a nativním načtení aktivního zdroje i uloženého draftu nahradí původní stroj. Editor se naplní tímto skutečným draftem. Poškozený a nekompatibilní snímek jej nenahradí. Uvnitř operace pozastavený snímek lze dokončit obecným CLI; městské UI vyžaduje dokončenou vstupní hranici. Image checksum není autentizace proti úmyslnému přepsání vlastního stroje. Obecný Thread terminál umožňuje záměrně poškodit paměť; není izolací nedůvěryhodných uživatelů.
 
 Build 001 image nový kernel výslovně odmítá. Starý kernel, runtime a zdroje jsou zachovány pod `dist/build-001/`; 17 souborů je bajtově původních. Historické HTML má pouze přiznané úpravy cest a navigace. Není deklarována migrace. Export není automatické cloudové uložení a samotné publikování verze nedělá data trvalými mimo proces.
 
