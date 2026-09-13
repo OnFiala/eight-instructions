@@ -9,7 +9,11 @@
     "bounded stacks, heap and store operations",
     "transaction copying, commit and abort",
     "open-addressed key/value indexing and integrity checks",
-    "graph validation, shortest paths and reconstruction"
+    "graph validation, shortest paths and reconstruction",
+    "named source storage and typed module compilation",
+    "exact version dependencies, pins, rollback and reclamation",
+    "bounded pure module evaluation",
+    "deterministic city ticks, in-flight state and delivery decisions"
   ],
   "hostRuntimeDependencies": [],
   "buildDependencies": {
@@ -31,6 +35,42 @@
       "path": "artifacts/kernel.bf",
       "layer": "generated-kernel",
       "reason": "Executable native kernel, exclusively eight commands; regenerated and hash checked during verification."
+    },
+    {
+      "path": "dist/assets/city/depot-block.png",
+      "layer": "presentation",
+      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
+      "reviewedSha256": "95c79cb021442ac148e3a9c72efe95b346f3ae953af1fc6d8f702a9561114399"
+    },
+    {
+      "path": "dist/assets/city/homes-block.png",
+      "layer": "presentation",
+      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
+      "reviewedSha256": "46893a78cf8027f187036e5dab1a6377e711cb719a59891b41d40ab85c122979"
+    },
+    {
+      "path": "dist/assets/city/market-block.png",
+      "layer": "presentation",
+      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
+      "reviewedSha256": "1f131c11d2bd6555a7e9bbfdb803e17e335920189f59d4253804e5610e20acda"
+    },
+    {
+      "path": "dist/assets/city/oldtown-block.png",
+      "layer": "presentation",
+      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
+      "reviewedSha256": "7176e6cbb4ec5eb348c20ba83b9cb8f3c172fdba35905fbdb95fcd0f07dea197"
+    },
+    {
+      "path": "dist/assets/city/university-block.png",
+      "layer": "presentation",
+      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
+      "reviewedSha256": "96514dab082c8f1856f6bd02a2caa900acc8a9b9d0da98b563b2662d9c915de3"
+    },
+    {
+      "path": "dist/assets/city/warehouse-block.png",
+      "layer": "presentation",
+      "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
+      "reviewedSha256": "a10abbfbf1dbdb3fbb01f9db7948181a9d9eaa59f59f9c7763fdfa50015896e3"
     },
     {
       "path": "dist/client.mjs",
@@ -57,6 +97,11 @@
       "reviewedSha256": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35"
     },
     {
+      "path": "dist/history.json",
+      "layer": "public-evidence",
+      "reason": "Generated public view of canonical experiment records; supports arbitrary future build counts."
+    },
+    {
       "path": "dist/images.mjs",
       "layer": "runtime-adapter",
       "reason": "Serializes and validates complete opaque tape/continuation images; host cryptography, encoding and byte transport.",
@@ -79,6 +124,26 @@
       "reason": "Deterministic gzip transport of the exact raw kernel, verified after decompression; no precomputed machine image."
     },
     {
+      "path": "dist/programs/city-boot.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
+    },
+    {
+      "path": "dist/programs/city-state.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
+    },
+    {
+      "path": "dist/programs/city-system.json",
+      "layer": "native-source-manifest",
+      "reason": "Lists raw native source files in boot order. The host passes their bytes to BF without compiling or interpreting Thread."
+    },
+    {
+      "path": "dist/programs/city.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
+    },
+    {
       "path": "dist/programs/core.thread",
       "layer": "packaged-native-program",
       "reason": "Byte-identical public copy of the canonical native source, checked during verification."
@@ -97,6 +162,11 @@
       "path": "dist/programs/system.json",
       "layer": "packaged-source-list",
       "reason": "Byte-identical public copy of the canonical raw-library list."
+    },
+    {
+      "path": "dist/programs/workspace.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
     },
     {
       "path": "dist/site.mjs",
@@ -125,14 +195,14 @@
     {
       "path": "dist/worker.mjs",
       "layer": "runtime-adapter",
-      "reason": "Browser worker loads verified assets and runs bounded generic execution asynchronously; raw source, pause, resume and image RPC only.",
-      "reviewedSha256": "0386fd17e0e47f4bbc68d8f856e040447fd31755ea954bc6a098f229f84a651b"
+      "reason": "Worker lifecycle, generic BF execution, raw-source manifest loading, byte input/output and opaque images. No source parsing, module ownership, route solver or simulation is implemented here.",
+      "reviewedSha256": "1c9cdc263898d58e4faced145281e4b43ccd45b473134d67aceb027eeed0c0b9"
     },
     {
       "path": "kernel/build.py",
       "layer": "bootstrap-kernel",
-      "reason": "Authored kernel specification emits native tokenization, compiler, dictionary, stacks, paged code, arithmetic and diagnostics; it cannot read guest source or workloads.",
-      "reviewedSha256": "a5f1b8a67e501c7f9623075788a309c2be8a26744b2cbdf9498a0b67c14a0cc0"
+      "reason": "Auditable bootstrap emits the native compiler and bounded memory operations, including raw key and paged workspace memory. It does not consume guest source or execute module/city logic.",
+      "reviewedSha256": "2d7ef6f81091bd863eef6de9f61dcbbeff14078d65e6e2bb57bf1313d75a8e7f"
     },
     {
       "path": "package-lock.json",
@@ -143,6 +213,26 @@
       "path": "package.json",
       "layer": "build-config",
       "reason": "Explicit scripts and exact build-only dependency; no runtime package dependencies."
+    },
+    {
+      "path": "programs/city-boot.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
+    },
+    {
+      "path": "programs/city-state.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
+    },
+    {
+      "path": "programs/city-system.json",
+      "layer": "native-source-manifest",
+      "reason": "Lists raw native source files in boot order. The host passes their bytes to BF without compiling or interpreting Thread."
+    },
+    {
+      "path": "programs/city.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
     },
     {
       "path": "programs/core.thread",
@@ -165,10 +255,15 @@
       "reason": "Ordered list of raw native libraries to compile at boot; no compiled guest image."
     },
     {
+      "path": "programs/workspace.thread",
+      "layer": "native-program",
+      "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
+    },
+    {
       "path": "runtime/cli.mjs",
       "layer": "runtime-adapter",
-      "reason": "Terminal/file input, raw output, generic stepping/inspection and explicit whole-machine save/load; all other input goes to the kernel.",
-      "reviewedSha256": "64a9c4583a33b428f7c438d3af2f94b20eef6d8003f94edf0a7b958c4465086a"
+      "reason": "Terminal/file transport, validated whole-machine images and guest diagnostic exit status. --city selects a raw source manifest; every city/module operation runs inside BF.",
+      "reviewedSha256": "6fa1935d447aec89c9aff581063271eb3ad481e991c659e5ce743344cbc315b9"
     },
     {
       "path": "runtime/executor.wat",
@@ -185,8 +280,13 @@
     {
       "path": "runtime/system.mjs",
       "layer": "runtime-adapter",
-      "reason": "Loads and verifies kernel assets, instantiates a generic executor, and supplies unchanged native source bytes.",
-      "reviewedSha256": "e4b9f80188e2ddcd8eb212fb1443193b42dd600d359f6bce13e59ddab00e9ce1"
+      "reason": "Loads local kernel artifacts and validated raw-source manifests; exposes the unchanged generic BF executor. Source manifest selection has no guest compiler or application semantics.",
+      "reviewedSha256": "e16fe496905f6e102beb11d6bbd80b8ffa8925d59a3546748ebe83b3b3b7b3f2"
+    },
+    {
+      "path": "tests/arithmetic.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Checks native division outputs in actual tape cells against integer arithmetic across all bit widths and randomized operands."
     },
     {
       "path": "tests/audit.test.mjs",
@@ -202,6 +302,16 @@
       "path": "tests/capacity.test.mjs",
       "layer": "verification-tool",
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/city-helpers.mjs",
+      "layer": "verification-tool",
+      "reason": "Executes actual BF workloads and checks native workspace/city state, reference lifetimes, refusal, deterministic replay or fixed-capacity reclamation; test assertions are not on the production path."
+    },
+    {
+      "path": "tests/city.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Executes actual BF workloads and checks native workspace/city state, reference lifetimes, refusal, deterministic replay or fixed-capacity reclamation; test assertions are not on the production path."
     },
     {
       "path": "tests/dispatch.test.mjs",
@@ -234,6 +344,11 @@
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
     },
     {
+      "path": "tests/reclaim.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Executes actual BF workloads and checks native workspace/city state, reference lifetimes, refusal, deterministic replay or fixed-capacity reclamation; test assertions are not on the production path."
+    },
+    {
       "path": "tests/reference.test.mjs",
       "layer": "verification-tool",
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
@@ -262,6 +377,21 @@
       "path": "tests/worker.test.mjs",
       "layer": "verification-tool",
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/workspace-helpers.mjs",
+      "layer": "verification-tool",
+      "reason": "Executes actual BF workloads and checks native workspace/city state, reference lifetimes, refusal, deterministic replay or fixed-capacity reclamation; test assertions are not on the production path."
+    },
+    {
+      "path": "tests/workspace-memory.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Actual BF key/workspace boundary and local source-manifest validation tests; no production oracle."
+    },
+    {
+      "path": "tests/workspace.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Executes actual BF workloads and checks native workspace/city state, reference lifetimes, refusal, deterministic replay or fixed-capacity reclamation; test assertions are not on the production path."
     },
     {
       "path": "tools/audit.mjs",
@@ -303,16 +433,6 @@
       "path": "tools/serve.mjs",
       "layer": "build-tool",
       "reason": "Loopback-only static file server for local interface verification."
-    },
-    {
-      "path": "dist/history.json",
-      "layer": "public-evidence",
-      "reason": "Generated public view of canonical experiment records; supports arbitrary future build counts."
-    },
-    {
-      "path": "tests/arithmetic.test.mjs",
-      "layer": "verification-tool",
-      "reason": "Checks native division outputs in actual tape cells against integer arithmetic across all bit widths and randomized operands."
     },
     {
       "path": "tools/stage-site.mjs",

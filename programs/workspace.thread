@@ -1,0 +1,561 @@
+\ Build 002. Native source workspace, compiler, references and pure module VM.
+\ Every word here is compiled and executed by artifacts/kernel.bf.
+\ Workspace: 4 module records of 320 words; 6 version arenas of 448 words.
+\ Module: alive,in,out,active,rollback,name-length,draft-length,revision;
+\         name at16, draft at64. Version: state,owner,serial,refs,code,source;
+\         inputs at6, outputs at7, dependencies8..13, pins14;
+\         source16..271, code272..399. Slot handles are internal; serials public.
+variable ws-error
+variable ws-serial
+variable ws-busy
+variable wa
+variable wb
+variable wc
+variable wi
+variable wj
+variable wk
+variable wn
+variable wm
+variable wv
+variable wx
+variable wy
+variable wz
+variable wg
+here constant ws-buffer 256 allot
+here constant ws-token 24 allot
+here constant ws-builtins 512 allot
+variable ws-built-count
+
+: maddr 320 * ;
+: vaddr 1- 448 * 1280 + ;
+: vf swap vaddr + ;
+: mf swap maddr + ;
+: wfail ws-error @ 0= if ws-error ! else drop then ;
+: valid-module dup 4 < if maddr w@ 1 = else drop 0 then ;
+: valid-version dup 0 > over 7 < and if vaddr w@ 2 = else drop 0 then ;
+: serial-of dup if 2 vf w@ else drop 0 then ;
+: report-error ws-error @ if ." WS-ERROR " ws-error @ . cr then ;
+: ref+ dup if 3 vf dup w@ 1+ swap w! else drop then ;
+: ref- dup if 3 vf dup w@ dup 0 > assert 1- swap w! else drop then ;
+
+\ Iterative release of a chronological dependency DAG; no native recursion.
+: collect
+  1 wg !
+  begin wg @ while
+    0 wg ! 1 wv !
+    begin wv @ 7 < while
+      wv @ valid-version if
+        wv @ 3 vf w@ 0= if
+          0 wv @ vaddr w! 1 wg ! 0 wj !
+          begin wj @ 6 < while
+            wv @ wj @ 8 + vf w@ if wj @ 1+ ref- then
+            1 wj +!
+          repeat
+        then
+      then
+      1 wv +!
+    repeat
+  repeat
+;
+
+\ Consume all promised bytes even when rejecting; preserve the old draft.
+: read-bytes
+  0 wi !
+  begin wi @ wn @ < while
+    key dup 0 = over 128 < 0= or if 4 wfail then
+    wi @ 256 < if ws-buffer wi @ + ! else drop then
+    1 wi +!
+  repeat
+;
+: buffer-copy
+  0 wi !
+  begin wi @ wn @ < while
+    ws-buffer wi @ + @ wx @ wi @ + w!
+    1 wi +!
+  repeat
+;
+: module-create
+  \ (inputs outputs name-length --); exact raw name bytes follow delimiter.
+  0 ws-error ! wn ! wb ! wa !
+  wn @ 0 > wn @ 24 < and 0= if 3 wfail then
+  wa @ 9 < wb @ 9 < and 0= if 7 wfail then
+  read-bytes
+  ws-buffer @ dup 97 >= swap 122 <= and 0= if 3 wfail then
+  0 wi !
+  begin wi @ wn @ < wi @ 256 < and while
+    ws-buffer wi @ + @ 33 < if 3 wfail then 1 wi +!
+  repeat
+  4 wm ! 0 wk !
+  begin wk @ 4 < while
+    wk @ valid-module if
+      wk @ 5 mf w@ wn @ = if
+        1 wz ! 0 wi !
+        begin wi @ wn @ < while
+          wk @ maddr 16 + wi @ + w@ ws-buffer wi @ + @ = 0= if 0 wz ! then
+          1 wi +!
+        repeat
+        wz @ if 3 wfail then
+      then
+    else wm @ 4 = if wk @ wm ! then then
+    1 wk +!
+  repeat
+  wm @ 4 = if 2 wfail then
+  ws-error @ 0= if
+    wm @ maddr wx ! 0 wi !
+    begin wi @ 16 < while 0 wx @ wi @ + w! 1 wi +! repeat
+    1 wx @ w! wa @ wx @ 1+ w! wb @ wx @ 2 + w!
+    wn @ wx @ 5 + w! 16 wx +! buffer-copy
+    ." MODULE-CREATED " wm @ . cr
+  then report-error
+;
+: source-write
+  \ (length module-id --); source is stored in BF before any compilation.
+  0 ws-error ! wm ! wn !
+  wm @ valid-module 0= if 1 wfail then
+  wn @ 257 < 0= if 4 wfail then
+  read-bytes
+  ws-error @ 0= if
+    wm @ maddr 64 + wx ! buffer-copy
+    wn @ wm @ 6 mf w!
+    wm @ 7 mf dup w@ 1+ swap w!
+    ." SOURCE-STORED " wm @ . wn @ . cr
+  then report-error
+;
+: output-bytes
+  0 wi ! begin wi @ wn @ < while wx @ wi @ + w@ emit 1 wi +! repeat cr
+;
+: source-read
+  0 ws-error ! wm ! wm @ valid-module if
+    wm @ 6 mf w@ wn ! wm @ maddr 64 + wx !
+    ." SOURCE " wm @ . wn @ . cr output-bytes
+  else 1 wfail then report-error
+;
+: find-serial
+  wa ! 0 wz ! 1 wi !
+  begin wi @ 7 < while
+    wi @ valid-version if wi @ serial-of wa @ = if wi @ wz ! then then
+    1 wi +!
+  repeat wz @
+;
+: version-source
+  0 ws-error ! find-serial dup if
+    dup 5 vf w@ wn ! vaddr 16 + wx !
+    ." VERSION-SOURCE " wn @ . cr output-bytes
+  else drop 11 wfail then report-error
+;
+: module-pin
+  0 ws-error ! dup valid-module if
+    3 mf w@ dup if
+      dup 14 vf w@ 60000 < if
+        dup ref+ dup 14 vf dup w@ 1+ swap w! serial-of
+      else drop 0 15 wfail then
+    else 11 wfail then
+  else drop 0 1 wfail then report-error
+;
+: version-release
+  0 ws-error ! find-serial dup if
+    dup 14 vf w@ if
+      dup 14 vf dup w@ 1- swap w! ref- collect 1
+    else drop 0 10 wfail then
+  else drop 0 11 wfail then report-error
+;
+: module-rollback
+  0 ws-error ! wm !
+  ws-busy @ if 14 wfail then
+  wm @ valid-module if
+    wm @ 4 mf w@ dup if
+      ws-error @ 0= if
+        wm @ 3 mf w@ wm @ 4 mf w!
+        wm @ 3 mf w!
+        ." ROLLBACK " wm @ . wm @ 3 mf w@ serial-of . cr
+      else drop then
+    else drop 11 wfail then
+  else 1 wfail then report-error
+;
+: module-delete
+  0 ws-error ! wm !
+  ws-busy @ if 14 wfail then
+  wm @ valid-module 0= if 1 wfail then
+  ws-error @ 0= if
+    1 wi !
+    begin wi @ 7 < while
+      wi @ valid-version if
+        wi @ 1 vf w@ wm @ = if
+          wi @ 3 vf w@
+          wi @ wm @ 3 mf w@ = if 1- then
+          wi @ wm @ 4 mf w@ = if 1- then
+          if 10 wfail then
+        then
+      then 1 wi +!
+    repeat
+    ws-error @ 0= if
+      wm @ 3 mf w@ ref- wm @ 4 mf w@ ref-
+      0 wm @ maddr w! 0 wm @ 3 mf w! 0 wm @ 4 mf w!
+      collect ." MODULE-DELETED " wm @ . cr
+    then
+  then report-error
+;
+
+\ Primitive spelling table is ordinary raw boot data, consumed by native key.
+: primitive-name
+  wn ! wc ! wb ! wa ! ws-built-count @ 16 * ws-builtins + wx !
+  wn @ 12 < assert
+  wa @ wx @ ! wb @ wx @ 1+ ! wc @ wx @ 2 + ! wn @ wx @ 3 + !
+  0 wi ! begin wi @ wn @ < while key wx @ 4 + wi @ + ! 1 wi +! repeat
+  1 ws-built-count +!
+;
+2 2 1 1 primitive-name +
+3 2 1 1 primitive-name -
+4 2 1 1 primitive-name *
+5 2 2 4 primitive-name /mod
+6 2 1 1 primitive-name =
+7 2 1 1 primitive-name <
+8 1 2 3 primitive-name dup
+9 1 0 4 primitive-name drop
+10 2 2 4 primitive-name swap
+11 2 3 4 primitive-name over
+12 3 3 3 primitive-name rot
+13 1 1 2 primitive-name 0=
+18 2 1 1 primitive-name >
+19 2 1 2 primitive-name <=
+20 2 1 2 primitive-name >=
+21 2 1 3 primitive-name and
+22 2 1 2 primitive-name or
+23 2 1 1 primitive-name /
+24 2 1 3 primitive-name mod
+25 2 1 3 primitive-name min
+26 2 1 3 primitive-name max
+100 1 0 2 primitive-name if
+101 0 0 4 primitive-name else
+102 0 0 4 primitive-name then
+103 0 0 5 primitive-name begin
+104 1 0 5 primitive-name until
+105 1 0 5 primitive-name while
+106 0 0 6 primitive-name repeat
+
+\ Compiler registers and typed control stack. No host parser participates.
+variable cc-v
+variable cc-m
+variable cc-pos
+variable cc-len
+variable cc-tlen
+variable cc-code
+variable cc-depth
+variable cc-control
+variable cc-op
+variable cc-in
+variable cc-out
+variable cc-value
+variable cc-negative
+variable cc-valid
+variable cc-finished
+here constant cc-controls 64 allot
+
+: source-char cc-v @ vaddr 16 + cc-pos @ + w@ ;
+: next-token
+  0 cc-tlen ! 1 wz !
+  begin cc-pos @ cc-len @ < wz @ and while
+    source-char dup 92 = if
+      drop
+      begin cc-pos @ cc-len @ < if source-char 10 = 0= else 0 then while 1 cc-pos +! repeat
+    else 33 < if 1 cc-pos +! else 0 wz ! then then
+  repeat
+  begin cc-pos @ cc-len @ < if source-char 32 > else 0 then while
+    cc-tlen @ 23 < if source-char ws-token cc-tlen @ + ! else 3 wfail then
+    1 cc-tlen +! 1 cc-pos +!
+  repeat
+;
+: token-module?
+  \ (module-id -- flag); compare the full name, never just a hash.
+  maddr wx ! cc-tlen @ wx @ 5 + w@ = wz ! 0 wi !
+  begin wi @ cc-tlen @ < wi @ 23 < and while
+    ws-token wi @ + @ wx @ 16 + wi @ + w@ = 0= if 0 wz ! then
+    1 wi +!
+  repeat wz @
+;
+: token-primitive
+  0 cc-op ! 0 wk !
+  begin wk @ ws-built-count @ < while
+    wk @ 16 * ws-builtins + wx !
+    cc-tlen @ wx @ 3 + @ = wz ! 0 wi !
+    wz @ if
+      begin wi @ cc-tlen @ < wi @ 23 < and while
+        ws-token wi @ + @ wx @ 4 + wi @ + @ = 0= if 0 wz ! then
+        1 wi +!
+      repeat
+    then
+    wz @ if
+      wx @ @ cc-op ! wx @ 1+ @ cc-in ! wx @ 2 + @ cc-out !
+      ws-built-count @ wk !
+    then
+    1 wk +!
+  repeat
+;
+: token-number
+  1 cc-valid ! 0 cc-value ! 0 cc-negative ! 0 wi !
+  ws-token @ 45 = if 1 cc-negative ! 1 wi ! cc-tlen @ 1 = if 0 cc-valid ! then then
+  begin wi @ cc-tlen @ < wi @ 23 < and while
+    ws-token wi @ + @ dup 48 < over 57 > or if 0 cc-valid ! then
+    48 - wa !
+    cc-value @ 6553 > if 0 cc-valid ! then
+    cc-value @ 6553 = wa @ 5 > and if 0 cc-valid ! then
+    cc-valid @ if cc-value @ 10 * wa @ + cc-value ! then
+    1 wi +!
+  repeat
+  cc-negative @ if 0 cc-value @ - cc-value ! then
+;
+: code,
+  cc-code @ 128 < if
+    cc-v @ vaddr 272 + cc-code @ + w! 1 cc-code +!
+  else drop 2 wfail then
+;
+: code-patch cc-v @ vaddr 272 + + cc-code @ swap w! ;
+: type-effect
+  cc-depth @ cc-in @ < if 7 wfail else
+    cc-depth @ cc-in @ - cc-out @ + cc-depth !
+    cc-depth @ 65 < 0= if 7 wfail then
+  then
+;
+: control,
+  cc-control @ 16 < if
+    cc-control @ 4 * cc-controls + wx !
+    wx @ ! cc-code @ wx @ 1+ ! cc-depth @ wx @ 2 + !
+    1 cc-control +!
+  else drop 8 wfail then
+;
+: control-top
+  cc-control @ if cc-control @ 1- 4 * cc-controls + wx ! else 8 wfail then
+;
+: same-depth wx @ 2 + @ cc-depth @ = 0= if 7 wfail then ;
+: compile-control
+  cc-op @ 100 = if type-effect 15 code, 1 control, 0 code, exit then
+  cc-op @ 101 = if
+    control-top ws-error @ if exit then
+    wx @ @ 1 = 0= if 8 wfail exit then
+    wx @ 1+ @ wa ! cc-depth @ wx @ 3 + !
+    wx @ 2 + @ cc-depth ! 2 wx @ !
+    14 code, cc-code @ wx @ 1+ ! 0 code, wa @ code-patch exit
+  then
+  cc-op @ 102 = if
+    control-top ws-error @ if exit then
+    wx @ @ dup 1 = swap 2 = or 0= if 8 wfail exit then
+    wx @ @ 1 = if same-depth else wx @ 3 + @ cc-depth @ = 0= if 7 wfail then then
+    wx @ 1+ @ code-patch -1 cc-control +! exit
+  then
+  cc-op @ 103 = if 3 control, exit then
+  cc-op @ 104 = if
+    type-effect control-top ws-error @ if exit then
+    wx @ @ 3 = 0= if 8 wfail exit then same-depth
+    15 code, wx @ 1+ @ code, -1 cc-control +! exit
+  then
+  cc-op @ 105 = if
+    type-effect control-top ws-error @ if exit then
+    wx @ @ 3 = 0= if 8 wfail exit then
+    15 code, 4 control, 0 code, exit
+  then
+  cc-op @ 106 = if
+    control-top ws-error @ if exit then
+    wx @ @ 4 = 0= if 8 wfail exit then wx @ 1+ @ wa ! wx @ 2 + @ wb !
+    -1 cc-control +! control-top ws-error @ if exit then
+    wx @ @ 3 = 0= if 8 wfail exit then same-depth
+    14 code, wx @ 1+ @ code, wa @ code-patch -1 cc-control +! wb @ cc-depth !
+  then
+;
+: compile-token
+  ws-token @ dup 48 >= swap 57 <= and
+  cc-tlen @ 1 > ws-token @ 45 = and or if
+    token-number cc-valid @ if
+      0 cc-in ! 1 cc-out ! type-effect 1 code, cc-value @ code,
+      exit
+    then
+  then
+  token-primitive
+  cc-op @ if
+    cc-op @ 100 < if type-effect cc-op @ code, else compile-control then exit
+  then
+  0 wk ! 0 wy !
+  begin wk @ 4 < while
+    wk @ valid-module if wk @ token-module? if wk @ 1+ wy ! then then
+    1 wk +!
+  repeat
+  wy @ if
+    wy @ 1- dup cc-m @ = if drop 6 wfail exit then
+    dup 1 mf w@ cc-in ! dup 2 mf w@ cc-out ! 3 mf w@ wb !
+    wb @ 0= if 11 wfail exit then
+    type-effect 16 code, wb @ code,
+    1 cc-v @ wb @ 7 + vf w! exit
+  then
+  token-number cc-valid @ if
+    0 cc-in ! 1 cc-out ! type-effect 1 code, cc-value @ code,
+  else 6 wfail then
+;
+: compile-source
+  0 cc-pos ! 0 cc-code ! 0 cc-control ! 0 cc-finished !
+  cc-v @ 5 vf w@ cc-len ! cc-m @ 1 mf w@ cc-depth !
+  next-token cc-tlen @ 1 = ws-token @ 58 = and 0= if 5 wfail then
+  next-token cc-m @ token-module? 0= if 3 wfail then
+  begin ws-error @ 0= cc-finished @ 0= and while
+    next-token
+    cc-tlen @ 0= if 5 wfail else
+      cc-tlen @ 1 = ws-token @ 59 = and if
+        cc-control @ if 8 wfail then
+        cc-depth @ cc-m @ 2 mf w@ = 0= if 7 wfail then
+        17 code, 1 cc-finished !
+      else compile-token then
+    then
+  repeat
+  ws-error @ 0= if next-token cc-tlen @ if 5 wfail then then
+;
+: module-compile
+  0 ws-error ! cc-m ! 0 cc-v !
+  ws-busy @ if 14 wfail then
+  cc-m @ valid-module 0= if 1 wfail then
+  ws-serial @ 65535 = if 15 wfail then
+  ws-error @ 0= if
+    collect 1 wi !
+    begin wi @ 7 < while
+      wi @ vaddr w@ 0= cc-v @ 0= and if wi @ cc-v ! then 1 wi +!
+    repeat
+    cc-v @ 0= if 2 wfail then
+  then
+  ws-error @ 0= if
+    cc-v @ vaddr wx ! 0 wi !
+    begin wi @ 16 < while 0 wx @ wi @ + w! 1 wi +! repeat
+    1 wx @ w! cc-m @ wx @ 1+ w!
+    cc-m @ 6 mf w@ cc-len ! cc-len @ wx @ 5 + w!
+    cc-m @ 1 mf w@ wx @ 6 + w! cc-m @ 2 mf w@ wx @ 7 + w!
+    0 wi !
+    begin wi @ cc-len @ < while
+      cc-m @ maddr 64 + wi @ + w@ wx @ 16 + wi @ + w! 1 wi +!
+    repeat
+    compile-source
+    ws-error @ if 0 cc-v @ vaddr w! else
+      1 ws-serial +! ws-serial @ cc-v @ 2 vf w!
+      cc-code @ cc-v @ 4 vf w!
+      2 cc-v @ vaddr w! 1 cc-v @ 3 vf w!
+      0 wi ! begin wi @ 6 < while
+        cc-v @ wi @ 8 + vf w@ if wi @ 1+ ref+ then 1 wi +!
+      repeat
+      cc-m @ 4 mf w@ ref-
+      cc-m @ 3 mf w@ cc-m @ 4 mf w!
+      cc-v @ cc-m @ 3 mf w!
+      collect
+      ." MODULE-PUBLISHED " cc-m @ . ws-serial @ . cc-code @ . cr
+    then
+  then report-error
+;
+
+\ Pure, bounded evaluator; compilation has checked stack and control joins.
+here constant vm-stack 64 allot
+here constant vm-frames 32 allot
+variable vm-v
+variable vm-pc
+variable vm-sp
+variable vm-fp
+variable vm-fuel
+variable vm-op
+variable vm-a
+variable vm-b
+variable vm-c
+variable vm-root
+variable vm-inputs
+variable vm-outputs
+: vm-push vm-sp @ 64 < if vm-stack vm-sp @ + ! 1 vm-sp +! else drop 7 wfail then ;
+: vm-pop vm-sp @ if -1 vm-sp +! vm-stack vm-sp @ + @ else 0 7 wfail then ;
+: vm-fetch
+  vm-pc @ vm-v @ 4 vf w@ < if
+    vm-v @ vaddr 272 + vm-pc @ + w@ 1 vm-pc +!
+  else 0 5 wfail then
+;
+: vm-primitive
+  vm-op @ 1 = if vm-fetch vm-push exit then
+  vm-op @ 8 = if vm-pop dup vm-push vm-push exit then
+  vm-op @ 9 = if vm-pop drop exit then
+  vm-op @ 10 = if vm-pop vm-a ! vm-pop vm-b ! vm-a @ vm-push vm-b @ vm-push exit then
+  vm-op @ 11 = if vm-pop vm-a ! vm-pop vm-b ! vm-b @ vm-push vm-a @ vm-push vm-b @ vm-push exit then
+  vm-op @ 12 = if vm-pop vm-c ! vm-pop vm-b ! vm-pop vm-a ! vm-b @ vm-push vm-c @ vm-push vm-a @ vm-push exit then
+  vm-op @ 13 = if vm-pop 0= vm-push exit then
+  vm-op @ 14 = if vm-fetch vm-pc ! exit then
+  vm-op @ 15 = if vm-fetch vm-a ! vm-pop 0= if vm-a @ vm-pc ! then exit then
+  vm-op @ 16 = if
+    vm-fetch vm-a !
+    vm-fp @ 30 > if 7 wfail exit then
+    vm-v @ vm-frames vm-fp @ + ! 1 vm-fp +!
+    vm-pc @ vm-frames vm-fp @ + ! 1 vm-fp +!
+    vm-a @ vm-v ! 0 vm-pc ! exit
+  then
+  vm-op @ 17 = if
+    vm-fp @ if
+      -1 vm-fp +! vm-frames vm-fp @ + @ vm-pc !
+      -1 vm-fp +! vm-frames vm-fp @ + @ vm-v !
+    else 0 vm-v ! then exit
+  then
+  vm-pop vm-b ! vm-pop vm-a !
+  vm-op @ 2 = if vm-a @ vm-b @ + vm-push exit then
+  vm-op @ 3 = if vm-a @ vm-b @ - vm-push exit then
+  vm-op @ 4 = if vm-a @ vm-b @ * vm-push exit then
+  vm-op @ 5 = vm-op @ 23 = or vm-op @ 24 = or if
+    vm-b @ 0= if 13 wfail exit then
+    vm-a @ vm-b @ /mod
+    vm-op @ 5 = if vm-b ! vm-push vm-b @ vm-push exit then
+    vm-op @ 23 = if swap then drop vm-push exit
+  then
+  vm-op @ 6 = if vm-a @ vm-b @ = vm-push exit then
+  vm-op @ 7 = if vm-a @ vm-b @ < vm-push exit then
+  vm-op @ 18 = if vm-a @ vm-b @ > vm-push exit then
+  vm-op @ 19 = if vm-a @ vm-b @ <= vm-push exit then
+  vm-op @ 20 = if vm-a @ vm-b @ >= vm-push exit then
+  vm-op @ 21 = if vm-a @ vm-b @ and vm-push exit then
+  vm-op @ 22 = if vm-a @ vm-b @ or vm-push exit then
+  vm-op @ 25 = if vm-a @ vm-b @ min vm-push exit then
+  vm-op @ 26 = if vm-a @ vm-b @ max vm-push exit then
+  6 wfail
+;
+: eval-version
+  \ Internal (arguments... version-slot -- results... success).
+  vm-root ! vm-root @ 6 vf w@ vm-inputs ! vm-root @ 7 vf w@ vm-outputs !
+  depth vm-inputs @ < if 7 wfail report-error 0 exit then
+  1 ws-busy ! 0 vm-sp ! 0 vm-fp ! 0 vm-pc ! 1024 vm-fuel !
+  vm-inputs @ wi !
+  begin wi @ while -1 wi +! vm-stack wi @ + ! repeat
+  vm-inputs @ vm-sp ! vm-root @ vm-v !
+  begin vm-v @ ws-error @ 0= and while
+    vm-fuel @ if
+      -1 vm-fuel +! vm-fetch vm-op ! ws-error @ 0= if vm-primitive then
+    else 12 wfail then
+  repeat
+  vm-sp @ vm-outputs @ = 0= if 7 wfail then
+  0 ws-busy ! 0 wi !
+  begin wi @ vm-outputs @ < while
+    ws-error @ if 0 else vm-stack wi @ + @ then
+    1 wi +!
+  repeat
+  ws-error @ 0= report-error
+;
+: module-run
+  0 ws-error ! dup valid-module if
+    3 mf w@ dup if eval-version else drop 0 11 wfail report-error then
+  else drop 0 1 wfail report-error then
+;
+: version-run
+  0 ws-error ! find-serial dup if eval-version else drop 0 11 wfail report-error then
+;
+: workspace-state
+  ." WORKSPACE 4 6 256 128 " ws-serial @ . cr
+  0 wk !
+  begin wk @ 4 < while
+    ." MODULE " wk @ . wk @ valid-module .
+    wk @ 3 mf w@ serial-of . wk @ 4 mf w@ serial-of .
+    wk @ 6 mf w@ . wk @ 7 mf w@ .
+    wk @ 1 mf w@ . wk @ 2 mf w@ . cr
+    ." NAME " wk @ . wk @ 5 mf w@ wn ! wk @ maddr 16 + wx ! output-bytes
+    1 wk +!
+  repeat
+  1 wk !
+  begin wk @ 7 < while
+    ." VERSION " wk @ . wk @ vaddr w@ . wk @ 1 vf w@ .
+    wk @ 2 vf w@ . wk @ 3 vf w@ . wk @ 14 vf w@ .
+    wk @ 4 vf w@ . wk @ 5 vf w@ . cr
+    1 wk +!
+  repeat
+;

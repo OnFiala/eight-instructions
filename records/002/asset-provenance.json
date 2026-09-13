@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "approvedReference": "reference/approved-living-dispatch.png",
+  "approvedReferenceSha256": "93acd21539f8a122bc4b66f8ce1f75048e2cf477ca14d068c00744a08c53e847",
+  "codingAuthor": "gpt-6-astra xhigh, no subagents",
+  "assetGenerator": "image_gen; exact underlying image model not exposed",
+  "artDirection": "Highly detailed realistic miniature architecture, cream stone/slate roofs, warm windows, mature olive trees, orthographic35-degree view; no app/UI/road imagery",
+  "assets": [
+    {
+      "name": "university-block",
+      "path": "dist/assets/city/university-block.png",
+      "generatorOutput": "exec-14596397-3fdb-457d-9825-4f627702454c.png",
+      "sha256": "96514dab082c8f1856f6bd02a2caa900acc8a9b9d0da98b563b2662d9c915de3",
+      "bytes": 2180268,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "market-block",
+      "path": "dist/assets/city/market-block.png",
+      "generatorOutput": "exec-5f8928a2-d758-4522-9b70-ea18ba012493.png",
+      "sha256": "1f131c11d2bd6555a7e9bbfdb803e17e335920189f59d4253804e5610e20acda",
+      "bytes": 2407371,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "depot-block",
+      "path": "dist/assets/city/depot-block.png",
+      "generatorOutput": "exec-a336f82e-d837-4ecf-ab3e-17b2fb62c5f5.png",
+      "sha256": "95c79cb021442ac148e3a9c72efe95b346f3ae953af1fc6d8f702a9561114399",
+      "bytes": 2209026,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "homes-block",
+      "path": "dist/assets/city/homes-block.png",
+      "generatorOutput": "exec-1129d0ae-eb59-4b2c-a622-59df20ffd72c.png",
+      "sha256": "46893a78cf8027f187036e5dab1a6377e711cb719a59891b41d40ab85c122979",
+      "bytes": 2266408,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "warehouse-block",
+      "path": "dist/assets/city/warehouse-block.png",
+      "generatorOutput": "exec-5ff90e71-3870-4281-97e6-14e5aa769c1c.png",
+      "sha256": "a10abbfbf1dbdb3fbb01f9db7948181a9d9eaa59f59f9c7763fdfa50015896e3",
+      "bytes": 2254230,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "oldtown-block",
+      "path": "dist/assets/city/oldtown-block.png",
+      "generatorOutput": "exec-6e8f5888-f566-495b-9645-64ce7940efa6.png",
+      "sha256": "7176e6cbb4ec5eb348c20ba83b9cb8f3c172fdba35905fbdb95fcd0f07dea197",
+      "bytes": 2382650,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
+      "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    }
+  ],
+  "rejectedAttempts": [
+    {
+      "file": "exec-460a306a-18c0-4e14-a95d-e4103089025c.png",
+      "reason": "Requested alpha was emitted as RGB with baked checkerboard; not used. Switched to explicit chroma matte for renderer compositing."
+    }
+  ]
+}

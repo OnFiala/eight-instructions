@@ -10,17 +10,22 @@ async function readAsset(path,type='text') {
   if(!response.ok)throw new Error(`Could not load ${path}: HTTP ${response.status}`);
   return type==='bytes'?response.arrayBuffer():type==='json'?response.json():response.text();
 }
+async function loadLibraries(manifest='system.json') {
+  if(typeof manifest!=='string'||!/^[a-z0-9-]+\.json$/.test(manifest))throw new Error('Invalid source manifest name');
+  const boot=await readAsset('programs/'+manifest,'json');
+  if(!Array.isArray(boot.libraries)||boot.libraries.length>16||boot.libraries.some(n=>typeof n!=='string'||!/^[a-z0-9-]+\.thread$/.test(n)))throw new Error('Invalid raw source manifest');
+  return (await Promise.all(boot.libraries.map(name=>readAsset('programs/'+name)))).join('\n');
+}
 async function loadAssets() {
   if(assets)return assets;
-  const [compressed,map,wasm,boot]=await Promise.all([
+  const [compressed,map,wasm,libraries]=await Promise.all([
     readAsset('kernel.bf.gz','bytes'),readAsset('kernel-map.json','json'),
-    readAsset('executor.wasm','bytes'),readAsset('programs/system.json','json'),
+    readAsset('executor.wasm','bytes'),loadLibraries(),
   ]);
   const stream=new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
   const source=await new Response(stream).text(),programHash=await sha256(source);
   if(programHash!==map.sha256)throw new Error('Kernel integrity check failed');
   const program=compile(source),module=await WebAssembly.compile(wasm);
-  const libraries=(await Promise.all(boot.libraries.map(name=>readAsset('programs/'+name)))).join('\n');
   const create=(cells=map.dialect.tape_cells)=>{
     if(cells!==map.dialect.tape_cells)throw new Error('Image tape size is incompatible with this kernel');
     return new WasmMachine(program,module,{cells});
@@ -71,8 +76,9 @@ async function action(message) {
   if(['boot','execute','resume','step'].includes(type))pauseRequested=false;
   try {
     if(type==='boot') {
-      const a=await loadAssets();machine=a.create();
-      machine.feed(bytes(message.bare?'':a.libraries));
+      const a=await loadAssets();
+      const libraries=message.system===undefined?a.libraries:await loadLibraries(message.system);
+      machine=a.create();machine.feed(bytes(message.bare?'':libraries));
       return await run(id);
     }
     if(type==='load') {

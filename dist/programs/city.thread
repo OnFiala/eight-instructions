@@ -1,0 +1,207 @@
+\ Living Dispatch native algorithms. Load city-state.thread before workspace.thread.
+: edge 5 * city-roads + + ;
+: car 32 * city-cars + + ;
+\ Road fields0 from,1 to,2 duration,3 toll,4 open.
+\ Car fields0 node,1 edge+1,2 progress,3 goal,4 delivered,5 pinned version,
+\ 6 last decision,7 last score,8 path length,9..24 path,25 in-flight duration.
+: city-road
+  \ (duration toll from to --); setup only, directed.
+  cb ! ca ! ct ! cd !
+  city-edges @ 48 < assert
+  ca @ 16 < cb @ 16 < and assert
+  cd @ 0 > cd @ 64 < and ct @ 64 < and assert
+  cb @ 1 city-edges @ edge ! ca @ 0 city-edges @ edge !
+  ct @ 3 city-edges @ edge ! cd @ 2 city-edges @ edge !
+  0 city-edges @ edge @ city-head + dup @ city-next city-edges @ + !
+  city-edges @ 1+ swap !
+  1 4 city-edges @ edge ! 1 city-edges +! 1 city-generation +!
+;
+: city-street
+  \ (duration toll from to --); explicit pair of directed roads.
+  cb ! ca ! ct ! cd !
+  cd @ ct @ ca @ cb @ city-road
+  cd @ ct @ cb @ ca @ city-road
+;
+: road-state
+  \ (open edge-id --); affects future departures only.
+  ce ! ca ! ce @ city-edges @ < assert ca @ 2 < assert
+  ca @ 4 ce @ edge ! 1 city-generation +!
+  ." ROAD-CHANGED " city-tick @ . ce @ . ca @ . city-generation @ . cr
+;
+: road-update
+  \ (duration toll edge-id --); atomic data edit; current travel keeps progress.
+  ce ! ct ! cd ! ce @ city-edges @ < assert
+  cd @ 0 > cd @ 64 < and ct @ 64 < and assert
+  cd @ 2 ce @ edge ! ct @ 3 ce @ edge ! 1 city-generation +!
+  ." ROAD-UPDATED " city-tick @ . ce @ . cd @ . ct @ . city-generation @ . cr
+;
+: bridge-state
+  \ (open --); Harbor bridge is the final directed pair,42 and43.
+  dup 42 road-state 43 road-state
+;
+: city-job
+  \ (destination vehicle --); preserves position and in-flight edge.
+  cv ! ca ! cv @ 3 < assert ca @ 16 < assert
+  ca @ 3 cv @ car !
+  ." JOB " city-tick @ . cv @ . ca @ . cr
+;
+: city-cost-cache
+  city-rule @ 3 mf w@ serial-of cserial !
+  cserial @ city-cache-version @ = city-generation @ city-cache-generation @ = and if 1 exit then
+  1 cvalid ! 0 ci ! 0 city-last-valid !
+  begin ci @ city-edges @ < while
+    4 ci @ edge @ if
+      2 ci @ edge @ city-last-duration @ =
+      3 ci @ edge @ city-last-toll @ = and city-last-valid @ and if
+        city-last-cost @ city-trial ci @ + !
+      else
+        2 ci @ edge @ city-last-duration ! 3 ci @ edge @ city-last-toll !
+        city-last-duration @ city-last-toll @ city-rule @ module-run
+        if
+          dup 0 > over 1024 < and if
+            dup city-last-cost ! city-trial ci @ + ! 1 city-last-valid !
+            ." POLICY " city-tick @ . cserial @ . city-last-duration @ .
+            city-last-toll @ . city-last-cost @ . cr
+          else drop 0 cvalid ! 0 city-last-valid ! then
+        else drop 0 cvalid ! 0 city-last-valid ! then
+      then
+    else 0 city-trial ci @ + ! then
+    1 ci +!
+  repeat
+  cvalid @ if
+    city-trial city-costs city-edges @ move
+    cserial @ city-cache-version ! city-generation @ city-cache-generation !
+    ." COSTS " city-tick @ . cserial @ . city-generation @ . city-edges @ . cr
+    0 ci ! begin ci @ city-edges @ < while
+      ." EDGE-COST " ci @ . 2 ci @ edge @ . 3 ci @ edge @ .
+      city-costs ci @ + @ . cr 1 ci +!
+    repeat
+  else ." RULE-REJECTED " city-tick @ . cserial @ . cr then
+  cvalid @
+;
+: city-nearest
+  65535 cbest ! 65535 cchosen ! 0 ci !
+  begin ci @ 16 < while
+    city-seen ci @ + @ 0= if
+      city-dist ci @ + @ cbest @ < if
+        city-dist ci @ + @ cbest ! ci @ cchosen !
+      then
+    then 1 ci +!
+  repeat
+;
+: city-solve
+  \ Uses explicit directed edges and strictly positive bounded native costs.
+  65535 city-dist 16 fill 65535 city-prev 16 fill 0 city-seen 16 fill
+  0 city-dist cs @ + ! 0 cj !
+  begin cj @ 16 < while
+    city-nearest cchosen @ 65535 = if exit then
+    1 city-seen cchosen @ + ! city-head cchosen @ + @ ce !
+    begin ce @ while
+      -1 ce +!
+      city-costs ce @ + @ dup if
+        cbest @ + ca ! 1 ce @ edge @ cb !
+        ca @ city-dist cb @ + @ < if
+          ca @ city-dist cb @ + ! ce @ city-prev cb @ + !
+        then
+      else drop then
+      city-next ce @ + @ ce !
+    repeat 1 cj +!
+  repeat
+;
+: city-plan
+  \ (vehicle --); pure route planning, no movement. Stores emitted path/score.
+  cv ! 0 cv @ car @ cs ! 3 cv @ car @ ct !
+  city-solve 0 clen ! ct @ ca !
+  city-dist ct @ + @ 65535 = if
+    0 8 cv @ car ! ." UNREACHABLE " city-tick @ . cv @ . cr 0 exit
+  then
+  begin ca @ cs @ = 0= while
+    clen @ 16 < assert
+    ca @ city-path clen @ + ! 1 clen +!
+    city-prev ca @ + @ ce ! 0 ce @ edge @ ca !
+  repeat
+  cs @ city-path clen @ + ! 1 clen +!
+  clen @ 8 cv @ car ! city-dist ct @ + @ 7 cv @ car !
+  1 city-sequence +! city-sequence @ 6 cv @ car !
+  ." ROUTE " city-sequence @ . city-tick @ . cv @ . cs @ . ct @ .
+  cserial @ . city-dist ct @ + @ . clen @ .
+  0 ci ! begin ci @ clen @ < while
+    city-path clen @ 1- ci @ - + @ dup . 9 ci @ + cv @ car ! 1 ci +!
+  repeat cr
+  1
+;
+: city-depart
+  cv @ city-plan if
+    8 cv @ car @ 1 > if
+      10 cv @ car @ city-prev + @ ce !
+      city-rule @ module-pin dup 0 > assert 5 cv @ car !
+      ce @ 1+ 1 cv @ car ! 0 2 cv @ car !
+      2 ce @ edge @ 25 cv @ car !
+      ." DEPART " city-tick @ . cv @ . ce @ . 5 cv @ car @ . cr
+    then
+  then
+;
+: city-vehicle-step
+  1 cv @ car @ dup if
+    1- ce !
+    2 cv @ car dup @ 1+ swap !
+    2 cv @ car @ 25 cv @ car @ >= if
+      1 ce @ edge @ 0 cv @ car ! 0 1 cv @ car ! 0 2 cv @ car !
+      5 cv @ car @ version-release assert 0 5 cv @ car !
+      ." ARRIVE " city-tick @ . cv @ . 0 cv @ car @ . cr
+      0 cv @ car @ 3 cv @ car @ = if
+        4 cv @ car dup @ 1+ swap !
+        ." DELIVERED " city-tick @ . cv @ . 3 cv @ car @ . 4 cv @ car @ . cr
+      then
+    then
+  else
+    drop 0 cv @ car @ 3 cv @ car @ = 0= if
+      cvalid @ if city-depart then
+    then
+  then
+;
+: city-step
+  city-cost-cache cvalid ! 1 city-tick +! 0 cv !
+  begin cv @ 3 < while city-vehicle-step 1 cv +! repeat
+  ." TICK " city-tick @ . cr
+;
+: city-state
+  ." CITY " city-tick @ . city-generation @ . city-sequence @ . city-rule @ .
+  city-rule @ 3 mf w@ serial-of . cr
+  ." NODES 16 " cr
+  0 ci ! begin ci @ 16 < while
+    ." NODE " ci @ . ci @ 4 mod 20 * . ci @ 4 / 20 * . cr 1 ci +!
+  repeat
+  0 ci ! begin ci @ city-edges @ < while
+    ." ROAD " ci @ . 0 ci @ edge @ . 1 ci @ edge @ .
+    2 ci @ edge @ . 3 ci @ edge @ . 4 ci @ edge @ . cr 1 ci +!
+  repeat
+  0 cv ! begin cv @ 3 < while
+    ." VEHICLE " cv @ .
+    0 ci ! begin ci @ 9 < while ci @ cv @ car @ . 1 ci +! repeat
+    25 cv @ car @ .
+    0 ci ! begin ci @ 8 cv @ car @ < while 9 ci @ + cv @ car @ . 1 ci +! repeat cr
+    1 cv +!
+  repeat
+;
+: city-init
+  \ Initial data are native source inputs, never computed by the renderer.
+  0 cv ! begin cv @ 3 < while
+    5 cv @ car @ dup if version-release assert else drop then 1 cv +!
+  repeat
+  0 city-roads 240 fill 0 city-cars 96 fill 0 city-head 16 fill
+  0 city-edges ! 0 city-tick ! 1 city-generation ! 0 city-sequence !
+  0 city-cache-version ! 0 city-cache-generation ! 0 city-rule !
+  0 ci ! begin ci @ 4 < while
+    2 0 ci @ 4 * dup 1+ city-street
+    2 0 ci @ 4 * 2 + dup 1+ city-street 1 ci +!
+  repeat
+  0 ci ! begin ci @ 12 < while 2 0 ci @ dup 4 + city-street 1 ci +! repeat
+  6 0 1 2 city-street
+  2 5 9 10 city-street
+  1 city-generation !
+  12 0 0 car ! 15 3 0 car !
+  8 0 1 car ! 3 3 1 car !
+  0 0 2 car ! 11 3 2 car !
+  ." CITY-READY 16 44 3" cr
+;

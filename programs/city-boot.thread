@@ -1,0 +1,5 @@
+\ Raw initialization inputs, consumed and executed by the BF machine.
+2 1 20 module-create delivery-rule.thread
+26 0 source-write : delivery-rule.thread + ;
+0 module-compile
+city-init

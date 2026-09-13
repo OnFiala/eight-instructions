@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: source is stored, compiled and executed in BF; arbitrary expressions and typed control
+ok 1 - source is stored, compiled and executed in BF; arbitrary expressions and typed control
+  ---
+  duration_ms: 13905.115125
+  type: 'test'
+  ...
+# Subtest: invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+ok 2 - invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+  ---
+  duration_ms: 32036.390417
+  type: 'test'
+  ...
+# Subtest: exact dependency binding, pins, rollback, deletion refusal and stale handles
+ok 3 - exact dependency binding, pins, rollback, deletion refusal and stale handles
+  ---
+  duration_ms: 2221.341667
+  type: 'test'
+  ...
+# Subtest: all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+ok 4 - all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+  ---
+  duration_ms: 3586.055791
+  type: 'test'
+  ...
+# Subtest: bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+ok 5 - bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+  ---
+  duration_ms: 19011.567958
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 71213.783584
