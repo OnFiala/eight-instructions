@@ -75,3 +75,50 @@ was rejected after it made small full-kernel literal workloads substantially mor
 expensive. The store now remembers a reusable slot during lookup, avoiding a
 second insertion probe. Fully colliding 128-record workloads still require
 multiple bounded runs; images can preserve progress between them.
+
+## Build 002: native workspace and Living Dispatch
+
+The chosen extension is a module compiler and pure evaluator **written in Thread**,
+not a second host compiler. Its Thread definitions are compiled by the BF kernel;
+when those definitions tokenize, type-check, allocate, link or execute a module,
+all those operations execute as BF. It is an interpreter layered inside the native
+Thread runtime, with an explicit smaller module language profile. General Thread
+remains available and is not silently relabeled as a reclaimable module system.
+
+Only three generic kernel primitives were added: raw byte `key`, bounded workspace
+`w@` and `w!`. The 4,096-word workspace uses the same auditable paged tape technique.
+Resident platform code capacity increased from8,192 to12,288 to hold the new native
+compiler and city definitions. The six reclaimable module arenas have fixed capacity;
+raising resident capacity is not the reclamation mechanism. The raw kernel identity
+and tape size are in `dist/kernel-map.json`.
+
+Ownership is explicit: `workspace.thread` owns four module records, source drafts,
+six version arenas, exact dependencies, roots and pins. `city-state.thread` allocates
+hot application arrays before workspace compiler tables. `city.thread` owns road
+adjacency, costs, path reconstruction, vehicle progress and delivery events. Raw
+`city-boot.thread` creates the initial named source and city data. See `modules.md`
+for the exact safe point, effect, refusal and lifetime invariants.
+
+A moving vehicle pins the program version selected at departure, and captures its
+road duration. Code publication, road closure, duration edits and job changes cannot
+teleport it or reinterpret its committed progress. Arrival releases that pin. A last
+decision serial is retained as evidence, not as a reference that prevents collection.
+Its source may later become unavailable under the bounded retention policy.
+
+Positive scores (1..1,023) bound the 16-node shortest-path arithmetic. Native cost
+caching is valid only for the exact active pure module version and current road data.
+Every road mutation explicitly invalidates the cache, including generation wrap.
+Missing, uncompiled or wrong-arity city rules block departures before evaluation;
+existing travel can continue. The city has no collision or traffic model.
+
+Presentation parses complete length-framed source/state output. `MODULE` identifies
+active/rollback **serials**; `VERSION` separately identifies physical arenas. The
+renderer never equates those identities. `city-scene.mjs` projects native coordinates,
+directed roads and emitted paths, composites decorative image assets, and interpolates
+between two observed positions. `site.mjs` frames raw input and waits for native
+storage acknowledgement before requesting compilation. Comparison creates two generic
+workers from the same opaque image; it does not calculate expected answers.
+
+No graphics package or runtime npm dependency was added. Inter typography and Phosphor
+icons are vendored assets under their licenses. The image generator created appearance
+assets only. Every added host component is justified in `boundary.json`.

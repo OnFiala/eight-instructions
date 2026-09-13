@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "number": 2,
+  "title": "A city you can reprogram",
+  "status": "PARTIAL",
+  "summary": "Named source, typed modules, safe version replacement and reclaiming inside the Brainfuck programming language, demonstrated by a native delivery city. Final visual and publication verification remains in progress.",
+  "model": "gpt-6-astra",
+  "reasoningMode": "xhigh",
+  "soleEngineeringAgent": true,
+  "originalChallenge": "challenge.md",
+  "startingGitCommit": "6d7c6b0cb7fa73eda0504ef0d2cc10b1429c5dd0",
+  "endingGitCommit": null,
+  "commitConvention": "Record the final implementation candidate, metadata-only closure, release tag and deployed artifact separately. Build001 is immutable.",
+  "humanInterventions": [
+    "Owner provided the challenge and selected concept1. No human production code or repairs."
+  ],
+  "protocolViolations": [],
+  "verification": {
+    "testsPassed": null,
+    "testsFailed": null,
+    "regressions": "Full final suite in progress. Baseline50 retained; focused suites and native/literal tests documented in journal.",
+    "boundaryAudit": "124-component author-reviewed inventory; heuristic checks only.",
+    "selfAudit": "Same Astra author; not an independent audit.",
+    "visual": "Reference comparison and browser workflow in progress."
+  },
+  "metrics": "metrics.json",
+  "failuresAndRepairs": "journal.md",
+  "knownLimitations": [
+    "16-bit wrapping arithmetic, fixed capacities and explicit source length",
+    "Four module records; six version arenas; one rollback root per module",
+    "Live dependencies and pins can prevent reclamation",
+    "Resident general Thread code/dictionary remain monotonic",
+    "Module profile is pure and typed; not all general Thread words are permitted",
+    "Single execution stream; no collisions, traffic, server or cloud persistence",
+    "Module serial65535 refuses further publication rather than wrapping",
+    "General Thread developer access can corrupt guest state",
+    "Build001 image requires its preserved old kernel; no migration",
+    "Measured native cold steps take seconds; interpolation is presentation only",
+    "Finite checks and sole-author review are not an independent proof"
+  ],
+  "publication": {
+    "repository": "https://github.com/OnFiala/eight-instructions",
+    "site": "https://eight-instructions.andrewxix.chatgpt.site",
+    "state": "Existing Build001 remains public; Build002 not yet published."
+  }
+}

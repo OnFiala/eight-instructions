@@ -65,12 +65,46 @@
       "origin": "image_gen tool; approved concept1 supplied as visual reference",
       "role": "Decorative architecture only; no roads, vehicles, route decisions or simulation",
       "matte": "Uniform magenta for presentation-only chroma compositing; source PNG preserved unedited"
+    },
+    {
+      "name": "van-front-right",
+      "path": "dist/assets/city/van-front-right.png",
+      "generatorOutput": "exec-0915a949-df81-4ab7-8785-d611ae5deb93.png",
+      "sha256": "05fce2dc5a5bd85b32c7af70aefba6e0a638f7d3c3dd469a54ab7441cfc821cc",
+      "bytes": 1533954,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Vehicle appearance only, positioned from observed BF state",
+      "matte": "Uniform magenta; presentation chroma compositing. Front-left view uses a horizontal presentation mirror of front-right."
+    },
+    {
+      "name": "van-rear-left",
+      "path": "dist/assets/city/van-rear-left.png",
+      "generatorOutput": "exec-3698f0c9-ba0f-4bbc-a9dd-be76816b43c3.png",
+      "sha256": "af7101ed1283a6414cb2ced6c40087b3d1108fe4b706662dc6daed8b397e9afb",
+      "bytes": 1229758,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Vehicle appearance only, positioned from observed BF state",
+      "matte": "Uniform magenta; presentation chroma compositing. Front-left view uses a horizontal presentation mirror of front-right."
+    },
+    {
+      "name": "van-rear-right",
+      "path": "dist/assets/city/van-rear-right.png",
+      "generatorOutput": "exec-1af3325d-78ab-4bd7-a9e2-6f17eaf95a59.png",
+      "sha256": "3771fd5ab29bc8f302f70f7c87de22d9a5e93ed3e7b61829bdf69a137864b8f2",
+      "bytes": 1316368,
+      "origin": "image_gen tool; approved concept1 supplied as visual reference",
+      "role": "Vehicle appearance only, positioned from observed BF state",
+      "matte": "Uniform magenta; presentation chroma compositing. Front-left view uses a horizontal presentation mirror of front-right."
     }
   ],
   "rejectedAttempts": [
     {
       "file": "exec-460a306a-18c0-4e14-a95d-e4103089025c.png",
       "reason": "Requested alpha was emitted as RGB with baked checkerboard; not used. Switched to explicit chroma matte for renderer compositing."
+    },
+    {
+      "file": "exec-78d6bfd3-4352-49c7-ad78-09e0290ea545.png",
+      "reason": "Generator did not produce requested uniform magenta matte; black backdrop and excessive glow rejected. Symmetric front-right asset mirrored by renderer instead."
     }
   ]
 }

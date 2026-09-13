@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "builds": [
-    "records/001/build.json"
+    "records/001/build.json",
+    "records/002/build.json"
   ]
 }

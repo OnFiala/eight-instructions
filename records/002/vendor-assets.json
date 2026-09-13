@@ -1,0 +1,83 @@
+{
+  "note": "Original static font/icon assets from official upstream; no executable application dependency. Font OFL1.1; icons MIT. Files stored verbatim with licenses.",
+  "assets": [
+    {
+      "path": "dist/assets/fonts/InterVariable.woff2",
+      "source": "https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/InterVariable.woff2",
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "bytes": 352240
+    },
+    {
+      "path": "dist/assets/fonts/LICENSE-Inter.txt",
+      "source": "https://raw.githubusercontent.com/rsms/inter/master/LICENSE.txt",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "bytes": 4380
+    },
+    {
+      "path": "dist/assets/icons/arrow-right.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/arrow-right.svg",
+      "sha256": "e45bc4a12592b8723110db42c6deffdf177e4fe7704cf50324963fa0a59b2d74",
+      "bytes": 245
+    },
+    {
+      "path": "dist/assets/icons/arrow-counter-clockwise.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/arrow-counter-clockwise.svg",
+      "sha256": "4eb160d5ae781107c674481ac081962e6bce6281a646129e6c3f960b9dd5dac6",
+      "bytes": 325
+    },
+    {
+      "path": "dist/assets/icons/play.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/play.svg",
+      "sha256": "885b3ed2095889c4ff063dac35dc424cb9f6c00273ab44e2f90dc9dadbee661a",
+      "bytes": 293
+    },
+    {
+      "path": "dist/assets/icons/pause.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/pause.svg",
+      "sha256": "7a9a8fe311234262b85c6e332f77db4ba9a59b6ca4292c41d327977cf61a2fc9",
+      "bytes": 320
+    },
+    {
+      "path": "dist/assets/icons/skip-forward.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/skip-forward.svg",
+      "sha256": "52f1ed5a89f1a38bf8537b38bd2da0501e396fc4cb03a2cdde38d248ceb03fbe",
+      "bytes": 275
+    },
+    {
+      "path": "dist/assets/icons/download-simple.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/download-simple.svg",
+      "sha256": "c48678aa09b44ba4974954690ee6cc846379c448a7214f8c802604c2a1562014",
+      "bytes": 317
+    },
+    {
+      "path": "dist/assets/icons/upload-simple.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/upload-simple.svg",
+      "sha256": "d2b22b75affd718a4a24d71ee71586b277cf48ddb7d52b7d7d0a85b47f8b12d1",
+      "bytes": 324
+    },
+    {
+      "path": "dist/assets/icons/caret-right.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/caret-right.svg",
+      "sha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7",
+      "bytes": 219
+    },
+    {
+      "path": "dist/assets/icons/arrows-clockwise.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/arrows-clockwise.svg",
+      "sha256": "2e80fbc9c5c37553934c9ebbd6324bf7fabe9a4b4d7c2445d99edfce55cc22df",
+      "bytes": 503
+    },
+    {
+      "path": "dist/assets/icons/info.svg",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/assets/regular/info.svg",
+      "sha256": "438a1f319d53d86e840af73fb7b1d224c9224a437b9fa449a4e2cb45a82a3552",
+      "bytes": 348
+    },
+    {
+      "path": "dist/assets/icons/LICENSE-Phosphor.txt",
+      "source": "https://raw.githubusercontent.com/phosphor-icons/core/main/LICENSE",
+      "sha256": "b5b1f1da112d18ea2147decfd48ddc1bf2b5aeb6c265381579340e95b15a2bb2",
+      "bytes": 1071
+    }
+  ]
+}

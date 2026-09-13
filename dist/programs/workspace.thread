@@ -440,7 +440,9 @@ here constant cc-controls 64 allot
       cc-m @ 3 mf w@ cc-m @ 4 mf w!
       cc-v @ cc-m @ 3 mf w!
       collect
-      ." MODULE-PUBLISHED " cc-m @ . ws-serial @ . cc-code @ . cr
+      ." MODULE-PUBLISHED " cc-m @ . ws-serial @ . cc-code @ . cc-v @ .
+      cc-v @ 400 vf w@ 0 > . cr
+      cc-v @ 400 vf dup w@ 1+ swap w!
     then
   then report-error
 ;
@@ -542,12 +544,13 @@ variable vm-outputs
 ;
 : workspace-state
   ." WORKSPACE 4 6 256 128 " ws-serial @ . cr
-  0 wk !
+  0 wk ! 0 wa ! 0 wb ! 0 wc ! 0 wy !
   begin wk @ 4 < while
     ." MODULE " wk @ . wk @ valid-module .
     wk @ 3 mf w@ serial-of . wk @ 4 mf w@ serial-of .
     wk @ 6 mf w@ . wk @ 7 mf w@ .
     wk @ 1 mf w@ . wk @ 2 mf w@ . cr
+    wk @ valid-module if wk @ 6 mf w@ wy +! then
     ." NAME " wk @ . wk @ 5 mf w@ wn ! wk @ maddr 16 + wx ! output-bytes
     1 wk +!
   repeat
@@ -555,7 +558,11 @@ variable vm-outputs
   begin wk @ 7 < while
     ." VERSION " wk @ . wk @ vaddr w@ . wk @ 1 vf w@ .
     wk @ 2 vf w@ . wk @ 3 vf w@ . wk @ 14 vf w@ .
-    wk @ 4 vf w@ . wk @ 5 vf w@ . cr
+    wk @ 4 vf w@ . wk @ 5 vf w@ . wk @ 400 vf w@ . cr
+    wk @ valid-version if
+      1 wa +! wk @ 4 vf w@ wb +! wk @ 5 vf w@ wc +!
+    then
     1 wk +!
   repeat
+  ." MEMORY 6 " wa @ . ." 768 " wb @ . ." 1536 " wc @ . ." 1024 " wy @ . cr
 ;

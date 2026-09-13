@@ -3,7 +3,8 @@
 : car 32 * city-cars + + ;
 \ Road fields0 from,1 to,2 duration,3 toll,4 open.
 \ Car fields0 node,1 edge+1,2 progress,3 goal,4 delivered,5 pinned version,
-\ 6 last decision,7 last score,8 path length,9..24 path,25 in-flight duration.
+\ 6 last decision,7 last score,8 path length,9..24 path,25 in-flight duration,
+\ 26 last decision's version serial (evidence, not a lifetime pin).
 : city-road
   \ (duration toll from to --); setup only, directed.
   cb ! ca ! ct ! cd !
@@ -14,10 +15,11 @@
   ct @ 3 city-edges @ edge ! cd @ 2 city-edges @ edge !
   0 city-edges @ edge @ city-head + dup @ city-next city-edges @ + !
   city-edges @ 1+ swap !
-  1 4 city-edges @ edge ! 1 city-edges +! 1 city-generation +!
+  1 4 city-edges @ edge ! 1 city-edges +! 1 city-generation +! 0 city-cache-version !
 ;
 : city-street
   \ (duration toll from to --); explicit pair of directed roads.
+  city-edges @ 46 <= assert
   cb ! ca ! ct ! cd !
   cd @ ct @ ca @ cb @ city-road
   cd @ ct @ cb @ ca @ city-road
@@ -25,14 +27,14 @@
 : road-state
   \ (open edge-id --); affects future departures only.
   ce ! ca ! ce @ city-edges @ < assert ca @ 2 < assert
-  ca @ 4 ce @ edge ! 1 city-generation +!
+  ca @ 4 ce @ edge ! 1 city-generation +! 0 city-cache-version !
   ." ROAD-CHANGED " city-tick @ . ce @ . ca @ . city-generation @ . cr
 ;
 : road-update
   \ (duration toll edge-id --); atomic data edit; current travel keeps progress.
   ce ! ct ! cd ! ce @ city-edges @ < assert
   cd @ 0 > cd @ 64 < and ct @ 64 < and assert
-  cd @ 2 ce @ edge ! ct @ 3 ce @ edge ! 1 city-generation +!
+  cd @ 2 ce @ edge ! ct @ 3 ce @ edge ! 1 city-generation +! 0 city-cache-version !
   ." ROAD-UPDATED " city-tick @ . ce @ . cd @ . ct @ . city-generation @ . cr
 ;
 : bridge-state
@@ -46,7 +48,12 @@
   ." JOB " city-tick @ . cv @ . ca @ . cr
 ;
 : city-cost-cache
-  city-rule @ 3 mf w@ serial-of cserial !
+  0 cserial !
+  city-rule @ valid-module if
+    city-rule @ 3 mf w@ serial-of cserial !
+    city-rule @ 1 mf w@ 2 = city-rule @ 2 mf w@ 1 = and cserial @ 0 > and
+  else 0 then
+  0= if ." RULE-REJECTED " city-tick @ . cserial @ . cr 0 exit then
   cserial @ city-cache-version @ = city-generation @ city-cache-generation @ = and if 1 exit then
   1 cvalid ! 0 ci ! 0 city-last-valid !
   begin ci @ city-edges @ < while
@@ -122,6 +129,7 @@
   repeat
   cs @ city-path clen @ + ! 1 clen +!
   clen @ 8 cv @ car ! city-dist ct @ + @ 7 cv @ car !
+  cserial @ 26 cv @ car !
   1 city-sequence +! city-sequence @ 6 cv @ car !
   ." ROUTE " city-sequence @ . city-tick @ . cv @ . cs @ . ct @ .
   cserial @ . city-dist ct @ + @ . clen @ .
@@ -165,6 +173,13 @@
   begin cv @ 3 < while city-vehicle-step 1 cv +! repeat
   ." TICK " city-tick @ . cr
 ;
+: city-idle
+  1 cvalid ! 0 cv !
+  begin cv @ 3 < while
+    1 cv @ car @ 0 > 0 cv @ car @ 3 cv @ car @ = 0= or if 0 cvalid ! then
+    1 cv +!
+  repeat cvalid @
+;
 : city-state
   ." CITY " city-tick @ . city-generation @ . city-sequence @ . city-rule @ .
   city-rule @ 3 mf w@ serial-of . cr
@@ -180,9 +195,11 @@
     ." VEHICLE " cv @ .
     0 ci ! begin ci @ 9 < while ci @ cv @ car @ . 1 ci +! repeat
     25 cv @ car @ .
+    26 cv @ car @ .
     0 ci ! begin ci @ 8 cv @ car @ < while 9 ci @ + cv @ car @ . 1 ci +! repeat cr
     1 cv +!
   repeat
+  ." IDLE " city-idle . cr
 ;
 : city-init
   \ Initial data are native source inputs, never computed by the renderer.

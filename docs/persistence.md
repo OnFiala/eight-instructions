@@ -88,3 +88,31 @@ Development format 1 images were not released. They retain their own old compile
 library if loaded with a compatible kernel. Loading an incompatible newer store
 library is rejected by its schema assertion; no automatic migration is claimed.
 Future kernel/image migrations must preserve old artifacts and have explicit tests.
+
+## Build 002 workspace and city images
+
+The city profile loads `core`, `city-state`, `workspace`, `city` and `city-boot` raw
+Thread sources. Its named drafts and version sources live inside the4,096-word native
+workspace, alongside bytecode, exact dependency references and pins. City roads,
+jobs, progress, captured in-flight duration and last-decision serial are native data.
+Export/import preserves them through the same opaque machine-image format; no host
+serializer reconstructs module or city objects.
+
+The browser exports at an input boundary after a complete native operation. Import
+first validates the image in a new worker and reads a complete city/workspace frame;
+only then does it replace the visible worker. An invalid or non-city image leaves
+the prior machine intact. The interface refuses a budget-paused image with a direct
+instruction to use the CLI for its exact continuation. The generic CLI and worker
+continue to support snapshots inside an unfinished BF operation.
+
+A visual event transcript is separate from machine state. The image retains the
+last native path, score and decision serial, but not the entire history of road
+inputs or every old source version. A reproduction bundle retains an initial image,
+raw input sequence and expected output for that history. Collected source is not
+promised to remain available merely because its serial appears in an old decision.
+
+Build002's kernel hash and tape layout differ from Build001. Import explicitly
+refuses a Build001 image. The released Build001 kernel/runtime/raw source remain in
+`dist/build-001/` and at immutable tag`build-001`, where those images remain usable.
+No migration is claimed. `tools/build-legacy.mjs --check` verifies the archive; only
+its HTML asset/navigation URLs and historical banner are deliberately relocated.

@@ -41,3 +41,30 @@ same tools execute the real machine.
 A future build should extend native capabilities and preserve these regressions.
 An unavoidable new host effect requires an explicit reason and review; difficulty
 implementing an algorithm is not a reason to add a host shortcut.
+
+## Build 002 author self-review
+
+The same Astra xHigh author performed implementation and adversarial self-review.
+The C reference is an independently implemented interpreter, not an independent
+human/model audit. Its new raw-continuation mode accepts only raw BF PC, pointer,
+counters and tape cells. It executes every command literally and compares output,
+all tape bytes and continuation. Bootstrap from the optimized machine is an explicit
+precondition for those large bounded cases; the original zero-tape reference remains.
+
+A separate test-only Bellman-Ford algorithm checks unprepared route inputs and a new
+conditional module. No test oracle or stored expected output is imported by the
+browser renderer, worker or CLI execution system. Reproduction JSON is download-only
+evidence; the live scene always boots raw source and computes its states.
+
+Particular review targets are source framing (including text resembling output
+records), active serial versus reused arena identity, storage rejection before a
+compile request, reference acquisition only on successful compilation, immutable
+in-flight duration, explicit cache invalidation at generation wrap, and missing or
+wrong-arity rules. The raw general Thread terminal can intentionally corrupt guest
+memory; neither the module compiler nor image checksum claims adversarial isolation.
+
+Generated image sprites contain buildings or vehicles, not roads or application
+state. Renderer code was inspected for route solving, module-name special cases,
+prediction of future positions, delivery decisions, hidden event replays and imports
+of test tools. Road geometry is drawn only from native node/edge records. Decorative
+quays, lights and materials do not introduce road connections.

@@ -129,8 +129,8 @@ while already committed road travel can finish.
 
 Snapshots contain all of this state, sources, versions and references. The kernel
 hash differs from Build001, so its images are rejected explicitly by the new
-runtime. Build001 remains reproducible at its original tag; preserving its public
-browser assets is part of the pending release work. No automatic migration exists.
+runtime. Build001 remains reproducible at its original tag and in the verified
+public asset archive under dist/build-001/. No automatic migration exists.
 
 ## Diagnostics
 
@@ -142,3 +142,21 @@ version;12 evaluation budget;13 zero divisor;14 busy evaluator;15 serial/pin lim
 Evidence currently lives in `tests/workspace.test.mjs`, `tests/reclaim.test.mjs`,
 `tests/city.test.mjs` and `records/002/`. Release verification and final measurements
 are still in progress. Do not interpret this development document as a release PASS.
+
+## Presentation records
+
+`MODULE id alive activeSerial rollbackSerial draftBytes draftRevision inputs outputs`
+uses serials, never arena indices. `VERSION slot state owner serial refs pins codeWords
+sourceBytes successfulAllocations` identifies a reusable arena. Allocation counts and
+`MEMORY` aggregates are emitted by BF, not inferred by the host. Free arenas may retain
+stale bytes; their allocation state determines whether those bytes are live.
+
+`VEHICLE id node edgePlusOne progress goal delivered pinSerial decision score pathLength
+capturedDuration decisionSerial path...` preserves both a current lifetime pin and
+the serial that produced the last path. They are different: the pin becomes zero on
+arrival, while the historical serial remains. It does not keep that source alive.
+
+A missing/uncompiled/wrong-arity city rule emits RULE-REJECTED before evaluating any
+edge. Every road edit invalidates the native cost table independently of the wrapping
+16-bit generation counter. Logical ticks, decision sequences and delivery counts
+otherwise follow the documented16-bit arithmetic; serial handles refuse exhaustion.

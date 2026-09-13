@@ -1,0 +1,18 @@
+TAP version 13
+# {"literalNativeInput":"7 5 0 module-run . . cr","literalInstructions":374713154388,"literalElapsedMs":270994.60541699996,"output":"1 22 \\n","wholeTapeEqual":true}
+# {"literalNativeInput":"2 0 source-write hi\\n0 module-compile","literalInstructions":352585709028,"literalElapsedMs":223132.22370899998,"output":"SOURCE-STORED 0 2 \\nWS-ERROR 5 \\n","wholeTapeEqual":true}
+# Subtest: literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+ok 1 - literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+  ---
+  duration_ms: 500789.848625
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 501191.660917

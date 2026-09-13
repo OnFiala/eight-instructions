@@ -67,10 +67,213 @@
       "reviewedSha256": "96514dab082c8f1856f6bd02a2caa900acc8a9b9d0da98b563b2662d9c915de3"
     },
     {
+      "path": "dist/assets/city/van-front-right.png",
+      "layer": "presentation",
+      "reason": "Image-generated vehicle appearance, positioned only from observed BF states. Magenta matte composited by renderer; front-right appearance may be mirrored. No movement, decisions or future state in the image.",
+      "reviewedSha256": "05fce2dc5a5bd85b32c7af70aefba6e0a638f7d3c3dd469a54ab7441cfc821cc"
+    },
+    {
+      "path": "dist/assets/city/van-rear-left.png",
+      "layer": "presentation",
+      "reason": "Image-generated vehicle appearance, positioned only from observed BF states. Magenta matte composited by renderer; front-right appearance may be mirrored. No movement, decisions or future state in the image.",
+      "reviewedSha256": "af7101ed1283a6414cb2ced6c40087b3d1108fe4b706662dc6daed8b397e9afb"
+    },
+    {
+      "path": "dist/assets/city/van-rear-right.png",
+      "layer": "presentation",
+      "reason": "Image-generated vehicle appearance, positioned only from observed BF states. Magenta matte composited by renderer; front-right appearance may be mirrored. No movement, decisions or future state in the image.",
+      "reviewedSha256": "3771fd5ab29bc8f302f70f7c87de22d9a5e93ed3e7b61829bdf69a137864b8f2"
+    },
+    {
       "path": "dist/assets/city/warehouse-block.png",
       "layer": "presentation",
       "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
       "reviewedSha256": "a10abbfbf1dbdb3fbb01f9db7948181a9d9eaa59f59f9c7763fdfa50015896e3"
+    },
+    {
+      "path": "dist/assets/fonts/InterVariable.woff2",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3"
+    },
+    {
+      "path": "dist/assets/fonts/LICENSE-Inter.txt",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a"
+    },
+    {
+      "path": "dist/assets/icons/LICENSE-Phosphor.txt",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "b5b1f1da112d18ea2147decfd48ddc1bf2b5aeb6c265381579340e95b15a2bb2"
+    },
+    {
+      "path": "dist/assets/icons/arrow-counter-clockwise.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "4eb160d5ae781107c674481ac081962e6bce6281a646129e6c3f960b9dd5dac6"
+    },
+    {
+      "path": "dist/assets/icons/arrow-right.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "e45bc4a12592b8723110db42c6deffdf177e4fe7704cf50324963fa0a59b2d74"
+    },
+    {
+      "path": "dist/assets/icons/arrows-clockwise.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "2e80fbc9c5c37553934c9ebbd6324bf7fabe9a4b4d7c2445d99edfce55cc22df"
+    },
+    {
+      "path": "dist/assets/icons/caret-right.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7"
+    },
+    {
+      "path": "dist/assets/icons/download-simple.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "c48678aa09b44ba4974954690ee6cc846379c448a7214f8c802604c2a1562014"
+    },
+    {
+      "path": "dist/assets/icons/info.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "438a1f319d53d86e840af73fb7b1d224c9224a437b9fa449a4e2cb45a82a3552"
+    },
+    {
+      "path": "dist/assets/icons/pause.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "7a9a8fe311234262b85c6e332f77db4ba9a59b6ca4292c41d327977cf61a2fc9"
+    },
+    {
+      "path": "dist/assets/icons/play.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "885b3ed2095889c4ff063dac35dc424cb9f6c00273ab44e2f90dc9dadbee661a"
+    },
+    {
+      "path": "dist/assets/icons/skip-forward.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "52f1ed5a89f1a38bf8537b38bd2da0501e396fc4cb03a2cdde38d248ceb03fbe"
+    },
+    {
+      "path": "dist/assets/icons/upload-simple.svg",
+      "layer": "presentation",
+      "reason": "Locally vendored Inter typography or Phosphor interface icon/license from its official public repository. Rendering only, no runtime library code; exact origin and hash in records/002/vendor-assets.json.",
+      "reviewedSha256": "d2b22b75affd718a4a24d71ee71586b277cf48ddb7d52b7d7d0a85b47f8b12d1"
+    },
+    {
+      "path": "dist/build-001/client.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Preserved Build001: Generic request correlation and lifecycle bridge between visible UI or WebMCP and the same execution worker. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "4f72099cbd9d5a6199b2bc0f22d4c46204480dbc000afcd66a33516195806b4d"
+    },
+    {
+      "path": "dist/build-001/engine.mjs",
+      "layer": "executor",
+      "reason": "Preserved Build001: Generic eight-command semantics, syntax checking, run coalescing and affine-loop execution; no Thread or application ABI. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c"
+    },
+    {
+      "path": "dist/build-001/executor.wasm",
+      "layer": "generated-executor",
+      "reason": "Preserved Build001: Deterministic compilation of the reviewed generic WAT executor using pinned WABT. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712"
+    },
+    {
+      "path": "dist/build-001/favicon.svg",
+      "layer": "presentation",
+      "reason": "Preserved Build001: Small vector project mark for browser identification. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35"
+    },
+    {
+      "path": "dist/build-001/history.json",
+      "layer": "public-evidence",
+      "reason": "Preserved Build001: Generated public view of canonical experiment records; supports arbitrary future build counts. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs."
+    },
+    {
+      "path": "dist/build-001/images.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Preserved Build001: Serializes and validates complete opaque tape/continuation images; host cryptography, encoding and byte transport. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "ca9864fc021d259ac7a829bc6d8e3254dab1f121c8db77f7464460aa18aead5e"
+    },
+    {
+      "path": "dist/build-001/index.html",
+      "layer": "presentation",
+      "reason": "Preserved Build001: Human-readable experiment narrative, source editor, forms, output and progressive technical evidence. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "509efa5c48cb1937382e62489970e68f0e9bcf57a18f9e2f5ad309bd304da1b8"
+    },
+    {
+      "path": "dist/build-001/kernel-map.json",
+      "layer": "generated-map",
+      "reason": "Preserved Build001: Deterministic tape/register metadata and dialect/hash for inspection and compatible image validation. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs."
+    },
+    {
+      "path": "dist/build-001/kernel.bf.gz",
+      "layer": "generated-kernel-transport",
+      "reason": "Preserved Build001: Deterministic gzip transport of the exact raw kernel, verified after decompression; no precomputed machine image. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs."
+    },
+    {
+      "path": "dist/build-001/programs/core.thread",
+      "layer": "packaged-native-program",
+      "reason": "Preserved Build001: Byte-identical public copy of the canonical native source, checked during verification. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs."
+    },
+    {
+      "path": "dist/build-001/programs/dispatch.thread",
+      "layer": "packaged-native-program",
+      "reason": "Preserved Build001: Byte-identical public copy of the canonical native source, checked during verification. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs."
+    },
+    {
+      "path": "dist/build-001/programs/store.thread",
+      "layer": "packaged-native-program",
+      "reason": "Preserved Build001: Byte-identical public copy of the canonical native source, checked during verification. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs."
+    },
+    {
+      "path": "dist/build-001/programs/system.json",
+      "layer": "packaged-source-list",
+      "reason": "Preserved Build001: Byte-identical public copy of the canonical raw-library list. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs."
+    },
+    {
+      "path": "dist/build-001/site.mjs",
+      "layer": "presentation",
+      "reason": "Preserved Build001: Edits text and frames raw I/O; waits for native storage acknowledgement before requesting compilation. Displays BF state and diagnostics. Comparison restores two opaque images and sends common raw steps; bundles record actual outputs. All application computation remains inside BF. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "d7932da86f11dd5022bf290e9742051a1bb4d4927e2cf55a16bc02f319138e19"
+    },
+    {
+      "path": "dist/build-001/style.css",
+      "layer": "presentation",
+      "reason": "Preserved Build001: Responsive visual layout, keyboard focus, legibility and reduced-motion presentation. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "b3f16454f9bee49c51c8f05e42d2ff04d4a49157de36b452cdec07871a971f17"
+    },
+    {
+      "path": "dist/build-001/wasm-engine.mjs",
+      "layer": "executor",
+      "reason": "Preserved Build001: Packs the same generic BF operations into Wasm memory and bridges bounded byte I/O for practical execution speed. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8"
+    },
+    {
+      "path": "dist/build-001/webmcp.mjs",
+      "layer": "presentation",
+      "reason": "Preserved Build001: Optional browser tool discovery validates source/state requests and forwards to the same visible controls; no additional computation path. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "c37acfa6f941328157e4ba9df60262f620c3ce5f25f3edb1811051477f3bcd78"
+    },
+    {
+      "path": "dist/build-001/worker.mjs",
+      "layer": "runtime-adapter",
+      "reason": "Preserved Build001: Worker lifecycle, generic BF execution, raw-source manifest loading, byte input/output and opaque images. No source parsing, module ownership, route solver or simulation is implemented here. Byte identity and the explicit HTML-only relocation are verified by tools/build-legacy.mjs.",
+      "reviewedSha256": "0386fd17e0e47f4bbc68d8f856e040447fd31755ea954bc6a098f229f84a651b"
+    },
+    {
+      "path": "dist/city-scene.mjs",
+      "layer": "presentation",
+      "reason": "Projects BF-emitted coordinates and directed road/path records. Composites graphical sprites and decorative materials; interpolates only between two observed positions. No future step, route, delivery, collision or module semantics are computed.",
+      "reviewedSha256": "89593598082baf67dbb152de1713145a3949dc8581021d4dae8d49b741c01ddc"
     },
     {
       "path": "dist/client.mjs",
@@ -111,7 +314,7 @@
       "path": "dist/index.html",
       "layer": "presentation",
       "reason": "Human-readable experiment narrative, source editor, forms, output and progressive technical evidence.",
-      "reviewedSha256": "527937315903b83d831d90cbcb9e6f7f14c963e0dcc595727dfcc2714809fb8d"
+      "reviewedSha256": "13feac55a03f77531aed17d8e27ef036f5d6eae4eb28401e67a3c8954712a670"
     },
     {
       "path": "dist/kernel-map.json",
@@ -122,6 +325,12 @@
       "path": "dist/kernel.bf.gz",
       "layer": "generated-kernel-transport",
       "reason": "Deterministic gzip transport of the exact raw kernel, verified after decompression; no precomputed machine image."
+    },
+    {
+      "path": "dist/presentation.mjs",
+      "layer": "presentation",
+      "reason": "Length-framed decoder and shape validation for actual guest output. Joins version serials and source text for display; no compiler, allocation, routing or simulation.",
+      "reviewedSha256": "ea8f553c7e08aedd3441624164a7dfdcd217524ad454c8bf1423b71816d0dc20"
     },
     {
       "path": "dist/programs/city-boot.thread",
@@ -169,16 +378,21 @@
       "reason": "Raw Thread source: source workspace compiler, pure module evaluator, reference management or deterministic city data/simulation; all computation executes inside the BF kernel."
     },
     {
+      "path": "dist/reproduction/build-002.json",
+      "layer": "public-evidence",
+      "reason": "Downloadable native initial image, exact inputs and expected outputs for fresh offline replay. Not imported or replayed by the live production city."
+    },
+    {
       "path": "dist/site.mjs",
       "layer": "presentation",
-      "reason": "Browser editor and controls format source, display raw output, and render guest-emitted graph records/path; no route or database algorithm.",
-      "reviewedSha256": "d7932da86f11dd5022bf290e9742051a1bb4d4927e2cf55a16bc02f319138e19"
+      "reason": "Edits text and frames raw I/O; waits for native storage acknowledgement before requesting compilation. Displays BF state and diagnostics. Comparison restores two opaque images and sends common raw steps; bundles record actual outputs. All application computation remains inside BF.",
+      "reviewedSha256": "9cb84e0baf01e6e010a1bd58011b2f7fc296abf0187f39b23465e57a84fa2e2e"
     },
     {
       "path": "dist/style.css",
       "layer": "presentation",
       "reason": "Responsive visual layout, keyboard focus, legibility and reduced-motion presentation.",
-      "reviewedSha256": "b3f16454f9bee49c51c8f05e42d2ff04d4a49157de36b452cdec07871a971f17"
+      "reviewedSha256": "19bb686818b3300dc4b4588160a78d6c7f7fb893bc90756b3570bb82bb73da60"
     },
     {
       "path": "dist/wasm-engine.mjs",
@@ -304,6 +518,11 @@
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
     },
     {
+      "path": "tests/city-adversarial.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Actual BF execution assertions, output decoding, historical compatibility or independent literal/Bellman-Ford test oracle. Excluded from the production computation path."
+    },
+    {
       "path": "tests/city-helpers.mjs",
       "layer": "verification-tool",
       "reason": "Executes actual BF workloads and checks native workspace/city state, reference lifetimes, refusal, deterministic replay or fixed-capacity reclamation; test assertions are not on the production path."
@@ -342,6 +561,21 @@
       "path": "tests/kernel.test.mjs",
       "layer": "verification-tool",
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
+    },
+    {
+      "path": "tests/legacy-build.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Actual BF execution assertions, output decoding, historical compatibility or independent literal/Bellman-Ford test oracle. Excluded from the production computation path."
+    },
+    {
+      "path": "tests/native-reference.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Actual BF execution assertions, output decoding, historical compatibility or independent literal/Bellman-Ford test oracle. Excluded from the production computation path."
+    },
+    {
+      "path": "tests/presentation.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Actual BF execution assertions, output decoding, historical compatibility or independent literal/Bellman-Ford test oracle. Excluded from the production computation path."
     },
     {
       "path": "tests/reclaim.test.mjs",
@@ -409,10 +643,25 @@
       "reason": "Builds the public history view from canonical records without inventing capabilities."
     },
     {
+      "path": "tools/build-legacy.mjs",
+      "layer": "build-tool",
+      "reason": "Repackages released Build001 runtime/assets verbatim from its immutable commit and relocates only HTML navigation; does not change or execute old guest logic."
+    },
+    {
+      "path": "tools/build-reproduction.mjs",
+      "layer": "verification-tool",
+      "reason": "Runs the actual BF artifact to produce an opaque starting image, raw transcripts and expected outputs. This evidence is never loaded by production simulation."
+    },
+    {
       "path": "tools/emitter.py",
       "layer": "bootstrap-tool",
       "reason": "Structured tape assembler emits only Brainfuck commands; required to author the first kernel without manually maintaining millions of pointer operations.",
       "reviewedSha256": "cf87366f99f52d76449e6351721bd5a2c16b7a0f6392c08b9db1a2005f43fc53"
+    },
+    {
+      "path": "tools/measure-city.mjs",
+      "layer": "verification-tool",
+      "reason": "Three sequential real BF measurement runs record raw outputs, operation counts, wall times and separate guest tape/host process memory; never imported by production."
     },
     {
       "path": "tools/measure.mjs",
@@ -430,6 +679,11 @@
       "reason": "Independent test-only literal BF interpreter; no optimization or production import."
     },
     {
+      "path": "tools/replay.mjs",
+      "layer": "verification-tool",
+      "reason": "Offline generic artifact-identity and raw-output verifier. Restores an opaque image and executes raw inputs; no language compiler, application solver or production import."
+    },
+    {
       "path": "tools/serve.mjs",
       "layer": "build-tool",
       "reason": "Loopback-only static file server for local interface verification."
@@ -443,7 +697,7 @@
   "runtimeDependencyScope": "hostRuntimeDependencies lists external runtime npm packages; host platforms are listed separately.",
   "hostPlatformDependencies": [
     "Node.js 22+ standard platform for CLI",
-    "Modern browser with Workers, WebAssembly, Web Crypto and DecompressionStream",
+    "Modern browser with Workers, WebAssembly, Web Crypto, DecompressionStream, Canvas2D, Image decoding, ResizeObserver and media queries",
     "Sites static hosting; observed Cloudflare challenge-platform HTML injection is provider-controlled"
   ]
 }
