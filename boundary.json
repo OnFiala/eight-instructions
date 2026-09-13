@@ -43,16 +43,34 @@
       "reviewedSha256": "95c79cb021442ac148e3a9c72efe95b346f3ae953af1fc6d8f702a9561114399"
     },
     {
+      "path": "dist/assets/city/harbor-bridge.png",
+      "layer": "presentation",
+      "reason": "Original image_gen bridge appearance. Renderer aligns its deck to actual emitted road endpoints; it supplies no graph, cost, open state, vehicle movement or route. Original SHA and origin recorded in asset-provenance.json.",
+      "reviewedSha256": "65c8bba41b7fd77cfe883e6f34948240346bb42e4f27ea1e977900a0de08fbee"
+    },
+    {
       "path": "dist/assets/city/homes-block.png",
       "layer": "presentation",
       "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
       "reviewedSha256": "46893a78cf8027f187036e5dab1a6377e711cb719a59891b41d40ab85c122979"
     },
     {
+      "path": "dist/assets/city/linden-tree.png",
+      "layer": "presentation",
+      "reason": "Original image_gen RGBA tree appearance. Planted at purely decorative renderer coordinates with no roads, collision, routes or guest state; original bytes and origin in asset-provenance.json.",
+      "reviewedSha256": "d2b3cd838adebd1df3b37a32da050ec95e976befc86a730ec77dc755f36efc18"
+    },
+    {
       "path": "dist/assets/city/market-block.png",
       "layer": "presentation",
       "reason": "Image-generated decorative architecture with explicit chroma matte for renderer compositing. Contains no roads, simulation, route or guest state; origin and SHA recorded in records/002/asset-provenance.json.",
       "reviewedSha256": "1f131c11d2bd6555a7e9bbfdb803e17e335920189f59d4253804e5610e20acda"
+    },
+    {
+      "path": "dist/assets/city/north-bridge.png",
+      "layer": "presentation",
+      "reason": "Original image_gen bridge appearance. Renderer aligns its deck to actual emitted road endpoints; it supplies no graph, cost, open state, vehicle movement or route. Original SHA and origin recorded in asset-provenance.json.",
+      "reviewedSha256": "c05dfc9d578ceba10d7a648dd1a497a551293d67faabf5c8bc645b01c0a8c8b4"
     },
     {
       "path": "dist/assets/city/oldtown-block.png",
@@ -273,7 +291,7 @@
       "path": "dist/city-scene.mjs",
       "layer": "presentation",
       "reason": "Projects BF-emitted coordinates and directed road/path records. Composites graphical sprites and decorative materials; interpolates only between two observed positions. No future step, route, delivery, collision or module semantics are computed.",
-      "reviewedSha256": "89593598082baf67dbb152de1713145a3949dc8581021d4dae8d49b741c01ddc"
+      "reviewedSha256": "0377a2103f972564fe64204e32c8e0b4b3d161e072d678d94866d581ebec87a8"
     },
     {
       "path": "dist/client.mjs",
@@ -314,7 +332,7 @@
       "path": "dist/index.html",
       "layer": "presentation",
       "reason": "Human-readable experiment narrative, source editor, forms, output and progressive technical evidence.",
-      "reviewedSha256": "13feac55a03f77531aed17d8e27ef036f5d6eae4eb28401e67a3c8954712a670"
+      "reviewedSha256": "c4f17aa3ebfda1d8ee133bf336cb26719a398e34230e4aecdc01e632d125cf3c"
     },
     {
       "path": "dist/kernel-map.json",
@@ -386,7 +404,7 @@
       "path": "dist/site.mjs",
       "layer": "presentation",
       "reason": "Edits text and frames raw I/O; waits for native storage acknowledgement before requesting compilation. Displays BF state and diagnostics. Comparison restores two opaque images and sends common raw steps; bundles record actual outputs. All application computation remains inside BF.",
-      "reviewedSha256": "9cb84e0baf01e6e010a1bd58011b2f7fc296abf0187f39b23465e57a84fa2e2e"
+      "reviewedSha256": "36a33b41519dfe4cbe0ece376a7ca1c677e2476228b9fab433e15b82b2f03c70"
     },
     {
       "path": "dist/style.css",

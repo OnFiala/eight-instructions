@@ -1,7 +1,7 @@
 // Presentation only: project emitted coordinates, draw emitted roads and paths,
 // and interpolate between two already observed vehicle positions. No future
 // guest state, route, job, delivery or collision is calculated here.
-const assets=['university-block','market-block','depot-block','homes-block','warehouse-block','oldtown-block'];
+const assets=['university-block','market-block','depot-block','homes-block','warehouse-block','oldtown-block','harbor-bridge','north-bridge','linden-tree'];
 const labels={0:'Westgate',1:'North Quay',2:'University',3:'East Market',4:'North Park',5:'Riverside Market',6:'Midtown',7:'East Warehouse',8:'West Heights',9:'Harbor West',10:'Harbor East',11:'Logistics Hub',12:'DEPOT',13:'Old Town',14:'Riverside South',15:'Central Square'};
 export const placeName=id=>labels[id]??`Node ${id}`;
 
@@ -17,7 +17,7 @@ async function sprite(name) {
     const spill=Math.min(d[i],d[i+2])-d[i+1];
     if(spill<22)continue;
     const a=Math.max(0,1-(spill-22)/115);
-    d[i+3]=Math.round(a*255);
+    d[i+3]=Math.round(a*d[i+3]);
     if(a>0){d[i]=Math.max(0,(d[i]-(1-a)*255)/a);d[i+2]=Math.max(0,(d[i+2]-(1-a)*255)/a);d[i+1]=Math.min(255,d[i+1]/a);}
   }
   c.putImageData(pixels,0,0);return canvas;
@@ -43,7 +43,7 @@ export class CityScene {
   resize() {
     const rect=this.canvas.getBoundingClientRect();this.w=rect.width;this.h=rect.height;
     this.dpr=Math.min(devicePixelRatio||1,2);this.canvas.width=Math.round(this.w*this.dpr);this.canvas.height=Math.round(this.h*this.dpr);
-    this.s=this.w/96;this.sy=this.s*.53;this.origin={x:this.w*.58,y:Math.max(0,this.h-this.canvas.parentElement.clientHeight)-this.h*.025};
+    this.s=this.w/134;this.sy=this.s*.74;this.origin={x:this.w*.50,y:Math.max(0,this.h-this.canvas.parentElement.clientHeight)-this.h*.025};
     this.draw(performance.now());
   }
   project(x,z,height=0){return {x:this.origin.x+(x+z-60)*this.s,y:this.origin.y+(z-x+60)*this.sy-height*this.s};}
@@ -87,20 +87,26 @@ export class CityScene {
   }
   ground() {
     const c=this.ctx;
-    this.tile(-2,-2,62,62,'#182529',-1.6);
-    this.tile(-2,-2,26,62,'#535448');this.tile(34,-2,62,62,'#535448');
-    this.tile(26,-2,34,62,'#12313b',-.2);
+    this.tile(-2,-20,62,86,'#182529',-1.6);
+    this.tile(-2,-20,26,86,'#333f36');this.tile(34,-3,62,86,'#333f36');
+    this.tile(16,-20,40,0,'#333f36');this.tile(20,64,62,86,'#333f36');
+    this.tile(26,-3,34,64,'#12313b',-.2);
+    // Decorative peripheral plazas have no roadway or simulation role.
+    for(const [x,z,k] of [[10,-10,.65],[30,-10,.65],[25,77,.72],[45,77,.72]]) {
+      this.tile(x-9*k,z-9*k,x+9*k,z+9*k,'#243430',-1.5);
+      this.tile(x-9*k,z-9*k,x+9*k,z+9*k,'#667064',-.1);
+    }
     for(const x of [26,34]) {
-      this.line(this.project(x,-2,-.8),this.project(x,62,-.8),'#59666a',this.s*.65);
-      this.line(this.project(x,-2),this.project(x,62),'#a49d87',this.s*.7);
-      for(let z=-1;z<62;z+=2.2)this.line(this.project(x-.18,z),this.project(x+.18,z),'#d0c3a3',this.s*.07);
+      this.line(this.project(x,-3,-.8),this.project(x,64,-.8),'#59666a',this.s*.65);
+      this.line(this.project(x,-3),this.project(x,64),'#a49d87',this.s*.7);
+      for(let z=-3;z<64;z+=2.2)this.line(this.project(x-.18,z),this.project(x+.18,z),'#d0c3a3',this.s*.07);
       for(let z=5;z<60;z+=10){const p=this.project(x,z),q=this.project(x,z,2.1);this.line(p,q,'#49564d',this.s*.12);c.save();c.shadowColor='#ffcc6f';c.shadowBlur=this.s*1.4;c.fillStyle='#ffdda0';c.beginPath();c.arc(q.x,q.y,this.s*.17,0,Math.PI*2);c.fill();c.restore();}
     }
     // Water glints are a decorative material, with no simulated movement or state.
     c.globalAlpha=.25;
     for(let i=0;i<36;i++) {
       const x=27+(i*7%6),z=(i*13%60),p=this.project(x,z,-.2);
-      this.line(p,{x:p.x+this.s*1.15,y:p.y+this.sy*.65},i%3?'#376c75':'#c3b08a',Math.max(.5,this.s*.06));
+      this.line(p,{x:p.x+this.s*1.15,y:p.y+this.sy*.65},i%3?'#364c75':'#c3b08a',Math.max(.5,this.s*.06));
     }
     c.globalAlpha=1;
   }
@@ -126,11 +132,27 @@ export class CityScene {
         for(let i=-2;i<=2;i++)this.line({x:p.x-dy*this.s*1.2+dx*i*this.s*.20,y:p.y+dx*this.s*1.2+dy*i*this.s*.20},{x:p.x+dy*this.s*1.2+dx*i*this.s*.20,y:p.y-dx*this.s*1.2+dy*i*this.s*.20},'#c5c3ae',this.s*.105);
       }
     }
+  }
+  drawRoadMarks() {
+    if(!this.state)return;const c=this.ctx;
     for(const road of this.state.roads) {
       const a=this.roadPoint(road,.45),b=this.roadPoint(road,.55),angle=Math.atan2(b.y-a.y,b.x-a.x);
       c.save();c.translate(a.x,a.y);c.rotate(angle);c.translate(0,this.s*.8);
       c.beginPath();c.moveTo(-this.s*.25,-this.s*.15);c.lineTo(0,0);c.lineTo(-this.s*.25,this.s*.15);c.strokeStyle=road.open?'#a7aa98':'#fbac72';c.lineWidth=this.s*.1;c.stroke();c.restore();
       if(!road.open){const p=this.roadPoint(road,.28);c.save();c.translate(p.x,p.y);c.rotate(angle);this.line({x:0,y:0},{x:0,y:this.s*1.45},'#ffad73',this.s*.5);c.restore();}
+    }
+  }
+  drawBridges() {
+    if(!this.state)return;const seen=new Set(),c=this.ctx;
+    for(const road of this.state.roads) {
+      if(!this.bridge(road))continue;
+      const pair=[road.from,road.to].sort((a,b)=>a-b).join(':');if(seen.has(pair))continue;seen.add(pair);
+      const first=this.state.nodes.find(n=>n.id===road.from),second=this.state.nodes.find(n=>n.id===road.to);
+      const a=first.x<second.x?this.roadPoint(road,0):this.roadPoint(road,1),b=first.x<second.x?this.roadPoint(road,1):this.roadPoint(road,0);
+      const s=this.sprites.get(road.toll?'harbor-bridge':'north-bridge');if(!s)continue;
+      const start={x:s.width*.158,y:s.height*(road.toll?.791:.805)},end={x:s.width*.901,y:s.height*(road.toll?.189:.21)};
+      const dx=end.x-start.x,dy=end.y-start.y,scale=Math.hypot(b.x-a.x,b.y-a.y)/Math.hypot(dx,dy);
+      c.save();c.translate(a.x,a.y);c.rotate(Math.atan2(b.y-a.y,b.x-a.x)-Math.atan2(dy,dx));c.scale(scale,scale);c.drawImage(s,-start.x,-start.y);c.restore();
     }
   }
   drawRoute() {
@@ -148,9 +170,15 @@ export class CityScene {
   }
   drawBuilding(name,x,z,scale=1) {
     const sprite=this.sprites.get(name);if(!sprite)return;
-    const width=this.s*35.0*scale,height=width/sprite.width*sprite.height*.82,p=this.project(x,z);
+    const width=this.s*35.0*scale,height=width/sprite.width*sprite.height*.91,p=this.project(x,z);
     const anchors={'university-block':.902,'market-block':.912,'depot-block':.866,'homes-block':.893,'warehouse-block':.893,'oldtown-block':.941};
     this.ctx.drawImage(sprite,p.x-width*.5,p.y+this.sy*17*scale-height*anchors[name],width,height);
+  }
+  drawTree(x,z,scale=1) {
+    const sprite=this.sprites.get('linden-tree');if(!sprite)return;
+    const p=this.project(x,z),width=this.s*3.8*scale,height=width/sprite.width*sprite.height;
+    this.ctx.save();this.ctx.shadowColor='#06120abb';this.ctx.shadowBlur=this.s*.65;this.ctx.shadowOffsetX=this.s*.55;this.ctx.shadowOffsetY=this.s*.38;
+    this.ctx.drawImage(sprite,p.x-width/2,p.y-height*.965,width,height);this.ctx.restore();
   }
   drawVehicle(vehicle,point) {
     const road=this.state.roads.find(r=>r.id===vehicle.edge);
@@ -170,17 +198,17 @@ export class CityScene {
   drawLabels() {
     if(!this.state)return;
     const c=this.ctx,selected=this.state.vehicles.find(v=>v.id===this.selected);
-    const show=new Set([12,4,2,7,11,15,8]);if(selected){show.add(selected.node);show.add(selected.goal);}
+    const show=new Set(this.w<600?[12]:[12,4,2,7,11,15,8]);if(selected){show.add(selected.node);show.add(selected.goal);}
     for(const node of this.state.nodes) {
       if(!show.has(node.id))continue;
-      const p=this.project(node.x,node.z),radius=Math.max(9,this.s*1.65),offset=node.id===12?{x:-74,y:-51}:node.id===15?{x:-125,y:-3}:{x:0,y:-8};
+      const p=this.project(node.x,node.z),radius=Math.max(9,this.s*1.65),k=this.w/1050,offset=node.id===12?{x:-74*k,y:-51*k}:node.id===15?{x:-125*k,y:-3*k}:[4,8].includes(node.id)?{x:-54*k,y:-24*k}:{x:0,y:-8};
       if(node.id===12||node.id===15)this.line(p,{x:p.x+offset.x,y:p.y+offset.y},'#adc683',1);
       c.save();c.translate(p.x+offset.x,p.y+offset.y);c.shadowColor='#000';c.shadowBlur=8;
       c.beginPath();c.arc(0,0,radius,0,Math.PI*2);c.fillStyle='#151c18';c.fill();c.strokeStyle=selected?.goal===node.id?'#e3ff96':'#c8e476';c.lineWidth=2;c.stroke();
       c.shadowBlur=0;c.font=`650 ${Math.max(12,this.s*1.85)}px InterVariable, sans-serif`;c.textAlign='center';c.textBaseline='middle';c.fillStyle='#f5f6e9';c.fillText(String(node.id),0,.5);
       c.font=`520 ${Math.max(11,this.s*1.55)}px InterVariable, sans-serif`;c.textAlign='left';
       const lines=placeName(node.id).split(' '),labelX=radius+8,labelY=-2;
-      if(lines.length>1&&this.w>600){c.fillText(lines[0],labelX,labelY-5);c.fillText(lines.slice(1).join(' '),labelX,labelY+12);}else c.fillText(placeName(node.id),labelX,labelY);
+      if(lines.length>1){c.fillText(lines[0],labelX,labelY-5);c.fillText(lines.slice(1).join(' '),labelX,labelY+12);}else c.fillText(placeName(node.id),labelX,labelY);
       c.restore();
     }
     for(const [from,to,title] of [[1,2,'North Bridge'],[9,10,'Harbor Bridge']]) {
@@ -192,11 +220,19 @@ export class CityScene {
   draw(now) {
     if(!this.w||!this.h)return;
     cancelAnimationFrame(this.frame);const c=this.ctx;c.setTransform(this.dpr,0,0,this.dpr,0,0);c.clearRect(0,0,this.w,this.h);
-    this.ground();this.drawRoads();this.drawRoute();
+    this.ground();this.drawRoads();this.drawBridges();this.drawRoute();this.drawRoadMarks();
     const objects=[
       ['market-block',10,10],['homes-block',10,30],['depot-block',10,50],
       ['university-block',50,10],['oldtown-block',50,30],['warehouse-block',50,50],
-    ].map(([name,x,z])=>({depth:z-x+60+9,draw:()=>this.drawBuilding(name,x,z)}));
+      ['homes-block',10,-10,.65],['market-block',30,-10,.65],
+      ['oldtown-block',25,77,.72],['homes-block',45,77,.72],
+    ].map(([name,x,z,scale=1])=>({depth:z-x+60+9*scale,draw:()=>this.drawBuilding(name,x,z,scale)}));
+    const trees=[];
+    for(const x of [24,36])for(const z of [6,13,22,29,48,56])trees.push([x,z]);
+    for(const x of [0,5,10,15,20,25,30,35])trees.push([x,-18]);
+    for(const z of [66,71,76,81])trees.push([16,z],[60,z]);
+    for(const x of [21,28,35,42,49,56])trees.push([x,65]);
+    for(const [x,z] of trees)objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.85+((x*7+z*3)%7+7)%7*.035)});
     const t=this.motion.matches?1:Math.min(1,(now-this.transition)/650),smooth=t*t*(3-2*t);
     for(const vehicle of this.state?.vehicles??[]) {
       const p=this.vehiclePoint(this.state,vehicle),old=this.previous?.vehicles.find(v=>v.id===vehicle.id);

@@ -98,7 +98,8 @@ jobs, progress, captured in-flight duration and last-decision serial are native 
 Export/import preserves them through the same opaque machine-image format; no host
 serializer reconstructs module or city objects.
 
-The browser exports at an input boundary after a complete native operation. Import
+Normal city controls export after a complete native operation. The advanced native
+pause control can also export an exact unfinished continuation for the CLI. Import
 first validates the image in a new worker and reads a complete city/workspace frame;
 only then does it replace the visible worker. An invalid or non-city image leaves
 the prior machine intact. The interface refuses a budget-paused image with a direct
@@ -116,3 +117,8 @@ refuses a Build001 image. The released Build001 kernel/runtime/raw source remain
 `dist/build-001/` and at immutable tag`build-001`, where those images remain usable.
 No migration is claimed. `tools/build-legacy.mjs --check` verifies the archive; only
 its HTML asset/navigation URLs and historical banner are deliberately relocated.
+
+The two-version comparison always retains the original, freshly booted, open-bridge
+image independently of imported city state. Session replay instead uses the last
+imported image. A transcript interrupted by a hard native pause is not advertised
+as a complete replay; export/import a completed workspace to begin a new transcript.

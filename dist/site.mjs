@@ -8,7 +8,7 @@ import {registerExperimentTools} from './webmcp.mjs';
 // and simulation semantics remain in the guest. No application solver lives here.
 const $=id=>document.getElementById(id),encoder=new TextEncoder();
 let client,city,workspace,busy=false,running=false,started=false,selectedModule=0,selectedVehicle=0;
-let initialImage,transcript=[],rawLog='',recentEvents=[],activeSourceSerial,comparisonBundle,identityPromise;
+let initialImage,comparisonInitialImage,transcriptComplete=true,transcript=[],rawLog='',recentEvents=[],activeSourceSerial,comparisonBundle,identityPromise;
 let lastResult,progressAt=0,costEvidence='';
 const decisions=new Map();
 const scene=new CityScene($('city'),{onSelect:selectVehicle});
@@ -38,7 +38,7 @@ function progress(value) {
   if(!started)$('boot-detail').textContent=`Compiling Thread inside BF · ${(value.elapsedMs/1000).toFixed(1)} s elapsed. No city state has been inferred.`;
 }
 function log(input,result) {
-  if(initialImage)transcript.push({input,output:result.output??''});
+  if(initialImage){transcript.push({input,output:result.output??''});if(result.state!=='input')transcriptComplete=false;}
   rawLog+=`\n> ${input}\n${result.output??''}`;
   $('raw-output').textContent=rawLog.slice(-140000);
 }
@@ -121,13 +121,13 @@ async function action(work,{stop=true}={}) {
 }
 const bind=(id,handler)=>$(id).addEventListener('click',()=>handler().catch(error=>{notice(error.message,'error');console.error(error);}));
 async function boot() {
-  if(busy)return;busy=true;started=false;running=false;initialImage=undefined;transcript=[];comparisonBundle=undefined;recentEvents=[];decisions.clear();activeSourceSerial=undefined;controls();
+  if(busy)return;busy=true;started=false;running=false;initialImage=undefined;comparisonInitialImage=undefined;transcriptComplete=true;transcript=[];comparisonBundle=undefined;recentEvents=[];decisions.clear();activeSourceSerial=undefined;controls();
   $('boot-status').hidden=false;$('retry').hidden=true;
   client?.close();client=new Client({onProgress:progress});
   try {
     const result=await client.request('boot',{system:'city-system.json'});log('(boot city-system.json)',result);consume(result);
     if(result.state!=='input'||/!E\d+|WS-ERROR/.test(result.output))throw new Error('The native boot did not complete. Inspect the raw output.');
-    await refresh();initialImage=(await client.request('save')).image;
+    await refresh();initialImage=(await client.request('save')).image;comparisonInitialImage=initialImage;
     const first=await raw(`city-step ${requestState}`);consume(first,{animate:false});
     started=true;$('boot-status').hidden=true;
     const map=await fetch('./kernel-map.json').then(r=>r.json());$('tape-size').textContent=`BF tape: ${map.dialect.tape_cells.toLocaleString()} × 16 bits`;
@@ -181,8 +181,9 @@ $('import').addEventListener('change',async event=>{
       if(state.state!=='input')throw new Error('This city interface imports images waiting at a complete input boundary. Use the CLI to resume a machine paused inside a native operation.');
       const r=await raw(requestState,{target:candidate,record:false}),view=readPresentation(r.output);
       if(!view.city||!view.workspace)throw new Error('The image is compatible with the kernel but does not contain a readable Build 002 city workspace.');
-      client.close();client=candidate;accepted=true;initialImage=image;transcript=[];rawLog='';recentEvents=[];decisions.clear();activeSourceSerial=undefined;comparisonBundle=undefined;log(requestState,r);consume(r,{animate:false});started=true;$('boot-status').hidden=true;await readActiveSource();notice('Workspace restored in a fresh machine. Sources, versions and in-flight state came from the image.','success');
-    }finally{if(!accepted)candidate.close();}
+      client.close();client=candidate;accepted=true;initialImage=image;transcriptComplete=true;transcript=[];rawLog='';recentEvents=[];decisions.clear();activeSourceSerial=undefined;comparisonBundle=undefined;log(requestState,r);consume(r,{animate:false});started=true;$('boot-status').hidden=true;await readActiveSource();notice('Workspace restored in a fresh machine. Sources, versions and in-flight state came from the image.','success');
+    }catch(error){throw new Error(`Import refused. The current workspace is unchanged. ${error.message}`);}
+    finally{if(!accepted)candidate.close();}
   }).catch(()=>{});
 });
 function inspectDecision() {
@@ -202,26 +203,27 @@ async function identities() {
     const r=await fetch(new URL(path,import.meta.url));if(!r.ok)throw new Error(`Cannot identify ${path}`);return [path,await sha256(new Uint8Array(await r.arrayBuffer()))];
   })).then(async pairs=>({kernelSha256:(await fetch('./kernel-map.json').then(r=>r.json())).sha256,artifactSha256:Object.fromEntries(pairs)}));
 }
-async function bundle(runs,sourceVariants=[]) {
-  return {schema:'8i-replay-1',build:'002',...await identities(),initialImage,runs,sourceVariants:await Promise.all(sourceVariants.map(async source=>({source,sha256:await sha256(source)}))),instructions:'Checkout the corresponding Build 002 source (see artifactSha256). Run: node tools/replay.mjs bundle.json. The replay loads the opaque initial image in a fresh BF executor and compares every native output byte. Browser and CLI must use identical kernel and runtime artifacts. No API key or hosted service is used.'};
+async function bundle(runs,sourceVariants=[],image=initialImage) {
+  return {schema:'8i-replay-1',build:'002',...await identities(),initialImage:image,runs,sourceVariants:await Promise.all(sourceVariants.map(async source=>({source,sha256:await sha256(source)}))),instructions:'Checkout the corresponding Build 002 source (see artifactSha256). Run: node tools/replay.mjs bundle.json. The replay loads the opaque initial image in a fresh BF executor and compares every native output byte. Browser and CLI must use identical kernel and runtime artifacts. No API key or hosted service is used.'};
 }
 bind('compare',()=>action(async()=>{
-  if(!initialImage)throw new Error('Start a machine before comparing.');
+  if(!comparisonInitialImage)throw new Error('Complete a fresh city start before comparing. This experiment uses the original open-bridge image, independently of any imported workspace.');
   const source=$('module-editor').value,common=Array(3).fill(`city-step ${requestState}`),runs=[],views=[];
   $('compare-status').textContent='Computing two fresh BF machines from the same initial image…';$('comparison').hidden=true;
   for(const [label,setup] of [['Original',[]],['Editor source',[sourceWrite(0,source),'0 module-compile']]]) {
     const worker=new Client({onProgress:value=>$('compare-status').textContent=`Fresh computation: ${label} · ${(value.elapsedMs/1000).toFixed(1)} s in this operation`});
     try {
-      await worker.request('load',{image:initialImage});const inputs=[...setup,...common],outputs=[],events=[];
+      await worker.request('load',{image:comparisonInitialImage});const inputs=[...setup,...common],outputs=[],events=[];
       for(const input of inputs){const result=await raw(input,{target:worker,record:false});if(result.state!=='input')throw new Error(`${label} did not finish its native computation.`);outputs.push(result.output);const parsed=readPresentation(result.output);events.push(...parsed.events);if(parsed.events.some(e=>e.kind==='WS-ERROR'||e.kind==='RULE-REJECTED'))throw new Error(`${label} was refused by BF. Repair the source before comparing.`);}
       runs.push({label,inputs,expectedOutputs:outputs});views.push({label,event:events.find(e=>e.kind==='ROUTE'&&e.values[2]===0),city:readPresentation(outputs.at(-1)).city});
     }finally{worker.close();}
   }
-  comparisonBundle=await bundle(runs,[source]);
+  comparisonBundle=await bundle(runs,[source],comparisonInitialImage);
   $('comparison').replaceChildren(...views.map(({label,event,city})=>{const card=document.createElement('div');card.className='compare-card';const title=document.createElement('strong'),p=document.createElement('p'),code=document.createElement('code');title.textContent=`${label} · fresh BF calculation`;p.textContent=event?`Van 1, v${event.values[5]}, score ${event.values[6]}. Same three logical steps. Harbor Bridge ${city.roads.find(r=>r.from===9&&r.to===10)?.open?'open':'closed'}.`:'No route was emitted.';code.textContent=event?event.values.slice(8).join(' → '):'';card.append(title,p,code);return card;}));
   $('comparison').hidden=false;$('compare-status').textContent='Completed. These are recorded results of the two fresh calculations above; subsequent city edits do not alter this comparison.';
 }));
 bind('reproduction',()=>action(async()=>{
+  if(!comparisonBundle&&!transcriptComplete)throw new Error('This session contains a paused native continuation. Export and import a completed workspace to start a new replay transcript, or compute the two-version comparison.');
   const result=comparisonBundle??await bundle([{label:'Current session',inputs:transcript.map(r=>r.input),expectedOutputs:transcript.map(r=>r.output)}]);
   download('eight-instructions-002-reproduction.json',JSON.stringify(result,null,2)+'\n');notice('Reproduction bundle exported with its initial image, input transcript, expected BF output and artifact identities.','success');
 }));

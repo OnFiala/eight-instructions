@@ -63,8 +63,9 @@ in-flight duration, explicit cache invalidation at generation wrap, and missing 
 wrong-arity rules. The raw general Thread terminal can intentionally corrupt guest
 memory; neither the module compiler nor image checksum claims adversarial isolation.
 
-Generated image sprites contain buildings or vehicles, not roads or application
-state. Renderer code was inspected for route solving, module-name special cases,
+Generated image sprites contain buildings, vehicle appearance or isolated bridge
+architecture, never route results or application state. Bridge artwork is projected
+onto an existing native road; it cannot introduce a connection. Renderer code was inspected for route solving, module-name special cases,
 prediction of future positions, delivery decisions, hidden event replays and imports
 of test tools. Road geometry is drawn only from native node/edge records. Decorative
 quays, lights and materials do not introduce road connections.

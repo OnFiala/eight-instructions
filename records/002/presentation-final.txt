@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: length-framed stored source cannot masquerade as city or lifecycle output
+ok 1 - length-framed stored source cannot masquerade as city or lifecycle output
+  ---
+  duration_ms: 1.14075
+  type: 'test'
+  ...
+# Subtest: partial or malformed presentation frames cannot replace a complete city
+ok 2 - partial or malformed presentation frames cannot replace a complete city
+  ---
+  duration_ms: 0.151083
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 58.51925

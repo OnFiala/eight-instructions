@@ -95,6 +95,33 @@
       "origin": "image_gen tool; approved concept1 supplied as visual reference",
       "role": "Vehicle appearance only, positioned from observed BF state",
       "matte": "Uniform magenta; presentation chroma compositing. Front-left view uses a horizontal presentation mirror of front-right."
+    },
+    {
+      "name": "harbor-bridge",
+      "path": "dist/assets/city/harbor-bridge.png",
+      "generatorOutput": "exec-15e23c12-9644-45cd-a420-c84971a32256.png",
+      "sha256": "65c8bba41b7fd77cfe883e6f34948240346bb42e4f27ea1e977900a0de08fbee",
+      "bytes": 2050742,
+      "origin": "image_gen with approved concept1 reference",
+      "role": "Bridge appearance only, composited and aligned to native road endpoints. No route, vehicle, closure or network baked into the asset.",
+      "matte": "Uniform magenta, originals preserved unedited."
+    },
+    {
+      "name": "north-bridge",
+      "path": "dist/assets/city/north-bridge.png",
+      "generatorOutput": "exec-cee3de2b-aabb-4ec9-9fd7-d9eb34cab2ee.png",
+      "sha256": "c05dfc9d578ceba10d7a648dd1a497a551293d67faabf5c8bc645b01c0a8c8b4",
+      "bytes": 2081958,
+      "origin": "image_gen with approved concept1 reference",
+      "role": "Bridge appearance only, composited and aligned to native road endpoints. No route, vehicle, closure or network baked into the asset.",
+      "matte": "Uniform magenta, originals preserved unedited."
+    },
+    {
+      "path": "dist/assets/city/linden-tree.png",
+      "source": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-63f74b7a-4de1-4d19-b5c8-fe3617cda253.png",
+      "sha256": "d2b3cd838adebd1df3b37a32da050ec95e976befc86a730ec77dc755f36efc18",
+      "bytes": 2714659,
+      "role": "Original RGBA linden tree; pure decorative scenery. Requested magenta matte, tool supplied real alpha. Reused at presentation-only landscape positions, no route or simulation."
     }
   ],
   "rejectedAttempts": [
