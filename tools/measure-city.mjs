@@ -10,11 +10,11 @@ const libraries=await loadLibraries('city-system.json'),samples=[];
 for(let run=0;run<3;run++) {
   const m=kernel.create(),measurements=[];
   function measure(label,source) {
-    const start=performance.now(),steps=m.steps,blocks=m.blocks;
+    const start=performance.now(),steps=m.totalSteps,blocks=m.totalBlocks;
     execute(m,source+'\n',{fuel:2e14,blocks:3e10});
     const elapsedMs=performance.now()-start,output=new TextDecoder().decode(m.drain());
     if(m.state!=='input'||/!E\d+|WS-ERROR/.test(output))throw new Error(`Measurement failed: ${label}: ${output}`);
-    measurements.push({label,elapsedMs,bfInstructions:m.steps-steps,executorBlocks:m.blocks-blocks,output,hostRssBytes:process.memoryUsage().rss,guestTapeBytes:m.tape.byteLength});
+    measurements.push({label,elapsedMs,bfInstructions:Number(m.totalSteps-steps),executorBlocks:Number(m.totalBlocks-blocks),output,hostRssBytes:process.memoryUsage().rss,guestTapeBytes:m.tape.byteLength});
   }
   measure('nativeBoot',libraries);
   const source=': delivery-rule.thread 8 * + ;';

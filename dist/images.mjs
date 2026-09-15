@@ -20,6 +20,11 @@ function integer(n,min,max,name) {
 function bytes(a,name) {
   if(!Array.isArray(a)||a.length>1048576||a.some(x=>!Number.isInteger(x)||x<0||x>255)) throw new Error(`Invalid image ${name}`);
 }
+function epoch(value,name) {
+  if(value===undefined)return 0n;
+  if(typeof value!=='string'||!/^(0|[1-9][0-9]{0,127})$/.test(value))throw new Error(`Invalid image ${name}`);
+  return BigInt(value);
+}
 export async function encodeImage(m,programHash) {
   if(!['input','budget','halted'].includes(m.state)) throw new Error('Pause execution before saving an image');
   const data=new Uint8Array(m.tape.length*2),view=new DataView(data.buffer);
@@ -28,6 +33,8 @@ export async function encodeImage(m,programHash) {
     programHash,optimize:m.program.optimize,cells:m.tape.length,tape:base64(data),
     pc:m.pc,pointer:m.pointer,steps:m.steps,blocks:m.blocks,highWater:m.highWater,
     input:m.input.slice(m.inputAt),eof:m.eof,output:m.output,state:m.state};
+  if(m.instructionEpoch)payload.instructionEpoch=String(m.instructionEpoch);
+  if(m.blockEpoch)payload.blockEpoch=String(m.blockEpoch);
   return JSON.stringify({payload,sha256:await sha256(JSON.stringify(payload))})+'\n';
 }
 export async function decodeImage(text,{program,programHash,create}) {
@@ -39,6 +46,7 @@ export async function decodeImage(text,{program,programHash,create}) {
   integer(p.cells,1,1000000,'tape size');integer(p.pc,0,program.ops.length,'program counter');
   integer(p.pointer,0,p.cells-1,'pointer');integer(p.highWater,p.pointer,p.cells-1,'high water');
   integer(p.steps,0,Number.MAX_SAFE_INTEGER,'instruction count');integer(p.blocks,0,Number.MAX_SAFE_INTEGER,'block count');
+  const instructionEpoch=epoch(p.instructionEpoch,'instruction epoch'),blockEpoch=epoch(p.blockEpoch,'block epoch');
   bytes(p.input,'input');bytes(p.output,'output');
   if(typeof p.eof!=='boolean'||!['input','budget','halted'].includes(p.state)) throw new Error('Invalid image state');
   if(p.state==='halted'&&p.pc!==program.ops.length) throw new Error('Invalid halted image');
@@ -48,6 +56,7 @@ export async function decodeImage(text,{program,programHash,create}) {
   const m=create(p.cells),view=new DataView(data.buffer);
   for(let i=0;i<p.cells;i++)m.tape[i]=view.getUint16(i*2,true);
   for(const name of ['pc','pointer','steps','blocks','highWater','eof','state'])m[name]=p[name];
+  m.instructionEpoch=instructionEpoch;m.blockEpoch=blockEpoch;
   m.input=p.input;m.inputAt=0;m.output=p.output;
   return m;
 }

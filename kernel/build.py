@@ -19,6 +19,7 @@ WORDS = {
     'bye': 27, 'assert': 28, '0=': 29, 'exit': 3, 'rot': 30,
     'fill': 31, 'pfill': 32, 'move': 33, 'pmove': 34,
     'key': 35, 'w@': 36, 'w!': 37,
+    'waddr': 38,
     ':': 100, ';': 101, 'if': 102, 'else': 103, 'then': 104,
     'begin': 105, 'until': 106, 'again': 107, 'recurse': 108,
     'variable': 109, 'constant': 110, 'while': 111, 'repeat': 112, '."': 113,
@@ -31,11 +32,17 @@ class Kernel:
         names = 'running sp rp cp dp here mode start control err ip op arg ch length overflow found kind word number valid negative i j k a z x y q rem tmp tracing binding definition hash defhash ip_hi ip_lo cp_hi cp_lo start_hi start_lo arg_hi arg_lo word_hi word_lo'.split()
         for name in names:
             setattr(self, name, b.cell(name))
+        # An address-translation cache executed by BF itself. No values, guest
+        # words or application events are cached or recognized by the host.
+        self.ws_next = b.cell('workspace_cache_next')
+        self.ws_cache = [(b.cell(f'workspace_cache_{i}_base'),
+                          b.cell(f'workspace_cache_{i}_page'),
+                          b.cell(f'workspace_cache_{i}_valid')) for i in range(8)]
         base = 512
         self.arrays = {}
         for name, size in [('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
                            ('controls', 128), ('dictionary', 16384), ('code', 24576),
-                           ('heap', 4096), ('store', 4096), ('workspace', 20480)]:
+                           ('heap', 4096), ('store', 4096), ('workspace', 24576)]:
             arr = (PagedArray if name in ('code', 'workspace') else Array)(b, base, size, name)
             self.arrays[name] = arr
             setattr(self, name, arr)
@@ -107,6 +114,40 @@ class Kernel:
             self.split(flat, high, low)
             self.emit_code(high)
             self.emit_code(low)
+
+    def workspace_index(self, flat, high, low):
+        """Resolve a flat address using eight BF-owned recent64-word pages.
+
+        A hit proves the entire range is inside a previously validated page.
+        Misses use the original native division and check the page bound before
+        publishing a translation. Values are always read/written on the tape.
+        """
+        b = self.b
+        with b.temps(4) as (found, hit, sub, limit):
+            b.set(limit, 64)
+            for base, page, valid in self.ws_cache:
+                with b.zero(found):
+                    with b.when(valid):
+                        b.copy(flat, low)
+                        b.copy(base, sub)
+                        b.move(sub, low, -1)
+                        b.lt(low, limit, hit)
+                        with b.when(hit):
+                            b.copy(page, high)
+                            b.set(found, 1)
+            with b.zero(found):
+                self.split(flat, high, low)
+                self.check_limit(high, self.workspace.size // 64)
+                with b.zero(self.err):
+                    for i, (base, page, valid) in enumerate(self.ws_cache):
+                        with self.case(self.ws_next, i):
+                            b.copy(flat, base)
+                            b.copy(low, sub)
+                            b.move(sub, base, -1)
+                            b.copy(high, page)
+                            b.set(valid, 1)
+                    b.add(self.ws_next)
+                    with self.case(self.ws_next, 8): b.clear(self.ws_next)
 
     def patch(self, flat):
         with self.b.temps(2) as (high, low):
@@ -730,14 +771,29 @@ class Kernel:
                 with self.primitive(op, 2 if write else 1, 0 if write else 1):
                     self.pop(self.x)
                     if write: self.pop(self.a)
-                    self.check_limit(self.x, self.workspace.size)
-                    with b.zero(self.err):
-                        with b.temps(2) as (high, low):
-                            self.split(self.x, high, low)
+                    with b.temps(2) as (high, low):
+                        self.workspace_index(self.x, high, low)
+                        with b.zero(self.err):
                             if write: self.workspace.put(high, low, self.a)
                             else:
                                 self.workspace.get(high, low, self.a)
                                 self.push(self.a)
+            with self.primitive(38, 2, 1):
+                # Checked page+offset -> flat workspace pointer. The BF caller
+                # already knows the decomposition, so retain that translation.
+                self.pop(self.y)
+                self.pop(self.x)
+                self.check_limit(self.x, self.workspace.size // 64)
+                self.check_limit(self.y, 64)
+                with b.zero(self.err):
+                    base, page, valid = self.ws_cache[0]
+                    b.copy(self.x, page)
+                    b.clear(base)
+                    b.move(self.x, base, 64)
+                    b.set(valid, 1)
+                    b.copy(base, self.a)
+                    b.move(self.y, self.a)
+                    self.push(self.a)
             b.clear(self.op)
             with b.when(self.ip):
                 self.fetch(self.op)

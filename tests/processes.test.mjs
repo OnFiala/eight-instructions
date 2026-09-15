@@ -74,9 +74,11 @@ test('three user programs exchange messages, wait, and compute without kernel re
 
 test('450 create/stop cycles reuse fixed slots and leave no version refs or resident allocation',async()=>{
   const m=await processes();create(m,'cycle.thread');build(m,0,': cycle.thread yield ;');
-  command(m,': churn 0 begin dup 450 < while 0 process-create process-stop 1+ repeat drop ;');
+  command(m,': churn 0 begin dup 50 < while 0 process-create process-stop 1+ repeat drop ;');
   const before=[m.tape[kernel.map.registers.cp],m.tape[kernel.map.registers.dp]];
-  command(m,'churn',{fuel:5e14,blocks:5e10});
+  // Nine input batches keep each host fuel budget bounded. The same machine,
+  // capacity, allocation counters and code remain live across all450cycles.
+  for(let batch=0;batch<9;batch++)command(m,'churn',{fuel:5e14,blocks:5e10});
   const s=state(m);assert.deepEqual(s.summary.slice(1,4),[450,450,450]);assert.equal(s.processes.length,0);
   assert.deepEqual([m.tape[kernel.map.registers.cp],m.tape[kernel.map.registers.dp]],before);
   assert.match(command(m,'workspace-state'),/VERSION 1 2 0 1 1 0 /);

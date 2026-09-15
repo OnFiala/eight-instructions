@@ -4,7 +4,7 @@
     "wrapping": true,
     "io_bits": 8,
     "eof": 0,
-    "tape_cells": 373964
+    "tape_cells": 398540
   },
   "registers": {
     "running": 0,
@@ -53,7 +53,32 @@
     "arg_hi": 43,
     "arg_lo": 44,
     "word_hi": 45,
-    "word_lo": 46
+    "word_lo": 46,
+    "workspace_cache_next": 47,
+    "workspace_cache_0_base": 48,
+    "workspace_cache_0_page": 49,
+    "workspace_cache_0_valid": 50,
+    "workspace_cache_1_base": 51,
+    "workspace_cache_1_page": 52,
+    "workspace_cache_1_valid": 53,
+    "workspace_cache_2_base": 54,
+    "workspace_cache_2_page": 55,
+    "workspace_cache_2_valid": 56,
+    "workspace_cache_3_base": 57,
+    "workspace_cache_3_page": 58,
+    "workspace_cache_3_valid": 59,
+    "workspace_cache_4_base": 60,
+    "workspace_cache_4_page": 61,
+    "workspace_cache_4_valid": 62,
+    "workspace_cache_5_base": 63,
+    "workspace_cache_5_page": 64,
+    "workspace_cache_5_valid": 65,
+    "workspace_cache_6_base": 66,
+    "workspace_cache_6_page": 67,
+    "workspace_cache_6_valid": 68,
+    "workspace_cache_7_base": 69,
+    "workspace_cache_7_page": 70,
+    "workspace_cache_7_valid": 71
   },
   "arrays": {
     "token": {
@@ -112,7 +137,7 @@
     },
     "workspace": {
       "base": 251014,
-      "size": 20480,
+      "size": 24576,
       "stride": 6,
       "value_lane": 2
     }
@@ -151,6 +176,7 @@
     "key": 35,
     "w@": 36,
     "w!": 37,
+    "waddr": 38,
     ":": 100,
     ";": 101,
     "if": 102,
@@ -166,6 +192,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "9925a5a8cc36d1423efb7c942195085dd666f367f817caff21e80f9cd575e920",
-  "instructions": 94105690
+  "sha256": "fc5186c1178a647ade63c8b5004cda0ff0ad315a21364a1a9c18c40e4fd03455",
+  "instructions": 94473766
 }

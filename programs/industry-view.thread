@@ -1,0 +1,106 @@
+\ Native presentation and administrator inputs. Not visible as process words.
+register constant view-base
+: industry-account
+  0 total-raw ! 0 total-panels ! 0 ei !
+  begin ei @ 16 < while
+    ei @ 0 ef w@ if
+      ei @ 3 ef w@ total-raw +! ei @ 4 ef w@ total-panels +!
+      ei @ 11 ef w@ total-panels +!
+      ei @ 5 ef w@ 1 = if ei @ 6 ef w@ total-raw +! then
+      ei @ 5 ef w@ 2 = if ei @ 6 ef w@ total-panels +! then
+    then 1 ei +!
+  repeat
+  ." ACCOUNT " world-supply @ . total-raw @ . total-panels @ . world-used @ .
+  total-raw @ total-panels @ world-used @ + 2 * + dup . world-supply @ = . cr
+;
+: industry-state
+  ." INDUSTRY 3 " ptick @ . world-ready @ . world-roads @ .
+  world-created @ . world-reclaimed @ . world-deliveries @ . world-productions @ . cr
+  0 ei ! begin ei @ 16 < while
+    ." NODE " ei @ . 19200 ei @ 2 * + w@ . 19201 ei @ 2 * + w@ . cr 1 ei +!
+  repeat
+  0 ei ! begin ei @ world-roads @ < while
+    ei @ 0 rf view-base !
+    ." I-ROAD " ei @ . 0 ji ! begin ji @ 8 < while view-base @ ji @ + w@ . 1 ji +! repeat cr 1 ei +!
+  repeat
+  0 ei ! begin ei @ 16 < while
+    ei @ 0 ef w@ if
+      ei @ 0 ef view-base !
+      ." ENTITY " ei @ . 0 ji ! begin ji @ 23 < while view-base @ ji @ + w@ . 1 ji +! repeat cr
+      ei @ 0 pf view-base !
+      ." TRAVEL " ei @ 0 ef w@ . 144 ji ! begin ji @ 160 < while view-base @ ji @ + w@ . 1 ji +! repeat
+      ei @ 226 pf w@ . ei @ 227 pf w@ . ei @ 229 pf w@ . cr
+      ei @ 1 ef w@ 3 = if
+        ." I-PATH " ei @ 0 ef w@ . ei @ 224 pf w@ dup . ji !
+        begin ji @ while -1 ji +! ei @ ji @ 208 + pf w@ . repeat cr
+      then
+    then
+    ei @ 0 jf w@ if
+      ei @ 0 jf view-base !
+      ." JOB " ei @ . 0 ji ! begin ji @ 7 < while view-base @ ji @ + w@ . 1 ji +! repeat cr
+    then 1 ei +!
+  repeat industry-account process-state workspace-state
+  ." INDUSTRY-END " ptick @ . cr
+;
+: industry-open
+  \ (open road-id --); road data changes, separate from program publication.
+  ox ! oy ! 0 ws-error !
+  ox @ world-roads @ < oy @ 2 < and 0= if 34 wfail report-error exit then
+  ox @ 2 / 2 * ox ! oy @ ox @ 4 rf w! oy @ ox @ 1+ 4 rf w!
+  0 vi ! begin vi @ 16 < while
+    vi @ 145 pf w@ 0= if
+      vi @ 230 pf w@ ref- 0 vi @ 230 pf w! 0 vi @ 149 pf w!
+    then 1 vi +!
+  repeat collect
+  ." ROAD-OPEN " ox @ . oy @ . cr
+;
+: industry-retry
+  \ Repeat notifications from authoritative job stages; never repeat transfers.
+  ox ! 0 js !
+  begin js @ 16 < while
+    js @ 0 jf w@ 1 = js @ 2 jf w@ ox @ = and if
+      js @ 4 jf w@ 1 = if js @ 3 jf w@ else js @ 2 jf w@ then oy !
+      js @ 1 jf w@ 1 oy @ ox @ post-message drop
+    then
+    js @ 0 jf w@ 3 = js @ 6 jf w@ ox @ = and if
+      js @ 1 jf w@ 2 js @ 2 jf w@ ox @ post-message drop
+    then
+    js @ 0 jf w@ 5 = js @ 3 jf w@ ox @ = and if
+      js @ 1 jf w@ 3 js @ 6 jf w@ ox @ post-message drop
+    then 1 js +!
+  repeat
+;
+: industry-repair dup process-repair ws-error @ 0= if industry-retry else drop then ;
+: industry-retire
+  0 ws-error ! pfind dup 0= if drop 31 wfail report-error exit then 1- ox !
+  ox @ 3 ef w@ ox @ 4 ef w@ + ox @ 6 ef w@ + ox @ 11 ef w@ +
+  ox @ 145 pf w@ + if 37 wfail then
+  0 ji ! begin ji @ 16 < while
+    ji @ 0 jf w@ if
+      ji @ 2 jf w@ ph @ = ji @ 3 jf w@ ph @ = or ji @ 6 jf w@ ph @ = or if 37 wfail then
+    then 1 ji +!
+  repeat
+  ws-error @ if report-error exit then
+  0 ox @ 0 ef w! 0 ox @ 15 pf w! ph @ process-stop
+;
+
+: industry-inspect
+  0 ws-error ! pfind dup 0= if drop 31 wfail report-error exit then 1- ox !
+  ." CONTROL " ph @ . ox @ 2 pf w@ .
+  ox @ 0 pf w@ dup 4 < swap 0 > and .
+  ox @ 0 pf w@ 4 = .
+  ox @ 0 pf w@ dup 4 = swap 5 = or .
+  ox @ 2 pf w@ 9 mf w@ . cr
+  ox @ 2 pf w@ source-read
+  ox @ 2 pf w@ 3 mf w@ serial-of version-source
+  ox @ 2 pf w@ module-parameter
+;
+
+: industry-create
+  \ Admin/UI input: (role node module). Validate before allocating a lifetime.
+  0 ws-error ! oq ! oy ! oz !
+  oy @ 16 < oz @ 0 > and oz @ 6 < and 0= if 34 wfail then
+  oq @ valid-module if oq @ 9 mf w@ 1 = 0= if 39 wfail then else 1 wfail then
+  ws-error @ if report-error exit then
+  oz @ oy @ oq @ process-create dup if industry-add else drop 2drop then
+;

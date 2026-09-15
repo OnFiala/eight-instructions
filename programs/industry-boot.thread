@@ -1,0 +1,87 @@
+\ Initial raw input to BF; names, programs, inventory and map are boot data.
+workspace-large
+32 process-slice!
+12 process-module depot.thread
+110 0 source-write : depot.thread schema# 1 recv if swap 1 = if authorize else drop drop then else drop drop drop then dispatch ;
+0 module-compile
+19 process-module factory-west.thread
+172 1 source-write : factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 request work dispatch ;
+1 module-compile
+19 process-module factory-east.thread
+172 2 source-write : factory-east.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 request work dispatch ;
+2 module-compile
+10 process-module van.thread
+111 3 source-write : van.thread schema# 1 recv if swap 2 = if claim else drop drop then else drop drop drop then 1 drive service ;
+3 module-compile
+14 process-module station.thread
+106 4 source-write : station.thread schema# 1 recv if swap 3 = if accept else drop drop then else drop drop drop then build ;
+4 module-compile
+13 process-module signal.thread
+70 5 source-write : signal.thread schema# 1 0 state@ 1 + dup 0 state! 8 mod 5 < signal ;
+5 module-compile
+1 12 0 process-create industry-add
+1 3 0 process-create industry-add
+2 4 1 process-create industry-add
+2 11 2 process-create industry-add
+4 0 4 process-create industry-add
+4 15 4 process-create industry-add
+3 12 3 process-create industry-add
+3 12 3 process-create industry-add
+3 3 3 process-create industry-add
+3 3 3 process-create industry-add
+5 1 5 process-create industry-add
+5 9 5 process-create industry-add
+48 0 3 ef w! 48 1 3 ef w! 96 world-supply !
+64 0 16 ef w! 64 1 16 ef w!
+1 2 9 ef w! 6 2 10 ef w! 2 3 9 ef w! 5 3 10 ef w!
+40 10 19 ef w! 42 11 19 ef w!
+: map-nodes 0 begin dup 16 < while dup 4 mod 20 * over 2 * 19200 + w! dup 4 / 20 * over 2 * 19201 + w! 1+ repeat drop ;
+map-nodes
+0 1 2 0 industry-road
+1 0 2 0 industry-road
+2 3 2 0 industry-road
+3 2 2 0 industry-road
+4 5 2 0 industry-road
+5 4 2 0 industry-road
+6 7 2 0 industry-road
+7 6 2 0 industry-road
+8 9 2 0 industry-road
+9 8 2 0 industry-road
+10 11 2 0 industry-road
+11 10 2 0 industry-road
+12 13 2 0 industry-road
+13 12 2 0 industry-road
+14 15 2 0 industry-road
+15 14 2 0 industry-road
+0 4 2 0 industry-road
+4 0 2 0 industry-road
+1 5 2 0 industry-road
+5 1 2 0 industry-road
+2 6 2 0 industry-road
+6 2 2 0 industry-road
+3 7 2 0 industry-road
+7 3 2 0 industry-road
+4 8 2 0 industry-road
+8 4 2 0 industry-road
+5 9 2 0 industry-road
+9 5 2 0 industry-road
+6 10 2 0 industry-road
+10 6 2 0 industry-road
+7 11 2 0 industry-road
+11 7 2 0 industry-road
+8 12 2 0 industry-road
+12 8 2 0 industry-road
+9 13 2 0 industry-road
+13 9 2 0 industry-road
+10 14 2 0 industry-road
+14 10 2 0 industry-road
+11 15 2 0 industry-road
+15 11 2 0 industry-road
+1 2 6 0 industry-road
+2 1 6 0 industry-road
+9 10 2 5 industry-road
+10 9 2 5 industry-road
+5 6 8 0 industry-road
+6 5 8 0 industry-road
+1 world-ready !
+." INDUSTRY-READY 12 4 16 46" cr

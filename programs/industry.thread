@@ -1,0 +1,274 @@
+\ Bounded role-checked industrial operations executed by the BF process profile.
+\ No guest task can write the ledger through an arbitrary address.
+: request-material
+  vm-pop oq ! 2 role? 0= if 33 wfail exit then
+  oq @ 0 > oq @ 7 < and 0= if 34 wfail exit then
+  oq @ pr @ 17 ef w!
+  pr @ 10 ef w@ entity-find dup if
+    1- dup 13 ef w@ swap 20 ef w@ >= if exit then
+  else drop exit then
+  pr @ 14 ef w@ if exit then
+  pr @ 3 ef w@ oq @ 2 * >= if exit then
+  job-new 0= if 4 pr @ 8 ef w! exit then
+  pr @ 9 ef w@ jx @ 2 jf w! 1 pcurr w@ jx @ 3 jf w!
+  1 jx @ 4 jf w! oq @ 2 * jx @ 5 jf w!
+  job-message 1 = if
+    jx @ 1 jf w@ pr @ 14 ef w! ." ORDER " jx @ 1 jf w@ . 1 pcurr w@ . oq @ 2 * . cr
+  else job-free then
+;
+: accept-delivery
+  \ (job-id sender --); only the actual recipient acknowledges its delivered job.
+  vm-pop ox ! vm-pop job-find dup if 1- jx ! else drop exit then
+  jx @ 0 jf w@ 5 = jx @ 3 jf w@ 1 pcurr w@ = and
+  jx @ 6 jf w@ ox @ = and 0= if exit then
+  jx @ 1 jf w@ pr @ 14 ef w@ = if 0 pr @ 14 ef w! then
+  ledger-source if
+    jx @ 1 jf w@ source-slot @ 15 ef w@ = if 0 source-slot @ 15 ef w! then
+  then
+  ." ACK " jx @ 1 jf w@ . 1 pcurr w@ . cr job-free
+;
+: authorize-job
+  vm-pop ox ! vm-pop job-find dup if 1- jx ! else drop exit then
+  jx @ 0 jf w@ 1 = jx @ 2 jf w@ 1 pcurr w@ = and 0= if exit then
+  jx @ 4 jf w@ 1 = if
+    jx @ 3 jf w@ ox @ = 1 role? and 0= if exit then
+  else ox @ 1 pcurr w@ = 2 role? and 0= if exit then then
+  2 jx @ 0 jf w! pr @ 22 ef dup w@ 1+ swap w!
+  ." AUTHORIZE " jx @ 1 jf w@ . 1 pcurr w@ . cr
+;
+: distance-part 2dup < if swap then - ;
+: pickup-distance
+  vi @ 2 ef w@ 2 * 19200 + w@ pr @ 2 ef w@ 2 * 19200 + w@ distance-part
+  vi @ 2 ef w@ 2 * 19201 + w@ pr @ 2 ef w@ 2 * 19201 + w@ distance-part +
+;
+: dispatch-jobs
+  1 role? 2 role? or 0= if 33 wfail exit then
+  pr @ 22 ef w@ 0= if exit then
+  0 js !
+  begin js @ 16 < pr @ 22 ef w@ 0 > and while
+    js @ 0 jf w@ 2 = if js @ 2 jf w@ 1 pcurr w@ = if
+      16 chosen ! 65535 chosen-score ! 0 vi !
+      begin vi @ 16 < while
+        vi @ 1 ef w@ 3 = vi @ 0 pf w@ 4 < and vi @ 0 pf w@ 0 > and
+        vi @ 226 pf w@ 0= and vi @ 13 pf w@ 4 < and if
+          pickup-distance candidate-score !
+          candidate-score @ chosen-score @ < if vi @ chosen ! candidate-score @ chosen-score ! then
+        then
+        1 vi +!
+      repeat
+      chosen @ 16 < if
+        js @ 1 jf w@ 2 1 pcurr w@ chosen @ 0 ef w@ post-message 1 = if
+          3 js @ 0 jf w! chosen @ 0 ef w@ js @ 6 jf w!
+          pr @ 22 ef dup w@ 1- swap w!
+          js @ 1 jf w@ chosen @ 226 pf w! 0 chosen @ 227 pf w!
+          ." ASSIGN " js @ 1 jf w@ . chosen @ 0 ef w@ . cr
+        then
+      then
+    then then 1 js +!
+  repeat
+;
+: factory-work
+  2 role? 0= if 33 wfail exit then
+  pr @ 21 ef w@ ptick @ = if exit then ptick @ pr @ 21 ef w!
+  pr @ 11 ef w@ if
+    pr @ 12 ef dup w@ dup if 1- then swap w!
+    pr @ 12 ef w@ 0= if
+      pr @ 4 ef dup w@ pr @ 11 ef w@ + swap w!
+      0 pr @ 11 ef w! 1 world-productions +!
+      ." PRODUCE " 1 pcurr w@ . pr @ 4 ef w@ . cr
+    then
+  else
+    pr @ 3 ef w@ 2 >= pr @ 4 ef w@ pr @ 16 ef w@ < and if
+      pr @ 3 ef dup w@ 2 - swap w! 1 pr @ 11 ef w! 3 pr @ 12 ef w!
+    then
+  then
+  pr @ 15 ef w@ if exit then
+  pr @ 4 ef w@ pr @ 17 ef w@ < if exit then
+  job-new 0= if exit then
+  1 pcurr w@ jx @ 2 jf w! pr @ 10 ef w@ jx @ 3 jf w!
+  2 jx @ 4 jf w! pr @ 17 ef w@ jx @ 5 jf w!
+  job-message 1 = if jx @ 1 jf w@ pr @ 15 ef w! else job-free then
+;
+: claim-job
+  vm-pop ox ! vm-pop job-find dup if 1- jx ! else drop exit then
+  3 role? 0= if 33 wfail exit then
+  jx @ 0 jf w@ 3 = jx @ 6 jf w@ 1 pcurr w@ = and
+  jx @ 2 jf w@ ox @ = and jx @ 1 jf w@ 226 pcurr w@ = and 0= if exit then
+  ledger-source 0= if exit then
+  source-slot @ 2 ef w@ pr @ 7 ef w! 1 227 pcurr w! 0 149 pcurr w!
+;
+
+\ Route work is split across invocations; no phase performs unbounded guest work.
+: route-release
+  230 pcurr w@ dup if ref- 0 230 pcurr w! collect else drop then
+;
+: route-init
+  route-release 3 pcurr w@ dup ref+ dup 230 pcurr w! serial-of 229 pcurr w!
+  0 route-scan ! begin route-scan @ 16 < while
+    65535 route-scan @ 160 + pcurr w! 65535 route-scan @ 176 + pcurr w!
+    0 route-scan @ 192 + pcurr w! 1 route-scan +!
+  repeat
+  0 pr @ 2 ef w@ 160 + pcurr w! 1 149 pcurr w!
+;
+: route-choose
+  16 route-node ! 65535 route-best ! 0 route-scan !
+  begin route-scan @ 16 < while
+    route-scan @ 192 + pcurr w@ 0= if
+      route-scan @ 160 + pcurr w@ route-best @ < if
+        route-scan @ route-node ! route-scan @ 160 + pcurr w@ route-best !
+      then
+    then 1 route-scan +!
+  repeat
+  route-node @ 16 = if 0 149 pcurr w! 5 pr @ 8 ef w! exit then
+  route-node @ 150 pcurr w!
+  route-node @ pr @ 7 ef w@ = if 3 149 pcurr w! else
+    1 route-node @ 192 + pcurr w! 2 149 pcurr w!
+  then
+;
+: route-relax
+  150 pcurr w@ route-node ! 0 route-scan !
+  begin route-scan @ route-node @ 0 af w@ < while
+    route-node @ route-scan @ 1+ af w@ wi-edge !
+    wi-edge @ 4 rf w@ if
+      wi-edge @ 2 rf w@ wi-edge @ 3 rf w@ 155 pcurr w@ * +
+      route-node @ 160 + pcurr w@ + route-cost !
+      wi-edge @ 1 rf w@ route-next !
+      route-cost @ route-next @ 160 + pcurr w@ < if
+        route-cost @ route-next @ 160 + pcurr w! route-node @ route-next @ 176 + pcurr w!
+      then
+    then 1 route-scan +!
+  repeat 1 149 pcurr w!
+;
+: route-edge
+  \ Resolve a retained path's next edge from the same authoritative BF index.
+  65535 157 pcurr w! 0 route-scan !
+  begin route-scan @ pr @ 2 ef w@ 0 af w@ < while
+    pr @ 2 ef w@ route-scan @ 1+ af w@ wi-edge !
+    wi-edge @ 1 rf w@ route-next @ = if
+      wi-edge @ 4 rf w@ if wi-edge @ 157 pcurr w! then
+    then 1 route-scan +!
+  repeat
+;
+: route-path
+  pr @ 7 ef w@ route-node ! 0 224 pcurr w! 0 route-scan !
+  begin route-node @ pr @ 2 ef w@ = 0= route-scan @ 16 < and while
+    route-node @ 208 224 pcurr w@ + pcurr w! 224 pcurr dup w@ 1+ swap w!
+    route-node @ route-next ! route-node @ 176 + pcurr w@ route-node ! 1 route-scan +!
+  repeat
+  route-node @ pr @ 2 ef w@ = 0= if 5 wfail exit then
+  pr @ 2 ef w@ 208 224 pcurr w@ + pcurr w! 224 pcurr dup w@ 1+ swap w!
+  224 pcurr w@ 2 - 225 pcurr w!
+  route-next @ 156 pcurr w! route-edge
+  ." I-ROUTE " 1 pcurr w@ . 229 pcurr w@ . pr @ 2 ef w@ . pr @ 7 ef w@ .
+  pr @ 7 ef w@ 160 + pcurr w@ . 224 pcurr w@ .
+  224 pcurr w@ route-scan ! begin route-scan @ while
+    -1 route-scan +! route-scan @ 208 + pcurr w@ .
+  repeat cr 4 149 pcurr w!
+;
+: road-enter
+  157 pcurr w@ wi-edge !
+  wi-edge @ world-roads @ < 0= if 0 149 pcurr w! exit then
+  wi-edge @ 4 rf w@ 0= if 0 149 pcurr w! exit then
+  wi-edge @ 2 / 2 * ox !
+  wi-edge @ 5 rf w@ 0= if 2 pr @ 8 ef w! exit then
+  ox @ 7 rf w@ ox @ 6 rf w@ >= if 3 pr @ 8 ef w! exit then
+  ox @ 7 rf dup w@ 1+ swap w!
+  wi-edge @ 1+ 145 pcurr w! 0 146 pcurr w! wi-edge @ 2 rf w@ 147 pcurr w!
+  1 pr @ 8 ef w!
+  ." I-DEPART " 1 pcurr w@ . wi-edge @ . 229 pcurr w@ . cr
+;
+: drive-road
+  vm-pop ox ! 3 role? 0= if 33 wfail exit then
+  ox @ 17 < 0= if 34 wfail exit then
+  158 pcurr w@ ptick @ = if exit then ptick @ 158 pcurr w!
+  145 pcurr w@ if
+    146 pcurr dup w@ 1+ swap w!
+    146 pcurr w@ 147 pcurr w@ >= if
+      145 pcurr w@ 1- wi-edge ! wi-edge @ 1 rf w@ pr @ 2 ef w!
+      wi-edge @ 2 / 2 * 7 rf dup w@ 1- swap w!
+      0 145 pcurr w! 0 pr @ 8 ef w!
+      pr @ 2 ef w@ pr @ 7 ef w@ =
+      3 pcurr w@ serial-of 229 pcurr w@ = 0= or if
+        0 149 pcurr w! route-release
+      else
+        225 pcurr dup w@ 1- swap w!
+        208 225 pcurr w@ + pcurr w@ route-next !
+        route-edge
+        4 149 pcurr w!
+      then
+      ." I-ARRIVE " 1 pcurr w@ . pr @ 2 ef w@ . cr
+    then exit
+  then
+  227 pcurr w@ 0= pr @ 2 ef w@ pr @ 7 ef w@ = or if exit then
+  149 pcurr w@ 0= if ox @ 155 pcurr w! route-init exit then
+  149 pcurr w@ 1 = if route-choose 149 pcurr w@ 2 = if route-relax then exit then
+  149 pcurr w@ 2 = if route-relax exit then
+  149 pcurr w@ 3 = if route-path exit then
+  149 pcurr w@ 4 = if road-enter then
+;
+: service-job
+  3 role? 0= if 33 wfail exit then
+  145 pcurr w@ pr @ 2 ef w@ pr @ 7 ef w@ = 0= or if exit then
+  226 pcurr w@ job-find dup if 1- jx ! else drop exit then
+  ledger-source ledger-target and 0= if exit then
+  jx @ 4 jf w@ 2 + oy ! jx @ 5 jf w@ oq !
+  jx @ 0 jf w@ 3 = 227 pcurr w@ 1 = and if
+    source-slot @ 2 ef w@ pr @ 2 ef w@ = 0= if exit then
+    source-slot @ oy @ ef w@ oq @ < if 6 pr @ 8 ef w! exit then
+    source-slot @ oy @ ef dup w@ oq @ - swap w!
+    jx @ 4 jf w@ pr @ 5 ef w! oq @ pr @ 6 ef w!
+    4 jx @ 0 jf w! 2 227 pcurr w! target-slot @ 2 ef w@ pr @ 7 ef w! 0 149 pcurr w!
+    ." LOAD " 1 pcurr w@ . jx @ 1 jf w@ . source-slot @ 0 ef w@ . oq @ . cr exit
+  then
+  jx @ 0 jf w@ 4 = 227 pcurr w@ 2 = and if
+    target-slot @ 2 ef w@ pr @ 2 ef w@ = 0= if exit then
+    target-slot @ oy @ ef w@ oq @ + target-slot @ 16 ef w@ > if 7 pr @ 8 ef w! exit then
+    jx @ 1 jf w@ 3 1 pcurr w@ jx @ 3 jf w@ post-message 1 = 0= if 8 pr @ 8 ef w! exit then
+    target-slot @ oy @ ef dup w@ oq @ + swap w!
+    0 pr @ 5 ef w! 0 pr @ 6 ef w! 0 226 pcurr w! 0 227 pcurr w!
+    5 jx @ 0 jf w! 1 world-deliveries +! 0 pr @ 8 ef w!
+    ." UNLOAD " 1 pcurr w@ . jx @ 1 jf w@ . target-slot @ 0 ef w@ . oq @ . cr
+  then
+;
+: construct
+  4 role? 0= if 33 wfail exit then
+  pr @ 4 ef w@ 0 > pr @ 13 ef w@ pr @ 20 ef w@ < and if
+    pr @ 4 ef dup w@ 1- swap w! pr @ 13 ef dup w@ 1+ swap w! 1 world-used +!
+    ." BUILD " 1 pcurr w@ . pr @ 13 ef w@ . pr @ 20 ef w@ . cr
+  then
+;
+: signal-set
+  vm-pop ox ! 5 role? 0= if 33 wfail exit then
+  ox @ 2 < 0= if 34 wfail exit then
+  pr @ 19 ef w@ wi-edge ! wi-edge @ world-roads @ < 0= if 34 wfail exit then
+  ox @ wi-edge @ 5 rf w! ox @ wi-edge @ 1+ 5 rf w!
+;
+: industry-op
+  world-self? 0= if 33 wfail exit then
+  vm-op @ 42 = if request-material exit then
+  vm-op @ 43 = if factory-work exit then
+  vm-op @ 44 = if accept-delivery exit then
+  vm-op @ 45 = if authorize-job exit then
+  vm-op @ 46 = if dispatch-jobs exit then
+  vm-op @ 47 = if claim-job exit then
+  vm-op @ 48 = if drive-road exit then
+  vm-op @ 49 = if service-job exit then
+  vm-op @ 50 = if construct exit then
+  vm-op @ 51 = if signal-set exit then
+  vm-op @ 52 = if pr @ 1 ef w@ vm-push exit then
+  vm-op @ 53 = if
+    vm-pop dup 1 = over 2 = or if 2 + pr @ swap ef w@ vm-push else drop 34 wfail then exit
+  then 6 wfail
+;
+42 1 0 7 primitive-name request
+43 0 0 4 primitive-name work
+44 2 0 6 primitive-name accept
+45 2 0 9 primitive-name authorize
+46 0 0 8 primitive-name dispatch
+47 2 0 5 primitive-name claim
+48 1 0 5 primitive-name drive
+49 0 0 7 primitive-name service
+50 0 0 5 primitive-name build
+51 1 0 6 primitive-name signal
+52 0 1 4 primitive-name kind
+53 1 1 5 primitive-name stock

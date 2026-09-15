@@ -91,3 +91,25 @@ control is available only when the current stored draft matches that compiled
 source; a custom program without the marker remains editable and is never replaced
 with a template. BF validates the range, patches source, compiles and publishes.
 The host only sends the value and renders the native acknowledgement.
+
+## Measured addressing revision
+
+The first industrial implementation is functionally live but too slow: one observed
+cold boot took88.46s under concurrent tests; selected rounds took seconds. A saved
+development-image profile separately observed a state frame at4.98s. These are
+diagnostic samples, not final benchmarks. The native Array heap/store addressing
+walks large indices, and flat workspace addresses repeatedly lose their page
+decomposition. Increasing graphical interpolation would not fix this.
+
+Chosen revision: bounded hot scalar/stack allocation in a512-word native register
+pool; skip collection when a process invokes the same root; retain a whole native
+route across roads until the program/road condition requires replanning; keep its
+actual source version referenced and reported. All remain BF-executed Thread.
+
+The kernel adds a generic checked `waddr` page/offset constructor, executed as BF,
+which preserves the known translation in the BF-owned address cache. It has no
+knowledge of process roles or application events and caches no application values.
+Native process contexts move to workspace20480..24575; module storage and the ledger
+remain below that. Workspace reservation becomes24576words. The raw store profile
+is again a separate unused region. This development kernel change makes earlier
+development images incompatible; no released image migration is claimed.

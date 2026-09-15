@@ -126,3 +126,19 @@ as a complete replay; export/import a completed workspace to begin a new transcr
 The city importer validates the candidate city/workspace frame and reads both the active version source and stored draft before replacing the current worker. Successful import displays that draft in the editor and records these native source reads in the session transcript. An unreadable candidate is closed without replacing the current workspace. Saved route metadata is labeled separately from a newly emitted route event; an image alone does not reconstruct the original input history.
 
 Cost-table events also belong to the presentation session, not to an imported image's history. An image can already contain a valid native route-cost cache. If a subsequent route uses it without re-emitting a table, the inspector explicitly reports that no matching cost-table trace was emitted in this session. It still shows the actual new ROUTE record and native state; it never borrows a previous worker's table or recomputes costs in JavaScript.
+
+## Build 003 execution counters
+
+The BF dialect and image engine version stay1. Images may additionally contain
+`instructionEpoch` and `blockEpoch` as canonical unsigned decimal strings (at most
+128digits); absent fields mean zero. These are host instrumentation, not guest
+state. Generic executors rotate their exact Number counters before a requested
+run could cross Number.MAX_SAFE_INTEGER and retain the exact accumulated epoch.
+The BF tape, PC, pointer, pending I/O and fuel meaning do not change. Inspection
+returns a numeric total while safely representable, otherwise an exact decimal
+string. Worker progress uses exact total differences for its bounded operation.
+
+This is additive metadata, not a migration of historical guest layouts. Build001
+and002 images still require their matching historical kernels. Counter-window
+tests cover JS/literal/Wasm equivalence, fuel pauses, output caps, invalid epochs
+and roundtrip continuation; the production worker is also tested across rotation.

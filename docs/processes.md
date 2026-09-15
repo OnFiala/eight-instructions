@@ -1,8 +1,9 @@
 # Native processes — Build 003 implementation in progress
 
 `programs/processes.thread` runs in Thread inside the real BF kernel. It owns
-16 fixed256-word contexts in the persistent region. This boot profile does not
-load `store.thread`, whose independent data-store profile owns that same region.
+16 fixed256-word contexts in workspace20480..24575, above the module arenas and
+industrial ledger. Checked native `waddr` constructs workspace page addresses;
+the kernel caches translations on its BF tape, never application values.
 The host supplies input and executes BF; it does not select or resume a process.
 
 Every ready process receives at most8 module-bytecode instructions per scheduler

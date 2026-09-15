@@ -1,0 +1,132 @@
+\ Build 003: checked process profile and scheduler, entirely executed by BF.
+\ Process contexts occupy workspace20480..24575, outside the module/ledger regions.
+\ Sixteen 256-word slots. Metadata0..15, private16..31, data32..95,
+\ return frames96..127, FIFO128..143. Unused words reserved, never exposed.
+\ State:0 free,1 ready,2 mailbox wait,3 timer wait,4 paused,5 faulted.
+register constant pr
+register constant pb
+register constant pi
+register constant pj
+register constant px
+register constant py
+register constant pz
+register constant pn
+register constant ph
+register constant pm
+register constant pserial
+register constant ptick
+register constant pbudget
+register constant process-slice
+8 process-slice !
+register constant pyield
+register constant pallocs
+register constant pfrees
+register constant psends
+register constant precvs
+register constant pmsgseq
+register constant ptype
+register constant pvalue
+register constant psender
+
+: pf swap 4 * 320 + swap 64 /mod rot + swap waddr ;
+: pcurr pr @ swap pf ;
+: context-clear
+  px @ 0 pf pj ! 0 pi !
+  begin pi @ 256 < while 0 pj @ pi @ + w! 1 pi +! repeat
+;
+: pfind
+  ph ! 0 pz ! 0 pi !
+  begin pi @ 16 < pz @ 0= and while
+    pi @ 0 pf w@ if pi @ 1 pf w@ ph @ = if pi @ 1+ pz ! then then
+    1 pi +!
+  repeat pz @
+;
+: process-module
+  \ (name-length --); zero-argument/zero-result process root.
+  0 0 rot module-create
+  ws-error @ 0= if 1 wm @ 8 mf w! then
+;
+: process-slice!
+  \ Privileged, bounded scheduler configuration. Unavailable to process code.
+  0 ws-error ! dup 0 > over 33 < and if process-slice !
+  else drop 34 wfail then report-error
+;
+: process-create
+  \ (module -- handle); 0 on refusal. Source remains module-owned.
+  0 ws-error ! pm !
+  pm @ valid-module if
+    pm @ 8 mf w@ 1 = pm @ 1 mf w@ 0= and pm @ 2 mf w@ 0= and
+    pm @ 3 mf w@ 0 > and 0= if 33 wfail then
+  else 1 wfail then
+  pserial @ 65535 = if 36 wfail then
+  16 px ! 0 pi !
+  begin pi @ 16 < px @ 16 = and while
+    pi @ 0 pf w@ 0= px @ 16 = and if pi @ px ! then 1 pi +!
+  repeat
+  px @ 16 = if 32 wfail then
+  ws-error @ if 0 report-error exit then
+  context-clear
+  1 pserial +! 1 pallocs +!
+  1 px @ 0 pf w! pserial @ px @ 1 pf w! pm @ px @ 2 pf w!
+  pm @ 3 mf w@ dup ref+ dup px @ 3 pf w! px @ 4 pf w!
+  ." PROCESS-CREATED " pserial @ . pm @ . px @ . cr pserial @
+;
+: process-stop
+  0 ws-error ! pfind dup if
+    1- px ! px @ 15 pf w@ if 37 wfail report-error exit then
+    px @ 3 pf w@ ref-
+    0 px @ 0 pf w! 0 px @ 3 pf w! 0 px @ 13 pf w!
+    1 pfrees +! collect ." PROCESS-STOPPED " ph @ . cr
+  else drop 31 wfail then report-error
+;
+: process-pause
+  0 ws-error ! pfind dup if
+    1- px ! px @ 0 pf w@ dup 4 = swap 5 = or if 35 wfail else
+      px @ 0 pf w@ px @ 14 pf w! 4 px @ 0 pf w!
+    then
+  else drop 31 wfail then report-error
+;
+: process-resume
+  0 ws-error ! pfind dup if
+    1- px ! px @ 0 pf w@ 4 = if px @ 14 pf w@ px @ 0 pf w!
+    else 35 wfail then
+  else drop 31 wfail then report-error
+;
+: process-repair
+  \ Explicitly discard failed continuation, retain private state and mailbox.
+  0 ws-error ! pfind dup if
+    1- px ! px @ 0 pf w@ dup 5 = swap 4 = or if
+      px @ 3 pf w@ ref- 0 px @ 3 pf w! 0 px @ 4 pf w!
+      0 px @ 6 pf w! 0 px @ 7 pf w! 0 px @ 9 pf w!
+      1 px @ 0 pf w! collect
+    else 35 wfail then
+  else drop 31 wfail then report-error
+;
+: post-message
+  \ (value type sender target-handle -- status); 1 sent,0 full,2 unavailable,
+  \ 3 message serial exhausted. One completed operation owns the entire update.
+  pfind pn ! psender ! ptype ! pvalue !
+  pn @ 0= if 2 exit then -1 pn +!
+  pn @ 0 pf w@ 5 = if 2 exit then
+  pn @ 13 pf w@ 4 = if 0 exit then
+  pmsgseq @ 65535 = if 3 exit then
+  pn @ 12 pf w@ pn @ 13 pf w@ + 4 mod 4 * 128 + pn @ swap pf pj !
+  psender @ pj @ w! ptype @ pj @ 1+ w! pvalue @ pj @ 2 + w!
+  1 pmsgseq +! pmsgseq @ pj @ 3 + w!
+  pn @ 13 pf dup w@ 1+ swap w! 1 psends +!
+  pn @ 0 pf w@ 2 = if 1 pn @ 0 pf w! then
+  ." SEND " pmsgseq @ . psender @ . ph @ . ptype @ . pvalue @ . cr 1
+;
+: process-post 0 swap post-message ;
+
+\ Added raw spellings are compiled by the same BF-native module compiler.
+32 0 1 4 primitive-name self
+33 1 1 6 primitive-name state@
+34 2 0 6 primitive-name state!
+35 3 1 4 primitive-name send
+36 0 4 4 primitive-name recv
+37 0 0 4 primitive-name wait
+38 1 0 5 primitive-name sleep
+39 0 0 5 primitive-name yield
+40 1 0 4 primitive-name fail
+41 0 1 7 primitive-name pending

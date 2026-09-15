@@ -1,0 +1,3 @@
+{
+  "libraries": ["core.thread", "city-state.thread", "workspace.thread", "city.thread", "city-boot.thread"]
+}

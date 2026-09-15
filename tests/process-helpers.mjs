@@ -2,13 +2,14 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {kernel,command} from './system-helpers.mjs';
 import {encodeImage,decodeImage} from '../dist/images.mjs';
+import {loadLibraries} from '../runtime/system.mjs';
 export {kernel,command};
 export {build,save} from './workspace-helpers.mjs';
 let image;
 export async function processes() {
   if(!image) {
     const m=kernel.create();
-    const source=['core','workspace','processes'].map(n=>readFileSync(new URL(`../programs/${n}.thread`,import.meta.url),'utf8')).join('\n');
+    const source=await loadLibraries('processes.json');
     assert.equal(command(m,source),'Thread / 8 Instructions\n');
     image=await encodeImage(m,kernel.programHash);
   }

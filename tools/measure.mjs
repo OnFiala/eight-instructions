@@ -9,11 +9,11 @@ const samples=[];let executorLinearMemoryBytes;
 for(let repeat=0;repeat<3;repeat++){
   const m=kernel.create(),runs=[];
   for(const [name,source]of workloads){
-    const start=performance.now(),steps=m.steps,blocks=m.blocks;
+    const start=performance.now(),steps=m.totalSteps,blocks=m.totalBlocks;
     execute(m,source+'\n',{fuel:2e14,blocks:3e10});
     const elapsedMs=performance.now()-start,output=new TextDecoder().decode(m.drain());
     if(m.state!=='input'||/!E\d+ /.test(output))throw new Error(`Incomplete benchmark ${name}: ${JSON.stringify(m.inspect())} ${output}`);
-    runs.push({name,elapsedMs,brainfuckInstructions:m.steps-steps,executorBlocks:m.blocks-blocks,output});
+    runs.push({name,elapsedMs,brainfuckInstructions:Number(m.totalSteps-steps),executorBlocks:Number(m.totalBlocks-blocks),output});
   }
   samples.push(runs);
   executorLinearMemoryBytes=m.inspect().executorMemoryBytes;

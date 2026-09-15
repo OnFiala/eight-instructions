@@ -17,7 +17,7 @@ export function readPresentation(output) {
     const fields=line.trim().split(/\s+/),kind=fields.shift();
     if(kind==='SOURCE'||kind==='VERSION-SOURCE') {
       const n=numbers(fields),length=n.at(-1);
-      if(length>256||cursor+length>output.length)throw new Error('Incomplete native source frame');
+      if(length>512||cursor+length>output.length)throw new Error('Incomplete native source frame');
       const source=output.slice(cursor,cursor+length);cursor+=length;
       if(output[cursor]==='\n')cursor++;
       if(kind==='SOURCE')result.sources.set(n[0],source);else result.versionSource=source;
@@ -50,7 +50,7 @@ export function readPresentation(output) {
     result.city={tick:cityHeader[0],generation:cityHeader[1],sequence:cityHeader[2],rule:cityHeader[3],serial:cityHeader[4],nodes,roads,vehicles,idle};
   }
   if(workspaceHeader) {
-    if(modules.length!==4||versions.length!==6||!memory)throw new Error('Incomplete native workspace frame');
+    if(![4,8].includes(workspaceHeader[0])||![6,16].includes(workspaceHeader[1])||modules.length!==workspaceHeader[0]||versions.length!==workspaceHeader[1]||!memory)throw new Error('Incomplete native workspace frame');
     for(const module of modules)module.name=result.names.get(module.id)??'';
     result.workspace={modules,versions,memory,serial:workspaceHeader[4]};
   }

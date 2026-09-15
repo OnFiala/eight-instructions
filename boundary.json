@@ -393,6 +393,36 @@
       "reason": "Byte-identical public copy of the canonical native source, checked during verification."
     },
     {
+      "path": "dist/programs/industry-boot.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "dist/programs/industry-state.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "dist/programs/industry-system.json",
+      "layer": "native-source-manifest",
+      "reason": "Ordered raw Thread libraries for the industrial process profile. The host passes bytes; BF compiles and executes them."
+    },
+    {
+      "path": "dist/programs/industry-view.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "dist/programs/industry.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "dist/programs/process-state.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
       "path": "dist/programs/processes.json",
       "layer": "native-source-manifest",
       "reason": "Ordered raw native sources for the isolated process boot profile; source is compiled by BF, not by the host."
@@ -497,6 +527,36 @@
       "path": "programs/dispatch.thread",
       "layer": "native-program",
       "reason": "Raw Thread source compiled and executed by the Brainfuck kernel; owns mutable graph validation, Dijkstra shortest paths and predecessor reconstruction."
+    },
+    {
+      "path": "programs/industry-boot.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "programs/industry-state.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "programs/industry-system.json",
+      "layer": "native-source-manifest",
+      "reason": "Ordered raw Thread libraries for the industrial process profile. The host passes bytes; BF compiles and executes them."
+    },
+    {
+      "path": "programs/industry-view.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "programs/industry.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
+    },
+    {
+      "path": "programs/process-state.thread",
+      "layer": "native-program",
+      "reason": "BF-executed raw Thread process state, bounded industrial ledger, role-checked operations, incremental routing, presentation or initial input data. No host application computation."
     },
     {
       "path": "programs/processes.json",

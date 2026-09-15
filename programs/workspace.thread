@@ -5,39 +5,51 @@
 \         name at16, draft at64. Version: state,owner,serial,refs,code,source;
 \         inputs at6, outputs at7, dependencies8..13, pins14;
 \         source16..271, code272..399. Slot handles are internal; serials public.
+\ Reserve a bounded low-address pool for hot native scalar registers and stacks.
+\ Allocation itself runs in BF; large token/source tables do not push every
+\ frequently accessed register thousands of linear heap slots away.
+here constant registers 512 allot
+registers constant register-count
+1 register-count !
+: register-allot
+  dup 513 < assert
+  register-count @ over + 513 < assert
+  register-count @ swap register-count +! registers +
+;
+: register 1 register-allot ;
 \ Default Build002 layout stays 4/6/256/128. The industrial boot opts into
 \ 8 modules /16 versions /512 source bytes /256 code words before first use.
-variable ws-nm 4 ws-nm !
-variable ws-nv 6 ws-nv !
-variable ws-nsrc 256 ws-nsrc !
-variable ws-ncode 128 ws-ncode !
-variable ws-msize 320 ws-msize !
-variable ws-vsize 448 ws-vsize !
-variable ws-vbase 1280 ws-vbase !
-variable ws-head 16 ws-head !
-variable ws-pinfield 14 ws-pinfield !
-variable ws-codebase 272 ws-codebase !
-variable ws-counter 400 ws-counter !
-variable ws-error
-variable ws-serial
-variable ws-busy
-variable wa
-variable wb
-variable wc
-variable wi
-variable wj
-variable wk
-variable wn
-variable wm
-variable wv
-variable wx
-variable wy
-variable wz
-variable wg
+register constant ws-nm 4 ws-nm !
+register constant ws-nv 6 ws-nv !
+register constant ws-nsrc 256 ws-nsrc !
+register constant ws-ncode 128 ws-ncode !
+register constant ws-msize 320 ws-msize !
+register constant ws-vsize 448 ws-vsize !
+register constant ws-vbase 1280 ws-vbase !
+register constant ws-head 16 ws-head !
+register constant ws-pinfield 14 ws-pinfield !
+register constant ws-codebase 272 ws-codebase !
+register constant ws-counter 400 ws-counter !
+register constant ws-error
+register constant ws-serial
+register constant ws-busy
+register constant wa
+register constant wb
+register constant wc
+register constant wi
+register constant wj
+register constant wk
+register constant wn
+register constant wm
+register constant wv
+register constant wx
+register constant wy
+register constant wz
+register constant wg
 here constant ws-buffer 512 allot
-here constant ws-token 24 allot
+24 register-allot constant ws-token
 here constant ws-builtins 1536 allot
-variable ws-built-count
+register constant ws-built-count
 
 : maddr ws-msize @ * ;
 : vaddr 1- ws-vsize @ * ws-vbase @ + ;
@@ -246,24 +258,25 @@ variable ws-built-count
 105 1 0 5 primitive-name while
 106 0 0 6 primitive-name repeat
 107 0 1 6 primitive-name batch#
+108 0 0 7 primitive-name schema#
 
 \ Compiler registers and typed control stack. No host parser participates.
-variable cc-v
-variable cc-m
-variable cc-pos
-variable cc-len
-variable cc-tlen
-variable cc-code
-variable cc-depth
-variable cc-control
-variable cc-op
-variable cc-in
-variable cc-out
-variable cc-value
-variable cc-negative
-variable cc-valid
-variable cc-finished
-here constant cc-controls 64 allot
+register constant cc-v
+register constant cc-m
+register constant cc-pos
+register constant cc-len
+register constant cc-tlen
+register constant cc-code
+register constant cc-depth
+register constant cc-control
+register constant cc-op
+register constant cc-in
+register constant cc-out
+register constant cc-value
+register constant cc-negative
+register constant cc-valid
+register constant cc-finished
+64 register-allot constant cc-controls
 
 : source-char cc-v @ vaddr ws-head @ + cc-pos @ + w@ ;
 : next-token
@@ -342,6 +355,13 @@ here constant cc-controls 64 allot
 ;
 : same-depth wx @ 2 + @ cc-depth @ = 0= if 7 wfail then ;
 : compile-control
+  cc-op @ 108 = if
+    ws-head @ 32 = cc-m @ 8 mf w@ 1 = and 0= if 6 wfail exit then
+    cc-code @ cc-v @ 29 vf w@ or if 39 wfail exit then
+    next-token token-number
+    cc-valid @ cc-value @ 0 > and 0= if 39 wfail exit then
+    cc-value @ cc-v @ 27 vf w! 1 cc-v @ 29 vf w! exit
+  then
   cc-op @ 107 = if
     ws-head @ 32 = cc-m @ 8 mf w@ 1 = and 0= if 6 wfail exit then
     cc-v @ 25 vf w@ if 8 wfail exit then
@@ -454,11 +474,18 @@ here constant cc-controls 64 allot
     begin wi @ cc-len @ < while
       cc-m @ maddr 64 + wi @ + w@ wx @ ws-head @ + wi @ + w! 1 wi +!
     repeat
+    ws-head @ 32 = if 1 cc-v @ 27 vf w! then
     compile-source
+    ws-head @ 32 = cc-m @ 8 mf w@ 1 = and if
+      cc-m @ 9 mf w@ dup if cc-v @ 27 vf w@ = 0= if 39 wfail then else drop then
+    then
     ws-error @ if 0 cc-v @ vaddr w! else
       1 ws-serial +! ws-serial @ cc-v @ 2 vf w!
       cc-code @ cc-v @ 4 vf w!
-      ws-head @ 32 = if cc-m @ 7 mf w@ cc-v @ 28 vf w! then
+      ws-head @ 32 = if
+        cc-m @ 7 mf w@ cc-v @ 28 vf w!
+        cc-m @ 8 mf w@ 1 = if cc-v @ 27 vf w@ cc-m @ 9 mf w! then
+      then
       2 cc-v @ vaddr w! 1 cc-v @ 3 vf w!
       0 wi ! begin wi @ ws-nv @ < while
         cc-v @ wi @ 8 + vf w@ if wi @ 1+ ref+ then 1 wi +!
@@ -475,20 +502,20 @@ here constant cc-controls 64 allot
 ;
 
 \ Pure, bounded evaluator; compilation has checked stack and control joins.
-here constant vm-stack 64 allot
-here constant vm-frames 32 allot
-variable vm-v
-variable vm-pc
-variable vm-sp
-variable vm-fp
-variable vm-fuel
-variable vm-op
-variable vm-a
-variable vm-b
-variable vm-c
-variable vm-root
-variable vm-inputs
-variable vm-outputs
+64 register-allot constant vm-stack
+32 register-allot constant vm-frames
+register constant vm-v
+register constant vm-pc
+register constant vm-sp
+register constant vm-fp
+register constant vm-fuel
+register constant vm-op
+register constant vm-a
+register constant vm-b
+register constant vm-c
+register constant vm-root
+register constant vm-inputs
+register constant vm-outputs
 : vm-push vm-sp @ 64 < if vm-stack vm-sp @ + ! 1 vm-sp +! else drop 7 wfail then ;
 : vm-pop vm-sp @ if -1 vm-sp +! vm-stack vm-sp @ + @ else 0 7 wfail then ;
 : vm-fetch
