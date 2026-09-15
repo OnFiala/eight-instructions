@@ -4,7 +4,7 @@
     "wrapping": true,
     "io_bits": 8,
     "eof": 0,
-    "tape_cells": 169164
+    "tape_cells": 373964
   },
   "registers": {
     "running": 0,
@@ -88,31 +88,31 @@
     },
     "dictionary": {
       "base": 5236,
-      "size": 8192,
+      "size": 16384,
       "stride": 4,
       "value_lane": 2
     },
     "code": {
-      "base": 38008,
-      "size": 12288,
+      "base": 70776,
+      "size": 24576,
       "stride": 6,
       "value_lane": 2
     },
     "heap": {
-      "base": 111742,
+      "base": 218238,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "store": {
-      "base": 128130,
+      "base": 234626,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "workspace": {
-      "base": 144518,
-      "size": 4096,
+      "base": 251014,
+      "size": 20480,
       "stride": 6,
       "value_lane": 2
     }
@@ -166,6 +166,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98",
-  "instructions": 52564890
+  "sha256": "9925a5a8cc36d1423efb7c942195085dd666f367f817caff21e80f9cd575e920",
+  "instructions": 94105690
 }

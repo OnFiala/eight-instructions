@@ -83,6 +83,8 @@ test('bounded evaluation rejects divide by zero and nontermination; image retain
   assert.equal(command(n,'4 5 1 version-run . .'),'1 9 ');
   assert.match(command(n,'1 version-source'),/: rule.thread \+ ;/);
   assert.match(build(n,0,': rule.thread begin dup 0= until + ;'),/MODULE-PUBLISHED/);
-  assert.match(command(n,'4 5 0 module-run . .'),/WS-ERROR 12/);
+  // Larger Build003 tape increases literal pointer work. The native evaluator
+  // still refuses at exactly its original1024-op budget; allow BF to reach it.
+  assert.match(command(n,'4 5 0 module-run . .',{fuel:2e14}),/WS-ERROR 12/);
   command(n,'0 module-rollback');assert.equal(command(n,'4 5 0 module-run . .'),'1 9 ');
 });

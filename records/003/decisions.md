@@ -46,3 +46,48 @@ conservation claim is made for this initial process-only milestone.
 Build 002 remains the public release until all Build 003 gates pass. Its immutable
 tag, artifacts and rollback deployment remain preserved. Self-review is performed
 by the same Astra author, never labeled an independent audit.
+
+## Industrial state and material protocol
+
+The industrial boot selects8modules/16version arenas/512source bytes/256code words
+before creating any module. It uses the existing native compiler, not a generated
+second compiler. Default workspace behavior keeps its original capacities. The
+kernel's generic reserved regions become512dictionary entries,24576resident code
+words and20480workspace words; heap/store remain4096 each. Module storage occupies
+17920words in the large layout. Reclamation remains fixed-capacity reuse, independent
+of these boot reservations. Old images require the preserved old kernel.
+
+The process profile owns the store region (16x256 words). Its private user-addressed
+state remains16words; additional reserved context words hold native travel and
+incremental-route continuations. It must not be loaded with the unrelated privileged
+store library. A separate native industrial ledger in the remaining workspace owns
+inventories, cargo, jobs, road reservations and construction. Process code can only
+mutate that ledger through bounded, role-checked operations.
+
+Initial material accounting target: finite raw stock; two raw units become one
+panel. At all completed operations, raw inventory+cargo+production escrow plus twice
+(panel inventory+cargo+construction consumption) equals initial supply. A transfer
+debits one owner and credits another in one non-interleaved native operation. A raw
+BF pause inside it preserves the exact unfinished continuation. No host reconstructs
+or retries a partial transfer.
+
+Bounded jobs have nonwrapping lifetime IDs and explicit stages: requested,
+authorized/assigned, cargo in transit, delivered awaiting acknowledgement, free.
+Actual FIFO messages carry these job IDs. Repeated or stale IDs cannot create a
+second transfer. Full receiver mailboxes leave cargo on the van until delivery can
+commit. Fault/pause leaves owned inventory, jobs and road progress intact. Removal
+must refuse still-owned resources; an explicit repair can discard only the failed
+program continuation, preserving the ledger.
+
+Road routing and movement are native. Route selection progresses across bounded
+phases (initialize, choose vertex, relax edges, reconstruct); each phase has fixed
+node/edge bounds. Traversal captures duration, reserves a shared road capacity and
+releases it only on arrival. Temporary signal waits and persistent road closures
+are distinct. A changed rule or road cannot teleport a committed journey.
+
+The central factory control will edit a named literal marker in the stored Thread
+source inside BF. The compiler records its exact source offset and revision. The
+control is available only when the current stored draft matches that compiled
+source; a custom program without the marker remains editable and is never replaced
+with a template. BF validates the range, patches source, compiles and publishes.
+The host only sends the value and renders the native acknowledgement.

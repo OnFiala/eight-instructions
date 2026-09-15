@@ -1,0 +1,222 @@
+\ Build 003: checked process profile and scheduler, entirely executed by BF.
+\ This boot profile owns the persistent region; do not mix with store.thread.
+\ Sixteen 256-word slots. Metadata0..15, private16..31, data32..95,
+\ return frames96..127, FIFO128..143. Unused words reserved, never exposed.
+\ State:0 free,1 ready,2 mailbox wait,3 timer wait,4 paused,5 faulted.
+variable pr
+variable pb
+variable pi
+variable pj
+variable px
+variable py
+variable pz
+variable pn
+variable ph
+variable pm
+variable pserial
+variable ptick
+variable pbudget
+variable pyield
+variable pallocs
+variable pfrees
+variable psends
+variable precvs
+variable pmsgseq
+variable ptype
+variable pvalue
+variable psender
+
+: pf swap 256 * + ;
+: pcurr pb @ + ;
+: pfind
+  ph ! 0 pz ! 0 pi !
+  begin pi @ 16 < while
+    pi @ 0 pf p@ if pi @ 1 pf p@ ph @ = if pi @ 1+ pz ! then then
+    1 pi +!
+  repeat pz @
+;
+: process-module
+  \ (name-length --); zero-argument/zero-result process root.
+  0 0 rot module-create
+  ws-error @ 0= if 1 wm @ 8 mf w! then
+;
+: process-create
+  \ (module -- handle); 0 on refusal. Source remains module-owned.
+  0 ws-error ! pm !
+  pm @ valid-module if
+    pm @ 8 mf w@ 1 = pm @ 1 mf w@ 0= and pm @ 2 mf w@ 0= and
+    pm @ 3 mf w@ 0 > and 0= if 33 wfail then
+  else 1 wfail then
+  pserial @ 65535 = if 36 wfail then
+  16 px ! 0 pi !
+  begin pi @ 16 < while
+    pi @ 0 pf p@ 0= px @ 16 = and if pi @ px ! then 1 pi +!
+  repeat
+  px @ 16 = if 32 wfail then
+  ws-error @ if 0 report-error exit then
+  0 px @ 256 * 256 pfill
+  1 pserial +! 1 pallocs +!
+  1 px @ 0 pf p! pserial @ px @ 1 pf p! pm @ px @ 2 pf p!
+  pm @ 3 mf w@ dup ref+ dup px @ 3 pf p! px @ 4 pf p!
+  ." PROCESS-CREATED " pserial @ . pm @ . px @ . cr pserial @
+;
+: process-stop
+  0 ws-error ! pfind dup if
+    1- px ! px @ 3 pf p@ ref-
+    0 px @ 0 pf p! 0 px @ 3 pf p! 0 px @ 13 pf p!
+    1 pfrees +! collect ." PROCESS-STOPPED " ph @ . cr
+  else drop 31 wfail then report-error
+;
+: process-pause
+  0 ws-error ! pfind dup if
+    1- px ! px @ 0 pf p@ dup 4 = swap 5 = or if 35 wfail else
+      px @ 0 pf p@ px @ 14 pf p! 4 px @ 0 pf p!
+    then
+  else drop 31 wfail then report-error
+;
+: process-resume
+  0 ws-error ! pfind dup if
+    1- px ! px @ 0 pf p@ 4 = if px @ 14 pf p@ px @ 0 pf p!
+    else 35 wfail then
+  else drop 31 wfail then report-error
+;
+: process-repair
+  \ Explicitly discard failed continuation, retain private state and mailbox.
+  0 ws-error ! pfind dup if
+    1- px ! px @ 0 pf p@ dup 5 = swap 4 = or if
+      px @ 3 pf p@ ref- 0 px @ 3 pf p! 0 px @ 4 pf p!
+      0 px @ 6 pf p! 0 px @ 7 pf p! 0 px @ 9 pf p!
+      1 px @ 0 pf p! collect
+    else 35 wfail then
+  else drop 31 wfail then report-error
+;
+: post-message
+  \ (value type sender target-handle -- status); 1 sent,0 full,2 unavailable,
+  \ 3 message serial exhausted. One completed operation owns the entire update.
+  pfind pn ! psender ! ptype ! pvalue !
+  pn @ 0= if 2 exit then -1 pn +!
+  pn @ 0 pf p@ 5 = if 2 exit then
+  pn @ 13 pf p@ 4 = if 0 exit then
+  pmsgseq @ 65535 = if 3 exit then
+  pn @ 12 pf p@ pn @ 13 pf p@ + 4 mod 4 * 128 + pn @ 256 * + pj !
+  psender @ pj @ p! ptype @ pj @ 1+ p! pvalue @ pj @ 2 + p!
+  1 pmsgseq +! pmsgseq @ pj @ 3 + p!
+  pn @ 13 pf dup p@ 1+ swap p! 1 psends +!
+  pn @ 0 pf p@ 2 = if 1 pn @ 0 pf p! then
+  ." SEND " pmsgseq @ . psender @ . ph @ . ptype @ . pvalue @ . cr 1
+;
+: process-post 0 swap post-message ;
+
+\ Added raw spellings are compiled by the same BF-native module compiler.
+32 0 1 4 primitive-name self
+33 1 1 6 primitive-name state@
+34 2 0 6 primitive-name state!
+35 3 1 4 primitive-name send
+36 0 4 4 primitive-name recv
+37 0 0 4 primitive-name wait
+38 1 0 5 primitive-name sleep
+39 0 0 5 primitive-name yield
+40 1 0 4 primitive-name fail
+41 0 1 7 primitive-name pending
+
+: process-op
+  vm-op @ 32 = if 1 pcurr p@ vm-push exit then
+  vm-op @ 33 = if
+    vm-pop dup 16 < if 16 + pcurr p@ vm-push else drop 34 wfail then exit
+  then
+  vm-op @ 34 = if
+    vm-pop px ! vm-pop py ! px @ 16 < if py @ px @ 16 + pcurr p!
+    else 34 wfail then exit
+  then
+  vm-op @ 35 = if
+    vm-pop px ! vm-pop py ! vm-pop py @ 1 pcurr p@ px @ post-message vm-push exit
+  then
+  vm-op @ 36 = if
+    13 pcurr p@ if
+      12 pcurr p@ 4 * 128 + pcurr pj !
+      pj @ 2 + p@ vm-push pj @ 1+ p@ vm-push pj @ p@ vm-push 1 vm-push
+      ." RECEIVE " pj @ 3 + p@ . 1 pcurr p@ . cr
+      12 pcurr dup p@ 1+ 4 mod swap p! 13 pcurr dup p@ 1- swap p!
+      1 precvs +!
+    else 0 vm-push 0 vm-push 0 vm-push 0 vm-push then exit
+  then
+  vm-op @ 37 = if
+    13 pcurr p@ 0= if 2 pb @ p! then 1 pyield ! exit
+  then
+  vm-op @ 38 = if
+    vm-pop 8 pcurr p! 8 pcurr p@ if 3 pb @ p! then 1 pyield ! exit
+  then
+  vm-op @ 39 = if 1 pyield ! exit then
+  vm-op @ 40 = if vm-pop dup if wfail else drop 35 wfail then exit then
+  vm-op @ 41 = if 13 pcurr p@ vm-push exit then
+  vm-primitive
+;
+: context-load
+  4 pcurr p@ vm-v ! 5 pcurr p@ vm-pc ! 6 pcurr p@ vm-sp ! 7 pcurr p@ vm-fp !
+  0 pi ! begin pi @ vm-sp @ < while
+    pi @ 32 + pcurr p@ vm-stack pi @ + ! 1 pi +!
+  repeat
+  0 pi ! begin pi @ vm-fp @ < while
+    pi @ 96 + pcurr p@ vm-frames pi @ + ! 1 pi +!
+  repeat
+;
+: context-save
+  vm-v @ 4 pcurr p! vm-pc @ 5 pcurr p! vm-sp @ 6 pcurr p! vm-fp @ 7 pcurr p!
+  0 pi ! begin pi @ vm-sp @ < while
+    vm-stack pi @ + @ pi @ 32 + pcurr p! 1 pi +!
+  repeat
+  0 pi ! begin pi @ vm-fp @ < while
+    vm-frames pi @ + @ pi @ 96 + pcurr p! 1 pi +!
+  repeat
+;
+: process-invoke
+  \ At root return only: acquire latest version before releasing the old root.
+  2 pcurr p@ dup valid-module if
+    3 mf w@ dup if
+      dup ref+ 3 pcurr p@ ref- dup 3 pcurr p! vm-v !
+      0 vm-pc ! 0 vm-sp ! 0 vm-fp ! collect
+    else drop 11 wfail then
+  else drop 1 wfail then
+;
+: process-quantum
+  0 ws-error ! 0 pyield ! 8 pbudget ! 1 ws-busy !
+  context-load vm-v @ 0= if process-invoke then
+  begin pbudget @ 0 > pyield @ 0= and ws-error @ 0= and while
+    -1 pbudget +! 11 pcurr dup p@ 1+ swap p!
+    vm-fetch vm-op ! ws-error @ 0= if process-op then
+    vm-v @ 0= if
+      vm-sp @ if 7 wfail then 1 pyield !
+    then
+  repeat
+  context-save 0 ws-busy ! 10 pcurr dup p@ 1+ swap p!
+  ws-error @ if
+    5 pb @ p! ws-error @ 9 pcurr p!
+    ." PROCESS-FAULT " 1 pcurr p@ . ws-error @ . cr
+  then
+;
+: process-step
+  1 ptick +! 0 pr !
+  begin pr @ 16 < while
+    pr @ 256 * pb !
+    pb @ p@ 3 = if
+      8 pcurr dup p@ dup if 1- then swap p!
+      8 pcurr p@ 0= if 1 pb @ p! then
+    then
+    pb @ p@ 1 = if process-quantum then
+    1 pr +!
+  repeat
+  ." ROUND " ptick @ . cr
+;
+: process-state
+  ." PROCESSES " ptick @ . pserial @ . pallocs @ . pfrees @ . psends @ . precvs @ . cr
+  0 pr !
+  begin pr @ 16 < while
+    pr @ 256 * pb !
+    pb @ p@ if
+      ." PROCESS " pr @ . 0 pi !
+      begin pi @ 16 < while pi @ pcurr p@ . 1 pi +! repeat cr
+      ." PRIVATE " 1 pcurr p@ . 0 pi !
+      begin pi @ 16 < while pi @ 16 + pcurr p@ . 1 pi +! repeat cr
+    then 1 pr +!
+  repeat
+;

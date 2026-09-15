@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: BF scheduler preempts an infinite process and preserves each continuation
+ok 1 - BF scheduler preempts an infinite process and preserves each continuation
+  ---
+  duration_ms: 21738.530375
+  type: 'test'
+  ...
+# Subtest: native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+ok 2 - native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+  ---
+  duration_ms: 6663.823791
+  type: 'test'
+  ...
+# Subtest: private bounds fault stays local; actor words are rejected in pure modules
+ok 3 - private bounds fault stays local; actor words are rejected in pure modules
+  ---
+  duration_ms: 7989.490834
+  type: 'test'
+  ...
+# Subtest: suspended old frame retains its version, next invocation adopts publication, images retain both
+ok 4 - suspended old frame retains its version, next invocation adopts publication, images retain both
+  ---
+  duration_ms: 5337.829333
+  type: 'test'
+  ...
+# Subtest: three user programs exchange messages, wait, and compute without kernel regeneration
+ok 5 - three user programs exchange messages, wait, and compute without kernel regeneration
+  ---
+  duration_ms: 27888.624375
+  type: 'test'
+  ...
+# {"processCycles":450,"capacity":16,"liveProcesses":0,"liveVersionsAfterDelete":0,"residentCodeAndDictionary":[10234,215]}
+# Subtest: 450 create/stop cycles reuse fixed slots and leave no version refs or resident allocation
+ok 6 - 450 create/stop cycles reuse fixed slots and leave no version refs or resident allocation
+  ---
+  duration_ms: 109725.522375
+  type: 'test'
+  ...
+# Subtest: creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+ok 7 - creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+  ---
+  duration_ms: 17307.66975
+  type: 'test'
+  ...
+# Subtest: generic key and paged workspace operations execute as BF and reject boundaries
+ok 8 - generic key and paged workspace operations execute as BF and reject boundaries
+  ---
+  duration_ms: 61.457208
+  type: 'test'
+  ...
+# Subtest: boot manifests accept only local raw Thread source paths
+ok 9 - boot manifests accept only local raw Thread source paths
+  ---
+  duration_ms: 5.786542
+  type: 'test'
+  ...
+# Subtest: source is stored, compiled and executed in BF; arbitrary expressions and typed control
+ok 10 - source is stored, compiled and executed in BF; arbitrary expressions and typed control
+  ---
+  duration_ms: 19980.202875
+  type: 'test'
+  ...
+# Subtest: invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+ok 11 - invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+  ---
+  duration_ms: 77560.265292
+  type: 'test'
+  ...
+# Subtest: exact dependency binding, pins, rollback, deletion refusal and stale handles
+ok 12 - exact dependency binding, pins, rollback, deletion refusal and stale handles
+  ---
+  duration_ms: 4282.918917
+  type: 'test'
+  ...
+# Subtest: all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+ok 13 - all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+  ---
+  duration_ms: 6348.48325
+  type: 'test'
+  ...
+# Subtest: bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+not ok 14 - bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+  ---
+  duration_ms: 25554.006333
+  type: 'test'
+  location: '/Users/ondrej/BRAINFUCK/tests/workspace.test.mjs:74:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"state":"budget","instruction":47915868,"pointer":70779,"cell":65535,"steps":116892505322185,"blocks":6088397665,"tapeBytes":747928,"highWaterCell":274539,"backend":"wasm","executorMemoryBytes":3670016}
+    
+    'budget' !== 'input'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'input'
+  actual: 'budget'
+  operator: 'strictEqual'
+  stack: |-
+    command (file:///Users/ondrej/BRAINFUCK/tests/system-helpers.mjs:17:10)
+    TestContext.<anonymous> (file:///Users/ondrej/BRAINFUCK/tests/workspace.test.mjs:86:16)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 13
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 197607.048125

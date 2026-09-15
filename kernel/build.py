@@ -34,8 +34,8 @@ class Kernel:
         base = 512
         self.arrays = {}
         for name, size in [('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
-                           ('controls', 128), ('dictionary', 8192), ('code', 12288),
-                           ('heap', 4096), ('store', 4096), ('workspace', 4096)]:
+                           ('controls', 128), ('dictionary', 16384), ('code', 24576),
+                           ('heap', 4096), ('store', 4096), ('workspace', 20480)]:
             arr = (PagedArray if name in ('code', 'workspace') else Array)(b, base, size, name)
             self.arrays[name] = arr
             setattr(self, name, arr)
@@ -331,7 +331,7 @@ class Kernel:
     def name_definition(self):
         b = self.b
         b.copy(self.mode, self.definition)
-        self.check_limit(self.dp, 256, 5)
+        self.check_limit(self.dp, self.dictionary.size // 32, 5)
         self.check_limit(self.length, 24, 1)
         with b.zero(self.err):
             b.copy(self.dp, self.k)
