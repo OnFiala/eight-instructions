@@ -1,0 +1,13 @@
+{
+  "status": "IN_PROGRESS",
+  "viewport": [
+    1487,
+    1058
+  ],
+  "reference": "records/003/reference/industrial-design-target.png",
+  "referenceSha256": "510cab8943f7d5bb53bdfab29f2eee9cf92e7c958ef35d41e0f00ce2813c6a9b",
+  "actual": "records/003/screenshots/desktop-current-round17.png",
+  "actualSha256": "6a8e343b7dadc9f3e9893746787a43067faa29991f99230362ce42af472d2f35",
+  "finding": "Main city/panel/footer composition follows the target, but primary industrial buildings are underscaled. Increase their presentation footprint within the existing plots; make native fault/pause labels visually explicit. Final state screenshots and side-by-side/overlay must be repeated after refinement. No pixel-match claim.",
+  "nativeState": "Actual round17, image imported from native round11 and advanced through UI; source batch4 was compiled then active version rolled back. No rendered result was fabricated."
+}

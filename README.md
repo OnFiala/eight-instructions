@@ -10,14 +10,14 @@ repairing production code. No subagents or second coding model author this build
 communicating, resumable programs inside one actual BF machine. Select a factory,
 change its program, and watch native orders, cargo and construction change.
 
-**Development checkpoint:** the native chain and local regressions have evidence;
+**Development checkpoint:** the final native suite passes113/113tests;
 final visual/interaction verification, release and public deployment are still
 in progress. The existing public site remains the verified Build002 until those
 gates pass. This branch is not a claim of a completed Build003 release.
 
 [Existing public site](https://eight-instructions.andrewxix.chatgpt.site) ·
 [Build003 challenge](records/003/challenge.md) · [Journal](records/003/journal.md) ·
-[Permanent protocol](PROTOCOL.md) · [Build002 release](https://github.com/OnFiala/eight-instructions/releases/tag/build-002)
+[Measurements](records/003/measurements.md) · [Permanent protocol](PROTOCOL.md) · [Build002 release](https://github.com/OnFiala/eight-instructions/releases/tag/build-002)
 
 ## What changed
 

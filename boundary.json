@@ -690,7 +690,7 @@
       "path": "dist/index.html",
       "layer": "presentation",
       "reason": "Build003 narrative, direct object controls, actual-source editor, explicit privileged terminal, native evidence and historical-build links. No precomputed application result.",
-      "reviewedSha256": "12a511ba5a052db1176c9214b8c52e03a620b1012739cab5167334c63e9e34c8"
+      "reviewedSha256": "35788714fc5e9cc38500490ca029c95b90ae69746b2ad9e2725759347db48a6a"
     },
     {
       "path": "dist/industry-presentation.mjs",
@@ -702,19 +702,19 @@
       "path": "dist/industry-scene.mjs",
       "layer": "presentation",
       "reason": "Canvas projection of BF-emitted roads, observed vehicle positions, paths, inventory and construction phases. Decorative architecture, light, camera and elevated selection callouts have no simulation role. Interpolation uses only two observed states.",
-      "reviewedSha256": "c9ed05ce37672e623c9cb4248f320a3368b1794613f18406c7397e00ca0fa73e"
+      "reviewedSha256": "f20c9379fc461994cb64db4d518a322aa8f85d3b1fc45612064c7615d6ba6474"
     },
     {
       "path": "dist/industry-ui.mjs",
       "layer": "presentation",
       "reason": "Context selection, unsaved drafts, raw input transport, whole-machine snapshots, result framing and fresh-machine comparisons. BF edits source, compiles it, validates actions and owns all city/process state; JS never interprets Thread or guest messages.",
-      "reviewedSha256": "07e37d6e14e8aaae77c62ae6b00e583666c5f867bacccc159fcb15d4a41be168"
+      "reviewedSha256": "645e3a1b3b79551a523eb6955a8797b98eddcec2c40b1a12b52873acb856ffa6"
     },
     {
       "path": "dist/industry.css",
       "layer": "presentation",
       "reason": "Responsive layout, focus indication, typography and reduced-motion presentation; no computation of guest state.",
-      "reviewedSha256": "aba240959bfda0f1c5463bb44016e6253b98f7dd1ffe9eece3220102e0871926"
+      "reviewedSha256": "e57005e71076cebe43c58a94c6c2a49bdb26b26468e08fe9ea7296da9916a01b"
     },
     {
       "path": "dist/initial-industry.8i",

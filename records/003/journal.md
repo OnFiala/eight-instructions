@@ -156,3 +156,45 @@ One earlier hidden-element capture was empty because innerText was used. It is
 explicitly marked as a capture failure; subsequent raw evidence uses textContent.
 The full candidate regression run includes the original76tests plus new process,
 industrial, literal-reference, capacity and framing checks. Result still pending.
+
+### Source-only module read repaired through actual UI verification
+Selecting a module after retiring its last process exposed a host transport bug:
+the panel sent compile-only `if/then` at the interactive Thread prompt. BF refused
+it with error6. No guest process/ledger change was made by that failed read. The
+reader now requests `version-source` by the active serial already emitted in the
+native workspace frame. Source-only actions were moved into the context panel.
+Actual browser retest restored the source/editor, then created a fresh process
+from that same retained module (`browser-source-only-repaired.txt` and
+`browser-source-only-start.txt`). A new-instance import of round11 succeeded;
+malformed image import was refused while keeping round11, with its UI receipt in
+`browser-import-invalid-retained.txt`.
+
+## Final native gate, measured costs and live UI fault repair
+
+`npm run verify` completed113/113tests,0fail/skip,974272.576875ms on the current
+kernel c6ee32e0 and platform source e10c7d82. The original76tests remain. Literal
+mailbox/process workloads compared full tape/PC/output against the reference.
+The fresh standalone ZIP replay passed both67input branches. These are same-author
+checks, not an independent audit.
+
+Isolated measurements used three sequential fresh BF boots in oneNode22.22process
+on AppleM5/32GiB. Results and methodology are in metrics.json/measurements.md.
+A displayed browser round includes native state-output work as well as scheduling;
+no simulation FPS is inferred from interpolated movement.
+
+Final UI round17export was imported into a new worker after presentation changes.
+A chooser automation timed out during page boot; the test reconnected after the
+page became ready and imported successfully. No image or runtime workaround.
+Reduced-motion step17→18 completed; then emulation was reset. Direct canvas click
+selected Eastfactory. MarketBridge closed and reopened through BF.
+
+Own source `: factory-east.thread schema# 1 77 fail ;` compiled as v10 at round18.
+The factory faulted at its19thturn; other processes continued to round25. Raw
+stock4 and one production escrow remained. Rollback to activev3 followed by
+explicit Repair preserved the ledger; at round26the same escrow completed into
+one panel. Full native transcripts and screenshots are retained. The stored
+faulty draft remains separate from the repaired active source, as intended.
+
+Primary industrial sprites and type hierarchy were refined against the single
+1487×1058design target; source-only Start/Delete controls moved into the object
+panel. Final comparison and complete construction evidence remain in progress.

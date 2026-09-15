@@ -64,18 +64,20 @@ export class IndustryScene extends CityScene {
     if(e.role===1&&n.z===0){x=n.x+9;z=n.z+11;}
     return {x,z};
   }
+  buildingWidth(e){return this.s*(e.role===2?32:30);}
   industrial(e) {
     const c=this.ctx,{x,z}=this.buildingLocation(e),p=this.project(x,z),selected=this.object?.kind==='entity'&&this.object.id===e.id;
     let name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed? 'station-frame':'station-foundation';
     const sprite=this.sprites.get(name);if(!sprite)return;
-    const width=this.s*(e.role===1?28:26),height=width*sprite.height/sprite.width;
+    const width=this.buildingWidth(e),height=width*sprite.height/sprite.width;
     const top=p.y+this.sy*7-height*.90,left=p.x-width*.5;
     if(selected)this.polygon([[x-8,z-8],[x+8,z-8],[x+8,z+8],[x-8,z+8]].map(([a,b])=>this.project(a,b,.1)),null,'#d7fa73',1.8);
-    c.save();c.shadowColor=selected?'#d7fa7380':'#06100bcc';c.shadowBlur=this.s*(selected?1.8:.7);c.shadowOffsetY=this.sy*.5;
+    const proc=this.state.processes.find(p=>p.handle===e.id);
+    c.save();c.filter='contrast(1.06) saturate(1.04)';
+    c.shadowColor=proc?.status===5?'#ff885575':selected?'#d7fa7380':'#06100bcc';c.shadowBlur=this.s*(selected||proc?.status===5?1.8:.7);c.shadowOffsetY=this.sy*.5;
     c.drawImage(sprite,left,top,width,height);c.restore();
     this.hits.push({x:left+width*.12,y:top+height*.18,w:width*.76,h:height*.74,object:{kind:'entity',id:e.id}});
     this.stock(e.raw,'raw-pallet',x-7,z+7);this.stock(e.panels,'panel-pallet',x+2,z+9);
-    const proc=this.state.processes.find(p=>p.handle===e.id);
     if(e.escrow||proc?.status===4||proc?.status===5){
       const q=this.project(x+7,z+4,5);c.save();c.shadowColor=proc?.status===5?'#ff8861':proc?.status===4?'#ecbe74':'#dcff96';c.shadowBlur=13;c.fillStyle=c.shadowColor;c.beginPath();c.arc(q.x,q.y,3,0,Math.PI*2);c.fill();c.restore();
     }
@@ -106,10 +108,12 @@ export class IndustryScene extends CityScene {
     for(const e of this.state.entities.filter(e=>[1,2,4].includes(e.role))){
       const loc=this.buildingLocation(e),p=this.project(loc.x,loc.z),selected=this.object?.id===e.id&&this.object.kind==='entity';
       const name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed?'station-frame':'station-foundation';
-      const sprite=this.sprites.get(name),height=this.s*(e.role===1?28:26)*(sprite?sprite.height/sprite.width:1);
+      const sprite=this.sprites.get(name),height=this.buildingWidth(e)*(sprite?sprite.height/sprite.width:1);
       const labelY=p.y+this.sy*7-height*.75;
       if(this.w<600&&!selected)continue;
-      const text=entityName(e);this.badge(text,p.x,labelY,selected?'#e4ff92':'#eef0de');
+      const proc=this.state.processes.find(p=>p.handle===e.id);
+      const text=(proc?.status===5?'Fault · ':proc?.status===4?'Paused · ':'')+entityName(e);
+      this.badge(text,p.x,labelY,proc?.status===5?'#ffb093':proc?.status===4?'#eac685':selected?'#e4ff92':'#eef0de');
       c.save();c.font='10px ui-monospace,monospace';c.textAlign='center';c.fillStyle='#b8c4b8';c.shadowColor='#000';c.shadowBlur=5;
       if(selected||e.role===4)c.fillText(e.role===4?`${e.consumed} / ${e.constructionGoal} panels built`:`${e.raw} raw · ${e.panels} panels`,p.x,labelY+26);c.restore();
     }
@@ -151,11 +155,12 @@ export class IndustryScene extends CityScene {
     // callouts are spread on screen, never turned into invented road positions.
     for(const {vehicle,p} of vehicleMarkers){
       const peers=vehicleMarkers.filter(v=>v.vehicle.edge===null&&v.vehicle.node===vehicle.node);
-      const index=peers.findIndex(v=>v.vehicle.id===vehicle.id),offset=vehicle.edge===null?(index-(peers.length-1)/2)*48:0;
+      const index=peers.findIndex(v=>v.vehicle.id===vehicle.id),offset=vehicle.edge===null?(index-(peers.length-1)/2)*(this.w<600?72:96):0;
       const y=p.y-42,x=p.x+offset,selected=this.object?.kind==='entity'&&this.object.id===vehicle.id;
       const proc=this.state.processes.find(v=>v.handle===vehicle.id),name=entityName(vehicle);
       const label=name.startsWith('Van ')?name.slice(4):String(vehicle.id);
-      const detail=proc?.status===5?'fault':proc?.status===4?'paused':[3,9].includes(vehicle.status)?'queue':vehicle.cargo?`${vehicle.cargo} ${vehicle.cargoKind===1?'raw':'panels'}`:'';
+      const material=this.w<600?(vehicle.cargoKind===1?'R':'P'):(vehicle.cargoKind===1?'raw':'panels');
+      const detail=proc?.status===5?'fault':proc?.status===4?'paused':[3,9].includes(vehicle.status)?'queue':vehicle.cargo?`${vehicle.cargo} ${material}`:'';
       this.line(p,{x,y:y+12},'#a8c87766',1);
       this.badge(`${label}${detail?' · '+detail:''}`,x,y,proc?.status===5?'#ffb093':selected?'#e5ff99':'#c9dbb8');
       this.hits.push({x:x-(detail?50:24),y:y-14,w:detail?100:48,h:25,object:{kind:'entity',id:vehicle.id}});

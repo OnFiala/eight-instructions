@@ -70,3 +70,43 @@ Individual errors preserve the failed context for inspection and do not stop
 other ready processes. A successful send or completed state write before a fault
 is not rolled back. Applications must use stable request identities and explicit
 protocol stages for non-idempotent work, as the industrial ledger does.
+
+## Process instruction reference
+
+Stack notation lists the topmost item last. Ordinary arithmetic/control and
+module calls retain the module-profile rules in `modules.md`.
+
+| Word | Stack | Native effect |
+| --- | --- | --- |
+| `self` | `-- handle` | Current nonwrapping lifetime identity. |
+| `state@` | `index -- value` | Read own private index0..15. |
+| `state!` | `value index --` | Write own private index0..15. |
+| `send` | `value type recipient -- result` | Bounded FIFO send; result codes above. |
+| `recv` | `-- value type sender received` | Consume one message, or four zeroes. |
+| `pending` | `-- count` | Own queued messages. |
+| `wait` | `--` | End turn; wait if own queue is empty. |
+| `sleep` | `rounds --` | End turn; sleep for logical rounds. |
+| `yield` | `--` | End this execution turn. |
+| `fail` | `code --` | Local fault; zero becomes error35. |
+
+Industrial operations additionally check that the current process is attached to
+an entity and has the required role. They cannot mutate arbitrary peer state.
+
+| Word | Stack | Allowed role and effect |
+| --- | --- | --- |
+| `request` | `batch --` | Factory;1..6panel batch requests twice as many raw units. |
+| `work` | `--` | Factory; advance bounded production and request output transport. |
+| `accept` | `job sender --` | Actual recipient; acknowledge a delivered ledger job. |
+| `authorize` | `job sender --` | Matching depot/factory; authorize one requested job. |
+| `dispatch` | `--` | Depot/factory; assign eligible jobs to available vans. |
+| `claim` | `job sender --` | Assigned van; accept its verified assignment. |
+| `drive` | `tollWeight --` | Van;0..16weight, advance bounded route/travel work. |
+| `service` | `--` | Van; perform checked pickup/unload or retry notification. |
+| `build` | `--` | Station; consume one available panel toward its goal. |
+| `signal` | `open --` | Signal;0/1availability of its assigned road pair. |
+| `kind` | `-- role` | Own attached role1depot,2factory,3van,4station,5signal. |
+| `stock` | `material -- quantity` | Own stock,1raw or2panels. |
+| `priority` | `priority --` | Van;0..9priority for future free-road arbitration. |
+
+`schema#` is a declaration and `batch#` a checked source marker, not host macros.
+The editable starting examples are raw BF input in `programs/industry-boot.thread`.

@@ -97,6 +97,7 @@ function render(){
     $('delivery-count').textContent=`${world.deliveries} cargo transfers`;
     const sites=world.entities.filter(e=>e.role===4);
     $('construction-count').textContent=sites.map(e=>`${e.consumed}/${e.constructionGoal}`).join(' · ')+' panels';
+    $('mission-title').textContent=sites.length&&sites.every(e=>e.consumed>=e.constructionGoal)?'Both stations complete.':'Build the two stations.';
     $('mission-detail').textContent=sites.map(e=>`${entityName(e)} ${e.consumed}/${e.constructionGoal}`).join(' · ');
     document.querySelector('.mission').classList.toggle('running',world.tick>0);
     if(!busy)$('machine-status').textContent=nativeState==='budget'?'BF paused inside an operation':running?'Live BF computation':`Ready · round ${world.tick}`;
@@ -114,6 +115,7 @@ function render(){
 }
 function renderPanel(){
   const {entity,process,module,source,vehicle,road}=context();
+  $('source-actions').hidden=selected.kind!=='module';
   $('road-controls').hidden=!road;$('inventory').hidden=!entity||entity.role===5;
   $('source-details').hidden=!!road;$('undo').hidden=!!road;$('batch-controls').hidden=!source?.parameter?.[1]||!!road;
   if(road){
@@ -150,7 +152,10 @@ function renderPanel(){
 }
 async function hydrate(object=selected){
   if(object.kind==='road'||nativeState!=='input')return;
-  const input=object.kind==='entity'?`${object.id} industry-inspect`:`${object.id} source-read ${object.id} 3 mf w@ dup if serial-of version-source else drop then ${object.id} module-parameter`;
+  // Native state already supplies this display identity. Request its source by
+  // serial; do not send compile-only control words at the interactive prompt.
+  const serial=workspace.modules.find(m=>m.id===object.id)?.activeSerial;
+  const input=object.kind==='entity'?`${object.id} industry-inspect`:`${object.id} source-read ${serial?`${serial} version-source `:''}${object.id} module-parameter`;
   const r=await execute(input),view=readIndustry(r.output);checked(view);
   const control=view.control,id=object.kind==='module'?object.id:control?.[1],stored=view.sources.get(id);
   if(id===undefined||stored===undefined)throw new Error('BF did not return this stored source.');
