@@ -690,7 +690,7 @@
       "path": "dist/index.html",
       "layer": "presentation",
       "reason": "Build003 narrative, direct object controls, actual-source editor, explicit privileged terminal, native evidence and historical-build links. No precomputed application result.",
-      "reviewedSha256": "35788714fc5e9cc38500490ca029c95b90ae69746b2ad9e2725759347db48a6a"
+      "reviewedSha256": "da3cdfe36965574b8d3e7b8cc65ec7694b48345651a77fb12686384045fceb63"
     },
     {
       "path": "dist/industry-presentation.mjs",
@@ -708,7 +708,7 @@
       "path": "dist/industry-ui.mjs",
       "layer": "presentation",
       "reason": "Context selection, unsaved drafts, raw input transport, whole-machine snapshots, result framing and fresh-machine comparisons. BF edits source, compiles it, validates actions and owns all city/process state; JS never interprets Thread or guest messages.",
-      "reviewedSha256": "645e3a1b3b79551a523eb6955a8797b98eddcec2c40b1a12b52873acb856ffa6"
+      "reviewedSha256": "549aa9a9bf88cd4e72b553d6319892689b6f069530cf477bf439f526eb38872d"
     },
     {
       "path": "dist/industry.css",

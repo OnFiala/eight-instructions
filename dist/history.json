@@ -22,7 +22,7 @@
       "title": "A city made of programs",
       "status": "PARTIAL",
       "summary": "Native resumable processes, bounded mailboxes and an industrial district inside BF. Implementation exists; final UI, reproduction, release and public verification gates remain open.",
-      "testsPassed": 102,
+      "testsPassed": 113,
       "testedCommit": null
     }
   ]

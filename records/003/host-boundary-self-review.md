@@ -66,7 +66,10 @@ change-detection gates, not proof of these semantic statements.
 The checks exposed and repaired a paused waiter with newly arrived mail, imprecise
 long-running host counters, source text mistaken for diagnostics, source-cache
 identity confusion, and a source-only UI request using compile-only control words
-at the interactive prompt. Original failure logs and repairs are retained. The
+at the interactive prompt. Final review also found that the displayed raw log
+was limited while its backing string still grew. Both are now capped at180000
+characters; event history remains capped at1200records. This is presentation
+retention, not guest-memory reclamation. Original failures and repairs are retained. The
 source-only repair does not alter the native artifact or its state.
 
 Remaining limitations include finite16-bit identities/logical time, fixed storage,

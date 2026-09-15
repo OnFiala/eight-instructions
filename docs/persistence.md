@@ -170,3 +170,8 @@ workers. Only source setup differs; both run the same number of logical rounds,
 with identical road inputs and external orders. The downloadable bundle records
 raw inputs and byte-exact expected outputs. Recorded results are labeled; live
 simulation never consumes expected-output data.
+
+Build003 presentation history is instance-local: at most180000raw text characters
+and1200events are retained. Older history is discarded. It is not part of a machine
+image; import starts a new event history and labels earlier evidence unavailable.
+Download a comparison bundle for a complete bounded experiment transcript.

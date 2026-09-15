@@ -198,3 +198,12 @@ faulty draft remains separate from the repaired active source, as intended.
 Primary industrial sprites and type hierarchy were refined against the single
 1487×1058design target; source-only Start/Delete controls moved into the object
 panel. Final comparison and complete construction evidence remain in progress.
+
+## First remote CI refusal and repair
+
+GitHub draft PR3 at2be4eb0 was refused before tests by `Stale public history`
+(run35037577208; push run35037534426same failure). The local native suite had
+passed, then build.json was updated to113tests without regenerating history.json.
+Regenerated that derived public record and retained the CI failure. This was
+metadata drift, not a native test failure. No CI check was removed or weakened.
+The same follow-up caps the backing browser raw log, as found in self-review.

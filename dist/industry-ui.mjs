@@ -28,7 +28,7 @@ function progress(value){
   $('machine-status').textContent=`BF computing · ${(value.elapsedMs/1000).toFixed(1)} s`;
   if(!started)$('boot-detail').textContent=`The actual BF machine is working · ${(value.elapsedMs/1000).toFixed(1)} s in this operation.`;
 }
-function record(input,result){rawLog+=`\n> ${input}\n${result.output??''}`;$('raw-output').textContent=rawLog.slice(-180000);}
+function record(input,result){rawLog=(rawLog+`\n> ${input}\n${result.output??''}`).slice(-180000);$('raw-output').textContent=rawLog;}
 async function execute(source,{target=client,recording=true}={}){
   activeClient=target;let r=await target.request('execute',{source}),output=r.output??'',elapsed=r.elapsedMs??0;
   // Continue a finite raw operation across executor budgets. A user-requested
