@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: native bounded workspace output matches individual reads across pages and tape edges
+ok 1 - native bounded workspace output matches individual reads across pages and tape edges
+  ---
+  duration_ms: 327.4985
+  type: 'test'
+  ...
+# Subtest: an image resumes midway through the native one-hot dispatch and bulk output
+ok 2 - an image resumes midway through the native one-hot dispatch and bulk output
+  ---
+  duration_ms: 132.528792
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2082.504209

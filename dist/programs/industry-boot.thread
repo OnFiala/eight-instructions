@@ -5,13 +5,13 @@ workspace-large
 110 0 source-write : depot.thread schema# 1 recv if swap 1 = if authorize else drop drop then else drop drop drop then dispatch ;
 0 module-compile
 19 process-module factory-west.thread
-172 1 source-write : factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 request work dispatch ;
+204 1 source-write : factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 dup 2 stock > if request else drop then work dispatch ;
 1 module-compile
 19 process-module factory-east.thread
-172 2 source-write : factory-east.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 request work dispatch ;
+204 2 source-write : factory-east.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 dup 2 stock > if request else drop then work dispatch ;
 2 module-compile
 10 process-module van.thread
-111 3 source-write : van.thread schema# 1 recv if swap 2 = if claim else drop drop then else drop drop drop then 1 drive service ;
+122 3 source-write : van.thread schema# 1 1 priority recv if swap 2 = if claim else drop drop then else drop drop drop then 1 drive service ;
 3 module-compile
 14 process-module station.thread
 106 4 source-write : station.thread schema# 1 recv if swap 3 = if accept else drop drop then else drop drop drop then build ;

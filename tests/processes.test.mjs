@@ -42,7 +42,7 @@ test('private bounds fault stays local; actor words are rejected in pure modules
   assert.equal(state(m).processes[0][1],5);assert.equal(state(m).private[1][1],1);
   command(m,'0 0 11 module-create pure.thread');
   assert.match(build(m,2,': pure.thread 0 state@ drop ;'),/WS-ERROR 6/);
-  for(const word of ['p@','w!','process-step','!','module-delete'])
+  for(const word of ['p@','w!','w.','waddr','process-step','!','module-delete'])
     assert.match(build(m,0,`: bad.thread ${word} ;`),/WS-ERROR 6/);
 });
 
@@ -72,14 +72,15 @@ test('three user programs exchange messages, wait, and compute without kernel re
   assert.equal(s.processes.every(p=>p[1]!==5),true);
 });
 
-test('450 create/stop cycles reuse fixed slots and leave no version refs or resident allocation',async()=>{
-  const m=await processes();create(m,'cycle.thread');build(m,0,': cycle.thread yield ;');
-  command(m,': churn 0 begin dup 50 < while 0 process-create process-stop 1+ repeat drop ;');
+test('450 create/work/message/stop cycles reuse fixed slots without resident or version leaks',async()=>{
+  const m=await processes();create(m,'cycle.thread');build(m,0,': cycle.thread recv if drop drop 0 state! else drop drop drop then ;');
+  command(m,': churn 0 begin dup 50 < while 0 process-create dup 19 4 rot process-post drop process-step process-stop 1+ repeat drop ;');
   const before=[m.tape[kernel.map.registers.cp],m.tape[kernel.map.registers.dp]];
   // Nine input batches keep each host fuel budget bounded. The same machine,
   // capacity, allocation counters and code remain live across all450cycles.
   for(let batch=0;batch<9;batch++)command(m,'churn',{fuel:5e14,blocks:5e10});
   const s=state(m);assert.deepEqual(s.summary.slice(1,4),[450,450,450]);assert.equal(s.processes.length,0);
+  assert.deepEqual(s.summary.slice(4),[450,450]);
   assert.deepEqual([m.tape[kernel.map.registers.cp],m.tape[kernel.map.registers.dp]],before);
   assert.match(command(m,'workspace-state'),/VERSION 1 2 0 1 1 0 /);
   command(m,'0 module-delete');assert.doesNotMatch(command(m,'workspace-state'),/VERSION \d+ 2 /);

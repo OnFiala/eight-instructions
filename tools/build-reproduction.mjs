@@ -5,6 +5,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {loadKernel,loadLibraries,execute} from '../runtime/system.mjs';
 import {encodeImage,decodeImage,sha256} from '../dist/images.mjs';
 const kernel=await loadKernel(),m=kernel.create();
+if(kernel.programHash!=='0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98')throw new Error('Historical Build002 evidence tool: use the matching build-002 checkout. Current artifacts must not overwrite that record.');
 function command(machine,source){execute(machine,source+'\n',{fuel:2e14,blocks:3e10});if(machine.state!=='input')throw new Error('Native operation incomplete');return new TextDecoder().decode(machine.drain());}
 const boot=command(m,await loadLibraries('city-system.json'));
 if(/!E\d+|WS-ERROR/.test(boot))throw new Error('Native boot failed');

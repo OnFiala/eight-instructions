@@ -1,13 +1,14 @@
 // Decode native frames only. No routing, scheduling, messaging or world updates.
 import {readPresentation,diagnostics as oldDiagnostics} from './presentation.mjs';
 export const diagnostics={...oldDiagnostics,
+  2:'The module/version capacity is full, or this program exceeds its code capacity.',
   4:'Use at most 512 ASCII bytes, without NUL.',
   6:'Unknown or unavailable word in the checked process profile.',
   31:'This process handle is unavailable or belongs to an earlier lifetime.',
   32:'All sixteen process slots are occupied. Retire an unused participant first.',
   33:'This program cannot perform that operation for this kind of object.',
   34:'A value is outside the native range.',35:'That action is not available in this process state.',
-  36:'The bounded lifetime serial has been exhausted.',
+  36:'The bounded logical clock or a lifetime counter has reached its limit.',
   37:'This object still owns material, a trip or an unfinished job. Repair or finish it before removal.',
   38:'The stored source has changed or has no editable batch marker. Use the full source editor.',
   39:'The state/message schema is incompatible with this module or the industrial protocol.',
@@ -43,7 +44,7 @@ export function readIndustry(output) {
     const vehicles=entities.filter(e=>e.role===3).map(e=>{
       const n=of('TRAVEL').find(r=>r.n[0]===e.id)?.n,p=of('I-PATH').find(r=>r.n[0]===e.id)?.n;
       if(!n||n.length!==20||!p||p.length!==2+p[1]||p[1]>16)throw new Error('Incomplete native vehicle state');
-      return {...e,edge:n[2]?n[2]-1:null,progress:n[3],duration:n[4],routePhase:n[6],weight:n[12],candidateEdge:n[14],job:n[17],jobPhase:n[18],routeVersion:n[19],path:p.slice(2)};
+      return {...e,edge:n[2]?n[2]-1:null,progress:n[3],duration:n[4],routePhase:n[6],weight:n[12],candidateEdge:n[14],waitingFor:n[16],job:n[17],jobPhase:n[18],routeVersion:n[19],path:p.slice(2)};
     });
     const nodeIds=new Set(nodes.map(n=>n.id));
     if(nodes.length!==16||nodeIds.size!==16||roads.length!==header[3]||roads.length>48||entities.length>16||processes.length>16||roads.some(r=>!nodeIds.has(r.from)||!nodeIds.has(r.to)||r.capacity<1||r.occupancy>r.capacity)||entities.some(e=>!nodeIds.has(e.node)||!nodeIds.has(e.goal)||e.role<1||e.role>5)||processes.some(p=>p.status<1||p.status>5||p.mail>4||p.sp>64||p.fp>32||p.private.length!==16))throw new Error('Invalid industrial topology or process frame');
@@ -60,11 +61,15 @@ export function entityName(entity) {
   return names[entity.id]??`${['Program','Depot','Factory','Van','Station','Signal'][entity.role]??'Program'} ${entity.id}`;
 }
 export const roadName=road=>road.id>=40?({40:'North Bridge',42:'Harbor Bridge',44:'Market Bridge'}[road.id-road.id%2]??'Bridge'):`Street ${road.from}–${road.to}`;
-export function entityStatus(entity,process,vehicle) {
+export function entityStatus(entity,process,vehicle,world) {
   if(process?.status===5)return `Program fault · native code ${process.fault}`;
   if(process?.status===4)return 'Program paused; its state is retained';
   if(entity.role===3) {
-    if(vehicle?.edge!==null&&vehicle?.edge!==undefined)return `Travelling to node ${entity.goal}`;
+    if(entity.status===9){const preferred=world?.entities.find(e=>e.id===vehicle?.waitingFor);return `Yielded to ${preferred?entityName(preferred):'a higher-priority van'}`;}
+    if(vehicle?.edge!==null&&vehicle?.edge!==undefined){
+      const destination=world?.entities.find(e=>e.node===entity.goal&&[1,2,4].includes(e.role));
+      return `Travelling to ${destination?entityName(destination):`junction ${entity.goal}`}`;
+    }
     return ['Ready for an assignment','Travelling','Waiting for a green signal','Waiting for road capacity','Waiting for a job slot','No open route','Waiting for stock','Destination storage is full','Receiver mailbox is full'][entity.status]??processLabel(process);
   }
   if(entity.role===2)return entity.escrow?`Making a panel · ${entity.productionTime} work rounds left`:entity.outbound?'Panels await a van':entity.inbound?'Raw materials ordered':'Ready for production';

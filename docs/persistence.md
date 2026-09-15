@@ -142,3 +142,31 @@ This is additive metadata, not a migration of historical guest layouts. Build001
 and002 images still require their matching historical kernels. Counter-window
 tests cover JS/literal/Wasm equivalence, fuel pauses, output caps, invalid epochs
 and roundtrip continuation; the production worker is also tested across rotation.
+
+## Build 003 process and industrial images
+
+The opaque tape additionally contains all private contexts, exact-version frames,
+mailboxes, logical timers, job identities/stages, material inventories, production
+escrow, captured trips and road reservations. The host neither reconstructs those
+objects nor supplies their allocator. Snapshotting in the middle of a BF operation
+preserves its exact raw continuation; fresh-machine tests compare subsequent
+output and the entire tape.
+
+The Build003 UI validates a candidate in a separate worker, resumes any saved BF
+continuation to an input boundary, reads a complete native frame and the actual
+stored/active source, and only then replaces the visible machine. A rejected or
+unfinished candidate leaves the old machine usable. Unsaved editor drafts are UI
+state and are explicitly excluded from export. Import clears old event history;
+when a snapshot contains only current state, prior events are reported unavailable.
+
+Build001 and002 images require their matching preserved kernels/runtimes under
+`dist/build-001/` and `dist/build-002/`, or their original tags for CLI use. The
+current kernel refuses those identities; no automatic migration is claimed.
+`tools/build-archives.mjs --check` verifies both archives. HTML alone has relocated
+navigation and a historical-build banner; executable and asset bytes stay exact.
+
+A comparison begins from one current complete snapshot and creates two new BF
+workers. Only source setup differs; both run the same number of logical rounds,
+with identical road inputs and external orders. The downloadable bundle records
+raw inputs and byte-exact expected outputs. Recorded results are labeled; live
+simulation never consumes expected-output data.

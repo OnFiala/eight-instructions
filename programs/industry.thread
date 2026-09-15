@@ -172,6 +172,23 @@
   wi-edge @ 2 / 2 * ox !
   wi-edge @ 5 rf w@ 0= if 2 pr @ 8 ef w! exit then
   ox @ 7 rf w@ ox @ 6 rf w@ >= if 3 pr @ 8 ef w! exit then
+  \ A higher priority ready van with a recent intent to enter this road pair
+  \ wins the next free reservation. Stale intent expires after one round;
+  \ paused, sleeping or faulted participants cannot reserve by mere preference.
+  0 159 pcurr w! 0 vi !
+  begin vi @ 16 < while
+    vi @ pr @ = 0= vi @ 1 ef w@ 3 = and vi @ 0 pf w@ 1 = and if
+      vi @ 145 pf w@ 0= vi @ 149 pf w@ 4 = and
+      vi @ 157 pf w@ world-roads @ < and if
+        vi @ 157 pf w@ 2 / 2 * ox @ =
+        vi @ 158 pf w@ ptick @ 1- >= and
+        vi @ 18 ef w@ pr @ 18 ef w@ > and if
+          vi @ 0 ef w@ 159 pcurr w!
+        then
+      then
+    then 1 vi +!
+  repeat
+  159 pcurr w@ if 9 pr @ 8 ef w! exit then
   ox @ 7 rf dup w@ 1+ swap w!
   wi-edge @ 1+ 145 pcurr w! 0 146 pcurr w! wi-edge @ 2 rf w@ 147 pcurr w!
   1 pr @ 8 ef w!
@@ -243,6 +260,10 @@
   pr @ 19 ef w@ wi-edge ! wi-edge @ world-roads @ < 0= if 34 wfail exit then
   ox @ wi-edge @ 5 rf w! ox @ wi-edge @ 1+ 5 rf w!
 ;
+: passage-priority
+  vm-pop ox ! 3 role? 0= if 33 wfail exit then
+  ox @ 10 < if ox @ pr @ 18 ef w! else 34 wfail then
+;
 : industry-op
   world-self? 0= if 33 wfail exit then
   vm-op @ 42 = if request-material exit then
@@ -258,7 +279,9 @@
   vm-op @ 52 = if pr @ 1 ef w@ vm-push exit then
   vm-op @ 53 = if
     vm-pop dup 1 = over 2 = or if 2 + pr @ swap ef w@ vm-push else drop 34 wfail then exit
-  then 6 wfail
+  then
+  vm-op @ 54 = if passage-priority exit then
+  6 wfail
 ;
 42 1 0 7 primitive-name request
 43 0 0 4 primitive-name work
@@ -272,3 +295,4 @@
 51 1 0 6 primitive-name signal
 52 0 1 4 primitive-name kind
 53 1 1 5 primitive-name stock
+54 1 0 8 primitive-name priority

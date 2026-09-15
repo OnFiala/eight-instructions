@@ -4,7 +4,7 @@
   \ Validate stack space before effects such as consuming mail or posting work.
   vm-op @ 32 >= if
     vm-op @ 33 = vm-op @ 38 = or vm-op @ 40 = or
-    vm-op @ 42 = or vm-op @ 48 = or vm-op @ 51 = or vm-op @ 53 = or if
+    vm-op @ 42 = or vm-op @ 48 = or vm-op @ 51 = or vm-op @ 53 = or vm-op @ 54 = or if
       vm-sp @ 1 < if 7 wfail exit then
     then
     vm-op @ 34 = vm-op @ 44 = or vm-op @ 45 = or vm-op @ 47 = or if
@@ -28,7 +28,7 @@
     13 pcurr w@ if
       12 pcurr w@ 4 * 128 + pcurr pj !
       pj @ 2 + w@ vm-push pj @ 1+ w@ vm-push pj @ w@ vm-push 1 vm-push
-      ." RECEIVE " pj @ 3 + w@ . 1 pcurr w@ . cr
+      ." RECEIVE " pj @ 3 + w@ . 1 pcurr w@ . vm-v @ serial-of . cr
       12 pcurr dup w@ 1+ 4 mod swap w! 13 pcurr dup w@ 1- swap w!
       1 precvs +!
     else 0 vm-push 0 vm-push 0 vm-push 0 vm-push then exit
@@ -110,10 +110,8 @@
   begin pr @ 16 < while
     pr @ 0 pf pb !
     pb @ w@ if
-      ." PROCESS " pr @ . 0 pi !
-      begin pi @ 16 < while pb @ pi @ + w@ . 1 pi +! repeat cr
-      ." PRIVATE " 1 pcurr w@ . 0 pi !
-      begin pi @ 16 < while pb @ pi @ 16 + + w@ . 1 pi +! repeat cr
+      ." PROCESS " pr @ . pb @ 16 w. cr
+      ." PRIVATE " 1 pcurr w@ . pb @ 16 + 16 w. cr
     then 1 pr +!
   repeat
 ;

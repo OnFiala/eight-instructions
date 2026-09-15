@@ -21,7 +21,8 @@ function context(){
   const process=selected.kind==='entity'?world?.processes.find(p=>p.handle===selected.id):null;
   const entity=selected.kind==='entity'?world?.entities.find(e=>e.id===selected.id):null;
   const module=workspace?.modules.find(m=>m.id===(selected.kind==='module'?selected.id:process?.module));
-  return {process,entity,module,source:sources.get(module?.id),vehicle:world?.vehicles.find(e=>e.id===selected.id),road:selected.kind==='road'?world?.roads.find(r=>r.id===selected.id):null};
+  const cached=sources.get(module?.id),current=!selectionPending&&readHandle===`${selected.kind}:${selected.id}`&&cached?.activeSerial===module?.activeSerial&&cached?.draftRevision===module?.draftRevision;
+  return {process,entity,module,source:current?cached:undefined,vehicle:world?.vehicles.find(e=>e.id===selected.id),road:selected.kind==='road'?world?.roads.find(r=>r.id===selected.id):null};
 }
 function progress(value){
   $('machine-status').textContent=`BF computing · ${(value.elapsedMs/1000).toFixed(1)} s`;
@@ -128,9 +129,14 @@ function renderPanel(){
   $('object-description').textContent=entity?.role===2?'Makes one station panel from two raw units. The delivery batch is controlled by its Thread program.':entity?.role===3?'Carries actual material. Orders, route planning and road reservations run inside BF.':entity?.role===4?'Panels delivered by vans become this station, one native construction step at a time.':entity?.role===1?'Owns a finite stock of raw materials and answers factory requests.':entity?.role===5?'A separate program controls access to its bridge.':'An isolated program with private state, a continuation and a bounded mailbox.';
   const sharing=world.processes.filter(p=>p.module===module?.id).length;
   if(sharing>1)$('object-description').textContent+=` This source is shared by ${sharing} participants; edits affect their next invocations.`;
-  $('raw-count').textContent=String(entity?.raw??0);$('panel-count').textContent=String(entity?.panels??0);
-  $('work-title').textContent=entity?entityStatus(entity,process,vehicle):process?processLabel(process):'No process uses this source';
-  $('work-detail').textContent=entity?.role===3?`${entity.cargo} ${entity.cargoKind===2?'panels':entity.cargoKind===1?'raw units':'units of cargo'} · ${process.mail}/4 messages waiting.`:entity?.role===4?`${entity.consumed}/${entity.constructionGoal} panels installed · ${entity.panels} waiting.`:process?`${process.mail}/4 messages waiting · ${process.quanta} execution turns.${process.fault?` Fault ${process.fault}.`:''}${!entity?` Private state: ${(process.private??[]).join(', ')}.`:''}`:'You can edit it or release its unused source and versions below.';
+  $('raw-label').textContent=vehicle?'Raw cargo':'Raw materials';$('panel-label').textContent=vehicle?'Panel cargo':'Station panels';
+  $('raw-count').textContent=String(vehicle?(vehicle.cargoKind===1?vehicle.cargo:0):entity?.raw??0);$('panel-count').textContent=String(vehicle?(vehicle.cargoKind===2?vehicle.cargo:0):entity?.panels??0);
+  $('work-title').textContent=entity?entityStatus(entity,process,vehicle,world):process?processLabel(process):'No process uses this source';
+  $('work-detail').textContent=entity?.role===3?`Passage priority ${entity.priority}/9 · ${entity.cargo} ${entity.cargoKind===2?'panels':entity.cargoKind===1?'raw units':'units of cargo'} · ${process.mail}/4 messages waiting.`:entity?.role===4?`${entity.consumed}/${entity.constructionGoal} panels installed · ${entity.panels} waiting.`:process?`${process.mail}/4 messages waiting · ${process.quanta} execution turns.${process.fault?` Fault ${process.fault}.`:''}${!entity?` Private state: ${(process.private??[]).join(', ')}.`:''}`:'You can edit it or release its unused source and versions below.';
+  if(vehicle?.job){
+    const job=world.jobs.find(j=>j[2]===vehicle.job),from=world.entities.find(e=>e.id===job?.[3]),to=world.entities.find(e=>e.id===job?.[4]);
+    if(from&&to)$('work-detail').textContent+=` ${entityName(from)} → ${entityName(to)}.`;
+  }
   $('module-name').textContent=module?.name??'—';$('active-version').textContent=`v${module?.activeSerial??'—'}`;
   $('apply').textContent='Apply program →';
   if(source){
@@ -140,7 +146,7 @@ function renderPanel(){
     const parameter=source.parameter;
     if(parameter?.[1]){$('batch').min=String(parameter[3]);$('batch').max=String(parameter[4]);$('batch').value=String(batchDrafts.get(module.id)??parameter[2]);}
     $('batch-help').textContent=text!==source.stored?'Your custom draft is preserved. Apply it before using this control.':`Set the program’s batch value to ${batchDrafts.get(module.id)??parameter?.[2]}. BF edits and compiles that one literal; other source stays intact. New invocations use it. Existing orders keep their quantity.`;
-  }else{$('editor').value='';$('source-state').textContent='Reading this source from BF…';}
+  }else{$('editor').value='';$('stored-source').textContent='';$('active-source').textContent='';$('source-state').textContent='Reading this source from BF…';}
 }
 async function hydrate(object=selected){
   if(object.kind==='road'||nativeState!=='input')return;
@@ -149,7 +155,7 @@ async function hydrate(object=selected){
   const control=view.control,id=object.kind==='module'?object.id:control?.[1],stored=view.sources.get(id);
   if(id===undefined||stored===undefined)throw new Error('BF did not return this stored source.');
   if(object.kind==='entity'&&view.versionSource===undefined)throw new Error('BF did not return the active source.');
-  sources.set(id,{stored,active:view.versionSource??'',parameter:view.parameter,control});
+  sources.set(id,{stored,active:view.versionSource??'',activeSerial:workspace.modules.find(m=>m.id===id)?.activeSerial??0,draftRevision:view.parameter?.[5],parameter:view.parameter,control});
   if(!drafts.has(id))drafts.set(id,stored);readHandle=`${object.kind}:${object.id}`;render();
 }
 async function flushSelection(){
@@ -194,7 +200,7 @@ async function installImage(image,{fresh=false}={}){
     if(!dv.control||dv.sources.get(dv.control[1])===undefined||dv.versionSource===undefined)throw new Error('The candidate cannot restore its native source editor.');
     client?.close();client=candidate;accepted=true;instance++;events=[];rawLog='';sources.clear();drafts.clear();batchDrafts.clear();roadDrafts.clear();comparisonBundle=null;
     selected={kind:'entity',id:handle};scene.selectObject(selected);nativeState='input';started=true;readHandle=`entity:${handle}`;selectionPending=false;
-    const id=dv.control[1],stored=dv.sources.get(id);sources.set(id,{stored,active:dv.versionSource,parameter:dv.parameter,control:dv.control});drafts.set(id,stored);
+    const id=dv.control[1],stored=dv.sources.get(id);sources.set(id,{stored,active:dv.versionSource,activeSerial:view.workspace.modules.find(m=>m.id===id)?.activeSerial??0,draftRevision:dv.parameter?.[5],parameter:dv.parameter,control:dv.control});drafts.set(id,stored);
     initialImage=image;lastElapsed=(frame.elapsedMs??0)+(detail.elapsedMs??0);record(stateCommand,frame);record(`${handle} industry-inspect`,detail);consume(frame,{animate:false});$('boot').hidden=true;
     notice(fresh?'Ready. Begin construction, or select an object to change its program.':'Workspace restored. Sources, messages, stock and unfinished work came from the image. Earlier event history is unavailable.','success');
   }finally{if(!accepted)candidate.close();}

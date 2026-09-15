@@ -1,0 +1,1 @@
+Raw program assets match their canonical sources.

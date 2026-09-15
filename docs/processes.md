@@ -1,4 +1,4 @@
-# Native processes — Build 003 implementation in progress
+# Native processes — Build 003
 
 `programs/processes.thread` runs in Thread inside the real BF kernel. It owns
 16 fixed256-word contexts in workspace20480..24575, above the module arenas and
@@ -6,8 +6,11 @@ industrial ledger. Checked native `waddr` constructs workspace page addresses;
 the kernel caches translations on its BF tape, never application values.
 The host supplies input and executes BF; it does not select or resume a process.
 
-Every ready process receives at most8 module-bytecode instructions per scheduler
-round in ascending slot order. PC, current exact version,64data values,16return
+Every ready process receives at most the configured1..32module-bytecode instructions
+per scheduler round in ascending slot order. The generic default is8; the industrial
+boot selects32 using the checked privileged `process-slice!` word. A root return,
+wait, sleep, fault or explicit yield can end its turn sooner. Logical round65535
+exhausts this bounded clock explicitly rather than wrapping. PC, current exact version,64data values,16return
 frames and16private state words survive context switches. A no-yield loop remains
 preemptible. Fixed-width arithmetic and bounded native helpers have finite work;
 equal instruction quanta are not equal elapsed time. A sleeping process counts
@@ -35,8 +38,35 @@ Handles never wrap: lifetime serial65535 exhausts creation. Reused physical slot
 cannot be reached through old serials. The raw developer terminal and an owner-edited
 tape remain privileged; image integrity is not an adversarial security boundary.
 
-The module interface and private/message layout are structurally fixed. This does
+`schema# N` at the start of a large-profile process source declares a positive
+state/message schema number. First publication establishes it; incompatible later
+publication is refused with39, retaining the prior active version. The industrial
+attachment protocol accepts schema1. The module interface and private/message layout
+are structurally fixed. This does
 not prove that a user's new program interprets their own private values correctly.
 The first milestone evidence is in records/003/processes-milestone-tests.txt.
-Industrial protocol, final timings, complete regression, visual and release gates
-remain in progress. This document is not a Build003 release claim.
+Release status and final verification are reported separately in records/003/.
+The industrial protocol is documented in industry.md.
+
+## Waiting, failures and bounded work
+
+A paused mailbox waiter retains its continuation and mail. A message received
+during pause does not execute it; resuming a nonempty mailbox waiter makes it
+ready. Paused timers retain their remaining logical rounds. `sleep` followed by
+`pending`/`recv` supports a program-defined timeout; there is no implicit timeout
+that cancels a message or transfers material. Messages contain values, type,
+sender and unique message serial, not executable references. An old message does
+not silently acquire a new meaning: compatible programs retain the declared schema.
+
+All process instructions have bounded native work. Stack/context copies are
+limited to64values/16frames, mailbox scans to4slots, identity/participant scans to16,
+job dispatch to16jobs by16vans, route relaxation to at most48outgoing edges and path
+reconstruction to16nodes. Reclamation scans a finite16arena dependency DAG. Native
+16-bit arithmetic is itself bounded. These are structural limits, not a measured
+real-time deadline. Slow native work may still take seconds, but no user loop
+inside an actor can consume an unbounded number of actor instructions in one turn.
+
+Individual errors preserve the failed context for inspection and do not stop
+other ready processes. A successful send or completed state write before a fault
+is not rolled back. Applications must use stable request identities and explicit
+protocol stages for non-idempotent work, as the industrial ledger does.

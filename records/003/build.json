@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "number": 3,
+  "title": "A city made of programs",
+  "status": "PARTIAL",
+  "summary": "Native resumable processes, bounded mailboxes and an industrial district inside BF. Implementation exists; final UI, reproduction, release and public verification gates remain open.",
+  "model": "gpt-6-astra",
+  "reasoningMode": "xhigh",
+  "soleEngineeringAgent": true,
+  "originalChallenge": "challenge.md",
+  "startingGitCommit": "a80087662a66e7d04c1fc77cbce87cf996d60e63",
+  "endingGitCommit": null,
+  "commitConvention": "endingGitCommit will identify the final implementation after verification. Merge/tag and deployed artifact will be bound by a separate final receipt. No release yet.",
+  "humanInterventions": [
+    "Owner supplied and authorized the challenge and preferences. No human production code or repair."
+  ],
+  "protocolViolations": [],
+  "verification": {
+    "testsPassed": 102,
+    "testsFailed": 0,
+    "regressions": "Intermediate current-kernel suite102/102 passed in442759.647708ms. Later native pause/trace changes and stronger cycle tests require a final whole-suite gate.",
+    "additional": "industrial-capacity-waiter-tests.txt:7/7PASS; source-version-presentation-tests.txt:6/6PASS.",
+    "boundaryAudit": "223-classified-source inventory at checkpoint; changes remain hash-gated. Not a semantic proof.",
+    "selfAudit": "Same Astra author, not an independent audit.",
+    "visual": "In progress at1487x1058 against the chosen single target; no final visual or complete accessibility claim.",
+    "localReceipt": "regression-current-01.txt",
+    "public": "Not deployed. Existing verified Build002 remains public."
+  },
+  "failuresAndRepairs": "journal.md",
+  "knownLimitations": [
+    "Fixed bounded capacities; logical concurrency in one BF machine",
+    "16-bit guest values and finite nonwrapping lifetime identifiers",
+    "Native operations may take seconds; interpolation is presentation only",
+    "No migration of Build001/002 images; matching old kernels are preserved",
+    "Resident general Thread definitions remain monotonic",
+    "Schema equality is a declared contract, not proof of arbitrary program intent",
+    "No continuous traffic physics or automatic material-discarding fault recovery"
+  ],
+  "publication": {
+    "repository": "https://github.com/OnFiala/eight-instructions",
+    "site": "https://eight-instructions.andrewxix.chatgpt.site",
+    "state": "Not published; public Build002 unchanged",
+    "tag": null
+  }
+}

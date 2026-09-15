@@ -88,7 +88,9 @@ register constant psender
 ;
 : process-resume
   0 ws-error ! pfind dup if
-    1- px ! px @ 0 pf w@ 4 = if px @ 14 pf w@ px @ 0 pf w!
+    1- px ! px @ 0 pf w@ 4 = if
+      px @ 14 pf w@ dup 2 = px @ 13 pf w@ 0 > and if drop 1 then
+      px @ 0 pf w!
     else 35 wfail then
   else drop 31 wfail then report-error
 ;
@@ -115,7 +117,8 @@ register constant psender
   1 pmsgseq +! pmsgseq @ pj @ 3 + w!
   pn @ 13 pf dup w@ 1+ swap w! 1 psends +!
   pn @ 0 pf w@ 2 = if 1 pn @ 0 pf w! then
-  ." SEND " pmsgseq @ . psender @ . ph @ . ptype @ . pvalue @ . cr 1
+  ." SEND " pmsgseq @ . psender @ . ph @ . ptype @ . pvalue @ .
+  ws-busy @ if vm-v @ serial-of else 0 then . cr 1
 ;
 : process-post 0 swap post-message ;
 

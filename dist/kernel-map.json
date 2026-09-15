@@ -4,7 +4,7 @@
     "wrapping": true,
     "io_bits": 8,
     "eof": 0,
-    "tape_cells": 398540
+    "tape_cells": 398704
   },
   "registers": {
     "running": 0,
@@ -78,65 +78,80 @@
     "workspace_cache_6_valid": 68,
     "workspace_cache_7_base": 69,
     "workspace_cache_7_page": 70,
-    "workspace_cache_7_valid": 71
+    "workspace_cache_7_valid": 71,
+    "fetch_cache_next": 72,
+    "fetch_cache_0_page": 73,
+    "fetch_cache_0_valid": 74,
+    "fetch_cache_1_page": 75,
+    "fetch_cache_1_valid": 76,
+    "fetch_cache_2_page": 77,
+    "fetch_cache_2_valid": 78,
+    "fetch_cache_3_page": 79,
+    "fetch_cache_3_valid": 80
   },
   "arrays": {
-    "token": {
+    "op_flags": {
       "base": 512,
+      "size": 40,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "token": {
+      "base": 676,
       "size": 24,
       "stride": 4,
       "value_lane": 2
     },
     "buckets": {
-      "base": 612,
+      "base": 776,
       "size": 256,
       "stride": 4,
       "value_lane": 2
     },
     "data": {
-      "base": 1640,
+      "base": 1804,
       "size": 256,
       "stride": 4,
       "value_lane": 2
     },
     "returns": {
-      "base": 2668,
+      "base": 2832,
       "size": 512,
       "stride": 4,
       "value_lane": 2
     },
     "controls": {
-      "base": 4720,
+      "base": 4884,
       "size": 128,
       "stride": 4,
       "value_lane": 2
     },
     "dictionary": {
-      "base": 5236,
+      "base": 5400,
       "size": 16384,
       "stride": 4,
       "value_lane": 2
     },
     "code": {
-      "base": 70776,
+      "base": 70940,
       "size": 24576,
       "stride": 6,
       "value_lane": 2
     },
     "heap": {
-      "base": 218238,
+      "base": 218402,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "store": {
-      "base": 234626,
+      "base": 234790,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "workspace": {
-      "base": 251014,
+      "base": 251178,
       "size": 24576,
       "stride": 6,
       "value_lane": 2
@@ -177,6 +192,7 @@
     "w@": 36,
     "w!": 37,
     "waddr": 38,
+    "w.": 39,
     ":": 100,
     ";": 101,
     "if": 102,
@@ -192,6 +208,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "fc5186c1178a647ade63c8b5004cda0ff0ad315a21364a1a9c18c40e4fd03455",
-  "instructions": 94473766
+  "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "instructions": 98687674
 }

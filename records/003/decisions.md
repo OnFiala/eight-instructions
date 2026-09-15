@@ -113,3 +113,37 @@ Native process contexts move to workspace20480..24575; module storage and the le
 remain below that. Workspace reservation becomes24576words. The raw store profile
 is again a separate unused region. This development kernel change makes earlier
 development images incompatible; no released image migration is claimed.
+
+## Native dispatch and bulk presentation output
+
+The Thread interpreter in the emitted BF kernel now selects its primitive through
+a40-entry one-hot table computed on the BF tape. Handlers consume the selected
+flag. No host dispatch by Thread word or city event was added. A new generic
+privileged `w.` primitive prints at most256workspace words after validating the
+complete span, using the existing BF decimal routine. It has no application schema
+or business behavior, and is unavailable in the isolated process profile.
+
+The industrial presentation uses this primitive for contiguous native fields.
+The host still receives only actual BF bytes. Generic handler/array layout changes
+produce a new kernel identity and explicitly incompatible development images.
+Build001/002 archived bytes remain intact. The source still fits the unchanged
+100MB kernel decompression cap.17kernel/arithmetic/address tests and2bounded-output
+tests passed before a new industrial boot and workload. Final full regression and
+literal differential checks remain required.
+
+## Passage priority and expiring intent
+
+Capacity alone made turn order significant but did not meet the requested
+programmable-priority consequence. The process profile now exposes `priority`
+for vans, checked inside BF in the range0..9. Free-road arbitration scans at most
+16 native contexts for a higher-priority eligible peer intending the same road.
+It does not grant a reservation to that peer; the peer must execute its own
+departure. Intent expires after one logical round, preventing an infinite loop
+from holding an empty road merely through an old request. An existing reservation
+and cargo remain owned during a fault. Scheduler fairness is unchanged.
+
+Three native tests in `industry-priority-tests.txt` pass, including a later-slot
+high-priority departure, stale intent from a non-yielding loop, and paused/invalid
+claims. The test sets a documented native arbitration fixture, then executes real
+program turns; it does not substitute a production route or event oracle.
+Current source digest is e10c7d82a680129247929d9bd2f57dabf7bf5614e183e265c75531d698783e86.

@@ -1,0 +1,112 @@
+TAP version 13
+# Subtest: native unsigned division matches integer arithmetic across all bit widths and overflow guards
+ok 1 - native unsigned division matches integer arithmetic across all bit widths and overflow guards
+  ---
+  duration_ms: 3552.312625
+  type: 'test'
+  ...
+# Subtest: numeric parsing and unsigned arithmetic
+ok 2 - numeric parsing and unsigned arithmetic
+  ---
+  duration_ms: 173.420417
+  type: 'test'
+  ...
+# Subtest: stack combinators, equality and unsigned comparison
+ok 3 - stack combinators, equality and unsigned comparison
+  ---
+  duration_ms: 39.064541
+  type: 'test'
+  ...
+# Subtest: native definitions, calls and source compilation
+ok 4 - native definitions, calls and source compilation
+  ---
+  duration_ms: 45.619417
+  type: 'test'
+  ...
+# Subtest: native conditionals and nested branching
+ok 5 - native conditionals and nested branching
+  ---
+  duration_ms: 69.928167
+  type: 'test'
+  ...
+# Subtest: loops and recursive definitions
+ok 6 - loops and recursive definitions
+  ---
+  duration_ms: 72.194333
+  type: 'test'
+  ...
+# Subtest: native defining words, while/repeat and early return
+ok 7 - native defining words, while/repeat and early return
+  ---
+  duration_ms: 115.47375
+  type: 'test'
+  ...
+# Subtest: separate bounded heap and persistent regions
+ok 8 - separate bounded heap and persistent regions
+  ---
+  duration_ms: 31.722916
+  type: 'test'
+  ...
+# Subtest: comments and partial tokens across interactive input chunks
+ok 9 - comments and partial tokens across interactive input chunks
+  ---
+  duration_ms: 2.475584
+  type: 'test'
+  ...
+# Subtest: diagnostic recovery and rejected input
+ok 10 - diagnostic recovery and rejected input
+  ---
+  duration_ms: 46.816875
+  type: 'test'
+  ...
+# Subtest: malformed definitions are unpublished and roll back code allocation
+ok 11 - malformed definitions are unpublished and roll back code allocation
+  ---
+  duration_ms: 36.45375
+  type: 'test'
+  ...
+# Subtest: resource exhaustion: data and return stack protection
+ok 12 - resource exhaustion: data and return stack protection
+  ---
+  duration_ms: 190.530375
+  type: 'test'
+  ...
+# Subtest: EOF closes ordinary execution and rejects unfinished compilation
+ok 13 - EOF closes ordinary execution and rejects unfinished compilation
+  ---
+  duration_ms: 16.116916
+  type: 'test'
+  ...
+# Subtest: bounded bulk memory handles overlap in both directions
+ok 14 - bounded bulk memory handles overlap in both directions
+  ---
+  duration_ms: 81.007875
+  type: 'test'
+  ...
+# Subtest: strings compile natively and dictionary collisions and shadowing remain sound
+ok 15 - strings compile natively and dictionary collisions and shadowing remain sound
+  ---
+  duration_ms: 77.375458
+  type: 'test'
+  ...
+# Subtest: native workspace page hints and cache eviction preserve arbitrary values and bounds
+ok 16 - native workspace page hints and cache eviction preserve arbitrary values and bounds
+  ---
+  duration_ms: 955.649792
+  type: 'test'
+  ...
+# Subtest: workspace address-cache state survives a whole-machine image
+ok 17 - workspace address-cache state survives a whole-machine image
+  ---
+  duration_ms: 132.448
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4637.950584

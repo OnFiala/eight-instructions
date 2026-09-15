@@ -1,0 +1,18 @@
+TAP version 13
+# {"input":"43 9 1 process-post .","literalInstructions":"139573392488","literalElapsedMs":95157.236667,"output":"SEND 1 0 1 9 43 0 \\n1 ","wholeTapeEqual":true}
+# {"input":"process-step","literalInstructions":"903948614684","literalElapsedMs":677827.970625,"output":"RECEIVE 1 1 1 \\nROUND 2 \\n","wholeTapeEqual":true}
+# Subtest: literal BF matches native mailbox wake and a bounded resumed receive turn, including the whole tape
+ok 1 - literal BF matches native mailbox wake and a bounded resumed receive turn, including the whole tape
+  ---
+  duration_ms: 799280.068875
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 800015.338583

@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "purpose": "Actual browser output replayed byte-for-byte in a new CLI BF instance; captured commands are single-line inputs without embedded transcript delimiters.",
+  "kernel": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "initialImageSha256": "18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04",
+  "transcript": "records/003/browser-current-native.txt",
+  "transcriptSha256": "abcfed43eba65a530027aa678214978683f6f18c90ee0ac2f4f849734b870e9c",
+  "inputs": [
+    {
+      "input": "industry-state",
+      "outputSha256": "b0aa0aeb701a9ea764a2ffaa9513229ca4df2ca5484e29a48438abd689cdf482"
+    },
+    {
+      "input": "3 industry-inspect",
+      "outputSha256": "8bd14a5d074911e29f1b9233040ba5e581dafaa5a020ed4aa966bf230f19ce29"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "7422d12946dc6d78a0917664e934413b7611ee2015c4c78ce97cd8eafccea417"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "4795b10937e6ae414cfbaf806abef7f7e2e431dfaf66adf72c72ecaf5be807f3"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "59ecc0b31e026ce101a9bba684c34b468d7e21f4c202518811d6d1a4a77f30a9"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "d61bfc9e1345f7f6e7f96b4aea6b8ec1dbcdb90df2b6f387f48b72a640973205"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "2846e8c639a51a7d45cfd5c6e1b11fcf2f85a607fcb04c6912caa7d8c46904f3"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "88fc2f099628d0f969639c7a99b2e16048ce7e7c37d6874ac49933b750b108ac"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "6485d9edbbb96ae5a8a77bc1657615548fbabd66bb04a838a30a2ee82dff5e06"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "661f814267c0d3f185778fcb0308ae11953c98deea81cb71eb9ef474465f3ae1"
+    },
+    {
+      "input": "process-step industry-state",
+      "outputSha256": "c04bb0db8283344850f0317863901a31dac5e29c5b87ebe5b8aeaa3da73c3416"
+    }
+  ],
+  "elapsedMs": 80248.5065
+}

@@ -6,6 +6,7 @@ import {execFileSync} from 'node:child_process';
 import {loadKernel,loadLibraries,execute} from '../runtime/system.mjs';
 import {sha256} from '../dist/images.mjs';
 const artifactStarted=performance.now(),kernel=await loadKernel(),artifactLoadMs=performance.now()-artifactStarted;
+if(kernel.programHash!=='0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98')throw new Error('Historical Build002 evidence tool: use the matching build-002 checkout. Current artifacts must not overwrite that record.');
 const libraries=await loadLibraries('city-system.json'),samples=[];
 for(let run=0;run<3;run++) {
   const m=kernel.create(),measurements=[];

@@ -4,7 +4,7 @@ import {readIndustry} from '../dist/industry-presentation.mjs';
 
 test('native source text is length framed, never mistaken for errors or city events',()=>{
   const source=': my.thread \\ ignored diagnostic example\n!E3 \nSEND 1 2 3 4 5\n;';
-  const text=`SOURCE 6 ${source.length}\n${source}\nVERSION-SOURCE 8 ${source.length}\n${source}\nPARAMETER 6 0 0 1 6 2\n`;
+  const text=`SOURCE 6 ${source.length}\n${source}\nVERSION-SOURCE ${source.length}\n${source}\nPARAMETER 6 0 0 1 6 2\n`;
   const result=readIndustry(text);
   assert.equal(result.sources.get(6),source);assert.equal(result.versionSource,source);
   assert.equal(result.nativeError,undefined);assert.deepEqual(result.industryEvents,[]);

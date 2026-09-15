@@ -113,3 +113,46 @@ Checkpoint before further generic BF-kernel performance work: industrial source,
 assets and working UI are implemented, but the complete scenario, native adversarial
 coverage, final performance, visual quality, boundary review and release remain
 open. PublicBuild002 and both historical tags remain unchanged.
+
+## Native performance iteration after checkpoint b16d6a0
+
+Added a fast arithmetic path in the Thread process interpreter, avoiding checks of
+all actor-only words for ordinary arithmetic. Added native pending-dispatch counts
+and early exits in unique-handle lookups. Both are BF-owned; no host computation
+was substituted. Updated frame arity to include pending source jobs.
+
+The subsequent generic kernel revision emits one-hot Thread primitive dispatch
+and bounded workspace output.19targeted tests passed (kernel-dispatch-tests.txt
+andworkspace-output-tests.txt). The new artifact identity is in
+kernel-native-dispatch-build.txt. Final measurements and industrial checks are
+pending; the old long probes keep their original loaded kernel and source.
+
+### Current-native completion and same-author review
+The stock-aware source completed both stations at round183 with all96raw-equivalent units accounted for (`industry-stock-aware-probe.txt`). This concurrent development probe is functional evidence, not an isolated latency benchmark. The earlier native-dispatch-only probe was interrupted after203+rounds once this stronger current-source result was available; its partial log is retained. The two protocol/image tests and three workspace-output/cache tests passed.
+
+Review then found a real pause/resume corner case: a mailbox waiter paused before a message arrived would resume into waiting despite nonempty mail. `process-resume` now makes that particular continuation ready; a regression exercises pause, enqueue, resume and actual consumption. SEND/RECEIVE now emit the actual executing version serial; external administrator sends use0. Sources changed while `regression-current-01.txt` was running, so it is an intermediate regression result, not the final release gate.
+
+### Source panel and CLI diagnostic framing repair
+The actual browser import restored round19, production escrow, source and controls; a double click published only version7 while object selection remained available. Follow-up review added revision-bound source caching. Its first implementation incorrectly treated the sole `VERSION-SOURCE` header number as a version serial; that number is source length. Browser verification caught a disabled editor. The fix binds cached source to the native WORKSPACE version/draft revision observed at the serialized input boundary and clears stale text while reading. The raw BF source-frame contract is unchanged. Diagnostic decoder fixtures now use its actual one-number version header.
+
+The CLI previously mistook diagnostic-looking text inside raw source output for a real error. A streaming display-only decoder now skips opaque SOURCE/VERSION-SOURCE bodies even across output-budget chunks. Unit and actual fresh-CLI tests exercise source text containing `!E3`. Historical evidence-generation tools now refuse a different kernel identity before they can overwrite Build001/002 measurements or reproduction files.
+
+### Passage arbitration and exact browser replay
+Added native van passage priority0..9 and a bounded peer scan. A recent intent
+expires after one logical round; a looping or paused high-priority program cannot
+hold an unoccupied road through stale intent. All three priority tests passed.
+The current raw platform source digest is e10c7d82a680129247929d9bd2f57dabf7bf5614e183e265c75531d698783e86.
+The zero-round image was rebuilt from actual BF compilation, without kernel changes.
+
+The browser accepted a custom factory program, retained its draft across object
+selection, refused an overlong token while retaining the active version, and
+rolled back explicitly. This first interaction capture predates the priority
+boot-source change and is kept separately. A new current-image browser instance
+then ran nine industrial rounds; its first11inputs/output pairs replayed exactly
+in a fresh CLI BF instance (`browser-cli-parity.json`). No host simulation or
+recorded event playback is used by the live application.
+
+One earlier hidden-element capture was empty because innerText was used. It is
+explicitly marked as a capture failure; subsequent raw evidence uses textContent.
+The full candidate regression run includes the original76tests plus new process,
+industrial, literal-reference, capacity and framing checks. Result still pending.

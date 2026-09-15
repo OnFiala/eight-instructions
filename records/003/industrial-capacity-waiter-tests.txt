@@ -1,0 +1,54 @@
+TAP version 13
+# {"coldBootMs":66570.631333,"bfInstructions":110558974659075,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+# Subtest: native road capacity queues a second van; closure preserves an existing reservation
+ok 1 - native road capacity queues a second van; closure preserves an existing reservation
+  ---
+  duration_ms: 73584.581125
+  type: 'test'
+  ...
+# {"jobCapacity":16,"reclaimedLifetimes":467,"staleIdentityRefused":1,"liveJobs":0}
+# Subtest: all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+ok 2 - all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+  ---
+  duration_ms: 15980.576208
+  type: 'test'
+  ...
+# Subtest: publishing, refusing schema change and rolling back preserve a paused carried load and route version
+ok 3 - publishing, refusing schema change and rolling back preserve a paused carried load and route version
+  ---
+  duration_ms: 46168.634875
+  type: 'test'
+  ...
+# Subtest: a paused mailbox waiter wakes on resume when mail arrived during its pause
+ok 4 - a paused mailbox waiter wakes on resume when mail arrived during its pause
+  ---
+  duration_ms: 32513.442416
+  type: 'test'
+  ...
+# Subtest: declared incompatible schema refuses publication with live continuation and queued message
+ok 5 - declared incompatible schema refuses publication with live continuation and queued message
+  ---
+  duration_ms: 10631.251875
+  type: 'test'
+  ...
+# Subtest: configured quantum is bounded; sleeping, looping and failing programs stay independent
+ok 6 - configured quantum is bounded; sleeping, looping and failing programs stay independent
+  ---
+  duration_ms: 4715.159209
+  type: 'test'
+  ...
+# Subtest: nested exact-version stack exhaustion stays local and preserves queued mail
+ok 7 - nested exact-version stack exhaustion stays local and preserves queued mail
+  ---
+  duration_ms: 18548.814125
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 136621.959042

@@ -17,18 +17,18 @@ register constant view-base
   ." INDUSTRY 3 " ptick @ . world-ready @ . world-roads @ .
   world-created @ . world-reclaimed @ . world-deliveries @ . world-productions @ . cr
   0 ei ! begin ei @ 16 < while
-    ." NODE " ei @ . 19200 ei @ 2 * + w@ . 19201 ei @ 2 * + w@ . cr 1 ei +!
+    ." NODE " ei @ . 19200 ei @ 2 * + 2 w. cr 1 ei +!
   repeat
   0 ei ! begin ei @ world-roads @ < while
     ei @ 0 rf view-base !
-    ." I-ROAD " ei @ . 0 ji ! begin ji @ 8 < while view-base @ ji @ + w@ . 1 ji +! repeat cr 1 ei +!
+    ." I-ROAD " ei @ . view-base @ 8 w. cr 1 ei +!
   repeat
   0 ei ! begin ei @ 16 < while
     ei @ 0 ef w@ if
       ei @ 0 ef view-base !
-      ." ENTITY " ei @ . 0 ji ! begin ji @ 23 < while view-base @ ji @ + w@ . 1 ji +! repeat cr
+      ." ENTITY " ei @ . view-base @ 23 w. cr
       ei @ 0 pf view-base !
-      ." TRAVEL " ei @ 0 ef w@ . 144 ji ! begin ji @ 160 < while view-base @ ji @ + w@ . 1 ji +! repeat
+      ." TRAVEL " ei @ 0 ef w@ . view-base @ 144 + 16 w.
       ei @ 226 pf w@ . ei @ 227 pf w@ . ei @ 229 pf w@ . cr
       ei @ 1 ef w@ 3 = if
         ." I-PATH " ei @ 0 ef w@ . ei @ 224 pf w@ dup . ji !
@@ -37,7 +37,7 @@ register constant view-base
     then
     ei @ 0 jf w@ if
       ei @ 0 jf view-base !
-      ." JOB " ei @ . 0 ji ! begin ji @ 7 < while view-base @ ji @ + w@ . 1 ji +! repeat cr
+      ." JOB " ei @ . view-base @ 7 w. cr
     then 1 ei +!
   repeat industry-account process-state workspace-state
   ." INDUSTRY-END " ptick @ . cr

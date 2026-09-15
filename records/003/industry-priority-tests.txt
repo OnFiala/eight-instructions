@@ -1,0 +1,29 @@
+TAP version 13
+# {"coldBootMs":54798.292792,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+# Subtest: a user van program gets higher native passage priority over an earlier scheduler slot
+ok 1 - a user van program gets higher native passage priority over an earlier scheduler slot
+  ---
+  duration_ms: 61553.88875
+  type: 'test'
+  ...
+# Subtest: an infinite high-priority program cannot retain a free road through a stale intent
+ok 2 - an infinite high-priority program cannot retain a free road through a stale intent
+  ---
+  duration_ms: 8442.084167
+  type: 'test'
+  ...
+# Subtest: paused priority claim is ineligible; invalid priority faults locally without changing its value
+ok 3 - paused priority claim is ineligible; invalid priority faults locally without changing its value
+  ---
+  duration_ms: 8665.38575
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 79404.161333

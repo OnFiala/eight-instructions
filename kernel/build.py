@@ -19,7 +19,7 @@ WORDS = {
     'bye': 27, 'assert': 28, '0=': 29, 'exit': 3, 'rot': 30,
     'fill': 31, 'pfill': 32, 'move': 33, 'pmove': 34,
     'key': 35, 'w@': 36, 'w!': 37,
-    'waddr': 38,
+    'waddr': 38, 'w.': 39,
     ':': 100, ';': 101, 'if': 102, 'else': 103, 'then': 104,
     'begin': 105, 'until': 106, 'again': 107, 'recurse': 108,
     'variable': 109, 'constant': 110, 'while': 111, 'repeat': 112, '."': 113,
@@ -38,9 +38,12 @@ class Kernel:
         self.ws_cache = [(b.cell(f'workspace_cache_{i}_base'),
                           b.cell(f'workspace_cache_{i}_page'),
                           b.cell(f'workspace_cache_{i}_valid')) for i in range(8)]
+        self.fetch_next = b.cell('fetch_cache_next')
+        self.fetch_cache = [(b.cell(f'fetch_cache_{i}_page'),
+                             b.cell(f'fetch_cache_{i}_valid')) for i in range(4)]
         base = 512
         self.arrays = {}
-        for name, size in [('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
+        for name, size in [('op_flags', 40), ('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
                            ('controls', 128), ('dictionary', 16384), ('code', 24576),
                            ('heap', 4096), ('store', 4096), ('workspace', 24576)]:
             arr = (PagedArray if name in ('code', 'workspace') else Array)(b, base, size, name)
@@ -60,6 +63,8 @@ class Kernel:
     def error(self, n):
         b = self.b
         with b.zero(self.err):
+            # A rejected definition can roll back the resident code frontier.
+            for _, valid in self.fetch_cache: b.clear(valid)
             b.text(f'!E{n} ')
             with b.when(self.mode):
                 b.copy(self.start, self.cp)
@@ -158,13 +163,27 @@ class Kernel:
 
     def fetch(self, out):
         b = self.b
-        with b.temps(2) as (valid, lower):
-            b.lt(self.ip_hi, self.cp_hi, valid)
-            with b.temps() as equal:
-                b.eq(self.ip_hi, self.cp_hi, equal)
-                with b.when(equal):
-                    b.lt(self.ip_lo, self.cp_lo, lower)
-                    b.copy(lower, valid)
+        with b.temps(3) as (valid, lower, equal):
+            # Cache only the fact that a complete page is below the allocated
+            # code frontier. Instructions themselves are always fetched from BF.
+            for page, live in self.fetch_cache:
+                with b.zero(valid):
+                    with b.when(live):
+                        b.eq(self.ip_hi, page, valid)
+            with b.zero(valid):
+                b.lt(self.ip_hi, self.cp_hi, valid)
+                with b.when(valid):
+                    for i, (page, live) in enumerate(self.fetch_cache):
+                        with self.case(self.fetch_next, i):
+                            b.copy(self.ip_hi, page)
+                            b.set(live, 1)
+                    b.add(self.fetch_next)
+                    with self.case(self.fetch_next, 4): b.clear(self.fetch_next)
+                with b.zero(valid):
+                    b.eq(self.ip_hi, self.cp_hi, equal)
+                    with b.when(equal):
+                        b.lt(self.ip_lo, self.cp_lo, lower)
+                        b.copy(lower, valid)
             with b.zero(valid): self.error(7)
             with b.zero(self.err):
                 self.code.get(self.ip_hi, self.ip_lo, out)
@@ -546,7 +565,9 @@ class Kernel:
     @contextmanager
     def primitive(self, op, inputs=0, outputs=0):
         b = self.b
-        with self.case(self.op, op):
+        flag = self.op_flags.base + op * self.op_flags.stride + 2
+        with b.loop(flag):
+            b.clear(flag)
             with b.temps(2) as (need, bad):
                 b.set(need, inputs)
                 b.lt(self.sp, need, bad)
@@ -559,6 +580,13 @@ class Kernel:
     def execution(self):
         b = self.b
         with b.loop(self.op):
+            # Runtime BF selects one handler. This is a one-hot dispatch table,
+            # not a host lookup or precomputed answer to a guest input.
+            self.check_limit(self.op, self.op_flags.size, 7)
+            with b.zero(self.err):
+                with b.temps() as selected:
+                    b.set(selected, 1)
+                    self.op_flags.put(self.op, selected)
             with b.when(self.tracing):
                 b.text('~')
                 self.decimal(self.ip)
@@ -794,6 +822,29 @@ class Kernel:
                     b.copy(base, self.a)
                     b.move(self.y, self.a)
                     self.push(self.a)
+            with self.primitive(39, 2):
+                # Generic bounded workspace output: (start count --).
+                # Validate the whole span before printing; no application format
+                # or data interpretation belongs in this primitive.
+                self.pop(self.z)
+                self.pop(self.x)
+                self.check_limit(self.z, 257)
+                self.check_limit(self.x, self.workspace.size + 1)
+                with b.zero(self.err):
+                    b.copy(self.x, self.y)
+                    with b.temps() as count:
+                        b.copy(self.z, count)
+                        b.move(count, self.y)
+                    self.check_limit(self.y, self.workspace.size + 1)
+                    with b.zero(self.err):
+                        with b.temps(2) as (high, low):
+                            with b.when(self.z):
+                                self.workspace_index(self.x, high, low)
+                            with b.loop(self.z):
+                                self.workspace.get(high, low, self.a)
+                                self.decimal(self.a)
+                                self.advance(high, low)
+                                b.add(self.z, -1)
             b.clear(self.op)
             with b.when(self.ip):
                 self.fetch(self.op)

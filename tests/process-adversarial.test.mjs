@@ -2,6 +2,18 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {processes,create,build,command,state} from './process-helpers.mjs';
 
+test('a paused mailbox waiter wakes on resume when mail arrived during its pause',async()=>{
+  const m=await processes();create(m,'waiter.thread');
+  build(m,0,': waiter.thread wait recv if drop drop 0 state! else drop drop drop then ;');
+  command(m,'0 process-create drop process-step 1 process-pause');
+  assert.equal(state(m).processes[0][1],4);
+  assert.match(command(m,'71 9 1 process-post .'),/1 $/);
+  assert.equal(state(m).processes[0][1],4);
+  command(m,'1 process-resume process-step process-step');
+  assert.equal(state(m).private[0][1],71);
+  assert.equal(state(m).processes[0][14],0);
+});
+
 test('declared incompatible schema refuses publication with live continuation and queued message',async()=>{
   const m=await processes();command(m,'workspace-large');create(m,'schema.thread');
   const original=': schema.thread schema# 7 41 3 sleep 0 state! ;';

@@ -122,3 +122,40 @@ workers from the same opaque image; it does not calculate expected answers.
 No graphics package or runtime npm dependency was added. Inter typography and Phosphor
 icons are vendored assets under their licenses. The image generator created appearance
 assets only. Every added host component is justified in `boundary.json`.
+
+## Build 003: communicating native processes
+
+The current development kernel reserves512dictionary entries,24576resident code
+words and24576workspace words. The tape has398704unsigned16-bit cells. These
+resident capacities accommodate the native platform; reusable process contexts,
+job slots and module arenas are separately bounded and reclaimed at fixed size.
+Historical Build001/002 layouts stay with their matching artifacts.
+
+The process extension is Thread interpreted by the real BF kernel, using the
+same native module compiler and version ownership. `process-state.thread` owns
+creation, private contexts, FIFO messages, pause/repair and lifetime IDs.
+`processes.thread` loads/saves continuations and runs deterministic instruction
+quanta. The actor profile has a checked whitelist, not general heap/store access.
+`industry-state.thread` owns the finite ledger and graph; `industry.thread`
+implements checked role operations, transfers, resumed routing and reservations.
+`industry-view.thread` emits native state and handles privileged UI requests.
+See [processes](processes.md) and [industrial semantics](industry.md).
+
+Three further generic kernel optimizations execute on the BF tape: a bounded
+address-translation cache, one-hot primitive dispatch, and a small code-page
+validity cache invalidated on errors/compilation rollback. `waddr` checks page and
+offset; `w.` emits at most256validated workspace values. Neither is exposed as an
+actor-profile word. Python emits these algorithms; it never precomputes source
+compilation or city answers. The generic host executor remains ignorant of them.
+
+`industry-ui.mjs` sends raw source or parameter/data inputs and waits for native
+acknowledgement. `industry-presentation.mjs` decodes length-framed output.
+`industry-scene.mjs` renders native coordinates, paths, stock, cargo and building
+phases. Selecting a visual object maps only to its emitted identity. Decorative
+architecture, material pixels, camera and numbered callouts have no state authority.
+No new runtime package or application backend is introduced.
+
+A checked-in opaque initial image speeds browser startup. Its builder runs the
+actual BF compiler on raw boot input; it contains zero scheduler rounds, routes,
+orders, deliveries or production. `--check` boots a fresh machine and verifies
+its exact bytes and identities. Browser cold compilation remains available.

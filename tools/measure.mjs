@@ -2,6 +2,7 @@ import {writeFile,readFile,stat} from 'node:fs/promises';
 import os from 'node:os';
 import {loadKernel,execute} from '../runtime/system.mjs';
 const loading=performance.now(),kernel=await loadKernel(),loadMs=performance.now()-loading;
+if(kernel.programHash!=='de6c26450f7aa1398fc0f5d08995e653f355badea9f1df08a0b203db35c37d87')throw new Error('Historical Build001 evidence tool: use the matching build-001 checkout. Current artifacts must not overwrite that record.');
 const workloads=[['boot',kernel.libraries],['sample','sample network'],['route','0 11 route'],
   ['changeAndRoute','100 1 7 stage-road tx-commit 0 11 route'],
   ['fullStore',': fill-db 0 begin dup 128 < while dup 3 * 1 + over db-put assert 1 + repeat drop ; tx-begin db-clear fill-db tx-commit db-count . db-check']];

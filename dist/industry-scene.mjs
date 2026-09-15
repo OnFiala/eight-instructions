@@ -25,9 +25,27 @@ export class IndustryScene extends CityScene {
     canvas.addEventListener('pointercancel',()=>{this.drag=null;});
     this.resize();
   }
-  resize(){super.resize();this.s=this.w/140*(this.zoom??1);this.sy=this.s*.58;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*.19+(this.pan?.y??0)};this.draw(performance.now());}
+  resize(){super.resize();this.s=Math.min(this.w/151,(this.h-95)/82)*(this.zoom??1);this.sy=this.s*.58;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*.16+(this.pan?.y??0)};this.draw(performance.now());}
   camera(delta){this.zoom=Math.min(1.55,Math.max(.72,this.zoom+delta));this.resize();}
   resetCamera(){this.zoom=1;this.pan={x:0,y:0};this.resize();}
+  ground(){
+    super.ground();
+    // Ornamental lawns and paths stay inside building plots. They are not roads,
+    // resources or guest objects; every drivable connection is drawn from BF.
+    for(const [x,z,w,h] of [[63,42,10,17],[63,22,10,14],[-4,40,7,12],[3,65,12,7],[42,64,14,8],[41,3,15,13]]){
+      this.tile(x,z,x+w,z+h,'#717662',.025);
+      this.tile(x+.5,z+.5,x+w-.5,z+h-.5,'#37492f',.05);
+      this.tile(x+w*.42,z+.5,x+w*.58,z+h-.5,'#8a8770',.06);
+      this.tile(x+.5,z+h*.43,x+w-.5,z+h*.57,'#8a8770',.06);
+    }
+    const c=this.ctx;
+    // Static reflected lamplight on the decorative canal surface.
+    for(const z of [6,16,26,36,46,56]){
+      const p=this.project(28,z,-.3);c.save();c.translate(p.x,p.y);c.scale(1,.58);
+      const glow=c.createRadialGradient(0,0,0,0,0,this.s*2.5);glow.addColorStop(0,'#efc98038');glow.addColorStop(1,'#d7b97300');
+      c.fillStyle=glow;c.beginPath();c.arc(0,0,this.s*2.5,0,Math.PI*2);c.fill();c.restore();
+    }
+  }
   drawRoute(){
     const selected=this.selected;
     // Display actual emitted paths, including while a building is selected.
@@ -52,9 +70,9 @@ export class IndustryScene extends CityScene {
     const sprite=this.sprites.get(name);if(!sprite)return;
     const width=this.s*(e.role===1?28:26),height=width*sprite.height/sprite.width;
     const top=p.y+this.sy*7-height*.90,left=p.x-width*.5;
+    if(selected)this.polygon([[x-8,z-8],[x+8,z-8],[x+8,z+8],[x-8,z+8]].map(([a,b])=>this.project(a,b,.1)),null,'#d7fa73',1.8);
     c.save();c.shadowColor=selected?'#d7fa7380':'#06100bcc';c.shadowBlur=this.s*(selected?1.8:.7);c.shadowOffsetY=this.sy*.5;
     c.drawImage(sprite,left,top,width,height);c.restore();
-    if(selected)this.polygon([[x-8,z-8],[x+8,z-8],[x+8,z+8],[x-8,z+8]].map(([a,b])=>this.project(a,b,.1)),null,'#d7fa73',1.8);
     this.hits.push({x:left+width*.12,y:top+height*.18,w:width*.76,h:height*.74,object:{kind:'entity',id:e.id}});
     this.stock(e.raw,'raw-pallet',x-7,z+7);this.stock(e.panels,'panel-pallet',x+2,z+9);
     const proc=this.state.processes.find(p=>p.handle===e.id);
@@ -77,11 +95,6 @@ export class IndustryScene extends CityScene {
       const asset=this.sprites.get(e.cargoKind===1?'raw-pallet':'panel-pallet'),w=this.s*3;
       if(asset)this.ctx.drawImage(asset,p.x-w*.75,p.y-w*1.35,w,w*asset.height/asset.width);
     }
-    const proc=this.state.processes.find(v=>v.handle===e.id),selected=this.object?.kind==='entity'&&this.object.id===e.id;
-    if(selected||e.cargo||e.status===3||proc?.status>=4){
-      const text=proc?.status===5?'FAULT':proc?.status===4?'PAUSED':e.cargo?`${e.cargo} ${e.cargoKind===1?'raw':'panels'}`:e.status===3?'QUEUE':'SELECTED';
-      this.badge(text,p.x,p.y-this.s*5.5,selected?'#d7fa73':'#c5d0c7');
-    }
     this.hits.push({x:p.x-this.s*4,y:p.y-this.s*6,w:this.s*8,h:this.s*7,object:{kind:'entity',id:e.id}});
   }
   badge(text,x,y,color='#d7fa73'){
@@ -95,14 +108,15 @@ export class IndustryScene extends CityScene {
       const name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed?'station-frame':'station-foundation';
       const sprite=this.sprites.get(name),height=this.s*(e.role===1?28:26)*(sprite?sprite.height/sprite.width:1);
       const labelY=p.y+this.sy*7-height*.75;
+      if(this.w<600&&!selected)continue;
       const text=entityName(e);this.badge(text,p.x,labelY,selected?'#e4ff92':'#eef0de');
       c.save();c.font='10px ui-monospace,monospace';c.textAlign='center';c.fillStyle='#b8c4b8';c.shadowColor='#000';c.shadowBlur=5;
-      c.fillText(e.role===4?`${e.consumed} / ${e.constructionGoal} panels built`:`${e.raw} raw · ${e.panels} panels`,p.x,labelY+26);c.restore();
+      if(selected||e.role===4)c.fillText(e.role===4?`${e.consumed} / ${e.constructionGoal} panels built`:`${e.raw} raw · ${e.panels} panels`,p.x,labelY+26);c.restore();
     }
     for(const road of this.state.roads.filter(r=>r.id%2===0)){
       const p=this.roadPoint(road,.5),selected=this.object?.kind==='road'&&this.object.id===road.id;
       this.hits.unshift({x:p.x-22,y:p.y-15,w:44,h:30,object:{kind:'road',id:road.id}});
-      if(this.bridge(road)||selected){this.badge(selected?roadName(road):road.open?(road.toll?`Toll ${road.toll}`:'Free bridge'):'Closed',p.x,p.y+25,road.open?'#d7fa73':'#ffb79c');}
+      if(selected||!road.open||this.bridge(road)&&this.w>=600&&road.toll){this.badge(selected?roadName(road):road.open?`Toll ${road.toll}`:'Closed',p.x,p.y+25,road.open?'#d7fa73':'#ffb79c');}
       if(!road.signal&&road.open){const q=this.roadPoint(road,.17);c.fillStyle='#ffbd74';c.beginPath();c.arc(q.x,q.y,3,0,Math.PI*2);c.fill();}
     }
   }
@@ -111,6 +125,7 @@ export class IndustryScene extends CityScene {
     const c=this.ctx;c.setTransform(this.dpr,0,0,this.dpr,0,0);c.clearRect(0,0,this.w,this.h);this.hits=[];
     this.ground();if(!this.state)return;this.drawRoads();this.drawBridges();this.drawRoute();this.drawRoadMarks();
     const objects=[{depth:119,draw:()=>this.drawBuilding('oldtown-block',-14,36,1.05)}];
+    objects.push({depth:49,draw:()=>this.drawFountain(68,57)});
     for(const e of this.state.entities.filter(e=>[1,2,4].includes(e.role))){const p=this.buildingLocation(e);objects.push({depth:p.z-p.x+69,draw:()=>this.industrial(e)});}
     for(const [name,x,z,k] of [['flat-house',-3,9,.75],['stone-house',-4,34,.7],['flat-house',-4,47,.8],['cafe-house',17,-6,.8],['flat-house',35,-6,.9],['cafe-house',45,5,.8],['stone-house',54,5,.75],['flat-house',45,14,.85],['cafe-house',54,14,.8],['cafe-house',67,27,.9],['flat-house',74,34,.85],['stone-house',68,46,.8],['flat-house',70,64,.9],['cafe-house',44,70,.8],['flat-house',22,71,.85],['stone-house',5,71,.8]])objects.push({depth:z-x+63,draw:()=>this.drawHouse(name,x,z,k)});
     const trees=[];
@@ -118,6 +133,7 @@ export class IndustryScene extends CityScene {
     for(const x of [-4,74])for(const z of [2,8,14,20,26,32,38,44,50,56,62,68])trees.push([x,z]);
     for(const z of [-5,73])for(const x of [2,8,14,20,38,44,50,56,62,68])trees.push([x,z]);
     for(const [x,z] of [[16,6],[4,14],[16,25],[16,33],[4,44],[17,52],[43,5],[56,6],[44,34],[55,32],[44,45],[56,56],[67,18]])trees.push([x,z]);
+    for(const [x,z] of [[64,44],[72,44],[64,49],[72,49],[64,54],[72,54],[66,24],[71,24],[66,34],[71,34],[4,67],[12,67],[4,72],[12,72],[43,68],[55,68]])trees.push([x,z]);
     for(const [x,z] of trees)objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.8)});
     for(const [x,z] of [[-2,4],[-2,24],[-2,44],[18,16],[18,36],[18,56],[42,4],[42,24],[42,44],[58,16],[58,36],[58,56]])objects.push({depth:z-x+60,draw:()=>this.drawLamp(x,z)});
     const t=this.motion.matches?1:Math.min(1,(now-this.transition)/600),ease=t*t*(3-2*t);
@@ -136,10 +152,13 @@ export class IndustryScene extends CityScene {
     for(const {vehicle,p} of vehicleMarkers){
       const peers=vehicleMarkers.filter(v=>v.vehicle.edge===null&&v.vehicle.node===vehicle.node);
       const index=peers.findIndex(v=>v.vehicle.id===vehicle.id),offset=vehicle.edge===null?(index-(peers.length-1)/2)*48:0;
-      const y=p.y-48,x=p.x+offset,selected=this.object?.kind==='entity'&&this.object.id===vehicle.id;
+      const y=p.y-42,x=p.x+offset,selected=this.object?.kind==='entity'&&this.object.id===vehicle.id;
+      const proc=this.state.processes.find(v=>v.handle===vehicle.id),name=entityName(vehicle);
+      const label=name.startsWith('Van ')?name.slice(4):String(vehicle.id);
+      const detail=proc?.status===5?'fault':proc?.status===4?'paused':[3,9].includes(vehicle.status)?'queue':vehicle.cargo?`${vehicle.cargo} ${vehicle.cargoKind===1?'raw':'panels'}`:'';
       this.line(p,{x,y:y+12},'#a8c87766',1);
-      this.badge(`${String(vehicle.id-6).padStart(2,'0')}${vehicle.status===3?' · queue':''}`,x,y,selected?'#e5ff99':'#bcccac');
-      this.hits.push({x:x-24,y:y-14,w:48,h:25,object:{kind:'entity',id:vehicle.id}});
+      this.badge(`${label}${detail?' · '+detail:''}`,x,y,proc?.status===5?'#ffb093':selected?'#e5ff99':'#c9dbb8');
+      this.hits.push({x:x-(detail?50:24),y:y-14,w:detail?100:48,h:25,object:{kind:'entity',id:vehicle.id}});
     }
     if(t<1&&this.previous&&!this.motion.matches)this.frame=requestAnimationFrame(time=>this.draw(time));
   }
