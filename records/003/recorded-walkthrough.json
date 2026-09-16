@@ -1,0 +1,37 @@
+{
+  "type": "Recorded screenshot walkthrough, not a live or real-time video",
+  "seconds": 25,
+  "sourceFrames": [
+    {
+      "path": "screenshots/desktop-current-round17.png",
+      "caption": "Round 17 - real programs, materials and cargo",
+      "sha256": "6a8e343b7dadc9f3e9893746787a43067faa29991f99230362ce42af472d2f35"
+    },
+    {
+      "path": "screenshots/factory-fault.png",
+      "caption": "Round 25 - own factory program failed; other programs continued",
+      "sha256": "56a16f6a0b94f40a69b29a65fa2b2acbb9a63e37444973fea9a67decee8c1e99"
+    },
+    {
+      "path": "screenshots/factory-repaired.png",
+      "caption": "Round 26 - explicit repair retained material and completed the panel",
+      "sha256": "37787716bfd71d9c67dcdd0d8156338754b55c123282099a27e670713a47bffc"
+    },
+    {
+      "path": "screenshots/construction-progress.png",
+      "caption": "Round 65 - real deliveries build the station in stages",
+      "sha256": "ce8a41861fa38d5ff3059ed417ede3558065c634dcd0d2422772c38ae0dc5e51"
+    },
+    {
+      "path": "screenshots/desktop-final.png",
+      "caption": "Round 173 - both stations complete; restored real exported world",
+      "sha256": "73df491198949ee7f2de8a5bb5221ef8fa7d35e19ea423a47add31620619782a"
+    }
+  ],
+  "notes": [
+    "Actual observed browser states from one continued scenario; final frame reimports its real round173 image.",
+    "Presentation framing was refined during verification, so camera/UI geometry changes between frames.",
+    "Unmodified screenshots with separate caption margin, held five seconds each; no intermediate simulation or algorithm animation was fabricated."
+  ],
+  "videoSha256": "6e56bd59b777c2761cde407ce702d5739bff7cca2081967bbd96df000bc45d9b"
+}

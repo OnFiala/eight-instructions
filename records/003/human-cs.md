@@ -10,8 +10,9 @@ Pod jedním rozbalením je celý zdroj. Můžeš napsat i vlastní pravidlo; nen
 přepínač dvou připravených animací.
 
 Konkrétní ověřený experiment: stejný počáteční svět, otevřené mosty, stejných 64
-logických kol. S dávkou 3 vzniklo 14 panelů a tři už byly osazené do stanice.
-S dávkou 5 vzniklo 16 panelů, ale do stanice zatím nebyl osazený žádný. Větší
+logických kol. Změnila se jen dávka jedné továrny. S hodnotou 3 vzniklo v celém
+městě 14 panelů a tři už byly osazené do stanice. S hodnotou 5 vzniklo 16 panelů,
+ale do stanice zatím nebyl osazený žádný. Větší
 výrobní dávka tedy v tomto konkrétním srovnání neznamenala rychlejší postup stavby.
 Výsledky spočítaly dvě nové BF instance; balíček dovoluje výpočet zopakovat.
 

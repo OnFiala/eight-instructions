@@ -1,7 +1,8 @@
 # Build003 — technický popis
 
 Záznam skutečné implementace. Nativní regresní sada prošla113/113testy.
-Stav vydání zůstává PARTIAL do dokončení vizuální a veřejné kontroly.
+Lokální vizuální a interakční kontrola je dokončena. Stav vydání zůstává PARTIAL
+do dokončení posledního CI a veřejné kontroly.
 Autorem architektury, kódu, testů, oprav a tohoto self-review je stejná Astra xHigh.
 Nejde o nezávislý audit. Člověk zadal výzvu, nepřidával produkční kód.
 
@@ -168,7 +169,7 @@ zachycují vlastní zdroj, chybnou verzi, rollback, nekonečnou smyčku, opravu 
 soukromý stav 7. Jde o omezené reprodukovatelné kontroly stejného autora.
 
 Srovnání v `reproduction-results.json` běží 64 stejných logických kol ze stejného
-snímku a se stejnými otevřenými silnicemi. Jediná změna je batch továrny 3 versus 5.
+snímku a se stejnými otevřenými silnicemi. Jediná změna je batch jedné továrny (Riverside) 3 versus 5.
 První varianta má 7 doručení, 14 výrobních dokončení a 3 osazené panely; druhá 6
 doručení, 16 výrobních dokončení a zatím žádný osazený panel. Obě zachovávají účet 96.
 Je to stavový výsledek dvou pravidel, nikoli naměřené časové zrychlení.
@@ -177,13 +178,26 @@ Celá kandidátní sada113/113prošla bez selhání či přeskočení za974272.5
 (`verify-candidate-01.txt`). Přiložený ZIP se skutečně přehrál v nové CLI instanci.
 
 Měření (`metrics.json`, `measurements.md`): Apple M5,10logických CPU,32GiB RAM,
-macOS25.6.0,Node22.22.0. Tři nové BF bootstrappy v jednom host procesu. Medián
+macOS26.6.2 (Darwin25.6.0),Node22.22.0. Tři nové BF bootstrappy v jednom host procesu. Medián
 studeného BF bootu34.663s, prvního kola2.152s, samostatného prezentačního výstupu
 1.362s, změny zdroje/překladu3.126s, zprávy27.65ms, rollbacku9.45ms.
 Export20.67ms/import53.65ms. Dvacet cyklů se zprávou a uvolněním11.431s.
 Špička RSS host procesu484.84MiB, BF páska zvlášť797408bajtů. Trasování a výroba
 jsou měřeny jako celá kola s další prací, nikoli izolované volání algoritmu.
 Nenárokuje se rychlost simulace podle plynulosti obrazu. Veřejné vydání zatím čeká.
+
+## Dokončený svět a rozhraní
+
+Aktuální výchozí svět dokončil obě stanice v CLI ve183.kole. Nezávislý browser
+experiment s vlastní chybou, opravou a pozastavením dodávky dokončil druhou stanici
+ve164.kole; pozorovaný snímek173se skutečně obnovil do nové instance. Nejde o
+srovnání rychlosti: posloupnosti vstupů se liší. Viz completion.md.
+
+Samostatná skutečná fronta při pozastavené dodávce zachovala3panely čekajícího
+auta. Po obnovení držitel uvolnil silnici ve62.kole a čekající auto vyjelo v63.kole.
+Snímek1487×1058byl zkontrolován vedle návrhu i v překrytí. Rozložení skutečného
+grafu se liší; nejde o pixelovou shodu. Klávesnice, focus,390×844a reduced motion
+byly ověřeny v uvedeném rozsahu, nikoli jako úplná certifikace přístupnosti.
 
 ## Skutečný BF úryvek
 
@@ -204,3 +218,29 @@ kontrolovat komentář. Není to samostatný spustitelný program ani úryvek ro
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>[-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 <<<<<<<<<<<<<<<<<<<<<<<<<+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 ```
+
+## Identita a dohledatelnost
+
+Koncový implementační commit je
+`f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f`. Pozdější změny záznamů se evidují
+odděleně; samotný commit není důkaz veřejného nasazení.
+
+- BF kernel SHA-256:
+  `c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c`.
+- Nativní zdroje platformy SHA-256:
+  `e10c7d82a680129247929d9bd2f57dabf7bf5614e183e265c75531d698783e86`.
+- Počáteční snímek, nula kol plánovače, SHA-256:
+  `18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04`.
+- Reprodukční ZIP SHA-256:
+  `29ce759a2337a235611a3b2dc44afbb641345dc119d94f21b4d89be33a566a02`.
+
+Počáteční snímek vznikl skutečným překladem všech zdrojů v BF a přijetím počátečních
+dat. Neobsahuje předpočítané trasy, dokončenou výrobu ani řešení města.
+`initial-image.json` a kontrolní sestavení zachycují jeho původ.
+
+`site-package-functional.json` váže veřejné soubory na implementační commit a
+samostatnou Git historii transportu hostingu. `site-saved-functional.json` zachycuje
+uložení balíčku; uložení samo není ověření veřejného běhu. Záznam veřejné kontroly
+a konečný `final-deployment.json` připojí nasazenou verzi, anonymní porovnání souborů,
+merge/tag a případné HTML vložené hostingem. Dokud tyto kontroly nejsou dokončené,
+nelze z tohoto odstavce dovozovat úspěšné veřejné vydání.

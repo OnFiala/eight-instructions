@@ -244,3 +244,56 @@ A targeted command initially named a nonexistent diagnostics filename, so that
 capture contained only3presentation tests. Corrected to diagnostic-stream.test.mjs;
 the recorded final command ran all5tests successfully. The114-test CI suite includes
 that actual file automatically, so no test coverage was deleted.
+
+### Final local visual and interaction closure
+
+Viewed latest1487x1058desktop next to the single chosen target and a50%overlay.
+Refined camera now retains the rear depot and header clearance. Composition,
+material/light hierarchy, native stock/cargo/queue/completion and contextual panel
+accepted within the documented schematic-rendering limits; no pixel-match claim.
+390x844shows no horizontal overflow, visible keyboard focus, Enter publication
+of batch3→4and Undo preserving the stored/active distinction. Captured exact raw
+output. The screenshot walkthrough labels actual historical states and is not a
+real-time movie. Initial ffmpeg caption filter was unavailable; no dependency was
+installed. Added a separate caption margin to unmodified screenshots and encoded
+those recorded frames instead.
+
+Packaged exact committed f9ca7e5Site projection:145publicfiles verified byte-for-byte,
+archive b40fb21956da3c8a6e7c0d6c127ee3d0eb0ba540a4b8fd2d71e920b3d13f043f.
+No Site push/save/deploy occurred at this checkpoint. Current full114-test CI is
+still running. Previous packaging candidate is explicitly superseded, not relabelled.
+
+The supported hosting flow subsequently accepted the exact fast-forward source
+push and saved version5without deployment. Its receipt is site-saved-functional.json;
+public version4remains unchanged until the full CI gate finishes.
+
+Final explanatory review corrected the OS label: os.release25.6.0is Darwin;
+sw_versreports macOS26.6.2build25G83. Kept original measured JSON unchanged and
+added measurement-host-os.json. No timing was recalculated or invented.
+
+### Hosted CI timeout and complete-suite partition
+
+Both exact-f9runs35039078395/35039074483were cancelled by the45-minute job limit.
+Each reported78passing tests and no failing test before cancellation; this is an
+incomplete result, not a suite PASS. Saved full public logs and ci-timeout-repair.json.
+The literal module sample287970502251commands completed with whole-state equality
+in813978.984362ms; the refused-source sample175188163879commands completed in
+492530.296709ms. The process reference was still running when the job was stopped.
+
+Separated every current *.test.mjs exactly once into core, literal-modules and
+literal-processes jobs. Each repeats artifact/audit checks and clean-tree validation;
+a final verify job requires all three successes, including when another job fails.
+No test, oracle assertion, input or literal instruction budget was removed. New
+test files default to core and the planner rejects missing/duplicate file coverage.
+The job wall budget is90minutes. The process reference wall deadline is60minutes:
+the observed module throughput suggests its unchanged909504001134command sample
+can exceed30minutes on hosted hardware. That is a timeout-budget inference, not a
+new completed measurement. Local npm run verify still runs the complete suite.
+Current GitHub matrix/needs syntax was checked against official documentation:
+https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/run-job-variations
+https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax
+
+This is verification orchestration, not guest process scheduling. Native artifacts,
+source identity and the staged functional Site assets are unchanged. Added the
+CI-only driver to the boundary manifest. Stored Site version5remains undeployed;
+Build002remains public. No branch rule, account setting or security control changed.

@@ -10,10 +10,12 @@
   "scripts": {
     "generate": "python3 kernel/build.py && node tools/build-executor.mjs && node tools/package-assets.mjs && node tools/build-history.mjs && node tools/build-archives.mjs && node tools/build-industry-image.mjs",
     "test": "node --test tests/*.test.mjs",
-    "verify": "python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-archives.mjs --check && node tools/build-industry-image.mjs --check && node tools/audit.mjs && node --test tests/*.test.mjs",
+    "verify": "npm run verify:artifacts && npm test",
     "start": "node runtime/cli.mjs",
     "measure": "node tools/measure-industry.mjs",
-    "site": "node tools/serve.mjs"
+    "site": "node tools/serve.mjs",
+    "verify:artifacts": "python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-archives.mjs --check && node tools/build-industry-image.mjs --check && node tools/audit.mjs",
+    "verify:ci": "npm run verify:artifacts && node tools/run-ci-tests.mjs"
   },
   "devDependencies": {
     "wabt": "1.0.39"

@@ -6,7 +6,7 @@ The city now has small programs talking to each other. Depots get orders, factor
 
 Click a factory, change its rule, apply. The source is saved and compiled inside BF while the city keeps its state. Even one program stuck in a loop doesn't stop the other ready programs.
 
-Tried bigger batches. More panels produced, but less progress on the station after the same number of steps. So yeah, bigger is not always better :D
+Tried bigger batches in one factory. More panels produced, but less progress on the station after the same number of steps. So yeah, bigger is not always better :D
 
 I'm still just giving the tasks. Astra writes the code, tests it and fixes the problems. BF runs what happens, JS makes it visible.
 

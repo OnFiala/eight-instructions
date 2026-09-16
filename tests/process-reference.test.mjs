@@ -24,7 +24,9 @@ test('literal BF matches native mailbox wake and a bounded resumed receive turn,
     for(const input of ['43 9 1 process-post .','process-step']){
       const initial=join(dir,'initial.bin'),final=join(dir,'final.bin');writeFileSync(initial,rawState(m));
       const before=m.totalSteps,output=command(m,input),start=performance.now();
-      const r=spawnSync(binary,[resolve('artifacts/kernel.bf'),String(m.tape.length),'2000000000000',initial,final],{input:input+'\n',encoding:'utf8',timeout:1800000,maxBuffer:2e6});
+      // Hosted Linux measured ~350M literal commands/s in the module reference.
+      // Keep this exact workload and instruction bound; allow slower hardware.
+      const r=spawnSync(binary,[resolve('artifacts/kernel.bf'),String(m.tape.length),'2000000000000',initial,final],{input:input+'\n',encoding:'utf8',timeout:3600000,maxBuffer:2e6});
       assert.equal(r.status,0,r.stderr||r.error?.message);assert.equal(r.stdout,output);
       assert.deepEqual(readFileSync(final),rawState(m));
       assert.deepEqual(JSON.parse(r.stderr),{steps:Number(m.totalSteps),pointer:m.pointer,highWater:m.highWater});

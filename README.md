@@ -10,10 +10,10 @@ repairing production code. No subagents or second coding model author this build
 communicating, resumable programs inside one actual BF machine. Select a factory,
 change its program, and watch native orders, cargo and construction change.
 
-**Development checkpoint:** the final native suite passes113/113tests;
-final visual/interaction verification, release and public deployment are still
-in progress. The existing public site remains the verified Build002 until those
-gates pass. This branch is not a claim of a completed Build003 release.
+**Release verification in progress:** local native suite113/113PASS, followed by
+final UI/framing5/5PASS. The current114-test GitHub run is pending. Local visual,
+interaction and complete construction checks passed within the documented limits.
+The public site remains Build002 until the release gates finish.
 
 [Existing public site](https://eight-instructions.andrewxix.chatgpt.site) ·
 [Build003 challenge](records/003/challenge.md) · [Journal](records/003/journal.md) ·
@@ -127,10 +127,12 @@ not source-size ratios, are the evidence. See [architecture](docs/architecture.m
 
 ## Verification and history
 
-The original76Build002 regressions remain. An intermediate current-kernel run
-passed102tests, followed by seven additional/targeted capacity, version and pause
-checks. These are development observations, not the final release count. Records
-include actual native outputs, failed approaches, fixes and their exact scope.
+All76Build002 regressions remain. The complete local native candidate passed
+113tests, then a presentation regression brought current CI to114tests. Records
+include450reused process lifetimes,467job lifetimes, literal reference comparisons,
+fresh CLI/browser replay, complete construction and actual visual/interaction
+evidence, alongside failed approaches and repairs. Final status is in the release
+receipt; earlier observations are not silently relabelled as final.
 Self-review is by the same author, not an independent audit.
 
 Full artifact and test verification needs Node.js22+, Python3.14, a C compiler and

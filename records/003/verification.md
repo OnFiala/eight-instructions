@@ -68,10 +68,10 @@ Imports explicitly discard earlier event history. Exported machine state is not
 presented as a reconstruction of missing history. Browser controls acknowledge
 source changes only after BF responds. Camera/selection remain usable during work.
 
-Full-city completion, final visual comparison, downloadable UI comparison and
-public checks are recorded as their observations complete; none is implied by
-this intermediate map. Accessibility coverage is bounded keyboard/focus/responsive/
-reduced-motion verification, not a comprehensive WCAG certification.
+Full-city completion, final visual comparison and downloadable UI comparison
+are documented below. Public release checks remain a separate gate. Accessibility
+coverage is bounded keyboard/focus/responsive/reduced-motion verification, not a
+comprehensive WCAG certification.
 
 ## Remote failure retained
 
@@ -79,3 +79,42 @@ First PR3 CI35037577208(and push35037534426) refused stale derived history.json
 after build.json's test count changed. It failed before running the tests.
 Commit64d0b37regenerates history; no test or gate was removed. The journal also
 records earlier native/visual failures, optimizations and repairs chronologically.
+
+## Completed local interface gates
+
+Final UI/framing tests:5/5PASS,1944.918875ms (ui-framing-final-tests.txt).
+The extra between-edge cargo regression brings final full CI to114tests;113was the
+previous complete local suite. No test was removed. Final CI is recorded separately.
+
+Both stations completed in the real CLI world at183 and the manipulated browser
+world at164(observed/exported173). Actual held-road queue and release preserved
+cargo; see completion.md and its raw receipts. Actual UI comparison (batch3vs6,
+12rounds) downloaded and replayed exactly in fresh CLI instances. Both had zero
+completed production/delivery at this short observation; no benefit was invented.
+See browser-comparison.json and browser-comparison-fresh-cli.txt.
+
+Final visual-checkpoint.json binds the1487x1058 screenshot, side-by-side and overlay
+to exact file hashes. Native graph/building geography differs from the illustrative
+target; architecture, composition, light, materials and hierarchy were reviewed.
+390x844 has clientWidth=scrollWidth=390. Keyboard Enter published batch3→4and
+restored the previous active version; stored draft remained distinct. Reduced
+motion was exercised with an actual17→18native step. These are finite controls,
+not a complete WCAG or assistive-technology certification.
+
+recorded-walkthrough.mp4 is a25-second sequence of actual screenshots with explicit
+recorded/non-real-time labels; its JSON lists hashes and native observations.
+Camera geometry differs between historical captures and final refinement.
+
+## Hosted timeout and revised CI layout
+
+Exact-f9CI35039078395/35039074483reached the45-minute job limit, each with78reported
+passes and zero reported failures. Neither is a completed suite. Full logs are
+ci-timeout-pr.txt and ci-timeout-push.txt; ci-timeout-repair.json preserves the reason.
+
+CI now partitions all test files exactly once into core and two literal-reference
+jobs. All three run artifact/audit checks and must succeed before aggregate verify
+can pass. tools/run-ci-tests.mjs checks exact file coverage, including future tests.
+Local npm run verify remains the complete suite. Only wall deadlines increase;
+all workloads,2e12process-reference instruction bound and whole-state assertions
+remain. The expected total remains114tests, with no skips. The revised hosted
+run must finish before publication; partition validation alone is not test PASS.

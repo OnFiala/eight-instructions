@@ -1296,6 +1296,12 @@
       "reason": "Offline generic artifact-identity and raw-output verifier. Restores an opaque image and executes raw inputs; no language compiler, application solver or production import."
     },
     {
+      "path": "tools/run-ci-tests.mjs",
+      "layer": "verification-tool",
+      "reason": "CI-only partition of all test files with an exact coverage check and propagation of failure. Separates expensive literal reference work from other tests; never imported by production.",
+      "reviewedSha256": "80e22207d30e36e8f4b59bf7a912bd8aa87622b1c143e4e4bb8970529ebf94ef"
+    },
+    {
       "path": "tools/serve.mjs",
       "layer": "build-tool",
       "reason": "Loopback-only static file server for local interface verification."

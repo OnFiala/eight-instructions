@@ -3,9 +3,13 @@ on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
-  verify:
+  tests:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [core, literal-modules, literal-processes]
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -18,5 +22,15 @@ jobs:
         with:
           python-version: '3.14'
       - run: npm ci --ignore-scripts
-      - run: npm run verify
+      - run: npm run verify:ci -- ${{ matrix.suite }}
       - run: git diff --exit-code
+  verify:
+    needs: tests
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Every test suite must pass
+        env:
+          TEST_RESULT: ${{ needs.tests.result }}
+        run: test "$TEST_RESULT" = success

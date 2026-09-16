@@ -21,7 +21,7 @@
       "number": 3,
       "title": "A city made of programs",
       "status": "PARTIAL",
-      "summary": "Native resumable processes, bounded mailboxes and an industrial district inside BF. Implementation exists; final UI, reproduction, release and public verification gates remain open.",
+      "summary": "Native communicating, resumable programs and a locally verified industrial city. Release remains pending complete hosted CI and public verification.",
       "testsPassed": 113,
       "testedCommit": null
     }
