@@ -97,3 +97,24 @@ evidence after import. The saved Build 001 rollback was actually exercised; see
 `records/002/rollback-after-evidence-defect.json`. Preserve that failure alongside
 the later repair. A functional release receipt and a final metadata-deployment
 receipt distinguish implementation, repository closure and public projection.
+
+## Build003 release extension
+
+Use the same Sites project and public origin. Build003 adds the industrial assets,
+raw process sources, a BF-produced zero-round image, and preserved Build001/002
+archives. Keep the verified saved Build002 version as the rollback described in
+`records/003/rollback.md`. A fresh committed Site projection must extend the
+existing transport history without force-push.
+
+The local gate includes the original76regressions, native process/message and
+industrial checks, bounded literal BF comparisons, fresh standalone replay,
+actual contextual UI actions, image roundtrips and screenshot comparison. Public
+verification additionally exercises an own source edit, native refusal, independent
+continuation beside a loop and export/import, then compares anonymous kernel,
+executor, native source and graphics bytes against the committed projection.
+
+Record the implementation, metadata-only closure, normal merge/tag, Site transport
+commit, saved version, deployment and anonymous evidence separately. A successful
+publish call is not proof that the live city works. If live checks expose a material
+failure, repair it or redeploy the existing verified Build002 saved version. No
+new Site, audience change, backend or alternate account is part of this release.

@@ -1,0 +1,26 @@
+{
+  "status": "INCOMPLETE",
+  "runs": [
+    {
+      "run": 35039078395,
+      "event": "pr",
+      "status": "cancelled",
+      "cause": "45-minute job timeout",
+      "reportedPassingTests": 78,
+      "reportedFailingTests": 0,
+      "completeSuite": false
+    },
+    {
+      "run": 35039074483,
+      "event": "push",
+      "status": "cancelled",
+      "cause": "45-minute job timeout",
+      "reportedPassingTests": 78,
+      "reportedFailingTests": 0,
+      "completeSuite": false
+    }
+  ],
+  "repair": "Partition all test files exactly once into core/literal-modules/literal-processes; every job runs artifact checks; aggregate verify requires all jobs success.90-minute job budget. Process reference wall deadline60min with identical inputs,2e12instruction bound and whole-state assertions.",
+  "reasonForProcessWallDeadline": "Hosted literal module operation287970502251commands took813978.984362ms (~354million commands/s). At that observed interpreter throughput the unchanged909504001134command process sample could exceed the previous30min wall deadline. This is a budget inference, not a measured completed process sample.",
+  "coverage": "No tests or assertions deleted or skipped. New test files default to core; planner checks exact one-time coverage."
+}

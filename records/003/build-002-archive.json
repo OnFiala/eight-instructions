@@ -1,0 +1,431 @@
+{
+  "tag": "build-002",
+  "commit": "a80087662a66e7d04c1fc77cbce87cf996d60e63",
+  "relocation": "Runtime and raw sources are verbatim. HTML assets become relative, source links target the historical tag, old-build links are relocated and an explicit history banner is added.",
+  "files": [
+    {
+      "path": "dist/build-002/assets/city/cafe-house.png",
+      "originalPath": "dist/assets/city/cafe-house.png",
+      "originalSha256": "e6c98c6e7197b125e6c7614ce0d8d273f6bfd3aac22038a00aec6751ae8f9103",
+      "sha256": "e6c98c6e7197b125e6c7614ce0d8d273f6bfd3aac22038a00aec6751ae8f9103",
+      "bytes": 1770861,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/depot-block.png",
+      "originalPath": "dist/assets/city/depot-block.png",
+      "originalSha256": "95c79cb021442ac148e3a9c72efe95b346f3ae953af1fc6d8f702a9561114399",
+      "sha256": "95c79cb021442ac148e3a9c72efe95b346f3ae953af1fc6d8f702a9561114399",
+      "bytes": 2209026,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/flat-house.png",
+      "originalPath": "dist/assets/city/flat-house.png",
+      "originalSha256": "993b83e40f975830fdd442a6d40c64e6970ea0d516c7850e7e6ce0f4e6804ff0",
+      "sha256": "993b83e40f975830fdd442a6d40c64e6970ea0d516c7850e7e6ce0f4e6804ff0",
+      "bytes": 2236754,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/fountain.png",
+      "originalPath": "dist/assets/city/fountain.png",
+      "originalSha256": "560b7771b7a569fdd30a7b2db523cc0d935854b0da2157ee98dc109e1e603981",
+      "sha256": "560b7771b7a569fdd30a7b2db523cc0d935854b0da2157ee98dc109e1e603981",
+      "bytes": 1808389,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/harbor-bridge.png",
+      "originalPath": "dist/assets/city/harbor-bridge.png",
+      "originalSha256": "65c8bba41b7fd77cfe883e6f34948240346bb42e4f27ea1e977900a0de08fbee",
+      "sha256": "65c8bba41b7fd77cfe883e6f34948240346bb42e4f27ea1e977900a0de08fbee",
+      "bytes": 2050742,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/linden-tree.png",
+      "originalPath": "dist/assets/city/linden-tree.png",
+      "originalSha256": "d2b3cd838adebd1df3b37a32da050ec95e976befc86a730ec77dc755f36efc18",
+      "sha256": "d2b3cd838adebd1df3b37a32da050ec95e976befc86a730ec77dc755f36efc18",
+      "bytes": 2714659,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/north-bridge.png",
+      "originalPath": "dist/assets/city/north-bridge.png",
+      "originalSha256": "c05dfc9d578ceba10d7a648dd1a497a551293d67faabf5c8bc645b01c0a8c8b4",
+      "sha256": "c05dfc9d578ceba10d7a648dd1a497a551293d67faabf5c8bc645b01c0a8c8b4",
+      "bytes": 2081958,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/oldtown-block.png",
+      "originalPath": "dist/assets/city/oldtown-block.png",
+      "originalSha256": "7176e6cbb4ec5eb348c20ba83b9cb8f3c172fdba35905fbdb95fcd0f07dea197",
+      "sha256": "7176e6cbb4ec5eb348c20ba83b9cb8f3c172fdba35905fbdb95fcd0f07dea197",
+      "bytes": 2382650,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/stone-house.png",
+      "originalPath": "dist/assets/city/stone-house.png",
+      "originalSha256": "7d743b0534006453b7723ffad6d6de5fed5f6a62cd561ea8fc5e0faf5c6b97fd",
+      "sha256": "7d743b0534006453b7723ffad6d6de5fed5f6a62cd561ea8fc5e0faf5c6b97fd",
+      "bytes": 1750400,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/university-block.png",
+      "originalPath": "dist/assets/city/university-block.png",
+      "originalSha256": "96514dab082c8f1856f6bd02a2caa900acc8a9b9d0da98b563b2662d9c915de3",
+      "sha256": "96514dab082c8f1856f6bd02a2caa900acc8a9b9d0da98b563b2662d9c915de3",
+      "bytes": 2180268,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/van-front-right.png",
+      "originalPath": "dist/assets/city/van-front-right.png",
+      "originalSha256": "05fce2dc5a5bd85b32c7af70aefba6e0a638f7d3c3dd469a54ab7441cfc821cc",
+      "sha256": "05fce2dc5a5bd85b32c7af70aefba6e0a638f7d3c3dd469a54ab7441cfc821cc",
+      "bytes": 1533954,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/van-rear-left.png",
+      "originalPath": "dist/assets/city/van-rear-left.png",
+      "originalSha256": "af7101ed1283a6414cb2ced6c40087b3d1108fe4b706662dc6daed8b397e9afb",
+      "sha256": "af7101ed1283a6414cb2ced6c40087b3d1108fe4b706662dc6daed8b397e9afb",
+      "bytes": 1229758,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/van-rear-right.png",
+      "originalPath": "dist/assets/city/van-rear-right.png",
+      "originalSha256": "3771fd5ab29bc8f302f70f7c87de22d9a5e93ed3e7b61829bdf69a137864b8f2",
+      "sha256": "3771fd5ab29bc8f302f70f7c87de22d9a5e93ed3e7b61829bdf69a137864b8f2",
+      "bytes": 1316368,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/city/warehouse-block.png",
+      "originalPath": "dist/assets/city/warehouse-block.png",
+      "originalSha256": "a10abbfbf1dbdb3fbb01f9db7948181a9d9eaa59f59f9c7763fdfa50015896e3",
+      "sha256": "a10abbfbf1dbdb3fbb01f9db7948181a9d9eaa59f59f9c7763fdfa50015896e3",
+      "bytes": 2254230,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/fonts/InterVariable.woff2",
+      "originalPath": "dist/assets/fonts/InterVariable.woff2",
+      "originalSha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "bytes": 352240,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/fonts/LICENSE-Inter.txt",
+      "originalPath": "dist/assets/fonts/LICENSE-Inter.txt",
+      "originalSha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "sha256": "262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a",
+      "bytes": 4380,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/LICENSE-Phosphor.txt",
+      "originalPath": "dist/assets/icons/LICENSE-Phosphor.txt",
+      "originalSha256": "b5b1f1da112d18ea2147decfd48ddc1bf2b5aeb6c265381579340e95b15a2bb2",
+      "sha256": "b5b1f1da112d18ea2147decfd48ddc1bf2b5aeb6c265381579340e95b15a2bb2",
+      "bytes": 1071,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/arrow-counter-clockwise.svg",
+      "originalPath": "dist/assets/icons/arrow-counter-clockwise.svg",
+      "originalSha256": "4eb160d5ae781107c674481ac081962e6bce6281a646129e6c3f960b9dd5dac6",
+      "sha256": "4eb160d5ae781107c674481ac081962e6bce6281a646129e6c3f960b9dd5dac6",
+      "bytes": 325,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/arrow-right.svg",
+      "originalPath": "dist/assets/icons/arrow-right.svg",
+      "originalSha256": "e45bc4a12592b8723110db42c6deffdf177e4fe7704cf50324963fa0a59b2d74",
+      "sha256": "e45bc4a12592b8723110db42c6deffdf177e4fe7704cf50324963fa0a59b2d74",
+      "bytes": 245,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/arrows-clockwise.svg",
+      "originalPath": "dist/assets/icons/arrows-clockwise.svg",
+      "originalSha256": "2e80fbc9c5c37553934c9ebbd6324bf7fabe9a4b4d7c2445d99edfce55cc22df",
+      "sha256": "2e80fbc9c5c37553934c9ebbd6324bf7fabe9a4b4d7c2445d99edfce55cc22df",
+      "bytes": 503,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/caret-right.svg",
+      "originalPath": "dist/assets/icons/caret-right.svg",
+      "originalSha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7",
+      "sha256": "e6dec01e074807965b7f3146b976a9b5e82c31d9c2c88aeb52e77cc2ab16c1d7",
+      "bytes": 219,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/download-simple.svg",
+      "originalPath": "dist/assets/icons/download-simple.svg",
+      "originalSha256": "c48678aa09b44ba4974954690ee6cc846379c448a7214f8c802604c2a1562014",
+      "sha256": "c48678aa09b44ba4974954690ee6cc846379c448a7214f8c802604c2a1562014",
+      "bytes": 317,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/info.svg",
+      "originalPath": "dist/assets/icons/info.svg",
+      "originalSha256": "438a1f319d53d86e840af73fb7b1d224c9224a437b9fa449a4e2cb45a82a3552",
+      "sha256": "438a1f319d53d86e840af73fb7b1d224c9224a437b9fa449a4e2cb45a82a3552",
+      "bytes": 348,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/pause.svg",
+      "originalPath": "dist/assets/icons/pause.svg",
+      "originalSha256": "7a9a8fe311234262b85c6e332f77db4ba9a59b6ca4292c41d327977cf61a2fc9",
+      "sha256": "7a9a8fe311234262b85c6e332f77db4ba9a59b6ca4292c41d327977cf61a2fc9",
+      "bytes": 320,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/play.svg",
+      "originalPath": "dist/assets/icons/play.svg",
+      "originalSha256": "885b3ed2095889c4ff063dac35dc424cb9f6c00273ab44e2f90dc9dadbee661a",
+      "sha256": "885b3ed2095889c4ff063dac35dc424cb9f6c00273ab44e2f90dc9dadbee661a",
+      "bytes": 293,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/skip-forward.svg",
+      "originalPath": "dist/assets/icons/skip-forward.svg",
+      "originalSha256": "52f1ed5a89f1a38bf8537b38bd2da0501e396fc4cb03a2cdde38d248ceb03fbe",
+      "sha256": "52f1ed5a89f1a38bf8537b38bd2da0501e396fc4cb03a2cdde38d248ceb03fbe",
+      "bytes": 275,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/assets/icons/upload-simple.svg",
+      "originalPath": "dist/assets/icons/upload-simple.svg",
+      "originalSha256": "d2b22b75affd718a4a24d71ee71586b277cf48ddb7d52b7d7d0a85b47f8b12d1",
+      "sha256": "d2b22b75affd718a4a24d71ee71586b277cf48ddb7d52b7d7d0a85b47f8b12d1",
+      "bytes": 324,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/city-scene.mjs",
+      "originalPath": "dist/city-scene.mjs",
+      "originalSha256": "ba0f9207a2686883819c6e1b8a63477e0d2123871bf31bef1268376053ea6e2d",
+      "sha256": "ba0f9207a2686883819c6e1b8a63477e0d2123871bf31bef1268376053ea6e2d",
+      "bytes": 22199,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/client.mjs",
+      "originalPath": "dist/client.mjs",
+      "originalSha256": "4f72099cbd9d5a6199b2bc0f22d4c46204480dbc000afcd66a33516195806b4d",
+      "sha256": "4f72099cbd9d5a6199b2bc0f22d4c46204480dbc000afcd66a33516195806b4d",
+      "bytes": 1155,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/engine.mjs",
+      "originalPath": "dist/engine.mjs",
+      "originalSha256": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c",
+      "sha256": "4a5290988105dd921ab9622a3708ec0711186eef35f4d7750796866d8f4bb98c",
+      "bytes": 6256,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/executor.wasm",
+      "originalPath": "dist/executor.wasm",
+      "originalSha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+      "sha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+      "bytes": 744,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/favicon.svg",
+      "originalPath": "dist/favicon.svg",
+      "originalSha256": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35",
+      "sha256": "00af68087affe055a946bb4d6f1acac379c279d699fae65fb9d0e7d0bcc77f35",
+      "bytes": 240,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/history.json",
+      "originalPath": "dist/history.json",
+      "originalSha256": "18fb542f276f0c9e93740cd9b7dc1207a11b9605facb7b1bad5fb857f0139497",
+      "sha256": "18fb542f276f0c9e93740cd9b7dc1207a11b9605facb7b1bad5fb857f0139497",
+      "bytes": 749,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/images.mjs",
+      "originalPath": "dist/images.mjs",
+      "originalSha256": "ca9864fc021d259ac7a829bc6d8e3254dab1f121c8db77f7464460aa18aead5e",
+      "sha256": "ca9864fc021d259ac7a829bc6d8e3254dab1f121c8db77f7464460aa18aead5e",
+      "bytes": 3428,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/index.html",
+      "originalPath": "dist/index.html",
+      "originalSha256": "3fce60bec306ea4bde27ec2217debdadee39a0225d8f01fe779812e74607675d",
+      "sha256": "39c1575d5ca9b715789497631e5c77136536f4359ebcb34b2225bc1c825cd6f3",
+      "bytes": 15062,
+      "verbatim": false
+    },
+    {
+      "path": "dist/build-002/kernel-map.json",
+      "originalPath": "dist/kernel-map.json",
+      "originalSha256": "3b821e5a645608bcce415011c46837624b41134adc7d0c417c47b81a4f19a2c2",
+      "sha256": "3b821e5a645608bcce415011c46837624b41134adc7d0c417c47b81a4f19a2c2",
+      "bytes": 2832,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/kernel.bf.gz",
+      "originalPath": "dist/kernel.bf.gz",
+      "originalSha256": "7f54be6b8c188928f77ddcab182c3dc575259a10e33634ea1f08bc88b02372b1",
+      "sha256": "7f54be6b8c188928f77ddcab182c3dc575259a10e33634ea1f08bc88b02372b1",
+      "bytes": 134859,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/presentation.mjs",
+      "originalPath": "dist/presentation.mjs",
+      "originalSha256": "6fbd4af8e51bdf6a6453f31e9cf720617460100fe127d1499fdd2ab8533b1004",
+      "sha256": "6fbd4af8e51bdf6a6453f31e9cf720617460100fe127d1499fdd2ab8533b1004",
+      "bytes": 6136,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/city-boot.thread",
+      "originalPath": "dist/programs/city-boot.thread",
+      "originalSha256": "67ca447796b8d12ba083aa6fb3a5398a1d3e58aa506b8cd86c8a3e70b11032f6",
+      "sha256": "67ca447796b8d12ba083aa6fb3a5398a1d3e58aa506b8cd86c8a3e70b11032f6",
+      "bytes": 184,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/city-state.thread",
+      "originalPath": "dist/programs/city-state.thread",
+      "originalSha256": "3cdc5c5ff4337df8ce613f0cb6e59a7664223599d2bca0253eb1c4f311dea488",
+      "sha256": "3cdc5c5ff4337df8ce613f0cb6e59a7664223599d2bca0253eb1c4f311dea488",
+      "bytes": 1111,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/city-system.json",
+      "originalPath": "dist/programs/city-system.json",
+      "originalSha256": "012078e87acc33b54b83a79a2576f60413708023a297e8d2c412e4ec676adcdd",
+      "sha256": "012078e87acc33b54b83a79a2576f60413708023a297e8d2c412e4ec676adcdd",
+      "bytes": 111,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/city.thread",
+      "originalPath": "dist/programs/city.thread",
+      "originalSha256": "3562be0c72409a95f0d66b2b7883ff6c2b6b1cb58148e4860eff092e53e84525",
+      "sha256": "3562be0c72409a95f0d66b2b7883ff6c2b6b1cb58148e4860eff092e53e84525",
+      "bytes": 8014,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/core.thread",
+      "originalPath": "dist/programs/core.thread",
+      "originalSha256": "1e2d70f7ef755e62da0259b5dd5a4bb1996353678bb2ed57a6823fa0be11f41f",
+      "sha256": "1e2d70f7ef755e62da0259b5dd5a4bb1996353678bb2ed57a6823fa0be11f41f",
+      "bytes": 428,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/dispatch.thread",
+      "originalPath": "dist/programs/dispatch.thread",
+      "originalSha256": "0360bd028765e4a6d06e37e2d7bc640bfab6e8f26c5fe31b5c7f66957b3a135a",
+      "sha256": "0360bd028765e4a6d06e37e2d7bc640bfab6e8f26c5fe31b5c7f66957b3a135a",
+      "bytes": 3293,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/store.thread",
+      "originalPath": "dist/programs/store.thread",
+      "originalSha256": "ff1b9d440b5f8e08e06428683ff3832fedd26a9486e2790ebd4c42c42fdcd9fc",
+      "sha256": "ff1b9d440b5f8e08e06428683ff3832fedd26a9486e2790ebd4c42c42fdcd9fc",
+      "bytes": 2756,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/system.json",
+      "originalPath": "dist/programs/system.json",
+      "originalSha256": "509c0efc16f391715eb293ad23cae981915f5071b9e2fa898818c4824b0e22e5",
+      "sha256": "509c0efc16f391715eb293ad23cae981915f5071b9e2fa898818c4824b0e22e5",
+      "bytes": 154,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/programs/workspace.thread",
+      "originalPath": "dist/programs/workspace.thread",
+      "originalSha256": "f5e453dc2023602bca1b1cbb41d0888df3bdab9ff700bb70c9f9b9e2c5b4b474",
+      "sha256": "f5e453dc2023602bca1b1cbb41d0888df3bdab9ff700bb70c9f9b9e2c5b4b474",
+      "bytes": 17576,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/reproduction/build-002.json",
+      "originalPath": "dist/reproduction/build-002.json",
+      "originalSha256": "6bb0bc25a1686c793dfd0338119b907fbc6ed2c603328c327de3b512b8dc4b12",
+      "sha256": "6bb0bc25a1686c793dfd0338119b907fbc6ed2c603328c327de3b512b8dc4b12",
+      "bytes": 467492,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/site.mjs",
+      "originalPath": "dist/site.mjs",
+      "originalSha256": "b4c3cc4d9992b97966fd59916bf976069076e2154353f57346951237ff178d0c",
+      "sha256": "b4c3cc4d9992b97966fd59916bf976069076e2154353f57346951237ff178d0c",
+      "bytes": 25983,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/style.css",
+      "originalPath": "dist/style.css",
+      "originalSha256": "9d709e20e61edf11ace276476c96d0c3407ccf6cf9a1c8dfbbfbd9a5aa254ed2",
+      "sha256": "9d709e20e61edf11ace276476c96d0c3407ccf6cf9a1c8dfbbfbd9a5aa254ed2",
+      "bytes": 17151,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/wasm-engine.mjs",
+      "originalPath": "dist/wasm-engine.mjs",
+      "originalSha256": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8",
+      "sha256": "47272e16472e93dc347798792207c9390976834da7d0deb7c7880e5bc0ee26b8",
+      "bytes": 2890,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/webmcp.mjs",
+      "originalPath": "dist/webmcp.mjs",
+      "originalSha256": "c37acfa6f941328157e4ba9df60262f620c3ce5f25f3edb1811051477f3bcd78",
+      "sha256": "c37acfa6f941328157e4ba9df60262f620c3ce5f25f3edb1811051477f3bcd78",
+      "bytes": 1826,
+      "verbatim": true
+    },
+    {
+      "path": "dist/build-002/worker.mjs",
+      "originalPath": "dist/worker.mjs",
+      "originalSha256": "1c9cdc263898d58e4faced145281e4b43ccd45b473134d67aceb027eeed0c0b9",
+      "sha256": "1c9cdc263898d58e4faced145281e4b43ccd45b473134d67aceb027eeed0c0b9",
+      "bytes": 6039,
+      "verbatim": true
+    }
+  ]
+}

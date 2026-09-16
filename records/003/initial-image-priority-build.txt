@@ -1,0 +1,20 @@
+{
+  "purpose": "An opaque image after BF compiled raw sources and accepted initial map/inventory input. Zero scheduler rounds; no application solution is precomputed.",
+  "kernel": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "sourceSha256": "e10c7d82a680129247929d9bd2f57dabf7bf5614e183e265c75531d698783e86",
+  "imageSha256": "18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04",
+  "bootMs": 54514.480584,
+  "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 110 \nMODULE-PUBLISHED 0 1 21 1 0 \nMODULE-CREATED 1 \nSOURCE-STORED 1 204 \nMODULE-PUBLISHED 1 2 45 2 0 \nMODULE-CREATED 2 \nSOURCE-STORED 2 204 \nMODULE-PUBLISHED 2 3 45 3 0 \nMODULE-CREATED 3 \nSOURCE-STORED 3 122 \nMODULE-PUBLISHED 3 4 27 4 0 \nMODULE-CREATED 4 \nSOURCE-STORED 4 106 \nMODULE-PUBLISHED 4 5 21 5 0 \nMODULE-CREATED 5 \nSOURCE-STORED 5 70 \nMODULE-PUBLISHED 5 6 18 6 0 \nPROCESS-CREATED 1 0 0 \nPROCESS-CREATED 2 0 1 \nPROCESS-CREATED 3 1 2 \nPROCESS-CREATED 4 2 3 \nPROCESS-CREATED 5 4 4 \nPROCESS-CREATED 6 4 5 \nPROCESS-CREATED 7 3 6 \nPROCESS-CREATED 8 3 7 \nPROCESS-CREATED 9 3 8 \nPROCESS-CREATED 10 3 9 \nPROCESS-CREATED 11 5 10 \nPROCESS-CREATED 12 5 11 \nINDUSTRY-READY 12 4 16 46\n",
+  "inspect": {
+    "state": "input",
+    "instruction": 61119,
+    "pointer": 13,
+    "cell": 10,
+    "steps": 111559991460667,
+    "blocks": 8524473858,
+    "tapeBytes": 797408,
+    "highWaterCell": 392489,
+    "backend": "wasm",
+    "executorMemoryBytes": 4390912
+  }
+}

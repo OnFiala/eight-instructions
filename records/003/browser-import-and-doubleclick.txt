@@ -1,0 +1,1 @@
+Capture error: the hidden raw-output element was read using innerText, which returned empty. This file is not native-output evidence. The observed interaction is recorded in journal.md and imported-native-factory.png; later textContent captures and fresh CLI parity provide separate exact-output evidence.

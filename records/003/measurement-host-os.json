@@ -1,0 +1,7 @@
+{
+  "verifiedAt": "2026-09-16T00:31:12.651044+00:00",
+  "source": "sw_vers; uname -r",
+  "swVers": "ProductName:\t\tmacOS\nProductVersion:\t\t26.6.2\nBuildVersion:\t\t25G83\n",
+  "darwinRelease": "25.6.0",
+  "note": "Post-measurement OS label verification. Original metrics.json release field is the Darwin kernel release, not the macOS product version. No timing sample changed."
+}

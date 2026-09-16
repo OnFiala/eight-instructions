@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "kernelSha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "runs": [
+    {
+      "label": "Active program",
+      "inputs": 15,
+      "outputSha256": "dd6cbca4e0c9d02d31d46796c7babd81d61998933f7b2a62f37282e4813bb00e",
+      "elapsedMs": 30779.241,
+      "state": "input",
+      "steps": 321700868402172
+    },
+    {
+      "label": "Your draft",
+      "inputs": 14,
+      "outputSha256": "bf023567390c4b210c30981d91d42cb81104b07aa80461b1c83bcb5f3dd741bc",
+      "elapsedMs": 33460.298958,
+      "state": "input",
+      "steps": 323006253822261
+    }
+  ]
+}

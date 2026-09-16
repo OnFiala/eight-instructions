@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "scope": "Same-author bounded visual and interaction review; not pixel matching or a WCAG certification",
+  "viewport": [
+    1487,
+    1058
+  ],
+  "reference": "records/003/reference/industrial-design-target.png",
+  "actual": "records/003/screenshots/desktop-final.png",
+  "comparison": "records/003/screenshots/target-comparison-final.png",
+  "overlay": "records/003/screenshots/target-overlay-final.png",
+  "nativeState": "Imported actual browser round173: both stations8/8,26panels produced,15cargo transfers. No historical events invented after import.",
+  "refinements": [
+    "Enlarged main industrial architecture within native plots",
+    "Adjusted city scale and camera height; full rear depot and top labels remain visible",
+    "Added native fault/pause markers and accurate between-edge cargo status",
+    "Retained strong city/panel/footer composition, pale architecture, canal, bridges, lime routes and warm lighting"
+  ],
+  "differences": [
+    "The actual16-node graph and building positions differ from illustrative target geography",
+    "Target has more street-level clutter and denser foliage; implementation prioritizes visible native roads and selectable objects",
+    "Painter ordering and offset vehicle labels are schematic, not full3D collision physics"
+  ],
+  "interactionEvidence": [
+    "browser-narrow-final-publication.txt",
+    "browser-narrow-final-rollback.txt",
+    "browser-capacity-queue.txt",
+    "browser-capacity-released.txt",
+    "browser-factory-fault.txt",
+    "browser-factory-repaired.txt",
+    "browser-complete.txt"
+  ],
+  "narrowViewport": [
+    390,
+    844
+  ],
+  "narrowDocumentWidth": 390,
+  "narrowScrollWidth": 390,
+  "accessibilityScope": "Object menu/parameter/publication/rollback by keyboard; visible focus; narrow layout; reduced-motion native step17\u219218. Not a complete assistive-technology audit.",
+  "referenceSha256": "510cab8943f7d5bb53bdfab29f2eee9cf92e7c958ef35d41e0f00ce2813c6a9b",
+  "actualSha256": "73df491198949ee7f2de8a5bb5221ef8fa7d35e19ea423a47add31620619782a",
+  "comparisonSha256": "e9b700c0a2545264549c85f1c07d8e223bcf63898dfde0eb0f98b43a4ae294e3",
+  "overlaySha256": "275e3725c95cc849f1c1d9d1f76946f3dee62dec9124545d4dfde145d08dc61c"
+}

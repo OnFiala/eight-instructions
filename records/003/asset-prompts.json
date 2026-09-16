@@ -1,0 +1,14 @@
+[
+  [
+    "factory",
+    "Create ONE isolated compact factory building sprite for the isometric city in the reference. Transparent background with real alpha, no sky or surrounding district, no text. A beautiful pale limestone and warm ivory brick workshop with two sawtooth glass roof bays, modest loading door, fine copper pipes, one short chimney, warm interior windows, subtle realistic weathering. Rich miniature architectural realism matching the reference camera and warm dusk lighting, isometric view showing front and right walls, approximately30degree elevation. Clean silhouette, carefully shaded natural materials. All building comfortably inside a square1024x1024 image with transparent margin. No large ground slab, no roads, no people, no vans, no inventory piles: those are dynamic separately rendered state. Soft contact shadow only. Match the reference architecture's scale and craftsmanship. This is appearance only, never a baked city scene."
+  ],
+  [
+    "station-foundation",
+    "Create ONE isolated construction foundation sprite for the civic station in the reference isometric industrial city. Transparent background with real alpha, no sky, no roads, no text. Square small building footprint with pale concrete foundation, precise low stone plinth, steel starter columns, a few tidy scaffold poles, restrained safety rail, realistic architectural miniature. Same warm dusk light and approximately30degree isometric camera showing front and right edges as the reference. Visually unfinished at aboutonequarter construction, no completed roof or walls. Centered square1024image with ample transparent margin, no broad opaque ground tile. No workers, vehicle, cranes outside footprint, material inventory piles or numbers; runtime will add actual material state separately. Fine realistic surfaces and soft shadow. Single building asset, no contact sheet."
+  ],
+  [
+    "station-frame",
+    "Create ONE isolated halfway-built small civic station sprite matching the reference's construction site. Transparent background with real alpha, no sky, no surrounding neighborhood, no roads, no text. Elegant pale stone station occupying a compact square footprint, visible structural columns and half-height walls, delicate timber/steel scaffold around a partly installed roof, neat safety rails and a small attached yellow crane within the silhouette. Isometric architectural miniature showing front and right sides, approximately30degree elevation, warm dusk light, beautiful detailed limestone and metal materials. Clearly unfinished, aboutthreequarters constructed, suitable to replace the foundation sprite at the same footprint. Centered1024square with transparent margins, no giant ground slab, no people, no vans, no inventory stacks or illustrative progress bars. Match the reference precisely in art direction. One isolated building, no contact sheet."
+  ]
+]

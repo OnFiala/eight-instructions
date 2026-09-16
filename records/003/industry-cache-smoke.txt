@@ -1,0 +1,66 @@
+Thread / 8 Instructions
+MODULE-CREATED 0 
+SOURCE-STORED 0 100 
+MODULE-PUBLISHED 0 1 21 1 0 
+MODULE-CREATED 1 
+SOURCE-STORED 1 162 
+MODULE-PUBLISHED 1 2 35 2 0 
+MODULE-CREATED 2 
+SOURCE-STORED 2 162 
+MODULE-PUBLISHED 2 3 35 3 0 
+MODULE-CREATED 3 
+SOURCE-STORED 3 101 
+MODULE-PUBLISHED 3 4 24 4 0 
+MODULE-CREATED 4 
+SOURCE-STORED 4 96 
+MODULE-PUBLISHED 4 5 21 5 0 
+MODULE-CREATED 5 
+SOURCE-STORED 5 60 
+MODULE-PUBLISHED 5 6 18 6 0 
+PROCESS-CREATED 1 0 0 
+PROCESS-CREATED 2 0 1 
+PROCESS-CREATED 3 1 2 
+PROCESS-CREATED 4 2 3 
+PROCESS-CREATED 5 4 4 
+PROCESS-CREATED 6 4 5 
+PROCESS-CREATED 7 3 6 
+PROCESS-CREATED 8 3 7 
+PROCESS-CREATED 9 3 8 
+PROCESS-CREATED 10 3 9 
+PROCESS-CREATED 11 5 10 
+PROCESS-CREATED 12 5 11 
+INDUSTRY-READY 12 4 16 46
+
+{"phase":"boot","ms":77788.359708,"state":"input","instruction":58144,"pointer":13,"cell":10,"steps":170919742865525,"blocks":11050972551,"tapeBytes":747928,"highWaterCell":366405,"backend":"wasm","executorMemoryBytes":3801088}
+{"round":1,"ms":6232.1389590000035,"state":"input","output":"SEND 1 3 1 1 1 \nORDER 1 3 6 \nSEND 2 4 2 1 2 \nORDER 2 4 6 \nROUND 1 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":2,"ms":3611.2023340000014,"state":"input","output":"RECEIVE 1 1 \nAUTHORIZE 1 1 \nRECEIVE 2 2 \nAUTHORIZE 2 2 \nROUND 2 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":3,"ms":6565.133333999998,"state":"input","output":"SEND 3 1 7 2 1 \nASSIGN 1 7 \nSEND 4 2 8 2 2 \nASSIGN 2 8 \nRECEIVE 3 7 \nRECEIVE 4 8 \nROUND 3 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":4,"ms":4345.099291999999,"state":"input","output":"LOAD 7 1 1 6 \nROUND 4 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":5,"ms":5914.345457999996,"state":"input","output":"ROUND 5 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":6,"ms":3447.7690000000002,"state":"input","output":"ROUND 6 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":7,"ms":6212.674499999994,"state":"input","output":"ROUND 7 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":8,"ms":3437.3335840000072,"state":"input","output":"ROUND 8 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":9,"ms":6114.5063329999975,"state":"input","output":"ROUND 9 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":10,"ms":3436.069749999995,"state":"input","output":"ROUND 10 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":11,"ms":6149.212583000015,"state":"input","output":"ROUND 11 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":12,"ms":3412.36937499998,"state":"input","output":"ROUND 12 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":13,"ms":6073.9992499999935,"state":"input","output":"ROUND 13 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":14,"ms":3447.337375000003,"state":"input","output":"ROUND 14 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":15,"ms":6062.655375000002,"state":"input","output":"ROUND 15 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":16,"ms":3420.7123340000107,"state":"input","output":"ROUND 16 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":17,"ms":6069.9212919999845,"state":"input","output":"ROUND 17 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":18,"ms":3438.157790999976,"state":"input","output":"ROUND 18 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":19,"ms":6140.110542000009,"state":"input","output":"ROUND 19 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":20,"ms":3288.998583000008,"state":"input","output":"ROUND 20 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":21,"ms":5792.17279099999,"state":"input","output":"I-ROUTE 7 4 12 4 4 3 12 8 4 \nROUND 21 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":22,"ms":3107.952332999994,"state":"input","output":"ROUND 22 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":23,"ms":5468.332792000001,"state":"input","output":"I-DEPART 7 33 4 \nROUND 23 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":24,"ms":3120.681125000003,"state":"input","output":"ROUND 24 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":25,"ms":4992.9654579999915,"state":"input","output":"ROUND 25 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":26,"ms":3122.3336249999993,"state":"input","output":"ROUND 26 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":27,"ms":5265.894124999992,"state":"input","output":"I-ARRIVE 7 8 \nROUND 27 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":28,"ms":3321.663958000019,"state":"input","output":"ROUND 28 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":29,"ms":5669.751250000001,"state":"input","output":"ROUND 29 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":30,"ms":3343.406874999986,"state":"input","output":"ROUND 30 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":31,"ms":5953.531665999995,"state":"input","output":"ROUND 31 \nACCOUNT 96 96 0 0 96 1 \n"}
+{"round":32,"ms":3353.530792000005,"state":"input","output":"ROUND 32 \nACCOUNT 96 96 0 0 96 1 \n"}

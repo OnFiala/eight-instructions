@@ -1,0 +1,44 @@
+{
+  "testFiles": 33,
+  "groups": {
+    "core": [
+      "tests/arithmetic.test.mjs",
+      "tests/audit.test.mjs",
+      "tests/capacity.test.mjs",
+      "tests/city-adversarial.test.mjs",
+      "tests/city.test.mjs",
+      "tests/counter-windows.test.mjs",
+      "tests/diagnostic-stream.test.mjs",
+      "tests/dispatch.test.mjs",
+      "tests/emitter.test.mjs",
+      "tests/engine.test.mjs",
+      "tests/images.test.mjs",
+      "tests/industry-capacity.test.mjs",
+      "tests/industry-presentation.test.mjs",
+      "tests/industry-priority.test.mjs",
+      "tests/industry-protocol.test.mjs",
+      "tests/industry.test.mjs",
+      "tests/kernel.test.mjs",
+      "tests/legacy-build.test.mjs",
+      "tests/presentation.test.mjs",
+      "tests/process-adversarial.test.mjs",
+      "tests/processes.test.mjs",
+      "tests/reclaim.test.mjs",
+      "tests/reference.test.mjs",
+      "tests/store.test.mjs",
+      "tests/wasm.test.mjs",
+      "tests/webmcp.test.mjs",
+      "tests/worker.test.mjs",
+      "tests/workspace-address.test.mjs",
+      "tests/workspace-memory.test.mjs",
+      "tests/workspace-output.test.mjs",
+      "tests/workspace.test.mjs"
+    ],
+    "literal-modules": [
+      "tests/native-reference.test.mjs"
+    ],
+    "literal-processes": [
+      "tests/process-reference.test.mjs"
+    ]
+  }
+}

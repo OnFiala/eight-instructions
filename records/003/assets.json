@@ -1,0 +1,53 @@
+{
+  "tool": "built-in image_gen",
+  "authoringModel": "Astra",
+  "role": "Appearance-only isolated building sprites. Native state chooses the phase; no city computation is baked into these images.",
+  "reference": "records/003/reference/industrial-design-target.png",
+  "assets": [
+    {
+      "name": "factory",
+      "originalPath": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-368bb3d9-93fe-4338-8c88-62517b997abe.png",
+      "path": "dist/assets/industrial/factory.png",
+      "sha256": "e2a5b7f62226429bdb4bb074d05f5bee13f16b0d891750aabc0adc7d41be08a2",
+      "bytes": 1773012
+    },
+    {
+      "name": "station-foundation",
+      "originalPath": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-f36aeb30-1ba6-4733-a454-30a1e58aeb86.png",
+      "path": "dist/assets/industrial/station-foundation.png",
+      "sha256": "8e51ddee912ff4cd3d928a7240e1492e2cc2780256a4b7ce68875da3990555a6",
+      "bytes": 1105395
+    },
+    {
+      "name": "station-frame",
+      "originalPath": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-695ec23c-f72f-4393-8240-56784f5b259d.png",
+      "path": "dist/assets/industrial/station-frame.png",
+      "sha256": "226f3075c172bd445654498bb99dd38a3159cdb34fe8aecf2ef3c2a79f97dc79",
+      "bytes": 1510746
+    },
+    {
+      "name": "station-complete",
+      "originalPath": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-c6c8cf71-19e9-421b-a628-b7384b9a91e2.png",
+      "path": "dist/assets/industrial/station-complete.png",
+      "sha256": "f5c3d29950eb0da89215c873bd27d8fb7e183183a6b1afe0c8b0582f9991bd95",
+      "bytes": 1773032,
+      "reference": "dist/assets/industrial/station-frame.png"
+    },
+    {
+      "name": "raw-pallet",
+      "originalPath": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-f2b4f1b4-c79b-4a7c-bf24-8f7e3a1e5ae2.png",
+      "path": "dist/assets/industrial/raw-pallet.png",
+      "sha256": "a7c7290c1031530e12bc4ff5d4a7afb6775bfd7d68562cf94da00053222d1cfb",
+      "bytes": 1367452,
+      "reference": "dist/assets/industrial/station-frame.png"
+    },
+    {
+      "name": "panel-pallet",
+      "originalPath": "/Users/ondrej/.codex/generated_images/01a08c22-25c6-7291-bb43-02bd78ebdf74/exec-9a619f6a-8a7e-4fb3-a874-623117f8954f.png",
+      "path": "dist/assets/industrial/panel-pallet.png",
+      "sha256": "bfb44e11da61a694d3d1d600e1dabaa087cd501722efea0f3f3caf894dea0599",
+      "bytes": 1246539,
+      "reference": "dist/assets/industrial/station-frame.png"
+    }
+  ]
+}

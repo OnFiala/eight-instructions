@@ -3,11 +3,11 @@ import assert from 'node:assert/strict';
 import {fresh,command,word,kernel} from './system-helpers.mjs';
 
 test('dictionary capacity refuses publication without corrupting existing words',async()=>{
-  const m=await fresh(),remaining=256-word(m,'dp');
+  const m=await fresh(),capacity=kernel.map.arrays.dictionary.size/32,remaining=capacity-word(m,'dp');
   command(m,Array.from({length:remaining},(_,i)=>`: slot${i} ${i} ;`).join(' '));
-  assert.equal(word(m,'dp'),256);
+  assert.equal(word(m,'dp'),capacity);
   const cp=word(m,'cp');assert.match(command(m,': excess 1 ;',{allowError:true}),/!E5/);
-  assert.equal(word(m,'dp'),256);assert.equal(word(m,'cp'),cp);
+  assert.equal(word(m,'dp'),capacity);assert.equal(word(m,'cp'),cp);
   assert.equal(command(m,`slot${remaining-1} . 1071 462 swap drop .`),`${remaining-1} 462 `);
 });
 test('code and nested control exhaustion roll back incomplete definitions',async()=>{

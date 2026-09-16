@@ -34,7 +34,7 @@ export async function replay(bundle,{verifyArtifacts=true}={}) {
       if(output!==run.expectedOutputs[i])throw new Error(`Run ${run.label}, input ${i}: native output differs`);
       outputs.push(output);
     }
-    receipts.push({label:run.label,inputs:run.inputs.length,outputSha256:await sha256(outputs.join('')),elapsedMs:performance.now()-start,state:machine.state,steps:machine.steps});
+    receipts.push({label:run.label,inputs:run.inputs.length,outputSha256:await sha256(outputs.join('')),elapsedMs:performance.now()-start,state:machine.state,steps:machine.inspect().steps});
   }
   return {status:'PASS',kernelSha256:kernel.programHash,runs:receipts};
 }

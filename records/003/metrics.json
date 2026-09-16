@@ -1,0 +1,1317 @@
+{
+  "measuredAt": "2026-09-15T23:39:05.841Z",
+  "method": "Three sequential fresh BF cold boots in one Node process using the generic Wasm executor. Limits5e14literal BF instructions/5e10executor blocks per input. No other project test, native browser run or probe is intentionally active during this measurement. Full-frame rendering output is timed separately from scheduler execution. Twenty-four subsequent rounds include actual native route phases and production; they are not isolated route-only/production-only function timings. The final20lifetime cycles run with industrial participants paused. Timings are observed samples, not deadlines or browser/frame-rate claims.",
+  "environment": {
+    "host": "MacBook-Pro",
+    "platform": "darwin",
+    "release": "25.6.0",
+    "architecture": "arm64",
+    "cpu": "Apple M5",
+    "logicalCpus": 10,
+    "ramBytes": 34359738368,
+    "node": "v22.22.0"
+  },
+  "kernelSha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "sourceSha256": "e10c7d82a680129247929d9bd2f57dabf7bf5614e183e265c75531d698783e86",
+  "guestTapeCells": 398704,
+  "guestTapeBytes": 797408,
+  "hostPeakRssKiB": 496480,
+  "artifactLoadMs": 673.842666,
+  "summary": {
+    "coldNativeBoot": {
+      "samples": 3,
+      "minMs": 34398.28562500002,
+      "medianMs": 34663.39541700002,
+      "maxMs": 54803.759917
+    },
+    "externalMessage": {
+      "samples": 3,
+      "minMs": 27.097125000000233,
+      "medianMs": 27.653791000018828,
+      "maxMs": 27.932417000003625
+    },
+    "schedulerRound1": {
+      "samples": 3,
+      "minMs": 2135.460665999999,
+      "medianMs": 2152.325583000027,
+      "maxMs": 2188.5220839999965
+    },
+    "fullPresentationFrame": {
+      "samples": 3,
+      "minMs": 1359.1784160000097,
+      "medianMs": 1361.7977500000052,
+      "maxMs": 1444.0672909999848
+    },
+    "storedSourceRead": {
+      "samples": 3,
+      "minMs": 104.67383400000108,
+      "medianMs": 105.37712499999907,
+      "maxMs": 110.78137499999139
+    },
+    "nativeSourceEditCompilePublish": {
+      "samples": 3,
+      "minMs": 3105.165000000001,
+      "medianMs": 3125.680874999991,
+      "maxMs": 3239.242916999967
+    },
+    "rollback": {
+      "samples": 3,
+      "minMs": 8.938833000000159,
+      "medianMs": 9.454083000018727,
+      "maxMs": 9.509416999993846
+    },
+    "industrialRound2": {
+      "samples": 3,
+      "minMs": 2586.543832999996,
+      "medianMs": 2667.6150830000115,
+      "maxMs": 2688.077874999959
+    },
+    "industrialRound3": {
+      "samples": 3,
+      "minMs": 2066.386165999982,
+      "medianMs": 2074.978667000003,
+      "maxMs": 2127.434083
+    },
+    "industrialRound4": {
+      "samples": 3,
+      "minMs": 2189.110625000001,
+      "medianMs": 2197.296749999994,
+      "maxMs": 2239.1431250000023
+    },
+    "industrialRound5": {
+      "samples": 3,
+      "minMs": 2225.640499999994,
+      "medianMs": 2237.977292000025,
+      "maxMs": 2238.6479999999865
+    },
+    "industrialRound6": {
+      "samples": 3,
+      "minMs": 2118.6667499999894,
+      "medianMs": 2121.966124999977,
+      "maxMs": 2123.775874999992
+    },
+    "industrialRound7": {
+      "samples": 3,
+      "minMs": 2081.1503749999974,
+      "medianMs": 2119.9245419999934,
+      "maxMs": 2126.2056659999944
+    },
+    "industrialRound8": {
+      "samples": 3,
+      "minMs": 2005.3416660000075,
+      "medianMs": 2042.240374999994,
+      "maxMs": 2095.8219999999856
+    },
+    "industrialRound9": {
+      "samples": 3,
+      "minMs": 2043.2563340000052,
+      "medianMs": 2053.8342079999857,
+      "maxMs": 2116.959124999994
+    },
+    "industrialRound10": {
+      "samples": 3,
+      "minMs": 2020.6175829999993,
+      "medianMs": 2028.4408750000002,
+      "maxMs": 2032.113665999961
+    },
+    "industrialRound11": {
+      "samples": 3,
+      "minMs": 1922.88841699998,
+      "medianMs": 1932.9982909999962,
+      "maxMs": 1981.6787079999922
+    },
+    "industrialRound12": {
+      "samples": 3,
+      "minMs": 2002.3849159999954,
+      "medianMs": 2043.7619169999962,
+      "maxMs": 2133.4538750000065
+    },
+    "industrialRound13": {
+      "samples": 3,
+      "minMs": 1976.262791999994,
+      "medianMs": 2025.329334000009,
+      "maxMs": 2029.4629999999888
+    },
+    "industrialRound14": {
+      "samples": 3,
+      "minMs": 2027.3903329999885,
+      "medianMs": 2036.4401669999934,
+      "maxMs": 2053.2211670000106
+    },
+    "industrialRound15": {
+      "samples": 3,
+      "minMs": 2157.938875000007,
+      "medianMs": 2211.8358749999898,
+      "maxMs": 2226.714666999993
+    },
+    "industrialRound16": {
+      "samples": 3,
+      "minMs": 2129.258415999997,
+      "medianMs": 2142.0305000000226,
+      "maxMs": 2172.963958999957
+    },
+    "industrialRound17": {
+      "samples": 3,
+      "minMs": 2327.872915999993,
+      "medianMs": 2379.0537080000213,
+      "maxMs": 2459.0462499999558
+    },
+    "industrialRound18": {
+      "samples": 3,
+      "minMs": 2326.6621670000022,
+      "medianMs": 2337.4063329999917,
+      "maxMs": 2408.931332999957
+    },
+    "industrialRound19": {
+      "samples": 3,
+      "minMs": 2202.396458000003,
+      "medianMs": 2241.7499580000003,
+      "maxMs": 2244.667874999999
+    },
+    "industrialRound20": {
+      "samples": 3,
+      "minMs": 2154.262499999997,
+      "medianMs": 2190.3068330000096,
+      "maxMs": 2194.367292000039
+    },
+    "industrialRound21": {
+      "samples": 3,
+      "minMs": 2158.1639170000126,
+      "medianMs": 2193.522874999966,
+      "maxMs": 2430.225582999992
+    },
+    "industrialRound22": {
+      "samples": 3,
+      "minMs": 2106.2662079999573,
+      "medianMs": 2127.2251250000118,
+      "maxMs": 2207.981375000003
+    },
+    "industrialRound23": {
+      "samples": 3,
+      "minMs": 2066.7802500000107,
+      "medianMs": 2087.6908330000006,
+      "maxMs": 2112.9791250000126
+    },
+    "industrialRound24": {
+      "samples": 3,
+      "minMs": 2074.545374999987,
+      "medianMs": 2075.6269170000014,
+      "maxMs": 2132.823250000016
+    },
+    "industrialRound25": {
+      "samples": 3,
+      "minMs": 1973.8587499999558,
+      "medianMs": 1979.0938339999993,
+      "maxMs": 2014.646458000003
+    },
+    "materialAccount": {
+      "samples": 3,
+      "minMs": 97.77724999999919,
+      "medianMs": 105.34608299998217,
+      "maxMs": 107.97408399998676
+    },
+    "afterImportAccount": {
+      "samples": 3,
+      "minMs": 96.8916250000184,
+      "medianMs": 100.02754199999617,
+      "maxMs": 103.5925419999985
+    },
+    "cycleModuleSetup": {
+      "samples": 3,
+      "minMs": 1122.4024579999968,
+      "medianMs": 1125.6631669999915,
+      "maxMs": 1142.014124999987
+    },
+    "pauseIndustrialParticipants": {
+      "samples": 3,
+      "minMs": 322.13187500002095,
+      "medianMs": 323.14066699999967,
+      "maxMs": 323.5240000000049
+    },
+    "cycleHarnessDefinition": {
+      "samples": 3,
+      "minMs": 67.7324999999837,
+      "medianMs": 67.94550000000163,
+      "maxMs": 69.4440409999952
+    },
+    "twentyWorkMessageReclaimCycles": {
+      "samples": 3,
+      "minMs": 11084.572,
+      "medianMs": 11430.501457999984,
+      "maxMs": 11609.647041999997
+    },
+    "releaseCycleModule": {
+      "samples": 3,
+      "minMs": 152.06604199999128,
+      "medianMs": 152.90154099999927,
+      "maxMs": 166.4500419999822
+    },
+    "exportMs": {
+      "samples": 3,
+      "minMs": 19.938584000003175,
+      "medianMs": 20.67316600002232,
+      "maxMs": 20.73574999999255
+    },
+    "importMs": {
+      "samples": 3,
+      "minMs": 52.42683300000499,
+      "medianMs": 53.651749999960884,
+      "maxMs": 55.48691599999438
+    }
+  },
+  "samples": [
+    {
+      "sample": 1,
+      "measurements": [
+        {
+          "label": "coldNativeBoot",
+          "elapsedMs": 54803.759917,
+          "bfInstructions": "111559991460667",
+          "executorBlocks": "8524473858",
+          "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 110 \nMODULE-PUBLISHED 0 1 21 1 0 \nMODULE-CREATED 1 \nSOURCE-STORED 1 204 \nMODULE-PUBLISHED 1 2 45 2 0 \nMODULE-CREATED 2 \nSOURCE-STORED 2 204 \nMODULE-PUBLISHED 2 3 45 3 0 \nMODULE-CREATED 3 \nSOURCE-STORED 3 122 \nMODULE-PUBLISHED 3 4 27 4 0 \nMODULE-CREATED 4 \nSOURCE-STORED 4 106 \nMODULE-PUBLISHED 4 5 21 5 0 \nMODULE-CREATED 5 \nSOURCE-STORED 5 70 \nMODULE-PUBLISHED 5 6 18 6 0 \nPROCESS-CREATED 1 0 0 \nPROCESS-CREATED 2 0 1 \nPROCESS-CREATED 3 1 2 \nPROCESS-CREATED 4 2 3 \nPROCESS-CREATED 5 4 4 \nPROCESS-CREATED 6 4 5 \nPROCESS-CREATED 7 3 6 \nPROCESS-CREATED 8 3 7 \nPROCESS-CREATED 9 3 8 \nPROCESS-CREATED 10 3 9 \nPROCESS-CREATED 11 5 10 \nPROCESS-CREATED 12 5 11 \nINDUSTRY-READY 12 4 16 46\n",
+          "hostRssBytes": 410370048,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "externalMessage",
+          "elapsedMs": 27.097125000000233,
+          "bfInstructions": "153681848091",
+          "executorBlocks": "6866057",
+          "output": "SEND 1 0 3 9 77 0 \n1 ",
+          "hostRssBytes": 410370048,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "schedulerRound1",
+          "elapsedMs": 2188.5220839999965,
+          "bfInstructions": "13851930385929",
+          "executorBlocks": "529725012",
+          "output": "RECEIVE 1 3 2 \nSEND 2 3 1 1 1 2 \nORDER 1 3 6 \nSEND 3 4 2 1 2 3 \nORDER 2 4 6 \nROUND 1 \n",
+          "hostRssBytes": 410370048,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "fullPresentationFrame",
+          "elapsedMs": 1361.7977500000052,
+          "bfInstructions": "9126285802853",
+          "executorBlocks": "341437829",
+          "output": "INDUSTRY 3 1 1 46 2 0 0 0 \nNODE 0 0 0 \nNODE 1 20 0 \nNODE 2 40 0 \nNODE 3 60 0 \nNODE 4 0 20 \nNODE 5 20 20 \nNODE 6 40 20 \nNODE 7 60 20 \nNODE 8 0 40 \nNODE 9 20 40 \nNODE 10 40 40 \nNODE 11 60 40 \nNODE 12 0 60 \nNODE 13 20 60 \nNODE 14 40 60 \nNODE 15 60 60 \nI-ROAD 0 0 1 2 0 1 1 1 0 \nI-ROAD 1 1 0 2 0 1 1 1 0 \nI-ROAD 2 2 3 2 0 1 1 1 0 \nI-ROAD 3 3 2 2 0 1 1 1 0 \nI-ROAD 4 4 5 2 0 1 1 1 0 \nI-ROAD 5 5 4 2 0 1 1 1 0 \nI-ROAD 6 6 7 2 0 1 1 1 0 \nI-ROAD 7 7 6 2 0 1 1 1 0 \nI-ROAD 8 8 9 2 0 1 1 1 0 \nI-ROAD 9 9 8 2 0 1 1 1 0 \nI-ROAD 10 10 11 2 0 1 1 1 0 \nI-ROAD 11 11 10 2 0 1 1 1 0 \nI-ROAD 12 12 13 2 0 1 1 1 0 \nI-ROAD 13 13 12 2 0 1 1 1 0 \nI-ROAD 14 14 15 2 0 1 1 1 0 \nI-ROAD 15 15 14 2 0 1 1 1 0 \nI-ROAD 16 0 4 2 0 1 1 1 0 \nI-ROAD 17 4 0 2 0 1 1 1 0 \nI-ROAD 18 1 5 2 0 1 1 1 0 \nI-ROAD 19 5 1 2 0 1 1 1 0 \nI-ROAD 20 2 6 2 0 1 1 1 0 \nI-ROAD 21 6 2 2 0 1 1 1 0 \nI-ROAD 22 3 7 2 0 1 1 1 0 \nI-ROAD 23 7 3 2 0 1 1 1 0 \nI-ROAD 24 4 8 2 0 1 1 1 0 \nI-ROAD 25 8 4 2 0 1 1 1 0 \nI-ROAD 26 5 9 2 0 1 1 1 0 \nI-ROAD 27 9 5 2 0 1 1 1 0 \nI-ROAD 28 6 10 2 0 1 1 1 0 \nI-ROAD 29 10 6 2 0 1 1 1 0 \nI-ROAD 30 7 11 2 0 1 1 1 0 \nI-ROAD 31 11 7 2 0 1 1 1 0 \nI-ROAD 32 8 12 2 0 1 1 1 0 \nI-ROAD 33 12 8 2 0 1 1 1 0 \nI-ROAD 34 9 13 2 0 1 1 1 0 \nI-ROAD 35 13 9 2 0 1 1 1 0 \nI-ROAD 36 10 14 2 0 1 1 1 0 \nI-ROAD 37 14 10 2 0 1 1 1 0 \nI-ROAD 38 11 15 2 0 1 1 1 0 \nI-ROAD 39 15 11 2 0 1 1 1 0 \nI-ROAD 40 1 2 6 0 1 1 1 0 \nI-ROAD 41 2 1 6 0 1 1 1 0 \nI-ROAD 42 9 10 2 5 1 1 1 0 \nI-ROAD 43 10 9 2 5 1 1 1 0 \nI-ROAD 44 5 6 8 0 1 1 1 0 \nI-ROAD 45 6 5 8 0 1 1 1 0 \nENTITY 0 1 1 12 48 0 0 0 12 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 \nTRAVEL 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nJOB 0 1 1 1 3 1 6 0 \nENTITY 1 2 1 3 48 0 0 0 3 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 \nTRAVEL 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nJOB 1 1 2 2 4 1 6 0 \nENTITY 2 3 2 4 0 0 0 0 4 0 1 6 0 0 0 1 0 24 3 0 0 8 1 0 \nTRAVEL 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 3 4 2 11 0 0 0 0 11 0 2 5 0 0 0 2 0 24 3 0 0 8 1 0 \nTRAVEL 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 4 5 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 \nTRAVEL 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 5 6 4 15 0 0 0 0 15 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 \nTRAVEL 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 6 7 3 12 0 0 0 0 12 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 7 0 \nENTITY 7 8 3 12 0 0 0 0 12 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 8 0 \nENTITY 8 9 3 3 0 0 0 0 3 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 9 0 \nENTITY 9 10 3 3 0 0 0 0 3 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 10 0 \nENTITY 10 11 5 1 0 0 0 0 1 0 0 0 0 0 0 0 0 24 3 0 40 8 0 0 \nTRAVEL 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 11 12 5 9 0 0 0 0 9 0 0 0 0 0 0 0 0 24 3 0 42 8 0 0 \nTRAVEL 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nACCOUNT 96 96 0 0 96 1 \nPROCESSES 1 12 12 0 3 1 \nPROCESS 0 1 1 0 1 0 21 0 0 0 0 1 7 0 1 0 1 \nPRIVATE 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 1 1 2 0 1 0 21 0 0 0 0 1 7 0 1 0 1 \nPRIVATE 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 2 1 3 1 2 0 45 0 0 0 0 1 24 1 0 0 1 \nPRIVATE 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 3 1 4 2 3 0 45 0 0 0 0 1 16 0 0 0 1 \nPRIVATE 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 4 1 5 4 5 0 21 0 0 0 0 1 7 0 0 0 1 \nPRIVATE 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 5 1 6 4 5 0 21 0 0 0 0 1 7 0 0 0 1 \nPRIVATE 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 6 1 7 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 7 1 8 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 8 1 9 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 9 1 10 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 10 1 11 5 6 0 18 0 0 0 0 1 13 0 0 0 1 \nPRIVATE 11 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 11 1 12 5 6 0 18 0 0 0 0 1 13 0 0 0 1 \nPRIVATE 12 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nWORKSPACE 8 16 512 256 6 \nMODULE 0 1 1 0 110 1 0 0 \nNAME 0 depot.thread\nMODULE 1 1 2 0 204 1 0 0 \nNAME 1 factory-west.thread\nMODULE 2 1 3 0 204 1 0 0 \nNAME 2 factory-east.thread\nMODULE 3 1 4 0 122 1 0 0 \nNAME 3 van.thread\nMODULE 4 1 5 0 106 1 0 0 \nNAME 4 station.thread\nMODULE 5 1 6 0 70 1 0 0 \nNAME 5 signal.thread\nMODULE 6 0 0 0 0 0 0 0 \nNAME 6 \nMODULE 7 0 0 0 0 0 0 0 \nNAME 7 \nVERSION 1 2 0 1 3 0 21 110 1 \nVERSION 2 2 1 2 2 0 45 204 1 \nVERSION 3 2 2 3 2 0 45 204 1 \nVERSION 4 2 3 4 5 0 27 122 1 \nVERSION 5 2 4 5 3 0 21 106 1 \nVERSION 6 2 5 6 3 0 18 70 1 \nVERSION 7 0 0 0 0 0 0 0 0 \nVERSION 8 0 0 0 0 0 0 0 0 \nVERSION 9 0 0 0 0 0 0 0 0 \nVERSION 10 0 0 0 0 0 0 0 0 \nVERSION 11 0 0 0 0 0 0 0 0 \nVERSION 12 0 0 0 0 0 0 0 0 \nVERSION 13 0 0 0 0 0 0 0 0 \nVERSION 14 0 0 0 0 0 0 0 0 \nVERSION 15 0 0 0 0 0 0 0 0 \nVERSION 16 0 0 0 0 0 0 0 0 \nMEMORY 16 6 4096 177 8192 816 4096 816 \nINDUSTRY-END 1 \n",
+          "hostRssBytes": 410435584,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "storedSourceRead",
+          "elapsedMs": 104.67383400000108,
+          "bfInstructions": "360902071593",
+          "executorBlocks": "26136663",
+          "output": "SOURCE 1 204 \n: factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 dup 2 stock > if request else drop then work dispatch ;\n",
+          "hostRssBytes": 410435584,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "nativeSourceEditCompilePublish",
+          "elapsedMs": 3105.165000000001,
+          "bfInstructions": "12794502569013",
+          "executorBlocks": "777621242",
+          "output": "SOURCE-STORED 1 204 \nMODULE-PUBLISHED 1 7 45 7 0 \n",
+          "hostRssBytes": 410435584,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "rollback",
+          "elapsedMs": 8.938833000000159,
+          "bfInstructions": "18492931791",
+          "executorBlocks": "2288958",
+          "output": "ROLLBACK 1 2 \n",
+          "hostRssBytes": 410451968,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound2",
+          "elapsedMs": 2586.543832999996,
+          "bfInstructions": "16410867991957",
+          "executorBlocks": "644805319",
+          "output": "RECEIVE 2 1 1 \nAUTHORIZE 1 1 \nSEND 4 1 7 2 1 1 \nASSIGN 1 7 \nRECEIVE 3 2 1 \nAUTHORIZE 2 2 \nSEND 5 2 9 2 2 1 \nASSIGN 2 9 \nRECEIVE 4 7 4 \nLOAD 7 1 1 6 \nRECEIVE 5 9 4 \nLOAD 9 2 2 6 \nROUND 2 \n",
+          "hostRssBytes": 410451968,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound3",
+          "elapsedMs": 2074.978667000003,
+          "bfInstructions": "17545525193466",
+          "executorBlocks": "509187653",
+          "output": "ROUND 3 \n",
+          "hostRssBytes": 410468352,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound4",
+          "elapsedMs": 2197.296749999994,
+          "bfInstructions": "17340285393367",
+          "executorBlocks": "546978494",
+          "output": "ROUND 4 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound5",
+          "elapsedMs": 2225.640499999994,
+          "bfInstructions": "16367645516121",
+          "executorBlocks": "538594931",
+          "output": "ROUND 5 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound6",
+          "elapsedMs": 2118.6667499999894,
+          "bfInstructions": "15225155976712",
+          "executorBlocks": "526517131",
+          "output": "ROUND 6 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound7",
+          "elapsedMs": 2081.1503749999974,
+          "bfInstructions": "15182701414483",
+          "executorBlocks": "522077983",
+          "output": "ROUND 7 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound8",
+          "elapsedMs": 2005.3416660000075,
+          "bfInstructions": "13697868173127",
+          "executorBlocks": "504250501",
+          "output": "I-ROUTE 7 4 12 4 4 3 12 8 4 \nROUND 8 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound9",
+          "elapsedMs": 2043.2563340000052,
+          "bfInstructions": "13090261210038",
+          "executorBlocks": "507079926",
+          "output": "I-DEPART 7 33 4 \nI-ROUTE 9 4 3 11 4 3 3 7 11 \nROUND 9 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound10",
+          "elapsedMs": 2020.6175829999993,
+          "bfInstructions": "12753182164721",
+          "executorBlocks": "493782805",
+          "output": "I-DEPART 9 22 4 \nROUND 10 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound11",
+          "elapsedMs": 1932.9982909999962,
+          "bfInstructions": "12728130429646",
+          "executorBlocks": "484347878",
+          "output": "I-ARRIVE 7 8 \nROUND 11 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound12",
+          "elapsedMs": 2002.3849159999954,
+          "bfInstructions": "12995601477825",
+          "executorBlocks": "501935363",
+          "output": "I-DEPART 7 25 4 \nI-ARRIVE 9 7 \nROUND 12 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound13",
+          "elapsedMs": 1976.262791999994,
+          "bfInstructions": "12828112710826",
+          "executorBlocks": "495170557",
+          "output": "I-DEPART 9 30 4 \nROUND 13 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound14",
+          "elapsedMs": 2027.3903329999885,
+          "bfInstructions": "13039846330150",
+          "executorBlocks": "505548966",
+          "output": "I-ARRIVE 7 4 \nSEND 6 7 3 3 1 4 \nUNLOAD 7 1 3 6 \nROUND 14 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound15",
+          "elapsedMs": 2157.938875000007,
+          "bfInstructions": "13850197563983",
+          "executorBlocks": "538788282",
+          "output": "RECEIVE 6 3 2 \nACK 1 3 \nI-ARRIVE 9 11 \nSEND 7 9 4 3 2 4 \nUNLOAD 9 2 4 6 \nROUND 15 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound16",
+          "elapsedMs": 2129.258415999997,
+          "bfInstructions": "13739393803408",
+          "executorBlocks": "529815067",
+          "output": "SEND 8 3 1 1 3 2 \nORDER 3 3 6 \nRECEIVE 7 4 3 \nACK 2 4 \nROUND 16 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound17",
+          "elapsedMs": 2327.872915999993,
+          "bfInstructions": "14896454537979",
+          "executorBlocks": "581508693",
+          "output": "RECEIVE 8 1 1 \nAUTHORIZE 3 1 \nSEND 9 1 8 2 3 1 \nASSIGN 3 8 \nSEND 10 4 2 1 4 3 \nORDER 4 4 6 \nRECEIVE 9 8 4 \nLOAD 8 3 1 6 \nROUND 17 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound18",
+          "elapsedMs": 2326.6621670000022,
+          "bfInstructions": "17049874986676",
+          "executorBlocks": "581035571",
+          "output": "RECEIVE 10 2 1 \nAUTHORIZE 4 2 \nSEND 11 2 10 2 4 1 \nASSIGN 4 10 \nPRODUCE 3 1 \nRECEIVE 11 10 4 \nLOAD 10 4 2 6 \nROUND 18 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound19",
+          "elapsedMs": 2244.667874999999,
+          "bfInstructions": "18210037835324",
+          "executorBlocks": "539077563",
+          "output": "PRODUCE 4 1 \nROUND 19 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound20",
+          "elapsedMs": 2154.262499999997,
+          "bfInstructions": "16653956150789",
+          "executorBlocks": "539321022",
+          "output": "ROUND 20 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound21",
+          "elapsedMs": 2158.1639170000126,
+          "bfInstructions": "15579230507338",
+          "executorBlocks": "528409164",
+          "output": "ROUND 21 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound22",
+          "elapsedMs": 2127.2251250000118,
+          "bfInstructions": "15211418733999",
+          "executorBlocks": "521116838",
+          "output": "PRODUCE 3 2 \nROUND 22 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound23",
+          "elapsedMs": 2066.7802500000107,
+          "bfInstructions": "14120251593382",
+          "executorBlocks": "515897956",
+          "output": "PRODUCE 4 2 \nI-ROUTE 8 4 12 4 4 3 12 8 4 \nROUND 23 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound24",
+          "elapsedMs": 2075.6269170000014,
+          "bfInstructions": "13663198781179",
+          "executorBlocks": "510378463",
+          "output": "I-DEPART 8 33 4 \nROUND 24 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound25",
+          "elapsedMs": 1979.0938339999993,
+          "bfInstructions": "12837723439984",
+          "executorBlocks": "487599746",
+          "output": "I-ROUTE 10 4 3 11 4 3 3 7 11 \nROUND 25 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "materialAccount",
+          "elapsedMs": 97.77724999999919,
+          "bfInstructions": "354733353861",
+          "executorBlocks": "24253960",
+          "output": "ACCOUNT 96 84 6 0 96 1 \n",
+          "hostRssBytes": 410484736,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "afterImportAccount",
+          "elapsedMs": 100.02754199999617,
+          "bfInstructions": "355903325360",
+          "executorBlocks": "24279553",
+          "output": "ACCOUNT 96 84 6 0 96 1 \n",
+          "hostRssBytes": 365150208,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "cycleModuleSetup",
+          "elapsedMs": 1122.4024579999968,
+          "bfInstructions": "4405428212122",
+          "executorBlocks": "273038880",
+          "output": "MODULE-CREATED 6 \nSOURCE-STORED 6 70 \nMODULE-PUBLISHED 6 8 14 8 0 \n",
+          "hostRssBytes": 365150208,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "pauseIndustrialParticipants",
+          "elapsedMs": 323.5240000000049,
+          "bfInstructions": "852458069449",
+          "executorBlocks": "78963605",
+          "output": "",
+          "hostRssBytes": 342884352,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "cycleHarnessDefinition",
+          "elapsedMs": 69.4440409999952,
+          "bfInstructions": "80235764917",
+          "executorBlocks": "17587464",
+          "output": "",
+          "hostRssBytes": 342884352,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "twentyWorkMessageReclaimCycles",
+          "elapsedMs": 11084.572,
+          "bfInstructions": "114127198314390",
+          "executorBlocks": "2780406256",
+          "output": "PROCESS-CREATED 13 6 12 \nSEND 12 0 13 4 19 0 \nRECEIVE 12 13 8 \nROUND 26 \nPROCESS-STOPPED 13 \nPROCESS-CREATED 14 6 12 \nSEND 13 0 14 4 19 0 \nRECEIVE 13 14 8 \nROUND 27 \nPROCESS-STOPPED 14 \nPROCESS-CREATED 15 6 12 \nSEND 14 0 15 4 19 0 \nRECEIVE 14 15 8 \nROUND 28 \nPROCESS-STOPPED 15 \nPROCESS-CREATED 16 6 12 \nSEND 15 0 16 4 19 0 \nRECEIVE 15 16 8 \nROUND 29 \nPROCESS-STOPPED 16 \nPROCESS-CREATED 17 6 12 \nSEND 16 0 17 4 19 0 \nRECEIVE 16 17 8 \nROUND 30 \nPROCESS-STOPPED 17 \nPROCESS-CREATED 18 6 12 \nSEND 17 0 18 4 19 0 \nRECEIVE 17 18 8 \nROUND 31 \nPROCESS-STOPPED 18 \nPROCESS-CREATED 19 6 12 \nSEND 18 0 19 4 19 0 \nRECEIVE 18 19 8 \nROUND 32 \nPROCESS-STOPPED 19 \nPROCESS-CREATED 20 6 12 \nSEND 19 0 20 4 19 0 \nRECEIVE 19 20 8 \nROUND 33 \nPROCESS-STOPPED 20 \nPROCESS-CREATED 21 6 12 \nSEND 20 0 21 4 19 0 \nRECEIVE 20 21 8 \nROUND 34 \nPROCESS-STOPPED 21 \nPROCESS-CREATED 22 6 12 \nSEND 21 0 22 4 19 0 \nRECEIVE 21 22 8 \nROUND 35 \nPROCESS-STOPPED 22 \nPROCESS-CREATED 23 6 12 \nSEND 22 0 23 4 19 0 \nRECEIVE 22 23 8 \nROUND 36 \nPROCESS-STOPPED 23 \nPROCESS-CREATED 24 6 12 \nSEND 23 0 24 4 19 0 \nRECEIVE 23 24 8 \nROUND 37 \nPROCESS-STOPPED 24 \nPROCESS-CREATED 25 6 12 \nSEND 24 0 25 4 19 0 \nRECEIVE 24 25 8 \nROUND 38 \nPROCESS-STOPPED 25 \nPROCESS-CREATED 26 6 12 \nSEND 25 0 26 4 19 0 \nRECEIVE 25 26 8 \nROUND 39 \nPROCESS-STOPPED 26 \nPROCESS-CREATED 27 6 12 \nSEND 26 0 27 4 19 0 \nRECEIVE 26 27 8 \nROUND 40 \nPROCESS-STOPPED 27 \nPROCESS-CREATED 28 6 12 \nSEND 27 0 28 4 19 0 \nRECEIVE 27 28 8 \nROUND 41 \nPROCESS-STOPPED 28 \nPROCESS-CREATED 29 6 12 \nSEND 28 0 29 4 19 0 \nRECEIVE 28 29 8 \nROUND 42 \nPROCESS-STOPPED 29 \nPROCESS-CREATED 30 6 12 \nSEND 29 0 30 4 19 0 \nRECEIVE 29 30 8 \nROUND 43 \nPROCESS-STOPPED 30 \nPROCESS-CREATED 31 6 12 \nSEND 30 0 31 4 19 0 \nRECEIVE 30 31 8 \nROUND 44 \nPROCESS-STOPPED 31 \nPROCESS-CREATED 32 6 12 \nSEND 31 0 32 4 19 0 \nRECEIVE 31 32 8 \nROUND 45 \nPROCESS-STOPPED 32 \n",
+          "hostRssBytes": 342884352,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "releaseCycleModule",
+          "elapsedMs": 152.06604199999128,
+          "bfInstructions": "480630208671",
+          "executorBlocks": "37604487",
+          "output": "MODULE-DELETED 6 \n",
+          "hostRssBytes": 342884352,
+          "guestTapeBytes": 797408
+        }
+      ],
+      "exportMs": 19.938584000003175,
+      "importMs": 55.48691599999438,
+      "imageBytes": 1063623,
+      "imageSha256": "7933d97b09819c3f265a5448b9eb59e14fdf9556aa8af1f401c812c7ddb8157c"
+    },
+    {
+      "sample": 2,
+      "measurements": [
+        {
+          "label": "coldNativeBoot",
+          "elapsedMs": 34398.28562500002,
+          "bfInstructions": "111559991460667",
+          "executorBlocks": "8524473858",
+          "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 110 \nMODULE-PUBLISHED 0 1 21 1 0 \nMODULE-CREATED 1 \nSOURCE-STORED 1 204 \nMODULE-PUBLISHED 1 2 45 2 0 \nMODULE-CREATED 2 \nSOURCE-STORED 2 204 \nMODULE-PUBLISHED 2 3 45 3 0 \nMODULE-CREATED 3 \nSOURCE-STORED 3 122 \nMODULE-PUBLISHED 3 4 27 4 0 \nMODULE-CREATED 4 \nSOURCE-STORED 4 106 \nMODULE-PUBLISHED 4 5 21 5 0 \nMODULE-CREATED 5 \nSOURCE-STORED 5 70 \nMODULE-PUBLISHED 5 6 18 6 0 \nPROCESS-CREATED 1 0 0 \nPROCESS-CREATED 2 0 1 \nPROCESS-CREATED 3 1 2 \nPROCESS-CREATED 4 2 3 \nPROCESS-CREATED 5 4 4 \nPROCESS-CREATED 6 4 5 \nPROCESS-CREATED 7 3 6 \nPROCESS-CREATED 8 3 7 \nPROCESS-CREATED 9 3 8 \nPROCESS-CREATED 10 3 9 \nPROCESS-CREATED 11 5 10 \nPROCESS-CREATED 12 5 11 \nINDUSTRY-READY 12 4 16 46\n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "externalMessage",
+          "elapsedMs": 27.653791000018828,
+          "bfInstructions": "153681848091",
+          "executorBlocks": "6866057",
+          "output": "SEND 1 0 3 9 77 0 \n1 ",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "schedulerRound1",
+          "elapsedMs": 2135.460665999999,
+          "bfInstructions": "13851930385929",
+          "executorBlocks": "529725012",
+          "output": "RECEIVE 1 3 2 \nSEND 2 3 1 1 1 2 \nORDER 1 3 6 \nSEND 3 4 2 1 2 3 \nORDER 2 4 6 \nROUND 1 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "fullPresentationFrame",
+          "elapsedMs": 1359.1784160000097,
+          "bfInstructions": "9126285802853",
+          "executorBlocks": "341437829",
+          "output": "INDUSTRY 3 1 1 46 2 0 0 0 \nNODE 0 0 0 \nNODE 1 20 0 \nNODE 2 40 0 \nNODE 3 60 0 \nNODE 4 0 20 \nNODE 5 20 20 \nNODE 6 40 20 \nNODE 7 60 20 \nNODE 8 0 40 \nNODE 9 20 40 \nNODE 10 40 40 \nNODE 11 60 40 \nNODE 12 0 60 \nNODE 13 20 60 \nNODE 14 40 60 \nNODE 15 60 60 \nI-ROAD 0 0 1 2 0 1 1 1 0 \nI-ROAD 1 1 0 2 0 1 1 1 0 \nI-ROAD 2 2 3 2 0 1 1 1 0 \nI-ROAD 3 3 2 2 0 1 1 1 0 \nI-ROAD 4 4 5 2 0 1 1 1 0 \nI-ROAD 5 5 4 2 0 1 1 1 0 \nI-ROAD 6 6 7 2 0 1 1 1 0 \nI-ROAD 7 7 6 2 0 1 1 1 0 \nI-ROAD 8 8 9 2 0 1 1 1 0 \nI-ROAD 9 9 8 2 0 1 1 1 0 \nI-ROAD 10 10 11 2 0 1 1 1 0 \nI-ROAD 11 11 10 2 0 1 1 1 0 \nI-ROAD 12 12 13 2 0 1 1 1 0 \nI-ROAD 13 13 12 2 0 1 1 1 0 \nI-ROAD 14 14 15 2 0 1 1 1 0 \nI-ROAD 15 15 14 2 0 1 1 1 0 \nI-ROAD 16 0 4 2 0 1 1 1 0 \nI-ROAD 17 4 0 2 0 1 1 1 0 \nI-ROAD 18 1 5 2 0 1 1 1 0 \nI-ROAD 19 5 1 2 0 1 1 1 0 \nI-ROAD 20 2 6 2 0 1 1 1 0 \nI-ROAD 21 6 2 2 0 1 1 1 0 \nI-ROAD 22 3 7 2 0 1 1 1 0 \nI-ROAD 23 7 3 2 0 1 1 1 0 \nI-ROAD 24 4 8 2 0 1 1 1 0 \nI-ROAD 25 8 4 2 0 1 1 1 0 \nI-ROAD 26 5 9 2 0 1 1 1 0 \nI-ROAD 27 9 5 2 0 1 1 1 0 \nI-ROAD 28 6 10 2 0 1 1 1 0 \nI-ROAD 29 10 6 2 0 1 1 1 0 \nI-ROAD 30 7 11 2 0 1 1 1 0 \nI-ROAD 31 11 7 2 0 1 1 1 0 \nI-ROAD 32 8 12 2 0 1 1 1 0 \nI-ROAD 33 12 8 2 0 1 1 1 0 \nI-ROAD 34 9 13 2 0 1 1 1 0 \nI-ROAD 35 13 9 2 0 1 1 1 0 \nI-ROAD 36 10 14 2 0 1 1 1 0 \nI-ROAD 37 14 10 2 0 1 1 1 0 \nI-ROAD 38 11 15 2 0 1 1 1 0 \nI-ROAD 39 15 11 2 0 1 1 1 0 \nI-ROAD 40 1 2 6 0 1 1 1 0 \nI-ROAD 41 2 1 6 0 1 1 1 0 \nI-ROAD 42 9 10 2 5 1 1 1 0 \nI-ROAD 43 10 9 2 5 1 1 1 0 \nI-ROAD 44 5 6 8 0 1 1 1 0 \nI-ROAD 45 6 5 8 0 1 1 1 0 \nENTITY 0 1 1 12 48 0 0 0 12 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 \nTRAVEL 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nJOB 0 1 1 1 3 1 6 0 \nENTITY 1 2 1 3 48 0 0 0 3 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 \nTRAVEL 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nJOB 1 1 2 2 4 1 6 0 \nENTITY 2 3 2 4 0 0 0 0 4 0 1 6 0 0 0 1 0 24 3 0 0 8 1 0 \nTRAVEL 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 3 4 2 11 0 0 0 0 11 0 2 5 0 0 0 2 0 24 3 0 0 8 1 0 \nTRAVEL 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 4 5 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 \nTRAVEL 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 5 6 4 15 0 0 0 0 15 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 \nTRAVEL 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 6 7 3 12 0 0 0 0 12 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 7 0 \nENTITY 7 8 3 12 0 0 0 0 12 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 8 0 \nENTITY 8 9 3 3 0 0 0 0 3 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 9 0 \nENTITY 9 10 3 3 0 0 0 0 3 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 10 0 \nENTITY 10 11 5 1 0 0 0 0 1 0 0 0 0 0 0 0 0 24 3 0 40 8 0 0 \nTRAVEL 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 11 12 5 9 0 0 0 0 9 0 0 0 0 0 0 0 0 24 3 0 42 8 0 0 \nTRAVEL 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nACCOUNT 96 96 0 0 96 1 \nPROCESSES 1 12 12 0 3 1 \nPROCESS 0 1 1 0 1 0 21 0 0 0 0 1 7 0 1 0 1 \nPRIVATE 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 1 1 2 0 1 0 21 0 0 0 0 1 7 0 1 0 1 \nPRIVATE 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 2 1 3 1 2 0 45 0 0 0 0 1 24 1 0 0 1 \nPRIVATE 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 3 1 4 2 3 0 45 0 0 0 0 1 16 0 0 0 1 \nPRIVATE 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 4 1 5 4 5 0 21 0 0 0 0 1 7 0 0 0 1 \nPRIVATE 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 5 1 6 4 5 0 21 0 0 0 0 1 7 0 0 0 1 \nPRIVATE 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 6 1 7 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 7 1 8 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 8 1 9 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 9 1 10 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 10 1 11 5 6 0 18 0 0 0 0 1 13 0 0 0 1 \nPRIVATE 11 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 11 1 12 5 6 0 18 0 0 0 0 1 13 0 0 0 1 \nPRIVATE 12 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nWORKSPACE 8 16 512 256 6 \nMODULE 0 1 1 0 110 1 0 0 \nNAME 0 depot.thread\nMODULE 1 1 2 0 204 1 0 0 \nNAME 1 factory-west.thread\nMODULE 2 1 3 0 204 1 0 0 \nNAME 2 factory-east.thread\nMODULE 3 1 4 0 122 1 0 0 \nNAME 3 van.thread\nMODULE 4 1 5 0 106 1 0 0 \nNAME 4 station.thread\nMODULE 5 1 6 0 70 1 0 0 \nNAME 5 signal.thread\nMODULE 6 0 0 0 0 0 0 0 \nNAME 6 \nMODULE 7 0 0 0 0 0 0 0 \nNAME 7 \nVERSION 1 2 0 1 3 0 21 110 1 \nVERSION 2 2 1 2 2 0 45 204 1 \nVERSION 3 2 2 3 2 0 45 204 1 \nVERSION 4 2 3 4 5 0 27 122 1 \nVERSION 5 2 4 5 3 0 21 106 1 \nVERSION 6 2 5 6 3 0 18 70 1 \nVERSION 7 0 0 0 0 0 0 0 0 \nVERSION 8 0 0 0 0 0 0 0 0 \nVERSION 9 0 0 0 0 0 0 0 0 \nVERSION 10 0 0 0 0 0 0 0 0 \nVERSION 11 0 0 0 0 0 0 0 0 \nVERSION 12 0 0 0 0 0 0 0 0 \nVERSION 13 0 0 0 0 0 0 0 0 \nVERSION 14 0 0 0 0 0 0 0 0 \nVERSION 15 0 0 0 0 0 0 0 0 \nVERSION 16 0 0 0 0 0 0 0 0 \nMEMORY 16 6 4096 177 8192 816 4096 816 \nINDUSTRY-END 1 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "storedSourceRead",
+          "elapsedMs": 110.78137499999139,
+          "bfInstructions": "360902071593",
+          "executorBlocks": "26136663",
+          "output": "SOURCE 1 204 \n: factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 dup 2 stock > if request else drop then work dispatch ;\n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "nativeSourceEditCompilePublish",
+          "elapsedMs": 3125.680874999991,
+          "bfInstructions": "12794502569013",
+          "executorBlocks": "777621242",
+          "output": "SOURCE-STORED 1 204 \nMODULE-PUBLISHED 1 7 45 7 0 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "rollback",
+          "elapsedMs": 9.454083000018727,
+          "bfInstructions": "18492931791",
+          "executorBlocks": "2288958",
+          "output": "ROLLBACK 1 2 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound2",
+          "elapsedMs": 2667.6150830000115,
+          "bfInstructions": "16410867991957",
+          "executorBlocks": "644805319",
+          "output": "RECEIVE 2 1 1 \nAUTHORIZE 1 1 \nSEND 4 1 7 2 1 1 \nASSIGN 1 7 \nRECEIVE 3 2 1 \nAUTHORIZE 2 2 \nSEND 5 2 9 2 2 1 \nASSIGN 2 9 \nRECEIVE 4 7 4 \nLOAD 7 1 1 6 \nRECEIVE 5 9 4 \nLOAD 9 2 2 6 \nROUND 2 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound3",
+          "elapsedMs": 2127.434083,
+          "bfInstructions": "17545525193466",
+          "executorBlocks": "509187653",
+          "output": "ROUND 3 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound4",
+          "elapsedMs": 2189.110625000001,
+          "bfInstructions": "17340285393367",
+          "executorBlocks": "546978494",
+          "output": "ROUND 4 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound5",
+          "elapsedMs": 2237.977292000025,
+          "bfInstructions": "16367645516121",
+          "executorBlocks": "538594931",
+          "output": "ROUND 5 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound6",
+          "elapsedMs": 2123.775874999992,
+          "bfInstructions": "15225155976712",
+          "executorBlocks": "526517131",
+          "output": "ROUND 6 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound7",
+          "elapsedMs": 2126.2056659999944,
+          "bfInstructions": "15182701414483",
+          "executorBlocks": "522077983",
+          "output": "ROUND 7 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound8",
+          "elapsedMs": 2042.240374999994,
+          "bfInstructions": "13697868173127",
+          "executorBlocks": "504250501",
+          "output": "I-ROUTE 7 4 12 4 4 3 12 8 4 \nROUND 8 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound9",
+          "elapsedMs": 2053.8342079999857,
+          "bfInstructions": "13090261210038",
+          "executorBlocks": "507079926",
+          "output": "I-DEPART 7 33 4 \nI-ROUTE 9 4 3 11 4 3 3 7 11 \nROUND 9 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound10",
+          "elapsedMs": 2028.4408750000002,
+          "bfInstructions": "12753182164721",
+          "executorBlocks": "493782805",
+          "output": "I-DEPART 9 22 4 \nROUND 10 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound11",
+          "elapsedMs": 1922.88841699998,
+          "bfInstructions": "12728130429646",
+          "executorBlocks": "484347878",
+          "output": "I-ARRIVE 7 8 \nROUND 11 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound12",
+          "elapsedMs": 2133.4538750000065,
+          "bfInstructions": "12995601477825",
+          "executorBlocks": "501935363",
+          "output": "I-DEPART 7 25 4 \nI-ARRIVE 9 7 \nROUND 12 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound13",
+          "elapsedMs": 2029.4629999999888,
+          "bfInstructions": "12828112710826",
+          "executorBlocks": "495170557",
+          "output": "I-DEPART 9 30 4 \nROUND 13 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound14",
+          "elapsedMs": 2036.4401669999934,
+          "bfInstructions": "13039846330150",
+          "executorBlocks": "505548966",
+          "output": "I-ARRIVE 7 4 \nSEND 6 7 3 3 1 4 \nUNLOAD 7 1 3 6 \nROUND 14 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound15",
+          "elapsedMs": 2211.8358749999898,
+          "bfInstructions": "13850197563983",
+          "executorBlocks": "538788282",
+          "output": "RECEIVE 6 3 2 \nACK 1 3 \nI-ARRIVE 9 11 \nSEND 7 9 4 3 2 4 \nUNLOAD 9 2 4 6 \nROUND 15 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound16",
+          "elapsedMs": 2142.0305000000226,
+          "bfInstructions": "13739393803408",
+          "executorBlocks": "529815067",
+          "output": "SEND 8 3 1 1 3 2 \nORDER 3 3 6 \nRECEIVE 7 4 3 \nACK 2 4 \nROUND 16 \n",
+          "hostRssBytes": 212746240,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound17",
+          "elapsedMs": 2379.0537080000213,
+          "bfInstructions": "14896454537979",
+          "executorBlocks": "581508693",
+          "output": "RECEIVE 8 1 1 \nAUTHORIZE 3 1 \nSEND 9 1 8 2 3 1 \nASSIGN 3 8 \nSEND 10 4 2 1 4 3 \nORDER 4 4 6 \nRECEIVE 9 8 4 \nLOAD 8 3 1 6 \nROUND 17 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound18",
+          "elapsedMs": 2337.4063329999917,
+          "bfInstructions": "17049874986676",
+          "executorBlocks": "581035571",
+          "output": "RECEIVE 10 2 1 \nAUTHORIZE 4 2 \nSEND 11 2 10 2 4 1 \nASSIGN 4 10 \nPRODUCE 3 1 \nRECEIVE 11 10 4 \nLOAD 10 4 2 6 \nROUND 18 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound19",
+          "elapsedMs": 2241.7499580000003,
+          "bfInstructions": "18210037835324",
+          "executorBlocks": "539077563",
+          "output": "PRODUCE 4 1 \nROUND 19 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound20",
+          "elapsedMs": 2190.3068330000096,
+          "bfInstructions": "16653956150789",
+          "executorBlocks": "539321022",
+          "output": "ROUND 20 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound21",
+          "elapsedMs": 2430.225582999992,
+          "bfInstructions": "15579230507338",
+          "executorBlocks": "528409164",
+          "output": "ROUND 21 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound22",
+          "elapsedMs": 2207.981375000003,
+          "bfInstructions": "15211418733999",
+          "executorBlocks": "521116838",
+          "output": "PRODUCE 3 2 \nROUND 22 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound23",
+          "elapsedMs": 2112.9791250000126,
+          "bfInstructions": "14120251593382",
+          "executorBlocks": "515897956",
+          "output": "PRODUCE 4 2 \nI-ROUTE 8 4 12 4 4 3 12 8 4 \nROUND 23 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound24",
+          "elapsedMs": 2074.545374999987,
+          "bfInstructions": "13663198781179",
+          "executorBlocks": "510378463",
+          "output": "I-DEPART 8 33 4 \nROUND 24 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound25",
+          "elapsedMs": 2014.646458000003,
+          "bfInstructions": "12837723439984",
+          "executorBlocks": "487599746",
+          "output": "I-ROUTE 10 4 3 11 4 3 3 7 11 \nROUND 25 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "materialAccount",
+          "elapsedMs": 105.34608299998217,
+          "bfInstructions": "354733353861",
+          "executorBlocks": "24253960",
+          "output": "ACCOUNT 96 84 6 0 96 1 \n",
+          "hostRssBytes": 188399616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "afterImportAccount",
+          "elapsedMs": 96.8916250000184,
+          "bfInstructions": "355903325360",
+          "executorBlocks": "24279553",
+          "output": "ACCOUNT 96 84 6 0 96 1 \n",
+          "hostRssBytes": 253771776,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "cycleModuleSetup",
+          "elapsedMs": 1125.6631669999915,
+          "bfInstructions": "4405428212122",
+          "executorBlocks": "273038880",
+          "output": "MODULE-CREATED 6 \nSOURCE-STORED 6 70 \nMODULE-PUBLISHED 6 8 14 8 0 \n",
+          "hostRssBytes": 253771776,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "pauseIndustrialParticipants",
+          "elapsedMs": 323.14066699999967,
+          "bfInstructions": "852458069449",
+          "executorBlocks": "78963605",
+          "output": "",
+          "hostRssBytes": 253771776,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "cycleHarnessDefinition",
+          "elapsedMs": 67.94550000000163,
+          "bfInstructions": "80235764917",
+          "executorBlocks": "17587464",
+          "output": "",
+          "hostRssBytes": 253771776,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "twentyWorkMessageReclaimCycles",
+          "elapsedMs": 11609.647041999997,
+          "bfInstructions": "114127198314390",
+          "executorBlocks": "2780406256",
+          "output": "PROCESS-CREATED 13 6 12 \nSEND 12 0 13 4 19 0 \nRECEIVE 12 13 8 \nROUND 26 \nPROCESS-STOPPED 13 \nPROCESS-CREATED 14 6 12 \nSEND 13 0 14 4 19 0 \nRECEIVE 13 14 8 \nROUND 27 \nPROCESS-STOPPED 14 \nPROCESS-CREATED 15 6 12 \nSEND 14 0 15 4 19 0 \nRECEIVE 14 15 8 \nROUND 28 \nPROCESS-STOPPED 15 \nPROCESS-CREATED 16 6 12 \nSEND 15 0 16 4 19 0 \nRECEIVE 15 16 8 \nROUND 29 \nPROCESS-STOPPED 16 \nPROCESS-CREATED 17 6 12 \nSEND 16 0 17 4 19 0 \nRECEIVE 16 17 8 \nROUND 30 \nPROCESS-STOPPED 17 \nPROCESS-CREATED 18 6 12 \nSEND 17 0 18 4 19 0 \nRECEIVE 17 18 8 \nROUND 31 \nPROCESS-STOPPED 18 \nPROCESS-CREATED 19 6 12 \nSEND 18 0 19 4 19 0 \nRECEIVE 18 19 8 \nROUND 32 \nPROCESS-STOPPED 19 \nPROCESS-CREATED 20 6 12 \nSEND 19 0 20 4 19 0 \nRECEIVE 19 20 8 \nROUND 33 \nPROCESS-STOPPED 20 \nPROCESS-CREATED 21 6 12 \nSEND 20 0 21 4 19 0 \nRECEIVE 20 21 8 \nROUND 34 \nPROCESS-STOPPED 21 \nPROCESS-CREATED 22 6 12 \nSEND 21 0 22 4 19 0 \nRECEIVE 21 22 8 \nROUND 35 \nPROCESS-STOPPED 22 \nPROCESS-CREATED 23 6 12 \nSEND 22 0 23 4 19 0 \nRECEIVE 22 23 8 \nROUND 36 \nPROCESS-STOPPED 23 \nPROCESS-CREATED 24 6 12 \nSEND 23 0 24 4 19 0 \nRECEIVE 23 24 8 \nROUND 37 \nPROCESS-STOPPED 24 \nPROCESS-CREATED 25 6 12 \nSEND 24 0 25 4 19 0 \nRECEIVE 24 25 8 \nROUND 38 \nPROCESS-STOPPED 25 \nPROCESS-CREATED 26 6 12 \nSEND 25 0 26 4 19 0 \nRECEIVE 25 26 8 \nROUND 39 \nPROCESS-STOPPED 26 \nPROCESS-CREATED 27 6 12 \nSEND 26 0 27 4 19 0 \nRECEIVE 26 27 8 \nROUND 40 \nPROCESS-STOPPED 27 \nPROCESS-CREATED 28 6 12 \nSEND 27 0 28 4 19 0 \nRECEIVE 27 28 8 \nROUND 41 \nPROCESS-STOPPED 28 \nPROCESS-CREATED 29 6 12 \nSEND 28 0 29 4 19 0 \nRECEIVE 28 29 8 \nROUND 42 \nPROCESS-STOPPED 29 \nPROCESS-CREATED 30 6 12 \nSEND 29 0 30 4 19 0 \nRECEIVE 29 30 8 \nROUND 43 \nPROCESS-STOPPED 30 \nPROCESS-CREATED 31 6 12 \nSEND 30 0 31 4 19 0 \nRECEIVE 30 31 8 \nROUND 44 \nPROCESS-STOPPED 31 \nPROCESS-CREATED 32 6 12 \nSEND 31 0 32 4 19 0 \nRECEIVE 31 32 8 \nROUND 45 \nPROCESS-STOPPED 32 \n",
+          "hostRssBytes": 253771776,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "releaseCycleModule",
+          "elapsedMs": 152.90154099999927,
+          "bfInstructions": "480630208671",
+          "executorBlocks": "37604487",
+          "output": "MODULE-DELETED 6 \n",
+          "hostRssBytes": 253771776,
+          "guestTapeBytes": 797408
+        }
+      ],
+      "exportMs": 20.67316600002232,
+      "importMs": 52.42683300000499,
+      "imageBytes": 1063623,
+      "imageSha256": "7933d97b09819c3f265a5448b9eb59e14fdf9556aa8af1f401c812c7ddb8157c"
+    },
+    {
+      "sample": 3,
+      "measurements": [
+        {
+          "label": "coldNativeBoot",
+          "elapsedMs": 34663.39541700002,
+          "bfInstructions": "111559991460667",
+          "executorBlocks": "8524473858",
+          "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 110 \nMODULE-PUBLISHED 0 1 21 1 0 \nMODULE-CREATED 1 \nSOURCE-STORED 1 204 \nMODULE-PUBLISHED 1 2 45 2 0 \nMODULE-CREATED 2 \nSOURCE-STORED 2 204 \nMODULE-PUBLISHED 2 3 45 3 0 \nMODULE-CREATED 3 \nSOURCE-STORED 3 122 \nMODULE-PUBLISHED 3 4 27 4 0 \nMODULE-CREATED 4 \nSOURCE-STORED 4 106 \nMODULE-PUBLISHED 4 5 21 5 0 \nMODULE-CREATED 5 \nSOURCE-STORED 5 70 \nMODULE-PUBLISHED 5 6 18 6 0 \nPROCESS-CREATED 1 0 0 \nPROCESS-CREATED 2 0 1 \nPROCESS-CREATED 3 1 2 \nPROCESS-CREATED 4 2 3 \nPROCESS-CREATED 5 4 4 \nPROCESS-CREATED 6 4 5 \nPROCESS-CREATED 7 3 6 \nPROCESS-CREATED 8 3 7 \nPROCESS-CREATED 9 3 8 \nPROCESS-CREATED 10 3 9 \nPROCESS-CREATED 11 5 10 \nPROCESS-CREATED 12 5 11 \nINDUSTRY-READY 12 4 16 46\n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "externalMessage",
+          "elapsedMs": 27.932417000003625,
+          "bfInstructions": "153681848091",
+          "executorBlocks": "6866057",
+          "output": "SEND 1 0 3 9 77 0 \n1 ",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "schedulerRound1",
+          "elapsedMs": 2152.325583000027,
+          "bfInstructions": "13851930385929",
+          "executorBlocks": "529725012",
+          "output": "RECEIVE 1 3 2 \nSEND 2 3 1 1 1 2 \nORDER 1 3 6 \nSEND 3 4 2 1 2 3 \nORDER 2 4 6 \nROUND 1 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "fullPresentationFrame",
+          "elapsedMs": 1444.0672909999848,
+          "bfInstructions": "9126285802853",
+          "executorBlocks": "341437829",
+          "output": "INDUSTRY 3 1 1 46 2 0 0 0 \nNODE 0 0 0 \nNODE 1 20 0 \nNODE 2 40 0 \nNODE 3 60 0 \nNODE 4 0 20 \nNODE 5 20 20 \nNODE 6 40 20 \nNODE 7 60 20 \nNODE 8 0 40 \nNODE 9 20 40 \nNODE 10 40 40 \nNODE 11 60 40 \nNODE 12 0 60 \nNODE 13 20 60 \nNODE 14 40 60 \nNODE 15 60 60 \nI-ROAD 0 0 1 2 0 1 1 1 0 \nI-ROAD 1 1 0 2 0 1 1 1 0 \nI-ROAD 2 2 3 2 0 1 1 1 0 \nI-ROAD 3 3 2 2 0 1 1 1 0 \nI-ROAD 4 4 5 2 0 1 1 1 0 \nI-ROAD 5 5 4 2 0 1 1 1 0 \nI-ROAD 6 6 7 2 0 1 1 1 0 \nI-ROAD 7 7 6 2 0 1 1 1 0 \nI-ROAD 8 8 9 2 0 1 1 1 0 \nI-ROAD 9 9 8 2 0 1 1 1 0 \nI-ROAD 10 10 11 2 0 1 1 1 0 \nI-ROAD 11 11 10 2 0 1 1 1 0 \nI-ROAD 12 12 13 2 0 1 1 1 0 \nI-ROAD 13 13 12 2 0 1 1 1 0 \nI-ROAD 14 14 15 2 0 1 1 1 0 \nI-ROAD 15 15 14 2 0 1 1 1 0 \nI-ROAD 16 0 4 2 0 1 1 1 0 \nI-ROAD 17 4 0 2 0 1 1 1 0 \nI-ROAD 18 1 5 2 0 1 1 1 0 \nI-ROAD 19 5 1 2 0 1 1 1 0 \nI-ROAD 20 2 6 2 0 1 1 1 0 \nI-ROAD 21 6 2 2 0 1 1 1 0 \nI-ROAD 22 3 7 2 0 1 1 1 0 \nI-ROAD 23 7 3 2 0 1 1 1 0 \nI-ROAD 24 4 8 2 0 1 1 1 0 \nI-ROAD 25 8 4 2 0 1 1 1 0 \nI-ROAD 26 5 9 2 0 1 1 1 0 \nI-ROAD 27 9 5 2 0 1 1 1 0 \nI-ROAD 28 6 10 2 0 1 1 1 0 \nI-ROAD 29 10 6 2 0 1 1 1 0 \nI-ROAD 30 7 11 2 0 1 1 1 0 \nI-ROAD 31 11 7 2 0 1 1 1 0 \nI-ROAD 32 8 12 2 0 1 1 1 0 \nI-ROAD 33 12 8 2 0 1 1 1 0 \nI-ROAD 34 9 13 2 0 1 1 1 0 \nI-ROAD 35 13 9 2 0 1 1 1 0 \nI-ROAD 36 10 14 2 0 1 1 1 0 \nI-ROAD 37 14 10 2 0 1 1 1 0 \nI-ROAD 38 11 15 2 0 1 1 1 0 \nI-ROAD 39 15 11 2 0 1 1 1 0 \nI-ROAD 40 1 2 6 0 1 1 1 0 \nI-ROAD 41 2 1 6 0 1 1 1 0 \nI-ROAD 42 9 10 2 5 1 1 1 0 \nI-ROAD 43 10 9 2 5 1 1 1 0 \nI-ROAD 44 5 6 8 0 1 1 1 0 \nI-ROAD 45 6 5 8 0 1 1 1 0 \nENTITY 0 1 1 12 48 0 0 0 12 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 \nTRAVEL 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nJOB 0 1 1 1 3 1 6 0 \nENTITY 1 2 1 3 48 0 0 0 3 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 \nTRAVEL 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nJOB 1 1 2 2 4 1 6 0 \nENTITY 2 3 2 4 0 0 0 0 4 0 1 6 0 0 0 1 0 24 3 0 0 8 1 0 \nTRAVEL 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 3 4 2 11 0 0 0 0 11 0 2 5 0 0 0 2 0 24 3 0 0 8 1 0 \nTRAVEL 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 4 5 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 \nTRAVEL 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 5 6 4 15 0 0 0 0 15 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 \nTRAVEL 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 6 7 3 12 0 0 0 0 12 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 7 0 \nENTITY 7 8 3 12 0 0 0 0 12 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 8 0 \nENTITY 8 9 3 3 0 0 0 0 3 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 9 0 \nENTITY 9 10 3 3 0 0 0 0 3 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 \nTRAVEL 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 \nI-PATH 10 0 \nENTITY 10 11 5 1 0 0 0 0 1 0 0 0 0 0 0 0 0 24 3 0 40 8 0 0 \nTRAVEL 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nENTITY 11 12 5 9 0 0 0 0 9 0 0 0 0 0 0 0 0 24 3 0 42 8 0 0 \nTRAVEL 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nACCOUNT 96 96 0 0 96 1 \nPROCESSES 1 12 12 0 3 1 \nPROCESS 0 1 1 0 1 0 21 0 0 0 0 1 7 0 1 0 1 \nPRIVATE 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 1 1 2 0 1 0 21 0 0 0 0 1 7 0 1 0 1 \nPRIVATE 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 2 1 3 1 2 0 45 0 0 0 0 1 24 1 0 0 1 \nPRIVATE 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 3 1 4 2 3 0 45 0 0 0 0 1 16 0 0 0 1 \nPRIVATE 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 4 1 5 4 5 0 21 0 0 0 0 1 7 0 0 0 1 \nPRIVATE 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 5 1 6 4 5 0 21 0 0 0 0 1 7 0 0 0 1 \nPRIVATE 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 6 1 7 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 7 1 8 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 8 1 9 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 9 1 10 3 4 0 27 0 0 0 0 1 11 0 0 0 1 \nPRIVATE 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 10 1 11 5 6 0 18 0 0 0 0 1 13 0 0 0 1 \nPRIVATE 11 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nPROCESS 11 1 12 5 6 0 18 0 0 0 0 1 13 0 0 0 1 \nPRIVATE 12 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 \nWORKSPACE 8 16 512 256 6 \nMODULE 0 1 1 0 110 1 0 0 \nNAME 0 depot.thread\nMODULE 1 1 2 0 204 1 0 0 \nNAME 1 factory-west.thread\nMODULE 2 1 3 0 204 1 0 0 \nNAME 2 factory-east.thread\nMODULE 3 1 4 0 122 1 0 0 \nNAME 3 van.thread\nMODULE 4 1 5 0 106 1 0 0 \nNAME 4 station.thread\nMODULE 5 1 6 0 70 1 0 0 \nNAME 5 signal.thread\nMODULE 6 0 0 0 0 0 0 0 \nNAME 6 \nMODULE 7 0 0 0 0 0 0 0 \nNAME 7 \nVERSION 1 2 0 1 3 0 21 110 1 \nVERSION 2 2 1 2 2 0 45 204 1 \nVERSION 3 2 2 3 2 0 45 204 1 \nVERSION 4 2 3 4 5 0 27 122 1 \nVERSION 5 2 4 5 3 0 21 106 1 \nVERSION 6 2 5 6 3 0 18 70 1 \nVERSION 7 0 0 0 0 0 0 0 0 \nVERSION 8 0 0 0 0 0 0 0 0 \nVERSION 9 0 0 0 0 0 0 0 0 \nVERSION 10 0 0 0 0 0 0 0 0 \nVERSION 11 0 0 0 0 0 0 0 0 \nVERSION 12 0 0 0 0 0 0 0 0 \nVERSION 13 0 0 0 0 0 0 0 0 \nVERSION 14 0 0 0 0 0 0 0 0 \nVERSION 15 0 0 0 0 0 0 0 0 \nVERSION 16 0 0 0 0 0 0 0 0 \nMEMORY 16 6 4096 177 8192 816 4096 816 \nINDUSTRY-END 1 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "storedSourceRead",
+          "elapsedMs": 105.37712499999907,
+          "bfInstructions": "360902071593",
+          "executorBlocks": "26136663",
+          "output": "SOURCE 1 204 \n: factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 dup 2 stock > if request else drop then work dispatch ;\n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "nativeSourceEditCompilePublish",
+          "elapsedMs": 3239.242916999967,
+          "bfInstructions": "12794502569013",
+          "executorBlocks": "777621242",
+          "output": "SOURCE-STORED 1 204 \nMODULE-PUBLISHED 1 7 45 7 0 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "rollback",
+          "elapsedMs": 9.509416999993846,
+          "bfInstructions": "18492931791",
+          "executorBlocks": "2288958",
+          "output": "ROLLBACK 1 2 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound2",
+          "elapsedMs": 2688.077874999959,
+          "bfInstructions": "16410867991957",
+          "executorBlocks": "644805319",
+          "output": "RECEIVE 2 1 1 \nAUTHORIZE 1 1 \nSEND 4 1 7 2 1 1 \nASSIGN 1 7 \nRECEIVE 3 2 1 \nAUTHORIZE 2 2 \nSEND 5 2 9 2 2 1 \nASSIGN 2 9 \nRECEIVE 4 7 4 \nLOAD 7 1 1 6 \nRECEIVE 5 9 4 \nLOAD 9 2 2 6 \nROUND 2 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound3",
+          "elapsedMs": 2066.386165999982,
+          "bfInstructions": "17545525193466",
+          "executorBlocks": "509187653",
+          "output": "ROUND 3 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound4",
+          "elapsedMs": 2239.1431250000023,
+          "bfInstructions": "17340285393367",
+          "executorBlocks": "546978494",
+          "output": "ROUND 4 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound5",
+          "elapsedMs": 2238.6479999999865,
+          "bfInstructions": "16367645516121",
+          "executorBlocks": "538594931",
+          "output": "ROUND 5 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound6",
+          "elapsedMs": 2121.966124999977,
+          "bfInstructions": "15225155976712",
+          "executorBlocks": "526517131",
+          "output": "ROUND 6 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound7",
+          "elapsedMs": 2119.9245419999934,
+          "bfInstructions": "15182701414483",
+          "executorBlocks": "522077983",
+          "output": "ROUND 7 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound8",
+          "elapsedMs": 2095.8219999999856,
+          "bfInstructions": "13697868173127",
+          "executorBlocks": "504250501",
+          "output": "I-ROUTE 7 4 12 4 4 3 12 8 4 \nROUND 8 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound9",
+          "elapsedMs": 2116.959124999994,
+          "bfInstructions": "13090261210038",
+          "executorBlocks": "507079926",
+          "output": "I-DEPART 7 33 4 \nI-ROUTE 9 4 3 11 4 3 3 7 11 \nROUND 9 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound10",
+          "elapsedMs": 2032.113665999961,
+          "bfInstructions": "12753182164721",
+          "executorBlocks": "493782805",
+          "output": "I-DEPART 9 22 4 \nROUND 10 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound11",
+          "elapsedMs": 1981.6787079999922,
+          "bfInstructions": "12728130429646",
+          "executorBlocks": "484347878",
+          "output": "I-ARRIVE 7 8 \nROUND 11 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound12",
+          "elapsedMs": 2043.7619169999962,
+          "bfInstructions": "12995601477825",
+          "executorBlocks": "501935363",
+          "output": "I-DEPART 7 25 4 \nI-ARRIVE 9 7 \nROUND 12 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound13",
+          "elapsedMs": 2025.329334000009,
+          "bfInstructions": "12828112710826",
+          "executorBlocks": "495170557",
+          "output": "I-DEPART 9 30 4 \nROUND 13 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound14",
+          "elapsedMs": 2053.2211670000106,
+          "bfInstructions": "13039846330150",
+          "executorBlocks": "505548966",
+          "output": "I-ARRIVE 7 4 \nSEND 6 7 3 3 1 4 \nUNLOAD 7 1 3 6 \nROUND 14 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound15",
+          "elapsedMs": 2226.714666999993,
+          "bfInstructions": "13850197563983",
+          "executorBlocks": "538788282",
+          "output": "RECEIVE 6 3 2 \nACK 1 3 \nI-ARRIVE 9 11 \nSEND 7 9 4 3 2 4 \nUNLOAD 9 2 4 6 \nROUND 15 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound16",
+          "elapsedMs": 2172.963958999957,
+          "bfInstructions": "13739393803408",
+          "executorBlocks": "529815067",
+          "output": "SEND 8 3 1 1 3 2 \nORDER 3 3 6 \nRECEIVE 7 4 3 \nACK 2 4 \nROUND 16 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound17",
+          "elapsedMs": 2459.0462499999558,
+          "bfInstructions": "14896454537979",
+          "executorBlocks": "581508693",
+          "output": "RECEIVE 8 1 1 \nAUTHORIZE 3 1 \nSEND 9 1 8 2 3 1 \nASSIGN 3 8 \nSEND 10 4 2 1 4 3 \nORDER 4 4 6 \nRECEIVE 9 8 4 \nLOAD 8 3 1 6 \nROUND 17 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound18",
+          "elapsedMs": 2408.931332999957,
+          "bfInstructions": "17049874986676",
+          "executorBlocks": "581035571",
+          "output": "RECEIVE 10 2 1 \nAUTHORIZE 4 2 \nSEND 11 2 10 2 4 1 \nASSIGN 4 10 \nPRODUCE 3 1 \nRECEIVE 11 10 4 \nLOAD 10 4 2 6 \nROUND 18 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound19",
+          "elapsedMs": 2202.396458000003,
+          "bfInstructions": "18210037835324",
+          "executorBlocks": "539077563",
+          "output": "PRODUCE 4 1 \nROUND 19 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound20",
+          "elapsedMs": 2194.367292000039,
+          "bfInstructions": "16653956150789",
+          "executorBlocks": "539321022",
+          "output": "ROUND 20 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound21",
+          "elapsedMs": 2193.522874999966,
+          "bfInstructions": "15579230507338",
+          "executorBlocks": "528409164",
+          "output": "ROUND 21 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound22",
+          "elapsedMs": 2106.2662079999573,
+          "bfInstructions": "15211418733999",
+          "executorBlocks": "521116838",
+          "output": "PRODUCE 3 2 \nROUND 22 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound23",
+          "elapsedMs": 2087.6908330000006,
+          "bfInstructions": "14120251593382",
+          "executorBlocks": "515897956",
+          "output": "PRODUCE 4 2 \nI-ROUTE 8 4 12 4 4 3 12 8 4 \nROUND 23 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound24",
+          "elapsedMs": 2132.823250000016,
+          "bfInstructions": "13663198781179",
+          "executorBlocks": "510378463",
+          "output": "I-DEPART 8 33 4 \nROUND 24 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "industrialRound25",
+          "elapsedMs": 1973.8587499999558,
+          "bfInstructions": "12837723439984",
+          "executorBlocks": "487599746",
+          "output": "I-ROUTE 10 4 3 11 4 3 3 7 11 \nROUND 25 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "materialAccount",
+          "elapsedMs": 107.97408399998676,
+          "bfInstructions": "354733353861",
+          "executorBlocks": "24253960",
+          "output": "ACCOUNT 96 84 6 0 96 1 \n",
+          "hostRssBytes": 247054336,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "afterImportAccount",
+          "elapsedMs": 103.5925419999985,
+          "bfInstructions": "355903325360",
+          "executorBlocks": "24279553",
+          "output": "ACCOUNT 96 84 6 0 96 1 \n",
+          "hostRssBytes": 270729216,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "cycleModuleSetup",
+          "elapsedMs": 1142.014124999987,
+          "bfInstructions": "4405428212122",
+          "executorBlocks": "273038880",
+          "output": "MODULE-CREATED 6 \nSOURCE-STORED 6 70 \nMODULE-PUBLISHED 6 8 14 8 0 \n",
+          "hostRssBytes": 270745600,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "pauseIndustrialParticipants",
+          "elapsedMs": 322.13187500002095,
+          "bfInstructions": "852458069449",
+          "executorBlocks": "78963605",
+          "output": "",
+          "hostRssBytes": 254230528,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "cycleHarnessDefinition",
+          "elapsedMs": 67.7324999999837,
+          "bfInstructions": "80235764917",
+          "executorBlocks": "17587464",
+          "output": "",
+          "hostRssBytes": 254230528,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "twentyWorkMessageReclaimCycles",
+          "elapsedMs": 11430.501457999984,
+          "bfInstructions": "114127198314390",
+          "executorBlocks": "2780406256",
+          "output": "PROCESS-CREATED 13 6 12 \nSEND 12 0 13 4 19 0 \nRECEIVE 12 13 8 \nROUND 26 \nPROCESS-STOPPED 13 \nPROCESS-CREATED 14 6 12 \nSEND 13 0 14 4 19 0 \nRECEIVE 13 14 8 \nROUND 27 \nPROCESS-STOPPED 14 \nPROCESS-CREATED 15 6 12 \nSEND 14 0 15 4 19 0 \nRECEIVE 14 15 8 \nROUND 28 \nPROCESS-STOPPED 15 \nPROCESS-CREATED 16 6 12 \nSEND 15 0 16 4 19 0 \nRECEIVE 15 16 8 \nROUND 29 \nPROCESS-STOPPED 16 \nPROCESS-CREATED 17 6 12 \nSEND 16 0 17 4 19 0 \nRECEIVE 16 17 8 \nROUND 30 \nPROCESS-STOPPED 17 \nPROCESS-CREATED 18 6 12 \nSEND 17 0 18 4 19 0 \nRECEIVE 17 18 8 \nROUND 31 \nPROCESS-STOPPED 18 \nPROCESS-CREATED 19 6 12 \nSEND 18 0 19 4 19 0 \nRECEIVE 18 19 8 \nROUND 32 \nPROCESS-STOPPED 19 \nPROCESS-CREATED 20 6 12 \nSEND 19 0 20 4 19 0 \nRECEIVE 19 20 8 \nROUND 33 \nPROCESS-STOPPED 20 \nPROCESS-CREATED 21 6 12 \nSEND 20 0 21 4 19 0 \nRECEIVE 20 21 8 \nROUND 34 \nPROCESS-STOPPED 21 \nPROCESS-CREATED 22 6 12 \nSEND 21 0 22 4 19 0 \nRECEIVE 21 22 8 \nROUND 35 \nPROCESS-STOPPED 22 \nPROCESS-CREATED 23 6 12 \nSEND 22 0 23 4 19 0 \nRECEIVE 22 23 8 \nROUND 36 \nPROCESS-STOPPED 23 \nPROCESS-CREATED 24 6 12 \nSEND 23 0 24 4 19 0 \nRECEIVE 23 24 8 \nROUND 37 \nPROCESS-STOPPED 24 \nPROCESS-CREATED 25 6 12 \nSEND 24 0 25 4 19 0 \nRECEIVE 24 25 8 \nROUND 38 \nPROCESS-STOPPED 25 \nPROCESS-CREATED 26 6 12 \nSEND 25 0 26 4 19 0 \nRECEIVE 25 26 8 \nROUND 39 \nPROCESS-STOPPED 26 \nPROCESS-CREATED 27 6 12 \nSEND 26 0 27 4 19 0 \nRECEIVE 26 27 8 \nROUND 40 \nPROCESS-STOPPED 27 \nPROCESS-CREATED 28 6 12 \nSEND 27 0 28 4 19 0 \nRECEIVE 27 28 8 \nROUND 41 \nPROCESS-STOPPED 28 \nPROCESS-CREATED 29 6 12 \nSEND 28 0 29 4 19 0 \nRECEIVE 28 29 8 \nROUND 42 \nPROCESS-STOPPED 29 \nPROCESS-CREATED 30 6 12 \nSEND 29 0 30 4 19 0 \nRECEIVE 29 30 8 \nROUND 43 \nPROCESS-STOPPED 30 \nPROCESS-CREATED 31 6 12 \nSEND 30 0 31 4 19 0 \nRECEIVE 30 31 8 \nROUND 44 \nPROCESS-STOPPED 31 \nPROCESS-CREATED 32 6 12 \nSEND 31 0 32 4 19 0 \nRECEIVE 31 32 8 \nROUND 45 \nPROCESS-STOPPED 32 \n",
+          "hostRssBytes": 241647616,
+          "guestTapeBytes": 797408
+        },
+        {
+          "label": "releaseCycleModule",
+          "elapsedMs": 166.4500419999822,
+          "bfInstructions": "480630208671",
+          "executorBlocks": "37604487",
+          "output": "MODULE-DELETED 6 \n",
+          "hostRssBytes": 241647616,
+          "guestTapeBytes": 797408
+        }
+      ],
+      "exportMs": 20.73574999999255,
+      "importMs": 53.651749999960884,
+      "imageBytes": 1063623,
+      "imageSha256": "7933d97b09819c3f265a5448b9eb59e14fdf9556aa8af1f401c812c7ddb8157c"
+    }
+  ]
+}

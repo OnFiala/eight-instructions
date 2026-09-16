@@ -1,0 +1,9 @@
+{
+  "archive": ".local/build-003-functional.tar.gz",
+  "sha256": "b40fb21956da3c8a6e7c0d6c127ee3d0eb0ba540a4b8fd2d71e920b3d13f043f",
+  "canonicalCommit": "f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f",
+  "siteCommit": "a83ca885d7edb2f40b84441f378d786ce4e86bf7",
+  "verifiedFiles": 145,
+  "status": "PASS",
+  "publication": "Fast-forward source push succeeded; saved version5, not yet deployed. See site-saved-functional.json."
+}

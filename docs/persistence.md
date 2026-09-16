@@ -126,3 +126,52 @@ as a complete replay; export/import a completed workspace to begin a new transcr
 The city importer validates the candidate city/workspace frame and reads both the active version source and stored draft before replacing the current worker. Successful import displays that draft in the editor and records these native source reads in the session transcript. An unreadable candidate is closed without replacing the current workspace. Saved route metadata is labeled separately from a newly emitted route event; an image alone does not reconstruct the original input history.
 
 Cost-table events also belong to the presentation session, not to an imported image's history. An image can already contain a valid native route-cost cache. If a subsequent route uses it without re-emitting a table, the inspector explicitly reports that no matching cost-table trace was emitted in this session. It still shows the actual new ROUTE record and native state; it never borrows a previous worker's table or recomputes costs in JavaScript.
+
+## Build 003 execution counters
+
+The BF dialect and image engine version stay1. Images may additionally contain
+`instructionEpoch` and `blockEpoch` as canonical unsigned decimal strings (at most
+128digits); absent fields mean zero. These are host instrumentation, not guest
+state. Generic executors rotate their exact Number counters before a requested
+run could cross Number.MAX_SAFE_INTEGER and retain the exact accumulated epoch.
+The BF tape, PC, pointer, pending I/O and fuel meaning do not change. Inspection
+returns a numeric total while safely representable, otherwise an exact decimal
+string. Worker progress uses exact total differences for its bounded operation.
+
+This is additive metadata, not a migration of historical guest layouts. Build001
+and002 images still require their matching historical kernels. Counter-window
+tests cover JS/literal/Wasm equivalence, fuel pauses, output caps, invalid epochs
+and roundtrip continuation; the production worker is also tested across rotation.
+
+## Build 003 process and industrial images
+
+The opaque tape additionally contains all private contexts, exact-version frames,
+mailboxes, logical timers, job identities/stages, material inventories, production
+escrow, captured trips and road reservations. The host neither reconstructs those
+objects nor supplies their allocator. Snapshotting in the middle of a BF operation
+preserves its exact raw continuation; fresh-machine tests compare subsequent
+output and the entire tape.
+
+The Build003 UI validates a candidate in a separate worker, resumes any saved BF
+continuation to an input boundary, reads a complete native frame and the actual
+stored/active source, and only then replaces the visible machine. A rejected or
+unfinished candidate leaves the old machine usable. Unsaved editor drafts are UI
+state and are explicitly excluded from export. Import clears old event history;
+when a snapshot contains only current state, prior events are reported unavailable.
+
+Build001 and002 images require their matching preserved kernels/runtimes under
+`dist/build-001/` and `dist/build-002/`, or their original tags for CLI use. The
+current kernel refuses those identities; no automatic migration is claimed.
+`tools/build-archives.mjs --check` verifies both archives. HTML alone has relocated
+navigation and a historical-build banner; executable and asset bytes stay exact.
+
+A comparison begins from one current complete snapshot and creates two new BF
+workers. Only source setup differs; both run the same number of logical rounds,
+with identical road inputs and external orders. The downloadable bundle records
+raw inputs and byte-exact expected outputs. Recorded results are labeled; live
+simulation never consumes expected-output data.
+
+Build003 presentation history is instance-local: at most180000raw text characters
+and1200events are retained. Older history is discarded. It is not part of a machine
+image; import starts a new event history and labels earlier evidence unavailable.
+Download a comparison bundle for a complete bounded experiment transcript.

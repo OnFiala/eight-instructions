@@ -1,0 +1,757 @@
+verify	Set up job	﻿2026-09-16T00:13:20.5552513Z Current runner version: '2.337.0'
+verify	Set up job	2026-09-16T00:13:20.5582939Z ##[group]Runner Image Provisioner
+verify	Set up job	2026-09-16T00:13:20.5583742Z Hosted Compute Agent
+verify	Set up job	2026-09-16T00:13:20.5584369Z Version: 20260828.587
+verify	Set up job	2026-09-16T00:13:20.5584933Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+verify	Set up job	2026-09-16T00:13:20.5585618Z Build Date: 2026-08-28T16:44:25Z
+verify	Set up job	2026-09-16T00:13:20.5586293Z Worker ID: {821f6cc1-2638-40dd-8145-87e0a8bfbcd6}
+verify	Set up job	2026-09-16T00:13:20.5586929Z Azure Region: centralus
+verify	Set up job	2026-09-16T00:13:20.5587447Z ##[endgroup]
+verify	Set up job	2026-09-16T00:13:20.5588825Z ##[group]Operating System
+verify	Set up job	2026-09-16T00:13:20.5589388Z Ubuntu
+verify	Set up job	2026-09-16T00:13:20.5590161Z 24.04.5
+verify	Set up job	2026-09-16T00:13:20.5590625Z LTS
+verify	Set up job	2026-09-16T00:13:20.5591128Z ##[endgroup]
+verify	Set up job	2026-09-16T00:13:20.5591621Z ##[group]Runner Image
+verify	Set up job	2026-09-16T00:13:20.5592163Z Image: ubuntu-24.04
+verify	Set up job	2026-09-16T00:13:20.5592697Z Version: 20260907.300.1
+verify	Set up job	2026-09-16T00:13:20.5593633Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+verify	Set up job	2026-09-16T00:13:20.5595189Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+verify	Set up job	2026-09-16T00:13:20.5596032Z ##[endgroup]
+verify	Set up job	2026-09-16T00:13:20.5597032Z ##[group]GITHUB_TOKEN Permissions
+verify	Set up job	2026-09-16T00:13:20.5598929Z Contents: read
+verify	Set up job	2026-09-16T00:13:20.5599539Z Metadata: read
+verify	Set up job	2026-09-16T00:13:20.5600356Z ##[endgroup]
+verify	Set up job	2026-09-16T00:13:20.5602804Z Secret source: Actions
+verify	Set up job	2026-09-16T00:13:20.5603681Z Cache mode: write
+verify	Set up job	2026-09-16T00:13:20.5604286Z Prepare workflow directory
+verify	Set up job	2026-09-16T00:13:20.5922168Z Prepare all required actions
+verify	Set up job	2026-09-16T00:13:20.5970130Z Getting action download info
+verify	Set up job	2026-09-16T00:13:20.8564745Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+verify	Set up job	2026-09-16T00:13:20.9504536Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+verify	Set up job	2026-09-16T00:13:21.0208782Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+verify	Set up job	2026-09-16T00:13:21.1823748Z Complete job name: verify
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-09-16T00:13:21.2609478Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2618196Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2619010Z with:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2619371Z   fetch-depth: 0
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2619923Z   repository: OnFiala/eight-instructions
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2623703Z   token: ***
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2624085Z   ssh-strict: true
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2624482Z   ssh-user: git
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2624874Z   persist-credentials: true
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2625308Z   clean: true
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2625698Z   sparse-checkout-cone-mode: true
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2626178Z   fetch-tags: false
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2626566Z   show-progress: true
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2626943Z   lfs: false
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2627323Z   submodules: false
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2627706Z   set-safe-directory: true
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2628143Z   allow-unsafe-pr-checkout: false
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.2628780Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3586208Z Syncing repository: OnFiala/eight-instructions
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3589142Z ##[group]Getting Git version info
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3590697Z Working directory is '/home/runner/work/eight-instructions/eight-instructions'
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3592571Z [command]/usr/bin/git version
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3625373Z git version 2.55.0
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3645045Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3658989Z Temporarily overriding HOME='/home/runner/work/_temp/bf635518-cfbe-4237-bcc6-a1f848de9a29' before making global git config changes
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3661724Z Adding repository directory to the temporary git global config as a safe directory
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3664408Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eight-instructions/eight-instructions
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3723791Z Deleting the contents of '/home/runner/work/eight-instructions/eight-instructions'
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3726464Z ##[group]Initializing the repository
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3728097Z [command]/usr/bin/git init /home/runner/work/eight-instructions/eight-instructions
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3836471Z hint: Using 'master' as the name for the initial branch. This default branch name
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3837561Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3838401Z hint: to use in all of your new repositories, which will suppress this warning,
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3839058Z hint: call:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3839414Z hint:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3839990Z hint: 	git config --global init.defaultBranch <name>
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3840531Z hint:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3841038Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3841899Z hint: 'development'. The just-created branch can be renamed via this command:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3842556Z hint:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3842919Z hint: 	git branch -m <name>
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3843329Z hint:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3843878Z hint: Disable this message with "git config set advice.defaultBranchName false"
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3847571Z Initialized empty Git repository in /home/runner/work/eight-instructions/eight-instructions/.git/
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3858406Z [command]/usr/bin/git remote add origin https://github.com/OnFiala/eight-instructions
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3902730Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3903459Z ##[group]Disabling automatic garbage collection
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3907477Z [command]/usr/bin/git config --local gc.auto 0
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3932393Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3933055Z ##[group]Setting up auth
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3941234Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.3970107Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4291069Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4325288Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4514667Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4542876Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4718770Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4750140Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4750931Z ##[group]Fetching the repository
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:21.4759275Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3530536Z From https://github.com/OnFiala/eight-instructions
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3532599Z  * [new branch]      build-002-development -> origin/build-002-development
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3534392Z  * [new branch]      build-002-release     -> origin/build-002-release
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3536143Z  * [new branch]      build-003-development -> origin/build-003-development
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3537809Z  * [new branch]      main                  -> origin/main
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3539331Z  * [new tag]         build-001             -> build-001
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3540792Z  * [new tag]         build-002             -> build-002
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3545428Z [command]/usr/bin/git branch --list --remote origin/build-003-development
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3567398Z   origin/build-003-development
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3576301Z [command]/usr/bin/git rev-parse refs/remotes/origin/build-003-development
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3605525Z f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3608499Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3609948Z ##[group]Determining the checkout info
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3611475Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3612509Z [command]/usr/bin/git sparse-checkout disable
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3652750Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3676663Z ##[group]Checking out the ref
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.3680605Z [command]/usr/bin/git checkout --progress --force -B build-003-development refs/remotes/origin/build-003-development
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.8942131Z Switched to a new branch 'build-003-development'
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.8944274Z branch 'build-003-development' set up to track 'origin/build-003-development'.
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.8963081Z ##[endgroup]
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.9001935Z [command]/usr/bin/git log -1 --format=%H
+verify	Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:13:27.9031668Z f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	﻿2026-09-16T00:13:27.9256433Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9258202Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9258610Z with:
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9258850Z   node-version: 22
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9259099Z   cache: npm
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9259341Z   always-auth: false
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9259614Z   check-latest: false
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9262922Z   token: ***
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:27.9263174Z ##[endgroup]
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.0625834Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.0628674Z (node:2177) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.0629472Z (Use `node --trace-deprecation ...` to show where the warning was created)
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.0631667Z ##[group]Environment details
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.4732334Z node: v22.23.2
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.4732847Z npm: 10.9.8
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.4733140Z yarn: 1.22.22
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.4734887Z ##[endgroup]
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.4775143Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.5769207Z /home/runner/.npm
+verify	Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020	2026-09-16T00:13:28.7320565Z npm cache is not found
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	﻿2026-09-16T00:13:28.7476872Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7478146Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7478526Z with:
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7478728Z   python-version: 3.14
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7478956Z   check-latest: false
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7481994Z   token: ***
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7482206Z   update-environment: true
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7482445Z   allow-prereleases: false
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7482672Z   freethreaded: false
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.7482880Z ##[endgroup]
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.8773112Z ##[group]Installed versions
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.8862380Z (node:2222) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.8863303Z (Use `node --trace-deprecation ...` to show where the warning was created)
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.8863832Z Successfully set up CPython (3.14.7)
+verify	Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065	2026-09-16T00:13:28.8864306Z ##[endgroup]
+verify	Run npm ci --ignore-scripts	﻿2026-09-16T00:13:28.9003692Z ##[group]Run npm ci --ignore-scripts
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9004360Z [36;1mnpm ci --ignore-scripts[0m
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9060640Z shell: /usr/bin/bash -e {0}
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9061439Z env:
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9061921Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9062733Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9063550Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9064308Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9065070Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9065812Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:28.9066450Z ##[endgroup]
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:29.6565605Z 
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:29.6566875Z added 1 package, and audited 2 packages in 689ms
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:29.6573631Z 
+verify	Run npm ci --ignore-scripts	2026-09-16T00:13:29.6574152Z found 0 vulnerabilities
+verify	Run npm run verify	﻿2026-09-16T00:13:29.6824115Z ##[group]Run npm run verify
+verify	Run npm run verify	2026-09-16T00:13:29.6824409Z [36;1mnpm run verify[0m
+verify	Run npm run verify	2026-09-16T00:13:29.6848213Z shell: /usr/bin/bash -e {0}
+verify	Run npm run verify	2026-09-16T00:13:29.6848479Z env:
+verify	Run npm run verify	2026-09-16T00:13:29.6848810Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-16T00:13:29.6849219Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+verify	Run npm run verify	2026-09-16T00:13:29.6849618Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-16T00:13:29.6850272Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-16T00:13:29.6850627Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+verify	Run npm run verify	2026-09-16T00:13:29.6850993Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+verify	Run npm run verify	2026-09-16T00:13:29.6851297Z ##[endgroup]
+verify	Run npm run verify	2026-09-16T00:13:29.7782697Z 
+verify	Run npm run verify	2026-09-16T00:13:29.7783450Z > eight-instructions@0.3.0 verify
+verify	Run npm run verify	2026-09-16T00:13:29.7785525Z > python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-archives.mjs --check && node tools/build-industry-image.mjs --check && node tools/audit.mjs && node --test tests/*.test.mjs
+verify	Run npm run verify	2026-09-16T00:13:29.7786566Z 
+verify	Run npm run verify	2026-09-16T00:13:30.8833190Z {"instructions": 98687674, "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c", "cells": 398704}
+verify	Run npm run verify	2026-09-16T00:13:30.9806536Z Generic BF executor: 744 bytes
+verify	Run npm run verify	2026-09-16T00:13:31.0174705Z Raw program assets match their canonical sources.
+verify	Run npm run verify	2026-09-16T00:13:31.0488257Z Public history matches canonical build records.
+verify	Run npm run verify	2026-09-16T00:13:31.1372843Z build-001: 17 verbatim files; HTML relocation recorded.
+verify	Run npm run verify	2026-09-16T00:13:31.4690651Z build-002: 52 verbatim files; HTML relocation recorded.
+verify	Run npm run verify	2026-09-16T00:15:20.7670881Z Initial image PASS: fresh BF boot reproduces 18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04; 107946.76 ms for this check.
+verify	Run npm run verify	2026-09-16T00:15:22.0488638Z Boundary audit PASS: 234 classified sources. Hashes are review gates, not a semantic proof.
+verify	Run npm run verify	2026-09-16T00:15:22.1060095Z TAP version 13
+verify	Run npm run verify	2026-09-16T00:15:36.4326237Z # Subtest: native unsigned division matches integer arithmetic across all bit widths and overflow guards
+verify	Run npm run verify	2026-09-16T00:15:36.4333708Z ok 1 - native unsigned division matches integer arithmetic across all bit widths and overflow guards
+verify	Run npm run verify	2026-09-16T00:15:36.4334854Z   ---
+verify	Run npm run verify	2026-09-16T00:15:36.4338041Z   duration_ms: 11382.252015
+verify	Run npm run verify	2026-09-16T00:15:36.4338753Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:15:36.4340827Z   ...
+verify	Run npm run verify	2026-09-16T00:15:36.4701483Z # Subtest: boundary guard rejects new executable files, changed host code and extra kernel commands
+verify	Run npm run verify	2026-09-16T00:15:36.4703417Z ok 2 - boundary guard rejects new executable files, changed host code and extra kernel commands
+verify	Run npm run verify	2026-09-16T00:15:36.4704420Z   ---
+verify	Run npm run verify	2026-09-16T00:15:36.4730657Z   duration_ms: 3.070571
+verify	Run npm run verify	2026-09-16T00:15:36.4734042Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:15:36.4750712Z   ...
+verify	Run npm run verify	2026-09-16T00:15:44.8247123Z # Subtest: dictionary capacity refuses publication without corrupting existing words
+verify	Run npm run verify	2026-09-16T00:15:44.8341296Z ok 3 - dictionary capacity refuses publication without corrupting existing words
+verify	Run npm run verify	2026-09-16T00:15:44.8370444Z   ---
+verify	Run npm run verify	2026-09-16T00:15:44.8371250Z   duration_ms: 21222.658852
+verify	Run npm run verify	2026-09-16T00:15:44.8372574Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:15:44.8373109Z   ...
+verify	Run npm run verify	2026-09-16T00:16:09.7871119Z # Subtest: code and nested control exhaustion roll back incomplete definitions
+verify	Run npm run verify	2026-09-16T00:16:09.7900911Z ok 4 - code and nested control exhaustion roll back incomplete definitions
+verify	Run npm run verify	2026-09-16T00:16:09.8057813Z   ---
+verify	Run npm run verify	2026-09-16T00:16:09.8061892Z   duration_ms: 24957.892485
+verify	Run npm run verify	2026-09-16T00:16:09.8100599Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:16:09.8140372Z   ...
+verify	Run npm run verify	2026-09-16T00:16:09.9638316Z # Subtest: heap exhaustion and overlong tokens refuse mutation and recover
+verify	Run npm run verify	2026-09-16T00:16:09.9643562Z ok 5 - heap exhaustion and overlong tokens refuse mutation and recover
+verify	Run npm run verify	2026-09-16T00:16:09.9644898Z   ---
+verify	Run npm run verify	2026-09-16T00:16:09.9645384Z   duration_ms: 187.405675
+verify	Run npm run verify	2026-09-16T00:16:09.9645845Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:16:09.9646235Z   ...
+verify	Run npm run verify	2026-09-16T00:17:23.6367836Z # Subtest: new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+verify	Run npm run verify	2026-09-16T00:17:23.6376020Z ok 6 - new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+verify	Run npm run verify	2026-09-16T00:17:23.6377586Z   ---
+verify	Run npm run verify	2026-09-16T00:17:23.6378115Z   duration_ms: 119287.934405
+verify	Run npm run verify	2026-09-16T00:17:23.6378722Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:17:23.6379204Z   ...
+verify	Run npm run verify	2026-09-16T00:18:10.5945591Z # Subtest: native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+verify	Run npm run verify	2026-09-16T00:18:10.5961723Z ok 7 - native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+verify	Run npm run verify	2026-09-16T00:18:10.5991869Z   ---
+verify	Run npm run verify	2026-09-16T00:18:10.5992749Z   duration_ms: 46956.293557
+verify	Run npm run verify	2026-09-16T00:18:10.5993775Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:18:10.5994333Z   ...
+verify	Run npm run verify	2026-09-16T00:18:38.6424529Z # Subtest: a refused road pair at fixed capacity preserves all road data
+verify	Run npm run verify	2026-09-16T00:18:38.6425939Z ok 8 - a refused road pair at fixed capacity preserves all road data
+verify	Run npm run verify	2026-09-16T00:18:38.6426851Z   ---
+verify	Run npm run verify	2026-09-16T00:18:38.6427391Z   duration_ms: 3261.981262
+verify	Run npm run verify	2026-09-16T00:18:38.6427939Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:18:38.6430425Z   ...
+verify	Run npm run verify	2026-09-16T00:18:42.1833062Z # Subtest: safe-point, serial and pin refusals preserve the active version and bounded references
+verify	Run npm run verify	2026-09-16T00:18:42.1838444Z ok 9 - safe-point, serial and pin refusals preserve the active version and bounded references
+verify	Run npm run verify	2026-09-16T00:18:42.1839649Z   ---
+verify	Run npm run verify	2026-09-16T00:18:42.1840493Z   duration_ms: 28327.331751
+verify	Run npm run verify	2026-09-16T00:18:42.1841058Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:18:42.1841550Z   ...
+verify	Run npm run verify	2026-09-16T00:18:46.4834894Z # Subtest: presentation retains serial identity after arena reuse; source framing cannot forge active state
+verify	Run npm run verify	2026-09-16T00:18:46.4837522Z ok 10 - presentation retains serial identity after arena reuse; source framing cannot forge active state
+verify	Run npm run verify	2026-09-16T00:18:46.4980479Z   ---
+verify	Run npm run verify	2026-09-16T00:18:46.5060700Z   duration_ms: 4301.37919
+verify	Run npm run verify	2026-09-16T00:18:46.5077806Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:18:46.5078367Z   ...
+verify	Run npm run verify	2026-09-16T00:18:56.3666204Z # Subtest: removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+verify	Run npm run verify	2026-09-16T00:18:56.3721671Z ok 11 - removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+verify	Run npm run verify	2026-09-16T00:18:56.3723085Z   ---
+verify	Run npm run verify	2026-09-16T00:18:56.3723666Z   duration_ms: 9881.733206
+verify	Run npm run verify	2026-09-16T00:18:56.3724236Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:18:56.3724756Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2184823Z # Subtest: road edits invalidate the native cost cache even when the 16-bit generation wraps
+verify	Run npm run verify	2026-09-16T00:19:01.2186227Z ok 12 - road edits invalidate the native cost cache even when the 16-bit generation wraps
+verify	Run npm run verify	2026-09-16T00:19:01.2187176Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2187541Z   duration_ms: 4857.644702
+verify	Run npm run verify	2026-09-16T00:19:01.2187872Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2188141Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2353517Z # Subtest: two programs from one initial image change routes with the same open toll bridge
+verify	Run npm run verify	2026-09-16T00:19:01.2371560Z ok 13 - two programs from one initial image change routes with the same open toll bridge
+verify	Run npm run verify	2026-09-16T00:19:01.2382253Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2383254Z   duration_ms: 88776.63428
+verify	Run npm run verify	2026-09-16T00:19:01.2383809Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2384265Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2385202Z # Subtest: in-flight cars retain their edge and old version across swaps, then release it at arrival
+verify	Run npm run verify	2026-09-16T00:19:01.2386589Z ok 14 - in-flight cars retain their edge and old version across swaps, then release it at arrival
+verify	Run npm run verify	2026-09-16T00:19:01.2387503Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2387985Z   duration_ms: 37272.911147
+verify	Run npm run verify	2026-09-16T00:19:01.2388528Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2389015Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2390387Z # Subtest: paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+verify	Run npm run verify	2026-09-16T00:19:01.2391885Z ok 15 - paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+verify	Run npm run verify	2026-09-16T00:19:01.2393129Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2393609Z   duration_ms: 28338.041494
+verify	Run npm run verify	2026-09-16T00:19:01.2394140Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2394608Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2395587Z # Subtest: closure is a separate native data experiment and cannot teleport an in-flight vehicle
+verify	Run npm run verify	2026-09-16T00:19:01.2396833Z ok 16 - closure is a separate native data experiment and cannot teleport an in-flight vehicle
+verify	Run npm run verify	2026-09-16T00:19:01.2397580Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2398044Z   duration_ms: 13430.371298
+verify	Run npm run verify	2026-09-16T00:19:01.2398491Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2398934Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2399969Z # Subtest: changing road duration preserves the duration already committed to an in-flight vehicle
+verify	Run npm run verify	2026-09-16T00:19:01.2401620Z ok 17 - changing road duration preserves the duration already committed to an in-flight vehicle
+verify	Run npm run verify	2026-09-16T00:19:01.2402541Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2403119Z   duration_ms: 9739.24501
+verify	Run npm run verify	2026-09-16T00:19:01.2403631Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2404036Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2404839Z # Subtest: exact counter windows cross Number precision without changing BF execution
+verify	Run npm run verify	2026-09-16T00:19:01.2405906Z ok 18 - exact counter windows cross Number precision without changing BF execution
+verify	Run npm run verify	2026-09-16T00:19:01.2406603Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2407037Z   duration_ms: 6.060919
+verify	Run npm run verify	2026-09-16T00:19:01.2407541Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2407974Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2408850Z # Subtest: zero budgets, repeated fuel pauses and output limits remain exact across rotation
+verify	Run npm run verify	2026-09-16T00:19:01.2410135Z ok 19 - zero budgets, repeated fuel pauses and output limits remain exact across rotation
+verify	Run npm run verify	2026-09-16T00:19:01.2410898Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2411340Z   duration_ms: 4.021065
+verify	Run npm run verify	2026-09-16T00:19:01.2411829Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2412253Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2413205Z # Subtest: images preserve exact epochs and reject malformed epochs before creating a candidate
+verify	Run npm run verify	2026-09-16T00:19:01.2414557Z ok 20 - images preserve exact epochs and reject malformed epochs before creating a candidate
+verify	Run npm run verify	2026-09-16T00:19:01.2415434Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2415881Z   duration_ms: 23.568095
+verify	Run npm run verify	2026-09-16T00:19:01.2416373Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2416812Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2417630Z # Subtest: CLI diagnostics ignore opaque source bodies across every byte split
+verify	Run npm run verify	2026-09-16T00:19:01.2418767Z ok 21 - CLI diagnostics ignore opaque source bodies across every byte split
+verify	Run npm run verify	2026-09-16T00:19:01.2419518Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2420116Z   duration_ms: 3.226761
+verify	Run npm run verify	2026-09-16T00:19:01.2420605Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2421039Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2422100Z # Subtest: a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+verify	Run npm run verify	2026-09-16T00:19:01.2423571Z ok 22 - a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+verify	Run npm run verify	2026-09-16T00:19:01.2424466Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2424900Z   duration_ms: 7229.068323
+verify	Run npm run verify	2026-09-16T00:19:01.2425405Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2515567Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2517639Z # Subtest: Dispatch combines transactions, native compilation and dynamic route changes
+verify	Run npm run verify	2026-09-16T00:19:01.2518998Z ok 23 - Dispatch combines transactions, native compilation and dynamic route changes
+verify	Run npm run verify	2026-09-16T00:19:01.2520239Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2520602Z   duration_ms: 20664.38058
+verify	Run npm run verify	2026-09-16T00:19:01.2521019Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2521370Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2522018Z # Subtest: zero-distance, unreachable nodes and invalid road states
+verify	Run npm run verify	2026-09-16T00:19:01.2522931Z ok 24 - zero-distance, unreachable nodes and invalid road states
+verify	Run npm run verify	2026-09-16T00:19:01.2523575Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2523932Z   duration_ms: 5197.297612
+verify	Run npm run verify	2026-09-16T00:19:01.2524348Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2524697Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2525441Z # Subtest: maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+verify	Run npm run verify	2026-09-16T00:19:01.2526460Z ok 25 - maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+verify	Run npm run verify	2026-09-16T00:19:01.2527136Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2527499Z   duration_ms: 12960.03539
+verify	Run npm run verify	2026-09-16T00:19:01.2528104Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2528526Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2529333Z # Subtest: random weighted networks agree with Bellman-Ford and valid path reconstruction
+verify	Run npm run verify	2026-09-16T00:19:01.2530769Z ok 26 - random weighted networks agree with Bellman-Ford and valid path reconstruction
+verify	Run npm run verify	2026-09-16T00:19:01.2531505Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2531869Z   duration_ms: 42723.737436
+verify	Run npm run verify	2026-09-16T00:19:01.2532279Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2532627Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2533385Z # Subtest: full-capacity 128-road cyclic network agrees with an independent oracle
+verify	Run npm run verify	2026-09-16T00:19:01.2534397Z ok 27 - full-capacity 128-road cyclic network agrees with an independent oracle
+verify	Run npm run verify	2026-09-16T00:19:01.2535112Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2535439Z   duration_ms: 76766.304161
+verify	Run npm run verify	2026-09-16T00:19:01.2535872Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2536217Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2536994Z # Subtest: generated addressed memory and arithmetic execute on the real BF machine
+verify	Run npm run verify	2026-09-16T00:19:01.2538180Z ok 28 - generated addressed memory and arithmetic execute on the real BF machine
+verify	Run npm run verify	2026-09-16T00:19:01.2538911Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2539264Z   duration_ms: 42.88213
+verify	Run npm run verify	2026-09-16T00:19:01.2539675Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2540270Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2541030Z # Subtest: paged native memory walks page and word lanes and clears all breadcrumbs
+verify	Run npm run verify	2026-09-16T00:19:01.2542091Z ok 29 - paged native memory walks page and word lanes and clears all breadcrumbs
+verify	Run npm run verify	2026-09-16T00:19:01.2542804Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2543138Z   duration_ms: 28.109719
+verify	Run npm run verify	2026-09-16T00:19:01.2543536Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2543878Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2544223Z # Subtest: bracket validation
+verify	Run npm run verify	2026-09-16T00:19:01.2544683Z ok 30 - bracket validation
+verify	Run npm run verify	2026-09-16T00:19:01.2545072Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2545402Z   duration_ms: 1.135406
+verify	Run npm run verify	2026-09-16T00:19:01.2545781Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2546095Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2546682Z # Subtest: uint16 wrap, low-byte output, input pause and EOF
+verify	Run npm run verify	2026-09-16T00:19:01.2547496Z ok 31 - uint16 wrap, low-byte output, input pause and EOF
+verify	Run npm run verify	2026-09-16T00:19:01.2548005Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2548349Z   duration_ms: 1.023582
+verify	Run npm run verify	2026-09-16T00:19:01.2548726Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2549028Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2549577Z # Subtest: bounds checks retain intermediate pointer motion
+verify	Run npm run verify	2026-09-16T00:19:01.2550467Z ok 32 - bounds checks retain intermediate pointer motion
+verify	Run npm run verify	2026-09-16T00:19:01.2550979Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2551343Z   duration_ms: 1.350684
+verify	Run npm run verify	2026-09-16T00:19:01.2551768Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2552062Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2552631Z # Subtest: resource budget interrupts a divergent program
+verify	Run npm run verify	2026-09-16T00:19:01.2553441Z ok 33 - resource budget interrupts a divergent program
+verify	Run npm run verify	2026-09-16T00:19:01.2553966Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2554294Z   duration_ms: 0.28849
+verify	Run npm run verify	2026-09-16T00:19:01.2554655Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2554984Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2555636Z # Subtest: invalid limits and bytes fail without corrupting queued input
+verify	Run npm run verify	2026-09-16T00:19:01.2556607Z ok 34 - invalid limits and bytes fail without corrupting queued input
+verify	Run npm run verify	2026-09-16T00:19:01.2557264Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2557622Z   duration_ms: 47.44105
+verify	Run npm run verify	2026-09-16T00:19:01.2558200Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2558533Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2559312Z # Subtest: optimized loops match literal execution, including instruction counts
+verify	Run npm run verify	2026-09-16T00:19:01.2560422Z ok 35 - optimized loops match literal execution, including instruction counts
+verify	Run npm run verify	2026-09-16T00:19:01.2561035Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2561322Z   duration_ms: 30.214551
+verify	Run npm run verify	2026-09-16T00:19:01.2561665Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2561959Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2562652Z # Subtest: machine images resume partial input and preserve full uint16 state
+verify	Run npm run verify	2026-09-16T00:19:01.2563710Z ok 36 - machine images resume partial input and preserve full uint16 state
+verify	Run npm run verify	2026-09-16T00:19:01.2564365Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2564705Z   duration_ms: 7.20971
+verify	Run npm run verify	2026-09-16T00:19:01.2565095Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2565612Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2566432Z # Subtest: image corruption, incompatible kernels and invalid machine state are rejected
+verify	Run npm run verify	2026-09-16T00:19:01.2567669Z ok 37 - image corruption, incompatible kernels and invalid machine state are rejected
+verify	Run npm run verify	2026-09-16T00:19:01.2568426Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2568773Z   duration_ms: 3.278959
+verify	Run npm run verify	2026-09-16T00:19:01.2569165Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2569510Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2570256Z # Subtest: budget images resume without replaying input or output
+verify	Run npm run verify	2026-09-16T00:19:01.2571167Z ok 38 - budget images resume without replaying input or output
+verify	Run npm run verify	2026-09-16T00:19:01.2571700Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2572066Z   duration_ms: 1.306051
+verify	Run npm run verify	2026-09-16T00:19:01.2572479Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2572851Z   ...
+verify	Run npm run verify	2026-09-16T00:19:01.2573536Z # Subtest: OS image replacement is atomic and leaves no temporary files
+verify	Run npm run verify	2026-09-16T00:19:01.2574497Z ok 39 - OS image replacement is atomic and leaves no temporary files
+verify	Run npm run verify	2026-09-16T00:19:01.2575107Z   ---
+verify	Run npm run verify	2026-09-16T00:19:01.2575459Z   duration_ms: 6.429647
+verify	Run npm run verify	2026-09-16T00:19:01.2575856Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:19:01.2576198Z   ...
+verify	Run npm run verify	2026-09-16T00:22:26.2964965Z # {"coldBootMs":228975.81347,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+verify	Run npm run verify	2026-09-16T00:23:00.9151871Z # Subtest: native road capacity queues a second van; closure preserves an existing reservation
+verify	Run npm run verify	2026-09-16T00:23:00.9161691Z ok 40 - native road capacity queues a second van; closure preserves an existing reservation
+verify	Run npm run verify	2026-09-16T00:23:00.9163116Z   ---
+verify	Run npm run verify	2026-09-16T00:23:00.9280804Z   duration_ms: 263647.957302
+verify	Run npm run verify	2026-09-16T00:23:00.9330494Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:23:00.9331223Z   ...
+verify	Run npm run verify	2026-09-16T00:23:49.9564021Z # {"jobCapacity":16,"reclaimedLifetimes":467,"staleIdentityRefused":1,"liveJobs":0}
+verify	Run npm run verify	2026-09-16T00:23:49.9681298Z # Subtest: all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+verify	Run npm run verify	2026-09-16T00:23:49.9691387Z ok 41 - all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+verify	Run npm run verify	2026-09-16T00:23:49.9750441Z   ---
+verify	Run npm run verify	2026-09-16T00:23:49.9780376Z   duration_ms: 49047.772947
+verify	Run npm run verify	2026-09-16T00:23:49.9819118Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:23:49.9830345Z   ...
+verify	Run npm run verify	2026-09-16T00:27:37.7162488Z # Subtest: publishing, refusing schema change and rolling back preserve a paused carried load and route version
+verify	Run npm run verify	2026-09-16T00:27:37.7164655Z ok 42 - publishing, refusing schema change and rolling back preserve a paused carried load and route version
+verify	Run npm run verify	2026-09-16T00:27:37.7165781Z   ---
+verify	Run npm run verify	2026-09-16T00:27:37.7166299Z   duration_ms: 227758.44752
+verify	Run npm run verify	2026-09-16T00:27:37.7166868Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:27:37.7167363Z   ...
+verify	Run npm run verify	2026-09-16T00:27:37.7421529Z # Subtest: native source text is length framed, never mistaken for errors or city events
+verify	Run npm run verify	2026-09-16T00:27:37.7437242Z ok 43 - native source text is length framed, never mistaken for errors or city events
+verify	Run npm run verify	2026-09-16T00:27:37.7460741Z   ---
+verify	Run npm run verify	2026-09-16T00:27:37.7467716Z   duration_ms: 2.980493
+verify	Run npm run verify	2026-09-16T00:27:37.7468348Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:27:37.7468885Z   ...
+verify	Run npm run verify	2026-09-16T00:27:37.7470044Z # Subtest: bounded process and industrial records reject truncation before UI replacement
+verify	Run npm run verify	2026-09-16T00:27:37.7471921Z ok 44 - bounded process and industrial records reject truncation before UI replacement
+verify	Run npm run verify	2026-09-16T00:27:37.7472849Z   ---
+verify	Run npm run verify	2026-09-16T00:27:37.7473354Z   duration_ms: 2.085932
+verify	Run npm run verify	2026-09-16T00:27:37.7473891Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:27:37.7474382Z   ...
+verify	Run npm run verify	2026-09-16T00:27:37.7475507Z # Subtest: a van between observed road segments keeps its job label, including route calculation
+verify	Run npm run verify	2026-09-16T00:27:37.7477051Z ok 45 - a van between observed road segments keeps its job label, including route calculation
+verify	Run npm run verify	2026-09-16T00:27:37.7478009Z   ---
+verify	Run npm run verify	2026-09-16T00:27:37.7478503Z   duration_ms: 0.408844
+verify	Run npm run verify	2026-09-16T00:27:37.7479047Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:27:37.7479529Z   ...
+verify	Run npm run verify	2026-09-16T00:27:37.7481150Z # {"coldBootMs":238043.52447499998,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+verify	Run npm run verify	2026-09-16T00:27:37.7483364Z # Subtest: a user van program gets higher native passage priority over an earlier scheduler slot
+verify	Run npm run verify	2026-09-16T00:27:37.7484884Z ok 46 - a user van program gets higher native passage priority over an earlier scheduler slot
+verify	Run npm run verify	2026-09-16T00:27:37.7485841Z   ---
+verify	Run npm run verify	2026-09-16T00:27:37.7486335Z   duration_ms: 270428.365766
+verify	Run npm run verify	2026-09-16T00:27:37.7486903Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:27:37.7487385Z   ...
+verify	Run npm run verify	2026-09-16T00:27:37.7488412Z # Subtest: an infinite high-priority program cannot retain a free road through a stale intent
+verify	Run npm run verify	2026-09-16T00:27:37.7490016Z ok 47 - an infinite high-priority program cannot retain a free road through a stale intent
+verify	Run npm run verify	2026-09-16T00:27:37.7490964Z   ---
+verify	Run npm run verify	2026-09-16T00:27:37.7491454Z   duration_ms: 27845.675308
+verify	Run npm run verify	2026-09-16T00:27:37.7492020Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:27:37.7492527Z   ...
+verify	Run npm run verify	2026-09-16T00:27:37.7493677Z # Subtest: paused priority claim is ineligible; invalid priority faults locally without changing its value
+verify	Run npm run verify	2026-09-16T00:27:37.7495379Z ok 48 - paused priority claim is ineligible; invalid priority faults locally without changing its value
+verify	Run npm run verify	2026-09-16T00:27:37.7496411Z   ---
+verify	Run npm run verify	2026-09-16T00:27:37.7496897Z   duration_ms: 16722.828346
+verify	Run npm run verify	2026-09-16T00:27:37.7497468Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:27:37.7497954Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3005175Z # {"coldBootMs":108544.519314,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+verify	Run npm run verify	2026-09-16T00:30:28.3021364Z # Subtest: repeated delivery notifications, local receive failure and repair never repeat material transfer
+verify	Run npm run verify	2026-09-16T00:30:28.3023084Z ok 49 - repeated delivery notifications, local receive failure and repair never repeat material transfer
+verify	Run npm run verify	2026-09-16T00:30:28.3024016Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3024404Z   duration_ms: 321887.080037
+verify	Run npm run verify	2026-09-16T00:30:28.3024854Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3025215Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3026203Z # Subtest: native transport/production and an unfinished BF instruction stream survive an exact image
+verify	Run npm run verify	2026-09-16T00:30:28.3027752Z ok 50 - native transport/production and an unfinished BF instruction stream survive an exact image
+verify	Run npm run verify	2026-09-16T00:30:28.3028625Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3028998Z   duration_ms: 363732.401657
+verify	Run npm run verify	2026-09-16T00:30:28.3029449Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3029901Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3412043Z # {"coldBootMs":108499.55335199999,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+verify	Run npm run verify	2026-09-16T00:30:28.3446992Z # SEND 1 3 1 1 1 2 
+verify	Run npm run verify	2026-09-16T00:30:28.3460566Z # ORDER 1 3 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3461120Z # SEND 2 4 2 1 2 3 
+verify	Run npm run verify	2026-09-16T00:30:28.3490351Z # ORDER 2 4 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3520382Z # ROUND 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3530565Z # RECEIVE 1 1 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3531189Z # AUTHORIZE 1 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3531738Z # SEND 3 1 7 2 1 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3532242Z # ASSIGN 1 7 
+verify	Run npm run verify	2026-09-16T00:30:28.3532677Z # RECEIVE 2 2 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3533240Z # AUTHORIZE 2 2 
+verify	Run npm run verify	2026-09-16T00:30:28.3533802Z # SEND 4 2 9 2 2 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3534387Z # ASSIGN 2 9 
+verify	Run npm run verify	2026-09-16T00:30:28.3534826Z # RECEIVE 3 7 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3535371Z # LOAD 7 1 1 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3535906Z # RECEIVE 4 9 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3536831Z # LOAD 9 2 2 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3537269Z # ROUND 2 
+verify	Run npm run verify	2026-09-16T00:30:28.3537791Z # ROUND 3 
+verify	Run npm run verify	2026-09-16T00:30:28.3538252Z # ROUND 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3538757Z # ROUND 5 
+verify	Run npm run verify	2026-09-16T00:30:28.3539178Z # ROUND 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3539671Z # ROUND 7 
+verify	Run npm run verify	2026-09-16T00:30:28.3540387Z # I-ROUTE 7 4 12 4 4 3 12 8 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3540996Z # ROUND 8 
+verify	Run npm run verify	2026-09-16T00:30:28.3541503Z # I-DEPART 7 33 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3542132Z # I-ROUTE 9 4 3 11 4 3 3 7 11 
+verify	Run npm run verify	2026-09-16T00:30:28.3542683Z # ROUND 9 
+verify	Run npm run verify	2026-09-16T00:30:28.3543215Z # I-DEPART 9 22 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3543759Z # ROUND 10 
+verify	Run npm run verify	2026-09-16T00:30:28.3544186Z # I-ARRIVE 7 8 
+verify	Run npm run verify	2026-09-16T00:30:28.3544731Z # ROUND 11 
+verify	Run npm run verify	2026-09-16T00:30:28.3545281Z # I-DEPART 7 25 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3545736Z # I-ARRIVE 9 7 
+verify	Run npm run verify	2026-09-16T00:30:28.3546280Z # ROUND 12 
+verify	Run npm run verify	2026-09-16T00:30:28.3547050Z # I-DEPART 9 30 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3547552Z # ROUND 13 
+verify	Run npm run verify	2026-09-16T00:30:28.3548076Z # I-ARRIVE 7 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3548641Z # SEND 5 7 3 3 1 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3549126Z # UNLOAD 7 1 3 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3549661Z # ROUND 14 
+verify	Run npm run verify	2026-09-16T00:30:28.3550227Z # RECEIVE 5 3 2 
+verify	Run npm run verify	2026-09-16T00:30:28.3550730Z # ACK 1 3 
+verify	Run npm run verify	2026-09-16T00:30:28.3551239Z # I-ARRIVE 9 11 
+verify	Run npm run verify	2026-09-16T00:30:28.3551811Z # SEND 6 9 4 3 2 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3552287Z # UNLOAD 9 2 4 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3552840Z # ROUND 15 
+verify	Run npm run verify	2026-09-16T00:30:28.3553347Z # SEND 7 3 1 1 3 2 
+verify	Run npm run verify	2026-09-16T00:30:28.3553882Z # ORDER 3 3 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3554420Z # RECEIVE 6 4 3 
+verify	Run npm run verify	2026-09-16T00:30:28.3554860Z # ACK 2 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3555363Z # ROUND 16 
+verify	Run npm run verify	2026-09-16T00:30:28.3555786Z # RECEIVE 7 1 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3556340Z # AUTHORIZE 3 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3556956Z # SEND 8 1 8 2 3 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3557453Z # ASSIGN 3 8 
+verify	Run npm run verify	2026-09-16T00:30:28.3557991Z # SEND 9 4 2 1 4 3 
+verify	Run npm run verify	2026-09-16T00:30:28.3558485Z # ORDER 4 4 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3559028Z # RECEIVE 8 8 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3559563Z # LOAD 8 3 1 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3560132Z # ROUND 17 
+verify	Run npm run verify	2026-09-16T00:30:28.3560560Z # RECEIVE 9 2 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3561125Z # AUTHORIZE 4 2 
+verify	Run npm run verify	2026-09-16T00:30:28.3561710Z # SEND 10 2 10 2 4 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3562169Z # ASSIGN 4 10 
+verify	Run npm run verify	2026-09-16T00:30:28.3562713Z # PRODUCE 3 1 
+verify	Run npm run verify	2026-09-16T00:30:28.3563179Z # RECEIVE 10 10 4 
+verify	Run npm run verify	2026-09-16T00:30:28.3563625Z # LOAD 10 4 2 6 
+verify	Run npm run verify	2026-09-16T00:30:28.3564196Z # ROUND 18 
+verify	Run npm run verify	2026-09-16T00:30:28.3565128Z # Subtest: twelve native processes create real orders and preserve the material ledger
+verify	Run npm run verify	2026-09-16T00:30:28.3566526Z ok 51 - twelve native processes create real orders and preserve the material ledger
+verify	Run npm run verify	2026-09-16T00:30:28.3567521Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3567982Z   duration_ms: 188142.484978
+verify	Run npm run verify	2026-09-16T00:30:28.3568505Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3568942Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3570000Z # Subtest: unfinished messages, native frames and route phases survive a new machine image
+verify	Run npm run verify	2026-09-16T00:30:28.3571552Z ok 52 - unfinished messages, native frames and route phases survive a new machine image
+verify	Run npm run verify	2026-09-16T00:30:28.3572419Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3572864Z   duration_ms: 63655.079273
+verify	Run npm run verify	2026-09-16T00:30:28.3573378Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3573806Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3574731Z # Subtest: ownership rejects removing stock or executing a foreign industrial operation
+verify	Run npm run verify	2026-09-16T00:30:28.3576095Z ok 53 - ownership rejects removing stock or executing a foreign industrial operation
+verify	Run npm run verify	2026-09-16T00:30:28.3576961Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3577401Z   duration_ms: 20118.158917
+verify	Run npm run verify	2026-09-16T00:30:28.3577999Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3578431Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3579041Z # Subtest: numeric parsing and unsigned arithmetic
+verify	Run npm run verify	2026-09-16T00:30:28.3579974Z ok 54 - numeric parsing and unsigned arithmetic
+verify	Run npm run verify	2026-09-16T00:30:28.3580590Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3581021Z   duration_ms: 541.65297
+verify	Run npm run verify	2026-09-16T00:30:28.3581520Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3581952Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3582664Z # Subtest: stack combinators, equality and unsigned comparison
+verify	Run npm run verify	2026-09-16T00:30:28.3583634Z ok 55 - stack combinators, equality and unsigned comparison
+verify	Run npm run verify	2026-09-16T00:30:28.3584590Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3585023Z   duration_ms: 114.641519
+verify	Run npm run verify	2026-09-16T00:30:28.3585516Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3585946Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3586626Z # Subtest: native definitions, calls and source compilation
+verify	Run npm run verify	2026-09-16T00:30:28.3587546Z ok 56 - native definitions, calls and source compilation
+verify	Run npm run verify	2026-09-16T00:30:28.3588204Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3588630Z   duration_ms: 110.163904
+verify	Run npm run verify	2026-09-16T00:30:28.3589132Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3589559Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3590256Z # Subtest: native conditionals and nested branching
+verify	Run npm run verify	2026-09-16T00:30:28.3591076Z ok 57 - native conditionals and nested branching
+verify	Run npm run verify	2026-09-16T00:30:28.3591829Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3592385Z   duration_ms: 235.556229
+verify	Run npm run verify	2026-09-16T00:30:28.3592877Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3593311Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3594013Z # Subtest: loops and recursive definitions
+verify	Run npm run verify	2026-09-16T00:30:28.3594738Z ok 58 - loops and recursive definitions
+verify	Run npm run verify	2026-09-16T00:30:28.3595316Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3595746Z   duration_ms: 233.868146
+verify	Run npm run verify	2026-09-16T00:30:28.3596292Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3596726Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3597434Z # Subtest: native defining words, while/repeat and early return
+verify	Run npm run verify	2026-09-16T00:30:28.3598415Z ok 59 - native defining words, while/repeat and early return
+verify	Run npm run verify	2026-09-16T00:30:28.3599092Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3599529Z   duration_ms: 298.207099
+verify	Run npm run verify	2026-09-16T00:30:28.3600381Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3600821Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3601431Z # Subtest: separate bounded heap and persistent regions
+verify	Run npm run verify	2026-09-16T00:30:28.3602211Z ok 60 - separate bounded heap and persistent regions
+verify	Run npm run verify	2026-09-16T00:30:28.3602748Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3603074Z   duration_ms: 121.183091
+verify	Run npm run verify	2026-09-16T00:30:28.3603460Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3603804Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3604491Z # Subtest: comments and partial tokens across interactive input chunks
+verify	Run npm run verify	2026-09-16T00:30:28.3605489Z ok 61 - comments and partial tokens across interactive input chunks
+verify	Run npm run verify	2026-09-16T00:30:28.3606112Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3606468Z   duration_ms: 10.206284
+verify	Run npm run verify	2026-09-16T00:30:28.3606858Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3607231Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3607755Z # Subtest: diagnostic recovery and rejected input
+verify	Run npm run verify	2026-09-16T00:30:28.3608468Z ok 62 - diagnostic recovery and rejected input
+verify	Run npm run verify	2026-09-16T00:30:28.3608971Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3609314Z   duration_ms: 188.102981
+verify	Run npm run verify	2026-09-16T00:30:28.3609708Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3610204Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3610943Z # Subtest: malformed definitions are unpublished and roll back code allocation
+verify	Run npm run verify	2026-09-16T00:30:28.3612034Z ok 63 - malformed definitions are unpublished and roll back code allocation
+verify	Run npm run verify	2026-09-16T00:30:28.3612649Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3613011Z   duration_ms: 102.618647
+verify	Run npm run verify	2026-09-16T00:30:28.3613407Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3613753Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3614385Z # Subtest: resource exhaustion: data and return stack protection
+verify	Run npm run verify	2026-09-16T00:30:28.3615251Z ok 64 - resource exhaustion: data and return stack protection
+verify	Run npm run verify	2026-09-16T00:30:28.3615834Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3616185Z   duration_ms: 622.308294
+verify	Run npm run verify	2026-09-16T00:30:28.3616600Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3616936Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3617585Z # Subtest: EOF closes ordinary execution and rejects unfinished compilation
+verify	Run npm run verify	2026-09-16T00:30:28.3618636Z ok 65 - EOF closes ordinary execution and rejects unfinished compilation
+verify	Run npm run verify	2026-09-16T00:30:28.3619265Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3619595Z   duration_ms: 38.514595
+verify	Run npm run verify	2026-09-16T00:30:28.3620115Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3620465Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3621097Z # Subtest: bounded bulk memory handles overlap in both directions
+verify	Run npm run verify	2026-09-16T00:30:28.3621952Z ok 66 - bounded bulk memory handles overlap in both directions
+verify	Run npm run verify	2026-09-16T00:30:28.3622554Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3622916Z   duration_ms: 246.650415
+verify	Run npm run verify	2026-09-16T00:30:28.3623340Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3623697Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3624514Z # Subtest: strings compile natively and dictionary collisions and shadowing remain sound
+verify	Run npm run verify	2026-09-16T00:30:28.3627509Z ok 67 - strings compile natively and dictionary collisions and shadowing remain sound
+verify	Run npm run verify	2026-09-16T00:30:28.3628268Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3628619Z   duration_ms: 245.067507
+verify	Run npm run verify	2026-09-16T00:30:28.3629027Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3629371Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3630422Z # Subtest: preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+verify	Run npm run verify	2026-09-16T00:30:28.3631769Z ok 68 - preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+verify	Run npm run verify	2026-09-16T00:30:28.3632593Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3632927Z   duration_ms: 1582.682779
+verify	Run npm run verify	2026-09-16T00:30:28.3633345Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3633686Z   ...
+verify	Run npm run verify	2026-09-16T00:30:28.3634626Z # Subtest: preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+verify	Run npm run verify	2026-09-16T00:30:28.3636181Z ok 69 - preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+verify	Run npm run verify	2026-09-16T00:30:28.3637029Z   ---
+verify	Run npm run verify	2026-09-16T00:30:28.3637381Z   duration_ms: 1771.697756
+verify	Run npm run verify	2026-09-16T00:30:28.3637811Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:30:28.3638161Z   ...
+verify	Run npm run verify	2026-09-16T00:41:49.9062024Z # {"literalNativeInput":"7 5 0 module-run . . cr","literalInstructions":287970502251,"literalElapsedMs":799645.1443779999,"output":"1 22 \\n","wholeTapeEqual":true}
+verify	Run npm run verify	2026-09-16T00:50:22.8933196Z # {"literalNativeInput":"2 0 source-write hi\\n0 module-compile","literalInstructions":175188163879,"literalElapsedMs":512863.82411000005,"output":"SOURCE-STORED 0 2 \\nWS-ERROR 5 \\n","wholeTapeEqual":true}
+verify	Run npm run verify	2026-09-16T00:50:22.8959320Z # Subtest: literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+verify	Run npm run verify	2026-09-16T00:50:22.8963586Z ok 70 - literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+verify	Run npm run verify	2026-09-16T00:50:22.8964816Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.8965345Z   duration_ms: 1350280.524783
+verify	Run npm run verify	2026-09-16T00:50:22.8965927Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.8966419Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9461326Z # Subtest: length-framed stored source cannot masquerade as city or lifecycle output
+verify	Run npm run verify	2026-09-16T00:50:22.9478846Z ok 71 - length-framed stored source cannot masquerade as city or lifecycle output
+verify	Run npm run verify	2026-09-16T00:50:22.9486403Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9487000Z   duration_ms: 1.617989
+verify	Run npm run verify	2026-09-16T00:50:22.9487555Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9488057Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9489017Z # Subtest: partial or malformed presentation frames cannot replace a complete city
+verify	Run npm run verify	2026-09-16T00:50:22.9490624Z ok 72 - partial or malformed presentation frames cannot replace a complete city
+verify	Run npm run verify	2026-09-16T00:50:22.9491512Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9492008Z   duration_ms: 0.485891
+verify	Run npm run verify	2026-09-16T00:50:22.9492553Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9493043Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9494007Z # Subtest: route evidence cannot borrow a different version or a pre-import cost trace
+verify	Run npm run verify	2026-09-16T00:50:22.9495444Z ok 73 - route evidence cannot borrow a different version or a pre-import cost trace
+verify	Run npm run verify	2026-09-16T00:50:22.9496329Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9496824Z   duration_ms: 0.535204
+verify	Run npm run verify	2026-09-16T00:50:22.9497362Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9497856Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9498706Z # Subtest: each route captures only the complete cost table preceding it
+verify	Run npm run verify	2026-09-16T00:50:22.9500146Z ok 74 - each route captures only the complete cost table preceding it
+verify	Run npm run verify	2026-09-16T00:50:22.9500958Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9501455Z   duration_ms: 1.171215
+verify	Run npm run verify	2026-09-16T00:50:22.9502009Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9502508Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9503624Z # Subtest: a paused mailbox waiter wakes on resume when mail arrived during its pause
+verify	Run npm run verify	2026-09-16T00:50:22.9505226Z ok 75 - a paused mailbox waiter wakes on resume when mail arrived during its pause
+verify	Run npm run verify	2026-09-16T00:50:22.9506224Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9506846Z   duration_ms: 54255.501275
+verify	Run npm run verify	2026-09-16T00:50:22.9507454Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9507947Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9509061Z # Subtest: declared incompatible schema refuses publication with live continuation and queued message
+verify	Run npm run verify	2026-09-16T00:50:22.9532874Z ok 76 - declared incompatible schema refuses publication with live continuation and queued message
+verify	Run npm run verify	2026-09-16T00:50:22.9533784Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9534143Z   duration_ms: 17325.206732
+verify	Run npm run verify	2026-09-16T00:50:22.9534571Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9534925Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9535860Z # Subtest: configured quantum is bounded; sleeping, looping and failing programs stay independent
+verify	Run npm run verify	2026-09-16T00:50:22.9537291Z ok 77 - configured quantum is bounded; sleeping, looping and failing programs stay independent
+verify	Run npm run verify	2026-09-16T00:50:22.9538136Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9538492Z   duration_ms: 7723.419378
+verify	Run npm run verify	2026-09-16T00:50:22.9538918Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9539275Z   ...
+verify	Run npm run verify	2026-09-16T00:50:22.9540228Z # Subtest: nested exact-version stack exhaustion stays local and preserves queued mail
+verify	Run npm run verify	2026-09-16T00:50:22.9541674Z ok 78 - nested exact-version stack exhaustion stays local and preserves queued mail
+verify	Run npm run verify	2026-09-16T00:50:22.9542444Z   ---
+verify	Run npm run verify	2026-09-16T00:50:22.9542800Z   duration_ms: 31219.468646
+verify	Run npm run verify	2026-09-16T00:50:22.9543243Z   type: 'test'
+verify	Run npm run verify	2026-09-16T00:50:22.9543608Z   ...
+verify	Run npm run verify	2026-09-16T00:58:32.7558713Z ##[error]The operation was canceled.
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	﻿2026-09-16T00:58:32.7664649Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.7665777Z Post job cleanup.
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.8581133Z [command]/usr/bin/git version
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.8672330Z git version 2.55.0
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.8715567Z Temporarily overriding HOME='/home/runner/work/_temp/3cc9d00e-10a5-42b0-8320-f34189dcd381' before making global git config changes
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.8729882Z Adding repository directory to the temporary git global config as a safe directory
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.8745048Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eight-instructions/eight-instructions
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.8765936Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.8814586Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.9942736Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.9943890Z http.https://github.com/.extraheader
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.9945637Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.9948547Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.9951345Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+verify	Post Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262	2026-09-16T00:58:32.9953642Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+verify	Complete job	﻿2026-09-16T00:58:33.0061665Z Cleaning up orphan processes
+verify	Complete job	2026-09-16T00:58:33.0305582Z Terminate orphan process: pid (2244) (npm run verify)
+verify	Complete job	2026-09-16T00:58:33.0380724Z Terminate orphan process: pid (2255) (sh)
+verify	Complete job	2026-09-16T00:58:33.0428545Z Terminate orphan process: pid (2428) (node)
+verify	Complete job	2026-09-16T00:58:33.0577763Z Terminate orphan process: pid (2834) (node)
+verify	Complete job	2026-09-16T00:58:33.0641407Z Terminate orphan process: pid (2890) (reference)
+verify	Complete job	2026-09-16T00:58:33.0673655Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

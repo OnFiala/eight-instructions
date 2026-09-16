@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "kernelSha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "runs": [
+    {
+      "label": "Original factory batch3",
+      "inputs": 67,
+      "outputSha256": "ee3fd4fa78005a06249e0ee074c802ae3070d4f70e341f44d296c575223da7ff",
+      "elapsedMs": 132512.094542,
+      "state": "input",
+      "steps": 1022165427382210
+    },
+    {
+      "label": "Factory batch5",
+      "inputs": 67,
+      "outputSha256": "b4200904f10769d6905880928a1114166a1abf8c07da9397a599adbe7ccc85d0",
+      "elapsedMs": 134550.764833,
+      "state": "input",
+      "steps": 1028840333500077
+    }
+  ]
+}

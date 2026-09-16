@@ -161,3 +161,35 @@ A missing/uncompiled/wrong-arity city rule emits RULE-REJECTED before evaluating
 edge. Every road edit invalidates the native cost table independently of the wrapping
 16-bit generation counter. Logical ticks, decision sequences and delivery counts
 otherwise follow the documented 16-bit arithmetic; serial handles refuse exhaustion.
+
+## Build 003 process extension
+
+The pure-profile contract above remains available for Build001/002 regression
+and the legacy city. Before allocating any modules, `workspace-large` selects a
+fixed8module/16arena layout with512source bytes and256code words per arena. It
+cannot resize a live workspace. Records occupy0..4607; sixteen832-word arenas
+occupy4608..17919. Industrial data and process contexts occupy separate higher
+regions. General resident Thread definitions remain monotonic.
+
+`length process-module NAME` creates a zero-input/zero-output actor module.
+Process words are rejected in pure modules, and privileged Thread words are
+rejected in actor source. Actor execution is preempted into bounded quanta rather
+than terminated by the pure evaluator's1024-operation total budget. It has64data
+values and16frames. Its compiler still checks branches, stack effects and exact
+immutable dependency bindings. See [the process contract](processes.md).
+
+Large actor sources can declare `schema# N` before executable code. The first
+publication establishes a positive schema; incompatible subsequent publication
+fails with39 and retains active/rollback roots. This is a declared compatibility
+contract, not a proof of arbitrary program intent. No state migration is implied.
+A single `batch# N` marker1..6 can be edited via native `parameter!`; arbitrary
+source remains authoritative. Editing controls are unavailable for an unsaved
+custom draft or a source that does not support the marker.
+
+Process roots retain old exact-version dependency graphs. A new version publishes
+only when external input is accepted between native operations. Suspended frames
+continue on old code; the next root invocation adopts the new active root.
+Rollback swaps the two retained roots without resetting private state or messages.
+Fault repair explicitly abandons the failed frames but retains private state and
+owned application data. Deletion refuses live references, and collection reuses
+arenas only after the final root, dependency or pin is released.

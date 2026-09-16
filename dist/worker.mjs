@@ -37,13 +37,14 @@ function inspect() {
   return machine.inspect();
 }
 async function run(id,{blockLimit=3e10,fuelLimit=2e14}={}) {
-  const started=performance.now(),initialSteps=machine.steps,initialBlocks=machine.blocks;
+  const started=performance.now(),initialSteps=machine.totalSteps,initialBlocks=machine.totalBlocks;
+  const stepsUsed=()=>Number(machine.totalSteps-initialSteps),blocksUsed=()=>Number(machine.totalBlocks-initialBlocks);
   let reported=0,reason='complete';
   while(true) {
-    const remainingBlocks=blockLimit-(machine.blocks-initialBlocks),remainingFuel=fuelLimit-(machine.steps-initialSteps);
+    const remainingBlocks=blockLimit-blocksUsed(),remainingFuel=fuelLimit-stepsUsed();
     if(pauseRequested){if(machine.state==='ready')machine.state='budget';reason='paused';break;}
     if(remainingBlocks<=0||remainingFuel<=0){reason='limit';break;}
-    const before=machine.blocks;
+    const before=machine.totalBlocks;
     try {machine.run({fuel:remainingFuel,blocks:Math.min(2000000,remainingBlocks)});}
     catch(error) {
       if(error.message!=='Output limit exceeded')throw error;
@@ -51,15 +52,15 @@ async function run(id,{blockLimit=3e10,fuelLimit=2e14}={}) {
     }
     const elapsed=performance.now()-started;
     if(elapsed-reported>=100) {
-      self.postMessage({id,progress:{...inspect(),elapsedMs:elapsed,executedSteps:machine.steps-initialSteps}});
+      self.postMessage({id,progress:{...inspect(),elapsedMs:elapsed,executedSteps:stepsUsed()}});
       reported=elapsed;
     }
     if(machine.state!=='budget')break;
-    if(machine.blocks===before){reason='limit';break;}
+    if(machine.totalBlocks===before){reason='limit';break;}
     await new Promise(resolve=>setTimeout(resolve,0));
   }
   return {output:new TextDecoder().decode(machine.drain()),...inspect(),reason,elapsedMs:performance.now()-started,
-    executedSteps:machine.steps-initialSteps,executedBlocks:machine.blocks-initialBlocks};
+    executedSteps:stepsUsed(),executedBlocks:blocksUsed()};
 }
 async function action(message) {
   if(!message||!Number.isSafeInteger(message.id)||typeof message.type!=='string')throw new Error('Invalid worker request');

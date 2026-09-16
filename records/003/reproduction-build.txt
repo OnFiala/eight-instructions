@@ -1,0 +1,11 @@
+Original factory batch3: native input 1/67
+Original factory batch3: native input 17/67
+Original factory batch3: native input 33/67
+Original factory batch3: native input 49/67
+Original factory batch3: native input 65/67
+Factory batch5: native input 1/67
+Factory batch5: native input 17/67
+Factory batch5: native input 33/67
+Factory batch5: native input 49/67
+Factory batch5: native input 65/67
+{"results":[{"label":"Original factory batch3","round":64,"deliveries":7,"production":14,"stations":[{"id":5,"installed":0},{"id":6,"installed":3}],"account":[96,64,13,3,96,1]},{"label":"Factory batch5","round":64,"deliveries":6,"production":16,"stations":[{"id":5,"installed":0},{"id":6,"installed":0}],"account":[96,60,18,0,96,1]}],"bundleSha256":"bf5128b4dc7f621da5c7f9efe39545cd927112b2a2419c82e935acdc0e715a72"}

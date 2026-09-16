@@ -1,0 +1,105 @@
+\ Native industrial ledger in workspace17984..19231, after the large module arenas.
+\ Entities16x32:handle,role,node,raw,panels,cargo-kind,cargo-count,goal,status,
+\ supplier,destination,escrow-panel-count,production-time,consumed,inbound,outbound,
+\ capacity,batch,priority,signal-edge,construction-goal,last-work-round,ready-jobs.
+\ Jobs16x16:stage,serial,source,target,kind,count,vehicle. Stages0free1request
+\ 2authorized3assigned4in-transit5delivered. Roads48x8:from,to,time,toll,open,
+\ signal,capacity,occupancy (capacity and occupancy belong to the even road pair).
+register constant world-ready
+register constant world-roads
+register constant world-serial
+register constant world-supply
+register constant world-used
+register constant world-created
+register constant world-reclaimed
+register constant world-deliveries
+register constant world-productions
+register constant ei
+register constant eh
+register constant efound
+register constant ji
+register constant jh
+register constant jfound
+register constant jx
+register constant js
+register constant vi
+register constant chosen
+register constant chosen-score
+register constant candidate-score
+register constant ox
+register constant oy
+register constant oz
+register constant ow
+register constant oq
+register constant source-slot
+register constant target-slot
+register constant wi-edge
+register constant route-node
+register constant route-best
+register constant route-cost
+register constant route-next
+register constant route-scan
+register constant total-raw
+register constant total-panels
+
+: ef swap 32 * + 64 /mod 281 + swap waddr ;
+: jf swap 16 * + 64 /mod 289 + swap waddr ;
+: rf swap 8 * + 64 /mod 294 + swap waddr ;
+\ BF-built outgoing-edge index:16rows of49words at19264..20047.
+\ Each row holds a count and up to48actual road IDs, in insertion order.
+: af swap 49 * + 64 /mod 301 + swap waddr ;
+: entity-find
+  eh ! 0 efound ! 0 ei !
+  begin ei @ 16 < efound @ 0= and while
+    ei @ 0 ef w@ eh @ = eh @ 0 > and if ei @ 1+ efound ! then 1 ei +!
+  repeat efound @
+;
+: job-find
+  jh ! 0 jfound ! 0 ji !
+  begin ji @ 16 < jfound @ 0= and while
+    ji @ 0 jf w@ if ji @ 1 jf w@ jh @ = if ji @ 1+ jfound ! then then 1 ji +!
+  repeat jfound @
+;
+: world-self?
+  world-ready @ pr @ 0 ef w@ 1 pcurr w@ = and
+;
+: role? pr @ 1 ef w@ = ;
+: job-new
+  16 jx ! 0 ji !
+  begin ji @ 16 < jx @ 16 = and while
+    ji @ 0 jf w@ 0= jx @ 16 = and if ji @ jx ! then 1 ji +!
+  repeat
+  jx @ 16 = world-serial @ 65535 = or if 0 exit then
+  1 world-serial +! 1 world-created +!
+  0 ji ! begin ji @ 16 < while 0 jx @ ji @ jf w! 1 ji +! repeat
+  1 jx @ 0 jf w! world-serial @ jx @ 1 jf w! 1
+;
+: job-free 0 jx @ 0 jf w! 1 world-reclaimed +! ;
+: ledger-source jx @ 2 jf w@ entity-find dup if 1- source-slot ! else drop 0 exit then 1 ;
+: ledger-target jx @ 3 jf w@ entity-find dup if 1- target-slot ! else drop 0 exit then 1 ;
+: job-message
+  \ announce request to the process that owns its source inventory
+  jx @ 1 jf w@ 1 1 pcurr w@ jx @ 2 jf w@ post-message
+;
+: industry-add
+  \ (role node handle --); boot/admin capability, never callable by a process.
+  0 ws-error ! pfind dup 0= if drop 31 wfail report-error 2drop exit then
+  1- ox ! oy ! oz !
+  ox @ 2 pf w@ 9 mf w@ 1 = 0= if 39 wfail report-error exit then
+  oy @ 16 < oz @ 0 > and oz @ 6 < and 0= if 34 wfail report-error exit then
+  ox @ 0 ef w@ if 35 wfail report-error exit then
+  0 ei ! begin ei @ 32 < while 0 ox @ ei @ ef w! 1 ei +! repeat
+  ph @ ox @ 0 ef w! oz @ ox @ 1 ef w! oy @ ox @ 2 ef w! oy @ ox @ 7 ef w!
+  24 ox @ 16 ef w! 3 ox @ 17 ef w! 8 ox @ 20 ef w! 1 ox @ 15 pf w!
+;
+: industry-road
+  \ (from to duration toll --), called twice to make a bidirectional pair.
+  ow ! oz ! oy ! ox !
+  world-roads @ 48 < ox @ 16 < and oy @ 16 < and oz @ 0 > and oz @ 31 < and ow @ 10 < and assert
+  ox @ world-roads @ 0 rf w! oy @ world-roads @ 1 rf w!
+  oz @ world-roads @ 2 rf w! ow @ world-roads @ 3 rf w!
+  1 world-roads @ 4 rf w! 1 world-roads @ 5 rf w! 1 world-roads @ 6 rf w!
+  0 world-roads @ 7 rf w!
+  world-roads @ ox @ 0 af w@ 1+ ox @ swap af w!
+  ox @ 0 af dup w@ 1+ swap w! 1 world-roads +!
+;
