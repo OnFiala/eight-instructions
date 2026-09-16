@@ -696,7 +696,7 @@
       "path": "dist/industry-presentation.mjs",
       "layer": "presentation",
       "reason": "Strict decoding of length-framed source and native industrial records; labels and explanations of emitted state. It performs no state transition, route search or guest allocation.",
-      "reviewedSha256": "15dc2b669e1ea49830972dcf64e7044b21b07eb728ad730451e47793ec98caef"
+      "reviewedSha256": "5ae59996aa38676802f9b64d54190a4d82a36a9a22dd9cf360c9254bd4aa4b92"
     },
     {
       "path": "dist/industry-scene.mjs",
@@ -1081,7 +1081,8 @@
     {
       "path": "tests/industry-presentation.test.mjs",
       "layer": "verification-tool",
-      "reason": "Bounded native or generic executor regression evidence, including adversarial fixtures and exact expected output. Test-only; never imported by the production runtime."
+      "reason": "Bounded native or generic executor regression evidence, including adversarial fixtures and exact expected output. Test-only; never imported by the production runtime.",
+      "reviewedSha256": "cd4cde03a0ad932f0026e1f836320513780e11007b5ca9da7b585ea80b85a2b9"
     },
     {
       "path": "tests/industry-priority.test.mjs",

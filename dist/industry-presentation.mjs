@@ -70,6 +70,11 @@ export function entityStatus(entity,process,vehicle,world) {
       const destination=world?.entities.find(e=>e.node===entity.goal&&[1,2,4].includes(e.role));
       return `Travelling to ${destination?entityName(destination):`junction ${entity.goal}`}`;
     }
+    if(entity.status===0&&vehicle?.job){
+      const destination=world?.entities.find(e=>e.node===entity.goal&&[1,2,4].includes(e.role));
+      if(vehicle.routePhase>=1&&vehicle.routePhase<=3)return 'Calculating the next route';
+      return `Continuing to ${destination?entityName(destination):`junction ${entity.goal}`}`;
+    }
     return ['Ready for an assignment','Travelling','Waiting for a green signal','Waiting for road capacity','Waiting for a job slot','No open route','Waiting for stock','Destination storage is full','Receiver mailbox is full'][entity.status]??processLabel(process);
   }
   if(entity.role===2)return entity.escrow?`Making a panel · ${entity.productionTime} work rounds left`:entity.outbound?'Panels await a van':entity.inbound?'Raw materials ordered':'Ready for production';

@@ -207,3 +207,13 @@ passed, then build.json was updated to113tests without regenerating history.json
 Regenerated that derived public record and retained the CI failure. This was
 metadata drift, not a native test failure. No CI check was removed or weakened.
 The same follow-up caps the backing browser raw log, as found in self-review.
+
+## Interface wording exposed by real cargo
+
+At native round11Van01had6raw units and an active job, paused between two road
+segments. The panel said Ready for an assignment because native status0was
+rendered without its job context. Repaired display-only wording: an active route
+shows its current destination or route-calculation phase, while an empty idle van
+retains the assignment label. Added one regression using those observed fields;
+all5presentation/diagnostic checks pass. No route, position or job state is
+computed by the formatter. The final CI suite now contains114tests.
