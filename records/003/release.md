@@ -5,7 +5,7 @@ visual and public checks are PASS within the documented fixed limits. Same Astra
 xHigh author implemented and reviewed the work; no independent audit is claimed.
 
 - [Public city](https://eight-instructions.andrewxix.chatgpt.site)
-- [Immutable release and final receipt](https://github.com/OnFiala/eight-instructions/releases/tag/build-003)
+- [Release tag and final receipt](https://github.com/OnFiala/eight-instructions/releases/tag/build-003)
 - [114-test CI](https://github.com/OnFiala/eight-instructions/actions/runs/35042602081)
 - [Normal implementation merge](https://github.com/OnFiala/eight-instructions/pull/3)
 - [Native and interface verification](verification.md)
@@ -15,7 +15,7 @@ xHigh author implemented and reviewed the work; no independent audit is claimed.
 - [Reproduction ZIP](https://eight-instructions.andrewxix.chatgpt.site/reproduction/build-003.zip)
 - [Final desktop screenshot](screenshots/desktop-final.png), [target comparison](screenshots/target-comparison-final.png)
 - [Recorded 25-second walkthrough](recorded-walkthrough.mp4) and [its honest provenance](recorded-walkthrough.json)
-- [Technical Czech description](technical-cs.md), [plain Czech explanation](human-cs.md), [unpublished X draft](x-draft-en.md)
+- [Technical description](technical-en.md), [plain-language explanation](human-en.md), [unpublished X draft](x-draft-en.md)
 - [Measurements](measurements.md), [limits](build.json), [rollback](rollback.md)
 
 Final runtime/scene commit: f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f.
