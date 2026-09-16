@@ -1,0 +1,53 @@
+{
+  "status": "PASS",
+  "verifiedAt": "2026-09-16T01:56:37.051104+00:00",
+  "origin": "https://eight-instructions.andrewxix.chatgpt.site",
+  "scope": "Functional deployment version5; subsequent metadata-only projection must be separately identified and checked.",
+  "sameAuthor": true,
+  "anonymousFiles": "public-assets-functional.json",
+  "tests": [
+    {
+      "case": "Factory batch3 to5 through contextual control",
+      "evidence": "public-source-published.txt",
+      "result": "BF source edit/compile/publication version7; previous invocation remains pinned."
+    },
+    {
+      "case": "Unknown word refusal",
+      "evidence": "public-source-refused.txt",
+      "result": "Readable native rejection; active version7 retained, failing draft stored separately."
+    },
+    {
+      "case": "Infinite loop and independent work",
+      "evidence": "public-loop-running.txt",
+      "result": "Loop process receives bounded turns; orders1/2, send/receive and rounds1..3 continue; material account96."
+    },
+    {
+      "case": "Own program repair",
+      "evidence": "public-loop-repaired.txt",
+      "result": "Paused loop replaced with source adding7 to private word0; explicit repair; round4 state7, version9, world retained."
+    },
+    {
+      "case": "New public instance import",
+      "evidence": "public-import-round4.txt",
+      "result": "Exported round4 restored, own exact source/version9/private state7/13contexts retained; missing historical events disclosed."
+    },
+    {
+      "case": "Continued imported execution",
+      "evidence": "public-import-continued.txt",
+      "result": "New native round5, account96; no world reset."
+    },
+    {
+      "case": "Restored stored/active editor distinction",
+      "evidence": "public-import-stored-active.txt",
+      "result": "Stored impossible-word draft differs visibly from active factory batch5; custom source is not replaced by parameter controls."
+    },
+    {
+      "case": "Public ZIP downloaded without credentials and replayed in new CLI directory",
+      "evidence": "public-reproduction-fresh-cli.txt",
+      "result": "Both67input/64round branches matched exact expected output; ZIP SHA29ce759a2337a235611a3b2dc44afbb641345dc119d94f21b4d89be33a566a02."
+    }
+  ],
+  "console": "The intentional unknown-word test logs its caught native refusal once. Restored instance has no warning/error entries in observed console. No blanket console-error-free claim.",
+  "automationNotes": "Two read-only role-locator evaluate attempts timed out at3s despite the visible textarea. The DOM snapshot then verified the exact source; subsequent real controls and raw output worked. No production change was inferred from this tool-only read failure.",
+  "screenshot": "screenshots/public-round5-source.png"
+}

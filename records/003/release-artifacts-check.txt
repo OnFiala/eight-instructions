@@ -1,0 +1,12 @@
+
+> eight-instructions@0.3.0 verify:artifacts
+> python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-archives.mjs --check && node tools/build-industry-image.mjs --check && node tools/audit.mjs
+
+{"instructions": 98687674, "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c", "cells": 398704}
+Generic BF executor: 744 bytes
+Raw program assets match their canonical sources.
+Public history matches canonical build records.
+build-001: 17 verbatim files; HTML relocation recorded.
+build-002: 52 verbatim files; HTML relocation recorded.
+Initial image PASS: fresh BF boot reproduces 18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04; 54914.04 ms for this check.
+Boundary audit PASS: 235 classified sources. Hashes are review gates, not a semantic proof.

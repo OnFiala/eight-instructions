@@ -76,3 +76,5 @@ Remaining limitations include finite16-bit identities/logical time, fixed storag
 slow native turns, declared rather than inferred schema compatibility, and
 privileged owner access outside the process profile. Final performance, whole-suite,
 interaction, visual and deployment receipts must be assessed separately.
+
+Final hosted114test and public functional verification passed; see ci-final-pr.json and public-verification.json. This remains a self-review by the same author. Final closure identities are in the release final-deployment.json.

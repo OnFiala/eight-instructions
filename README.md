@@ -10,10 +10,9 @@ repairing production code. No subagents or second coding model author this build
 communicating, resumable programs inside one actual BF machine. Select a factory,
 change its program, and watch native orders, cargo and construction change.
 
-**Release verification in progress:** local native suite113/113PASS, followed by
-final UI/framing5/5PASS. The current114-test GitHub run is pending. Local visual,
-interaction and complete construction checks passed within the documented limits.
-The public site remains Build002 until the release gates finish.
+**Build 003 verified:** 114/114 hosted tests, including all 76 prior regressions.
+Native process, visual, interaction, complete-construction and public deployment
+checks passed within the documented limits. [Release and final deployment receipt](https://github.com/OnFiala/eight-instructions/releases/tag/build-003).
 
 [Existing public site](https://eight-instructions.andrewxix.chatgpt.site) ·
 [Build003 challenge](records/003/challenge.md) · [Journal](records/003/journal.md) ·
@@ -128,7 +127,7 @@ not source-size ratios, are the evidence. See [architecture](docs/architecture.m
 ## Verification and history
 
 All76Build002 regressions remain. The complete local native candidate passed
-113tests, then a presentation regression brought current CI to114tests. Records
+113tests; final hosted CI passed all114tests with no failures or skips. Records
 include450reused process lifetimes,467job lifetimes, literal reference comparisons,
 fresh CLI/browser replay, complete construction and actual visual/interaction
 evidence, alongside failed approaches and repairs. Final status is in the release

@@ -20,10 +20,10 @@
     {
       "number": 3,
       "title": "A city made of programs",
-      "status": "PARTIAL",
-      "summary": "Native communicating, resumable programs and a locally verified industrial city. Release remains pending complete hosted CI and public verification.",
-      "testsPassed": 113,
-      "testedCommit": null
+      "status": "PASS",
+      "summary": "Communicating, resumable BF programs run an industrial city with direct source controls. Native, visual and public functional checks passed; immutable closure identities are in the final deployment receipt.",
+      "testsPassed": 114,
+      "testedCommit": "f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f"
     }
   ]
 }

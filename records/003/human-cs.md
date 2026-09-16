@@ -27,5 +27,5 @@ zprávy i pravidla města. Thread je čitelnější jazyk uvnitř tohoto stroje.
 pomohl sestavit jeho počáteční kernel. JavaScript a WebAssembly vykonávají osm BF
 instrukcí, obsluhují soubory a kreslí výsledek. BF sám grafiku nekreslí.
 
-Tento text popisuje lokálně ověřené chování. Konečné vydání a veřejný web zatím
-nejsou označené jako dokončený Build003; jejich stav určuje závěrečný záznam vydání.
+Vlastní úprava, odmítnutí chyby, pokračování vedle smyčky a export/import prošly
+i na veřejném webu. Podrobné důkazy a přesnou verzi najdeš v záznamu vydání.

@@ -1,6 +1,6 @@
 # Rollback prepared before Build003 publication
 
-Build002 remains the public deployment while Build003 is being verified. The
+Before the Build003 deployment, Build002 was the verified public version. The
 existing Sites project is `appgprj_6aa2da2a6c9081919e4eace763a4f4a0`; its audience
 was freshly read as public and the current user as owner. No audience change is
 needed or authorized by this rollback procedure.
