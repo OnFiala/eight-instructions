@@ -1,0 +1,71 @@
+TAP version 13
+# Subtest: preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+ok 1 - preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+  ---
+  duration_ms: 356.219
+  type: 'test'
+  ...
+# Subtest: preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+ok 2 - preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+  ---
+  duration_ms: 430.960667
+  type: 'test'
+  ...
+# Subtest: BF scheduler preempts an infinite process and preserves each continuation
+ok 3 - BF scheduler preempts an infinite process and preserves each continuation
+  ---
+  duration_ms: 29119.405416
+  type: 'test'
+  ...
+# Subtest: native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+ok 4 - native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+  ---
+  duration_ms: 2852.878958
+  type: 'test'
+  ...
+# Subtest: private bounds fault stays local; actor words are rejected in pure modules
+ok 5 - private bounds fault stays local; actor words are rejected in pure modules
+  ---
+  duration_ms: 4034.194458
+  type: 'test'
+  ...
+# Subtest: suspended old frame retains its version, next invocation adopts publication, images retain both
+ok 6 - suspended old frame retains its version, next invocation adopts publication, images retain both
+  ---
+  duration_ms: 2073.480875
+  type: 'test'
+  ...
+# Subtest: three user programs exchange messages, wait, and compute without kernel regeneration
+ok 7 - three user programs exchange messages, wait, and compute without kernel regeneration
+  ---
+  duration_ms: 5461.6275
+  type: 'test'
+  ...
+# {"processCycles":450,"capacity":16,"liveProcesses":0,"liveVersionsAfterDelete":0,"residentCodeAndDictionary":[19501,307]}
+# Subtest: 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+ok 8 - 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+  ---
+  duration_ms: 225920.824458
+  type: 'test'
+  ...
+# Subtest: creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+ok 9 - creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+  ---
+  duration_ms: 9904.593625
+  type: 'test'
+  ...
+# Subtest: large native workspace and source parameter edit preserve custom drafts and rejected versions
+ok 10 - large native workspace and source parameter edit preserve custom drafts and rejected versions
+  ---
+  duration_ms: 4671.583792
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 284847.184375

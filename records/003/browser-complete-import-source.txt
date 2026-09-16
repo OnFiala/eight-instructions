@@ -1,0 +1,13 @@
+Thread source module
+factory-east.thread
+Stored in BF · not active
+v3
+Draft Thread source
+
+Your draft → source stored in BF → active compiled version. Up to 512 ASCII bytes. Language ↗
+
+Compare stored and active source
+Stored source in BF
+: factory-east.thread schema# 1 77 fail ;
+Active compiled version
+: factory-east.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 3 dup 2 stock > if request else drop then work dispatch ;

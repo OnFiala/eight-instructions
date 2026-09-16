@@ -1,0 +1,9 @@
+file:///Users/ondrej/BRAINFUCK/dist/images.mjs:34
+  if(typeof text!=='string'||text.length>8e6) throw new Error('Image exceeds the size limit');
+                                                    ^
+
+Error: Image exceeds the size limit
+    at decodeImage (file:///Users/ondrej/BRAINFUCK/dist/images.mjs:34:53)
+    at file:///Users/ondrej/BRAINFUCK/[eval1]:5:36
+
+Node.js v22.22.0

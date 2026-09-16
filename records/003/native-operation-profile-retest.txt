@@ -1,0 +1,7 @@
+{"input":"industry-account","ms":299.2222499999999,"bfInstructions":922193285326,"blocks":46733327,"state":"input","output":"ACCOUNT 96 96 0 0 96 1 \n"}
+{"input":"process-step","ms":3348.656208,"bfInstructions":16294799921304,"blocks":839766712,"state":"input","output":"SEND 1 3 1 1 1 \nORDER 1 3 6 \nSEND 2 4 2 1 2 \nORDER 2 4 6 \nROUND 1 \n"}
+{"input":"industry-account","ms":183.38204200000018,"bfInstructions":910142760953,"blocks":45913514,"state":"input","output":"ACCOUNT 96 96 0 0 96 1 \n"}
+{"input":"process-step","ms":1876.4896659999995,"bfInstructions":8717542439910,"blocks":468988791,"state":"input","output":"RECEIVE 1 1 \nAUTHORIZE 1 1 \nRECEIVE 2 2 \nAUTHORIZE 2 2 \nROUND 2 \n"}
+{"input":"industry-state","ms":4978.892333000001,"bfInstructions":20558974082931,"blocks":1267956902,"state":"input","output":"INDUSTRY 3 2 1 46 2 0 0 0 \nNODE 0 0 0 \nNODE 1 20 0 \nNODE 2 40 0 \nNODE 3 60 0 \nNODE 4 0 20 \nNODE 5 20 20 \nNODE 6 40 20 \nNODE 7 60 20 \nNODE 8 0 40 \nNODE 9 20 40 \nNODE 10 40 40 \nNODE "}
+{"input":"0 0 ef w@ .","ms":7.959542000000511,"bfInstructions":14994946296,"blocks":1653433,"state":"input","output":"1 "}
+{"input":"15 31 pf p@ .","ms":4.251000000000204,"bfInstructions":6672674396,"blocks":977298,"state":"input","output":"0 "}

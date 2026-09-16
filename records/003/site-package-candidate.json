@@ -1,0 +1,8 @@
+{
+  "archive": ".local/build-003-candidate.tar.gz",
+  "sha256": "0c2fc4551ce47373eeea27c178acc0b5f2dd5d2a4e113150eb9b4c1ee7fb8b7d",
+  "canonicalCommit": "ca2e8a798e519aba32fe75ca08ba7ecde2c01e97",
+  "verifiedFiles": 145,
+  "status": "PASS",
+  "publication": "Not pushed to Sites or deployed. Superseded by final camera refinement; retained as packaging evidence only."
+}

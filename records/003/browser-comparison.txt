@@ -1,0 +1,32 @@
+KEEP THE INPUTS. CHANGE THE PROGRAM.
+
+Different programs. The same starting world.
+Compare a delivery rule.
+
+Run the same number of logical rounds in two new BF machines. Both start from the same snapshot and receive the same external inputs. Draft a different batch value or source in the object panel, without applying it, then compare it with the active program. Bridges remain in the same state.
+
+Logical rounds per machine
+Compute both versions
+
+Recorded results of fresh BF computations from the same snapshot. This is a logical-state comparison, not a claim of faster execution.
+
+Active program
+
+Round 12: 0 deliveries; 0 production completions; station panels 0/8 and 0/8. Native material account 96/96.
+
+Your draft
+
+Round 12: 0 deliveries; 0 production completions; station panels 0/8 and 0/8. Native material account 96/96.
+
+Download this experiment
+One broken program, a working city.
+
+An infinite loop receives a bounded execution turn. Other eligible programs keep running. Pause or repair that participant without resetting the whole world.
+
+Add a looping test program
+
+This creates a real extra BF process, within the sixteen-slot limit. Its source and state appear in the object menu. Industrial cargo stays with its owner.
+
+Add a van at the selected nodeRetire selected participant
+
+BF checks capacity, schema and ownership. Objects holding material or unfinished jobs cannot be discarded.

@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: native bounded workspace output matches individual reads across pages and tape edges
+ok 1 - native bounded workspace output matches individual reads across pages and tape edges
+  ---
+  duration_ms: 353.004792
+  type: 'test'
+  ...
+# Subtest: an image resumes midway through the native one-hot dispatch and bulk output
+ok 2 - an image resumes midway through the native one-hot dispatch and bulk output
+  ---
+  duration_ms: 129.281958
+  type: 'test'
+  ...
+# Subtest: BF-owned instruction-page validation cache is discarded on compilation rollback
+ok 3 - BF-owned instruction-page validation cache is discarded on compilation rollback
+  ---
+  duration_ms: 234.877042
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2457.28

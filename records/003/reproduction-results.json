@@ -1,0 +1,56 @@
+{
+  "kernel": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "sourceHash": "e10c7d82a680129247929d9bd2f57dabf7bf5614e183e265c75531d698783e86",
+  "initialImageSha256": "18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04",
+  "logicalRounds": 64,
+  "results": [
+    {
+      "label": "Original factory batch3",
+      "round": 64,
+      "deliveries": 7,
+      "production": 14,
+      "stations": [
+        {
+          "id": 5,
+          "installed": 0
+        },
+        {
+          "id": 6,
+          "installed": 3
+        }
+      ],
+      "account": [
+        96,
+        64,
+        13,
+        3,
+        96,
+        1
+      ]
+    },
+    {
+      "label": "Factory batch5",
+      "round": 64,
+      "deliveries": 6,
+      "production": 16,
+      "stations": [
+        {
+          "id": 5,
+          "installed": 0
+        },
+        {
+          "id": 6,
+          "installed": 0
+        }
+      ],
+      "account": [
+        96,
+        60,
+        18,
+        0,
+        96,
+        1
+      ]
+    }
+  ]
+}

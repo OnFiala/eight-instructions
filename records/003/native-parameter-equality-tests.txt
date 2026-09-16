@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: large native workspace and source parameter edit preserve custom drafts and rejected versions
+ok 1 - large native workspace and source parameter edit preserve custom drafts and rejected versions
+  ---
+  duration_ms: 22009.624625
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 22843.850041

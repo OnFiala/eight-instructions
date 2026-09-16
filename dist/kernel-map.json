@@ -4,7 +4,7 @@
     "wrapping": true,
     "io_bits": 8,
     "eof": 0,
-    "tape_cells": 169164
+    "tape_cells": 398704
   },
   "registers": {
     "running": 0,
@@ -53,66 +53,106 @@
     "arg_hi": 43,
     "arg_lo": 44,
     "word_hi": 45,
-    "word_lo": 46
+    "word_lo": 46,
+    "workspace_cache_next": 47,
+    "workspace_cache_0_base": 48,
+    "workspace_cache_0_page": 49,
+    "workspace_cache_0_valid": 50,
+    "workspace_cache_1_base": 51,
+    "workspace_cache_1_page": 52,
+    "workspace_cache_1_valid": 53,
+    "workspace_cache_2_base": 54,
+    "workspace_cache_2_page": 55,
+    "workspace_cache_2_valid": 56,
+    "workspace_cache_3_base": 57,
+    "workspace_cache_3_page": 58,
+    "workspace_cache_3_valid": 59,
+    "workspace_cache_4_base": 60,
+    "workspace_cache_4_page": 61,
+    "workspace_cache_4_valid": 62,
+    "workspace_cache_5_base": 63,
+    "workspace_cache_5_page": 64,
+    "workspace_cache_5_valid": 65,
+    "workspace_cache_6_base": 66,
+    "workspace_cache_6_page": 67,
+    "workspace_cache_6_valid": 68,
+    "workspace_cache_7_base": 69,
+    "workspace_cache_7_page": 70,
+    "workspace_cache_7_valid": 71,
+    "fetch_cache_next": 72,
+    "fetch_cache_0_page": 73,
+    "fetch_cache_0_valid": 74,
+    "fetch_cache_1_page": 75,
+    "fetch_cache_1_valid": 76,
+    "fetch_cache_2_page": 77,
+    "fetch_cache_2_valid": 78,
+    "fetch_cache_3_page": 79,
+    "fetch_cache_3_valid": 80
   },
   "arrays": {
-    "token": {
+    "op_flags": {
       "base": 512,
+      "size": 40,
+      "stride": 4,
+      "value_lane": 2
+    },
+    "token": {
+      "base": 676,
       "size": 24,
       "stride": 4,
       "value_lane": 2
     },
     "buckets": {
-      "base": 612,
+      "base": 776,
       "size": 256,
       "stride": 4,
       "value_lane": 2
     },
     "data": {
-      "base": 1640,
+      "base": 1804,
       "size": 256,
       "stride": 4,
       "value_lane": 2
     },
     "returns": {
-      "base": 2668,
+      "base": 2832,
       "size": 512,
       "stride": 4,
       "value_lane": 2
     },
     "controls": {
-      "base": 4720,
+      "base": 4884,
       "size": 128,
       "stride": 4,
       "value_lane": 2
     },
     "dictionary": {
-      "base": 5236,
-      "size": 8192,
+      "base": 5400,
+      "size": 16384,
       "stride": 4,
       "value_lane": 2
     },
     "code": {
-      "base": 38008,
-      "size": 12288,
+      "base": 70940,
+      "size": 24576,
       "stride": 6,
       "value_lane": 2
     },
     "heap": {
-      "base": 111742,
+      "base": 218402,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "store": {
-      "base": 128130,
+      "base": 234790,
       "size": 4096,
       "stride": 4,
       "value_lane": 2
     },
     "workspace": {
-      "base": 144518,
-      "size": 4096,
+      "base": 251178,
+      "size": 24576,
       "stride": 6,
       "value_lane": 2
     }
@@ -151,6 +191,8 @@
     "key": 35,
     "w@": 36,
     "w!": 37,
+    "waddr": 38,
+    "w.": 39,
     ":": 100,
     ";": 101,
     "if": 102,
@@ -166,6 +208,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "0ebd529deaf21dd77bba0ddaef77693e27fd1fffbc9930c9ca31b0bbde400d98",
-  "instructions": 52564890
+  "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
+  "instructions": 98687674
 }

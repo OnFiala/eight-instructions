@@ -1,0 +1,75 @@
+TAP version 13
+# Subtest: BF scheduler preempts an infinite process and preserves each continuation
+ok 1 - BF scheduler preempts an infinite process and preserves each continuation
+  ---
+  duration_ms: 35453.619917
+  type: 'test'
+  ...
+# Subtest: native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+ok 2 - native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+  ---
+  duration_ms: 6078.44175
+  type: 'test'
+  ...
+# Subtest: private bounds fault stays local; actor words are rejected in pure modules
+ok 3 - private bounds fault stays local; actor words are rejected in pure modules
+  ---
+  duration_ms: 6754.17725
+  type: 'test'
+  ...
+# Subtest: suspended old frame retains its version, next invocation adopts publication, images retain both
+ok 4 - suspended old frame retains its version, next invocation adopts publication, images retain both
+  ---
+  duration_ms: 4441.46975
+  type: 'test'
+  ...
+# Subtest: three user programs exchange messages, wait, and compute without kernel regeneration
+ok 5 - three user programs exchange messages, wait, and compute without kernel regeneration
+  ---
+  duration_ms: 10902.221416
+  type: 'test'
+  ...
+# Subtest: 450 create/stop cycles reuse fixed slots and leave no version refs or resident allocation
+not ok 6 - 450 create/stop cycles reuse fixed slots and leave no version refs or resident allocation
+  ---
+  duration_ms: 76337.883667
+  type: 'test'
+  location: '/Users/ondrej/BRAINFUCK/tests/processes.test.mjs:75:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"state":"budget","instruction":56796996,"pointer":218241,"cell":20480,"steps":519188739528623,"blocks":20948888292,"tapeBytes":797080,"highWaterCell":396939,"backend":"wasm","executorMemoryBytes":3932160}
+    
+    'budget' !== 'input'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'input'
+  actual: 'budget'
+  operator: 'strictEqual'
+  stack: |-
+    command (file:///Users/ondrej/BRAINFUCK/tests/system-helpers.mjs:17:10)
+    TestContext.<anonymous> (file:///Users/ondrej/BRAINFUCK/tests/processes.test.mjs:79:3)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+ok 7 - creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+  ---
+  duration_ms: 21992.199625
+  type: 'test'
+  ...
+# Subtest: large native workspace and source parameter edit preserve custom drafts and rejected versions
+ok 8 - large native workspace and source parameter edit preserve custom drafts and rejected versions
+  ---
+  duration_ms: 7294.14875
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 7
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 169988.28475

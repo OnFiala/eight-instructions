@@ -16,6 +16,14 @@
       "summary": "Named source, typed modules, safe version replacement and reclaimable memory inside the Brainfuck programming language, demonstrated by a verified delivery city.",
       "testsPassed": 76,
       "testedCommit": "94bb507bd14a9e91d7aeb440ad3f0d90056d31bb"
+    },
+    {
+      "number": 3,
+      "title": "A city made of programs",
+      "status": "PARTIAL",
+      "summary": "Native communicating, resumable programs and a locally verified industrial city. Release remains pending complete hosted CI and public verification.",
+      "testsPassed": 113,
+      "testedCommit": null
     }
   ]
 }

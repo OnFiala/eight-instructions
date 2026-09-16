@@ -5,16 +5,20 @@ import {stdin,stdout,stderr} from 'node:process';
 import {loadKernel,loadLibraries,execute} from './system.mjs';
 import {encodeImage,decodeImage} from '../dist/images.mjs';
 import {atomicWrite} from './files.mjs';
+import {NativeDiagnostics} from './diagnostics.mjs';
 
 const usage=`8 Instructions — a computing environment on the Brainfuck (BF) programming language.
 node runtime/cli.mjs [--bare] [--backend wasm|js] [--run FILE] [--eval SOURCE]
-                     [--demo | --city] [--load IMAGE] [--save IMAGE] [--metrics]
+                     [--demo | --city | --industry] [--load IMAGE] [--save IMAGE] [--metrics]
                      [--fuel N] [--blocks N]
 With no batch arguments, open an interactive terminal. Default boot compiles the
 Thread core library, transactional store and Dispatch from raw source in BF.
 --bare boots only the kernel. --load resumes an exact compatible machine image.
 --city boots the native source workspace and Living Dispatch; use city-step and
 city-state as ordinary native source inputs. --demo runs historical Dispatch.
+--industry compiles the raw industrial/process sources inside BF. Use --fuel 5e14
+--blocks 5e10 for this larger cold boot, then process-step and industry-state.
+For a verified zero-round image, use --load dist/initial-industry.8i instead.
 --save keeps input open and saves an image after the requested execution pauses.
 The default work limits are 1e14 BF instructions and 1e10 executor blocks.
 
@@ -35,7 +39,7 @@ async function main() {
   for(let i=0;i<args.length;i++) {
     const arg=args[i];
     if(arg==='--help'||arg==='-h'){stdout.write(usage);return;}
-    if(['--bare','--demo','--city','--metrics'].includes(arg)){config[arg.slice(2)]=true;continue;}
+    if(['--bare','--demo','--city','--industry','--metrics'].includes(arg)){config[arg.slice(2)]=true;continue;}
     if(!['--backend','--run','--eval','--load','--save','--fuel','--blocks'].includes(arg)||args[i+1]===undefined)throw new Error(`Invalid argument: ${arg}`);
     const value=args[++i];
     if(arg==='--run')config.files.push(value);
@@ -44,6 +48,7 @@ async function main() {
   }
   if(!['wasm','js'].includes(config.backend))throw new Error('Backend must be wasm or js');
   if(config.city&&(config.bare||config.demo))throw new Error('--city cannot be combined with --bare or --demo');
+  if(config.industry&&(config.bare||config.demo||config.city))throw new Error('--industry cannot be combined with --bare, --demo or --city');
   for(const field of ['fuel','blocks']) {
     config[field]=Number(config[field]);
     if(!Number.isSafeInteger(config[field])||config[field]<1)throw new Error(`${field} must be a positive safe integer`);
@@ -53,16 +58,18 @@ async function main() {
   const decode=text=>decodeImage(text,{program:kernel.program,programHash:kernel.programHash,create});
   let m=config.load?await decode(await readFile(config.load,'utf8')):create();
   let sawError=false;
+  const diagnostics=new NativeDiagnostics();
   const drain=()=>{
     const out=new TextDecoder().decode(m.drain());stdout.write(out);
-    sawError||=/!E\d+ |^WS-ERROR \d+ /m.test(out);
+    sawError=diagnostics.feed(out);
+    if(m.state==='input'||m.state==='halted')sawError=diagnostics.boundary();
   };
   const run=(source,options={})=>{
     const state=execute(m,source,{fuel:config.fuel,blocks:config.blocks,...options});drain();
     return state;
   };
   if(!config.load) {
-    run(config.bare?'':config.city?await loadLibraries('city-system.json'):kernel.libraries);
+    run(config.bare?'':config.industry?await loadLibraries('industry-system.json'):config.city?await loadLibraries('city-system.json'):kernel.libraries);
     if(m.state==='budget')throw new Error('Boot hit the work budget; increase --fuel or --blocks');
     if(sawError)throw new Error('The native library compiler reported an error');
   }

@@ -1,0 +1,4 @@
+{
+  "libraries": ["core.thread", "store.thread", "dispatch.thread"],
+  "description": "These raw sources are compiled by the Brainfuck kernel on boot."
+}

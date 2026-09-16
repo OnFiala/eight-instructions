@@ -1,0 +1,34 @@
+TAP version 13
+# Subtest: BF scheduler preempts an infinite process and preserves each continuation
+ok 1 - BF scheduler preempts an infinite process and preserves each continuation
+  ---
+  duration_ms: 19376.591709
+  type: 'test'
+  ...
+# Subtest: native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+ok 2 - native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+  ---
+  duration_ms: 7651.131708
+  type: 'test'
+  ...
+# Subtest: private bounds fault stays local; actor words are rejected in pure modules
+ok 3 - private bounds fault stays local; actor words are rejected in pure modules
+  ---
+  duration_ms: 7806.655333
+  type: 'test'
+  ...
+# Subtest: suspended old frame retains its version, next invocation adopts publication, images retain both
+ok 4 - suspended old frame retains its version, next invocation adopts publication, images retain both
+  ---
+  duration_ms: 4124.341083
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 39455.413333

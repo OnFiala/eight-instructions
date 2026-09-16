@@ -1,0 +1,23 @@
+TAP version 13
+# {"coldBootMs":61986.439,"bfInstructions":110438969580303,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+# Subtest: repeated delivery notifications, local receive failure and repair never repeat material transfer
+ok 1 - repeated delivery notifications, local receive failure and repair never repeat material transfer
+  ---
+  duration_ms: 164359.564708
+  type: 'test'
+  ...
+# Subtest: native transport/production and an unfinished BF instruction stream survive an exact image
+ok 2 - native transport/production and an unfinished BF instruction stream survive an exact image
+  ---
+  duration_ms: 83791.952583
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 248929.490709

@@ -1,0 +1,1 @@
+Initial image PASS: fresh BF boot reproduces b527b0144429eaa89443319b043d130eb3972736028e49a1ecbce2005ae01217; 82724.52 ms for this check.

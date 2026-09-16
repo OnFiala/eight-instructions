@@ -1,0 +1,117 @@
+\ BF process execution and deterministic scheduler. State is in process-state.thread.
+: process-op
+  vm-op @ 32 < if vm-primitive exit then
+  \ Validate stack space before effects such as consuming mail or posting work.
+  vm-op @ 32 >= if
+    vm-op @ 33 = vm-op @ 38 = or vm-op @ 40 = or
+    vm-op @ 42 = or vm-op @ 48 = or vm-op @ 51 = or vm-op @ 53 = or vm-op @ 54 = or if
+      vm-sp @ 1 < if 7 wfail exit then
+    then
+    vm-op @ 34 = vm-op @ 44 = or vm-op @ 45 = or vm-op @ 47 = or if
+      vm-sp @ 2 < if 7 wfail exit then
+    then
+    vm-op @ 35 = if vm-sp @ 3 < if 7 wfail exit then then
+    vm-op @ 36 = if vm-sp @ 60 > if 7 wfail exit then then
+  then
+  vm-op @ 32 = if 1 pcurr w@ vm-push exit then
+  vm-op @ 33 = if
+    vm-pop dup 16 < if 16 + pcurr w@ vm-push else drop 34 wfail then exit
+  then
+  vm-op @ 34 = if
+    vm-pop px ! vm-pop py ! px @ 16 < if py @ px @ 16 + pcurr w!
+    else 34 wfail then exit
+  then
+  vm-op @ 35 = if
+    vm-pop px ! vm-pop py ! vm-pop py @ 1 pcurr w@ px @ post-message vm-push exit
+  then
+  vm-op @ 36 = if
+    13 pcurr w@ if
+      12 pcurr w@ 4 * 128 + pcurr pj !
+      pj @ 2 + w@ vm-push pj @ 1+ w@ vm-push pj @ w@ vm-push 1 vm-push
+      ." RECEIVE " pj @ 3 + w@ . 1 pcurr w@ . vm-v @ serial-of . cr
+      12 pcurr dup w@ 1+ 4 mod swap w! 13 pcurr dup w@ 1- swap w!
+      1 precvs +!
+    else 0 vm-push 0 vm-push 0 vm-push 0 vm-push then exit
+  then
+  vm-op @ 37 = if
+    13 pcurr w@ 0= if 2 pb @ w! then 1 pyield ! exit
+  then
+  vm-op @ 38 = if
+    vm-pop 8 pcurr w! 8 pcurr w@ if 3 pb @ w! then 1 pyield ! exit
+  then
+  vm-op @ 39 = if 1 pyield ! exit then
+  vm-op @ 40 = if vm-pop dup if wfail else drop 35 wfail then exit then
+  vm-op @ 41 = if 13 pcurr w@ vm-push exit then
+  vm-op @ 42 >= vm-op @ 64 < and if industry-op exit then
+  vm-primitive
+;
+: context-load
+  4 pcurr w@ vm-v ! 5 pcurr w@ vm-pc ! 6 pcurr w@ vm-sp ! 7 pcurr w@ vm-fp !
+  0 pi ! begin pi @ vm-sp @ < while
+    pi @ 32 + pcurr w@ vm-stack pi @ + ! 1 pi +!
+  repeat
+  0 pi ! begin pi @ vm-fp @ < while
+    pi @ 96 + pcurr w@ vm-frames pi @ + ! 1 pi +!
+  repeat
+;
+: context-save
+  vm-v @ 4 pcurr w! vm-pc @ 5 pcurr w! vm-sp @ 6 pcurr w! vm-fp @ 7 pcurr w!
+  0 pi ! begin pi @ vm-sp @ < while
+    vm-stack pi @ + @ pi @ 32 + pcurr w! 1 pi +!
+  repeat
+  0 pi ! begin pi @ vm-fp @ < while
+    vm-frames pi @ + @ pi @ 96 + pcurr w! 1 pi +!
+  repeat
+;
+: process-invoke
+  \ At root return only: acquire latest version before releasing the old root.
+  2 pcurr w@ dup valid-module if
+    3 mf w@ dup if
+      dup 3 pcurr w@ = if vm-v ! else
+        dup ref+ 3 pcurr w@ ref- dup 3 pcurr w! vm-v ! collect
+      then
+      0 vm-pc ! 0 vm-sp ! 0 vm-fp !
+    else drop 11 wfail then
+  else drop 1 wfail then
+;
+: process-quantum
+  0 ws-error ! 0 pyield ! process-slice @ pbudget ! 1 ws-busy !
+  context-load vm-v @ 0= if process-invoke then
+  begin pbudget @ 0 > pyield @ 0= and ws-error @ 0= and while
+    -1 pbudget +! 11 pcurr dup w@ 1+ swap w!
+    vm-fetch vm-op ! ws-error @ 0= if process-op then
+    vm-v @ 0= if
+      vm-sp @ if 7 wfail then 1 pyield !
+    then
+  repeat
+  context-save 0 ws-busy ! 10 pcurr dup w@ 1+ swap w!
+  ws-error @ if
+    5 pb @ w! ws-error @ 9 pcurr w!
+    ." PROCESS-FAULT " 1 pcurr w@ . ws-error @ . cr
+  then
+;
+: process-step
+  ptick @ 65535 = if 0 ws-error ! 36 wfail report-error exit then
+  1 ptick +! 0 pr !
+  begin pr @ 16 < while
+    pr @ 0 pf pb !
+    pb @ w@ 3 = if
+      8 pcurr dup w@ dup if 1- then swap w!
+      8 pcurr w@ 0= if 1 pb @ w! then
+    then
+    pb @ w@ 1 = if process-quantum then
+    1 pr +!
+  repeat
+  ." ROUND " ptick @ . cr
+;
+: process-state
+  ." PROCESSES " ptick @ . pserial @ . pallocs @ . pfrees @ . psends @ . precvs @ . cr
+  0 pr !
+  begin pr @ 16 < while
+    pr @ 0 pf pb !
+    pb @ w@ if
+      ." PROCESS " pr @ . pb @ 16 w. cr
+      ." PRIVATE " 1 pcurr w@ . pb @ 16 + 16 w. cr
+    then 1 pr +!
+  repeat
+;

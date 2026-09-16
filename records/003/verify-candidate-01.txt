@@ -1,0 +1,781 @@
+
+> eight-instructions@0.3.0 verify
+> python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-archives.mjs --check && node tools/build-industry-image.mjs --check && node tools/audit.mjs && node --test tests/*.test.mjs
+
+{"instructions": 98687674, "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c", "cells": 398704}
+Generic BF executor: 744 bytes
+Raw program assets match their canonical sources.
+Public history matches canonical build records.
+build-001: 17 verbatim files; HTML relocation recorded.
+build-002: 52 verbatim files; HTML relocation recorded.
+Initial image PASS: fresh BF boot reproduces 18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04; 66249.77 ms for this check.
+Boundary audit PASS: 232 classified sources. Hashes are review gates, not a semantic proof.
+TAP version 13
+# Subtest: native unsigned division matches integer arithmetic across all bit widths and overflow guards
+ok 1 - native unsigned division matches integer arithmetic across all bit widths and overflow guards
+  ---
+  duration_ms: 6307.145792
+  type: 'test'
+  ...
+# Subtest: boundary guard rejects new executable files, changed host code and extra kernel commands
+ok 2 - boundary guard rejects new executable files, changed host code and extra kernel commands
+  ---
+  duration_ms: 1.936542
+  type: 'test'
+  ...
+# Subtest: dictionary capacity refuses publication without corrupting existing words
+ok 3 - dictionary capacity refuses publication without corrupting existing words
+  ---
+  duration_ms: 10695.436458
+  type: 'test'
+  ...
+# Subtest: code and nested control exhaustion roll back incomplete definitions
+ok 4 - code and nested control exhaustion roll back incomplete definitions
+  ---
+  duration_ms: 11488.100959
+  type: 'test'
+  ...
+# Subtest: heap exhaustion and overlong tokens refuse mutation and recover
+ok 5 - heap exhaustion and overlong tokens refuse mutation and recover
+  ---
+  duration_ms: 164.763208
+  type: 'test'
+  ...
+# Subtest: new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+ok 6 - new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+  ---
+  duration_ms: 82477.301542
+  type: 'test'
+  ...
+# Subtest: native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+ok 7 - native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+  ---
+  duration_ms: 33057.142083
+  type: 'test'
+  ...
+# Subtest: a refused road pair at fixed capacity preserves all road data
+ok 8 - a refused road pair at fixed capacity preserves all road data
+  ---
+  duration_ms: 1404.19825
+  type: 'test'
+  ...
+# Subtest: safe-point, serial and pin refusals preserve the active version and bounded references
+ok 9 - safe-point, serial and pin refusals preserve the active version and bounded references
+  ---
+  duration_ms: 13010.406416
+  type: 'test'
+  ...
+# Subtest: presentation retains serial identity after arena reuse; source framing cannot forge active state
+ok 10 - presentation retains serial identity after arena reuse; source framing cannot forge active state
+  ---
+  duration_ms: 4862.924959
+  type: 'test'
+  ...
+# Subtest: removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+ok 11 - removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+  ---
+  duration_ms: 9730.458333
+  type: 'test'
+  ...
+# Subtest: road edits invalidate the native cost cache even when the 16-bit generation wraps
+ok 12 - road edits invalidate the native cost cache even when the 16-bit generation wraps
+  ---
+  duration_ms: 2593.692291
+  type: 'test'
+  ...
+# Subtest: two programs from one initial image change routes with the same open toll bridge
+ok 13 - two programs from one initial image change routes with the same open toll bridge
+  ---
+  duration_ms: 57351.218292
+  type: 'test'
+  ...
+# Subtest: in-flight cars retain their edge and old version across swaps, then release it at arrival
+ok 14 - in-flight cars retain their edge and old version across swaps, then release it at arrival
+  ---
+  duration_ms: 17550.557292
+  type: 'test'
+  ...
+# Subtest: paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+ok 15 - paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+  ---
+  duration_ms: 28834.786125
+  type: 'test'
+  ...
+# Subtest: closure is a separate native data experiment and cannot teleport an in-flight vehicle
+ok 16 - closure is a separate native data experiment and cannot teleport an in-flight vehicle
+  ---
+  duration_ms: 15201.963708
+  type: 'test'
+  ...
+# Subtest: changing road duration preserves the duration already committed to an in-flight vehicle
+ok 17 - changing road duration preserves the duration already committed to an in-flight vehicle
+  ---
+  duration_ms: 10988.248625
+  type: 'test'
+  ...
+# Subtest: exact counter windows cross Number precision without changing BF execution
+ok 18 - exact counter windows cross Number precision without changing BF execution
+  ---
+  duration_ms: 4.654791
+  type: 'test'
+  ...
+# Subtest: zero budgets, repeated fuel pauses and output limits remain exact across rotation
+ok 19 - zero budgets, repeated fuel pauses and output limits remain exact across rotation
+  ---
+  duration_ms: 1.078458
+  type: 'test'
+  ...
+# Subtest: images preserve exact epochs and reject malformed epochs before creating a candidate
+ok 20 - images preserve exact epochs and reject malformed epochs before creating a candidate
+  ---
+  duration_ms: 12.851917
+  type: 'test'
+  ...
+# Subtest: CLI diagnostics ignore opaque source bodies across every byte split
+ok 21 - CLI diagnostics ignore opaque source bodies across every byte split
+  ---
+  duration_ms: 1.567041
+  type: 'test'
+  ...
+# Subtest: a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+ok 22 - a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+  ---
+  duration_ms: 4986.768084
+  type: 'test'
+  ...
+# Subtest: Dispatch combines transactions, native compilation and dynamic route changes
+ok 23 - Dispatch combines transactions, native compilation and dynamic route changes
+  ---
+  duration_ms: 12259.924333
+  type: 'test'
+  ...
+# Subtest: zero-distance, unreachable nodes and invalid road states
+ok 24 - zero-distance, unreachable nodes and invalid road states
+  ---
+  duration_ms: 5322.849334
+  type: 'test'
+  ...
+# Subtest: maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+ok 25 - maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+  ---
+  duration_ms: 13013.430666
+  type: 'test'
+  ...
+# Subtest: random weighted networks agree with Bellman-Ford and valid path reconstruction
+ok 26 - random weighted networks agree with Bellman-Ford and valid path reconstruction
+  ---
+  duration_ms: 34353.895542
+  type: 'test'
+  ...
+# Subtest: full-capacity 128-road cyclic network agrees with an independent oracle
+ok 27 - full-capacity 128-road cyclic network agrees with an independent oracle
+  ---
+  duration_ms: 34223.72825
+  type: 'test'
+  ...
+# Subtest: generated addressed memory and arithmetic execute on the real BF machine
+ok 28 - generated addressed memory and arithmetic execute on the real BF machine
+  ---
+  duration_ms: 79.339291
+  type: 'test'
+  ...
+# Subtest: paged native memory walks page and word lanes and clears all breadcrumbs
+ok 29 - paged native memory walks page and word lanes and clears all breadcrumbs
+  ---
+  duration_ms: 177.488084
+  type: 'test'
+  ...
+# Subtest: bracket validation
+ok 30 - bracket validation
+  ---
+  duration_ms: 2.131792
+  type: 'test'
+  ...
+# Subtest: uint16 wrap, low-byte output, input pause and EOF
+ok 31 - uint16 wrap, low-byte output, input pause and EOF
+  ---
+  duration_ms: 2.5685
+  type: 'test'
+  ...
+# Subtest: bounds checks retain intermediate pointer motion
+ok 32 - bounds checks retain intermediate pointer motion
+  ---
+  duration_ms: 0.324708
+  type: 'test'
+  ...
+# Subtest: resource budget interrupts a divergent program
+ok 33 - resource budget interrupts a divergent program
+  ---
+  duration_ms: 0.112
+  type: 'test'
+  ...
+# Subtest: invalid limits and bytes fail without corrupting queued input
+ok 34 - invalid limits and bytes fail without corrupting queued input
+  ---
+  duration_ms: 122.277333
+  type: 'test'
+  ...
+# Subtest: optimized loops match literal execution, including instruction counts
+ok 35 - optimized loops match literal execution, including instruction counts
+  ---
+  duration_ms: 15.330708
+  type: 'test'
+  ...
+# Subtest: machine images resume partial input and preserve full uint16 state
+ok 36 - machine images resume partial input and preserve full uint16 state
+  ---
+  duration_ms: 11.716667
+  type: 'test'
+  ...
+# Subtest: image corruption, incompatible kernels and invalid machine state are rejected
+ok 37 - image corruption, incompatible kernels and invalid machine state are rejected
+  ---
+  duration_ms: 7.807291
+  type: 'test'
+  ...
+# Subtest: budget images resume without replaying input or output
+ok 38 - budget images resume without replaying input or output
+  ---
+  duration_ms: 1.413416
+  type: 'test'
+  ...
+# Subtest: OS image replacement is atomic and leaves no temporary files
+ok 39 - OS image replacement is atomic and leaves no temporary files
+  ---
+  duration_ms: 30.618583
+  type: 'test'
+  ...
+# {"coldBootMs":125578.898875,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+# Subtest: native road capacity queues a second van; closure preserves an existing reservation
+ok 40 - native road capacity queues a second van; closure preserves an existing reservation
+  ---
+  duration_ms: 141709.236709
+  type: 'test'
+  ...
+# {"jobCapacity":16,"reclaimedLifetimes":467,"staleIdentityRefused":1,"liveJobs":0}
+# Subtest: all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+ok 41 - all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+  ---
+  duration_ms: 35315.968292
+  type: 'test'
+  ...
+# Subtest: publishing, refusing schema change and rolling back preserve a paused carried load and route version
+ok 42 - publishing, refusing schema change and rolling back preserve a paused carried load and route version
+  ---
+  duration_ms: 86845.748458
+  type: 'test'
+  ...
+# Subtest: native source text is length framed, never mistaken for errors or city events
+ok 43 - native source text is length framed, never mistaken for errors or city events
+  ---
+  duration_ms: 2.740416
+  type: 'test'
+  ...
+# Subtest: bounded process and industrial records reject truncation before UI replacement
+ok 44 - bounded process and industrial records reject truncation before UI replacement
+  ---
+  duration_ms: 0.760417
+  type: 'test'
+  ...
+# {"coldBootMs":124945.227041,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+# Subtest: a user van program gets higher native passage priority over an earlier scheduler slot
+ok 45 - a user van program gets higher native passage priority over an earlier scheduler slot
+  ---
+  duration_ms: 140086.7655
+  type: 'test'
+  ...
+# Subtest: an infinite high-priority program cannot retain a free road through a stale intent
+ok 46 - an infinite high-priority program cannot retain a free road through a stale intent
+  ---
+  duration_ms: 19209.998
+  type: 'test'
+  ...
+# Subtest: paused priority claim is ineligible; invalid priority faults locally without changing its value
+ok 47 - paused priority claim is ineligible; invalid priority faults locally without changing its value
+  ---
+  duration_ms: 19750.42225
+  type: 'test'
+  ...
+# {"coldBootMs":128383.731,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+# Subtest: repeated delivery notifications, local receive failure and repair never repeat material transfer
+ok 48 - repeated delivery notifications, local receive failure and repair never repeat material transfer
+  ---
+  duration_ms: 299474.597292
+  type: 'test'
+  ...
+# Subtest: native transport/production and an unfinished BF instruction stream survive an exact image
+ok 49 - native transport/production and an unfinished BF instruction stream survive an exact image
+  ---
+  duration_ms: 107788.699917
+  type: 'test'
+  ...
+# {"coldBootMs":124943.473083,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+# SEND 1 3 1 1 1 2 
+# ORDER 1 3 6 
+# SEND 2 4 2 1 2 3 
+# ORDER 2 4 6 
+# ROUND 1 
+# RECEIVE 1 1 1 
+# AUTHORIZE 1 1 
+# SEND 3 1 7 2 1 1 
+# ASSIGN 1 7 
+# RECEIVE 2 2 1 
+# AUTHORIZE 2 2 
+# SEND 4 2 9 2 2 1 
+# ASSIGN 2 9 
+# RECEIVE 3 7 4 
+# LOAD 7 1 1 6 
+# RECEIVE 4 9 4 
+# LOAD 9 2 2 6 
+# ROUND 2 
+# ROUND 3 
+# ROUND 4 
+# ROUND 5 
+# ROUND 6 
+# ROUND 7 
+# I-ROUTE 7 4 12 4 4 3 12 8 4 
+# ROUND 8 
+# I-DEPART 7 33 4 
+# I-ROUTE 9 4 3 11 4 3 3 7 11 
+# ROUND 9 
+# I-DEPART 9 22 4 
+# ROUND 10 
+# I-ARRIVE 7 8 
+# ROUND 11 
+# I-DEPART 7 25 4 
+# I-ARRIVE 9 7 
+# ROUND 12 
+# I-DEPART 9 30 4 
+# ROUND 13 
+# I-ARRIVE 7 4 
+# SEND 5 7 3 3 1 4 
+# UNLOAD 7 1 3 6 
+# ROUND 14 
+# RECEIVE 5 3 2 
+# ACK 1 3 
+# I-ARRIVE 9 11 
+# SEND 6 9 4 3 2 4 
+# UNLOAD 9 2 4 6 
+# ROUND 15 
+# SEND 7 3 1 1 3 2 
+# ORDER 3 3 6 
+# RECEIVE 6 4 3 
+# ACK 2 4 
+# ROUND 16 
+# RECEIVE 7 1 1 
+# AUTHORIZE 3 1 
+# SEND 8 1 8 2 3 1 
+# ASSIGN 3 8 
+# SEND 9 4 2 1 4 3 
+# ORDER 4 4 6 
+# RECEIVE 8 8 4 
+# LOAD 8 3 1 6 
+# ROUND 17 
+# RECEIVE 9 2 1 
+# AUTHORIZE 4 2 
+# SEND 10 2 10 2 4 1 
+# ASSIGN 4 10 
+# PRODUCE 3 1 
+# RECEIVE 10 10 4 
+# LOAD 10 4 2 6 
+# ROUND 18 
+# Subtest: twelve native processes create real orders and preserve the material ledger
+ok 50 - twelve native processes create real orders and preserve the material ledger
+  ---
+  duration_ms: 215302.651708
+  type: 'test'
+  ...
+# Subtest: unfinished messages, native frames and route phases survive a new machine image
+ok 51 - unfinished messages, native frames and route phases survive a new machine image
+  ---
+  duration_ms: 53743.206625
+  type: 'test'
+  ...
+# Subtest: ownership rejects removing stock or executing a foreign industrial operation
+ok 52 - ownership rejects removing stock or executing a foreign industrial operation
+  ---
+  duration_ms: 14310.394625
+  type: 'test'
+  ...
+# Subtest: numeric parsing and unsigned arithmetic
+ok 53 - numeric parsing and unsigned arithmetic
+  ---
+  duration_ms: 211.062458
+  type: 'test'
+  ...
+# Subtest: stack combinators, equality and unsigned comparison
+ok 54 - stack combinators, equality and unsigned comparison
+  ---
+  duration_ms: 50.623792
+  type: 'test'
+  ...
+# Subtest: native definitions, calls and source compilation
+ok 55 - native definitions, calls and source compilation
+  ---
+  duration_ms: 46.261292
+  type: 'test'
+  ...
+# Subtest: native conditionals and nested branching
+ok 56 - native conditionals and nested branching
+  ---
+  duration_ms: 105.626458
+  type: 'test'
+  ...
+# Subtest: loops and recursive definitions
+ok 57 - loops and recursive definitions
+  ---
+  duration_ms: 87.392167
+  type: 'test'
+  ...
+# Subtest: native defining words, while/repeat and early return
+ok 58 - native defining words, while/repeat and early return
+  ---
+  duration_ms: 125.612708
+  type: 'test'
+  ...
+# Subtest: separate bounded heap and persistent regions
+ok 59 - separate bounded heap and persistent regions
+  ---
+  duration_ms: 54.571458
+  type: 'test'
+  ...
+# Subtest: comments and partial tokens across interactive input chunks
+ok 60 - comments and partial tokens across interactive input chunks
+  ---
+  duration_ms: 5.135458
+  type: 'test'
+  ...
+# Subtest: diagnostic recovery and rejected input
+ok 61 - diagnostic recovery and rejected input
+  ---
+  duration_ms: 74.971
+  type: 'test'
+  ...
+# Subtest: malformed definitions are unpublished and roll back code allocation
+ok 62 - malformed definitions are unpublished and roll back code allocation
+  ---
+  duration_ms: 39.001583
+  type: 'test'
+  ...
+# Subtest: resource exhaustion: data and return stack protection
+ok 63 - resource exhaustion: data and return stack protection
+  ---
+  duration_ms: 288.7755
+  type: 'test'
+  ...
+# Subtest: EOF closes ordinary execution and rejects unfinished compilation
+ok 64 - EOF closes ordinary execution and rejects unfinished compilation
+  ---
+  duration_ms: 14.899709
+  type: 'test'
+  ...
+# Subtest: bounded bulk memory handles overlap in both directions
+ok 65 - bounded bulk memory handles overlap in both directions
+  ---
+  duration_ms: 101.755666
+  type: 'test'
+  ...
+# Subtest: strings compile natively and dictionary collisions and shadowing remain sound
+ok 66 - strings compile natively and dictionary collisions and shadowing remain sound
+  ---
+  duration_ms: 93.533875
+  type: 'test'
+  ...
+# Subtest: preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+ok 67 - preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+  ---
+  duration_ms: 758.876916
+  type: 'test'
+  ...
+# Subtest: preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+ok 68 - preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+  ---
+  duration_ms: 763.998542
+  type: 'test'
+  ...
+# {"literalNativeInput":"7 5 0 module-run . . cr","literalInstructions":287970502251,"literalElapsedMs":380506.107334,"output":"1 22 \\n","wholeTapeEqual":true}
+# {"literalNativeInput":"2 0 source-write hi\\n0 module-compile","literalInstructions":175188163879,"literalElapsedMs":141793.83854199998,"output":"SOURCE-STORED 0 2 \\nWS-ERROR 5 \\n","wholeTapeEqual":true}
+# Subtest: literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+ok 69 - literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+  ---
+  duration_ms: 541137.887042
+  type: 'test'
+  ...
+# Subtest: length-framed stored source cannot masquerade as city or lifecycle output
+ok 70 - length-framed stored source cannot masquerade as city or lifecycle output
+  ---
+  duration_ms: 2.2185
+  type: 'test'
+  ...
+# Subtest: partial or malformed presentation frames cannot replace a complete city
+ok 71 - partial or malformed presentation frames cannot replace a complete city
+  ---
+  duration_ms: 0.240125
+  type: 'test'
+  ...
+# Subtest: route evidence cannot borrow a different version or a pre-import cost trace
+ok 72 - route evidence cannot borrow a different version or a pre-import cost trace
+  ---
+  duration_ms: 0.310291
+  type: 'test'
+  ...
+# Subtest: each route captures only the complete cost table preceding it
+ok 73 - each route captures only the complete cost table preceding it
+  ---
+  duration_ms: 0.431959
+  type: 'test'
+  ...
+# Subtest: a paused mailbox waiter wakes on resume when mail arrived during its pause
+ok 74 - a paused mailbox waiter wakes on resume when mail arrived during its pause
+  ---
+  duration_ms: 61080.300625
+  type: 'test'
+  ...
+# Subtest: declared incompatible schema refuses publication with live continuation and queued message
+ok 75 - declared incompatible schema refuses publication with live continuation and queued message
+  ---
+  duration_ms: 19147.919041
+  type: 'test'
+  ...
+# Subtest: configured quantum is bounded; sleeping, looping and failing programs stay independent
+ok 76 - configured quantum is bounded; sleeping, looping and failing programs stay independent
+  ---
+  duration_ms: 9082.3435
+  type: 'test'
+  ...
+# Subtest: nested exact-version stack exhaustion stays local and preserves queued mail
+ok 77 - nested exact-version stack exhaustion stays local and preserves queued mail
+  ---
+  duration_ms: 35374.709
+  type: 'test'
+  ...
+# {"input":"43 9 1 process-post .","literalInstructions":"139460206476","literalElapsedMs":164862.032959,"output":"SEND 1 0 1 9 43 0 \\n1 ","wholeTapeEqual":true}
+# {"input":"process-step","literalInstructions":"909504001134","literalElapsedMs":642443.2960409999,"output":"RECEIVE 1 1 1 \\nROUND 2 \\n","wholeTapeEqual":true}
+# Subtest: literal BF matches native mailbox wake and a bounded resumed receive turn, including the whole tape
+ok 78 - literal BF matches native mailbox wake and a bounded resumed receive turn, including the whole tape
+  ---
+  duration_ms: 871558.238583
+  type: 'test'
+  ...
+# Subtest: BF scheduler preempts an infinite process and preserves each continuation
+ok 79 - BF scheduler preempts an infinite process and preserves each continuation
+  ---
+  duration_ms: 66568.955834
+  type: 'test'
+  ...
+# Subtest: native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+ok 80 - native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+  ---
+  duration_ms: 5870.358375
+  type: 'test'
+  ...
+# Subtest: private bounds fault stays local; actor words are rejected in pure modules
+ok 81 - private bounds fault stays local; actor words are rejected in pure modules
+  ---
+  duration_ms: 8909.360584
+  type: 'test'
+  ...
+# Subtest: suspended old frame retains its version, next invocation adopts publication, images retain both
+ok 82 - suspended old frame retains its version, next invocation adopts publication, images retain both
+  ---
+  duration_ms: 3860.690458
+  type: 'test'
+  ...
+# Subtest: three user programs exchange messages, wait, and compute without kernel regeneration
+ok 83 - three user programs exchange messages, wait, and compute without kernel regeneration
+  ---
+  duration_ms: 9515.472458
+  type: 'test'
+  ...
+# {"processCycles":450,"capacity":16,"liveProcesses":0,"liveVersionsAfterDelete":0,"residentCodeAndDictionary":[19821,308]}
+# Subtest: 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+ok 84 - 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+  ---
+  duration_ms: 290882.6535
+  type: 'test'
+  ...
+# Subtest: creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+ok 85 - creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+  ---
+  duration_ms: 10590.652875
+  type: 'test'
+  ...
+# Subtest: large native workspace and source parameter edit preserve custom drafts and rejected versions
+ok 86 - large native workspace and source parameter edit preserve custom drafts and rejected versions
+  ---
+  duration_ms: 4904.892916
+  type: 'test'
+  ...
+# {"reclaimCycles":450,"elapsedMs":293701.146,"versionCapacity":6,"maxObservedLive":2,"slotsUsed":[1,3,2],"compiledWordsAcrossCycles":9000,"finalLiveCodeWords":40,"afterDeleteLiveVersions":0,"platformCodeWords":8387,"platformDictionaryEntries":183,"tapeCells":398704}
+# Subtest: 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+ok 87 - 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+  ---
+  duration_ms: 313082.753542
+  type: 'test'
+  ...
+# Subtest: the entire generated kernel agrees with an independent literal C executor
+ok 88 - the entire generated kernel agrees with an independent literal C executor
+  ---
+  duration_ms: 2800.933792
+  type: 'test'
+  ...
+# Subtest: transactional insert, update, missing keys, zero values and deletion
+ok 89 - transactional insert, update, missing keys, zero values and deletion
+  ---
+  duration_ms: 5493.134459
+  type: 'test'
+  ...
+# Subtest: abort restores the committed view; writes require an explicit transaction
+ok 90 - abort restores the committed view; writes require an explicit transaction
+  ---
+  duration_ms: 371.454167
+  type: 'test'
+  ...
+# Subtest: full store refuses record 129, updates existing keys, reuses deleted slots
+ok 91 - full store refuses record 129, updates existing keys, reuses deleted slots
+  ---
+  duration_ms: 3493.211
+  type: 'test'
+  ...
+# Subtest: deterministic mixed operations agree with an independent map oracle
+ok 92 - deterministic mixed operations agree with an independent map oracle
+  ---
+  duration_ms: 1391.47625
+  type: 'test'
+  ...
+# Subtest: full kernel image retains definitions, committed records and an open transaction
+ok 93 - full kernel image retains definitions, committed records and an open transaction
+  ---
+  duration_ms: 391.532083
+  type: 'test'
+  ...
+# Subtest: collisions survive tombstones without duplicate keys or broken lookup chains
+ok 94 - collisions survive tombstones without duplicate keys or broken lookup chains
+  ---
+  duration_ms: 1032.684875
+  type: 'test'
+  ...
+# Subtest: native format and index integrity checks reject invalid store state
+ok 95 - native format and index integrity checks reject invalid store state
+  ---
+  duration_ms: 709.646667
+  type: 'test'
+  ...
+# Subtest: adversarial full-table collisions finish through bounded image-resumable execution
+ok 96 - adversarial full-table collisions finish through bounded image-resumable execution
+  ---
+  duration_ms: 61087.037625
+  type: 'test'
+  ...
+# {"stress":"128 keys in one initial bucket","elapsedMs":60969.109666,"brainfuckInstructions":635441144541733,"boundedRuns":7}
+# Subtest: Wasm backend is equivalent to literal BF for 150 deterministic programs
+ok 97 - Wasm backend is equivalent to literal BF for 150 deterministic programs
+  ---
+  duration_ms: 34.129167
+  type: 'test'
+  ...
+# Subtest: Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+ok 98 - Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+  ---
+  duration_ms: 1.574375
+  type: 'test'
+  ...
+# Subtest: Wasm pause, streaming input, output caps and work limits
+ok 99 - Wasm pause, streaming input, output caps and work limits
+  ---
+  duration_ms: 0.814875
+  type: 'test'
+  ...
+# Subtest: WebMCP has the same source/state routes, validates before effects, and closes registration
+ok 100 - WebMCP has the same source/state routes, validates before effects, and closes registration
+  ---
+  duration_ms: 2.059625
+  type: 'test'
+  ...
+# Subtest: browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+ok 101 - browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+  ---
+  duration_ms: 10146.009833
+  type: 'test'
+  ...
+# Subtest: native workspace page hints and cache eviction preserve arbitrary values and bounds
+ok 102 - native workspace page hints and cache eviction preserve arbitrary values and bounds
+  ---
+  duration_ms: 1525.674166
+  type: 'test'
+  ...
+# Subtest: workspace address-cache state survives a whole-machine image
+ok 103 - workspace address-cache state survives a whole-machine image
+  ---
+  duration_ms: 200.085083
+  type: 'test'
+  ...
+# Subtest: generic key and paged workspace operations execute as BF and reject boundaries
+ok 104 - generic key and paged workspace operations execute as BF and reject boundaries
+  ---
+  duration_ms: 106.956083
+  type: 'test'
+  ...
+# Subtest: boot manifests accept only local raw Thread source paths
+ok 105 - boot manifests accept only local raw Thread source paths
+  ---
+  duration_ms: 12.805708
+  type: 'test'
+  ...
+# Subtest: native bounded workspace output matches individual reads across pages and tape edges
+ok 106 - native bounded workspace output matches individual reads across pages and tape edges
+  ---
+  duration_ms: 572.901834
+  type: 'test'
+  ...
+# Subtest: an image resumes midway through the native one-hot dispatch and bulk output
+ok 107 - an image resumes midway through the native one-hot dispatch and bulk output
+  ---
+  duration_ms: 246.280875
+  type: 'test'
+  ...
+# Subtest: BF-owned instruction-page validation cache is discarded on compilation rollback
+ok 108 - BF-owned instruction-page validation cache is discarded on compilation rollback
+  ---
+  duration_ms: 440.619042
+  type: 'test'
+  ...
+# Subtest: source is stored, compiled and executed in BF; arbitrary expressions and typed control
+ok 109 - source is stored, compiled and executed in BF; arbitrary expressions and typed control
+  ---
+  duration_ms: 25503.359
+  type: 'test'
+  ...
+# Subtest: invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+ok 110 - invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+  ---
+  duration_ms: 25572.141041
+  type: 'test'
+  ...
+# Subtest: exact dependency binding, pins, rollback, deletion refusal and stale handles
+ok 111 - exact dependency binding, pins, rollback, deletion refusal and stale handles
+  ---
+  duration_ms: 2002.444375
+  type: 'test'
+  ...
+# Subtest: all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+ok 112 - all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+  ---
+  duration_ms: 3019.227625
+  type: 'test'
+  ...
+# Subtest: bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+ok 113 - bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+  ---
+  duration_ms: 12915.930875
+  type: 'test'
+  ...
+1..113
+# tests 113
+# suites 0
+# pass 113
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 974272.576875

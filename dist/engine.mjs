@@ -56,6 +56,7 @@ export class Machine {
     if (!Number.isSafeInteger(maxOutput) || maxOutput < 1 || maxOutput > 1048576) throw new RangeError('Invalid output limit');
     this.program = program; this.tape = new Uint16Array(cells);
     this.pc = 0; this.pointer = 0; this.steps = 0; this.blocks = 0; this.highWater = 0;
+    this.instructionEpoch = 0n; this.blockEpoch = 0n;
     this.input = []; this.inputAt = 0; this.eof = false; this.output = [];
     this.maxOutput = maxOutput; this.state = 'ready';
   }
@@ -72,10 +73,21 @@ export class Machine {
     if (this.pointer+min < 0 || this.pointer+max >= this.tape.length) throw new RangeError('Tape pointer out of bounds');
     this.highWater = Math.max(this.highWater, this.pointer+max);
   }
-  run({ fuel = 1e12, blocks = 1e8 } = {}) {
+  get totalSteps() { return this.instructionEpoch + BigInt(this.steps); }
+  get totalBlocks() { return this.blockEpoch + BigInt(this.blocks); }
+  prepareBudget(fuel, blocks) {
     if (![fuel,blocks].every(n => Number.isSafeInteger(n) && n >= 0)) throw new RangeError('Invalid execution budget');
-    fuel = Math.min(fuel, Number.MAX_SAFE_INTEGER-this.steps);
-    blocks = Math.min(blocks, Number.MAX_SAFE_INTEGER-this.blocks);
+    // Rotate instrumentation only. Each backend still uses exact Number counters
+    // inside one bounded run; BF memory, I/O and instruction position are untouched.
+    if (fuel > Number.MAX_SAFE_INTEGER-this.steps) {
+      this.instructionEpoch += BigInt(this.steps); this.steps = 0;
+    }
+    if (blocks > Number.MAX_SAFE_INTEGER-this.blocks) {
+      this.blockEpoch += BigInt(this.blocks); this.blocks = 0;
+    }
+  }
+  run({ fuel = 1e12, blocks = 1e8 } = {}) {
+    this.prepareBudget(fuel, blocks);
     const limit = this.steps + fuel, blockLimit = this.blocks + blocks;
     this.state = 'running';
     while (this.pc < this.program.ops.length) {
@@ -112,8 +124,9 @@ export class Machine {
   }
   drain() { const result = Uint8Array.from(this.output); this.output = []; return result; }
   inspect() {
+    const exact = n => n <= BigInt(Number.MAX_SAFE_INTEGER) ? Number(n) : String(n);
     return { state: this.state, instruction: this.program.ops[this.pc]?.source ?? this.program.sourceLength,
-      pointer: this.pointer, cell: this.tape[this.pointer], steps: this.steps, blocks: this.blocks,
+      pointer: this.pointer, cell: this.tape[this.pointer], steps: exact(this.totalSteps), blocks: exact(this.totalBlocks),
       tapeBytes: this.tape.byteLength, highWaterCell: this.highWater };
   }
 }
