@@ -1,144 +1,149 @@
 # 8 Instructions — Build 002: A city you can reprogram
 
-Pokračuj v projektu jako jediný autor Astra v režimu xHigh. Toto je zadání k autonomní realizaci Build 002 od implementace přes ověření až po aktualizaci stávajícího veřejného webu a GitHubu. Chci co nejmenší lidské zásahy. Běžná technická a vizuální rozhodnutí dělej sám; výsledek dokonči a oprav zjištěné problémy.
+> English translation of the original owner brief. The original wording remains in
+> the `build-002` tag and Git history. The owner's later English-only publication
+> instruction supersedes the historical request below for Czech handoff texts;
+> it does not change the original implementation requirements or permissions.
 
-## 1. Identita projektu a závazná předloha
+Continue the project as sole author Astra in xHigh mode. This brief authorizes autonomous delivery of Build 002, from implementation and verification through updating the existing public website and GitHub. I want minimal human intervention. Make routine technical and visual decisions yourself; finish the result and repair discovered problems.
 
-- Kanonický projekt: `/Users/ondrej/BRAINFUCK`.
+## 1. Project identity and mandatory reference
+
+- Canonical project: `/Users/ondrej/BRAINFUCK`.
 - GitHub: https://github.com/OnFiala/eight-instructions
-- Stávající veřejný web: https://eight-instructions.andrewxix.chatgpt.site
-- Poslední ověřený základ Build 001: `6d7c6b0cb7fa73eda0504ef0d2cc10b1429c5dd0`, tag `build-001`. Ber to jako výchozí informaci, před prací ověř skutečný stav.
-- Vybraný a schválený vizuál je VÝHRADNĚ první koncept „A city you can reprogram“ / Living Dispatch:
+- Existing public website: https://eight-instructions.andrewxix.chatgpt.site
+- Last verified Build 001 baseline: `6d7c6b0cb7fa73eda0504ef0d2cc10b1429c5dd0`, tag `build-001`. Treat this as initial information; verify actual state before starting.
+- The selected and approved visual is EXCLUSIVELY the first concept, “A city you can reprogram” / Living Dispatch:
   `/Users/ondrej/Documents/Codex/2026-09-10/referenced-chatgpt-conversation-this-is-an/outputs/stage-2-concept-1.png`
-- Originál má 1487 × 1058 px; SHA-256: `93acd21539f8a122bc4b66f8ce1f75048e2cf477ca14d068c00744a08c53e847`.
+- The original is 1487 × 1058 px; SHA-256: `93acd21539f8a122bc4b66f8ce1f75048e2cf477ca14d068c00744a08c53e847`.
 
-Obrázek skutečně otevři a prohlédni. Ulož jeho přesnou kopii do projektu jako schválenou vizuální referenci Build 002. Nezaměň ho za druhý nebo třetí koncept. Vizuální směr už byl vybrán; nevyžaduj nový výběr a negeneruj tři nové alternativy. Pokud soubor není dostupný, vyžádej pouze tuto konkrétní předlohu a mezitím pokračuj v nezávislé práci na BF jádru.
+Actually open and inspect the image. Save an exact copy in the project as the approved Build 002 visual reference. Do not confuse it with the second or third concept. The visual direction has already been selected; do not request another selection or generate three new alternatives. If the file is unavailable, request only this specific reference and continue independent BF-core work in the meantime.
 
-Před změnami ověř hostitele, pracovní adresář, branch/HEAD, dirty/ahead/behind stav, oprávnění a relevantní souběžnou práci. Přečti projektový `AGENTS.md`, `PROTOCOL.md`, architekturu, hranice host/BF, persistence a záznamy Build 001. Načti CORTEX kontext pro `brainfuck`; významná rozhodnutí a výsledek tam zaznamenej. Použij aktuální relevantní dokumentaci a dostupné nástroje, nikoli předpokládané API.
+Before changes, verify the host, working directory, branch/HEAD, dirty/ahead/behind state, permissions and relevant concurrent work. Read the project's `AGENTS.md`, `PROTOCOL.md`, architecture, host/BF boundaries, persistence and Build 001 records. Load CORTEX context for `brainfuck`; record significant decisions and the outcome there. Use current relevant documentation and available tools, not assumed APIs.
 
-## 2. Ústřední cíl: Brainfuck
+## 2. Central goal: Brainfuck
 
-Centrem celého projektu je programovací jazyk BRAINFUCK a jeho osm instrukcí `> < + - . , [ ]`. Build 002 musí podstatně zvýšit schopnosti systému běžícího uvnitř BF. Krásné město má tyto schopnosti zviditelnit.
+The BRAINFUCK programming language and its eight instructions `> < + - . , [ ]` are the center of this project. Build 002 must substantially increase the capabilities of the system running inside BF. A beautiful city should make those capabilities visible.
 
-Vytvoř malé doručovací město řízené programy v Threadu. Uživatel má přímo uvnitř BF stroje ukládat pojmenovaný zdroj, upravovat jej, překládat, bezpečně nahrazovat moduly a získávat zpět paměť po bezpečně odstraněných verzích. Důsledky změny programu musí být vidět na chování města a musí jít reprodukovat.
+Build a small delivery city controlled by Thread programs. Users must store named source, edit it, compile it, safely replace modules and reclaim memory from safely removed versions directly inside the BF machine. The effects of changing a program must be visible in the city's behavior and reproducible.
 
-Zachovej permanentní protokol experimentu. Jsi jediný coding model i autor architektury, implementace, oprav a self-review: Astra xHigh, bez subagentů a bez druhého coding modelu. Člověk dodává výzvu a vizuální předlohu, nepíše ani neopravuje produkční kód. Nástroj pro generování obrázků může vytvářet čistě grafické assety; jeho použití a původ assetů transparentně zaznamenej.
+Preserve the experiment's permanent protocol. You are the sole coding model and author of architecture, implementation, repairs and self-review: Astra xHigh, without subagents or a second coding model. The human supplies the challenge and visual reference, not production code or repairs. An image-generation tool may produce purely graphical assets; transparently record its use and asset provenance.
 
-## 3. Nepřekročitelná hranice BF / host
+## 3. Non-negotiable BF / host boundary
 
-Uvnitř BF musí probíhat:
+The following must happen inside BF:
 
-- Uložení a správa zdrojů, tokenizace a překlad Threadu.
-- Význam modulů, vazby mezi nimi, publikování nové verze, bezpečné odstranění a uvolnění paměti.
-- Stav města, silnic, zakázek a vozidel; pravidla simulace, logické kroky a rozhodnutí o doručení.
-- Výběr a vyhodnocení tras, nákladů, mýta a uživatelských pravidel.
-- Zachování aplikačních dat při výměně kódu a konzistentní chování při odmítnuté změně.
+- Source storage and management, Thread tokenization and compilation.
+- Module semantics, bindings, new-version publication, safe removal and memory reclamation.
+- City, road, job and vehicle state; simulation rules, logical steps and delivery decisions.
+- Selection and evaluation of routes, costs, tolls and user rules.
+- Preservation of application data during code replacement and consistent behavior after a rejected change.
 
-Významnou novou aplikační logiku preferuj v Threadu vykonávaném skutečným BF kernelem. Nutné změny kernelu smí používat stávající auditovatelný generátor; generátor musí emitovat výpočet, nikdy předpočítávat řešení konkrétního vstupu.
+Prefer Thread executed by the actual BF kernel for significant new application logic. Necessary kernel changes may use the existing auditable generator; the generator must emit computation, never precompute the solution to a specific input.
 
-Python, JS, Wasm nebo jiný hostitelský jazyk smí zajišťovat pouze odůvodněné hranice: sestavení počátečního kernelu a assetů, obecné vykonávání osmi BF instrukcí, raw I/O, OS operace, ukládání neprůhledných snímků, rozhraní a rendering. Renderer smí číst prezentační výstup BF a převádět jej na obraz. Nesmí podle názvů Thread slov nebo aplikačních událostí provádět výpočet za guest program.
+Python, JS, Wasm or another host language may provide only justified boundaries: initial kernel and asset construction, generic execution of the eight BF instructions, raw I/O, OS operations, opaque snapshot storage, interface and rendering. The renderer may read BF presentation output and turn it into an image. It must not use Thread word names or application events to compute on the guest program's behalf.
 
-JavaScript může interpolovat pohyb mezi skutečnými BF stavy. Nesmí si domýšlet další cestu, úkol, kolizi, dokončenou zásilku nebo budoucí simulační stav. Dekorace, kamera, světla a vzhled budov jsou prezentační; vykreslené propojení silnic a stav průjezdnosti musí souhlasit s guest daty.
+JavaScript may interpolate movement between actual BF states. It must not invent the next route, task, collision, completed delivery or future simulation state. Decoration, camera, lights and building appearance are presentation; rendered road connections and openness must match guest data.
 
-Nevkládej do hostitele náhradní kompilátor, správce významu modulů, alokátor guest objektů, route solver, simulaci ani předpočítané scénáře. Obtížnost ani pomalost BF nejsou důvodem tuto hranici překročit. Optimalizace vykonavatele musí být obecná a významově ekvivalentní BF.
+Do not put a substitute compiler, module-semantics manager, guest-object allocator, route solver, simulation or precomputed scenarios in the host. BF's difficulty or slowness does not justify crossing this boundary. Executor optimizations must be generic and semantically equivalent to BF.
 
-Každou novou nebo změněnou host komponentu zdůvodni v manifestu hranic: co dělá, proč patří mimo BF a proč nejde o odsun hlavní logiky. Zkontroluj i závislosti. Neobhajuj čistotu poměrem řádků, velikostí BF souboru nebo GitHub jazykovými procenty. Nevynucuj samoúčelný přepis funkčního bootstrapu; minimalizuj nové výjimky a údržbu.
+Justify every new or changed host component in the boundary manifest: what it does, why it belongs outside BF and why it does not move core logic out. Check dependencies too. Do not defend purity through line ratios, BF file size or GitHub language percentages. Do not force a pointless rewrite of the working bootstrap; minimize new exceptions and maintenance.
 
-## 4. Vizuální kvalita je povinná část výsledku
+## 4. Visual quality is a required part of the result
 
-Předlohu č. 1 ber jako závazný cíl, nikoli volnou inspiraci. Zachovej její kompozici, proporce, izometrický pohled, bohatost scény, typografickou hierarchii, tmavý podklad, světlé budovy, limetkové trasy, vodní kanál, mosty, vozidla, pravý panel modulu a spodní pás událostí a paměti.
+Treat reference 1 as a mandatory target, not loose inspiration. Preserve its composition, proportions, isometric view, scene richness, typographic hierarchy, dark background, light buildings, lime routes, water canal, bridges, vehicles, right-side module panel and bottom event/memory strip.
 
-Chci nádherné, propracované a soudržné malé město. Dopřej péči materiálům, světlu, stínům, zeleni, nábřeží, vozidlům, čitelnosti tras i jemným přechodům. Zachovej vizuální dominanci města a přehlednost jednoho hlavního úkolu. BF musí být viditelný v identitě projektu a v cestě od změny programu k výsledku.
+I want a beautiful, detailed and coherent small city. Take care with materials, light, shadows, greenery, waterfronts, vehicles, route readability and subtle transitions. Keep the city visually dominant and one main task clear. BF must be visible in the project identity and the path from program change to result.
 
-Pracuj ve stávajícím projektu a respektuj jeho funkční runtime. Použij relevantní workflow pro převod vybraného obrázku do rozhraní, ale nevytvářej náhradní generickou aplikaci. Výběr 2D/2.5D/3D renderingu a způsob výroby kvalitních assetů je na tobě; zvol nejjednodušší řešení, které skutečně dosáhne předlohy a zachová BF hranici. Grafické knihovny nesmějí obsahovat aplikační simulaci.
+Work in the existing project and respect its working runtime. Use a relevant workflow to turn the chosen image into an interface, without creating a substitute generic application. Choose 2D/2.5D/3D rendering and how to produce quality assets yourself; use the simplest solution that actually reaches the reference and preserves the BF boundary. Graphics libraries must not contain application simulation.
 
-Jedna statická předloha použitá jako pozadí s tlačítky navrchu nesplňuje zadání. Scéna musí věrně zobrazovat skutečný stav programu a reagovat na vlastní vstupy uživatele. Nepoužívej placeholdery, náhodné emoji budovy, provizorní krabice ani obecný dashboard jako hotový výsledek.
+A static reference image used as a background with buttons on top does not satisfy the brief. The scene must faithfully display actual program state and respond to the user's own inputs. Do not present placeholders, random emoji buildings, temporary boxes or a generic dashboard as the finished result.
 
-Obrázek obsahuje ilustrativní texty a geometrii. Zachovej jeho estetiku, ale oprav věcné nepřesnosti: zdroj modulu je Thread, který se překládá uvnitř BF; směry silnic, cesty, čítače a stav paměti musí odpovídat realitě. Zdroj musí být dostupný a editovatelný. Ilustrativní „Example trace“ a „Design concept“ nahraď skutečnými stavy až po implementaci a ověření.
+The image contains illustrative text and geometry. Preserve its aesthetics but correct factual inaccuracies: module source is Thread compiled inside BF; road directions, paths, counters and memory state must be real. Source must be available and editable. Replace illustrative “Example trace” and “Design concept” text with actual states only after implementation and verification.
 
-Porovnej screenshot implementace s předlohou při odpovídajícím desktop viewportu, ideálně 1487 × 1058. Zkontroluj vedle sebe i překrytím kompozici, velikost města, perspektivu, proporce panelů, světlo, assety, barvy, typografii a spacing. Opakuj úpravy a screenshotové ověření, dokud odstraníš významné rozdíly. Dolož také ovládání v dalších stavech a použitelný užší layout, klávesnici, focus a reduced motion. Neprohlašuj pixelovou shodu nebo přístupnost bez příslušného ověření. Významný zbývající vizuální rozdíl znamená PARTIAL, ne hotovo.
+Compare an implementation screenshot with the reference at a matching desktop viewport, ideally 1487 × 1058. Check composition, city size, perspective, panel proportions, light, assets, colors, typography and spacing side by side and in an overlay. Iterate on changes and screenshot verification until significant differences are removed. Also document controls in other states, a usable narrower layout, keyboard, focus and reduced motion. Do not claim pixel matching or accessibility without the corresponding checks. A significant remaining visual difference means PARTIAL, not complete.
 
-## 5. Funkční obsah Build 002
+## 5. Build 002 functionality
 
-Navrhni soudržný a měřitelný rozsah: orientačně 12–24 uzlů, několik dep a cílů a tři vozidla. Konečné kapacity stanov podle měření; udrž jasně omezené a dokumentované zdroje. Plynulost obrazu nezaměňuj za frekvenci nativní simulace.
+Design a coherent, measurable scope: approximately 12–24 nodes, several depots and destinations, and three vehicles. Set final capacities from measurements; keep resources clearly bounded and documented. Do not confuse visual smoothness with native simulation frequency.
 
-Hlavní scénář:
+Main scenario:
 
-1. Návštěvník spustí skutečný stroj a uvidí město, zadání doručení a jeho průběh.
-2. Otevře pojmenovaný modul, například `delivery-rule.thread`, a upraví pravidlo pro trasování, například preferenci silnic bez mýta.
-3. Zdroj se uloží uvnitř BF a odtud se skutečně přeloží. Není to jen text ponechaný v editoru nebo hostitelské úložiště se stejným názvem.
-4. Platná nová verze se zveřejní v přesně definovaném bezpečném bodě. Město, zakázky a ostatní aplikační data zůstanou zachována. Zdokumentuj osud rozpracovaných jízd, starých volání a živých odkazů; nepřesouvej auta svévolně na novou pozici.
-5. Nová rozhodnutí prokazatelně používají nový program. Uživatel může vytvořit vlastní variantu, ne pouze přepínat dva připravené výsledky.
-6. Chybný, neúplný nebo příliš velký modul se odmítne s čitelnou diagnostikou. Dosavadní použitelná verze zůstane zachována bez úniku paměti po neúspěšném pokusu.
-7. Funguje návrat na předchozí verzi a bezpečné odstranění nepotřebného modulu. Politika dostupných starých verzí musí být omezená, vysvětlená a slučitelná s reclaimingem.
-8. Uživatel může pozastavit běh, udělat logický krok, exportovat celý workspace a pokračovat v nové instanci.
+1. A visitor starts the actual machine and sees the city, delivery task and progress.
+2. They open a named module, such as `delivery-rule.thread`, and edit a routing rule, such as preferring toll-free roads.
+3. Source is stored inside BF and actually compiled from there. It is not merely text left in the editor or host storage with the same name.
+4. A valid new version is published at a precisely defined safe point. The city, jobs and other application data remain intact. Document what happens to in-progress journeys, old calls and live references; do not arbitrarily move vehicles to new positions.
+5. New decisions demonstrably use the new program. The user can create a custom variant, not merely switch between two prepared results.
+6. Invalid, incomplete or oversized modules are rejected with readable diagnostics. The previous usable version remains intact, with no memory leak after a failed attempt.
+7. Returning to the previous version and safely deleting an unnecessary module work. The available-old-version policy must be bounded, explained and compatible with reclamation.
+8. The user can pause execution, take a logical step, export the whole workspace and continue in a fresh instance.
 
-Při demonstraci změny kódu drž stejné vstupy: zpoplatněný most musí zůstat otevřený u obou verzí. Uzavření silnice je jiný experiment se změnou dat. Odděleně ukaž, že funguje i tento případ.
+Keep inputs identical when demonstrating a code change: the toll bridge must stay open for both versions. Closing a road is a separate experiment that changes data. Demonstrate that case separately too.
 
-Řešení alokace, vazeb, kompatibility, bezpečné publikace a rollbacku navrhni autonomně. Jasně stanov vlastnictví stavu a invariants před implementací. Neoslabuj zadání tím, že při každé změně resetuješ celý stroj nebo jen navyšuješ kapacitu.
+Autonomously design allocation, bindings, compatibility, safe publication and rollback. Clearly define state ownership and invariants before implementation. Do not weaken the brief by resetting the entire machine on every change or simply increasing capacity.
 
-## 6. Důkaz musí být viditelný a reprodukovatelný
+## 6. Evidence must be visible and reproducible
 
-U konkrétního rozhodnutí ukaž vstup, verzi modulu, skutečný BF výstup a jeho vizuální důsledek. Běžný návštěvník musí rozumět krátkému vysvětlení; zájemce musí mít možnost rozbalit přesná data.
+For a specific decision, show the input, module version, actual BF output and visual consequence. An ordinary visitor must understand a short explanation; interested readers must be able to expand exact data.
 
-Přidej srovnání dvou verzí ze stejného výchozího snímku a nad stejnou posloupností vstupů. Porovnávej stejné logické kroky. Záznam přehrávaný z minulosti označ odlišně od nového výpočtu. Případná animace průběhu algoritmu musí vycházet ze skutečně emitovaných událostí, nikoli z odhadované dekorace.
+Add a comparison of two versions from the same initial snapshot with the same input sequence. Compare identical logical steps. Label historical replay differently from fresh computation. Any algorithm-progress animation must derive from actually emitted events, not guessed decoration.
 
-Umožni stáhnout minimální reprodukční balíček: identitu kernelu a modulů, kompatibilní počáteční snímek, vstupy, očekávaný nativní výstup a návod ke spuštění přes CLI. Ověř jeho použití v nové instanci. Zajisti dohledatelnost vykreslených výsledků až k výstupu použitého BF artefaktu.
+Provide a minimal downloadable reproduction package: kernel and module identities, a compatible initial snapshot, inputs, expected native output and CLI instructions. Verify its use in a fresh instance. Make rendered results traceable to the output of the BF artifact used.
 
-Vizualizaci obsazené a znovu použité paměti odvozuj ze skutečného nativního stavu. Celkovou paměť host procesu reportuj odděleně od BF pásky. Hash, zelený štítek, hezká animace ani rostoucí čítač samy o sobě nejsou důkaz BF-native výpočtu.
+Derive occupied/reused-memory visualization from actual native state. Report total host-process memory separately from the BF tape. A hash, green badge, attractive animation or increasing counter alone is not proof of BF-native computation.
 
-## 7. Povinné ověření
+## 7. Required verification
 
-- Zachovej původní regresní pokrytí Build 001 a oprav všechny regrese způsobené změnou. Změní-li se kontrakt, změnu explicitně zdůvodni; nemaž testy jen proto, aby byly zelené.
-- Ověř vlastní nově napsaný uživatelský modul a nepřipravené vstupy bez regenerace kernelu.
-- Ověř platnou a odmítnutou výměnu, živé odkazy, rozpracovanou práci, rollback, nedostatek paměti, odstranění modulu a opakovaná selhání bez úniku.
-- Proveď stovky cyklů výměny/uvolnění při pevné kapacitě. Test musí překročit mez, na níž by původní monotónní přidávání selhalo. Měř skutečné hodnoty.
-- Ověř deterministickou simulaci a opakování stejného experimentu z nového stroje.
-- Ověř shodu relevantních výstupů prohlížeče a CLI; omezené reprezentativní workloady porovnej také s doslovným referenčním BF interpretem. Zachovej diferenciální ověření obecných optimalizací vykonavatele. Testovací orákula nesmějí být součástí produkční výpočetní cesty.
-- Ověř skutečné export/import roundtripy se zdroji, verzemi modulů, daty a rozpracovaným stavem. Kompatibilitu Build 001 image řeš explicitně: testovaná migrace nebo zachovaný starý kernel a jasné odmítnutí nekompatibilního importu.
-- Změř start, překlad/výměnu, logický krok, route workload a opakované reclaim cykly. Uveď hardware, konfiguraci, limity a metodiku. Neslibuj neměřenou rychlost.
-- Dokonči vizuální kontrolu předloha versus skutečné rozhraní, ovládání celého scénáře a adversariální audit hranice BF/host. Self-review správně označ jako práci stejného autora, nikoli nezávislý audit.
+- Preserve Build 001 regression coverage and fix every regression caused by changes. Explicitly justify contract changes; do not delete tests merely to make them pass.
+- Verify a newly written custom user module and unprepared inputs without regenerating the kernel.
+- Verify valid and rejected replacement, live references, work in progress, rollback, insufficient memory, module deletion and repeated failures without leaks.
+- Run hundreds of replacement/reclamation cycles at fixed capacity. The test must exceed the point where the original monotonic allocation would fail. Measure actual values.
+- Verify deterministic simulation and repetition of the same experiment from a fresh machine.
+- Verify relevant browser/CLI output parity; also compare bounded representative workloads with a literal reference BF interpreter. Preserve differential verification of generic executor optimizations. Test oracles must not enter the production computation path.
+- Verify actual export/import round trips with sources, module versions, data and work in progress. Handle Build 001 image compatibility explicitly: a tested migration or the preserved old kernel with clear rejection of incompatible imports.
+- Measure startup, compilation/replacement, logical steps, routing workload and repeated reclamation cycles. State hardware, configuration, limits and methodology. Do not promise unmeasured speed.
+- Finish visual comparison of reference and actual interface, control of the complete scenario and an adversarial BF/host boundary review. Correctly label self-review as the same author's work, not an independent audit.
 
-## 8. GitHub, historie a dokumentace
+## 8. GitHub, history and documentation
 
-Všechny podstatné změny zaznamenej v existujícím repozitáři. Zachovej skutečnou posloupnost práce v přiměřených commitech, včetně významných selhání, oprav a architektonických rozhodnutí. Nevytvářej zpětně falešnou historii a nepřepisuj Build 001.
+Record all substantial changes in the existing repository. Preserve the real work sequence in reasonable commits, including significant failures, repairs and architectural decisions. Do not fabricate retrospective history or rewrite Build 001.
 
-Průběžně veď `records/002/` podle konvencí projektu: zadání, model/reasoning, výchozí a koncový commit, rozhodnutí, journal, hranice host/BF, testy, měření, vizuální důkazy, původ assetů, omezení, zásahy člověka, porušení protokolu a závěrečné hodnocení.
+Maintain `records/002/` according to project conventions: challenge, model/reasoning, starting and ending commits, decisions, journal, host/BF boundary, tests, measurements, visual evidence, asset provenance, limitations, human interventions, protocol violations and final assessment.
 
-Aktualizuj kanonické README, architekturu, jazyk/moduly, persistence, manifest hranic, reprodukční postup a navigaci mezi buildy. Po ověření publikuj odpovídající změny na GitHub, nech projít příslušné CI a uzavři build identifikovatelným tagem `build-002`, pokud neexistuje. Existující tag nepřepisuj. Dokonči potřebné merge běžnou chráněnou cestou; neobcházej pravidla větve.
+Update canonical README, architecture, language/modules, persistence, boundary manifest, reproduction procedure and navigation between builds. After verification, publish corresponding changes on GitHub, pass applicable CI and close the build with identifiable tag `build-002` if it does not exist. Do not overwrite an existing tag. Complete required merges through the normal protected path; do not bypass branch rules.
 
-Uchovej reprodukovatelnost Build 001 a jeho staré artefakty. Rozliš koncový implementační commit, případné metadata-only uzavření, tag a konkrétní nasazený artefakt.
+Preserve Build 001 reproducibility and old artifacts. Distinguish the final implementation commit, any metadata-only closure, tag and specific deployed artifact.
 
-## 9. Aktualizace stávajícího veřejného webu
+## 9. Update the existing public website
 
-Aktualizuj stávající projekt a jeho dosavadní veřejnou adresu. Nezakládej náhradní web, který by odpojil historii projektu. Použij aktuální podporovaný workflow existujícího hostingu; zachovej vazbu mezi GitHub zdrojem a nasazenými soubory.
+Update the existing project and its current public address. Do not create a replacement website that disconnects project history. Use the existing hosting provider's currently supported workflow; preserve the link between GitHub source and deployed files.
 
-Hlavní zážitek a aktuální build bude Build 002 podle schválené předlohy. Build 001 zůstane dohledatelný jako první etapa se svým vysvětlením a důkazy. Aktualizuj hero, popis experimentu, demo, „How it works“, BF/host hranice, ověření, omezení, historii i odkazy. Odstraň zastaralá tvrzení a čísla z ploch popisujících aktuální build; historická data ponech jasně označená.
+The main experience and current build will be Build 002 based on the approved reference. Build 001 must remain discoverable as the first stage with its explanation and evidence. Update the hero, experiment description, demo, “How it works,” BF/host boundaries, verification, limitations, history and links. Remove outdated claims and numbers from current-build surfaces; clearly label retained historical data.
 
-Veřejný obsah piš anglicky, srozumitelně a věcně. Při prvním významném výskytu vysvětli „Brainfuck (BF) programming language“ a osm instrukcí. Vysvětli Thread, skutečnou novinku druhé etapy a úlohu hostitelských jazyků. BF má být hlavní příběh projektu, město jeho viditelný příklad. Neoznačuj bootstrap jako self-hosting a netvrď, že BF sám kreslí 3D grafiku.
+Write public content in clear, factual English. At the first substantial mention, explain “Brainfuck (BF) programming language” and its eight instructions. Explain Thread, the actual new capability of the second stage and host-language roles. BF should be the project's main story, with the city as its visible example. Do not call the bootstrap self-hosting or claim that BF draws 3D graphics itself.
 
-Před publikací dokonči lokální funkční a vizuální ověření a připrav rollback na předchozí ověřenou verzi. Po publikaci ověř anonymní veřejný přístup, skutečný běh dema, vlastní změnu modulu, chybovou cestu a export/import. Ověř identitu veřejného kernelu, runtime a relevantních assetů vůči vydanému zdroji; hostingové transformace HTML transparentně rozliš. Zaznamenej deployment receipt. Samotný úspěch publish nástroje není ověření živého webu.
+Before publication, complete local functional and visual verification and prepare rollback to the previous verified version. After publication, verify anonymous public access, actual demo execution, a custom module change, an error path and export/import. Verify public kernel, runtime and relevant asset identities against released source; transparently distinguish hosting HTML transformations. Record a deployment receipt. Publish-tool success alone is not live-site verification.
 
-## 10. Autonomie a oprávnění
+## 10. Autonomy and permissions
 
-Tímto autorizuji implementaci v tomto projektu, potřebné lokální testy a dočasný preview server, tvorbu grafických assetů dostupnými nástroji, běžné projektové závislosti, commity/push a potřebné standardní merge v existujícím GitHub repozitáři i aktualizaci stávajícího veřejného webu po úspěšném ověření. Nezastavuj kvůli dalšímu obecnému schválení už zadaných kroků.
+I authorize implementation in this project, necessary local tests and a temporary preview server, graphical assets made with available tools, normal project dependencies, commits/pushes and necessary standard merges in the existing GitHub repository, plus updating the existing public website after successful verification. Do not stop for further general approval of steps already assigned.
 
-Toto neautorizuje publikování na X, nové nákupy nebo předplatné, nové veřejné služby, změny účtů či oprávnění, oslabení bezpečnosti, force-push, destruktivní přepsání historie ani zásahy do Macu mini/CORTEX runtime. Backend pro tento build nepřidávej jako vedlejší projekt.
+This does not authorize posting on X, new purchases or subscriptions, new public services, account or permission changes, weakened security, force-pushes, destructive history rewriting or changes to the Mac mini/CORTEX runtime. Do not add a backend as a side project for this build.
 
-Respektuj skutečná oprávnění a povinné interakce platformy. Je-li nutná autentizace nebo chybí konkrétní oprávnění, dokonči vše nezávislé a požádej o jediný konkrétní potřebný zásah s jasným důvodem. Neobcházej blokaci jiným účtem, deploymentem nebo nebezpečným postupem. Mě nenuť navrhovat architekturu, hledat běžné chyby nebo ručně opravovat kód.
+Respect actual permissions and mandatory platform interactions. If authentication or specific permission is missing, complete independent work and request the single specific intervention needed, with a clear reason. Do not bypass a block through another account, deployment or unsafe procedure. Do not make me design the architecture, find ordinary bugs or manually repair code.
 
-Pracuj vytrvale přes potřebné iterace a uchovávej průběžný stav pro pokračování. Neprohlašuj hotovo při dosažení limitu nebo na základě mockupu. Hlásíš-li PARTIAL či blokaci, uveď přesnou chybějící část a zachovej bezpečný použitelný stav.
+Persist through necessary iterations and preserve progress for continuation. Do not claim completion upon reaching a limit or on the basis of a mockup. If reporting PARTIAL or a block, identify the exact missing part and preserve a safe, usable state.
 
-## 11. Závěrečné výstupy pro mě
+## 11. Final deliverables for me
 
-Na konci dodáš odkazy na skutečný web, GitHub, Build 002 tag/commit, CI, reprodukční balíček, screenshoty odpovídající předloze a záznam vydání. Jasně uveď PASS / PARTIAL / NO-GO, neprovedené kontroly a zbývající limity.
+At the end, provide links to the actual website, GitHub, Build 002 tag/commit, CI, reproduction package, reference-matching screenshots and release record. Clearly state PASS / PARTIAL / NO-GO, unperformed checks and remaining limits.
 
-K tomu vytvoř dva samostatné české popisy a ulož je i k Build 002:
+Also create two separate Czech descriptions and save them with Build 002:
 
-**A. Naprosto přesný technický popis.** Co bylo v Build 001 a co skutečně přibylo; které zdrojové soubory a algoritmy běží uvnitř BF; úplné zdůvodnění Python/JS/Wasm a dalších host částí; BF dialekt, paměť, moduly, odkazy, safe points, reclaiming, rollback, simulace a persistence; přesný tok od editace zdroje k obrazu; naměřené výsledky a jejich prostředí; ověření a jeho limity; identita zdroje a veřejného deploymentu. Tvrzení podepři dohledatelným kódem, testem nebo měřením. Přidej krátký skutečný BF úryvek z tohoto buildu, jeho původ a správné vysvětlení jeho funkce. Žádná odhadovaná čísla prezentovaná jako měření.
+**A. A fully precise technical description.** What Build 001 contained and what was actually added; which source files and algorithms run inside BF; complete justification of Python/JS/Wasm and other host components; BF dialect, memory, modules, references, safe points, reclamation, rollback, simulation and persistence; exact flow from source editing to image; measured results and their environment; verification and its limits; source and public-deployment identity. Support claims with traceable code, tests or measurements. Include a short actual BF excerpt from this build, its provenance and a correct explanation of its function. Do not present estimated numbers as measurements.
 
-**B. Lidské vysvětlení.** Srozumitelně a poutavě vysvětli, co teď můžu dělat a proč je to zajímavé, i když neznám kompilátory ani správu paměti. Proveď mě jedním konkrétním experimentem se skutečnými výsledky: co změním, co uvidím a co se uvnitř stalo. Vysvětli, proč to pořád je Brainfuck, co dělá Thread a co pomáhají zajistit ostatní jazyky. Použij přirovnání pouze tam, kde nezkresluje skutečnost. Text musí být vhodný jako základ pro můj vlastní příspěvek na X.
+**B. A human explanation.** Explain clearly and engagingly what I can now do and why it is interesting even without knowing compilers or memory management. Walk me through one concrete experiment with actual results: what I change, what I see and what happened inside. Explain why it is still Brainfuck, what Thread does and what the other languages help provide. Use analogies only where they do not distort reality. The text must work as a basis for my own X post.
 
-Navíc připrav krátký anglický návrh příspěvku na X v přirozeném osobním tónu a krátký doplňující komentář vysvětlující BF/host hranici. Bez marketingových superlativů, smyšlených prvenství nebo tvrzení o schopnostech nad rámec dokončeného buildu. Oba texty pouze připrav, nic na X neposílej.
+Also prepare a short English X draft in a natural personal tone and a short supplementary comment explaining the BF/host boundary. No marketing superlatives, invented firsts or capability claims beyond the completed build. Prepare both texts only; post nothing on X.
 
-Build 002 je hotový teprve tehdy, když funguje skutečné BF jádro, bezpečná výměna programů i krásné věrné rozhraní, reprodukční a vizuální kontroly prošly, GitHub a stávající veřejný web odpovídají výsledku a oba závěrečné popisy jsou přesné. Začni realizací podle tohoto zadání.
+Build 002 is complete only when the actual BF core, safe program replacement and a beautiful, faithful interface work; reproduction and visual checks pass; GitHub and the existing public website match the result; and both final descriptions are accurate. Begin implementation according to this brief.

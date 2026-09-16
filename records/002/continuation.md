@@ -1,6 +1,6 @@
 # Build 002 continuation — final metadata seal
 
-Historical handoff at the metadata closure commit. Read publication.json and the release asset final-deployment.json for the eventual final state; this note is not a live status indicator.
+Historical handoff at the metadata closure commit. Read publication.json and the release asset final-deployment.json for the eventual final state; this note is not a live status indicator. The historical request for Czech handoff texts below was superseded by the owner’s English-only publication instruction; current copies are [technical-en.md](technical-en.md) and [human-en.md](human-en.md).
 
 Sole Astra xHigh, no subagents. Final implementation94bb507bd14a9e91d7aeb440ad3f0d90056d31bb passed all76 required local tests in542348.846417ms. Build001 remains immutable. PR1 already merged normally asb830e8733ac0656f796abf6614ac9056694328b7. PR2 contains the imported-evidence repair plus final records; its current-head CI must pass before normal merge/tag.
 

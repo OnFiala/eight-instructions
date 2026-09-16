@@ -15,7 +15,9 @@ Native process, visual, interaction, complete-construction and public deployment
 checks passed within the documented limits. [Release and final deployment receipt](https://github.com/OnFiala/eight-instructions/releases/tag/build-003).
 
 [Existing public site](https://eight-instructions.andrewxix.chatgpt.site) ·
-[Build003 challenge](records/003/challenge.md) · [Journal](records/003/journal.md) ·
+[Build003 challenge](records/003/challenge.md) ·
+[Plain-language explanation](records/003/human-en.md) · [Technical account](records/003/technical-en.md) ·
+[Journal](records/003/journal.md) ·
 [Measurements](records/003/measurements.md) · [Permanent protocol](PROTOCOL.md) · [Build002 release](https://github.com/OnFiala/eight-instructions/releases/tag/build-002)
 
 ## What changed
