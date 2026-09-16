@@ -2,29 +2,29 @@
   "schemaVersion": 1,
   "number": 3,
   "title": "A city made of programs",
-  "status": "PARTIAL",
-  "summary": "Native communicating, resumable programs and a locally verified industrial city. Release remains pending complete hosted CI and public verification.",
+  "status": "PASS",
+  "summary": "Communicating, resumable BF programs run an industrial city with direct source controls. Native, visual and public functional checks passed; immutable closure identities are in the final deployment receipt.",
   "model": "gpt-6-astra",
   "reasoningMode": "xhigh",
   "soleEngineeringAgent": true,
   "originalChallenge": "challenge.md",
   "startingGitCommit": "a80087662a66e7d04c1fc77cbce87cf996d60e63",
-  "endingGitCommit": null,
-  "commitConvention": "endingGitCommit will identify the final implementation after verification. Merge/tag and deployed artifact will be bound by a separate final receipt. No release yet.",
+  "endingGitCommit": "f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f",
+  "commitConvention": "endingGitCommit identifies final runtime/scene implementation. ebc956d6cad5c071592e8ce58ace2371435c0a1e adds CI orchestration and evidence only. A metadata-only closure, normal merge/tag and final Site projection are bound separately in the release asset final-deployment.json.",
   "humanInterventions": [
     "Owner supplied and authorized the challenge and preferences. No human production code or repair."
   ],
   "protocolViolations": [],
   "verification": {
-    "testsPassed": 113,
+    "testsPassed": 114,
     "testsFailed": 0,
-    "regressions": "Final native candidate suite113/113PASS,0fail/skip,974272.576875ms; preserves original76tests. Native source e10c7d82 and kernel c6ee32e0 unchanged since this run.",
+    "regressions": "Both hosted runs35042602081 and35042596203 passed114/114,0fail/skip, including all76prior regressions. Earlier local113test candidate and later5UI checks are separately preserved.",
     "additional": "Final UI/framing5/5PASS; actual browser/CLI11input parity; standalone reproduction both67input branches PASS; own UI comparison replayed in fresh CLI.",
     "boundaryAudit": "235-classified-source inventory including the CI-only test partition; change-detection gates, not a semantic proof.",
     "selfAudit": "Same Astra author, not an independent audit.",
     "visual": "PASS within bounded same-author desktop1487x1058, narrow390x844, keyboard/focus/reduced-motion and observed fault/queue/completion checks; visual-checkpoint.json. No pixel-match or comprehensive accessibility claim.",
     "localReceipt": "verify-candidate-01.txt",
-    "public": "Not deployed. Existing verified Build002 remains public."
+    "public": "PASS:public-verification.json;145anonymous files checked,142exact and3provider-only HTML insertions; own source/refusal/loop/repair/import and fresh public ZIP replay."
   },
   "failuresAndRepairs": "journal.md",
   "knownLimitations": [
@@ -39,7 +39,7 @@
   "publication": {
     "repository": "https://github.com/OnFiala/eight-instructions",
     "site": "https://eight-instructions.andrewxix.chatgpt.site",
-    "state": "Not published; public Build002 unchanged",
-    "tag": null
+    "state": "Functional public release verified; final metadata closure identities are recorded in the release final-deployment.json.",
+    "tag": "build-003"
   }
 }

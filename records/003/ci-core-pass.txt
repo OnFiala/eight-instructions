@@ -1,0 +1,1004 @@
+﻿2026-09-16T01:04:20.1087366Z Current runner version: '2.337.0'
+2026-09-16T01:04:20.1116301Z ##[group]Runner Image Provisioner
+2026-09-16T01:04:20.1117381Z Hosted Compute Agent
+2026-09-16T01:04:20.1118402Z Version: 20260828.587
+2026-09-16T01:04:20.1119154Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-16T01:04:20.1120129Z Build Date: 2026-08-28T16:44:25Z
+2026-09-16T01:04:20.1120967Z Worker ID: {6c04224b-523f-41a8-b7bd-161c7f3faad7}
+2026-09-16T01:04:20.1121880Z Azure Region: eastus
+2026-09-16T01:04:20.1122673Z ##[endgroup]
+2026-09-16T01:04:20.1124244Z ##[group]Operating System
+2026-09-16T01:04:20.1125076Z Ubuntu
+2026-09-16T01:04:20.1125868Z 24.04.5
+2026-09-16T01:04:20.1126511Z LTS
+2026-09-16T01:04:20.1127271Z ##[endgroup]
+2026-09-16T01:04:20.1127967Z ##[group]Runner Image
+2026-09-16T01:04:20.1128840Z Image: ubuntu-24.04
+2026-09-16T01:04:20.1129551Z Version: 20260907.300.1
+2026-09-16T01:04:20.1131353Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-16T01:04:20.1133411Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-16T01:04:20.1134760Z ##[endgroup]
+2026-09-16T01:04:20.1136290Z ##[group]GITHUB_TOKEN Permissions
+2026-09-16T01:04:20.1138919Z Contents: read
+2026-09-16T01:04:20.1139642Z Metadata: read
+2026-09-16T01:04:20.1140365Z ##[endgroup]
+2026-09-16T01:04:20.1142730Z Secret source: Actions
+2026-09-16T01:04:20.1143909Z Cache mode: write
+2026-09-16T01:04:20.1145037Z Prepare workflow directory
+2026-09-16T01:04:20.1533344Z Prepare all required actions
+2026-09-16T01:04:20.1593569Z Getting action download info
+2026-09-16T01:04:20.3399064Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-16T01:04:20.7842502Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-09-16T01:04:21.5491629Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-09-16T01:04:21.7532965Z Complete job name: tests (core)
+2026-09-16T01:04:21.8255553Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:04:21.8263199Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-09-16T01:04:21.8264086Z with:
+2026-09-16T01:04:21.8264467Z   fetch-depth: 0
+2026-09-16T01:04:21.8264883Z   repository: OnFiala/eight-instructions
+2026-09-16T01:04:21.8268391Z   token: ***
+2026-09-16T01:04:21.8268788Z   ssh-strict: true
+2026-09-16T01:04:21.8269180Z   ssh-user: git
+2026-09-16T01:04:21.8269662Z   persist-credentials: true
+2026-09-16T01:04:21.8270084Z   clean: true
+2026-09-16T01:04:21.8270460Z   sparse-checkout-cone-mode: true
+2026-09-16T01:04:21.8270932Z   fetch-tags: false
+2026-09-16T01:04:21.8271324Z   show-progress: true
+2026-09-16T01:04:21.8271764Z   lfs: false
+2026-09-16T01:04:21.8272116Z   submodules: false
+2026-09-16T01:04:21.8272501Z   set-safe-directory: true
+2026-09-16T01:04:21.8272923Z   allow-unsafe-pr-checkout: false
+2026-09-16T01:04:21.8273595Z ##[endgroup]
+2026-09-16T01:04:21.9181144Z Syncing repository: OnFiala/eight-instructions
+2026-09-16T01:04:21.9183691Z ##[group]Getting Git version info
+2026-09-16T01:04:21.9184858Z Working directory is '/home/runner/work/eight-instructions/eight-instructions'
+2026-09-16T01:04:21.9186868Z [command]/usr/bin/git version
+2026-09-16T01:04:21.9231724Z git version 2.55.0
+2026-09-16T01:04:21.9265079Z ##[endgroup]
+2026-09-16T01:04:21.9274305Z Temporarily overriding HOME='/home/runner/work/_temp/57e915b9-ef11-4ee3-af14-39f0b170504d' before making global git config changes
+2026-09-16T01:04:21.9277265Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-16T01:04:21.9279416Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eight-instructions/eight-instructions
+2026-09-16T01:04:21.9322106Z Deleting the contents of '/home/runner/work/eight-instructions/eight-instructions'
+2026-09-16T01:04:21.9330670Z ##[group]Initializing the repository
+2026-09-16T01:04:21.9331794Z [command]/usr/bin/git init /home/runner/work/eight-instructions/eight-instructions
+2026-09-16T01:04:21.9438769Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-16T01:04:21.9440741Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-16T01:04:21.9442079Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-16T01:04:21.9443142Z hint: call:
+2026-09-16T01:04:21.9443695Z hint:
+2026-09-16T01:04:21.9444483Z hint: 	git config --global init.defaultBranch <name>
+2026-09-16T01:04:21.9445360Z hint:
+2026-09-16T01:04:21.9446385Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-16T01:04:21.9447804Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-16T01:04:21.9448833Z hint:
+2026-09-16T01:04:21.9449401Z hint: 	git branch -m <name>
+2026-09-16T01:04:21.9450079Z hint:
+2026-09-16T01:04:21.9451019Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-16T01:04:21.9452692Z Initialized empty Git repository in /home/runner/work/eight-instructions/eight-instructions/.git/
+2026-09-16T01:04:21.9454600Z [command]/usr/bin/git remote add origin https://github.com/OnFiala/eight-instructions
+2026-09-16T01:04:21.9504153Z ##[endgroup]
+2026-09-16T01:04:21.9505318Z ##[group]Disabling automatic garbage collection
+2026-09-16T01:04:21.9508901Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-16T01:04:21.9538793Z ##[endgroup]
+2026-09-16T01:04:21.9539855Z ##[group]Setting up auth
+2026-09-16T01:04:21.9546267Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-16T01:04:21.9586415Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-16T01:04:22.0958579Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-16T01:04:22.0994991Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-16T01:04:22.1217048Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-16T01:04:22.1256170Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-16T01:04:22.1499267Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-16T01:04:22.1526666Z ##[endgroup]
+2026-09-16T01:04:22.1527484Z ##[group]Fetching the repository
+2026-09-16T01:04:22.1536677Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +c9fa79a3914cd7e0ec2b5e0709192109c313163c:refs/remotes/pull/3/merge
+2026-09-16T01:04:29.0114822Z From https://github.com/OnFiala/eight-instructions
+2026-09-16T01:04:29.0117130Z  * [new branch]      build-002-development                    -> origin/build-002-development
+2026-09-16T01:04:29.0118780Z  * [new branch]      build-002-release                        -> origin/build-002-release
+2026-09-16T01:04:29.0120181Z  * [new branch]      build-003-development                    -> origin/build-003-development
+2026-09-16T01:04:29.0121380Z  * [new branch]      main                                     -> origin/main
+2026-09-16T01:04:29.0122284Z  * [new tag]         build-001                                -> build-001
+2026-09-16T01:04:29.0123299Z  * [new tag]         build-002                                -> build-002
+2026-09-16T01:04:29.0124870Z  * [new ref]         c9fa79a3914cd7e0ec2b5e0709192109c313163c -> pull/3/merge
+2026-09-16T01:04:29.0128668Z ##[endgroup]
+2026-09-16T01:04:29.0129641Z ##[group]Determining the checkout info
+2026-09-16T01:04:29.0130714Z ##[endgroup]
+2026-09-16T01:04:29.0131326Z [command]/usr/bin/git sparse-checkout disable
+2026-09-16T01:04:29.0177349Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-16T01:04:29.0210481Z ##[group]Checking out the ref
+2026-09-16T01:04:29.0213170Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/3/merge
+2026-09-16T01:04:29.5306884Z Note: switching to 'refs/remotes/pull/3/merge'.
+2026-09-16T01:04:29.5307299Z 
+2026-09-16T01:04:29.5307584Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-16T01:04:29.5308207Z changes and commit them, and you can discard any commits you make in this
+2026-09-16T01:04:29.5308803Z state without impacting any branches by switching back to a branch.
+2026-09-16T01:04:29.5309239Z 
+2026-09-16T01:04:29.5309488Z If you want to create a new branch to retain commits you create, you may
+2026-09-16T01:04:29.5310048Z do so (now or later) by using -c with the switch command. Example:
+2026-09-16T01:04:29.5310413Z 
+2026-09-16T01:04:29.5310552Z   git switch -c <new-branch-name>
+2026-09-16T01:04:29.5310765Z 
+2026-09-16T01:04:29.5310900Z Or undo this operation with:
+2026-09-16T01:04:29.5311120Z 
+2026-09-16T01:04:29.5311235Z   git switch -
+2026-09-16T01:04:29.5311420Z 
+2026-09-16T01:04:29.5311724Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-16T01:04:29.5312142Z 
+2026-09-16T01:04:29.5312592Z HEAD is now at c9fa79a Merge ebc956d6cad5c071592e8ce58ace2371435c0a1e into a80087662a66e7d04c1fc77cbce87cf996d60e63
+2026-09-16T01:04:29.5336956Z ##[endgroup]
+2026-09-16T01:04:29.5449293Z [command]/usr/bin/git log -1 --format=%H
+2026-09-16T01:04:29.5463919Z c9fa79a3914cd7e0ec2b5e0709192109c313163c
+2026-09-16T01:04:29.5639456Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:04:29.5640881Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-09-16T01:04:29.5641178Z with:
+2026-09-16T01:04:29.5641353Z   node-version: 22
+2026-09-16T01:04:29.5641535Z   cache: npm
+2026-09-16T01:04:29.5641701Z   always-auth: false
+2026-09-16T01:04:29.5641882Z   check-latest: false
+2026-09-16T01:04:29.5643705Z   token: ***
+2026-09-16T01:04:29.5643877Z ##[endgroup]
+2026-09-16T01:04:29.6847819Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+2026-09-16T01:04:29.6852156Z (node:2066) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:04:29.6852979Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:04:29.6854297Z ##[group]Environment details
+2026-09-16T01:04:30.0648436Z node: v22.23.2
+2026-09-16T01:04:30.0648693Z npm: 10.9.8
+2026-09-16T01:04:30.0648860Z yarn: 1.22.22
+2026-09-16T01:04:30.0649794Z ##[endgroup]
+2026-09-16T01:04:30.0668419Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+2026-09-16T01:04:30.1643088Z /home/runner/.npm
+2026-09-16T01:04:30.2323781Z npm cache is not found
+2026-09-16T01:04:30.2477802Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:04:30.2478829Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-09-16T01:04:30.2479123Z with:
+2026-09-16T01:04:30.2479455Z   python-version: 3.14
+2026-09-16T01:04:30.2479650Z   check-latest: false
+2026-09-16T01:04:30.2481501Z   token: ***
+2026-09-16T01:04:30.2481675Z   update-environment: true
+2026-09-16T01:04:30.2481881Z   allow-prereleases: false
+2026-09-16T01:04:30.2482066Z   freethreaded: false
+2026-09-16T01:04:30.2482246Z ##[endgroup]
+2026-09-16T01:04:30.3631316Z ##[group]Installed versions
+2026-09-16T01:04:30.3705432Z (node:2109) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:04:30.3706559Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:04:30.3706999Z Successfully set up CPython (3.14.7)
+2026-09-16T01:04:30.3707408Z ##[endgroup]
+2026-09-16T01:04:30.3864759Z ##[group]Run npm ci --ignore-scripts
+2026-09-16T01:04:30.3865080Z [36;1mnpm ci --ignore-scripts[0m
+2026-09-16T01:04:30.3915481Z shell: /usr/bin/bash -e {0}
+2026-09-16T01:04:30.3915993Z env:
+2026-09-16T01:04:30.3916333Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:30.3916783Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-09-16T01:04:30.3917196Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:30.3917524Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:30.3917828Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:30.3918130Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-09-16T01:04:30.3918395Z ##[endgroup]
+2026-09-16T01:04:31.0601779Z 
+2026-09-16T01:04:31.0602845Z added 1 package, and audited 2 packages in 612ms
+2026-09-16T01:04:31.0609433Z 
+2026-09-16T01:04:31.0609932Z found 0 vulnerabilities
+2026-09-16T01:04:31.0967015Z ##[group]Run npm run verify:ci -- core
+2026-09-16T01:04:31.0967464Z [36;1mnpm run verify:ci -- core[0m
+2026-09-16T01:04:31.1009479Z shell: /usr/bin/bash -e {0}
+2026-09-16T01:04:31.1009802Z env:
+2026-09-16T01:04:31.1010157Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.1010720Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-09-16T01:04:31.1011275Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.1011754Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.1012201Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.1012676Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-09-16T01:04:31.1013110Z ##[endgroup]
+2026-09-16T01:04:31.1881191Z 
+2026-09-16T01:04:31.1881917Z > eight-instructions@0.3.0 verify:ci
+2026-09-16T01:04:31.1882624Z > npm run verify:artifacts && node tools/run-ci-tests.mjs core
+2026-09-16T01:04:31.1883075Z 
+2026-09-16T01:04:31.2714340Z 
+2026-09-16T01:04:31.2715067Z > eight-instructions@0.3.0 verify:artifacts
+2026-09-16T01:04:31.2716384Z > python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-archives.mjs --check && node tools/build-industry-image.mjs --check && node tools/audit.mjs
+2026-09-16T01:04:31.2717163Z 
+2026-09-16T01:04:32.6219537Z {"instructions": 98687674, "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c", "cells": 398704}
+2026-09-16T01:04:32.7436032Z Generic BF executor: 744 bytes
+2026-09-16T01:04:32.7804420Z Raw program assets match their canonical sources.
+2026-09-16T01:04:32.8079575Z Public history matches canonical build records.
+2026-09-16T01:04:32.9025536Z build-001: 17 verbatim files; HTML relocation recorded.
+2026-09-16T01:04:33.2173465Z build-002: 52 verbatim files; HTML relocation recorded.
+2026-09-16T01:05:59.8507766Z Initial image PASS: fresh BF boot reproduces 18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04; 85487.13 ms for this check.
+2026-09-16T01:06:00.9076636Z Boundary audit PASS: 235 classified sources. Hashes are review gates, not a semantic proof.
+2026-09-16T01:06:00.9448092Z {"suite":"core","testFiles":["tests/arithmetic.test.mjs","tests/audit.test.mjs","tests/capacity.test.mjs","tests/city-adversarial.test.mjs","tests/city.test.mjs","tests/counter-windows.test.mjs","tests/diagnostic-stream.test.mjs","tests/dispatch.test.mjs","tests/emitter.test.mjs","tests/engine.test.mjs","tests/images.test.mjs","tests/industry-capacity.test.mjs","tests/industry-presentation.test.mjs","tests/industry-priority.test.mjs","tests/industry-protocol.test.mjs","tests/industry.test.mjs","tests/kernel.test.mjs","tests/legacy-build.test.mjs","tests/presentation.test.mjs","tests/process-adversarial.test.mjs","tests/processes.test.mjs","tests/reclaim.test.mjs","tests/reference.test.mjs","tests/store.test.mjs","tests/wasm.test.mjs","tests/webmcp.test.mjs","tests/worker.test.mjs","tests/workspace-address.test.mjs","tests/workspace-memory.test.mjs","tests/workspace-output.test.mjs","tests/workspace.test.mjs"]}
+2026-09-16T01:06:00.9905911Z TAP version 13
+2026-09-16T01:06:10.1024854Z # Subtest: native unsigned division matches integer arithmetic across all bit widths and overflow guards
+2026-09-16T01:06:10.1065366Z ok 1 - native unsigned division matches integer arithmetic across all bit widths and overflow guards
+2026-09-16T01:06:10.1096315Z   ---
+2026-09-16T01:06:10.1121258Z   duration_ms: 7885.945306
+2026-09-16T01:06:10.1146880Z   type: 'test'
+2026-09-16T01:06:10.1148812Z   ...
+2026-09-16T01:06:10.1498076Z # Subtest: boundary guard rejects new executable files, changed host code and extra kernel commands
+2026-09-16T01:06:10.1502076Z ok 2 - boundary guard rejects new executable files, changed host code and extra kernel commands
+2026-09-16T01:06:10.1502858Z   ---
+2026-09-16T01:06:10.1503487Z   duration_ms: 3.614861
+2026-09-16T01:06:10.1513055Z   type: 'test'
+2026-09-16T01:06:10.1513496Z   ...
+2026-09-16T01:06:16.8895921Z # Subtest: dictionary capacity refuses publication without corrupting existing words
+2026-09-16T01:06:16.8900630Z ok 3 - dictionary capacity refuses publication without corrupting existing words
+2026-09-16T01:06:16.8946812Z   ---
+2026-09-16T01:06:16.9016828Z   duration_ms: 13873.44108
+2026-09-16T01:06:16.9017272Z   type: 'test'
+2026-09-16T01:06:16.9046365Z   ...
+2026-09-16T01:06:33.8107772Z # Subtest: code and nested control exhaustion roll back incomplete definitions
+2026-09-16T01:06:33.8207139Z ok 4 - code and nested control exhaustion roll back incomplete definitions
+2026-09-16T01:06:33.8236625Z   ---
+2026-09-16T01:06:33.8261939Z   duration_ms: 16920.199331
+2026-09-16T01:06:33.8276222Z   type: 'test'
+2026-09-16T01:06:33.8276797Z   ...
+2026-09-16T01:06:34.0290984Z # Subtest: heap exhaustion and overlong tokens refuse mutation and recover
+2026-09-16T01:06:34.0294618Z ok 5 - heap exhaustion and overlong tokens refuse mutation and recover
+2026-09-16T01:06:34.0297860Z   ---
+2026-09-16T01:06:34.0298799Z   duration_ms: 224.919629
+2026-09-16T01:06:34.0299273Z   type: 'test'
+2026-09-16T01:06:34.0299702Z   ...
+2026-09-16T01:07:28.1804082Z # Subtest: new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+2026-09-16T01:07:28.1833976Z ok 6 - new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+2026-09-16T01:07:28.1837655Z   ---
+2026-09-16T01:07:28.1838458Z   duration_ms: 85449.752285
+2026-09-16T01:07:28.1838919Z   type: 'test'
+2026-09-16T01:07:28.1840680Z   ...
+2026-09-16T01:08:11.4716509Z # Subtest: native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+2026-09-16T01:08:11.4719520Z ok 7 - native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+2026-09-16T01:08:11.4722896Z   ---
+2026-09-16T01:08:11.4723463Z   duration_ms: 43296.536389
+2026-09-16T01:08:11.4724021Z   type: 'test'
+2026-09-16T01:08:11.4724502Z   ...
+2026-09-16T01:08:29.0044299Z # Subtest: a refused road pair at fixed capacity preserves all road data
+2026-09-16T01:08:29.0045353Z ok 8 - a refused road pair at fixed capacity preserves all road data
+2026-09-16T01:08:29.0048188Z   ---
+2026-09-16T01:08:29.0048942Z   duration_ms: 2023.544744
+2026-09-16T01:08:29.0069202Z   type: 'test'
+2026-09-16T01:08:29.0069629Z   ...
+2026-09-16T01:08:31.4311453Z # Subtest: safe-point, serial and pin refusals preserve the active version and bounded references
+2026-09-16T01:08:31.4395159Z ok 9 - safe-point, serial and pin refusals preserve the active version and bounded references
+2026-09-16T01:08:31.4471290Z   ---
+2026-09-16T01:08:31.4471606Z   duration_ms: 17935.587196
+2026-09-16T01:08:31.4471926Z   type: 'test'
+2026-09-16T01:08:31.4472173Z   ...
+2026-09-16T01:08:37.7947673Z # Subtest: presentation retains serial identity after arena reuse; source framing cannot forge active state
+2026-09-16T01:08:37.7981637Z ok 10 - presentation retains serial identity after arena reuse; source framing cannot forge active state
+2026-09-16T01:08:37.8017516Z   ---
+2026-09-16T01:08:37.8046428Z   duration_ms: 6355.133024
+2026-09-16T01:08:37.8076669Z   type: 'test'
+2026-09-16T01:08:37.8086934Z   ...
+2026-09-16T01:08:44.5927307Z # Subtest: removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+2026-09-16T01:08:44.6017139Z ok 11 - removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+2026-09-16T01:08:44.6046420Z   ---
+2026-09-16T01:08:44.6047072Z   duration_ms: 6806.147937
+2026-09-16T01:08:44.6070414Z   type: 'test'
+2026-09-16T01:08:44.6070945Z   ...
+2026-09-16T01:08:46.3273780Z # Subtest: road edits invalidate the native cost cache even when the 16-bit generation wraps
+2026-09-16T01:08:46.3367246Z ok 12 - road edits invalidate the native cost cache even when the 16-bit generation wraps
+2026-09-16T01:08:46.3379455Z   ---
+2026-09-16T01:08:46.3381150Z   duration_ms: 1739.925715
+2026-09-16T01:08:46.3381658Z   type: 'test'
+2026-09-16T01:08:46.3382125Z   ...
+2026-09-16T01:08:46.3594666Z # Subtest: two programs from one initial image change routes with the same open toll bridge
+2026-09-16T01:08:46.3617307Z ok 13 - two programs from one initial image change routes with the same open toll bridge
+2026-09-16T01:08:46.3646789Z   ---
+2026-09-16T01:08:46.3647509Z   duration_ms: 67077.598936
+2026-09-16T01:08:46.3648073Z   type: 'test'
+2026-09-16T01:08:46.3648481Z   ...
+2026-09-16T01:08:46.3649316Z # Subtest: in-flight cars retain their edge and old version across swaps, then release it at arrival
+2026-09-16T01:08:46.3650491Z ok 14 - in-flight cars retain their edge and old version across swaps, then release it at arrival
+2026-09-16T01:08:46.3651234Z   ---
+2026-09-16T01:08:46.3651652Z   duration_ms: 17152.164675
+2026-09-16T01:08:46.3652137Z   type: 'test'
+2026-09-16T01:08:46.3652584Z   ...
+2026-09-16T01:08:46.3653797Z # Subtest: paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+2026-09-16T01:08:46.3655221Z ok 15 - paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+2026-09-16T01:08:46.3656138Z   ---
+2026-09-16T01:08:46.3656544Z   duration_ms: 37434.726062
+2026-09-16T01:08:46.3657002Z   type: 'test'
+2026-09-16T01:08:46.3657420Z   ...
+2026-09-16T01:08:46.3658211Z # Subtest: closure is a separate native data experiment and cannot teleport an in-flight vehicle
+2026-09-16T01:08:46.3659338Z ok 16 - closure is a separate native data experiment and cannot teleport an in-flight vehicle
+2026-09-16T01:08:46.3660056Z   ---
+2026-09-16T01:08:46.3660459Z   duration_ms: 10766.875897
+2026-09-16T01:08:46.3660910Z   type: 'test'
+2026-09-16T01:08:46.3661305Z   ...
+2026-09-16T01:08:46.3662113Z # Subtest: changing road duration preserves the duration already committed to an in-flight vehicle
+2026-09-16T01:08:46.3663259Z ok 17 - changing road duration preserves the duration already committed to an in-flight vehicle
+2026-09-16T01:08:46.3664073Z   ---
+2026-09-16T01:08:46.3664464Z   duration_ms: 10900.547441
+2026-09-16T01:08:46.3664912Z   type: 'test'
+2026-09-16T01:08:46.3665308Z   ...
+2026-09-16T01:08:46.3666224Z # Subtest: exact counter windows cross Number precision without changing BF execution
+2026-09-16T01:08:46.3667619Z ok 18 - exact counter windows cross Number precision without changing BF execution
+2026-09-16T01:08:46.3668253Z   ---
+2026-09-16T01:08:46.3668645Z   duration_ms: 4.941254
+2026-09-16T01:08:46.3669072Z   type: 'test'
+2026-09-16T01:08:46.3669464Z   ...
+2026-09-16T01:08:46.3670226Z # Subtest: zero budgets, repeated fuel pauses and output limits remain exact across rotation
+2026-09-16T01:08:46.3671282Z ok 19 - zero budgets, repeated fuel pauses and output limits remain exact across rotation
+2026-09-16T01:08:46.3671971Z   ---
+2026-09-16T01:08:46.3672362Z   duration_ms: 1.395324
+2026-09-16T01:08:46.3672798Z   type: 'test'
+2026-09-16T01:08:46.3673192Z   ...
+2026-09-16T01:08:46.3673956Z # Subtest: images preserve exact epochs and reject malformed epochs before creating a candidate
+2026-09-16T01:08:46.3675059Z ok 20 - images preserve exact epochs and reject malformed epochs before creating a candidate
+2026-09-16T01:08:46.3676024Z   ---
+2026-09-16T01:08:46.3676421Z   duration_ms: 18.010157
+2026-09-16T01:08:46.3676862Z   type: 'test'
+2026-09-16T01:08:46.3677251Z   ...
+2026-09-16T01:08:46.3677936Z # Subtest: CLI diagnostics ignore opaque source bodies across every byte split
+2026-09-16T01:08:46.3678862Z ok 21 - CLI diagnostics ignore opaque source bodies across every byte split
+2026-09-16T01:08:46.3679499Z   ---
+2026-09-16T01:08:46.3679888Z   duration_ms: 2.963139
+2026-09-16T01:08:46.3680318Z   type: 'test'
+2026-09-16T01:08:46.3680706Z   ...
+2026-09-16T01:08:46.3681563Z # Subtest: a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+2026-09-16T01:08:46.3682766Z ok 22 - a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+2026-09-16T01:08:46.3683793Z   ---
+2026-09-16T01:08:46.3684194Z   duration_ms: 4805.647133
+2026-09-16T01:08:46.3684634Z   type: 'test'
+2026-09-16T01:08:46.3685224Z   ...
+2026-09-16T01:08:46.3686301Z # Subtest: Dispatch combines transactions, native compilation and dynamic route changes
+2026-09-16T01:08:46.3687362Z ok 23 - Dispatch combines transactions, native compilation and dynamic route changes
+2026-09-16T01:08:46.3688061Z   ---
+2026-09-16T01:08:46.3688462Z   duration_ms: 10726.43928
+2026-09-16T01:08:46.3688904Z   type: 'test'
+2026-09-16T01:08:46.3689292Z   ...
+2026-09-16T01:08:46.3690028Z # Subtest: zero-distance, unreachable nodes and invalid road states
+2026-09-16T01:08:46.3690896Z ok 24 - zero-distance, unreachable nodes and invalid road states
+2026-09-16T01:08:46.3691498Z   ---
+2026-09-16T01:08:46.3691901Z   duration_ms: 4166.312585
+2026-09-16T01:08:46.3692333Z   type: 'test'
+2026-09-16T01:08:46.3692722Z   ...
+2026-09-16T01:08:46.3693415Z # Subtest: maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+2026-09-16T01:08:46.3694343Z ok 25 - maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+2026-09-16T01:08:46.3694978Z   ---
+2026-09-16T01:08:46.3695357Z   duration_ms: 10212.133369
+2026-09-16T01:08:46.3695915Z   type: 'test'
+2026-09-16T01:08:46.3696316Z   ...
+2026-09-16T01:08:46.3697057Z # Subtest: random weighted networks agree with Bellman-Ford and valid path reconstruction
+2026-09-16T01:08:46.3698118Z ok 26 - random weighted networks agree with Bellman-Ford and valid path reconstruction
+2026-09-16T01:08:46.3698805Z   ---
+2026-09-16T01:08:46.3699200Z   duration_ms: 30102.566758
+2026-09-16T01:08:46.3699648Z   type: 'test'
+2026-09-16T01:08:46.3700040Z   ...
+2026-09-16T01:08:46.3700737Z # Subtest: full-capacity 128-road cyclic network agrees with an independent oracle
+2026-09-16T01:08:46.3701704Z ok 27 - full-capacity 128-road cyclic network agrees with an independent oracle
+2026-09-16T01:08:46.3702353Z   ---
+2026-09-16T01:08:46.3702752Z   duration_ms: 26631.529953
+2026-09-16T01:08:46.3703201Z   type: 'test'
+2026-09-16T01:08:46.3703637Z   ...
+2026-09-16T01:08:46.3704351Z # Subtest: generated addressed memory and arithmetic execute on the real BF machine
+2026-09-16T01:08:46.3705379Z ok 28 - generated addressed memory and arithmetic execute on the real BF machine
+2026-09-16T01:08:46.3706158Z   ---
+2026-09-16T01:08:46.3706779Z   duration_ms: 39.767602
+2026-09-16T01:08:46.3707221Z   type: 'test'
+2026-09-16T01:08:46.3707611Z   ...
+2026-09-16T01:08:46.3708307Z # Subtest: paged native memory walks page and word lanes and clears all breadcrumbs
+2026-09-16T01:08:46.3709284Z ok 29 - paged native memory walks page and word lanes and clears all breadcrumbs
+2026-09-16T01:08:46.3709934Z   ---
+2026-09-16T01:08:46.3710324Z   duration_ms: 28.162886
+2026-09-16T01:08:46.3710753Z   type: 'test'
+2026-09-16T01:08:46.3711140Z   ...
+2026-09-16T01:08:46.3711564Z # Subtest: bracket validation
+2026-09-16T01:08:46.3712058Z ok 30 - bracket validation
+2026-09-16T01:08:46.3712494Z   ---
+2026-09-16T01:08:46.3712885Z   duration_ms: 1.069735
+2026-09-16T01:08:46.3713321Z   type: 'test'
+2026-09-16T01:08:46.3713724Z   ...
+2026-09-16T01:08:46.3714297Z # Subtest: uint16 wrap, low-byte output, input pause and EOF
+2026-09-16T01:08:46.3715035Z ok 31 - uint16 wrap, low-byte output, input pause and EOF
+2026-09-16T01:08:46.3715734Z   ---
+2026-09-16T01:08:46.3716118Z   duration_ms: 0.976073
+2026-09-16T01:08:46.3716558Z   type: 'test'
+2026-09-16T01:08:46.3716945Z   ...
+2026-09-16T01:08:46.3717505Z # Subtest: bounds checks retain intermediate pointer motion
+2026-09-16T01:08:46.3718253Z ok 32 - bounds checks retain intermediate pointer motion
+2026-09-16T01:08:46.3718938Z   ---
+2026-09-16T01:08:46.3719351Z   duration_ms: 1.418141
+2026-09-16T01:08:46.3719780Z   type: 'test'
+2026-09-16T01:08:46.3720166Z   ...
+2026-09-16T01:08:46.3720721Z # Subtest: resource budget interrupts a divergent program
+2026-09-16T01:08:46.3721436Z ok 33 - resource budget interrupts a divergent program
+2026-09-16T01:08:46.3721974Z   ---
+2026-09-16T01:08:46.3722535Z   duration_ms: 0.288125
+2026-09-16T01:08:46.3723155Z   type: 'test'
+2026-09-16T01:08:46.3723633Z   ...
+2026-09-16T01:08:46.3724266Z # Subtest: invalid limits and bytes fail without corrupting queued input
+2026-09-16T01:08:46.3725136Z ok 34 - invalid limits and bytes fail without corrupting queued input
+2026-09-16T01:08:46.3725885Z   ---
+2026-09-16T01:08:46.3726276Z   duration_ms: 45.688732
+2026-09-16T01:08:46.3726708Z   type: 'test'
+2026-09-16T01:08:46.3727177Z   ...
+2026-09-16T01:08:46.3727880Z # Subtest: optimized loops match literal execution, including instruction counts
+2026-09-16T01:08:46.3728839Z ok 35 - optimized loops match literal execution, including instruction counts
+2026-09-16T01:08:46.3729486Z   ---
+2026-09-16T01:08:46.3729877Z   duration_ms: 26.458968
+2026-09-16T01:08:46.3730309Z   type: 'test'
+2026-09-16T01:08:46.3730700Z   ...
+2026-09-16T01:08:46.3762696Z # Subtest: machine images resume partial input and preserve full uint16 state
+2026-09-16T01:08:46.3764199Z ok 36 - machine images resume partial input and preserve full uint16 state
+2026-09-16T01:08:46.3764956Z   ---
+2026-09-16T01:08:46.3765364Z   duration_ms: 7.500654
+2026-09-16T01:08:46.3766015Z   type: 'test'
+2026-09-16T01:08:46.3766435Z   ...
+2026-09-16T01:08:46.3767190Z # Subtest: image corruption, incompatible kernels and invalid machine state are rejected
+2026-09-16T01:08:46.3768257Z ok 37 - image corruption, incompatible kernels and invalid machine state are rejected
+2026-09-16T01:08:46.3768945Z   ---
+2026-09-16T01:08:46.3769343Z   duration_ms: 3.182836
+2026-09-16T01:08:46.3769787Z   type: 'test'
+2026-09-16T01:08:46.3770180Z   ...
+2026-09-16T01:08:46.3770782Z # Subtest: budget images resume without replaying input or output
+2026-09-16T01:08:46.3771593Z ok 38 - budget images resume without replaying input or output
+2026-09-16T01:08:46.3772172Z   ---
+2026-09-16T01:08:46.3772571Z   duration_ms: 1.216567
+2026-09-16T01:08:46.3772998Z   type: 'test'
+2026-09-16T01:08:46.3773387Z   ...
+2026-09-16T01:08:46.3774033Z # Subtest: OS image replacement is atomic and leaves no temporary files
+2026-09-16T01:08:46.3774891Z ok 39 - OS image replacement is atomic and leaves no temporary files
+2026-09-16T01:08:46.3775486Z   ---
+2026-09-16T01:08:46.3776050Z   duration_ms: 37.152359
+2026-09-16T01:08:46.3776486Z   type: 'test'
+2026-09-16T01:08:46.3776874Z   ...
+2026-09-16T01:09:44.9325120Z # {"coldBootMs":100411.85038199999,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+2026-09-16T01:09:56.3556427Z # Subtest: native road capacity queues a second van; closure preserves an existing reservation
+2026-09-16T01:09:56.3559855Z ok 40 - native road capacity queues a second van; closure preserves an existing reservation
+2026-09-16T01:09:56.3560637Z   ---
+2026-09-16T01:09:56.3561184Z   duration_ms: 111880.177151
+2026-09-16T01:09:56.3561605Z   type: 'test'
+2026-09-16T01:09:56.3561966Z   ...
+2026-09-16T01:10:32.2700779Z # {"jobCapacity":16,"reclaimedLifetimes":467,"staleIdentityRefused":1,"liveJobs":0}
+2026-09-16T01:10:32.2807349Z # Subtest: all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+2026-09-16T01:10:32.2836079Z ok 41 - all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+2026-09-16T01:10:32.2837312Z   ---
+2026-09-16T01:10:32.2837931Z   duration_ms: 35919.718402
+2026-09-16T01:10:32.2838418Z   type: 'test'
+2026-09-16T01:10:32.2838815Z   ...
+2026-09-16T01:12:15.3226563Z # Subtest: publishing, refusing schema change and rolling back preserve a paused carried load and route version
+2026-09-16T01:12:15.3228759Z ok 42 - publishing, refusing schema change and rolling back preserve a paused carried load and route version
+2026-09-16T01:12:15.3232114Z   ---
+2026-09-16T01:12:15.3232796Z   duration_ms: 103051.991176
+2026-09-16T01:12:15.3233267Z   type: 'test'
+2026-09-16T01:12:15.3233620Z   ...
+2026-09-16T01:12:15.3461449Z # Subtest: native source text is length framed, never mistaken for errors or city events
+2026-09-16T01:12:15.3527892Z ok 43 - native source text is length framed, never mistaken for errors or city events
+2026-09-16T01:12:15.3558224Z   ---
+2026-09-16T01:12:15.3569386Z   duration_ms: 2.612883
+2026-09-16T01:12:15.3569876Z   type: 'test'
+2026-09-16T01:12:15.3570251Z   ...
+2026-09-16T01:12:15.3571012Z # Subtest: bounded process and industrial records reject truncation before UI replacement
+2026-09-16T01:12:15.3572108Z ok 44 - bounded process and industrial records reject truncation before UI replacement
+2026-09-16T01:12:15.3572805Z   ---
+2026-09-16T01:12:15.3573175Z   duration_ms: 1.944925
+2026-09-16T01:12:15.3573587Z   type: 'test'
+2026-09-16T01:12:15.3573997Z   ...
+2026-09-16T01:12:15.3574741Z # Subtest: a van between observed road segments keeps its job label, including route calculation
+2026-09-16T01:12:15.3575905Z ok 45 - a van between observed road segments keeps its job label, including route calculation
+2026-09-16T01:12:15.3576565Z   ---
+2026-09-16T01:12:15.3576923Z   duration_ms: 0.337699
+2026-09-16T01:12:15.3577319Z   type: 'test'
+2026-09-16T01:12:15.3577702Z   ...
+2026-09-16T01:12:15.3578749Z # {"coldBootMs":136248.88709200002,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+2026-09-16T01:12:15.3580049Z # Subtest: a user van program gets higher native passage priority over an earlier scheduler slot
+2026-09-16T01:12:15.3581095Z ok 46 - a user van program gets higher native passage priority over an earlier scheduler slot
+2026-09-16T01:12:15.3581755Z   ---
+2026-09-16T01:12:15.3582120Z   duration_ms: 146976.991443
+2026-09-16T01:12:15.3582556Z   type: 'test'
+2026-09-16T01:12:15.3582920Z   ...
+2026-09-16T01:12:15.3583709Z # Subtest: an infinite high-priority program cannot retain a free road through a stale intent
+2026-09-16T01:12:15.3584744Z ok 47 - an infinite high-priority program cannot retain a free road through a stale intent
+2026-09-16T01:12:15.3585391Z   ---
+2026-09-16T01:12:15.3585871Z   duration_ms: 13373.030262
+2026-09-16T01:12:15.3586278Z   type: 'test'
+2026-09-16T01:12:15.3586645Z   ...
+2026-09-16T01:12:15.3587531Z # Subtest: paused priority claim is ineligible; invalid priority faults locally without changing its value
+2026-09-16T01:12:15.3588662Z ok 48 - paused priority claim is ineligible; invalid priority faults locally without changing its value
+2026-09-16T01:12:15.3589773Z   ---
+2026-09-16T01:12:15.3590139Z   duration_ms: 13814.36692
+2026-09-16T01:12:15.3590539Z   type: 'test'
+2026-09-16T01:12:15.3590894Z   ...
+2026-09-16T01:15:11.9447296Z # {"coldBootMs":134802.038128,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+2026-09-16T01:15:11.9537080Z # Subtest: repeated delivery notifications, local receive failure and repair never repeat material transfer
+2026-09-16T01:15:11.9538416Z ok 49 - repeated delivery notifications, local receive failure and repair never repeat material transfer
+2026-09-16T01:15:11.9566010Z   ---
+2026-09-16T01:15:11.9586385Z   duration_ms: 383575.45054
+2026-09-16T01:15:11.9586918Z   type: 'test'
+2026-09-16T01:15:11.9587297Z   ...
+2026-09-16T01:18:05.8948829Z # Subtest: native transport/production and an unfinished BF instruction stream survive an exact image
+2026-09-16T01:18:05.8950073Z ok 50 - native transport/production and an unfinished BF instruction stream survive an exact image
+2026-09-16T01:18:05.8950762Z   ---
+2026-09-16T01:18:05.8951031Z   duration_ms: 173957.707324
+2026-09-16T01:18:05.8951346Z   type: 'test'
+2026-09-16T01:18:05.8953777Z   ...
+2026-09-16T01:18:05.9198141Z # {"coldBootMs":118271.716558,"bfInstructions":111559991460667,"kernel":"c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c"}
+2026-09-16T01:18:05.9199818Z # SEND 1 3 1 1 1 2 
+2026-09-16T01:18:05.9212322Z # ORDER 1 3 6 
+2026-09-16T01:18:05.9228572Z # SEND 2 4 2 1 2 3 
+2026-09-16T01:18:05.9229011Z # ORDER 2 4 6 
+2026-09-16T01:18:05.9229382Z # ROUND 1 
+2026-09-16T01:18:05.9229738Z # RECEIVE 1 1 1 
+2026-09-16T01:18:05.9230112Z # AUTHORIZE 1 1 
+2026-09-16T01:18:05.9230498Z # SEND 3 1 7 2 1 1 
+2026-09-16T01:18:05.9231374Z # ASSIGN 1 7 
+2026-09-16T01:18:05.9231742Z # RECEIVE 2 2 1 
+2026-09-16T01:18:05.9232108Z # AUTHORIZE 2 2 
+2026-09-16T01:18:05.9232486Z # SEND 4 2 9 2 2 1 
+2026-09-16T01:18:05.9232858Z # ASSIGN 2 9 
+2026-09-16T01:18:05.9233215Z # RECEIVE 3 7 4 
+2026-09-16T01:18:05.9233573Z # LOAD 7 1 1 6 
+2026-09-16T01:18:05.9233946Z # RECEIVE 4 9 4 
+2026-09-16T01:18:05.9234313Z # LOAD 9 2 2 6 
+2026-09-16T01:18:05.9234665Z # ROUND 2 
+2026-09-16T01:18:05.9235012Z # ROUND 3 
+2026-09-16T01:18:05.9235351Z # ROUND 4 
+2026-09-16T01:18:05.9235935Z # ROUND 5 
+2026-09-16T01:18:05.9236276Z # ROUND 6 
+2026-09-16T01:18:05.9236613Z # ROUND 7 
+2026-09-16T01:18:05.9237065Z # I-ROUTE 7 4 12 4 4 3 12 8 4 
+2026-09-16T01:18:05.9237507Z # ROUND 8 
+2026-09-16T01:18:05.9237875Z # I-DEPART 7 33 4 
+2026-09-16T01:18:05.9238300Z # I-ROUTE 9 4 3 11 4 3 3 7 11 
+2026-09-16T01:18:05.9238709Z # ROUND 9 
+2026-09-16T01:18:05.9239069Z # I-DEPART 9 22 4 
+2026-09-16T01:18:05.9239432Z # ROUND 10 
+2026-09-16T01:18:05.9239782Z # I-ARRIVE 7 8 
+2026-09-16T01:18:05.9240145Z # ROUND 11 
+2026-09-16T01:18:05.9240507Z # I-DEPART 7 25 4 
+2026-09-16T01:18:05.9240921Z # I-ARRIVE 9 7 
+2026-09-16T01:18:05.9241280Z # ROUND 12 
+2026-09-16T01:18:05.9241643Z # I-DEPART 9 30 4 
+2026-09-16T01:18:05.9241999Z # ROUND 13 
+2026-09-16T01:18:05.9242338Z # I-ARRIVE 7 4 
+2026-09-16T01:18:05.9242748Z # SEND 5 7 3 3 1 4 
+2026-09-16T01:18:05.9243133Z # UNLOAD 7 1 3 6 
+2026-09-16T01:18:05.9243493Z # ROUND 14 
+2026-09-16T01:18:05.9244527Z # RECEIVE 5 3 2 
+2026-09-16T01:18:05.9244890Z # ACK 1 3 
+2026-09-16T01:18:05.9245249Z # I-ARRIVE 9 11 
+2026-09-16T01:18:05.9245753Z # SEND 6 9 4 3 2 4 
+2026-09-16T01:18:05.9246133Z # UNLOAD 9 2 4 6 
+2026-09-16T01:18:05.9246518Z # ROUND 15 
+2026-09-16T01:18:05.9246883Z # SEND 7 3 1 1 3 2 
+2026-09-16T01:18:05.9247246Z # ORDER 3 3 6 
+2026-09-16T01:18:05.9247630Z # RECEIVE 6 4 3 
+2026-09-16T01:18:05.9248045Z # ACK 2 4 
+2026-09-16T01:18:05.9248442Z # ROUND 16 
+2026-09-16T01:18:05.9248788Z # RECEIVE 7 1 1 
+2026-09-16T01:18:05.9249150Z # AUTHORIZE 3 1 
+2026-09-16T01:18:05.9249538Z # SEND 8 1 8 2 3 1 
+2026-09-16T01:18:05.9249899Z # ASSIGN 3 8 
+2026-09-16T01:18:05.9250266Z # SEND 9 4 2 1 4 3 
+2026-09-16T01:18:05.9250625Z # ORDER 4 4 6 
+2026-09-16T01:18:05.9250983Z # RECEIVE 8 8 4 
+2026-09-16T01:18:05.9251346Z # LOAD 8 3 1 6 
+2026-09-16T01:18:05.9251696Z # ROUND 17 
+2026-09-16T01:18:05.9252260Z # RECEIVE 9 2 1 
+2026-09-16T01:18:05.9252617Z # AUTHORIZE 4 2 
+2026-09-16T01:18:05.9252996Z # SEND 10 2 10 2 4 1 
+2026-09-16T01:18:05.9253374Z # ASSIGN 4 10 
+2026-09-16T01:18:05.9253739Z # PRODUCE 3 1 
+2026-09-16T01:18:05.9254113Z # RECEIVE 10 10 4 
+2026-09-16T01:18:05.9254482Z # LOAD 10 4 2 6 
+2026-09-16T01:18:05.9254833Z # ROUND 18 
+2026-09-16T01:18:05.9255528Z # Subtest: twelve native processes create real orders and preserve the material ledger
+2026-09-16T01:18:05.9258017Z ok 51 - twelve native processes create real orders and preserve the material ledger
+2026-09-16T01:18:05.9258801Z   ---
+2026-09-16T01:18:05.9259171Z   duration_ms: 213719.018462
+2026-09-16T01:18:05.9259604Z   type: 'test'
+2026-09-16T01:18:05.9259969Z   ...
+2026-09-16T01:18:05.9260676Z # Subtest: unfinished messages, native frames and route phases survive a new machine image
+2026-09-16T01:18:05.9261686Z ok 52 - unfinished messages, native frames and route phases survive a new machine image
+2026-09-16T01:18:05.9262344Z   ---
+2026-09-16T01:18:05.9262705Z   duration_ms: 93955.46751
+2026-09-16T01:18:05.9263128Z   type: 'test'
+2026-09-16T01:18:05.9263483Z   ...
+2026-09-16T01:18:05.9264163Z # Subtest: ownership rejects removing stock or executing a foreign industrial operation
+2026-09-16T01:18:05.9265136Z ok 53 - ownership rejects removing stock or executing a foreign industrial operation
+2026-09-16T01:18:05.9265883Z   ---
+2026-09-16T01:18:05.9266243Z   duration_ms: 29539.498223
+2026-09-16T01:18:05.9266643Z   type: 'test'
+2026-09-16T01:18:05.9266995Z   ...
+2026-09-16T01:18:05.9267465Z # Subtest: numeric parsing and unsigned arithmetic
+2026-09-16T01:18:05.9268086Z ok 54 - numeric parsing and unsigned arithmetic
+2026-09-16T01:18:05.9268938Z   ---
+2026-09-16T01:18:05.9269305Z   duration_ms: 203.019972
+2026-09-16T01:18:05.9269711Z   type: 'test'
+2026-09-16T01:18:05.9270063Z   ...
+2026-09-16T01:18:05.9270603Z # Subtest: stack combinators, equality and unsigned comparison
+2026-09-16T01:18:05.9271334Z ok 55 - stack combinators, equality and unsigned comparison
+2026-09-16T01:18:05.9271858Z   ---
+2026-09-16T01:18:05.9272209Z   duration_ms: 46.285694
+2026-09-16T01:18:05.9272600Z   type: 'test'
+2026-09-16T01:18:05.9272952Z   ...
+2026-09-16T01:18:05.9273470Z # Subtest: native definitions, calls and source compilation
+2026-09-16T01:18:05.9274155Z ok 56 - native definitions, calls and source compilation
+2026-09-16T01:18:05.9274654Z   ---
+2026-09-16T01:18:05.9275002Z   duration_ms: 43.529976
+2026-09-16T01:18:05.9275391Z   type: 'test'
+2026-09-16T01:18:05.9275897Z   ...
+2026-09-16T01:18:05.9276366Z # Subtest: native conditionals and nested branching
+2026-09-16T01:18:05.9276978Z ok 57 - native conditionals and nested branching
+2026-09-16T01:18:05.9277456Z   ---
+2026-09-16T01:18:05.9277804Z   duration_ms: 85.823365
+2026-09-16T01:18:05.9278281Z   type: 'test'
+2026-09-16T01:18:05.9278628Z   ...
+2026-09-16T01:18:05.9279061Z # Subtest: loops and recursive definitions
+2026-09-16T01:18:05.9279609Z ok 58 - loops and recursive definitions
+2026-09-16T01:18:05.9280057Z   ---
+2026-09-16T01:18:05.9280413Z   duration_ms: 84.369471
+2026-09-16T01:18:05.9280799Z   type: 'test'
+2026-09-16T01:18:05.9281145Z   ...
+2026-09-16T01:18:05.9281679Z # Subtest: native defining words, while/repeat and early return
+2026-09-16T01:18:05.9282395Z ok 59 - native defining words, while/repeat and early return
+2026-09-16T01:18:05.9282922Z   ---
+2026-09-16T01:18:05.9283272Z   duration_ms: 107.716512
+2026-09-16T01:18:05.9283664Z   type: 'test'
+2026-09-16T01:18:05.9284058Z   ...
+2026-09-16T01:18:05.9284551Z # Subtest: separate bounded heap and persistent regions
+2026-09-16T01:18:05.9285202Z ok 60 - separate bounded heap and persistent regions
+2026-09-16T01:18:05.9285787Z   ---
+2026-09-16T01:18:05.9286146Z   duration_ms: 43.917481
+2026-09-16T01:18:05.9286536Z   type: 'test'
+2026-09-16T01:18:05.9286885Z   ...
+2026-09-16T01:18:05.9287470Z # Subtest: comments and partial tokens across interactive input chunks
+2026-09-16T01:18:05.9288263Z ok 61 - comments and partial tokens across interactive input chunks
+2026-09-16T01:18:05.9289036Z   ---
+2026-09-16T01:18:05.9289389Z   duration_ms: 3.933575
+2026-09-16T01:18:05.9289776Z   type: 'test'
+2026-09-16T01:18:05.9290127Z   ...
+2026-09-16T01:18:05.9290592Z # Subtest: diagnostic recovery and rejected input
+2026-09-16T01:18:05.9291199Z ok 62 - diagnostic recovery and rejected input
+2026-09-16T01:18:05.9291676Z   ---
+2026-09-16T01:18:05.9292027Z   duration_ms: 74.058091
+2026-09-16T01:18:05.9292420Z   type: 'test'
+2026-09-16T01:18:05.9292764Z   ...
+2026-09-16T01:18:05.9293386Z # Subtest: malformed definitions are unpublished and roll back code allocation
+2026-09-16T01:18:05.9294298Z ok 63 - malformed definitions are unpublished and roll back code allocation
+2026-09-16T01:18:05.9294886Z   ---
+2026-09-16T01:18:05.9295232Z   duration_ms: 37.915093
+2026-09-16T01:18:05.9295737Z   type: 'test'
+2026-09-16T01:18:05.9296732Z   ...
+2026-09-16T01:18:05.9317791Z # Subtest: resource exhaustion: data and return stack protection
+2026-09-16T01:18:05.9318688Z ok 64 - resource exhaustion: data and return stack protection
+2026-09-16T01:18:05.9319296Z   ---
+2026-09-16T01:18:05.9319767Z   duration_ms: 222.496381
+2026-09-16T01:18:05.9320219Z   type: 'test'
+2026-09-16T01:18:05.9320599Z   ...
+2026-09-16T01:18:05.9321244Z # Subtest: EOF closes ordinary execution and rejects unfinished compilation
+2026-09-16T01:18:05.9322122Z ok 65 - EOF closes ordinary execution and rejects unfinished compilation
+2026-09-16T01:18:05.9322719Z   ---
+2026-09-16T01:18:05.9323101Z   duration_ms: 14.097693
+2026-09-16T01:18:05.9323607Z   type: 'test'
+2026-09-16T01:18:05.9323978Z   ...
+2026-09-16T01:18:05.9324604Z # Subtest: bounded bulk memory handles overlap in both directions
+2026-09-16T01:18:05.9325903Z ok 66 - bounded bulk memory handles overlap in both directions
+2026-09-16T01:18:05.9326494Z   ---
+2026-09-16T01:18:05.9326869Z   duration_ms: 91.524153
+2026-09-16T01:18:05.9327283Z   type: 'test'
+2026-09-16T01:18:05.9327654Z   ...
+2026-09-16T01:18:05.9328359Z # Subtest: strings compile natively and dictionary collisions and shadowing remain sound
+2026-09-16T01:18:05.9329371Z ok 67 - strings compile natively and dictionary collisions and shadowing remain sound
+2026-09-16T01:18:05.9330030Z   ---
+2026-09-16T01:18:05.9330400Z   duration_ms: 153.47485
+2026-09-16T01:18:05.9330815Z   type: 'test'
+2026-09-16T01:18:05.9331187Z   ...
+2026-09-16T01:18:05.9331991Z # Subtest: preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+2026-09-16T01:18:05.9333150Z ok 68 - preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+2026-09-16T01:18:05.9333872Z   ---
+2026-09-16T01:18:05.9334245Z   duration_ms: 678.100723
+2026-09-16T01:18:05.9334677Z   type: 'test'
+2026-09-16T01:18:05.9335057Z   ...
+2026-09-16T01:18:05.9335980Z # Subtest: preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+2026-09-16T01:18:05.9337197Z ok 69 - preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+2026-09-16T01:18:05.9337929Z   ---
+2026-09-16T01:18:05.9338312Z   duration_ms: 725.611924
+2026-09-16T01:18:05.9338754Z   type: 'test'
+2026-09-16T01:18:05.9339271Z   ...
+2026-09-16T01:18:05.9340082Z # Subtest: length-framed stored source cannot masquerade as city or lifecycle output
+2026-09-16T01:18:05.9341290Z ok 70 - length-framed stored source cannot masquerade as city or lifecycle output
+2026-09-16T01:18:05.9342057Z   ---
+2026-09-16T01:18:05.9342585Z   duration_ms: 1.47119
+2026-09-16T01:18:05.9343235Z   type: 'test'
+2026-09-16T01:18:05.9343779Z   ...
+2026-09-16T01:18:05.9344649Z # Subtest: partial or malformed presentation frames cannot replace a complete city
+2026-09-16T01:18:05.9345914Z ok 71 - partial or malformed presentation frames cannot replace a complete city
+2026-09-16T01:18:05.9346904Z   ---
+2026-09-16T01:18:05.9364946Z   duration_ms: 0.445662
+2026-09-16T01:18:05.9365437Z   type: 'test'
+2026-09-16T01:18:05.9365983Z   ...
+2026-09-16T01:18:05.9366726Z # Subtest: route evidence cannot borrow a different version or a pre-import cost trace
+2026-09-16T01:18:05.9367932Z ok 72 - route evidence cannot borrow a different version or a pre-import cost trace
+2026-09-16T01:18:05.9368613Z   ---
+2026-09-16T01:18:05.9369022Z   duration_ms: 0.507476
+2026-09-16T01:18:05.9369479Z   type: 'test'
+2026-09-16T01:18:05.9369888Z   ...
+2026-09-16T01:18:05.9370531Z # Subtest: each route captures only the complete cost table preceding it
+2026-09-16T01:18:05.9371389Z ok 73 - each route captures only the complete cost table preceding it
+2026-09-16T01:18:05.9372015Z   ---
+2026-09-16T01:18:05.9372410Z   duration_ms: 1.119079
+2026-09-16T01:18:05.9372842Z   type: 'test'
+2026-09-16T01:18:05.9373247Z   ...
+2026-09-16T01:18:05.9373976Z # Subtest: a paused mailbox waiter wakes on resume when mail arrived during its pause
+2026-09-16T01:18:05.9374966Z ok 74 - a paused mailbox waiter wakes on resume when mail arrived during its pause
+2026-09-16T01:18:05.9375734Z   ---
+2026-09-16T01:18:05.9376140Z   duration_ms: 53179.324564
+2026-09-16T01:18:05.9376609Z   type: 'test'
+2026-09-16T01:18:05.9377000Z   ...
+2026-09-16T01:18:05.9377811Z # Subtest: declared incompatible schema refuses publication with live continuation and queued message
+2026-09-16T01:18:05.9378984Z ok 75 - declared incompatible schema refuses publication with live continuation and queued message
+2026-09-16T01:18:05.9379788Z   ---
+2026-09-16T01:18:05.9380164Z   duration_ms: 26416.565594
+2026-09-16T01:18:05.9380584Z   type: 'test'
+2026-09-16T01:18:05.9380952Z   ...
+2026-09-16T01:18:05.9381704Z # Subtest: configured quantum is bounded; sleeping, looping and failing programs stay independent
+2026-09-16T01:18:05.9382964Z ok 76 - configured quantum is bounded; sleeping, looping and failing programs stay independent
+2026-09-16T01:18:05.9383664Z   ---
+2026-09-16T01:18:05.9384032Z   duration_ms: 11764.741528
+2026-09-16T01:18:05.9384449Z   type: 'test'
+2026-09-16T01:18:05.9384816Z   ...
+2026-09-16T01:18:05.9385514Z # Subtest: nested exact-version stack exhaustion stays local and preserves queued mail
+2026-09-16T01:18:05.9386623Z ok 77 - nested exact-version stack exhaustion stays local and preserves queued mail
+2026-09-16T01:18:05.9387272Z   ---
+2026-09-16T01:18:05.9387651Z   duration_ms: 44551.79653
+2026-09-16T01:18:05.9388077Z   type: 'test'
+2026-09-16T01:18:05.9388453Z   ...
+2026-09-16T01:22:16.0379957Z # Subtest: BF scheduler preempts an infinite process and preserves each continuation
+2026-09-16T01:22:16.0381192Z ok 78 - BF scheduler preempts an infinite process and preserves each continuation
+2026-09-16T01:22:16.0381844Z   ---
+2026-09-16T01:22:16.0382323Z   duration_ms: 56570.321256
+2026-09-16T01:22:16.0382656Z   type: 'test'
+2026-09-16T01:22:16.0382910Z   ...
+2026-09-16T01:22:16.0383497Z # Subtest: native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+2026-09-16T01:22:16.0384335Z ok 79 - native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+2026-09-16T01:22:16.0384820Z   ---
+2026-09-16T01:22:16.0385064Z   duration_ms: 5701.225671
+2026-09-16T01:22:16.0385365Z   type: 'test'
+2026-09-16T01:22:16.0385754Z   ...
+2026-09-16T01:22:16.0386317Z # Subtest: private bounds fault stays local; actor words are rejected in pure modules
+2026-09-16T01:22:16.0387146Z ok 80 - private bounds fault stays local; actor words are rejected in pure modules
+2026-09-16T01:22:16.0387637Z   ---
+2026-09-16T01:22:16.0387878Z   duration_ms: 6011.536092
+2026-09-16T01:22:16.0388161Z   type: 'test'
+2026-09-16T01:22:16.0388391Z   ...
+2026-09-16T01:22:16.0389069Z # Subtest: suspended old frame retains its version, next invocation adopts publication, images retain both
+2026-09-16T01:22:16.0390115Z ok 81 - suspended old frame retains its version, next invocation adopts publication, images retain both
+2026-09-16T01:22:16.0390693Z   ---
+2026-09-16T01:22:16.0390928Z   duration_ms: 3100.265537
+2026-09-16T01:22:16.0391204Z   type: 'test'
+2026-09-16T01:22:16.0391434Z   ...
+2026-09-16T01:22:16.0392039Z # Subtest: three user programs exchange messages, wait, and compute without kernel regeneration
+2026-09-16T01:22:16.0393392Z ok 82 - three user programs exchange messages, wait, and compute without kernel regeneration
+2026-09-16T01:22:16.0393930Z   ---
+2026-09-16T01:22:16.0394159Z   duration_ms: 8065.897578
+2026-09-16T01:22:16.0394433Z   type: 'test'
+2026-09-16T01:22:16.0394667Z   ...
+2026-09-16T01:22:16.0395445Z # {"processCycles":450,"capacity":16,"liveProcesses":0,"liveVersionsAfterDelete":0,"residentCodeAndDictionary":[19821,308]}
+2026-09-16T01:22:16.0421849Z # Subtest: 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+2026-09-16T01:22:16.0422920Z ok 83 - 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+2026-09-16T01:22:16.0423583Z   ---
+2026-09-16T01:22:16.0423906Z   duration_ms: 377372.525285
+2026-09-16T01:22:16.0424257Z   type: 'test'
+2026-09-16T01:22:16.0424851Z   ...
+2026-09-16T01:22:29.8600299Z # Subtest: creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+2026-09-16T01:22:29.8601466Z ok 84 - creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+2026-09-16T01:22:29.8602233Z   ---
+2026-09-16T01:22:29.8602518Z   duration_ms: 13817.710578
+2026-09-16T01:22:29.8602817Z   type: 'test'
+2026-09-16T01:22:29.8603111Z   ...
+2026-09-16T01:22:36.1319792Z # Subtest: large native workspace and source parameter edit preserve custom drafts and rejected versions
+2026-09-16T01:22:36.1321308Z ok 85 - large native workspace and source parameter edit preserve custom drafts and rejected versions
+2026-09-16T01:22:36.1321910Z   ---
+2026-09-16T01:22:36.1322162Z   duration_ms: 6275.841964
+2026-09-16T01:22:36.1322466Z   type: 'test'
+2026-09-16T01:22:36.1322704Z   ...
+2026-09-16T01:24:13.3815227Z # {"reclaimCycles":450,"elapsedMs":398566.677721,"versionCapacity":6,"maxObservedLive":2,"slotsUsed":[1,3,2],"compiledWordsAcrossCycles":9000,"finalLiveCodeWords":40,"afterDeleteLiveVersions":0,"platformCodeWords":8387,"platformDictionaryEntries":183,"tapeCells":398704}
+2026-09-16T01:24:13.3825750Z # Subtest: 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+2026-09-16T01:24:13.3830601Z ok 86 - 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+2026-09-16T01:24:13.3831210Z   ---
+2026-09-16T01:24:13.3831469Z   duration_ms: 421362.900229
+2026-09-16T01:24:13.3831774Z   type: 'test'
+2026-09-16T01:24:13.3832062Z   ...
+2026-09-16T01:24:13.4055788Z # Subtest: the entire generated kernel agrees with an independent literal C executor
+2026-09-16T01:24:13.4056657Z ok 87 - the entire generated kernel agrees with an independent literal C executor
+2026-09-16T01:24:13.4057147Z   ---
+2026-09-16T01:24:13.4057418Z   duration_ms: 3576.151677
+2026-09-16T01:24:13.4057712Z   type: 'test'
+2026-09-16T01:24:13.4057941Z   ...
+2026-09-16T01:24:13.4058441Z # Subtest: transactional insert, update, missing keys, zero values and deletion
+2026-09-16T01:24:13.4059186Z ok 88 - transactional insert, update, missing keys, zero values and deletion
+2026-09-16T01:24:13.4059651Z   ---
+2026-09-16T01:24:13.4059878Z   duration_ms: 4725.083365
+2026-09-16T01:24:13.4060154Z   type: 'test'
+2026-09-16T01:24:13.4060372Z   ...
+2026-09-16T01:24:13.4060880Z # Subtest: abort restores the committed view; writes require an explicit transaction
+2026-09-16T01:24:13.4061646Z ok 89 - abort restores the committed view; writes require an explicit transaction
+2026-09-16T01:24:13.4062105Z   ---
+2026-09-16T01:24:13.4062329Z   duration_ms: 253.646708
+2026-09-16T01:24:13.4062596Z   type: 'test'
+2026-09-16T01:24:13.4062817Z   ...
+2026-09-16T01:24:13.4063328Z # Subtest: full store refuses record 129, updates existing keys, reuses deleted slots
+2026-09-16T01:24:13.4064193Z ok 90 - full store refuses record 129, updates existing keys, reuses deleted slots
+2026-09-16T01:24:13.4064628Z   ---
+2026-09-16T01:24:13.4064861Z   duration_ms: 2476.618489
+2026-09-16T01:24:13.4065135Z   type: 'test'
+2026-09-16T01:24:13.4065353Z   ...
+2026-09-16T01:24:13.4066019Z # Subtest: deterministic mixed operations agree with an independent map oracle
+2026-09-16T01:24:13.4067143Z ok 91 - deterministic mixed operations agree with an independent map oracle
+2026-09-16T01:24:13.4067581Z   ---
+2026-09-16T01:24:13.4067798Z   duration_ms: 1014.071195
+2026-09-16T01:24:13.4068064Z   type: 'test'
+2026-09-16T01:24:13.4068284Z   ...
+2026-09-16T01:24:13.4068855Z # Subtest: full kernel image retains definitions, committed records and an open transaction
+2026-09-16T01:24:13.4069673Z ok 92 - full kernel image retains definitions, committed records and an open transaction
+2026-09-16T01:24:13.4070157Z   ---
+2026-09-16T01:24:13.4070371Z   duration_ms: 304.48618
+2026-09-16T01:24:13.4070622Z   type: 'test'
+2026-09-16T01:24:13.4070850Z   ...
+2026-09-16T01:24:13.4071388Z # Subtest: collisions survive tombstones without duplicate keys or broken lookup chains
+2026-09-16T01:24:13.4072197Z ok 93 - collisions survive tombstones without duplicate keys or broken lookup chains
+2026-09-16T01:24:13.4072678Z   ---
+2026-09-16T01:24:13.4072909Z   duration_ms: 671.45568
+2026-09-16T01:24:13.4073168Z   type: 'test'
+2026-09-16T01:24:13.4073450Z   ...
+2026-09-16T01:24:13.4073925Z # Subtest: native format and index integrity checks reject invalid store state
+2026-09-16T01:24:13.4074373Z ok 94 - native format and index integrity checks reject invalid store state
+2026-09-16T01:24:13.4074654Z   ---
+2026-09-16T01:24:13.4074812Z   duration_ms: 525.903398
+2026-09-16T01:24:13.4074993Z   type: 'test'
+2026-09-16T01:24:13.4075152Z   ...
+2026-09-16T01:24:13.4075518Z # Subtest: adversarial full-table collisions finish through bounded image-resumable execution
+2026-09-16T01:24:13.4076780Z ok 95 - adversarial full-table collisions finish through bounded image-resumable execution
+2026-09-16T01:24:13.4077308Z   ---
+2026-09-16T01:24:13.4077539Z   duration_ms: 47821.676658
+2026-09-16T01:24:13.4077814Z   type: 'test'
+2026-09-16T01:24:13.4078042Z   ...
+2026-09-16T01:24:13.4078776Z # {"stress":"128 keys in one initial bucket","elapsedMs":47754.517113,"brainfuckInstructions":635441144541733,"boundedRuns":7}
+2026-09-16T01:24:13.4079719Z # Subtest: Wasm backend is equivalent to literal BF for 150 deterministic programs
+2026-09-16T01:24:13.4080475Z ok 96 - Wasm backend is equivalent to literal BF for 150 deterministic programs
+2026-09-16T01:24:13.4080930Z   ---
+2026-09-16T01:24:13.4081165Z   duration_ms: 60.019402
+2026-09-16T01:24:13.4081440Z   type: 'test'
+2026-09-16T01:24:13.4081661Z   ...
+2026-09-16T01:24:13.4082061Z # Subtest: Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+2026-09-16T01:24:13.4082541Z ok 97 - Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+2026-09-16T01:24:13.4082836Z   ---
+2026-09-16T01:24:13.4082998Z   duration_ms: 0.96173
+2026-09-16T01:24:13.4083180Z   type: 'test'
+2026-09-16T01:24:13.4083339Z   ...
+2026-09-16T01:24:13.4083621Z # Subtest: Wasm pause, streaming input, output caps and work limits
+2026-09-16T01:24:13.4084001Z ok 98 - Wasm pause, streaming input, output caps and work limits
+2026-09-16T01:24:13.4084256Z   ---
+2026-09-16T01:24:13.4084416Z   duration_ms: 0.847509
+2026-09-16T01:24:13.4084671Z   type: 'test'
+2026-09-16T01:24:13.4084902Z   ...
+2026-09-16T01:24:13.4085549Z # Subtest: WebMCP has the same source/state routes, validates before effects, and closes registration
+2026-09-16T01:24:13.4086645Z ok 99 - WebMCP has the same source/state routes, validates before effects, and closes registration
+2026-09-16T01:24:13.4087183Z   ---
+2026-09-16T01:24:13.4087411Z   duration_ms: 1.696879
+2026-09-16T01:24:13.4087674Z   type: 'test'
+2026-09-16T01:24:13.4087903Z   ...
+2026-09-16T01:24:13.4088567Z # Subtest: browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+2026-09-16T01:24:13.4089351Z ok 100 - browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+2026-09-16T01:24:13.4089712Z   ---
+2026-09-16T01:24:13.4089872Z   duration_ms: 13685.06528
+2026-09-16T01:24:13.4090053Z   type: 'test'
+2026-09-16T01:24:13.4090203Z   ...
+2026-09-16T01:24:13.4090732Z # Subtest: native workspace page hints and cache eviction preserve arbitrary values and bounds
+2026-09-16T01:24:13.4091259Z ok 101 - native workspace page hints and cache eviction preserve arbitrary values and bounds
+2026-09-16T01:24:13.4091570Z   ---
+2026-09-16T01:24:13.4091720Z   duration_ms: 2193.712921
+2026-09-16T01:24:13.4091895Z   type: 'test'
+2026-09-16T01:24:13.4092042Z   ...
+2026-09-16T01:24:13.4092331Z # Subtest: workspace address-cache state survives a whole-machine image
+2026-09-16T01:24:13.4092746Z ok 102 - workspace address-cache state survives a whole-machine image
+2026-09-16T01:24:13.4093007Z   ---
+2026-09-16T01:24:13.4093158Z   duration_ms: 297.685761
+2026-09-16T01:24:13.4093399Z   type: 'test'
+2026-09-16T01:24:13.4093545Z   ...
+2026-09-16T01:24:13.4093882Z # Subtest: generic key and paged workspace operations execute as BF and reject boundaries
+2026-09-16T01:24:13.4094380Z ok 103 - generic key and paged workspace operations execute as BF and reject boundaries
+2026-09-16T01:24:13.4094686Z   ---
+2026-09-16T01:24:13.4094842Z   duration_ms: 146.82425
+2026-09-16T01:24:13.4095019Z   type: 'test'
+2026-09-16T01:24:13.4095168Z   ...
+2026-09-16T01:24:13.4095432Z # Subtest: boot manifests accept only local raw Thread source paths
+2026-09-16T01:24:13.4096352Z ok 104 - boot manifests accept only local raw Thread source paths
+2026-09-16T01:24:13.4096753Z   ---
+2026-09-16T01:24:13.4096978Z   duration_ms: 9.090213
+2026-09-16T01:24:13.4097186Z   type: 'test'
+2026-09-16T01:24:13.4097336Z   ...
+2026-09-16T01:24:13.4097699Z # Subtest: native bounded workspace output matches individual reads across pages and tape edges
+2026-09-16T01:24:13.4098377Z ok 105 - native bounded workspace output matches individual reads across pages and tape edges
+2026-09-16T01:24:13.4098717Z   ---
+2026-09-16T01:24:13.4098877Z   duration_ms: 498.201397
+2026-09-16T01:24:13.4099057Z   type: 'test'
+2026-09-16T01:24:13.4099211Z   ...
+2026-09-16T01:24:13.4099541Z # Subtest: an image resumes midway through the native one-hot dispatch and bulk output
+2026-09-16T01:24:13.4100019Z ok 106 - an image resumes midway through the native one-hot dispatch and bulk output
+2026-09-16T01:24:13.4100308Z   ---
+2026-09-16T01:24:13.4100459Z   duration_ms: 299.761017
+2026-09-16T01:24:13.4100630Z   type: 'test'
+2026-09-16T01:24:13.4100778Z   ...
+2026-09-16T01:24:13.4101146Z # Subtest: BF-owned instruction-page validation cache is discarded on compilation rollback
+2026-09-16T01:24:13.4101673Z ok 107 - BF-owned instruction-page validation cache is discarded on compilation rollback
+2026-09-16T01:24:13.4101984Z   ---
+2026-09-16T01:24:13.4102134Z   duration_ms: 614.816375
+2026-09-16T01:24:13.4102307Z   type: 'test'
+2026-09-16T01:24:13.4102459Z   ...
+2026-09-16T01:24:13.4102821Z # Subtest: source is stored, compiled and executed in BF; arbitrary expressions and typed control
+2026-09-16T01:24:13.4103348Z ok 108 - source is stored, compiled and executed in BF; arbitrary expressions and typed control
+2026-09-16T01:24:13.4103700Z   ---
+2026-09-16T01:24:13.4103861Z   duration_ms: 33756.015173
+2026-09-16T01:24:13.4104053Z   type: 'test'
+2026-09-16T01:24:13.4104210Z   ...
+2026-09-16T01:24:13.4104599Z # Subtest: invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+2026-09-16T01:24:13.4105188Z ok 109 - invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+2026-09-16T01:24:13.4105529Z   ---
+2026-09-16T01:24:13.4105793Z   duration_ms: 44972.040561
+2026-09-16T01:24:13.4105974Z   type: 'test'
+2026-09-16T01:24:13.4106128Z   ...
+2026-09-16T01:24:13.4106457Z # Subtest: exact dependency binding, pins, rollback, deletion refusal and stale handles
+2026-09-16T01:24:13.4106944Z ok 110 - exact dependency binding, pins, rollback, deletion refusal and stale handles
+2026-09-16T01:24:13.4107240Z   ---
+2026-09-16T01:24:13.4107393Z   duration_ms: 3534.860473
+2026-09-16T01:24:13.4107570Z   type: 'test'
+2026-09-16T01:24:13.4107721Z   ...
+2026-09-16T01:24:13.4108027Z # Subtest: all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+2026-09-16T01:24:13.4108667Z ok 111 - all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+2026-09-16T01:24:13.4108962Z   ---
+2026-09-16T01:24:13.4109114Z   duration_ms: 5270.147751
+2026-09-16T01:24:13.4109291Z   type: 'test'
+2026-09-16T01:24:13.4109444Z   ...
+2026-09-16T01:24:13.4109838Z # Subtest: bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+2026-09-16T01:24:13.4110446Z ok 112 - bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+2026-09-16T01:24:13.4110839Z   ---
+2026-09-16T01:24:13.4110993Z   duration_ms: 23682.201545
+2026-09-16T01:24:13.4111174Z   type: 'test'
+2026-09-16T01:24:13.4111320Z   ...
+2026-09-16T01:24:13.4111462Z 1..112
+2026-09-16T01:24:13.4111613Z # tests 112
+2026-09-16T01:24:13.4111762Z # suites 0
+2026-09-16T01:24:13.4111910Z # pass 112
+2026-09-16T01:24:13.4112054Z # fail 0
+2026-09-16T01:24:13.4112206Z # cancelled 0
+2026-09-16T01:24:13.4112366Z # skipped 0
+2026-09-16T01:24:13.4112531Z # todo 0
+2026-09-16T01:24:13.4112705Z # duration_ms 1092435.3455
+2026-09-16T01:24:13.4272960Z ##[group]Run git diff --exit-code
+2026-09-16T01:24:13.4273221Z [36;1mgit diff --exit-code[0m
+2026-09-16T01:24:13.4306488Z shell: /usr/bin/bash -e {0}
+2026-09-16T01:24:13.4306697Z env:
+2026-09-16T01:24:13.4306910Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:24:13.4307247Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-09-16T01:24:13.4307577Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:24:13.4307864Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:24:13.4308154Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:24:13.4308435Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-09-16T01:24:13.4308687Z ##[endgroup]
+2026-09-16T01:24:13.9370932Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:24:13.9371842Z Post job cleanup.
+2026-09-16T01:24:14.0361875Z (node:2902) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:24:14.0362556Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:24:14.0499506Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:24:14.0500425Z Post job cleanup.
+2026-09-16T01:24:14.1587636Z (node:2910) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:24:14.1588940Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:24:14.1816583Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/eight-instructions/eight-instructions --files-from manifest.txt --use-compress-program zstdmt
+2026-09-16T01:24:14.2606441Z Failed to save: Unable to reserve cache with key node-cache-Linux-x64-npm-d12282f467308705cc9127a6dec8293a301a34715e0692f8f25d28c51115836d, another job may be creating this cache.
+2026-09-16T01:24:14.2747657Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:24:14.2748571Z Post job cleanup.
+2026-09-16T01:24:14.3483846Z [command]/usr/bin/git version
+2026-09-16T01:24:14.3528559Z git version 2.55.0
+2026-09-16T01:24:14.3550916Z Temporarily overriding HOME='/home/runner/work/_temp/caf833f1-b8c3-49f2-a922-4f81fc9cb7f5' before making global git config changes
+2026-09-16T01:24:14.3552102Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-16T01:24:14.3554152Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eight-instructions/eight-instructions
+2026-09-16T01:24:14.3591104Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-16T01:24:14.3624278Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-16T01:24:14.3853970Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-16T01:24:14.3881515Z http.https://github.com/.extraheader
+2026-09-16T01:24:14.3894340Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-16T01:24:14.3926712Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-16T01:24:14.4159517Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-16T01:24:14.4194393Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-16T01:24:14.4543870Z Cleaning up orphan processes
+2026-09-16T01:24:14.4828065Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

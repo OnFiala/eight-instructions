@@ -1,0 +1,265 @@
+﻿2026-09-16T01:04:20.9151168Z Current runner version: '2.337.0'
+2026-09-16T01:04:20.9175194Z ##[group]Runner Image Provisioner
+2026-09-16T01:04:20.9176033Z Hosted Compute Agent
+2026-09-16T01:04:20.9176702Z Version: 20260828.587
+2026-09-16T01:04:20.9177410Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-16T01:04:20.9178156Z Build Date: 2026-08-28T16:44:25Z
+2026-09-16T01:04:20.9178935Z Worker ID: {390534eb-0323-4c3f-9e80-1f4d9f449e18}
+2026-09-16T01:04:20.9179682Z Azure Region: northcentralus
+2026-09-16T01:04:20.9180334Z ##[endgroup]
+2026-09-16T01:04:20.9181835Z ##[group]Operating System
+2026-09-16T01:04:20.9182491Z Ubuntu
+2026-09-16T01:04:20.9183098Z 24.04.5
+2026-09-16T01:04:20.9183619Z LTS
+2026-09-16T01:04:20.9184527Z ##[endgroup]
+2026-09-16T01:04:20.9185213Z ##[group]Runner Image
+2026-09-16T01:04:20.9185851Z Image: ubuntu-24.04
+2026-09-16T01:04:20.9186510Z Version: 20260907.300.1
+2026-09-16T01:04:20.9187742Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-16T01:04:20.9189404Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-16T01:04:20.9190406Z ##[endgroup]
+2026-09-16T01:04:20.9191601Z ##[group]GITHUB_TOKEN Permissions
+2026-09-16T01:04:20.9193507Z Contents: read
+2026-09-16T01:04:20.9194581Z Metadata: read
+2026-09-16T01:04:20.9195191Z ##[endgroup]
+2026-09-16T01:04:20.9197199Z Secret source: Actions
+2026-09-16T01:04:20.9198275Z Cache mode: write
+2026-09-16T01:04:20.9198942Z Prepare workflow directory
+2026-09-16T01:04:20.9633418Z Prepare all required actions
+2026-09-16T01:04:20.9703442Z Getting action download info
+2026-09-16T01:04:21.2047454Z Download action repository 'actions/checkout@11d5960a326750d5838078e36cf38b85af677262' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-16T01:04:21.3221253Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-09-16T01:04:21.4156217Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-09-16T01:04:21.5990631Z Complete job name: tests (literal-modules)
+2026-09-16T01:04:21.6701476Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:04:21.6710967Z ##[group]Run actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+2026-09-16T01:04:21.6711916Z with:
+2026-09-16T01:04:21.6712348Z   fetch-depth: 0
+2026-09-16T01:04:21.6712844Z   repository: OnFiala/eight-instructions
+2026-09-16T01:04:21.6717022Z   token: ***
+2026-09-16T01:04:21.6717473Z   ssh-strict: true
+2026-09-16T01:04:21.6717915Z   ssh-user: git
+2026-09-16T01:04:21.6718362Z   persist-credentials: true
+2026-09-16T01:04:21.6718853Z   clean: true
+2026-09-16T01:04:21.6719322Z   sparse-checkout-cone-mode: true
+2026-09-16T01:04:21.6719842Z   fetch-tags: false
+2026-09-16T01:04:21.6720320Z   show-progress: true
+2026-09-16T01:04:21.6720792Z   lfs: false
+2026-09-16T01:04:21.6721210Z   submodules: false
+2026-09-16T01:04:21.6721670Z   set-safe-directory: true
+2026-09-16T01:04:21.6722183Z   allow-unsafe-pr-checkout: false
+2026-09-16T01:04:21.6722967Z ##[endgroup]
+2026-09-16T01:04:21.7711584Z Syncing repository: OnFiala/eight-instructions
+2026-09-16T01:04:21.7714333Z ##[group]Getting Git version info
+2026-09-16T01:04:21.7715646Z Working directory is '/home/runner/work/eight-instructions/eight-instructions'
+2026-09-16T01:04:21.7717472Z [command]/usr/bin/git version
+2026-09-16T01:04:21.7767450Z git version 2.55.0
+2026-09-16T01:04:21.7790828Z ##[endgroup]
+2026-09-16T01:04:21.7806221Z Temporarily overriding HOME='/home/runner/work/_temp/d9e5e86e-8d76-4a56-8cf0-d7843c99a9d5' before making global git config changes
+2026-09-16T01:04:21.7808425Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-16T01:04:21.7811713Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eight-instructions/eight-instructions
+2026-09-16T01:04:21.7860702Z Deleting the contents of '/home/runner/work/eight-instructions/eight-instructions'
+2026-09-16T01:04:21.7870404Z ##[group]Initializing the repository
+2026-09-16T01:04:21.7878666Z [command]/usr/bin/git init /home/runner/work/eight-instructions/eight-instructions
+2026-09-16T01:04:21.7971275Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-16T01:04:21.7972789Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-16T01:04:21.7973916Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-16T01:04:21.7974927Z hint: call:
+2026-09-16T01:04:21.7975344Z hint:
+2026-09-16T01:04:21.7975885Z hint: 	git config --global init.defaultBranch <name>
+2026-09-16T01:04:21.7976511Z hint:
+2026-09-16T01:04:21.7977111Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-16T01:04:21.7978085Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-16T01:04:21.7978825Z hint:
+2026-09-16T01:04:21.7979252Z hint: 	git branch -m <name>
+2026-09-16T01:04:21.7979741Z hint:
+2026-09-16T01:04:21.7980377Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-16T01:04:21.7986157Z Initialized empty Git repository in /home/runner/work/eight-instructions/eight-instructions/.git/
+2026-09-16T01:04:21.7995633Z [command]/usr/bin/git remote add origin https://github.com/OnFiala/eight-instructions
+2026-09-16T01:04:21.8044533Z ##[endgroup]
+2026-09-16T01:04:21.8045681Z ##[group]Disabling automatic garbage collection
+2026-09-16T01:04:21.8048243Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-16T01:04:21.8079207Z ##[endgroup]
+2026-09-16T01:04:21.8080303Z ##[group]Setting up auth
+2026-09-16T01:04:21.8086366Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-16T01:04:21.8119132Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-16T01:04:21.8486574Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-16T01:04:21.8526376Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-16T01:04:21.8785125Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-16T01:04:21.8814963Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-16T01:04:21.9053060Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-16T01:04:21.9091504Z ##[endgroup]
+2026-09-16T01:04:21.9092475Z ##[group]Fetching the repository
+2026-09-16T01:04:21.9102745Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/* +c9fa79a3914cd7e0ec2b5e0709192109c313163c:refs/remotes/pull/3/merge
+2026-09-16T01:04:28.4166921Z From https://github.com/OnFiala/eight-instructions
+2026-09-16T01:04:28.4170214Z  * [new branch]      build-002-development                    -> origin/build-002-development
+2026-09-16T01:04:28.4173054Z  * [new branch]      build-002-release                        -> origin/build-002-release
+2026-09-16T01:04:28.4175389Z  * [new branch]      build-003-development                    -> origin/build-003-development
+2026-09-16T01:04:28.4177072Z  * [new branch]      main                                     -> origin/main
+2026-09-16T01:04:28.4178511Z  * [new tag]         build-001                                -> build-001
+2026-09-16T01:04:28.4180446Z  * [new tag]         build-002                                -> build-002
+2026-09-16T01:04:28.4182744Z  * [new ref]         c9fa79a3914cd7e0ec2b5e0709192109c313163c -> pull/3/merge
+2026-09-16T01:04:28.4186476Z ##[endgroup]
+2026-09-16T01:04:28.4187679Z ##[group]Determining the checkout info
+2026-09-16T01:04:28.4189096Z ##[endgroup]
+2026-09-16T01:04:28.4189950Z [command]/usr/bin/git sparse-checkout disable
+2026-09-16T01:04:28.4225226Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-16T01:04:28.4258877Z ##[group]Checking out the ref
+2026-09-16T01:04:28.4264024Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/3/merge
+2026-09-16T01:04:28.9891275Z Note: switching to 'refs/remotes/pull/3/merge'.
+2026-09-16T01:04:28.9891866Z 
+2026-09-16T01:04:28.9892273Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-16T01:04:28.9893207Z changes and commit them, and you can discard any commits you make in this
+2026-09-16T01:04:28.9894270Z state without impacting any branches by switching back to a branch.
+2026-09-16T01:04:28.9894591Z 
+2026-09-16T01:04:28.9894833Z If you want to create a new branch to retain commits you create, you may
+2026-09-16T01:04:28.9895325Z do so (now or later) by using -c with the switch command. Example:
+2026-09-16T01:04:28.9895610Z 
+2026-09-16T01:04:28.9897238Z   git switch -c <new-branch-name>
+2026-09-16T01:04:28.9897649Z 
+2026-09-16T01:04:28.9897861Z Or undo this operation with:
+2026-09-16T01:04:28.9898170Z 
+2026-09-16T01:04:28.9898373Z   git switch -
+2026-09-16T01:04:28.9898670Z 
+2026-09-16T01:04:28.9899168Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-16T01:04:28.9899740Z 
+2026-09-16T01:04:28.9900380Z HEAD is now at c9fa79a Merge ebc956d6cad5c071592e8ce58ace2371435c0a1e into a80087662a66e7d04c1fc77cbce87cf996d60e63
+2026-09-16T01:04:28.9920184Z ##[endgroup]
+2026-09-16T01:04:28.9962768Z [command]/usr/bin/git log -1 --format=%H
+2026-09-16T01:04:28.9988740Z c9fa79a3914cd7e0ec2b5e0709192109c313163c
+2026-09-16T01:04:29.0295586Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:04:29.0297546Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-09-16T01:04:29.0297952Z with:
+2026-09-16T01:04:29.0298187Z   node-version: 22
+2026-09-16T01:04:29.0298430Z   cache: npm
+2026-09-16T01:04:29.0298662Z   always-auth: false
+2026-09-16T01:04:29.0298916Z   check-latest: false
+2026-09-16T01:04:29.0301257Z   token: ***
+2026-09-16T01:04:29.0301491Z ##[endgroup]
+2026-09-16T01:04:29.1685123Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+2026-09-16T01:04:29.1689310Z (node:2258) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:04:29.1690202Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:04:29.1692835Z ##[group]Environment details
+2026-09-16T01:04:29.5588915Z node: v22.23.2
+2026-09-16T01:04:29.5589691Z npm: 10.9.8
+2026-09-16T01:04:29.5590295Z yarn: 1.22.22
+2026-09-16T01:04:29.5591523Z ##[endgroup]
+2026-09-16T01:04:29.5616425Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+2026-09-16T01:04:29.7017999Z /home/runner/.npm
+2026-09-16T01:04:29.8184526Z npm cache is not found
+2026-09-16T01:04:29.8376009Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:04:29.8377475Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-09-16T01:04:29.8377869Z with:
+2026-09-16T01:04:29.8378319Z   python-version: 3.14
+2026-09-16T01:04:29.8378563Z   check-latest: false
+2026-09-16T01:04:29.8381033Z   token: ***
+2026-09-16T01:04:29.8381259Z   update-environment: true
+2026-09-16T01:04:29.8381520Z   allow-prereleases: false
+2026-09-16T01:04:29.8381758Z   freethreaded: false
+2026-09-16T01:04:29.8381982Z ##[endgroup]
+2026-09-16T01:04:29.9664907Z ##[group]Installed versions
+2026-09-16T01:04:29.9757246Z (node:2302) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:04:29.9758775Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:04:29.9759717Z Successfully set up CPython (3.14.7)
+2026-09-16T01:04:29.9760492Z ##[endgroup]
+2026-09-16T01:04:29.9923190Z ##[group]Run npm ci --ignore-scripts
+2026-09-16T01:04:29.9923578Z [36;1mnpm ci --ignore-scripts[0m
+2026-09-16T01:04:29.9975479Z shell: /usr/bin/bash -e {0}
+2026-09-16T01:04:29.9975766Z env:
+2026-09-16T01:04:29.9976055Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:29.9976537Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-09-16T01:04:29.9976977Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:29.9977412Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:29.9977848Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:29.9978243Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-09-16T01:04:29.9978574Z ##[endgroup]
+2026-09-16T01:04:31.4724154Z 
+2026-09-16T01:04:31.4725267Z added 1 package, and audited 2 packages in 1s
+2026-09-16T01:04:31.4731761Z 
+2026-09-16T01:04:31.4732201Z found 0 vulnerabilities
+2026-09-16T01:04:31.5117676Z ##[group]Run npm run verify:ci -- literal-modules
+2026-09-16T01:04:31.5118094Z [36;1mnpm run verify:ci -- literal-modules[0m
+2026-09-16T01:04:31.5157985Z shell: /usr/bin/bash -e {0}
+2026-09-16T01:04:31.5158248Z env:
+2026-09-16T01:04:31.5158527Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.5158981Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-09-16T01:04:31.5159406Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.5159812Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.5160189Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:04:31.5160563Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-09-16T01:04:31.5160897Z ##[endgroup]
+2026-09-16T01:04:31.6172848Z 
+2026-09-16T01:04:31.6173324Z > eight-instructions@0.3.0 verify:ci
+2026-09-16T01:04:31.6174206Z > npm run verify:artifacts && node tools/run-ci-tests.mjs literal-modules
+2026-09-16T01:04:31.6174544Z 
+2026-09-16T01:04:31.7181648Z 
+2026-09-16T01:04:31.7182224Z > eight-instructions@0.3.0 verify:artifacts
+2026-09-16T01:04:31.7183932Z > python3 kernel/build.py --check && node tools/build-executor.mjs --check && node tools/package-assets.mjs --check && node tools/build-history.mjs --check && node tools/build-archives.mjs --check && node tools/build-industry-image.mjs --check && node tools/audit.mjs
+2026-09-16T01:04:31.7184952Z 
+2026-09-16T01:04:32.8390602Z {"instructions": 98687674, "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c", "cells": 398704}
+2026-09-16T01:04:32.9310363Z Generic BF executor: 744 bytes
+2026-09-16T01:04:32.9696573Z Raw program assets match their canonical sources.
+2026-09-16T01:04:32.9997291Z Public history matches canonical build records.
+2026-09-16T01:04:33.0941490Z build-001: 17 verbatim files; HTML relocation recorded.
+2026-09-16T01:04:33.3955446Z build-002: 52 verbatim files; HTML relocation recorded.
+2026-09-16T01:06:38.2648889Z Initial image PASS: fresh BF boot reproduces 18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04; 123527.23 ms for this check.
+2026-09-16T01:06:39.5066070Z Boundary audit PASS: 235 classified sources. Hashes are review gates, not a semantic proof.
+2026-09-16T01:06:39.5483296Z {"suite":"literal-modules","testFiles":["tests/native-reference.test.mjs"]}
+2026-09-16T01:06:39.5884521Z TAP version 13
+2026-09-16T01:17:12.0052193Z # {"literalNativeInput":"7 5 0 module-run . . cr","literalInstructions":287970502251,"literalElapsedMs":612562.8296960001,"output":"1 22 \\n","wholeTapeEqual":true}
+2026-09-16T01:23:09.1656189Z # {"literalNativeInput":"2 0 source-write hi\\n0 module-compile","literalInstructions":175188163879,"literalElapsedMs":357035.690927,"output":"SOURCE-STORED 0 2 \\nWS-ERROR 5 \\n","wholeTapeEqual":true}
+2026-09-16T01:23:09.1680993Z # Subtest: literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+2026-09-16T01:23:09.1687811Z ok 1 - literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+2026-09-16T01:23:09.1688924Z   ---
+2026-09-16T01:23:09.1689274Z   duration_ms: 988289.566363
+2026-09-16T01:23:09.1689626Z   type: 'test'
+2026-09-16T01:23:09.1689900Z   ...
+2026-09-16T01:23:09.1999048Z 1..1
+2026-09-16T01:23:09.1999626Z # tests 1
+2026-09-16T01:23:09.2001268Z # suites 0
+2026-09-16T01:23:09.2002139Z # pass 1
+2026-09-16T01:23:09.2002971Z # fail 0
+2026-09-16T01:23:09.2005037Z # cancelled 0
+2026-09-16T01:23:09.2005683Z # skipped 0
+2026-09-16T01:23:09.2006421Z # todo 0
+2026-09-16T01:23:09.2007165Z # duration_ms 989623.076605
+2026-09-16T01:23:09.2169511Z ##[group]Run git diff --exit-code
+2026-09-16T01:23:09.2169846Z [36;1mgit diff --exit-code[0m
+2026-09-16T01:23:09.2206638Z shell: /usr/bin/bash -e {0}
+2026-09-16T01:23:09.2206897Z env:
+2026-09-16T01:23:09.2207167Z   pythonLocation: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:23:09.2207601Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib/pkgconfig
+2026-09-16T01:23:09.2208034Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:23:09.2208422Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:23:09.2208795Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.14.7/x64
+2026-09-16T01:23:09.2209184Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.14.7/x64/lib
+2026-09-16T01:23:09.2209504Z ##[endgroup]
+2026-09-16T01:23:09.8173456Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:23:09.8175037Z Post job cleanup.
+2026-09-16T01:23:09.9345693Z (node:2812) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:23:09.9347219Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:23:09.9516438Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:23:09.9518578Z Post job cleanup.
+2026-09-16T01:23:10.0816605Z (node:2820) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-16T01:23:10.0818284Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-16T01:23:10.1061217Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/eight-instructions/eight-instructions --files-from manifest.txt --use-compress-program zstdmt
+2026-09-16T01:23:10.2856409Z (node:2820) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-16T01:23:10.5350324Z Sent 1662286 of 1662286 (100.0%), 6.1 MBs/sec
+2026-09-16T01:23:10.7210567Z Cache saved with the key: node-cache-Linux-x64-npm-d12282f467308705cc9127a6dec8293a301a34715e0692f8f25d28c51115836d
+2026-09-16T01:23:10.7354658Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-16T01:23:10.7355842Z Post job cleanup.
+2026-09-16T01:23:10.8154367Z [command]/usr/bin/git version
+2026-09-16T01:23:10.8184266Z git version 2.55.0
+2026-09-16T01:23:10.8218315Z Temporarily overriding HOME='/home/runner/work/_temp/97b91596-e289-438f-8c12-2b895aa72d6c' before making global git config changes
+2026-09-16T01:23:10.8220197Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-16T01:23:10.8224030Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/eight-instructions/eight-instructions
+2026-09-16T01:23:10.8259454Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-16T01:23:10.8292307Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-16T01:23:10.8535648Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-16T01:23:10.8563601Z http.https://github.com/.extraheader
+2026-09-16T01:23:10.8576806Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-16T01:23:10.8620005Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-16T01:23:10.8861999Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-16T01:23:10.8904502Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-16T01:23:10.9258797Z Cleaning up orphan processes
+2026-09-16T01:23:10.9574882Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

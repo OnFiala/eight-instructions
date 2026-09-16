@@ -118,3 +118,21 @@ Local npm run verify remains the complete suite. Only wall deadlines increase;
 all workloads,2e12process-reference instruction bound and whole-state assertions
 remain. The expected total remains114tests, with no skips. The revised hosted
 run must finish before publication; partition validation alone is not test PASS.
+
+## Completed hosted and public gates
+
+Both exact-ebc hosted runs35042602081 and35042596203 passed114tests,0fail/skip.
+Core112, literal-modules1 and literal-processes1 each passed artifact/audit and
+clean-tree checks; aggregate verify passed. ci-final-pr.json, ci-final-push.json
+and all three successful job logs preserve the evidence. PR3 merged normally.
+
+Functional Site version5passed145anonymous file checks (142exact,3provider-only
+HTML insertions). Public source edit/refusal, loop continuation, own repair,
+export/import with source distinction and subsequent native round5are recorded in
+public-verification.json. Publicly downloaded ZIP replayed both67input branches
+in a new CLI directory. This was concurrent functional verification, not an isolated
+performance measurement. Its timings must not replace metrics.json.
+
+The final metadata-only closure and exact deployed projection are bound by the
+release asset final-deployment.json. Runtime/kernel/renderer remain the verified
+f9implementation. Final tag CI and anonymous final-file checks are separate receipts.

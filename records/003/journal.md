@@ -297,3 +297,33 @@ This is verification orchestration, not guest process scheduling. Native artifac
 source identity and the staged functional Site assets are unchanged. Added the
 CI-only driver to the boundary manifest. Stored Site version5remains undeployed;
 Build002remains public. No branch rule, account setting or security control changed.
+
+## Hosted verification and first Build003 public deployment
+
+PR CI35042602081 and push CI35042596203 both completed successfully on
+ebc956d6cad5c071592e8ce58ace2371435c0a1e:112core+1literal-module+1literal-process
+=114tests,0fail/skip. Whole-tape process reference covered139460206476and
+909504001134commands; the latter took1994732.472630ms on its hosted runner.
+The prior45-minute cancellations remain incomplete failures of the job budget,
+not silently replaced by a claim that they passed. Saved successful job logs and
+full run receipts. Normal PR3merge is ab8275256273ec4f009d01de9d88ccc67652026f.
+
+Deployed the already-pushed/saved exact f9functional projection through existing
+Sites version5, deployment appgdep_6aa9f541be48819190fc64420925e817. No audience,
+account, security or service change. Anonymous curl checks passed145publicfiles:
+142exactbyte matches and3HTML documents with only provider challenge-script
+insertion. Current kernel and both historical kernels match the released sources.
+The same runtime files are verified by ebcCI; their only public-directory difference
+is derived history.json. Public interaction/reproduction checks are recorded in
+the following release evidence, separately from successful publication itself.
+
+Public contextual batch3→5published version7; a custom impossible-word source
+was stored then rejected, retaining activev7. Added native infinite loop, observed
+rounds1..3and independent orders/send/receive. Paused loop, compiled custom state+7
+source and explicitly repaired; round4private state7/version9. Exported then
+imported into a fresh public instance; continued to round5/account96. Editor
+correctly showed the failed stored factory draft separately from activebatch5.
+Two role-locator evaluate read attempts timed out despite a visible editor; DOM
+snapshot proved exact restored source. No product failure or repair was invented.
+Public ZIP downloaded anonymously with exact hash; fresh-directory CLI replay
+passed both67input branches. Runtime remains unchanged; release closure is metadata.

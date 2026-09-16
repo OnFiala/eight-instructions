@@ -1,0 +1,377 @@
+- link "Skip to city controls":
+  - /url: "#object-picker"
+- banner:
+  - link "8 INSTRUCTIONS":
+    - /url: "#"
+  - generic: SMALL PROGRAMS. REAL CONSEQUENCES.
+  - navigation "Build navigation":
+    - link "BUILD 003":
+      - /url: "#how"
+    - link "002":
+      - /url: ./build-002/
+    - link "001":
+      - /url: ./build-001/
+    - link "SOURCE ↗":
+      - /url: https://github.com/OnFiala/eight-instructions
+- main:
+  - region "A city made of programs.":
+    - heading "A city made of programs." [level=1]
+    - paragraph: Select a building. Change its program. Watch the city respond.
+    - text: Brainfuck (BF) programming language
+    - code: "> < + - . , [ ]"
+    - generic: runs the programs behind this city.
+    - img "Industrial city at native round 4. 0 deliveries. West station 0 of 8 panels. East station 0 of 8 panels. Use the object menu for keyboard controls."
+    - text: ▴
+    - generic: "N"
+    - button "Zoom in": +
+    - button "Zoom out": −
+    - button "Reset camera": ↺
+    - generic: YOUR CITY'S FIRST PROJECT
+    - strong: Build the two stations.
+    - status: Ready · round 4
+    - button "Run the city": Run
+    - button "Advance one logical scheduler round": Step
+    - button "Export"
+    - text: Import
+    - button "Import whole workspace"
+    - generic: Vans may pass behind buildings · select their numbered markers · drag to pan
+    - complementary "loop.thread":
+      - generic: SELECT IN THE CITY, OR CHOOSE HERE
+      - combobox "SELECT IN THE CITY, OR CHOOSE HERE":
+        - option "South depot"
+        - option "North depot"
+        - option "Riverside factory"
+        - option "East factory"
+        - option "West station"
+        - option "East station"
+        - option "Van 01"
+        - option "Van 02"
+        - option "Van 03"
+        - option "Van 04"
+        - option "North bridge signal"
+        - option "Harbor bridge signal"
+        - option "loop.thread" [selected]
+        - option "Street 0–1"
+        - option "Street 2–3"
+        - option "Street 4–5"
+        - option "Street 6–7"
+        - option "Street 8–9"
+        - option "Street 10–11"
+        - option "Street 12–13"
+        - option "Street 14–15"
+        - option "Street 0–4"
+        - option "Street 1–5"
+        - option "Street 2–6"
+        - option "Street 3–7"
+        - option "Street 4–8"
+        - option "Street 5–9"
+        - option "Street 6–10"
+        - option "Street 7–11"
+        - option "Street 8–12"
+        - option "Street 9–13"
+        - option "Street 10–14"
+        - option "Street 11–15"
+        - option "North Bridge"
+        - option "Harbor Bridge"
+        - option "Market Bridge"
+      - heading "loop.thread" [level=2]
+      - generic: Ready
+      - paragraph: An isolated program with private state, a continuation and a bounded mailbox.
+      - strong: Ready
+      - paragraph: "0/4 messages waiting · 4 execution turns. Private state: 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0."
+      - generic "› Thread source module loop.thread" [active]:
+        - text: › Thread source module
+        - generic: loop.thread
+      - generic: Stored in BF · matches active version
+      - generic: v9
+      - generic: Draft Thread source
+      - textbox "Draft Thread source": ": loop.thread schema# 1 0 state@ 7 + 0 state! yield ;"
+      - paragraph:
+        - text: Your draft → source stored in BF → active compiled version. Up to 512 ASCII bytes.
+        - link "Language ↗":
+          - /url: https://github.com/OnFiala/eight-instructions/blob/main/docs/processes.md
+      - generic "› Compare stored and active source"
+      - button "Apply program →"
+      - button "↶ Undo program change"
+      - status: Workspace restored. Sources, messages, stock and unfinished work came from the image. Earlier event history is unavailable.
+      - button "Pause program"
+      - button "⌄ Inspect this object's actual BF data"
+    - heading "Materials become a station ROUND 4" [level=3]:
+      - text: Materials become a station
+      - generic: ROUND 4
+    - generic: "1"
+    - text: Make panels
+    - generic: 0 native completions
+    - generic: →
+    - generic: "2"
+    - text: Deliver cargo
+    - generic: 0 cargo transfers
+    - generic: →
+    - generic: "3"
+    - text: Build stations
+    - generic: 0/8 · 0/8 panels
+    - heading "Reusable program memory 9 / 16" [level=3]:
+      - text: Reusable program memory
+      - generic: 9 / 16
+    - 'generic "Arena 1: version 1; 3 references; 1 allocations"'
+    - 'generic "Arena 2: version 2; 1 references; 1 allocations"'
+    - 'generic "Arena 3: version 3; 2 references; 1 allocations"'
+    - 'generic "Arena 4: version 4; 7 references; 1 allocations"'
+    - 'generic "Arena 5: version 5; 3 references; 1 allocations"'
+    - 'generic "Arena 6: version 6; 3 references; 1 allocations"'
+    - 'generic "Arena 7: version 7; 2 references; 1 allocations"'
+    - 'generic "Arena 8: version 8; 1 references; 1 allocations"'
+    - 'generic "Arena 9: version 9; 2 references; 1 allocations"'
+    - 'generic "Arena 10: free; 0 references; 0 allocations"'
+    - 'generic "Arena 11: free; 0 references; 0 allocations"'
+    - 'generic "Arena 12: free; 0 references; 0 allocations"'
+    - 'generic "Arena 13: free; 0 references; 0 allocations"'
+    - 'generic "Arena 14: free; 0 references; 0 allocations"'
+    - 'generic "Arena 15: free; 0 references; 0 allocations"'
+    - 'generic "Arena 16: free; 0 references; 0 allocations"'
+    - paragraph: 238/4096 code words · 13/16 process contexts
+    - generic: Active
+    - generic: Retained
+    - generic: Free
+    - generic: 0 reused arenas
+    - generic: "Last native operation: 0.21 s"
+    - generic: "BF tape: 398,704 × 16 bits"
+    - generic: Visual interpolation is separate from native simulation speed.
+    - button "Pause BF execution" [disabled]
+  - paragraph: KEEP THE INPUTS. CHANGE THE PROGRAM.
+  - heading "Different programs. The same starting world." [level=2]
+  - heading "Compare a delivery rule." [level=3]
+  - paragraph: Run the same number of logical rounds in two new BF machines. Both start from the same snapshot and receive the same external inputs. Draft a different batch value or source in the object panel, without applying it, then compare it with the active program. Bridges remain in the same state.
+  - generic: Logical rounds per machine
+  - spinbutton "Logical rounds per machine": "24"
+  - button "Compute both versions"
+  - paragraph: Fresh native computation. Results are not prescribed in advance.
+  - button "Download this experiment" [disabled]
+  - heading "One broken program, a working city." [level=3]
+  - paragraph: An infinite loop receives a bounded execution turn. Other eligible programs keep running. Pause or repair that participant without resetting the whole world.
+  - button "Add a looping test program"
+  - paragraph: This creates a real extra BF process, within the sixteen-slot limit. Its source and state appear in the object menu. Industrial cargo stays with its owner.
+  - button "Add a van at the selected node" [disabled]
+  - button "Retire selected participant"
+  - paragraph: BF checks capacity, schema and ownership. Objects holding material or unfinished jobs cannot be discarded.
+  - paragraph: THE CITY IS THE EXAMPLE. BRAINFUCK IS THE EXPERIMENT.
+  - heading "Eight instructions. Programs that cooperate." [level=2]
+  - heading "Thread makes the programs readable." [level=3]
+  - paragraph:
+    - text: "The Brainfuck programming language has eight instructions:"
+    - code: "> < + - . , [ ]"
+    - text: . They move a pointer, change a cell, read or write a byte, and loop. The BF kernel implements Thread, a small stack language used for the city's programs.
+  - paragraph: Build 003 adds resumable processes, bounded message queues and a deterministic scheduler inside BF. Depots, factories, vans, stations and traffic signals run distinct programs. BF also owns inventory, routes, road reservations and construction.
+  - paragraph: Source is stored and compiled inside BF. Old suspended calls keep their version. New invocations adopt an accepted update. A declared incompatible state/message schema is refused. Freed contexts and version arenas can be reused.
+  - heading "The host executes and draws." [level=3]
+  - paragraph: Python emits the initial BF kernel. A generic JavaScript/WebAssembly executor runs its eight instructions. JavaScript carries raw input, stores opaque machine images and draws native output. It does not schedule guest processes, deliver their messages, compile their rules or simulate the city.
+  - paragraph: Architectural images are graphical assets. Materials, cargo, phases of construction and routes are selected from actual BF output. Smooth movement interpolates only between observed positions. This is logical concurrency in one BF machine, not a full operating system or self-hosting.
+  - paragraph: "Resources are finite: sixteen processes, four messages per mailbox, eight modules and sixteen version arenas. Native work can take seconds; camera movement remains available while it computes."
+  - link "BF / host boundary ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/blob/main/boundary.json
+  - link "Build 003 evidence ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/tree/main/records/003
+  - link "Actual BF kernel ↓":
+    - /url: ./kernel.bf.gz
+  - link "Reproduction package ↓":
+    - /url: ./reproduction/build-003.zip
+  - link "CI ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/actions
+  - generic "› Workspace, source and raw machine tools"
+  - paragraph: ONE CONTINUING EXPERIMENT
+  - heading "Every build keeps its evidence." [level=2]
+  - paragraph: Astra is the sole coding and architecture author. The owner supplies the challenge and preferences. Self-review and tests are evidence from the same author, not an independent audit.
+  - list:
+    - generic: "001"
+    - heading "A programmable environment" [level=3]
+    - paragraph: Thread, persistent data and route computation inside BF.
+    - link "Open the original machine →":
+      - /url: ./build-001/
+    - generic: "002"
+    - heading "A city you can reprogram" [level=3]
+    - paragraph: Named sources, compiled modules, safe versions, rollback and arena reuse.
+    - link "Open Living Dispatch →":
+      - /url: ./build-002/
+    - generic: "003"
+    - heading "A city made of programs" [level=3]
+    - paragraph: Stateful participants, messages and a shared industrial project.
+    - link "Implementation and verification record ↗":
+      - /url: https://github.com/OnFiala/eight-instructions/tree/main/records/003
+- contentinfo:
+  - text: 8 INSTRUCTIONS · ASTRA / HUMAN CHALLENGE
+  - generic: BF owns the computation. The host makes it visible.
+
+
+> industry-state
+INDUSTRY 3 4 1 46 2 0 0 0 
+NODE 0 0 0 
+NODE 1 20 0 
+NODE 2 40 0 
+NODE 3 60 0 
+NODE 4 0 20 
+NODE 5 20 20 
+NODE 6 40 20 
+NODE 7 60 20 
+NODE 8 0 40 
+NODE 9 20 40 
+NODE 10 40 40 
+NODE 11 60 40 
+NODE 12 0 60 
+NODE 13 20 60 
+NODE 14 40 60 
+NODE 15 60 60 
+I-ROAD 0 0 1 2 0 1 1 1 0 
+I-ROAD 1 1 0 2 0 1 1 1 0 
+I-ROAD 2 2 3 2 0 1 1 1 0 
+I-ROAD 3 3 2 2 0 1 1 1 0 
+I-ROAD 4 4 5 2 0 1 1 1 0 
+I-ROAD 5 5 4 2 0 1 1 1 0 
+I-ROAD 6 6 7 2 0 1 1 1 0 
+I-ROAD 7 7 6 2 0 1 1 1 0 
+I-ROAD 8 8 9 2 0 1 1 1 0 
+I-ROAD 9 9 8 2 0 1 1 1 0 
+I-ROAD 10 10 11 2 0 1 1 1 0 
+I-ROAD 11 11 10 2 0 1 1 1 0 
+I-ROAD 12 12 13 2 0 1 1 1 0 
+I-ROAD 13 13 12 2 0 1 1 1 0 
+I-ROAD 14 14 15 2 0 1 1 1 0 
+I-ROAD 15 15 14 2 0 1 1 1 0 
+I-ROAD 16 0 4 2 0 1 1 1 0 
+I-ROAD 17 4 0 2 0 1 1 1 0 
+I-ROAD 18 1 5 2 0 1 1 1 0 
+I-ROAD 19 5 1 2 0 1 1 1 0 
+I-ROAD 20 2 6 2 0 1 1 1 0 
+I-ROAD 21 6 2 2 0 1 1 1 0 
+I-ROAD 22 3 7 2 0 1 1 1 0 
+I-ROAD 23 7 3 2 0 1 1 1 0 
+I-ROAD 24 4 8 2 0 1 1 1 0 
+I-ROAD 25 8 4 2 0 1 1 1 0 
+I-ROAD 26 5 9 2 0 1 1 1 0 
+I-ROAD 27 9 5 2 0 1 1 1 0 
+I-ROAD 28 6 10 2 0 1 1 1 0 
+I-ROAD 29 10 6 2 0 1 1 1 0 
+I-ROAD 30 7 11 2 0 1 1 1 0 
+I-ROAD 31 11 7 2 0 1 1 1 0 
+I-ROAD 32 8 12 2 0 1 1 1 0 
+I-ROAD 33 12 8 2 0 1 1 1 0 
+I-ROAD 34 9 13 2 0 1 1 1 0 
+I-ROAD 35 13 9 2 0 1 1 1 0 
+I-ROAD 36 10 14 2 0 1 1 1 0 
+I-ROAD 37 14 10 2 0 1 1 1 0 
+I-ROAD 38 11 15 2 0 1 1 1 0 
+I-ROAD 39 15 11 2 0 1 1 1 0 
+I-ROAD 40 1 2 6 0 1 1 1 0 
+I-ROAD 41 2 1 6 0 1 1 1 0 
+I-ROAD 42 9 10 2 5 1 1 1 0 
+I-ROAD 43 10 9 2 5 1 1 1 0 
+I-ROAD 44 5 6 8 0 1 1 1 0 
+I-ROAD 45 6 5 8 0 1 1 1 0 
+ENTITY 0 1 1 12 42 0 0 0 12 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 
+TRAVEL 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+JOB 0 4 1 1 3 1 6 7 
+ENTITY 1 2 1 3 42 0 0 0 3 0 0 0 0 0 0 0 0 64 3 0 0 8 0 0 
+TRAVEL 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+JOB 1 4 2 2 4 1 6 9 
+ENTITY 2 3 2 4 0 0 0 0 4 0 1 6 0 0 0 1 0 24 5 0 0 8 4 0 
+TRAVEL 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ENTITY 3 4 2 11 0 0 0 0 11 0 2 5 0 0 0 2 0 24 3 0 0 8 4 0 
+TRAVEL 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ENTITY 4 5 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 
+TRAVEL 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ENTITY 5 6 4 15 0 0 0 0 15 0 0 0 0 0 0 0 0 24 3 0 0 8 0 0 
+TRAVEL 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ENTITY 6 7 3 12 0 0 1 6 4 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 
+TRAVEL 7 0 0 0 0 0 1 12 0 0 0 0 1 0 0 4 0 1 2 4 
+I-PATH 7 0 
+ENTITY 7 8 3 12 0 0 0 0 12 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 
+TRAVEL 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 
+I-PATH 8 0 
+ENTITY 8 9 3 3 0 0 1 6 11 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 
+TRAVEL 9 0 0 0 0 0 1 3 0 0 0 0 1 0 0 4 0 2 2 4 
+I-PATH 9 0 
+ENTITY 9 10 3 3 0 0 0 0 3 0 0 0 0 0 0 0 0 24 3 1 0 8 0 0 
+TRAVEL 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4 0 0 0 0 
+I-PATH 10 0 
+ENTITY 10 11 5 1 0 0 0 0 1 0 0 0 0 0 0 0 0 24 3 0 40 8 0 0 
+TRAVEL 11 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ENTITY 11 12 5 9 0 0 0 0 9 0 0 0 0 0 0 0 0 24 3 0 42 8 0 0 
+TRAVEL 12 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+ACCOUNT 96 96 0 0 96 1 
+PROCESSES 4 13 13 0 4 4 
+PROCESS 0 1 1 0 1 0 21 0 0 0 0 4 32 1 0 0 1 
+PRIVATE 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 1 1 2 0 1 0 21 0 0 0 0 4 32 1 0 0 1 
+PRIVATE 2 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 2 1 3 1 7 0 45 0 0 0 0 4 64 0 0 0 1 
+PRIVATE 3 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 3 1 4 2 3 0 45 0 0 0 0 4 64 0 0 0 1 
+PRIVATE 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 4 1 5 4 5 0 21 0 0 0 0 4 28 0 0 0 1 
+PRIVATE 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 5 1 6 4 5 0 21 0 0 0 0 4 28 0 0 0 1 
+PRIVATE 6 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 6 1 7 3 4 0 27 0 0 0 0 4 48 1 0 0 1 
+PRIVATE 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 7 1 8 3 4 0 27 0 0 0 0 4 44 0 0 0 1 
+PRIVATE 8 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 8 1 9 3 4 0 27 0 0 0 0 4 48 1 0 0 1 
+PRIVATE 9 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 9 1 10 3 4 0 27 0 0 0 0 4 44 0 0 0 1 
+PRIVATE 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 10 1 11 5 6 0 18 0 0 0 0 4 52 0 0 0 1 
+PRIVATE 11 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 11 1 12 5 6 0 18 0 0 0 0 4 52 0 0 0 1 
+PRIVATE 12 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+PROCESS 12 1 13 6 9 9 10 0 0 0 0 4 103 0 0 1 0 
+PRIVATE 13 7 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+WORKSPACE 8 16 512 256 9 
+MODULE 0 1 1 0 110 1 0 0 
+NAME 0 depot.thread
+MODULE 1 1 7 2 49 3 0 0 
+NAME 1 factory-west.thread
+MODULE 2 1 3 0 204 1 0 0 
+NAME 2 factory-east.thread
+MODULE 3 1 4 0 122 1 0 0 
+NAME 3 van.thread
+MODULE 4 1 5 0 106 1 0 0 
+NAME 4 station.thread
+MODULE 5 1 6 0 70 1 0 0 
+NAME 5 signal.thread
+MODULE 6 1 9 8 53 2 0 0 
+NAME 6 loop.thread
+MODULE 7 0 0 0 0 0 0 0 
+NAME 7 
+VERSION 1 2 0 1 3 0 21 110 1 
+VERSION 2 2 1 2 1 0 45 204 1 
+VERSION 3 2 2 3 2 0 45 204 1 
+VERSION 4 2 3 4 7 0 27 122 1 
+VERSION 5 2 4 5 3 0 21 106 1 
+VERSION 6 2 5 6 3 0 18 70 1 
+VERSION 7 2 1 7 2 0 45 204 1 
+VERSION 8 2 6 8 1 0 5 39 1 
+VERSION 9 2 6 9 2 0 11 53 1 
+VERSION 10 0 0 0 0 0 0 0 0 
+VERSION 11 0 0 0 0 0 0 0 0 
+VERSION 12 0 0 0 0 0 0 0 0 
+VERSION 13 0 0 0 0 0 0 0 0 
+VERSION 14 0 0 0 0 0 0 0 0 
+VERSION 15 0 0 0 0 0 0 0 0 
+VERSION 16 0 0 0 0 0 0 0 0 
+MEMORY 16 9 4096 238 8192 1112 4096 714 
+INDUSTRY-END 4 
+
+> 3 industry-inspect
+CONTROL 3 1 1 0 0 1 
+SOURCE 1 49 
+: factory-west.thread schema# 1 impossible-word ;
+VERSION-SOURCE 204 
+: factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 5 dup 2 stock > if request else drop then work dispatch ;
+PARAMETER 1 0 0 1 6 3 
+
+> 13 industry-inspect
+CONTROL 13 6 1 0 0 1 
+SOURCE 6 53 
+: loop.thread schema# 1 0 state@ 7 + 0 state! yield ;
+VERSION-SOURCE 53 
+: loop.thread schema# 1 0 state@ 7 + 0 state! yield ;
+PARAMETER 6 0 0 1 6 2 

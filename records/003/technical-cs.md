@@ -1,8 +1,8 @@
 # Build003 — technický popis
 
-Záznam skutečné implementace. Nativní regresní sada prošla113/113testy.
-Lokální vizuální a interakční kontrola je dokončena. Stav vydání zůstává PARTIAL
-do dokončení posledního CI a veřejné kontroly.
+Záznam skutečné implementace. Finální hosted CI prošlo114/114testy bez selhání
+a přeskočení. Lokální vizuální, interakční a veřejná funkční kontrola jsou PASS
+v rozsahu uvedených důkazů; přesné koncové identity váže závěrečný release receipt.
 Autorem architektury, kódu, testů, oprav a tohoto self-review je stejná Astra xHigh.
 Nejde o nezávislý audit. Člověk zadal výzvu, nepřidával produkční kód.
 
@@ -184,7 +184,7 @@ studeného BF bootu34.663s, prvního kola2.152s, samostatného prezentačního v
 Export20.67ms/import53.65ms. Dvacet cyklů se zprávou a uvolněním11.431s.
 Špička RSS host procesu484.84MiB, BF páska zvlášť797408bajtů. Trasování a výroba
 jsou měřeny jako celá kola s další prací, nikoli izolované volání algoritmu.
-Nenárokuje se rychlost simulace podle plynulosti obrazu. Veřejné vydání zatím čeká.
+Nenárokuje se rychlost simulace podle plynulosti obrazu. Veřejná funkční verze prošla kontrolami v public-verification.json.
 
 ## Dokončený svět a rozhraní
 
@@ -239,8 +239,16 @@ dat. Neobsahuje předpočítané trasy, dokončenou výrobu ani řešení města
 `initial-image.json` a kontrolní sestavení zachycují jeho původ.
 
 `site-package-functional.json` váže veřejné soubory na implementační commit a
-samostatnou Git historii transportu hostingu. `site-saved-functional.json` zachycuje
-uložení balíčku; uložení samo není ověření veřejného běhu. Záznam veřejné kontroly
-a konečný `final-deployment.json` připojí nasazenou verzi, anonymní porovnání souborů,
-merge/tag a případné HTML vložené hostingem. Dokud tyto kontroly nejsou dokončené,
-nelze z tohoto odstavce dovozovat úspěšné veřejné vydání.
+samostatnou Git historii hostingu. `site-saved-functional.json` a
+`deployment-functional.json` identifikují uloženou a skutečně nasazenou verzi5.
+`public-assets-functional.json` ověřil anonymně145souborů:142přesných shod a3HTML
+se zachovaným původním obsahem a pouze vloženým ochranným skriptem hostingu.
+`public-verification.json` dokládá vlastní změnu, odmítnutí, smyčku, opravu i nový
+import; veřejně stažený ZIP se shodně přehrál ve dvou nových CLI instancích.
+
+Oba hosted CI běhy35042602081 a35042596203 prošly114testy bez selhání a přeskočení
+na commitu ebc956d6cad5c071592e8ce58ace2371435c0a1e. Tento pozdější commit mění
+orchestrace CI a důkazy, nikoli kernel, aplikaci či renderer. Běžný merge PR3 je
+ab8275256273ec4f009d01de9d88ccc67652026f. Konečný metadata commit, tag a závěrečnou
+projekci webu spojuje release asset `final-deployment.json`; liší se od funkčního
+nasazení a nejsou vydávány za tentýž Git SHA. Viz release.md.

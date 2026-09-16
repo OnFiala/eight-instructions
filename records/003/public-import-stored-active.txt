@@ -1,0 +1,210 @@
+- link "Skip to city controls":
+  - /url: "#object-picker"
+- banner:
+  - link "8 INSTRUCTIONS":
+    - /url: "#"
+  - generic: SMALL PROGRAMS. REAL CONSEQUENCES.
+  - navigation "Build navigation":
+    - link "BUILD 003":
+      - /url: "#how"
+    - link "002":
+      - /url: ./build-002/
+    - link "001":
+      - /url: ./build-001/
+    - link "SOURCE ↗":
+      - /url: https://github.com/OnFiala/eight-instructions
+- main:
+  - region "A city made of programs.":
+    - heading "A city made of programs." [level=1]
+    - paragraph: Select a building. Change its program. Watch the city respond.
+    - text: Brainfuck (BF) programming language
+    - code: "> < + - . , [ ]"
+    - generic: runs the programs behind this city.
+    - img "Industrial city at native round 5. 0 deliveries. West station 0 of 8 panels. East station 0 of 8 panels. Use the object menu for keyboard controls."
+    - text: ▴
+    - generic: "N"
+    - button "Zoom in": +
+    - button "Zoom out": −
+    - button "Reset camera": ↺
+    - generic: YOUR CITY'S FIRST PROJECT
+    - strong: Build the two stations.
+    - status: Ready · round 5
+    - button "Run the city": Run
+    - button "Advance one logical scheduler round": Step
+    - button "Export"
+    - text: Import
+    - button "Import whole workspace"
+    - generic: Vans may pass behind buildings · select their numbered markers · drag to pan
+    - complementary "Riverside factory":
+      - generic: SELECT IN THE CITY, OR CHOOSE HERE
+      - combobox "SELECT IN THE CITY, OR CHOOSE HERE":
+        - option "South depot"
+        - option "North depot"
+        - option "Riverside factory" [selected]
+        - option "East factory"
+        - option "West station"
+        - option "East station"
+        - option "Van 01"
+        - option "Van 02"
+        - option "Van 03"
+        - option "Van 04"
+        - option "North bridge signal"
+        - option "Harbor bridge signal"
+        - option "loop.thread"
+        - option "Street 0–1"
+        - option "Street 2–3"
+        - option "Street 4–5"
+        - option "Street 6–7"
+        - option "Street 8–9"
+        - option "Street 10–11"
+        - option "Street 12–13"
+        - option "Street 14–15"
+        - option "Street 0–4"
+        - option "Street 1–5"
+        - option "Street 2–6"
+        - option "Street 3–7"
+        - option "Street 4–8"
+        - option "Street 5–9"
+        - option "Street 6–10"
+        - option "Street 7–11"
+        - option "Street 8–12"
+        - option "Street 9–13"
+        - option "Street 10–14"
+        - option "Street 11–15"
+        - option "North Bridge"
+        - option "Harbor Bridge"
+        - option "Market Bridge"
+      - heading "Riverside factory" [level=2]
+      - generic: Ready
+      - paragraph: Makes one station panel from two raw units. The delivery batch is controlled by its Thread program.
+      - text: Raw materials
+      - strong: "0"
+      - text: Station panels
+      - strong: "0"
+      - strong: Raw materials ordered
+      - paragraph: 0/4 messages waiting · 5 execution turns.
+      - generic "› Thread source module factory-west.thread":
+        - text: › Thread source module
+        - generic: factory-west.thread
+      - generic: Stored in BF · not active
+      - generic: v7
+      - generic: Draft Thread source
+      - textbox "Draft Thread source": ": factory-west.thread schema# 1 impossible-word ;"
+      - paragraph:
+        - text: Your draft → source stored in BF → active compiled version. Up to 512 ASCII bytes.
+        - link "Language ↗":
+          - /url: https://github.com/OnFiala/eight-instructions/blob/main/docs/processes.md
+      - generic "› Compare stored and active source" [active]
+      - strong: Stored source in BF
+      - generic: ": factory-west.thread schema# 1 impossible-word ;"
+      - strong: Active compiled version
+      - generic: ": factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 5 dup 2 stock > if request else drop then work dispatch ;"
+      - button "Apply program →"
+      - button "↶ Undo program change"
+      - status: Workspace restored. Sources, messages, stock and unfinished work came from the image. Earlier event history is unavailable.
+      - button "Pause program"
+      - button "⌄ Inspect this object's actual BF data"
+    - heading "Materials become a station ROUND 5" [level=3]:
+      - text: Materials become a station
+      - generic: ROUND 5
+    - generic: "1"
+    - text: Make panels
+    - generic: 0 native completions
+    - generic: →
+    - generic: "2"
+    - text: Deliver cargo
+    - generic: 0 cargo transfers
+    - generic: →
+    - generic: "3"
+    - text: Build stations
+    - generic: 0/8 · 0/8 panels
+    - heading "Reusable program memory 9 / 16" [level=3]:
+      - text: Reusable program memory
+      - generic: 9 / 16
+    - 'generic "Arena 1: version 1; 3 references; 1 allocations"'
+    - 'generic "Arena 2: version 2; 1 references; 1 allocations"'
+    - 'generic "Arena 3: version 3; 2 references; 1 allocations"'
+    - 'generic "Arena 4: version 4; 7 references; 1 allocations"'
+    - 'generic "Arena 5: version 5; 3 references; 1 allocations"'
+    - 'generic "Arena 6: version 6; 3 references; 1 allocations"'
+    - 'generic "Arena 7: version 7; 2 references; 1 allocations"'
+    - 'generic "Arena 8: version 8; 1 references; 1 allocations"'
+    - 'generic "Arena 9: version 9; 2 references; 1 allocations"'
+    - 'generic "Arena 10: free; 0 references; 0 allocations"'
+    - 'generic "Arena 11: free; 0 references; 0 allocations"'
+    - 'generic "Arena 12: free; 0 references; 0 allocations"'
+    - 'generic "Arena 13: free; 0 references; 0 allocations"'
+    - 'generic "Arena 14: free; 0 references; 0 allocations"'
+    - 'generic "Arena 15: free; 0 references; 0 allocations"'
+    - 'generic "Arena 16: free; 0 references; 0 allocations"'
+    - paragraph: 238/4096 code words · 13/16 process contexts
+    - generic: Active
+    - generic: Retained
+    - generic: Free
+    - generic: 0 reused arenas
+    - generic: "Last native operation: 0.30 s"
+    - generic: "BF tape: 398,704 × 16 bits"
+    - generic: Visual interpolation is separate from native simulation speed.
+    - button "Pause BF execution" [disabled]
+  - paragraph: KEEP THE INPUTS. CHANGE THE PROGRAM.
+  - heading "Different programs. The same starting world." [level=2]
+  - heading "Compare a delivery rule." [level=3]
+  - paragraph: Run the same number of logical rounds in two new BF machines. Both start from the same snapshot and receive the same external inputs. Draft a different batch value or source in the object panel, without applying it, then compare it with the active program. Bridges remain in the same state.
+  - generic: Logical rounds per machine
+  - spinbutton "Logical rounds per machine": "24"
+  - button "Compute both versions"
+  - paragraph: Fresh native computation. Results are not prescribed in advance.
+  - button "Download this experiment" [disabled]
+  - heading "One broken program, a working city." [level=3]
+  - paragraph: An infinite loop receives a bounded execution turn. Other eligible programs keep running. Pause or repair that participant without resetting the whole world.
+  - button "Add a looping test program"
+  - paragraph: This creates a real extra BF process, within the sixteen-slot limit. Its source and state appear in the object menu. Industrial cargo stays with its owner.
+  - button "Add a van at the selected node"
+  - button "Retire selected participant"
+  - paragraph: BF checks capacity, schema and ownership. Objects holding material or unfinished jobs cannot be discarded.
+  - paragraph: THE CITY IS THE EXAMPLE. BRAINFUCK IS THE EXPERIMENT.
+  - heading "Eight instructions. Programs that cooperate." [level=2]
+  - heading "Thread makes the programs readable." [level=3]
+  - paragraph:
+    - text: "The Brainfuck programming language has eight instructions:"
+    - code: "> < + - . , [ ]"
+    - text: . They move a pointer, change a cell, read or write a byte, and loop. The BF kernel implements Thread, a small stack language used for the city's programs.
+  - paragraph: Build 003 adds resumable processes, bounded message queues and a deterministic scheduler inside BF. Depots, factories, vans, stations and traffic signals run distinct programs. BF also owns inventory, routes, road reservations and construction.
+  - paragraph: Source is stored and compiled inside BF. Old suspended calls keep their version. New invocations adopt an accepted update. A declared incompatible state/message schema is refused. Freed contexts and version arenas can be reused.
+  - heading "The host executes and draws." [level=3]
+  - paragraph: Python emits the initial BF kernel. A generic JavaScript/WebAssembly executor runs its eight instructions. JavaScript carries raw input, stores opaque machine images and draws native output. It does not schedule guest processes, deliver their messages, compile their rules or simulate the city.
+  - paragraph: Architectural images are graphical assets. Materials, cargo, phases of construction and routes are selected from actual BF output. Smooth movement interpolates only between observed positions. This is logical concurrency in one BF machine, not a full operating system or self-hosting.
+  - paragraph: "Resources are finite: sixteen processes, four messages per mailbox, eight modules and sixteen version arenas. Native work can take seconds; camera movement remains available while it computes."
+  - link "BF / host boundary ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/blob/main/boundary.json
+  - link "Build 003 evidence ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/tree/main/records/003
+  - link "Actual BF kernel ↓":
+    - /url: ./kernel.bf.gz
+  - link "Reproduction package ↓":
+    - /url: ./reproduction/build-003.zip
+  - link "CI ↗":
+    - /url: https://github.com/OnFiala/eight-instructions/actions
+  - generic "› Workspace, source and raw machine tools"
+  - paragraph: ONE CONTINUING EXPERIMENT
+  - heading "Every build keeps its evidence." [level=2]
+  - paragraph: Astra is the sole coding and architecture author. The owner supplies the challenge and preferences. Self-review and tests are evidence from the same author, not an independent audit.
+  - list:
+    - generic: "001"
+    - heading "A programmable environment" [level=3]
+    - paragraph: Thread, persistent data and route computation inside BF.
+    - link "Open the original machine →":
+      - /url: ./build-001/
+    - generic: "002"
+    - heading "A city you can reprogram" [level=3]
+    - paragraph: Named sources, compiled modules, safe versions, rollback and arena reuse.
+    - link "Open Living Dispatch →":
+      - /url: ./build-002/
+    - generic: "003"
+    - heading "A city made of programs" [level=3]
+    - paragraph: Stateful participants, messages and a shared industrial project.
+    - link "Implementation and verification record ↗":
+      - /url: https://github.com/OnFiala/eight-instructions/tree/main/records/003
+- contentinfo:
+  - text: 8 INSTRUCTIONS · ASTRA / HUMAN CHALLENGE
+  - generic: BF owns the computation. The host makes it visible.
