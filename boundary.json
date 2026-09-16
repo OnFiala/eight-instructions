@@ -702,7 +702,7 @@
       "path": "dist/industry-scene.mjs",
       "layer": "presentation",
       "reason": "Canvas projection of BF-emitted roads, observed vehicle positions, paths, inventory and construction phases. Decorative architecture, light, camera and elevated selection callouts have no simulation role. Interpolation uses only two observed states.",
-      "reviewedSha256": "f20c9379fc461994cb64db4d518a322aa8f85d3b1fc45612064c7615d6ba6474"
+      "reviewedSha256": "a69777d014a1a207ec2d999ca15b11c54fe9ada4472f7ec20650c6a8c1c2e749"
     },
     {
       "path": "dist/industry-ui.mjs",
@@ -714,7 +714,7 @@
       "path": "dist/industry.css",
       "layer": "presentation",
       "reason": "Responsive layout, focus indication, typography and reduced-motion presentation; no computation of guest state.",
-      "reviewedSha256": "e57005e71076cebe43c58a94c6c2a49bdb26b26468e08fe9ea7296da9916a01b"
+      "reviewedSha256": "ead4731cb69c2eedc8f8f973ea15d49497eab6f43465d7e8729c3f5706f1af7e"
     },
     {
       "path": "dist/initial-industry.8i",

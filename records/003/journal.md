@@ -217,3 +217,30 @@ shows its current destination or route-calculation phase, while an empty idle va
 retains the assignment label. Added one regression using those observed fields;
 all5presentation/diagnostic checks pass. No route, position or job state is
 computed by the formatter. The final CI suite now contains114tests.
+
+## Full browser chain, capacity queue and visual refinement
+
+The same browser world survived factory fault/rollback/repair and van pause/resume.
+Its native BUILD events record Eaststation8/8at142and Weststation8/8at164. The
+final observed/exported frame is173, with15transfers and26production completions.
+This changed-input scenario is distinct from the unchanged CLI183round result.
+The downloaded own UI comparison(batch3versus6,12rounds) replayed byte-for-byte
+in fresh CLI machines; its unchanged city totals at12are reported without inventing
+a benefit. The64round release comparison separately shows different outcomes.
+
+For a visible capacity test, nine actual CLI process-step inputs advanced the
+previous browser17snapshot to26. In the browser Van04was paused at that real
+in-flight edge22with6raw units. Van03later reached node7with3panels and waited for
+road capacity. At observed round60the queue and reservation were exported. No
+route or position fixture was injected. Resuming Van04released the crossing and
+Van03continued with the same cargo. This is a separate changed-input experiment.
+
+The first full overlay still showed a weakly scaled city. Enlarged desktop camera,
+planting and waterfront lights; one intermediate camera clipped the rear depot,
+then an overlapping heading was corrected by canvas framing. Historical screenshots
+are retained; final comparison is repeated after these presentation-only changes.
+
+A targeted command initially named a nonexistent diagnostics filename, so that
+capture contained only3presentation tests. Corrected to diagnostic-stream.test.mjs;
+the recorded final command ran all5tests successfully. The114-test CI suite includes
+that actual file automatically, so no test coverage was deleted.

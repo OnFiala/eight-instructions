@@ -25,7 +25,7 @@ export class IndustryScene extends CityScene {
     canvas.addEventListener('pointercancel',()=>{this.drag=null;});
     this.resize();
   }
-  resize(){super.resize();this.s=Math.min(this.w/151,(this.h-95)/82)*(this.zoom??1);this.sy=this.s*.58;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*.16+(this.pan?.y??0)};this.draw(performance.now());}
+  resize(){super.resize();this.s=Math.min(this.w/(this.w<950?151:135),(this.h-65)/82)*(this.zoom??1);this.sy=this.s*.58;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*(this.w<950?.16:.19)+(this.pan?.y??0)};this.draw(performance.now());}
   camera(delta){this.zoom=Math.min(1.55,Math.max(.72,this.zoom+delta));this.resize();}
   resetCamera(){this.zoom=1;this.pan={x:0,y:0};this.resize();}
   ground(){
@@ -109,7 +109,7 @@ export class IndustryScene extends CityScene {
       const loc=this.buildingLocation(e),p=this.project(loc.x,loc.z),selected=this.object?.id===e.id&&this.object.kind==='entity';
       const name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed?'station-frame':'station-foundation';
       const sprite=this.sprites.get(name),height=this.buildingWidth(e)*(sprite?sprite.height/sprite.width:1);
-      const labelY=p.y+this.sy*7-height*.75;
+      const labelY=Math.max(this.w>=950?90:0,p.y+this.sy*7-height*.75);
       if(this.w<600&&!selected)continue;
       const proc=this.state.processes.find(p=>p.handle===e.id);
       const text=(proc?.status===5?'Fault · ':proc?.status===4?'Paused · ':'')+entityName(e);
@@ -138,8 +138,8 @@ export class IndustryScene extends CityScene {
     for(const z of [-5,73])for(const x of [2,8,14,20,38,44,50,56,62,68])trees.push([x,z]);
     for(const [x,z] of [[16,6],[4,14],[16,25],[16,33],[4,44],[17,52],[43,5],[56,6],[44,34],[55,32],[44,45],[56,56],[67,18]])trees.push([x,z]);
     for(const [x,z] of [[64,44],[72,44],[64,49],[72,49],[64,54],[72,54],[66,24],[71,24],[66,34],[71,34],[4,67],[12,67],[4,72],[12,72],[43,68],[55,68]])trees.push([x,z]);
-    for(const [x,z] of trees)objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.8)});
-    for(const [x,z] of [[-2,4],[-2,24],[-2,44],[18,16],[18,36],[18,56],[42,4],[42,24],[42,44],[58,16],[58,36],[58,56]])objects.push({depth:z-x+60,draw:()=>this.drawLamp(x,z)});
+    for(const [x,z] of trees)objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.94)});
+    for(const [x,z] of [[-2,4],[-2,24],[-2,44],[18,16],[18,36],[18,56],[42,4],[42,24],[42,44],[58,16],[58,36],[58,56],[24,5],[24,15],[24,25],[24,35],[24,45],[24,55],[36,5],[36,15],[36,25],[36,35],[36,45],[36,55]])objects.push({depth:z-x+60,draw:()=>this.drawLamp(x,z)});
     const t=this.motion.matches?1:Math.min(1,(now-this.transition)/600),ease=t*t*(3-2*t);
     const vehicleMarkers=[];
     for(const vehicle of this.state.vehicles){
