@@ -69,7 +69,7 @@ search retains the live program. Further validation cases and robust acceptance
 are reported as finite evidence, not general correctness or optimality proofs.
 
 After selection, a fresh checkpoint of the current live state is validated using
-a held-out three-round closure/reopening of the first actual road pair. Baseline
+a held-out three-round closure/reopening of directed road 0. Baseline
 and winner receive this same input sequence and the same horizon, at most16rounds.
 The winner must still show useful target progress and must not score below that
 validation baseline. A now-completed live goal or changed external input epoch
@@ -93,6 +93,13 @@ material. Fixed positive offsets keep the bounded unsigned score representable.
 The implementation and raw receipts define the exact weights; those weights are
 not a claim of general economic value or wall-clock acceleration.
 
+For an eligible trial, `score = 16384 + targetInstalled × 512 + worldInstalled × 128
++ remainingRaw − pendingJobs × 4 − carriedUnits`. Ineligible trials score zero.
+Search refuses worlds with initial supply at least 16,384 raw units, and scoring
+refuses 32 or more installed panels or 16,384 or more remaining raw units. Within
+the conserved envelope, the positive terms cannot exceed 52,607 and the penalties
+cannot underflow the offset. These are native bounds for unsigned 16-bit scoring.
+
 Before publication the supervisor checks every live module version, the selected
 stored draft revision, native road/topology epoch, outstanding construction goal
 and ownership flag.
@@ -104,7 +111,8 @@ their exact versions until normal return. Trial contexts are explicitly zeroed.
 External `source-write` and `parameter!` mark a module manually owned. Automatic
 publication cannot overwrite it. `enabled module autonomy-module` explicitly opts
 it in/out. Stored draft and active version remain separate after compilation fails.
-The observation period pins prior code and rolls back on a fault or lack of useful
+The observation period pins prior code and rolls back on a fault in any live
+process sharing the changed module, or on lack of useful
 target progress through its horizon, preserving real inventory and mail. A manual
 change terminates that observation without overwriting the owner's program.
 
@@ -119,3 +127,9 @@ not reconstructed from an ordinal or presented as an observed past state.
 General Thread's administrator terminal remains privileged, as in older builds.
 An owner deliberately changing controller storage or resident definitions is outside
 the isolated candidate contract. Image hashes provide integrity, not authentication.
+
+The default autonomous visitor run tests one newly generated candidate per search
+with a32-round horizon and up to four searches. Administrator inputs may request
+up to16candidates. The grammar itself emits distinct sources within one search;
+there is no cross-search deduplication or guarantee that an active source will not
+be tested again from a new state. A repeated or tied result retains the baseline.

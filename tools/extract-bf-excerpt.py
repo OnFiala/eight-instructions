@@ -23,7 +23,7 @@ artifact = (ROOT / 'artifacts/kernel.bf').read_text()
 assert generated == artifact, 'Excerpt must come from the exact artifact'
 start, end, pointer = kernel.tokenizer_range
 excerpt = artifact[start:start + 720]
-target = ROOT / 'records/003'
+target = ROOT / 'records/004'
 (target / 'bf-excerpt.txt').write_text('\n'.join(excerpt[i:i+80] for i in range(0,len(excerpt),80))+'\n')
 (target / 'bf-excerpt.json').write_text(json.dumps({
     'artifact': 'artifacts/kernel.bf',

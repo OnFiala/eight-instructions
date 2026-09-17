@@ -11,9 +11,12 @@ const groups={
   core:[],
   'literal-modules':['tests/native-reference.test.mjs'],
   'literal-processes':['tests/process-reference.test.mjs'],
+  'literal-contexts':['tests/context-reference.test.mjs'],
+  synthesis:['tests/synthesis.test.mjs','tests/synthesis-adversarial.test.mjs','tests/district.test.mjs'],
+  'synthesis-reclaim':['tests/synthesis-reclaim.test.mjs'],
 };
-const literal=new Set([...groups['literal-modules'],...groups['literal-processes']]);
-groups.core=files.filter(file=>!literal.has(file));
+const isolated=new Set(Object.values(groups).flat());
+groups.core=files.filter(file=>!isolated.has(file));
 const planned=Object.values(groups).flat().sort();
 if(new Set(planned).size!==planned.length||JSON.stringify(planned)!==JSON.stringify(files)){
   throw new Error('CI partition must cover every current test file exactly once');

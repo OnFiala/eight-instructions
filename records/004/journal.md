@@ -141,3 +141,104 @@ assets remain the real renderer's components. No generated mockup enters runtime
 The first local1487x1058browser started without clicks, restored the boot-only
 image and advanced to native experiment1. Visual QA and release remain pending.
 Local preview required an approved sandbox escalation to bind127.0.0.1:4178.
+
+## Browser persistence, stress completion and same-author repairs
+
+The 320-cycle run completed with one passing stress test in 2,424.7 seconds.
+It exercised fixed-capacity generation, compilation, rejection, context zeroing
+and eight pending-search exports/restores. The earlier interrupted run remains
+in the record. This is finite local evidence, not an unlimited lifetime claim.
+
+The first untouched browser accepted native candidate 5 at live round 25 after
+search and fresh validation. Its later live world built factory 7 and road 32 at
+round 37; search 2 found no improvement at round 73 and retained the baseline.
+These observations precede the final source freeze and are identified separately.
+
+Same-author review extended protected observation to faulted peers sharing the
+published module. A new assertion injects a peer fault while the selected factory
+is healthy, verifies native rollback/repair, and verifies unchanged material.
+Three synthesis tests passed after that repair.
+
+An actual browser export at round 3 retained its pending search. A new browser
+worker restored the downloaded image and advanced. Fresh CLI reproduced five
+inputs from initial boot and three inputs after restoration byte for byte.
+The file download event hook timed out although the real file existed in Downloads;
+filesystem and subsequent real import provide delivery evidence. Invalid JSON
+import retained the old round-4 world and closed bridge, but its error was hidden
+inside the closed inspector. Moved error feedback to a visible live status surface.
+
+Construction preflight now refuses odd directed-road counts and a pre-existing
+connection in either direction. Adjacent directions share a native reservation
+counter, so appending into an incomplete pair would otherwise attach unrelated
+occupancy. Targeted tests preserve all installed material and allocate nothing on
+refusal. Measurement attempt 01 was interrupted before completion to make these
+repairs; its empty/incomplete output is not a timing result.
+
+The object inspector now moves keyboard focus to its close control on opening and
+returns it to Inspect on closing/Escape. Browser verification and final visual
+comparison remain pending at this journal entry.
+
+Three sequential measurements then completed with native acceptance at round 25
+in every run. Their full receipt is `metrics-before-final-guards.json`; a later
+review added an unsigned-score supply bound and corrected peer repair to use the
+process handle even when that peer has no industry entity. The kernel is unchanged,
+but these timing samples retain their original source identity and are not silently
+relabeled as final-source measurements. Corresponding tests were added. A full
+local suite is now running with all original 114 test definitions unchanged.
+
+The narrow screenshot capture initially mixed emulator density and native browser
+size. Two invalid captures are retained. A 780×1688 PNG from 390×844 CSS pixels at
+scale 2 provides correct evidence. Inspector focus opening and Escape return passed;
+its inherited intrinsic height exceeded the viewport, so dynamic viewport height
+and internal scrolling were added. The mobile stage was shortened and targets
+enlarged. Build 004 screenshots returned as JPEG by the ordinary screenshot API
+were renamed to `.jpg` without changing their bytes.
+
+## Compatibility regression and exact pending-continuation import
+
+The first full retained regression run failed the unchanged diagnostic-stream CLI
+test: the new initial profile had renamed module1 from factory-west.thread to
+factory.thread. Restoring the canonical old name and byte-framed source lengths
+fixed the contract; image05 was rebuilt and both diagnostic tests passed unchanged.
+The reproduction loop uses the same compatible root name and now explicitly
+requires MODULE-PUBLISHED before its rejection, excluding compile-refusal evidence.
+
+The real browser round81 image, exported during a BF operation, resumed that exact
+operation to round82 in a new worker. Search3, installed material, cargo and the
+closed road survived. Its initial native frame and source output matched a new CLI
+instance byte-for-byte (browser-cli-restored-paused81-parity.json). The old pending
+host bridge click did not cross image installation. Earlier image04 receipts are
+retained under their actual hashes rather than relabelled as finalimage05 evidence.
+
+## Final local visitor and control evidence
+
+Final image05 ran from round0 with zero visitor native inputs. BF accepted structural
+candidate5 at25 (search17689→17699; withheld17690→17698), constructed factory7 and
+roadpair32/33 at37, rejected equal-score searches at73 and97, and emitted completed
+GOAL2. UI stopped at97 with both sites3/3 and9deliveries; no console errors. The
+observed completion upper bound834226ms includes concurrent test/replay load, not
+a quiescent benchmark. The exported completed image was restored for final QA.
+
+Real UI checks verified draft switching, invalid compile retaining activev5, manual
+v6 publication/rollback to5, explicit ownership opt-in, loop pause/source replacement/
+continuation repair followed by private-state0→1, invalid import preservation with
+visible feedback, and queued bridge change after exact BF resume. Reduced motion
+allowed native rounds66→69 without interpolation or console errors.
+
+Direct ZIP links in IAB produced no actual file. Fetching the same bytes into the
+existing Blob download fixed delivery: GUI download matches finalZIPe3a4e577... .
+The anonymously downloaded identical package replayed61success+13compiled-loop
+inputs in new CLI instances. Its loop assertion requires actual MODULE-PUBLISHED,
+so a compile refusal cannot masquerade as a looping rejection.
+
+Final visual review found and fixed mobile camera overlap and nearby van callout
+collisions. Labels moved only in presentation and retain connectors to observed
+positions. Desktop1487×1058, tablet820×1180 and mobile390×844 were captured. Mobile
+inspector top12/bottom832 and internal scrolling expose the final control at812.93.
+Paired, overlay and unscaled header comparison all use exact source/browser pixels.
+CDP tiled/underscaled captures remain labelled invalid. Rootdesign-qa now passes
+local visual/interaction scope; this does not close CI or publication gates.
+
+Artifactcheck02 reproduced finalimage05 but the concluding review gate caught a
+concurrent mobile-rendering hash change. The reviewed renderer and subsequent
+boundary-development09 pass337classified sources. Targeted UI parsers pass5/5.

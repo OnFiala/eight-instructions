@@ -25,7 +25,7 @@ export class IndustryScene extends CityScene {
     canvas.addEventListener('pointercancel',()=>{this.drag=null;});
     this.resize();
   }
-  resize(){super.resize();this.s=Math.min(this.w/(this.w<950?151:135),(this.h-65)/82)*(this.zoom??1);this.sy=this.s*.43;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*(this.w<950?.22:.19)+(this.pan?.y??0)};this.draw(performance.now());}
+  resize(){super.resize();this.s=Math.min(this.w/(this.w<680?175:this.w<950?151:135),(this.h-65)/82)*(this.zoom??1);this.sy=this.s*.43;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*(this.w<680?.34:this.w<950?.22:.19)+(this.pan?.y??0)};this.draw(performance.now());}
   camera(delta){this.zoom=Math.min(1.55,Math.max(.72,this.zoom+delta));this.resize();}
   resetCamera(){this.zoom=1;this.pan={x:0,y:0};this.resize();}
   ground(){
@@ -107,7 +107,7 @@ export class IndustryScene extends CityScene {
       const loc=this.buildingLocation(e),p=this.project(loc.x,loc.z),selected=this.object?.id===e.id&&this.object.kind==='entity';
       const name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed?'workshop-frame':'site-planned';
       const sprite=this.sprites.get(name),height=this.buildingWidth(e)*(sprite?sprite.height/sprite.width:1);
-      const labelY=Math.max(this.w>=950?90:0,p.y+this.sy*7-height*(e.role===4&&!e.consumed?.40:.75));
+      const labelY=Math.max(this.w>=950?90:0,p.y+this.sy*7-height*(e.role===4&&!e.consumed?.40:.75)-(this.w<600?36:0));
       if(this.w<600&&!selected)continue;
       const proc=this.state.processes.find(p=>p.handle===e.id);
       const text=(proc?.status===5?'Fault · ':proc?.status===4?'Paused · ':'')+entityName(e);
@@ -153,17 +153,28 @@ export class IndustryScene extends CityScene {
     // Elevated callouts keep an occluded van discoverable without drawing its
     // body through a building. Stationary peers share a native node; their
     // callouts are spread on screen, never turned into invented road positions.
+    const callouts=[];
     for(const {vehicle,p} of vehicleMarkers){
       const peers=vehicleMarkers.filter(v=>v.vehicle.edge===null&&v.vehicle.node===vehicle.node);
       const index=peers.findIndex(v=>v.vehicle.id===vehicle.id),offset=vehicle.edge===null?(index-(peers.length-1)/2)*(this.w<600?72:96):0;
-      const y=p.y-42,x=p.x+offset,selected=this.object?.kind==='entity'&&this.object.id===vehicle.id;
+      let y=p.y-42;const x=p.x+offset,selected=this.object?.kind==='entity'&&this.object.id===vehicle.id;
       const proc=this.state.processes.find(v=>v.handle===vehicle.id),name=entityName(vehicle);
       const label=name.startsWith('Van ')?name.slice(4):String(vehicle.id);
       const material=this.w<600?(vehicle.cargoKind===1?'R':'P'):(vehicle.cargoKind===1?'raw':'panels');
       const detail=proc?.status===5?'fault':proc?.status===4?'paused':[3,9].includes(vehicle.status)?'queue':vehicle.cargo?`${vehicle.cargo} ${material}`:'';
+      // Callouts may overlap even when vans occupy different nearby native
+      // positions. Move only the label; its connector retains the observed point.
+      const text=`${label}${detail?' · '+detail:''}`;
+      c.save();c.font=`600 ${Math.max(10,Math.min(12,this.s*1.6))}px InterVariable, sans-serif`;
+      const width=c.measureText(text).width+14;c.restore();
+      for(let attempt=0;attempt<vehicleMarkers.length;attempt++){
+        const overlap=callouts.find(other=>Math.abs(x-other.x)<(width+other.width)/2+4&&Math.abs(y-other.y)<27);
+        if(!overlap)break;y=overlap.y-28;
+      }
+      callouts.push({x,y,width});
       this.line(p,{x,y:y+12},'#a8c87766',1);
-      this.badge(`${label}${detail?' · '+detail:''}`,x,y,proc?.status===5?'#ffb093':selected?'#e5ff99':'#c9dbb8');
-      this.hits.push({x:x-(detail?50:24),y:y-14,w:detail?100:48,h:25,object:{kind:'entity',id:vehicle.id}});
+      this.badge(text,x,y,proc?.status===5?'#ffb093':selected?'#e5ff99':'#c9dbb8');
+      this.hits.push({x:x-width/2,y:y-14,w:width,h:25,object:{kind:'entity',id:vehicle.id}});
     }
     if(t<1&&this.previous&&!this.motion.matches)this.frame=requestAnimationFrame(time=>this.draw(time));
   }

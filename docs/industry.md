@@ -6,7 +6,10 @@ in order: core, workspace, process state, industrial state/operations, processes
 industrial presentation and boot input. `industry-boot.thread` is data and editable
 program source consumed by BF, not a precomputed event sequence.
 
-The initial world has 16 nodes, 46 directed roads, two depots, two factories,
+Build 004 reuses these operations with a smaller autonomous starting district;
+its initial state and expansion are specified in [worlds.md](worlds.md).
+
+The Build 003 `industry-system.json` initial world has 16 nodes, 46 directed roads, two depots, two factories,
 two construction sites, four vans and two bridge signal programs. Each of these
 12 participants is a native process. Their source modules are depot,
 factory-west, factory-east, van, station and signal. The two factories deliberately

@@ -24,6 +24,14 @@
       "summary": "Communicating, resumable BF programs run an industrial city with direct source controls. Native, visual and public functional checks passed; immutable closure identities are in the final deployment receipt.",
       "testsPassed": 114,
       "testedCommit": "f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f"
+    },
+    {
+      "number": 4,
+      "title": "A city that improves itself",
+      "status": "IN_PROGRESS",
+      "summary": "Native structural source synthesis, isolated real-world trials, safe automatic publication and material-built expansion. Complete release gates are in progress.",
+      "testsPassed": null,
+      "testedCommit": null
     }
   ]
 }

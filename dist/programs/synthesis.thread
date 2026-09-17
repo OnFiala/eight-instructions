@@ -114,7 +114,7 @@
   29 s@ 13 ef w@ dup 35 s! 9 s@ > 0= if 1 31 s! then
   4 s@ 231 pf w@ 62 s@ > 0= if 1 31 s! then
   ptick @ 4 s@ 232 pf w@ - 4 > if 1 31 s! then
-  world-used @ 32 < 0= if 1 31 s! then
+  world-used @ 32 < total-raw @ 16384 < and 0= if 1 31 s! then
   31 s@ 26 s@ or if 0 30 s! else
     16384 35 s@ 512 * + world-used @ 128 * + total-raw @ +
     33 s@ 4 * - 34 s@ - 30 s!
@@ -174,6 +174,7 @@
   1 s@ 36 s@ or if ." SEARCH-REFUSED 1" cr exit then
   wa @ 16 < wb @ 0 > and wb @ 17 < and
   wc @ 0 > and wc @ 65 < and 0= if ." SEARCH-REFUSED 2" cr exit then
+  world-supply @ 16384 < 0= if ." SEARCH-REFUSED 8" cr exit then
   wa @ 1 ef w@ 2 = 0= if ." SEARCH-REFUSED 3" cr exit then
   wa @ 10 ef w@ entity-find dup 0= if drop ." SEARCH-REFUSED 4" cr exit then
   1- 29 s! 29 s@ 13 ef w@ 9 s!
@@ -243,17 +244,33 @@
     then
   else trial-leave then
 ;
+: observation-fault?
+  0 64 s! 0 65 s!
+  begin 64 s@ 16 < while
+    64 s@ 0 pf w@ 5 = 64 s@ 2 pf w@ 3 s@ = and if 1 65 s! then
+    1 64 s+!
+  repeat 65 s@
+;
+: observation-repair
+  0 64 s!
+  begin 64 s@ 16 < while
+    64 s@ 2 pf w@ 3 s@ = 64 s@ 0 pf w@ 5 = and if
+      64 s@ 1 pf w@ industry-repair
+    then 1 64 s+!
+  repeat
+;
 : observation-step
   36 s@ 0= if exit then
   3 s@ 3 mf w@ serial-of 44 s@ = 0= 3 s@ 10 mf w@ or if
     0 36 s! 27 s@ version-release drop 0 27 s! exit
   then
-  4 s@ 0 pf w@ 5 =
+  observation-fault?
   ptick @ 37 s@ - 7 s@ >= 29 s@ 13 ef w@ 38 s@ = and
   29 s@ 13 ef w@ 29 s@ 20 ef w@ < and or if
     3 s@ module-rollback
     4 s@ 0 pf w@ 4 < if 4 s@ 0 ef w@ process-pause then
     4 s@ 0 ef w@ industry-repair
+    observation-repair
     5 17 s! 0 36 s!
     ." NATIVE-ROLLBACK " 2 s@ . 3 s@ . ptick @ . cr
   then

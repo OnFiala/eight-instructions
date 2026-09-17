@@ -194,3 +194,9 @@ is claimed. Browser evidence keeps1200native records and64generated source recor
 the native image retains a32-entry result ring and current best source. Missing
 historical source is reported unavailable. Manual editor drafts remain local UI
 state and are explicitly excluded from machine export.
+
+Import of an image paused inside a native operation completes that exact saved
+continuation before requesting a new readable state frame. Output from the earlier
+browser instance is not reconstructed. Host-only drafts and queued controls belong
+to that old instance; replacing the world cancels them. A bridge change already
+accepted by BF is native world state and remains in the image.

@@ -20,7 +20,7 @@
     "industrial jobs, idempotent transfers, material accounting, production and construction",
     "road reservations, native route continuations and source parameter editing",
     "opaque heap/workspace context copying and clearing in BF",
-    "bounded source construction and native same-semantics trial scheduling (Build 004 development)"
+    "bounded source construction, goal selection, same-semantics trial scheduling, scoring, fresh validation, source-only publication and protected rollback"
   ],
   "hostRuntimeDependencies": [],
   "buildDependencies": {
@@ -692,7 +692,7 @@
       "path": "dist/index.html",
       "layer": "presentation",
       "reason": "Build003 narrative, direct object controls, actual-source editor, explicit privileged terminal, native evidence and historical-build links. No precomputed application result.",
-      "reviewedSha256": "30b5a3c0726a2aa62416d4551c7aed8218e8daa9a0913b9d47e3c21a650d7584"
+      "reviewedSha256": "41c3c159a8493e75850a37a8ff50daed355d19d830ffa318826ab23a668c2efc"
     },
     {
       "path": "dist/industry-presentation.mjs",
@@ -704,13 +704,13 @@
       "path": "dist/industry-scene.mjs",
       "layer": "presentation",
       "reason": "Canvas projection of BF-emitted roads, observed vehicle positions, paths, inventory and construction phases. Decorative architecture, light, camera and elevated selection callouts have no simulation role. Interpolation uses only two observed states.",
-      "reviewedSha256": "46dac75db68dfa305c8a315d8708796bdfe1a43ad5590cb4d0fff715da11bdfd"
+      "reviewedSha256": "b37f7d337677ef4d513a8e90c759af1d7a5533fddca0c53fba7b7704be001aa2"
     },
     {
       "path": "dist/industry-ui.mjs",
       "layer": "presentation",
-      "reason": "Context selection, unsaved drafts, raw input transport, whole-machine snapshots, result framing and fresh-machine comparisons. BF edits source, compiles it, validates actions and owns all city/process state; JS never interprets Thread or guest messages.",
-      "reviewedSha256": "1b968f3441e91a690ac24c14d723c7d6e1e001de02504163838889568fdb406d"
+      "reason": "Presents native live/trial records, transports raw inputs, owns unsaved drafts and optional queued UI interventions, validates opaque image replacement in a candidate worker, and downloads unchanged file bytes. No candidate generation, scoring, guest scheduling or world simulation.",
+      "reviewedSha256": "760b5a60a561c0c5ff8bcba2dd3fc08f0ca84f200a98161d09f84bb3158c5344"
     },
     {
       "path": "dist/industry.css",
@@ -994,7 +994,7 @@
       "path": "runtime/cli.mjs",
       "layer": "runtime-adapter",
       "reason": "Raw file/terminal input, generic whole-machine execution limits, boot-source manifest selection (including industry), opaque image persistence and diagnostic display. It never schedules guest processes, interprets Thread or computes world transitions.",
-      "reviewedSha256": "1b7532eb1b7c9f2e0f7a363052bc275429dedf3ff00f60d96b603df6d30a2517"
+      "reviewedSha256": "d2b592a1c83d536d62b8d049b531366514da45852dcb29feb67a8157efbae1a2"
     },
     {
       "path": "runtime/diagnostics.mjs",
@@ -1356,7 +1356,7 @@
       "path": "tools/run-ci-tests.mjs",
       "layer": "verification-tool",
       "reason": "CI-only partition of all test files with an exact coverage check and propagation of failure. Separates expensive literal reference work from other tests; never imported by production.",
-      "reviewedSha256": "80e22207d30e36e8f4b59bf7a912bd8aa87622b1c143e4e4bb8970529ebf94ef"
+      "reviewedSha256": "a8d7776e35d3b85d821e7e652fb6c3072621fcc67ce5c18997cc8f82d21ca981"
     },
     {
       "path": "tools/serve.mjs",
@@ -1804,6 +1804,26 @@
       "path": "dist/assets/industrial/workshop-frame.png",
       "layer": "presentation-asset",
       "reason": "Open roof trusses and incomplete workshop after native installation begins. Generated image provenance in records/004/assets.json."
+    },
+    {
+      "path": "dist/reproduction/build-004.json",
+      "layer": "reproduction-evidence",
+      "reason": "Recorded opaque initial BF image, raw inputs and expected outputs from actual native runs. Never consumed by the live UI."
+    },
+    {
+      "path": "dist/reproduction/build-004.zip",
+      "layer": "reproduction-evidence",
+      "reason": "Deterministic downloadable offline runtime and evidence package; absent from production execution imports."
+    },
+    {
+      "path": "tools/build-autonomous-reproduction.mjs",
+      "layer": "verification-tool",
+      "reason": "Runs raw inputs in fresh actual BF machines, captures outputs and asserts native outcomes to produce evidence only. No oracle enters production."
+    },
+    {
+      "path": "tools/measure-synthesis.mjs",
+      "layer": "verification-tool",
+      "reason": "Times actual BF inputs and opaque persistence with separate privileged component probes and ordinary end-to-end runs. No guest solver or production import."
     }
   ],
   "runtimeDependencyScope": "hostRuntimeDependencies lists external runtime npm packages; host platforms are listed separately.",

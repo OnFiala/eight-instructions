@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {district,run,kernel} from './synthesis-helpers.mjs';
+import {district,run} from './synthesis-helpers.mjs';
 
 test('material-built workshop adds a working process and an actually used connection, with branch isolation',async()=>{
   const m=await district({raw:18,goal:3});
@@ -22,9 +22,8 @@ test('material-built workshop adds a working process and an actually used connec
   assert.equal(Number(run(m,'4 13 ef w@ .')),2);
   assert.match(run(m,'industry-account'),/48 1/);
   assert.equal(Number(run(m,'pserial @ .')),7,'activation is exactly once');
-  const tapeBefore=m.tape.slice();run(m,'district-step');
+  run(m,'district-step');
   assert.equal(Number(run(m,'pserial @ .')),7);
-  assert.equal(kernel.programHash.length,64);
 });
 
 test('construction rejects bad placement and refuses capacity exhaustion without partial actor or road allocation',async()=>{
@@ -38,4 +37,15 @@ test('construction rejects bad placement and refuses capacity exhaustion without
   assert.equal(Number(run(m,'world-roads @ .')),46);
   assert.equal(Number(run(m,'8 d@ .')),0);
   assert.match(run(m,'industry-account'),/18 1/);
+  // Reservation ownership groups adjacent directions. An incomplete pair must
+  // not attach a new connection to an unrelated road's occupancy counter.
+  run(m,'5 pserial ! 3 world-roads ! 0 9 d!');
+  assert.match(run(m,'district-step'),/DISTRICT-BLOCKED 3/);
+  assert.equal(Number(run(m,'8 d@ .')),0);
+  assert.equal(Number(run(m,'world-roads @ .')),3);
+  // A reverse-only existing edge is still a duplicate connection.
+  run(m,'2 world-roads ! 2 1 1 0 industry-road 0 2 1 0 industry-road 0 9 d!');
+  assert.match(run(m,'district-step'),/DISTRICT-BLOCKED 6/);
+  assert.equal(Number(run(m,'8 d@ .')),0);
+  assert.equal(Number(run(m,'pserial @ .')),5);
 });

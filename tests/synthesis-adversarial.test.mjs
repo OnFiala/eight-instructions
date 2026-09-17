@@ -12,6 +12,10 @@ async function finish(m){
 
 test('native input validation preserves a running search, rejects manual ownership and tracks peer/road freshness',async()=>{
   const m=await district({raw:20,goal:4});
+  run(m,'16384 1 3 ef w! 16384 world-supply !');
+  assert.match(run(m,'1 1 2 search-start'),/SEARCH-REFUSED 8/);
+  assert.equal(field(m,1),0,'score overflow envelope is refused before branching');
+  run(m,'20 1 3 ef w! 20 world-supply !');
   assert.match(run(m,'0 1 autonomy-module 1 1 2 search-start'),/SEARCH-REFUSED 6/);
   run(m,'1 1 autonomy-module 1 1 2 search-start');
   assert.equal(run(m,'search-fresh? .').trim(),'1');

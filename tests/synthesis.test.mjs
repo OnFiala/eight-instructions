@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {district,run,field,kernel} from './synthesis-helpers.mjs';
+import {encodeImage,decodeImage} from '../dist/images.mjs';
 
 test('BF constructs different source structures and its actual compiler publishes each in an isolated world',async()=>{
   const m=await district({raw:22,goal:3,duration:2,batch:2});
@@ -37,6 +38,20 @@ test('native baseline/candidate trials interleave with useful live work and reta
       assert.equal(m.tape[a.base+i*a.stride+2+bank*a.bank_stride],0);
   }
   const inventory=run(m,'1 3 ef w@ . 1 4 ef w@ . 1 11 ef w@ . world-used @ .');
+  // A peer using the published module is protected too, even when the selected
+  // factory itself is healthy. Native images retain the exact accepted state.
+  const acceptedImage=await encodeImage(m,kernel.programHash);
+  const peer=await decodeImage(acceptedImage,{program:kernel.program,programHash:kernel.programHash,create:kernel.create});
+  run(peer,'2 0 1 process-create industry-add 77 4 9 pf w! 5 4 0 pf w!');
+  assert.match(run(peer,'observation-step'),/NATIVE-ROLLBACK 1 1 /);
+  assert.equal(Number(run(peer,'4 0 pf w@ .')),1);
+  assert.equal(run(peer,'1 3 ef w@ . 1 4 ef w@ . 1 11 ef w@ . world-used @ .'),inventory);
+  const plainPeer=await decodeImage(acceptedImage,{program:kernel.program,programHash:kernel.programHash,create:kernel.create});
+  run(plainPeer,'1 process-create drop 77 4 9 pf w! 5 4 0 pf w!');
+  const plainRepair=run(plainPeer,'observation-step');
+  assert.match(plainRepair,/NATIVE-ROLLBACK 1 1 /);
+  assert.doesNotMatch(plainRepair,/WS-ERROR/,'a source-sharing process without an industry entity still has a valid process handle');
+  assert.equal(Number(run(plainPeer,'4 0 pf w@ .')),1);
   // Explicit local fault injection during the protected observation period.
   // It changes process fault metadata, never inventory or the acceptance score.
   const rollback=run(m,'77 1 9 pf w! 5 1 0 pf w! observation-step');

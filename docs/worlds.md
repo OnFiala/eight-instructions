@@ -17,7 +17,8 @@ second pays for the workshop, and the third pays for the transport connection.
 The site remains an accountable installed-material object after activation.
 When its full requirement is met, the shared scheduler's `district-step` checks
 placement, free process capacity, nonwrapping lifetime/epoch counters, road capacity,
-absence of an existing directed connection, compatible executable source and useful
+an even number of existing directed roads, no duplicate in either direction,
+compatible executable source and useful
 remaining demand. It then allocates a real factory process, binds the compiled
 module, adds a bidirectional road pair and connects both factories to the next site.
 No other actor runs between these checks and effects. A refusal retains all stock

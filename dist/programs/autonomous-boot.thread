@@ -3,8 +3,8 @@ workspace-large 32 process-slice!
 12 process-module depot.thread
 110 0 source-write : depot.thread schema# 1 recv if swap 1 = if authorize else drop drop then else drop drop drop then dispatch ;
 0 module-compile
-14 process-module factory.thread
-167 1 source-write : factory.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 1 request work dispatch ;
+19 process-module factory-west.thread
+172 1 source-write : factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then batch# 1 request work dispatch ;
 1 module-compile
 10 process-module van.thread
 111 2 source-write : van.thread schema# 1 recv if swap 2 = if claim else drop drop then else drop drop drop then 0 drive service ;

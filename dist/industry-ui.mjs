@@ -17,7 +17,12 @@ scene.ready.catch(e=>notice(`An architectural asset could not load: ${e.message}
 const stateCommand='synthesis-state district-state industry-state';
 let synthesis,construction,goal,decision,autonomyRecords=[],generatedSources=[],pendingOutput='',queuedBridge=false;
 const readLive=output=>readIndustry(readAutonomy(output).live);
-function notice(text,kind=''){$('notice').textContent=text;$('notice').className=`notice ${kind}`;}
+function notice(text,kind=''){
+  $('panel-notice').textContent=text;$('panel-notice').className=`notice ${kind}`;
+  // Errors stay visible even when the optional inspector is closed. Success
+  // details remain with the inspector instead of covering the live city.
+  $('notice').textContent=kind==='error'?text:'';$('notice').hidden=kind!=='error';
+}
 function checked(view){if(view.nativeError)throw new Error(`The BF kernel refused this input (error ${view.nativeError}).`);const error=view.events.find(e=>e.kind==='WS-ERROR');if(error)throw new Error(diagnostics[error.values[0]]??`Native error ${error.values[0]}.`);}
 function sourceWrite(id,source){const length=encoder.encode(source).length;if(length>65535)throw new Error('The raw input frame is too large.');return `${length} ${id} source-write ${source}`;}
 function context(){
@@ -121,7 +126,7 @@ function render(){
     const complete=sites.length&&sites.every(e=>e.consumed>=e.constructionGoal);
     $('mission-title').textContent=complete?'The district is built.':construction?.[7]===3?'Finish the north station.':'Build the riverside workshop.';
     const closed=world.roads.find(r=>r.id===0&&!r.open);
-    $('mission-detail').textContent=closed?'The bridge is closed. Vans already crossing can finish.':synthesis?.[1]?'Testing a new production rule. The live city continues.':decision?.kind==='NATIVE-ROLLBACK'?decisionText[5]:decision?.kind==='SEARCH-DECISION'?decisionText[decision.values[1]]:complete?'Finite project completed. Explore the programs and their evidence.':goal?.[0]===3?'Construction is waiting for resources or a usable program.':'Making panels and delivering material to the next project.';
+    $('mission-detail').textContent=complete?'Finite project completed. Explore the programs and their evidence.':closed?'The bridge is closed. Vans already crossing can finish.':synthesis?.[1]?(running?'Testing a new production rule. The live city continues.':busy?'Finishing the current native operation.':'Experiment paused. Resume to continue testing.'):decision?.kind==='NATIVE-ROLLBACK'?decisionText[5]:goal?.[0]===3?'Construction is waiting for resources or a usable program.':decision?.kind==='SEARCH-DECISION'?decisionText[decision.values[1]]:'Making panels and delivering material to the next project.';
     $('bridge-intervention').textContent=queuedBridge?'Change queued…':closed?'Reopen bridge':'Close bridge';
     $('experiment-status').textContent=synthesis?.[1]?`Native experiment ${synthesis[2]} · ${synthesis[1]===1?'search':'additional validation'} · ${synthesis[8]}/${synthesis[7]} trial rounds`:decision?.kind==='SEARCH-DECISION'?decisionText[decision.values[1]]:'BF selects bounded work from current native state.';
     if(complete&&synthesis?.[1]===0){running=false;}
@@ -210,7 +215,7 @@ async function action(work,{stop=true}={}){
 }
 function bind(id,fn){$(id).addEventListener('click',()=>Promise.resolve().then(fn).catch(e=>{notice(e.message,'error');console.error(e);}));}
 function selectObject(object){
-  document.body.classList.add('inspecting');
+  setInspector(true);
   selected=object;scene.selectObject(object);selectionPending=object.kind!=='road';render();
   if(!busy&&nativeState==='input')action(flushSelection,{stop:false}).catch(()=>{});
 }
@@ -232,7 +237,7 @@ async function installImage(image,{fresh=false}={}){
     const handle=view.world.processes.find(p=>p.handle===2)?.handle??view.world.processes[0]?.handle;
     const detail=await execute(`${handle} industry-inspect`,{target:candidate,recording:false}),dv=readLive(detail.output);checked(dv);
     if(!dv.control||dv.sources.get(dv.control[1])===undefined||dv.versionSource===undefined)throw new Error('The candidate cannot restore its native source editor.');
-    client?.close();client=candidate;accepted=true;instance++;events=[];rawLog='';sources.clear();drafts.clear();batchDrafts.clear();roadDrafts.clear();comparisonBundle=null;synthesis=construction=goal=decision=undefined;autonomyRecords=[];generatedSources=[];pendingOutput='';
+    client?.close();client=candidate;accepted=true;instance++;events=[];rawLog='';sources.clear();drafts.clear();batchDrafts.clear();roadDrafts.clear();comparisonBundle=null;synthesis=construction=goal=decision=undefined;autonomyRecords=[];generatedSources=[];pendingOutput='';queuedBridge=false;
     selected={kind:'entity',id:handle};scene.selectObject(selected);nativeState='input';started=true;readHandle=`entity:${handle}`;selectionPending=false;
     const id=dv.control[1],stored=dv.sources.get(id);sources.set(id,{stored,active:dv.versionSource,activeSerial:view.workspace.modules.find(m=>m.id===id)?.activeSerial??0,draftRevision:dv.parameter?.[5],parameter:dv.parameter,control:dv.control});drafts.set(id,stored);
     initialImage=image;lastElapsed=(frame.elapsedMs??0)+(detail.elapsedMs??0);record(stateCommand,frame);record(`${handle} industry-inspect`,detail);consume(frame,{animate:false});$('boot').hidden=true;
@@ -275,12 +280,18 @@ async function applyBridge(){
   try{checked(consume(await execute(`${open?0:1} 0 industry-open ${stateCommand}`)));}
   finally{queuedBridge=false;render();}
 }
-bind('bridge-intervention',()=>{if(queuedBridge)return;queuedBridge=true;controls();if(!busy)return action(applyBridge,{stop:false});});
-bind('toggle-inspector',()=>document.body.classList.toggle('inspecting'));
-bind('close-panel',()=>document.body.classList.remove('inspecting'));
+bind('bridge-intervention',()=>{if(queuedBridge)return;queuedBridge=true;$('bridge-intervention').textContent='Change queued…';controls();if(!busy)return action(applyBridge,{stop:false});});
+function setInspector(open){
+  const changed=document.body.classList.contains('inspecting')!==open;
+  document.body.classList.toggle('inspecting',open);
+  $('toggle-inspector').setAttribute('aria-expanded',String(open));
+  if(changed)(open?$('close-panel'):$('toggle-inspector')).focus();
+}
+bind('toggle-inspector',()=>setInspector(!document.body.classList.contains('inspecting')));
+bind('close-panel',()=>setInspector(false));
 bind('reset-city',()=>boot());
 bind('autonomy-opt-in',()=>action(async()=>{checked(consume(await execute(`1 ${context().module.id} autonomy-module ${stateCommand}`)));notice('BF accepted automatic ownership for this module. Future manual edits opt it out again.');}));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('inspecting');});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('inspect-dialog').open)setInspector(false);});
 bind('start',run);bind('run',run);bind('step',()=>action(advance));
 bind('apply',()=>action(async()=>{
   const c=context();
@@ -328,11 +339,19 @@ async function createProgram(name,source){
 }
 bind('add-loop',()=>action(async()=>{await createProgram('loop.thread',': loop.thread schema# 1 begin 0 until ;');notice('The looping program is live. Step or run the city to see other programs continue. Pause it, edit its source, then repair its continuation.','success');}));
 $('create-form').addEventListener('submit',e=>{e.preventDefault();action(()=>createProgram($('new-name').value,$('new-source').value)).catch(()=>{});});
-function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+function download(name,data,type='application/json'){const url=URL.createObjectURL(new Blob([data],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+const reproductionLink=document.querySelector('a[href="./reproduction/build-004.zip"]');
+let reproductionDownloading=false;
+reproductionLink.addEventListener('click',async event=>{
+  event.preventDefault();if(reproductionDownloading)return;reproductionDownloading=true;
+  try{const response=await fetch(reproductionLink.href);if(!response.ok)throw new Error('The reproduction package could not be downloaded.');download('eight-instructions-build-004.zip',await response.arrayBuffer(),'application/zip');}
+  catch(error){notice(error.message,'error');}
+  finally{reproductionDownloading=false;}
+});
 bind('export',()=>action(async()=>{download(`eight-instructions-004-round-${world?.tick??0}.8i`,(await client.request('save')).image);notice('Whole BF workspace exported. Unsaved editor drafts are not part of the machine; apply them first if you want them in the snapshot.','success');}));
 $('import').addEventListener('change',e=>{const file=e.target.files[0];e.target.value='';if(!file)return;action(async()=>{if(file.size>8e6)throw new Error('Image exceeds the input limit.');await installImage(await file.text());}).catch(e=>notice(`Import refused; the usable workspace was retained. ${e.message}`,'error'));});
 bind('pause-native',async()=>{running=false;await (activeClient??client)?.request('pause');notice('BF pause requested. Resume this exact continuation before submitting another native action.');});
-bind('resume-native',()=>action(async()=>{const r=await client.request('resume');nativeState=r.state;record('(resume exact BF continuation)',r);consume(r);if(r.state==='input')await refresh({source:true});}));
+bind('resume-native',()=>action(async()=>{const r=await client.request('resume');nativeState=r.state;record('(resume exact BF continuation)',r);consume(r);if(r.state==='input'){await refresh({source:true});if(queuedBridge)await applyBridge();}}));
 $('terminal-form').addEventListener('submit',e=>{e.preventDefault();action(async()=>{consume(await execute($('terminal-input').value));if(nativeState==='input')await refresh({source:true});}).catch(()=>{});});
 
 bind('inspect',()=>{
