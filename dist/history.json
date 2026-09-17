@@ -28,7 +28,7 @@
     {
       "number": 4,
       "title": "A city that improves itself",
-      "status": "LOCAL_PASS",
+      "status": "PASS",
       "summary": "BF generates and compiles structural Thread variants, tests isolated real cities, safely publishes improvements and builds a factory and road from delivered material.",
       "testsPassed": 130,
       "testedCommit": "e1a5df89b67ea607adb064c1403e93e163451ead"

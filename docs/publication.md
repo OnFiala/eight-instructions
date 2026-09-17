@@ -132,6 +132,9 @@ Before publication, retain the verified Build003 saved version from
 Sites Git history and deploy to the existing public audience. Verify anonymous
 asset identities, a fresh autonomous run, disruption, error handling, independent
 work and export/import, then actually replay the public reproduction download.
-Post-publication receipts may be metadata-only commits: their absence from an
-earlier deployed source projection does not imply different runtime bytes. Record
-that distinction explicitly; never claim an unverified deployment from local tests.
+Build004 freezes the local acceptance record before exact-source CI. The final
+post-publication receipt is an immutable GitHub release attachment, binding the
+verified source, normal merge/tag, Site projection, archive and observed behavior.
+This avoids changing a tested/deployed tree merely to insert its own future hash.
+Local PASS has explicit local scope until the external receipt proves release PASS.
+Retain failed attempts alongside success, and never replace a published tag.

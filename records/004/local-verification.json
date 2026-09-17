@@ -1,6 +1,6 @@
 {
   "status": "PASS",
-  "scope": "Local coverage from the full retained run plus the exact repaired regression rerun, not a claim that the first full command exited successfully. Fresh hosted CI remains required.",
+  "scope": "Local coverage from the full retained run plus the exact repaired regression rerun, not a claim that the first full command exited successfully. Hosted CI is recorded separately in the release receipt.",
   "uniqueTestsCovered": 130,
   "retainedBuild003Tests": 114,
   "newTests": 16,
@@ -27,5 +27,11 @@
   "kernelSha256": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
   "initialImageSha256": "68b23214dfea7dbabc6551e23e40025bcc74f4b8224fc1ab816583d529cdd7e7",
   "implementationCommit": "e1a5df89b67ea607adb064c1403e93e163451ead",
-  "hostedCi": "pending"
+  "hostedCi": "See the observed exact-source results in release asset final-deployment.json.",
+  "retainedOriginalTestFileCount": 33,
+  "finalImmutableArtifacts": {
+    "commit": "2c58127ed07dfb8c0a4bcd4a73c544bbc0473796",
+    "file": "artifacts-check-final.txt",
+    "status": "PASS"
+  }
 }

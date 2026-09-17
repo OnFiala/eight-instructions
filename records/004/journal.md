@@ -260,3 +260,18 @@ export/import, keyboard/reduced motion and three viewports pass. Actual GUI ZIP
 delivery matches final package and a freshly extracted CLI matches61+13outputs.
 Temporary viewport/media overrides have been cleared. Fresh hosted CI, normal
 merge and the existing public Site release still remain; no completion claim yet.
+
+## Release evidence identity —2026-09-17T21:40Z
+
+The immutable-tree artifact command now passes in full (artifacts-check-final.txt).
+Corrected one wording error:114retained tests live in33unchanged test files, not
+114files. Runtime sources and behavior are unchanged.
+
+The committed build status describes local implementation acceptance explicitly.
+Final external CI, merge/tag, Site projection/version/deployment, anonymous asset
+and behavior evidence will be bound in the immutable final-deployment.json GitHub
+release attachment after observation. This avoids self-referential commit hashes
+or a second deployment solely to record the first deployment. No external PASS is
+implied before those gates complete. The first CI runs were started on2c58127; a
+final evidence wording commit supersedes that head and receives fresh CI. Cancelled
+superseded checks are not counted as passed.

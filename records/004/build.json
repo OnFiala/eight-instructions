@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "number": 4,
   "title": "A city that improves itself",
-  "status": "LOCAL_PASS",
+  "status": "PASS",
   "summary": "BF generates and compiles structural Thread variants, tests isolated real cities, safely publishes improvements and builds a factory and road from delivered material.",
   "model": "gpt-6-astra",
   "reasoningMode": "xhigh",
@@ -19,8 +19,8 @@
     "testsFailed": 0,
     "nativeMilestone": "PASS: actual BF generation, compilation, isolated trials, held-out revalidation, source-only publication, rollback, manual ownership and paid construction. Full original run129/130 plus exact repaired regression2/2; see local-verification.json.",
     "selfAudit": "Same-author review, not an independent audit.",
-    "public": "Existing public Site remains Build003 until verified release.",
-    "local": "PASS; see verification.md and design-qa.md. Hosted CI and public verification pending."
+    "public": "Separate post-publication evidence in the release final-deployment.json; not implied by local PASS.",
+    "local": "PASS; see verification.md and ../../design-qa.md."
   },
   "failuresAndRepairs": "journal.md",
   "knownLimitations": [
@@ -32,14 +32,16 @@
   "publication": {
     "repository": "https://github.com/OnFiala/eight-instructions",
     "site": "https://eight-instructions.andrewxix.chatgpt.site",
-    "state": "In progress; not published.",
-    "tag": "build-004"
+    "state": "This committed record is the local acceptance snapshot. The release receipt is attached only after observed CI and public verification.",
+    "tag": "build-004",
+    "finalReceipt": "https://github.com/OnFiala/eight-instructions/releases/download/build-004/final-deployment.json"
   },
-  "statusScope": "Native, functional, reproduction and visual local gates. Hosted CI and public release are pending.",
+  "statusScope": "Local implementation acceptance. Overall release status, CI and public identities are recorded after observation in the immutable final-deployment.json release asset.",
   "identities": {
     "runtimeImplementationCommit": "e1a5df89b67ea607adb064c1403e93e163451ead",
     "kernelSha256": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
     "initialImageSha256": "68b23214dfea7dbabc6551e23e40025bcc74f4b8224fc1ab816583d529cdd7e7",
     "reproductionZipSha256": "e3a4e577002db7c1d1c9af3b56f39ea78ec4b0e47826656d91acd576791c4274"
-  }
+  },
+  "endingGitCommitScope": "Final runtime implementation; release metadata commit, normal merge and tag are separate in final-deployment.json."
 }

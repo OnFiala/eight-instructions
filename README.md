@@ -14,8 +14,10 @@ decides whether to publish it. Live cargo and construction continue during trial
 **Local verification: PASS.** All 130 tests are covered, including the unchanged
 114 earlier regressions. Native synthesis, paid construction, the complete zero-click
 journey, advanced controls, fresh downloaded reproduction and visual review pass.
-GitHub CI and public deployment remain pending; see the live status in
-[the release record](records/004/build.json) and [verification evidence](records/004/verification.md).
+The committed evidence covers local acceptance. The
+[final release receipt](https://github.com/OnFiala/eight-instructions/releases/download/build-004/final-deployment.json) records CI, merge/tag,
+public deployment and anonymous verification after those actions actually succeed.
+See [verification evidence](records/004/verification.md) for test scope and limits.
 
 [Public site](https://eight-instructions.andrewxix.chatgpt.site/) ·
 [Build 004 challenge](records/004/challenge.md) · [Journal](records/004/journal.md) ·

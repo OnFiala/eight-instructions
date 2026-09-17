@@ -2,16 +2,17 @@
 
 This is evidence from the sole Astra xHigh author. No independent audit is claimed.
 The local acceptance gate is PASS. Hosted CI and public verification are separate
-pending gates until their receipts are added to build.json and release.md.
+gates, recorded after observation in the release asset final-deployment.json. This
+committed snapshot does not imply either external gate has already passed.
 
 | Requirement | Evidence and result |
 | --- | --- |
-| Retained regressions | local-verification.json: all114 original test files unchanged; full-local-tests-01.txt129/130, then diagnostic-compatibility-02.txt2/2 after restoring the original boot module name.130 unique tests covered; no skipped tests. The first full command exited1 and is not represented as a clean run. |
+| Retained regressions | local-verification.json: all114 original tests retained; all33 original test files unchanged; full-local-tests-01.txt129/130, then diagnostic-compatibility-02.txt2/2 after restoring the original boot module name.130 unique tests covered; no skipped tests. The first full command exited1 and is not represented as a clean run. |
 | New native behavior | synthesis.test.mjs, synthesis-adversarial.test.mjs and district.test.mjs: actual source structure, equal-checkpoint/horizon trials, withheld road input, new goals, manual source, stale publication, loop/fault rejection, privileged-word refusal, rollback, supply bounds and real paid construction. |
 | Isolation and persistence | Whole BF heap/workspace context copy/zero; context reference parity; export/restore of eight pending searches during the320-cycle fixed-capacity stress. Original frame/mail/image contracts retained. |
 | Bounded reclamation | synthesis-reclaim-02.txt and full-local-tests-01.txt:320 actual search/compile/trial/reject/cleanup cycles at unchanged capacities. Original450 module-publication and450 industrial-job reuse cases also remain. These are distinct workloads. |
 | Literal BF | Original module/process reference workloads and instruction limits unchanged. New whole-context reference test executes about16.13billion literal commands and compares tape, PC and counters. Optimized execution is not presented as literal timing. |
-| Final artifact identity | artifacts-check-02.txt cold-compiles final image05 exactly and verifies kernel/executor/source/history/archives. Its final audit caught concurrent presentation-hash drift; the reviewed final hash passes boundary-development-09.txt337classified sources. Hosted CI will repeat the entire gate on one immutable tree. |
+| Final artifact identity | artifacts-check-final.txt: the entire artifact command passes on immutable commit2c58127, including fresh BF compilation of final image05, kernel/executor/source/history/archives and337classified boundary sources. Earlier artifacts-check-02.txt caught concurrent presentation-hash drift; that failed attempt remains preserved. |
 | Default zero-click journey | browser-final-zero-click-accepted.json and browser-final-zero-click-completed.json: native acceptance25, paid factory/roads37, equal-score rejections73/97, both goals complete97. No visitor native inputs. Native receipts retain scores and generated source. |
 | Browser / fresh CLI | browser-cli-final-initial-parity.json: initial seven final-image inputs byte-identical. browser-cli-restored-paused81-parity.json: a budget-paused image resumes its exact pending continuation in a new machine with identical output. |
 | Independent progress / repair | browser-loop-repaired-progress.json: looping own actor cannot stop city; edit/repair continuation then increments private state. browser-manual-published.json, browser-manual-rollback.json and browser-manual-optin.json cover own source, native rollback and explicit ownership. |
@@ -22,7 +23,7 @@ pending gates until their receipts are added to build.json and release.md.
 | Performance | metrics.json and measurements.md: three sequential samples with other task-owned native work stopped. Native logical improvement and wall-clock costs are separate. Local full browser observation elapsed834226ms under competing verification work is an upper bound, not a benchmark. |
 | BF/host boundary | boundary.json, host-review.md and self-review.md. Native compiler/synthesis/trials/scoring/publication/construction; host raw I/O, generic execution, opaque images and presentation. No production imports from tools/tests. |
 | Historical preservation | archive receipts preserve Build001/002/003 runtime files with explicit HTML relocation only. Old tags unchanged; old images use their own kernels. |
-| Public release | Pending normal GitHub CI/merge and existing Site update. build.json and release.md will bind source, tag, projection, archive, version, deployment and anonymous behavior. |
+| Public release | The final-deployment.json release asset binds observed CI, source, tag, projection, archive, version, deployment, anonymous behavior and fresh public ZIP replay. It is published after all external gates pass. |
 
 ## Accepted candidate in the observed visitor run
 

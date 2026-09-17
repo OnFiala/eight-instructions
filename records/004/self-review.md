@@ -2,7 +2,8 @@
 
 Reviewer and implementer: sole Astra xHigh. No independent audit is claimed.
 Local same-author review is closed with no known material unresolved finding in
-the tested scope. Hosted CI and public verification remain separate release gates.
+the tested scope. Hosted CI and public verification are separate release gates recorded after
+observation in the final-deployment.json release asset.
 
 ## Findings addressed
 
@@ -67,8 +68,9 @@ inputs are separate from committed native machine state. Older images require
 their historical kernel. Image integrity is not authentication.
 
 All130 local tests are covered by the first full run129/130 and the exact repaired
-regression rerun2/2. The old114 tests are byte-identical to the prior main tree.
+regression rerun2/2. The114 earlier tests are retained in33 test files, all byte-identical to prior main.
 The completed no-click browser journey, repaired controls, reduced motion, three
 viewports and fresh downloaded CLI reproduction are recorded in verification.md.
-The first full command did not pass; its failure remains preserved. Fresh hosted CI
-and anonymous post-deployment behavior must pass before overall release closure.
+The first full command did not pass; its failure remains preserved. Overall release
+closure additionally requires successful exact-source CI and anonymous public
+behavior. The immutable final-deployment.json release asset records those outcomes.
