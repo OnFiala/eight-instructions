@@ -1,0 +1,7 @@
+{
+  "source": "Actual browser Export while BF was paused inside an operation at displayed live round81",
+  "imageSha256": "068e3f6b099f84bd7d7abc7dc1bf428aff84e71ed198c037e634822628659be8",
+  "compressedPath": "fixtures/browser-paused-round81.8i.gz",
+  "bytes": 2505692,
+  "status": "Exported; fresh browser import and continuation parity pending"
+}

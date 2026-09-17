@@ -1,0 +1,14 @@
+{
+  "before": {
+    "at": "2026-09-17T21:04:13.236Z",
+    "matches": true,
+    "canvas": "Industrial city at native round 66. 5 deliveries. Riverside workshop 3 of 3 panels. North station 1 of 3 panels. Use the object menu for keyboard controls."
+  },
+  "after": {
+    "at": "2026-09-17T21:04:44.998Z",
+    "matches": true,
+    "canvas": "Industrial city at native round 69. 6 deliveries. Riverside workshop 3 of 3 panels. North station 2 of 3 panels. Use the object menu for keyboard controls.",
+    "errors": []
+  },
+  "scope": "Preference is active while fresh BF rounds progress; scene rendering code suppresses interpolation under this preference. No accessibility certification."
+}

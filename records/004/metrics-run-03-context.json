@@ -1,0 +1,7 @@
+{
+  "startedAt": "2026-09-17T21:20Z",
+  "condition": "Full native test run and all offline replays finished. Both local browser worlds stopped at native round97. No other task-owned native workload is running.",
+  "hardware": "MacBook Pro Apple M5",
+  "samplesPlanned": 3,
+  "precedingMetrics": "metrics-before-final-guards.json is historical, not the final source or a quiescent claim."
+}

@@ -11,10 +11,11 @@ working. Inside the same machine, a bounded grammar constructs new Thread source
 the actual compiler compiles it, isolated worlds test it, and a native controller
 decides whether to publish it. Live cargo and construction continue during trials.
 
-**Development status:** native synthesis, isolation, automatic publication, rollback,
-material-built expansion and the first zero-click browser run are verified locally.
-The complete regression, visual and public release gates are still in progress.
-The existing public URL remains on Build 003 until the verified deployment.
+**Local verification: PASS.** All 130 tests are covered, including the unchanged
+114 earlier regressions. Native synthesis, paid construction, the complete zero-click
+journey, advanced controls, fresh downloaded reproduction and visual review pass.
+GitHub CI and public deployment remain pending; see the live status in
+[the release record](records/004/build.json) and [verification evidence](records/004/verification.md).
 
 [Public site](https://eight-instructions.andrewxix.chatgpt.site/) ·
 [Build 004 challenge](records/004/challenge.md) · [Journal](records/004/journal.md) ·

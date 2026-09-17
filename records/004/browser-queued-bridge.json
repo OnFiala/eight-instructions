@@ -1,0 +1,15 @@
+{
+  "before": {
+    "label": "Close bridge",
+    "round": "ROUND 57",
+    "status": "BF computing · 2.7 s"
+  },
+  "after": {
+    "disabled": true,
+    "label": "Change queued…",
+    "round": "ROUND 57",
+    "status": "BF computing · 3.1 s"
+  },
+  "automationRoundTripUpperBoundMs": 373,
+  "method": "Real click during native computation; elapsed includes automation transport and DOM observation, not a browser-only input latency measurement."
+}

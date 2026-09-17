@@ -1,0 +1,49 @@
+{
+  "verifiedAt": "2026-09-17T20:34:36.628055+00:00",
+  "url": "https://eight-instructions.andrewxix.chatgpt.site/",
+  "authentication": "curl -q GET without configuration, cookies, authorization or bypass token",
+  "historicalTag": "build-003",
+  "files": [
+    {
+      "path": "index.html",
+      "httpStatus": 200,
+      "publicSha256": "3a978dda9d39a1abdb3659a9dcd480d7d3bc503eedfd50ee259fb98fba6a3175",
+      "build003Sha256": "da3cdfe36965574b8d3e7b8cc65ec7694b48345651a77fb12686384045fceb63",
+      "exactMatch": false,
+      "bytes": 15779,
+      "build003Text": true
+    },
+    {
+      "path": "kernel.bf.gz",
+      "httpStatus": 200,
+      "publicSha256": "bd1c1ff2318a7a6b6c8b96a47a6467a9c344239d14f7925ad862e07ef26c8869",
+      "build003Sha256": "bd1c1ff2318a7a6b6c8b96a47a6467a9c344239d14f7925ad862e07ef26c8869",
+      "exactMatch": true,
+      "bytes": 192621
+    },
+    {
+      "path": "engine.mjs",
+      "httpStatus": 200,
+      "publicSha256": "ed8c0941aeda1e8608bc2ad41bee1c29a83643477bfa48e168262f74961e4326",
+      "build003Sha256": "ed8c0941aeda1e8608bc2ad41bee1c29a83643477bfa48e168262f74961e4326",
+      "exactMatch": true,
+      "bytes": 6925
+    },
+    {
+      "path": "executor.wasm",
+      "httpStatus": 200,
+      "publicSha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+      "build003Sha256": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+      "exactMatch": true,
+      "bytes": 744
+    },
+    {
+      "path": "initial-industry.8i",
+      "httpStatus": 200,
+      "publicSha256": "18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04",
+      "build003Sha256": "18b27dc6dca3e1ca1fa1904ce36ba5ec0383b1ec281312de6bc58716f42c4f04",
+      "exactMatch": true,
+      "bytes": 1063622
+    }
+  ]
+}

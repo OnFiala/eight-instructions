@@ -1,7 +1,7 @@
-# Native synthesis and world contexts — Build 004 development
+# Native synthesis and world contexts — Build 004
 
-This describes the current development implementation, not a verified release.
-The first native milestone and all release gates remain tracked in `records/004`.
+This describes the implemented native contract. Verification and release identities
+are tracked separately in `records/004`; a contract is not evidence of deployment.
 
 The same BF kernel executes the resident Thread compiler, actor module compiler,
 city operations and trusted synthesis supervisor. There is no host-side candidate

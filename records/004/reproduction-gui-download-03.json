@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "delivery": "Actual browser link click, fetch and Blob download",
+  "localDownloadedFile": "/Users/ondrej/Downloads/eight-instructions-build-004.zip",
+  "bytes": 255421,
+  "sha256": "e3a4e577002db7c1d1c9af3b56f39ea78ec4b0e47826656d91acd576791c4274",
+  "matchesCurrentPackage": true
+}

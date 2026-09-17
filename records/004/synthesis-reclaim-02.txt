@@ -3,3 +3,23 @@ TAP version 13
 # {"cycles":80,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
 # {"cycles":120,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
 # {"cycles":160,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":200,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":240,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":280,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":320,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":320,"exportsDuringTrials":8,"transcriptSha256":"364c34555422e193347d7d11375240d686f0361b047e2212912e9cfcd210913a","residentBefore":[25458,341],"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: 320 native short-horizon searches generate, compile, reject and reclaim at fixed capacity, across exported pending trials
+ok 1 - 320 native short-horizon searches generate, compile, reject and reclaim at fixed capacity, across exported pending trials
+  ---
+  duration_ms: 2423856.549125
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2424725.250667

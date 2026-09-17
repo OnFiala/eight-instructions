@@ -1,0 +1,10 @@
+{
+  "open": {
+    "expanded": "true",
+    "focus": "close-panel"
+  },
+  "closed": {
+    "expanded": "false",
+    "focus": "toggle-inspector"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "source": "records/004/reference/autonomous-living-dispatch.png",
+  "sourceSha256": "1ec2a1ae158c255ea009e3bc3454424e3fe47e53fdf92707b83a5fd539297646",
+  "actual": "records/004/screenshots/completed-desktop-final.jpg",
+  "actualSha256": "ffe3f567ad17613d412060fb5d9f594153ecb4b018a1cb5e7330bfc8263d5e14",
+  "viewport": {
+    "width": 1487,
+    "height": 1058,
+    "devicePixelRatio": 1
+  },
+  "normalization": "Exact unmodified pixels, equal CSS sizes in local diagnostic HTML. Overlay opacity0.5. No generative comparison. Native state differs from illustrative art direction.",
+  "discarded": [
+    "final-accepted-desktop.png",
+    "final-desktop-02.png",
+    "final-mobile-camera-fixed.jpg"
+  ],
+  "discardReason": "CDP device override produced tiled compositor captures; not valid visual evidence. Browser viewport API plus normal screenshot corrected capture. Standard screenshot after a per-tab mobile CDP override was underscaled; explicit CDP capture at physical scale2 corrected that image.",
+  "nativeState": "Round97 completion, exported from the verified zero-click journey and restored to inspect the final callout rendering."
+}

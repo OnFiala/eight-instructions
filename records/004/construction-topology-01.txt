@@ -1,0 +1,16 @@
+TAP version 13
+# Subtest: construction rejects bad placement and refuses capacity exhaustion without partial actor or road allocation
+ok 1 - construction rejects bad placement and refuses capacity exhaustion without partial actor or road allocation
+  ---
+  duration_ms: 47625.989458
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 48623.381458

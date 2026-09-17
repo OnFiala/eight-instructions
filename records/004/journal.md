@@ -242,3 +242,21 @@ local visual/interaction scope; this does not close CI or publication gates.
 Artifactcheck02 reproduced finalimage05 but the concluding review gate caught a
 concurrent mobile-rendering hash change. The reviewed renderer and subsequent
 boundary-development09 pass337classified sources. Targeted UI parsers pass5/5.
+
+## Local acceptance closure —2026-09-17T21:30Z
+
+The complete local run ended129/130 with only the known original boot-name
+compatibility failure. Restoring factory-west.thread produced final image05 and
+the unchanged original test passed2/2. All114prior test files remain unchanged;
+130unique tests are covered. Final UI parser checks5/5. Both local worlds stopped
+at97 and all native replays/tests finished before three final sequential timing
+samples. All three actually publish candidate5 at25; final metrics.json records
+the quiescent task conditions and observed variation. Local acceptance is closed.
+
+Final browser evidence shows acceptance25, paid expansion37, rejected equal-score
+searches73/97 and finite completion97 with no visitor input. Advanced edits,
+rollback/opt-in, loop repair, visible invalid import, queued bridge/resume, actual
+export/import, keyboard/reduced motion and three viewports pass. Actual GUI ZIP
+delivery matches final package and a freshly extracted CLI matches61+13outputs.
+Temporary viewport/media overrides have been cleared. Fresh hosted CI, normal
+merge and the existing public Site release still remain; no completion claim yet.
