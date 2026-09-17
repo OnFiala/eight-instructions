@@ -14,6 +14,7 @@ register constant world-created
 register constant world-reclaimed
 register constant world-deliveries
 register constant world-productions
+register constant world-epoch
 register constant ei
 register constant eh
 register constant efound
@@ -96,6 +97,7 @@ register constant total-panels
   \ (from to duration toll --), called twice to make a bidirectional pair.
   ow ! oz ! oy ! ox !
   world-roads @ 48 < ox @ 16 < and oy @ 16 < and oz @ 0 > and oz @ 31 < and ow @ 10 < and assert
+  world-epoch @ 65535 < assert 1 world-epoch +!
   ox @ world-roads @ 0 rf w! oy @ world-roads @ 1 rf w!
   oz @ world-roads @ 2 rf w! ow @ world-roads @ 3 rf w!
   1 world-roads @ 4 rf w! 1 world-roads @ 5 rf w! 1 world-roads @ 6 rf w!

@@ -1,3 +1,4 @@
+import {readAutonomy,decisionText} from './autonomy-presentation.mjs';
 import {Client} from './client.mjs';
 import {IndustryScene} from './industry-scene.mjs';
 import {readIndustry,entityName,entityStatus,processLabel,roadName,diagnostics} from './industry-presentation.mjs';
@@ -8,12 +9,14 @@ import {registerExperimentTools} from './webmcp.mjs';
 // compilation, participants, scheduling, messages and every world transition.
 const $=id=>document.getElementById(id),encoder=new TextEncoder();
 let client,activeClient,world,workspace,busy=false,running=false,started=false,nativeState='off';
-let selected={kind:'entity',id:3},lastFrame='',rawLog='',events=[],readHandle=null,instance=0;
+let selected={kind:'entity',id:2},lastFrame='',rawLog='',events=[],readHandle=null,instance=0;
 let initialImage,comparisonBundle,lastElapsed=0,selectionPending=false;
 const sources=new Map(),drafts=new Map(),batchDrafts=new Map(),roadDrafts=new Map();
 const scene=new IndustryScene($('city'),{onSelect:selectObject});
 scene.ready.catch(e=>notice(`An architectural asset could not load: ${e.message}`,'error'));
-const stateCommand='industry-state';
+const stateCommand='synthesis-state district-state industry-state';
+let synthesis,construction,goal,decision,autonomyRecords=[],generatedSources=[],pendingOutput='',queuedBridge=false;
+const readLive=output=>readIndustry(readAutonomy(output).live);
 function notice(text,kind=''){$('notice').textContent=text;$('notice').className=`notice ${kind}`;}
 function checked(view){if(view.nativeError)throw new Error(`The BF kernel refused this input (error ${view.nativeError}).`);const error=view.events.find(e=>e.kind==='WS-ERROR');if(error)throw new Error(diagnostics[error.values[0]]??`Native error ${error.values[0]}.`);}
 function sourceWrite(id,source){const length=encoder.encode(source).length;if(length>65535)throw new Error('The raw input frame is too large.');return `${length} ${id} source-write ${source}`;}
@@ -42,7 +45,23 @@ async function execute(source,{target=client,recording=true}={}){
   return r;
 }
 function consume(r,{animate=true}={}){
-  const view=readIndustry(r.output??'');
+  pendingOutput+=r.output??'';
+  if(r.state==='budget')return {events:[],industryEvents:[]};
+  const decoded=readAutonomy(pendingOutput);pendingOutput='';
+  const view=readIndustry(decoded.live);
+  for(const entry of decoded.records){
+    autonomyRecords.push(entry);
+    if(entry.world===0){
+      if(entry.kind==='SYNTHESIS')synthesis=entry.values;
+      if(entry.kind==='DISTRICT')construction=entry.values;
+      if(entry.kind==='GOAL')goal=entry.values;
+      if(entry.kind==='SEARCH-DECISION'||entry.kind==='NATIVE-ROLLBACK')decision=entry;
+    }
+  }
+  autonomyRecords=autonomyRecords.slice(-1200);
+  generatedSources.push(...decoded.sources);generatedSources=generatedSources.slice(-64);
+  $('autonomy-evidence').textContent=autonomyRecords.map(e=>`${e.world?'TRIAL':'LIVE'} ${e.raw}`).join('\n');
+  $('generated-source').textContent=generatedSources.at(-1)?.source??'No generated source is retained from this browser instance yet.';
   if(view.world){world=view.world;lastFrame=r.output;scene.setState(world,{animate});}
   if(view.workspace)workspace=view.workspace;
   for(const event of view.industryEvents)events.push({...event,instance,input:r.input??'',round:view.world?.tick??world?.tick,roads: event.kind==='I-ROUTE'?structuredClone(view.world?.roads??world?.roads??[]):undefined});
@@ -66,7 +85,9 @@ function controls(){
   $('add-van').disabled=!ready||!c.entity;
   $('run').disabled=!started||(busy&&!running)||nativeState!=='input'&&!running;
   $('run').textContent=running?'Pause':'Run';$('run').setAttribute('aria-label',running?'Pause after this scheduler round':'Run the city');
-  $('start').disabled=!ready;$('start').textContent='Begin construction →';
+  $('start').hidden=true;
+  $('bridge-intervention').disabled=!started||queuedBridge;
+  $('autonomy-opt-in').disabled=!ready||!c.module;
   $('export').disabled=!started||busy;$('import').disabled=busy;
   $('object-picker').disabled=!world;
   $('editor').disabled=!hasSource||!c.module;
@@ -97,10 +118,16 @@ function render(){
     $('delivery-count').textContent=`${world.deliveries} cargo transfers`;
     const sites=world.entities.filter(e=>e.role===4);
     $('construction-count').textContent=sites.map(e=>`${e.consumed}/${e.constructionGoal}`).join(' · ')+' panels';
-    $('mission-title').textContent=sites.length&&sites.every(e=>e.consumed>=e.constructionGoal)?'Both stations complete.':'Build the two stations.';
-    $('mission-detail').textContent=sites.map(e=>`${entityName(e)} ${e.consumed}/${e.constructionGoal}`).join(' · ');
+    const complete=sites.length&&sites.every(e=>e.consumed>=e.constructionGoal);
+    $('mission-title').textContent=complete?'The district is built.':construction?.[7]===3?'Finish the north station.':'Build the riverside workshop.';
+    const closed=world.roads.find(r=>r.id===0&&!r.open);
+    $('mission-detail').textContent=closed?'The bridge is closed. Vans already crossing can finish.':synthesis?.[1]?'Testing a new production rule. The live city continues.':decision?.kind==='NATIVE-ROLLBACK'?decisionText[5]:decision?.kind==='SEARCH-DECISION'?decisionText[decision.values[1]]:complete?'Finite project completed. Explore the programs and their evidence.':goal?.[0]===3?'Construction is waiting for resources or a usable program.':'Making panels and delivering material to the next project.';
+    $('bridge-intervention').textContent=queuedBridge?'Change queued…':closed?'Reopen bridge':'Close bridge';
+    $('experiment-status').textContent=synthesis?.[1]?`Native experiment ${synthesis[2]} · ${synthesis[1]===1?'search':'additional validation'} · ${synthesis[8]}/${synthesis[7]} trial rounds`:decision?.kind==='SEARCH-DECISION'?decisionText[decision.values[1]]:'BF selects bounded work from current native state.';
+    if(complete&&synthesis?.[1]===0){running=false;}
+
     document.querySelector('.mission').classList.toggle('running',world.tick>0);
-    if(!busy)$('machine-status').textContent=nativeState==='budget'?'BF paused inside an operation':running?'Live BF computation':`Ready · round ${world.tick}`;
+    if(!busy)$('machine-status').textContent=nativeState==='budget'?'BF paused inside an operation':document.hidden?'Tab hidden · automatic advancement suspended':running?'Live in this tab':`Paused · round ${world.tick}`;
     $('timing').textContent=`Last native operation: ${(lastElapsed/1000).toFixed(2)} s`;
     $('city').setAttribute('aria-label',`Industrial city at native round ${world.tick}. ${world.deliveries} deliveries. ${sites.map(e=>`${entityName(e)} ${e.consumed} of ${e.constructionGoal} panels`).join('. ')}. Use the object menu for keyboard controls.`);
   }
@@ -156,15 +183,16 @@ async function hydrate(object=selected){
   // serial; do not send compile-only control words at the interactive prompt.
   const serial=workspace.modules.find(m=>m.id===object.id)?.activeSerial;
   const input=object.kind==='entity'?`${object.id} industry-inspect`:`${object.id} source-read ${serial?`${serial} version-source `:''}${object.id} module-parameter`;
-  const r=await execute(input),view=readIndustry(r.output);checked(view);
+  const r=await execute(input),view=readLive(r.output);checked(view);
   const control=view.control,id=object.kind==='module'?object.id:control?.[1],stored=view.sources.get(id);
   if(id===undefined||stored===undefined)throw new Error('BF did not return this stored source.');
   if(object.kind==='entity'&&view.versionSource===undefined)throw new Error('BF did not return the active source.');
+  const old=sources.get(id);if(drafts.get(id)===old?.stored)drafts.set(id,stored);
   sources.set(id,{stored,active:view.versionSource??'',activeSerial:workspace.modules.find(m=>m.id===id)?.activeSerial??0,draftRevision:view.parameter?.[5],parameter:view.parameter,control});
   if(!drafts.has(id))drafts.set(id,stored);readHandle=`${object.kind}:${object.id}`;render();
 }
 async function flushSelection(){
-  while(selected.kind!=='road'&&nativeState==='input'&&(selectionPending||readHandle!==`${selected.kind}:${selected.id}`)){
+  while(selected.kind!=='road'&&nativeState==='input'&&(selectionPending||readHandle!==`${selected.kind}:${selected.id}`||!context().source)){
     selectionPending=false;const object={...selected};await hydrate(object);if(object.id!==selected.id||object.kind!==selected.kind)selectionPending=true;
   }
 }
@@ -182,6 +210,7 @@ async function action(work,{stop=true}={}){
 }
 function bind(id,fn){$(id).addEventListener('click',()=>Promise.resolve().then(fn).catch(e=>{notice(e.message,'error');console.error(e);}));}
 function selectObject(object){
+  document.body.classList.add('inspecting');
   selected=object;scene.selectObject(object);selectionPending=object.kind!=='road';render();
   if(!busy&&nativeState==='input')action(flushSelection,{stop:false}).catch(()=>{});
 }
@@ -198,16 +227,16 @@ async function installImage(image,{fresh=false}={}){
     let status=await candidate.request('load',{image});
     for(let n=0;status.state==='budget'&&n<4;n++)status=await candidate.request('resume');
     if(status.state!=='input')throw new Error('The imported continuation has not reached a readable input boundary. The current machine was retained.');
-    const frame=await execute(stateCommand,{target:candidate,recording:false}),view=readIndustry(frame.output);checked(view);
-    if(frame.state!=='input'||!view.world||!view.workspace)throw new Error('The image does not contain a complete Build 003 industrial workspace.');
-    const handle=view.world.processes.find(p=>p.handle===3)?.handle??view.world.processes[0]?.handle;
-    const detail=await execute(`${handle} industry-inspect`,{target:candidate,recording:false}),dv=readIndustry(detail.output);checked(dv);
+    const frame=await execute(stateCommand,{target:candidate,recording:false}),view=readLive(frame.output);checked(view);
+    if(frame.state!=='input'||!view.world||!view.workspace)throw new Error('The image does not contain a complete Build 004 autonomous workspace.');
+    const handle=view.world.processes.find(p=>p.handle===2)?.handle??view.world.processes[0]?.handle;
+    const detail=await execute(`${handle} industry-inspect`,{target:candidate,recording:false}),dv=readLive(detail.output);checked(dv);
     if(!dv.control||dv.sources.get(dv.control[1])===undefined||dv.versionSource===undefined)throw new Error('The candidate cannot restore its native source editor.');
-    client?.close();client=candidate;accepted=true;instance++;events=[];rawLog='';sources.clear();drafts.clear();batchDrafts.clear();roadDrafts.clear();comparisonBundle=null;
+    client?.close();client=candidate;accepted=true;instance++;events=[];rawLog='';sources.clear();drafts.clear();batchDrafts.clear();roadDrafts.clear();comparisonBundle=null;synthesis=construction=goal=decision=undefined;autonomyRecords=[];generatedSources=[];pendingOutput='';
     selected={kind:'entity',id:handle};scene.selectObject(selected);nativeState='input';started=true;readHandle=`entity:${handle}`;selectionPending=false;
     const id=dv.control[1],stored=dv.sources.get(id);sources.set(id,{stored,active:dv.versionSource,activeSerial:view.workspace.modules.find(m=>m.id===id)?.activeSerial??0,draftRevision:dv.parameter?.[5],parameter:dv.parameter,control:dv.control});drafts.set(id,stored);
     initialImage=image;lastElapsed=(frame.elapsedMs??0)+(detail.elapsedMs??0);record(stateCommand,frame);record(`${handle} industry-inspect`,detail);consume(frame,{animate:false});$('boot').hidden=true;
-    notice(fresh?'Ready. Begin construction, or select an object to change its program.':'Workspace restored. Sources, messages, stock and unfinished work came from the image. Earlier event history is unavailable.','success');
+    notice(fresh?'The city starts on its own. Select any object to inspect its real state.':'Workspace restored. Sources, messages, stock and unfinished work came from the image. Earlier event history is unavailable.','success');
   }finally{if(!accepted)candidate.close();}
 }
 async function boot(cold=false){
@@ -215,7 +244,7 @@ async function boot(cold=false){
     $('boot').hidden=false;
     if(cold){
       const candidate=new Client({onProgress:progress});
-      try{activeClient=candidate;let r=await candidate.request('boot',{system:'industry-system.json'}),out=r.output??'';
+      try{activeClient=candidate;let r=await candidate.request('boot',{system:'autonomous-system.json'}),out=r.output??'';
         for(let n=0;r.state==='budget'&&r.reason==='limit'&&n<4;n++){r=await candidate.request('resume');out+=r.output??'';}
         if(r.state!=='input'||/!E\d|WS-ERROR/.test(out))throw new Error('Native source compilation did not complete.');
         await installImage((await candidate.request('save')).image,{fresh:true});
@@ -223,18 +252,35 @@ async function boot(cold=false){
     }else{const response=await fetch('./initial-industry.8i');if(!response.ok)throw new Error('The native initial image is unavailable.');await installImage(await response.text(),{fresh:true});}
     const map=await fetch('./kernel-map.json').then(r=>r.json());$('tape').textContent=`BF tape: ${map.dialect.tape_cells.toLocaleString()} × 16 bits`;
   }).catch(e=>{$('boot-detail').textContent=e.message;$('cold-start').hidden=false;});
+  if(started&&!busy)run();
 }
 bind('cold-start',()=>boot(true));bind('cold-compile',()=>boot(true));
-async function advance(){const r=await execute(`process-step ${stateCommand}`);consume(r);if(r.state!=='input')running=false;await flushSelection();}
+async function advance(){
+  const r=await execute(`autonomy-step ${stateCommand}`);consume(r);if(r.state!=='input')running=false;
+  if(queuedBridge&&nativeState==='input')await applyBridge();
+  await flushSelection();
+}
 async function run(){
   if(running){running=false;controls();return;}
   if(busy||!started)return;running=true;controls();
   while(running&&nativeState==='input'){
+    if(document.hidden){await new Promise(resolve=>setTimeout(resolve,250));continue;}
     try{await action(advance,{stop:false});}catch{break;}
     await new Promise(resolve=>setTimeout(resolve,30));
   }
   controls();
 }
+async function applyBridge(){
+  const open=world.roads.find(r=>r.id===0)?.open;
+  try{checked(consume(await execute(`${open?0:1} 0 industry-open ${stateCommand}`)));}
+  finally{queuedBridge=false;render();}
+}
+bind('bridge-intervention',()=>{if(queuedBridge)return;queuedBridge=true;controls();if(!busy)return action(applyBridge,{stop:false});});
+bind('toggle-inspector',()=>document.body.classList.toggle('inspecting'));
+bind('close-panel',()=>document.body.classList.remove('inspecting'));
+bind('reset-city',()=>boot());
+bind('autonomy-opt-in',()=>action(async()=>{checked(consume(await execute(`1 ${context().module.id} autonomy-module ${stateCommand}`)));notice('BF accepted automatic ownership for this module. Future manual edits opt it out again.');}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.body.classList.remove('inspecting');});
 bind('start',run);bind('run',run);bind('step',()=>action(advance));
 bind('apply',()=>action(async()=>{
   const c=context();
@@ -261,7 +307,7 @@ bind('start-module',()=>action(async()=>{
   if(id!==undefined){selected={kind:'entity',id};scene.selectObject(selected);}
   await refresh({source:true});notice('BF created a fresh participant with its own state and mailbox.','success');
 }));
-bind('add-van',()=>action(async()=>{const node=context().entity.node;checked(consume(await execute(`3 ${node} 3 industry-create`)));await refresh();notice('A new van process was created by BF. Its compatible program is shared; state and mailbox are private.','success');}));
+bind('add-van',()=>action(async()=>{const node=context().entity.node;checked(consume(await execute(`3 ${node} 2 industry-create`)));await refresh();notice('A new van process was created by BF. Its compatible program is shared; state and mailbox are private.','success');}));
 async function createProgram(name,source){
   let v=consume(await execute(`${encoder.encode(name).length} process-module ${name}`));checked(v);const id=v.events.find(e=>e.kind==='MODULE-CREATED')?.values[0];
   if(id===undefined)throw new Error('BF did not allocate a module.');
@@ -283,7 +329,7 @@ async function createProgram(name,source){
 bind('add-loop',()=>action(async()=>{await createProgram('loop.thread',': loop.thread schema# 1 begin 0 until ;');notice('The looping program is live. Step or run the city to see other programs continue. Pause it, edit its source, then repair its continuation.','success');}));
 $('create-form').addEventListener('submit',e=>{e.preventDefault();action(()=>createProgram($('new-name').value,$('new-source').value)).catch(()=>{});});
 function download(name,text){const url=URL.createObjectURL(new Blob([text],{type:'application/json'})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);}
-bind('export',()=>action(async()=>{download(`eight-instructions-003-round-${world?.tick??0}.8i`,(await client.request('save')).image);notice('Whole BF workspace exported. Unsaved editor drafts are not part of the machine; apply them first if you want them in the snapshot.','success');}));
+bind('export',()=>action(async()=>{download(`eight-instructions-004-round-${world?.tick??0}.8i`,(await client.request('save')).image);notice('Whole BF workspace exported. Unsaved editor drafts are not part of the machine; apply them first if you want them in the snapshot.','success');}));
 $('import').addEventListener('change',e=>{const file=e.target.files[0];e.target.value='';if(!file)return;action(async()=>{if(file.size>8e6)throw new Error('Image exceeds the input limit.');await installImage(await file.text());}).catch(e=>notice(`Import refused; the usable workspace was retained. ${e.message}`,'error'));});
 bind('pause-native',async()=>{running=false;await (activeClient??client)?.request('pause');notice('BF pause requested. Resume this exact continuation before submitting another native action.');});
 bind('resume-native',()=>action(async()=>{const r=await client.request('resume');nativeState=r.state;record('(resume exact BF continuation)',r);consume(r);if(r.state==='input')await refresh({source:true});}));
@@ -298,31 +344,22 @@ bind('inspect',()=>{
   $('inspect-dialog').showModal();
 });bind('close-inspect',()=>$('inspect-dialog').close());
 async function identities(){
-  const paths=['kernel.bf.gz','kernel-map.json','executor.wasm','engine.mjs','wasm-engine.mjs','worker.mjs','images.mjs','programs/industry-system.json','programs/core.thread','programs/workspace.thread','programs/process-state.thread','programs/processes.thread','programs/industry-state.thread','programs/industry.thread','programs/industry-view.thread','programs/industry-boot.thread'];
+  const paths=['kernel.bf.gz','kernel-map.json','executor.wasm','engine.mjs','wasm-engine.mjs','worker.mjs','images.mjs','programs/autonomous-system.json','programs/core.thread','programs/workspace.thread','programs/process-state.thread','programs/processes.thread','programs/industry-state.thread','programs/industry.thread','programs/industry-view.thread','programs/autonomous-boot.thread','programs/district.thread','programs/synthesis.thread'];
   const pairs=await Promise.all(paths.map(async path=>{const r=await fetch(new URL(path,import.meta.url));if(!r.ok)throw new Error(`Missing artifact ${path}`);return [path,await sha256(new Uint8Array(await r.arrayBuffer()))];}));
   return {kernelSha256:(await fetch('./kernel-map.json').then(r=>r.json())).sha256,artifactSha256:Object.fromEntries(pairs)};
 }
 bind('compare',()=>action(async()=>{
-  const c=context(),id=c.module.id,count=Number($('compare-rounds').value);
-  if(!Number.isInteger(count)||count<1||count>200)throw new Error('Use 1–200 logical rounds.');
-  const text=drafts.get(id)??c.source.stored,useParameter=batchDrafts.has(id)&&text===c.source.stored;
-  const image=(await client.request('save')).image,runs=[],views=[];comparisonBundle=null;$('comparison-results').replaceChildren();
-  for(const [label,setup] of [
-    ['Active program',[sourceWrite(id,c.source.active),`${id} module-compile`]],
-    ['Your draft',useParameter?[`${batchDrafts.get(id)} ${id} parameter!`]:[sourceWrite(id,text),`${id} module-compile`]],
-  ]){
-    const worker=new Client({onProgress:v=>$('comparison-status').textContent=`Fresh BF calculation: ${label} · ${(v.elapsedMs/1000).toFixed(1)} s in this operation`});
-    try{
-      await worker.request('load',{image});const inputs=[...setup,...Array(count).fill('process-step'),stateCommand],expectedOutputs=[];
-      for(let i=0;i<inputs.length;i++){const r=await execute(inputs[i],{target:worker,recording:false});if(r.state!=='input')throw new Error('Comparison paused before a complete native result.');checked(readIndustry(r.output));expectedOutputs.push(r.output);$('comparison-status').textContent=`${label}: native input ${i+1}/${inputs.length}`;}
-      const v=readIndustry(expectedOutputs.at(-1));views.push({label,world:v.world});runs.push({label,inputs,expectedOutputs});
-    }finally{worker.close();}
-  }
-  comparisonBundle={schema:'8i-replay-1',build:'003',...await identities(),initialImage:image,runs,sourceVariants:[{source:text,sha256:await sha256(text)}],instructions:'Use the corresponding Build003 checkout and identical artifact hashes. Run node tools/replay.mjs bundle.json. The CLI restores this opaque image in fresh BF machines and checks every expected output byte.'};
-  $('comparison-results').replaceChildren(...views.map(({label,world:w})=>{const el=document.createElement('div');el.className='compare-card';const title=document.createElement('strong'),p=document.createElement('p');title.textContent=label;p.textContent=`Round ${w.tick}: ${w.deliveries} deliveries; ${w.productions} production completions; station panels ${w.entities.filter(e=>e.role===4).map(e=>`${e.consumed}/${e.constructionGoal}`).join(' and ')}. Native material account ${w.account[4]}/${w.account[0]}.`;el.append(title,p);return el;}));
-  $('comparison-status').textContent='Recorded results of fresh BF computations from the same snapshot. This is a logical-state comparison, not a claim of faster execution.';
+  const c=context(),count=Number($('compare-rounds').value),source=drafts.get(c.module.id)??c.source.stored;
+  if(c.entity?.role!==2)throw Error('Select a factory to submit a compatible trial program.');
+  if(!Number.isInteger(count)||count<1||count>64)throw Error('Use 1–64 logical rounds.');
+  const initialImage=(await client.request('save')).image;
+  const input=`${encoder.encode(source).length} ${c.entity.slot} ${count} search-custom ${source}`;
+  const result=await execute(input);checked(consume(result));
+  if(/SEARCH-REFUSED/.test(result.output))throw Error('BF refused this request. Finish the current native search or observation and opt this module into automatic ownership.');
+  comparisonBundle={schema:'8i-replay-1',build:'004',...await identities(),initialImage,runs:[{label:'Native candidate submission',inputs:[input],expectedOutputs:[result.output]}]};
+  $('comparison-status').textContent='BF owns both worlds and will test this source as the city advances. Press Run if paused. Read the native experiment below.';
 }));
-bind('bundle',()=>download('eight-instructions-003-comparison.json',JSON.stringify(comparisonBundle,null,2)+'\n'));
+bind('bundle',()=>download('eight-instructions-004-comparison.json',JSON.stringify(comparisonBundle,null,2)+'\n'));
 const unregister=registerExperimentTools({context:navigator.modelContext,runSource:source=>{if(!started||busy)throw new Error('The visible machine is unavailable.');return action(async()=>{const r=await execute(source);consume(r);if(r.state==='input')await refresh({source:true});return r;});},readState:()=>client?.request('inspect')??{state:'off'},reportError:e=>console.info('Optional WebMCP unavailable:',e.message)});
 window.addEventListener('pagehide',()=>{running=false;client?.close();scene.close();unregister();},{once:true});
 boot();

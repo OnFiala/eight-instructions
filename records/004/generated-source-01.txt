@@ -1,0 +1,6 @@
+GENERATED 0 5 1 185 
+: factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then 2 stock 1 < if 3 request work then dispatch ;
+SOURCE-STORED 1 185 
+MODULE-PUBLISHED 1 7 43 7 0 
+SOURCE 1 185 
+: factory-west.thread schema# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then 2 stock 1 < if 3 request work then dispatch ;

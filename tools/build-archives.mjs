@@ -8,6 +8,7 @@ const root=new URL('../',import.meta.url),check=process.argv.includes('--check')
 for(const [tag,commit] of [
   ['build-001','6d7c6b0cb7fa73eda0504ef0d2cc10b1429c5dd0'],
   ['build-002','a80087662a66e7d04c1fc77cbce87cf996d60e63'],
+  ['build-003','fc0e78764465bf753b97163720569e21ec09ca3a'],
 ]) {
   const paths=execFileSync('git',['ls-tree','-r','--name-only',commit,'dist'],{cwd:root}).toString().trim().split('\n').filter(p=>!/^dist\/build-\d+\//.test(p));
   const receipt={tag,commit,relocation:'Runtime and raw sources are verbatim. HTML assets become relative, source links target the historical tag, old-build links are relocated and an explicit history banner is added.',files:[]};
@@ -17,6 +18,7 @@ for(const [tag,commit] of [
       let html=original.toString().replace(/(href|src)="\/(?!\/)/g,'$1="./')
         .replaceAll('/blob/main/',`/blob/${tag}/`).replaceAll('/tree/main/',`/tree/${tag}/`)
         .replaceAll('href="./build-001/', 'href="../build-001/')
+        .replaceAll('href="./build-002/', 'href="../build-002/')
         .replace('cd eight-instructions\nnode runtime/cli.mjs',`cd eight-instructions\ngit checkout ${tag}\nnode runtime/cli.mjs`)
         .replace('<body>',`<body>\n<div style="padding:12px 24px;background:#d7fa73;color:#10170b;font:13px/1.5 system-ui;text-align:center">Historical ${tag.replace('build-','Build ')} · original BF kernel and runtime · <a href="../" style="color:inherit">Current build →</a></div>`);
       content=Buffer.from(html);
@@ -26,7 +28,7 @@ for(const [tag,commit] of [
     else{await mkdir(dirname(url.pathname),{recursive:true});await writeFile(url,content);}
     receipt.files.push({path:dest,originalPath:path,originalSha256:await sha256(original),sha256:await sha256(content),bytes:content.length,verbatim:content.equals(original)});
   }
-  const url=new URL(`records/003/${tag}-archive.json`,root),text=JSON.stringify(receipt,null,2)+'\n';
+  const url=new URL(`records/${tag==='build-003'?'004':'003'}/${tag}-archive.json`,root),text=JSON.stringify(receipt,null,2)+'\n';
   if(check){if(await readFile(url,'utf8')!==text)throw new Error('Historical receipt drift');}else await writeFile(url,text);
   console.log(`${tag}: ${receipt.files.filter(f=>f.verbatim).length} verbatim files; HTML relocation recorded.`);
 }

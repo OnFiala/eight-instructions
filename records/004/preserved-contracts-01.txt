@@ -1,0 +1,92 @@
+TAP version 13
+# Subtest: dictionary capacity refuses publication without corrupting existing words
+ok 1 - dictionary capacity refuses publication without corrupting existing words
+  ---
+  duration_ms: 7871.798167
+  type: 'test'
+  ...
+# Subtest: code and nested control exhaustion roll back incomplete definitions
+ok 2 - code and nested control exhaustion roll back incomplete definitions
+  ---
+  duration_ms: 12286.232042
+  type: 'test'
+  ...
+# Subtest: heap exhaustion and overlong tokens refuse mutation and recover
+ok 3 - heap exhaustion and overlong tokens refuse mutation and recover
+  ---
+  duration_ms: 204.612875
+  type: 'test'
+  ...
+# {"coldBootMs":82769.046042,"bfInstructions":130519943061357,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: native road capacity queues a second van; closure preserves an existing reservation
+ok 4 - native road capacity queues a second van; closure preserves an existing reservation
+  ---
+  duration_ms: 91987.000542
+  type: 'test'
+  ...
+# {"jobCapacity":16,"reclaimedLifetimes":467,"staleIdentityRefused":1,"liveJobs":0}
+# Subtest: all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+ok 5 - all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+  ---
+  duration_ms: 20198.647083
+  type: 'test'
+  ...
+# Subtest: publishing, refusing schema change and rolling back preserve a paused carried load and route version
+ok 6 - publishing, refusing schema change and rolling back preserve a paused carried load and route version
+  ---
+  duration_ms: 59822.490833
+  type: 'test'
+  ...
+# {"coldBootMs":83172.887458,"bfInstructions":130519943061357,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: a user van program gets higher native passage priority over an earlier scheduler slot
+ok 7 - a user van program gets higher native passage priority over an earlier scheduler slot
+  ---
+  duration_ms: 92031.815333
+  type: 'test'
+  ...
+# Subtest: an infinite high-priority program cannot retain a free road through a stale intent
+ok 8 - an infinite high-priority program cannot retain a free road through a stale intent
+  ---
+  duration_ms: 11295.684542
+  type: 'test'
+  ...
+# Subtest: paused priority claim is ineligible; invalid priority faults locally without changing its value
+ok 9 - paused priority claim is ineligible; invalid priority faults locally without changing its value
+  ---
+  duration_ms: 11346.324583
+  type: 'test'
+  ...
+# {"coldBootMs":83149.50445800001,"bfInstructions":130519943061357,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: repeated delivery notifications, local receive failure and repair never repeat material transfer
+ok 10 - repeated delivery notifications, local receive failure and repair never repeat material transfer
+  ---
+  duration_ms: 203458.432833
+  type: 'test'
+  ...
+# Subtest: native transport/production and an unfinished BF instruction stream survive an exact image
+ok 11 - native transport/production and an unfinished BF instruction stream survive an exact image
+  ---
+  duration_ms: 86411.07875
+  type: 'test'
+  ...
+# Subtest: preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+ok 12 - preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+  ---
+  duration_ms: 510.491625
+  type: 'test'
+  ...
+# Subtest: preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+ok 13 - preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+  ---
+  duration_ms: 653.332875
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 291475.055459

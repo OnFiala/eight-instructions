@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "builds": [
+    {
+      "number": 1,
+      "title": "General-purpose computing environment",
+      "status": "PASS",
+      "summary": "A compiler, transactional data store and dynamic route planner built on the Brainfuck (BF) programming language.",
+      "testsPassed": 50,
+      "testedCommit": "36b047b2951c24993d0e4995e65339ecb9db2b5d"
+    },
+    {
+      "number": 2,
+      "title": "A city you can reprogram",
+      "status": "PASS",
+      "summary": "Named source, typed modules, safe version replacement and reclaimable memory inside the Brainfuck programming language, demonstrated by a verified delivery city.",
+      "testsPassed": 76,
+      "testedCommit": "94bb507bd14a9e91d7aeb440ad3f0d90056d31bb"
+    },
+    {
+      "number": 3,
+      "title": "A city made of programs",
+      "status": "PASS",
+      "summary": "Communicating, resumable BF programs run an industrial city with direct source controls. Native, visual and public functional checks passed; immutable closure identities are in the final deployment receipt.",
+      "testsPassed": 114,
+      "testedCommit": "f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f"
+    }
+  ]
+}

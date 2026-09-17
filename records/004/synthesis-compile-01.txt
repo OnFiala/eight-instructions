@@ -1,0 +1,2 @@
+2560 300 SYNTHESIS 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 22 1164 10 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+{"state":"input","instruction":63380,"pointer":13,"cell":10,"steps":122478717760097,"blocks":9458445385,"tapeBytes":1780516,"highWaterCell":865575,"backend":"wasm","executorMemoryBytes":5439488}

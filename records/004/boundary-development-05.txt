@@ -1,0 +1,1 @@
+Boundary audit PASS: 333 classified sources. Hashes are review gates, not a semantic proof.

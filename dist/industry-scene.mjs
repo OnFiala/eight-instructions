@@ -7,7 +7,7 @@ export class IndustryScene extends CityScene {
     super(canvas);this.onObjectSelect=onSelect;this.object={kind:'entity',id:3};this.hits=[];
     this.zoom=1;this.pan={x:0,y:0};
     const old=this.ready;
-    this.ready=Promise.all([old,...['factory','station-foundation','station-frame','station-complete','raw-pallet','panel-pallet'].map(async name=>{
+    this.ready=Promise.all([old,...['site-planned','workshop-frame','factory','station-foundation','station-frame','station-complete','raw-pallet','panel-pallet'].map(async name=>{
       const image=new Image();image.src=new URL(`./assets/industrial/${name}.png`,import.meta.url).href;await image.decode();this.sprites.set(name,image);
     })]).then(()=>this.draw(performance.now()));
     canvas.addEventListener('pointerdown',e=>{this.drag={x:e.clientX,y:e.clientY,px:this.pan.x,py:this.pan.y,moved:false};canvas.setPointerCapture(e.pointerId);});
@@ -25,7 +25,7 @@ export class IndustryScene extends CityScene {
     canvas.addEventListener('pointercancel',()=>{this.drag=null;});
     this.resize();
   }
-  resize(){super.resize();this.s=Math.min(this.w/(this.w<950?151:135),(this.h-65)/82)*(this.zoom??1);this.sy=this.s*.58;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*(this.w<950?.16:.19)+(this.pan?.y??0)};this.draw(performance.now());}
+  resize(){super.resize();this.s=Math.min(this.w/(this.w<950?151:135),(this.h-65)/82)*(this.zoom??1);this.sy=this.s*.43;this.origin={x:this.w*.49+(this.pan?.x??0),y:this.h*(this.w<950?.22:.19)+(this.pan?.y??0)};this.draw(performance.now());}
   camera(delta){this.zoom=Math.min(1.55,Math.max(.72,this.zoom+delta));this.resize();}
   resetCamera(){this.zoom=1;this.pan={x:0,y:0};this.resize();}
   ground(){
@@ -59,15 +59,13 @@ export class IndustryScene extends CityScene {
   selectObject(object){this.object=object;this.selected=object.kind==='entity'?object.id:null;this.draw(performance.now());}
   buildingLocation(e) {
     const n=this.state.nodes.find(n=>n.id===e.node);
-    let x=n.x<30?n.x+10:n.x-10,z=n.z===60?n.z-10:n.z+8;
-    if(e.role===2&&n.x>=30)z=n.z-10;
-    if(e.role===1&&n.z===0){x=n.x+9;z=n.z+11;}
+    const x=n.x<30?n.x-10:n.x+10,z=n.z-10;
     return {x,z};
   }
   buildingWidth(e){return this.s*(e.role===2?32:30);}
   industrial(e) {
     const c=this.ctx,{x,z}=this.buildingLocation(e),p=this.project(x,z),selected=this.object?.kind==='entity'&&this.object.id===e.id;
-    let name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed? 'station-frame':'station-foundation';
+    let name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed? 'workshop-frame':'site-planned';
     const sprite=this.sprites.get(name);if(!sprite)return;
     const width=this.buildingWidth(e),height=width*sprite.height/sprite.width;
     const top=p.y+this.sy*7-height*.90,left=p.x-width*.5;
@@ -105,11 +103,11 @@ export class IndustryScene extends CityScene {
   }
   objectLabels(){
     if(!this.state)return;const c=this.ctx;
-    for(const e of this.state.entities.filter(e=>[1,2,4].includes(e.role))){
+    for(const e of this.state.entities.filter(e=>[1,2,4].includes(e.role)&&!(e.role===4&&this.state.entities.some(f=>f.role===2&&f.node===e.node)))){
       const loc=this.buildingLocation(e),p=this.project(loc.x,loc.z),selected=this.object?.id===e.id&&this.object.kind==='entity';
-      const name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed?'station-frame':'station-foundation';
+      const name=e.role===1?'warehouse-block':e.role===2?'factory':e.consumed>=e.constructionGoal?'station-complete':e.consumed?'workshop-frame':'site-planned';
       const sprite=this.sprites.get(name),height=this.buildingWidth(e)*(sprite?sprite.height/sprite.width:1);
-      const labelY=Math.max(this.w>=950?90:0,p.y+this.sy*7-height*.75);
+      const labelY=Math.max(this.w>=950?90:0,p.y+this.sy*7-height*(e.role===4&&!e.consumed?.40:.75));
       if(this.w<600&&!selected)continue;
       const proc=this.state.processes.find(p=>p.handle===e.id);
       const text=(proc?.status===5?'Fault · ':proc?.status===4?'Paused · ':'')+entityName(e);
@@ -130,15 +128,17 @@ export class IndustryScene extends CityScene {
     this.ground();if(!this.state)return;this.drawRoads();this.drawBridges();this.drawRoute();this.drawRoadMarks();
     const objects=[{depth:119,draw:()=>this.drawBuilding('oldtown-block',-14,36,1.05)}];
     objects.push({depth:49,draw:()=>this.drawFountain(68,57)});
-    for(const e of this.state.entities.filter(e=>[1,2,4].includes(e.role))){const p=this.buildingLocation(e);objects.push({depth:p.z-p.x+69,draw:()=>this.industrial(e)});}
-    for(const [name,x,z,k] of [['flat-house',-3,9,.75],['stone-house',-4,34,.7],['flat-house',-4,47,.8],['cafe-house',17,-6,.8],['flat-house',35,-6,.9],['cafe-house',45,5,.8],['stone-house',54,5,.75],['flat-house',45,14,.85],['cafe-house',54,14,.8],['cafe-house',67,27,.9],['flat-house',74,34,.85],['stone-house',68,46,.8],['flat-house',70,64,.9],['cafe-house',44,70,.8],['flat-house',22,71,.85],['stone-house',5,71,.8]])objects.push({depth:z-x+63,draw:()=>this.drawHouse(name,x,z,k)});
+    const buildings=this.state.entities.filter(e=>[1,2,4].includes(e.role)&&!(e.role===4&&this.state.entities.some(f=>f.role===2&&f.node===e.node)));
+    const occupied=(x,z)=>buildings.some(e=>{const p=this.buildingLocation(e);return Math.abs(p.x-x)<13&&Math.abs(p.z-z)<13;});
+    for(const e of buildings){const p=this.buildingLocation(e);objects.push({depth:p.z-p.x+69,draw:()=>this.industrial(e)});}
+    for(const [name,x,z,k] of [['flat-house',-3,9,.75],['stone-house',-4,34,.7],['flat-house',-4,47,.8],['cafe-house',17,-6,.8],['flat-house',35,-6,.9],['cafe-house',45,5,.8],['stone-house',54,5,.75],['flat-house',45,14,.85],['cafe-house',54,14,.8],['cafe-house',67,27,.9],['flat-house',74,34,.85],['stone-house',68,46,.8],['flat-house',70,64,.9],['cafe-house',44,70,.8],['flat-house',22,71,.85],['stone-house',5,71,.8]])if(!occupied(x,z))objects.push({depth:z-x+63,draw:()=>this.drawHouse(name,x,z,k)});
     const trees=[];
     for(const x of [24,36])for(const z of [5,11,16,25,31,36,45,51,57])trees.push([x,z]);
     for(const x of [-4,74])for(const z of [2,8,14,20,26,32,38,44,50,56,62,68])trees.push([x,z]);
     for(const z of [-5,73])for(const x of [2,8,14,20,38,44,50,56,62,68])trees.push([x,z]);
     for(const [x,z] of [[16,6],[4,14],[16,25],[16,33],[4,44],[17,52],[43,5],[56,6],[44,34],[55,32],[44,45],[56,56],[67,18]])trees.push([x,z]);
     for(const [x,z] of [[64,44],[72,44],[64,49],[72,49],[64,54],[72,54],[66,24],[71,24],[66,34],[71,34],[4,67],[12,67],[4,72],[12,72],[43,68],[55,68]])trees.push([x,z]);
-    for(const [x,z] of trees)objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.94)});
+    for(const [x,z] of trees)if(!occupied(x,z))objects.push({depth:z-x+60,draw:()=>this.drawTree(x,z,.94)});
     for(const [x,z] of [[-2,4],[-2,24],[-2,44],[18,16],[18,36],[18,56],[42,4],[42,24],[42,44],[58,16],[58,36],[58,56],[24,5],[24,15],[24,25],[24,35],[24,45],[24,55],[36,5],[36,15],[36,25],[36,35],[36,45],[36,55]])objects.push({depth:z-x+60,draw:()=>this.drawLamp(x,z)});
     const t=this.motion.matches?1:Math.min(1,(now-this.transition)/600),ease=t*t*(3-2*t);
     const vehicleMarkers=[];

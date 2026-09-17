@@ -8,7 +8,7 @@ import sys
 from contextlib import contextmanager
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from tools.emitter import BF, Array, PagedArray
+from tools.emitter import BF, Array, PagedArray, copy_bank, clear_bank
 
 ROOT = Path(__file__).resolve().parents[1]
 WORDS = {
@@ -19,7 +19,7 @@ WORDS = {
     'bye': 27, 'assert': 28, '0=': 29, 'exit': 3, 'rot': 30,
     'fill': 31, 'pfill': 32, 'move': 33, 'pmove': 34,
     'key': 35, 'w@': 36, 'w!': 37,
-    'waddr': 38, 'w.': 39,
+    'waddr': 38, 'w.': 39, 'context-copy': 40, 'context-zero': 41,
     ':': 100, ';': 101, 'if': 102, 'else': 103, 'then': 104,
     'begin': 105, 'until': 106, 'again': 107, 'recurse': 108,
     'variable': 109, 'constant': 110, 'while': 111, 'repeat': 112, '."': 113,
@@ -43,10 +43,11 @@ class Kernel:
                              b.cell(f'fetch_cache_{i}_valid')) for i in range(4)]
         base = 512
         self.arrays = {}
-        for name, size in [('op_flags', 40), ('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
-                           ('controls', 128), ('dictionary', 16384), ('code', 24576),
+        for name, size in [('op_flags', 42), ('token', 24), ('buckets', 256), ('data', 256), ('returns', 512),
+                           ('controls', 128), ('dictionary', 16384), ('code', 32768),
                            ('heap', 4096), ('store', 4096), ('workspace', 24576)]:
-            arr = (PagedArray if name in ('code', 'workspace') else Array)(b, base, size, name)
+            arr = (PagedArray if name in ('code', 'workspace') else Array)(
+                b, base, size, name, banks=4 if name in ('heap', 'workspace') else 1)
             self.arrays[name] = arr
             setattr(self, name, arr)
             base += (size+1)*arr.stride
@@ -845,6 +846,29 @@ class Kernel:
                                 self.decimal(self.a)
                                 self.advance(high, low)
                                 b.add(self.z, -1)
+            with self.primitive(40, 2):
+                # Generic opaque heap/workspace value-lane copy. Bank zero is
+                # the normal execution window; all scheduling/ownership policy
+                # belongs to the native caller, never to Python or the host.
+                self.pop(self.y)
+                self.pop(self.x)
+                self.check_limit(self.x, 4)
+                self.check_limit(self.y, 4)
+                with b.zero(self.err):
+                    for source in range(4):
+                        with self.case(self.x, source):
+                            for target in range(4):
+                                with self.case(self.y, target):
+                                    copy_bank(self.heap, source, target)
+                                    copy_bank(self.workspace, source, target)
+            with self.primitive(41, 1):
+                self.pop(self.x)
+                self.check_limit(self.x, 4)
+                with b.zero(self.err):
+                    for bank in range(4):
+                        with self.case(self.x, bank):
+                            clear_bank(self.heap, bank)
+                            clear_bank(self.workspace, bank)
             b.clear(self.op)
             with b.when(self.ip):
                 self.fetch(self.op)
@@ -914,7 +938,9 @@ class Kernel:
         return b.source(), {
             'dialect': {'cell_bits': 16, 'wrapping': True, 'io_bits': 8, 'eof': 0, 'tape_cells': self.cells},
             'registers': b.names,
-            'arrays': {name: {'base': a.base, 'size': a.size, 'stride': a.stride, 'value_lane': 2} for name, a in self.arrays.items()},
+            'arrays': {name: {'base': a.base, 'size': a.size, 'stride': a.stride,
+                             'value_lane': 2, 'banks': a.banks, 'bank_stride': a.unit}
+                       for name, a in self.arrays.items()},
             'primitives': WORDS,
         }
 
@@ -934,6 +960,11 @@ def main():
     for file, content in outputs.items():
         path = ROOT/file
         if args.check:
+            # The canonical compressed artifact fits Git's file-size boundary.
+            # Recreate the ignored literal source for reference interpreters.
+            if file == 'artifacts/kernel.bf' and not path.exists():
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(content)
             if not path.exists() or path.read_bytes() != content:
                 raise SystemExit(f'Non-reproducible artifact: {file}')
         else:

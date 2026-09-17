@@ -1,0 +1,5 @@
+TAP version 13
+# {"cycles":40,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":80,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":120,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":160,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}

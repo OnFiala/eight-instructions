@@ -3,6 +3,7 @@ import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
+import {gunzipSync} from 'node:zlib';
 export const digest=data=>createHash('sha256').update(data).digest('hex');
 export async function audit({files,manifest,read}) {
   const errors=[],components=new Map(manifest.components.map(c=>[c.path,c]));
@@ -39,9 +40,13 @@ export async function audit({files,manifest,read}) {
   return {errors,classifiedSources:components.size,nativeProgramFiles:native.length};
 }
 export async function auditRoot(root) {
-  const files=[...new Set(execFileSync('git',['ls-files','--cached','--others','--exclude-standard','-z'],{cwd:root}).toString().split('\0').filter(Boolean))].sort();
+  const files=[...new Set([...execFileSync('git',['ls-files','--cached','--others','--exclude-standard','-z'],{cwd:root}).toString().split('\0').filter(Boolean),'artifacts/kernel.bf'])].sort();
   const manifest=JSON.parse(await readFile(path.join(root,'boundary.json'),'utf8'));
-  return audit({files,manifest,read:file=>readFile(path.join(root,file))});
+  // Audit the released eight-command bytes even in a fresh clone without the
+  // ignored, deterministically materialized 127 MiB literal source file.
+  return audit({files,manifest,read:async file=>file==='artifacts/kernel.bf'
+    ?gunzipSync(await readFile(path.join(root,'dist/kernel.bf.gz')))
+    :readFile(path.join(root,file))});
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const result=await auditRoot(fileURLToPath(new URL('../',import.meta.url)));

@@ -4,7 +4,7 @@
     "wrapping": true,
     "io_bits": 8,
     "eof": 0,
-    "tape_cells": 398704
+    "tape_cells": 939414
   },
   "registers": {
     "running": 0,
@@ -92,69 +92,91 @@
   "arrays": {
     "op_flags": {
       "base": 512,
-      "size": 40,
+      "size": 42,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "token": {
-      "base": 676,
+      "base": 684,
       "size": 24,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "buckets": {
-      "base": 776,
+      "base": 784,
       "size": 256,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "data": {
-      "base": 1804,
+      "base": 1812,
       "size": 256,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "returns": {
-      "base": 2832,
+      "base": 2840,
       "size": 512,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "controls": {
-      "base": 4884,
+      "base": 4892,
       "size": 128,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "dictionary": {
-      "base": 5400,
+      "base": 5408,
       "size": 16384,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "code": {
-      "base": 70940,
-      "size": 24576,
+      "base": 70948,
+      "size": 32768,
       "stride": 6,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 6
     },
     "heap": {
-      "base": 218402,
+      "base": 267562,
       "size": 4096,
-      "stride": 4,
-      "value_lane": 2
+      "stride": 16,
+      "value_lane": 2,
+      "banks": 4,
+      "bank_stride": 4
     },
     "store": {
-      "base": 234790,
+      "base": 333114,
       "size": 4096,
       "stride": 4,
-      "value_lane": 2
+      "value_lane": 2,
+      "banks": 1,
+      "bank_stride": 4
     },
     "workspace": {
-      "base": 251178,
+      "base": 349502,
       "size": 24576,
-      "stride": 6,
-      "value_lane": 2
+      "stride": 24,
+      "value_lane": 2,
+      "banks": 4,
+      "bank_stride": 6
     }
   },
   "primitives": {
@@ -193,6 +215,8 @@
     "w!": 37,
     "waddr": 38,
     "w.": 39,
+    "context-copy": 40,
+    "context-zero": 41,
     ":": 100,
     ";": 101,
     "if": 102,
@@ -208,6 +232,6 @@
     "repeat": 112,
     ".\"": 113
   },
-  "sha256": "c6ee32e0f2f54738f1574b612dfe85c619d691285dc40af870f96d8e0e28558c",
-  "instructions": 98687674
+  "sha256": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
+  "instructions": 133240921
 }

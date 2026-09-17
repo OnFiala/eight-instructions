@@ -1,0 +1,18 @@
+TAP version 13
+# {"input":"0 3 context-copy","literalInstructions":"16128661650","literalElapsedMs":16101.912875,"wholeTapeEqual":true,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# {"input":"3 context-zero","literalInstructions":"16116753679","literalElapsedMs":12167.543833,"wholeTapeEqual":true,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: literal BF executes the released context-copy and context-zero primitives with full-state equality
+ok 1 - literal BF executes the released context-copy and context-zero primitives with full-state equality
+  ---
+  duration_ms: 28456.981083
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 29686.10275

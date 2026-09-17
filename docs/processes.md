@@ -110,3 +110,16 @@ an entity and has the required role. They cannot mutate arbitrary peer state.
 
 `schema#` is a declaration and `batch#` a checked source marker, not host macros.
 The editable starting examples are raw BF input in `programs/industry-boot.thread`.
+
+## Build 004 shared scheduler and production composition
+
+`offer` submits already available panels through the original job ledger. `make`
+advances production at most once per native round. Both require a factory role.
+The original `work` retains production-plus-offer behavior. These operations let
+native synthesis compose a stock condition around production while continuing to
+ship existing panels. Root-return counters and last-return rounds let the evaluator
+reject candidates that never return or merely coast on preexisting cargo.
+
+After each full actor round, `district-step` handles enabled material construction.
+It is inert in old profiles. The autonomous supervisor runs one live round and at
+most four trial rounds per call, through this same scheduler and instruction quantum.

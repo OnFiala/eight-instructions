@@ -57,10 +57,10 @@ export function readIndustry(output) {
 const processNames=['Unavailable','Ready','Waiting for a message','Sleeping','Paused','Faulted'];
 export const processLabel=p=>processNames[p?.status??0]??'Unknown';
 export function entityName(entity) {
-  const names={1:'South depot',2:'North depot',3:'Riverside factory',4:'East factory',5:'West station',6:'East station',7:'Van 01',8:'Van 02',9:'Van 03',10:'Van 04',11:'North bridge signal',12:'Harbor bridge signal'};
-  return names[entity.id]??`${['Program','Depot','Factory','Van','Station','Signal'][entity.role]??'Program'} ${entity.id}`;
+  const names={'1:1':'Quayside depot','2:2':'West factory','3:3':'Van 01','4:4':'Riverside workshop','4:5':'North station','3:6':'Van 02','2:7':'Riverside factory','2:3':'Riverside factory'};
+  return names[`${entity.role}:${entity.id}`]??`${['Program','Depot','Factory','Van','Station','Signal'][entity.role]??'Program'} ${entity.id}`;
 }
-export const roadName=road=>road.id>=40?({40:'North Bridge',42:'Harbor Bridge',44:'Market Bridge'}[road.id-road.id%2]??'Bridge'):`Street ${road.from}–${road.to}`;
+export const roadName=road=>road.id<2?'Riverside bridge':`Street ${road.from}–${road.to}`;
 export function entityStatus(entity,process,vehicle,world) {
   if(process?.status===5)return `Program fault · native code ${process.fault}`;
   if(process?.status===4)return 'Program paused; its state is retained';

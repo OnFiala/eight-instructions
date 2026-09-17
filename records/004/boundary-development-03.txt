@@ -1,0 +1,2 @@
+Host review required: dist/index.html
+Manifest source is missing: dist/build-003/initial-industry.8i

@@ -1,0 +1,40 @@
+\ Living Dispatch. All topology, route choices, jobs, movement and events are native.
+\ 16 intersections, 48 directed edges, 3 vehicles. One tick advances at most
+\ one road-progress unit. Arrivals and new departures occur in different ticks.
+here constant city-roads 240 allot
+here constant city-costs 48 allot
+here constant city-trial 48 allot
+here constant city-cars 96 allot
+here constant city-dist 16 allot
+here constant city-prev 16 allot
+here constant city-seen 16 allot
+here constant city-path 16 allot
+here constant city-head 16 allot
+here constant city-next 48 allot
+variable city-edges
+variable city-tick
+variable city-generation
+variable city-cache-version
+variable city-cache-generation
+variable city-sequence
+variable city-rule
+variable ci
+variable cj
+variable cv
+variable ce
+variable ca
+variable cb
+variable ct
+variable cd
+variable cs
+variable cbest
+variable cchosen
+variable clen
+variable cvalid
+variable cserial
+variable city-last-duration
+variable city-last-toll
+variable city-last-cost
+variable city-last-valid
+
+\ Allocate frequently accessed city state before the workspace compiler tables.

@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
     if (!file) fail("cannot open source");
     if (fseek(file, 0, SEEK_END)) fail("cannot size source");
     long size = ftell(file);
-    if (size < 0 || size > 100000000) fail("invalid source size");
+    if (size < 0 || size > 160L * 1024L * 1024L) fail("invalid source size");
     rewind(file);
     char *source = malloc((size_t)size + 1);
     if (!source) fail("allocation failure");

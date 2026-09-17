@@ -1,0 +1,428 @@
+TAP version 13
+# Subtest: BF constructs different source structures and its actual compiler publishes each in an isolated world
+ok 1 - BF constructs different source structures and its actual compiler publishes each in an isolated world
+  ---
+  duration_ms: 58400.464042
+  type: 'test'
+  ...
+# SEARCH-BEGIN 1 1 1 3 0 2 1 32 
+# WORLD 1 1 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 1 
+# WORLD 1 1 0 
+# ROUND 1 
+# ROUND 2 
+# ROUND 3 
+# PRODUCE 2 1 
+# SEND 1 2 2 1 1 2 
+# ROUND 4 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 2 
+# WORLD 1 1 0 
+# RECEIVE 1 2 2 
+# AUTHORIZE 1 2 
+# SEND 2 2 3 2 1 2 
+# ASSIGN 1 3 
+# RECEIVE 2 3 3 
+# LOAD 3 1 2 1 
+# ROUND 5 
+# ROUND 6 
+# ROUND 7 
+# PRODUCE 2 1 
+# ROUND 8 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 3 
+# WORLD 1 1 0 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 9 
+# I-DEPART 3 0 3 
+# ROUND 10 
+# I-ARRIVE 3 1 
+# SEND 3 3 4 3 1 3 
+# UNLOAD 3 1 4 1 
+# RECEIVE 3 4 4 
+# ACK 1 4 
+# BUILD 4 1 3 
+# ROUND 11 
+# PRODUCE 2 2 
+# SEND 4 2 2 1 2 2 
+# ROUND 12 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 1 
+# SEND 1 2 2 1 1 2 
+# ROUND 4 
+# WORLD 1 1 0 
+# RECEIVE 4 2 2 
+# AUTHORIZE 2 2 
+# SEND 5 2 3 2 2 2 
+# ASSIGN 2 3 
+# RECEIVE 5 3 3 
+# ROUND 13 
+# ROUND 14 
+# ROUND 15 
+# PRODUCE 2 3 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 16 
+# WORLD 0 1 
+# WORLD 0 1 
+# RECEIVE 1 2 2 
+# AUTHORIZE 1 2 
+# SEND 2 2 3 2 1 2 
+# ASSIGN 1 3 
+# RECEIVE 2 3 3 
+# LOAD 3 1 2 1 
+# ROUND 5 
+# WORLD 1 1 0 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# PRODUCE 2 3 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 6 
+# WORLD 1 1 0 
+# ROUND 21 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 22 
+# I-DEPART 3 0 3 
+# ROUND 23 
+# PRODUCE 2 4 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 7 
+# WORLD 1 1 0 
+# SEND 7 2 2 1 3 2 
+# ROUND 25 
+# RECEIVE 7 2 2 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 2 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 26 
+# ROUND 27 
+# PRODUCE 2 5 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 1 
+# ROUND 8 
+# WORLD 1 1 0 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 29 
+# I-DEPART 3 1 3 
+# ROUND 30 
+# I-ARRIVE 3 0 
+# LOAD 3 3 2 1 
+# ROUND 31 
+# PRODUCE 2 5 
+# ROUND 32 
+# ACCOUNT 18 2 6 2 18 1 
+# TRIAL-RESULT 1 0 0 32 17661 0 2 2 1 1 
+# WORLD 0 1 
+# WORLD 1 1 5 
+# GENERATED 1 5 1 186 
+# : factory.thread schema\# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then 2 stock 1 < if 1 request make then offer dispatch ;
+# SOURCE-STORED 1 186 
+# MODULE-PUBLISHED 1 5 44 5 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 9 
+# WORLD 1 1 5 
+# ROUND 1 
+# ROUND 2 
+# ROUND 3 
+# PRODUCE 2 1 
+# SEND 1 2 2 1 1 5 
+# ROUND 4 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-DEPART 3 0 3 
+# ROUND 10 
+# WORLD 1 1 5 
+# RECEIVE 1 2 5 
+# AUTHORIZE 1 2 
+# SEND 2 2 3 2 1 5 
+# ASSIGN 1 3 
+# RECEIVE 2 3 3 
+# LOAD 3 1 2 1 
+# ROUND 5 
+# ROUND 6 
+# ROUND 7 
+# ROUND 8 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ARRIVE 3 1 
+# SEND 3 3 4 3 1 3 
+# UNLOAD 3 1 4 1 
+# RECEIVE 3 4 4 
+# ACK 1 4 
+# BUILD 4 1 3 
+# ROUND 11 
+# WORLD 1 1 5 
+# PRODUCE 2 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 9 
+# I-DEPART 3 0 3 
+# ROUND 10 
+# I-ARRIVE 3 1 
+# SEND 3 3 4 3 1 3 
+# UNLOAD 3 1 4 1 
+# RECEIVE 3 4 4 
+# ACK 1 4 
+# BUILD 4 1 3 
+# ROUND 11 
+# SEND 4 2 2 1 2 5 
+# ROUND 12 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 2 
+# SEND 4 2 2 1 2 2 
+# ROUND 12 
+# WORLD 1 1 5 
+# RECEIVE 4 2 5 
+# AUTHORIZE 2 2 
+# SEND 5 2 3 2 2 5 
+# ASSIGN 2 3 
+# RECEIVE 5 3 3 
+# ROUND 13 
+# ROUND 14 
+# ROUND 15 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 16 
+# WORLD 0 1 
+# WORLD 0 1 
+# RECEIVE 4 2 2 
+# AUTHORIZE 2 2 
+# SEND 5 2 3 2 2 2 
+# ASSIGN 2 3 
+# RECEIVE 5 3 3 
+# ROUND 13 
+# WORLD 1 1 5 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 14 
+# WORLD 1 1 5 
+# ROUND 21 
+# PRODUCE 2 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 22 
+# I-DEPART 3 0 3 
+# ROUND 23 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 15 
+# WORLD 1 1 5 
+# SEND 7 2 2 1 3 5 
+# ROUND 25 
+# RECEIVE 7 2 5 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 5 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 26 
+# ROUND 27 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 3 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 16 
+# WORLD 1 1 5 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 29 
+# I-DEPART 3 1 3 
+# ROUND 30 
+# I-ARRIVE 3 0 
+# LOAD 3 3 2 1 
+# ROUND 31 
+# ROUND 32 
+# ACCOUNT 18 10 2 2 18 1 
+# TRIAL-RESULT 1 5 0 32 17669 0 2 2 1 1 
+# WORLD 0 1 
+# VALIDATION-BEGIN 1 16 16 
+# WORLD 1 1 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# WORLD 1 1 0 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# PRODUCE 2 3 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# WORLD 1 1 0 
+# ROAD-OPEN 0 0 
+# ROUND 21 
+# ROUND 22 
+# ROUND 23 
+# ROAD-OPEN 0 1 
+# PRODUCE 2 4 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 19 
+# WORLD 1 1 0 
+# ROUND 25 
+# ROUND 26 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 27 
+# PRODUCE 2 5 
+# I-DEPART 3 0 3 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 3 
+# ROUND 20 
+# WORLD 1 1 0 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 29 
+# SEND 7 2 2 1 3 2 
+# ROUND 30 
+# RECEIVE 7 2 2 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 2 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 31 
+# PRODUCE 2 6 
+# ROUND 32 
+# ACCOUNT 18 2 6 2 18 1 
+# TRIAL-RESULT 1 0 16 16 17662 0 2 2 1 0 
+# WORLD 0 1 
+# WORLD 1 1 5 
+# SOURCE-STORED 1 186 
+# MODULE-PUBLISHED 1 5 44 5 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 21 
+# WORLD 1 1 5 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 22 
+# WORLD 1 1 5 
+# ROAD-OPEN 0 0 
+# ROUND 21 
+# ROUND 22 
+# ROUND 23 
+# ROAD-OPEN 0 1 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-DEPART 3 0 3 
+# ROUND 23 
+# WORLD 1 1 5 
+# ROUND 25 
+# ROUND 26 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 27 
+# I-DEPART 3 0 3 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 4 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 24 
+# WORLD 1 1 5 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 29 
+# SEND 7 2 2 1 3 5 
+# ROUND 30 
+# RECEIVE 7 2 5 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 5 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 31 
+# ROUND 32 
+# ACCOUNT 18 10 2 2 18 1 
+# TRIAL-RESULT 1 5 16 16 17670 0 2 2 1 0 
+# VALIDATION-RESULT 1 17662 17670 1 
+# WORLD 0 1 
+# SOURCE-STORED 1 186 
+# MODULE-PUBLISHED 1 5 44 5 0 
+# SEARCH-DECISION 1 1 5 17661 17669 24 
+# ROLLBACK 1 2 
+# NATIVE-ROLLBACK 1 1 24 
+# Subtest: native baseline/candidate trials interleave with useful live work and retain real-world inventory
+ok 2 - native baseline/candidate trials interleave with useful live work and retain real-world inventory
+  ---
+  duration_ms: 120989.496291
+  type: 'test'
+  ...
+# Subtest: goal selection derives useful work and respects manual ownership and completed goals
+ok 3 - goal selection derives useful work and respects manual ownership and completed goals
+  ---
+  duration_ms: 23306.816417
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 203610.654708

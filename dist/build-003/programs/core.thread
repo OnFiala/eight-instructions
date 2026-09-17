@@ -1,0 +1,19 @@
+\ Thread standard library. Compiled by the Brainfuck kernel from these bytes.
+: cr 10 emit ;
+: space 32 emit ;
+: 1+ 1 + ;
+: 1- 1 - ;
+: nip swap drop ;
+: 2drop drop drop ;
+: 2dup over over ;
+: > swap < ;
+: <= > 0= ;
+: >= < 0= ;
+: and if 0= 0= else drop 0 then ;
+: or if drop 1 else 0= 0= then ;
+: / /mod nip ;
+: mod /mod drop ;
+: min 2dup < if drop else nip then ;
+: max 2dup < if nip else drop then ;
+: +! dup @ rot + swap ! ;
+
