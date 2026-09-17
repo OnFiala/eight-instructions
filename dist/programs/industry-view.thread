@@ -46,6 +46,8 @@ register constant view-base
   \ (open road-id --); road data changes, separate from program publication.
   ox ! oy ! 0 ws-error !
   ox @ world-roads @ < oy @ 2 < and 0= if 34 wfail report-error exit then
+  world-epoch @ 65535 = if 36 wfail report-error exit then
+  1 world-epoch +!
   ox @ 2 / 2 * ox ! oy @ ox @ 4 rf w! oy @ ox @ 1+ 4 rf w!
   0 vi ! begin vi @ 16 < while
     vi @ 145 pf w@ 0= if

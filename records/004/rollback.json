@@ -1,0 +1,14 @@
+{
+  "projectId": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0",
+  "audience": "public",
+  "role": "owner",
+  "publicUrl": "https://eight-instructions.andrewxix.chatgpt.site",
+  "versionId": "appgprj_6aa2da2a6c9081919e4eace763a4f4a0~appgver_e5564c4cda4c8191b992c0c3fd36162f",
+  "versionNumber": 6,
+  "sourceCommit": "171f44507072a5d7f041b18df8e80e05fe847ac3",
+  "archiveHash": "sha256:8e222909a68e3ec8cf3a18964f4c55759778f81cab13336d22f1a28240093f49",
+  "deploymentId": "appgdep_6aa9fdfa04848191b1882cba046f19c2",
+  "deploymentStatus": "succeeded",
+  "rollback": "Redeploy this saved archive-backed public version with sites_deploy_site_version on the unchanged project. Do not change audience or recreate a Site.",
+  "scope": "Prepared rollback, not a new deployment; anonymous asset receipt is separate."
+}

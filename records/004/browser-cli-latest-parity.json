@@ -1,0 +1,39 @@
+{
+  "status": "PASS",
+  "purpose": "Actual browser output replayed byte-for-byte in a new CLI BF instance; captured commands are single-line inputs without embedded transcript delimiters.",
+  "kernel": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
+  "initialImageSha256": "833e13d72ff97c70f016be64cd39bd834702d33f7d2fd757a351d2830ca410f2",
+  "transcript": "records/004/browser-latest-seven-inputs.txt",
+  "transcriptSha256": "b0336d867a4f550d2fdceb78f4fd4ff88093fef156e8e7a0964ba59d963779aa",
+  "inputs": [
+    {
+      "input": "synthesis-state district-state industry-state",
+      "outputSha256": "2982f57ed6dd9b76642772679d62d7ee4a51dd15bd91ebf6508d87026a837707"
+    },
+    {
+      "input": "2 industry-inspect",
+      "outputSha256": "eefb2c0338402bc9604ccaf5cd7b63ae6ff85a618f39d57d4719ce8ec12fa88a"
+    },
+    {
+      "input": "autonomy-step synthesis-state district-state industry-state",
+      "outputSha256": "9a6ac6ec79cb3519fe4f66106a782af949599e0c850e7ecec2f0817ea80108b7"
+    },
+    {
+      "input": "autonomy-step synthesis-state district-state industry-state",
+      "outputSha256": "eda25de566f5b3bc1d23b7c77d954184be3b4bbcabe5edc918c1fb2b3293d584"
+    },
+    {
+      "input": "autonomy-step synthesis-state district-state industry-state",
+      "outputSha256": "f3e9887e5bbe22080e9d263338c1d2cf8cf18541329db67a3f43666763621700"
+    },
+    {
+      "input": "autonomy-step synthesis-state district-state industry-state",
+      "outputSha256": "d50be97c7c72c5f71f189167cc23af3e56fff410aa03e349e50aa3ebefaba2e8"
+    },
+    {
+      "input": "autonomy-step synthesis-state district-state industry-state",
+      "outputSha256": "5ae391ba4e58d4aff44fdfae28d1a8b371da502fcd8ee30097c5752be7004ef0"
+    }
+  ],
+  "elapsedMs": 32950.741584
+}

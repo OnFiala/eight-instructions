@@ -24,6 +24,14 @@
       "summary": "Communicating, resumable BF programs run an industrial city with direct source controls. Native, visual and public functional checks passed; immutable closure identities are in the final deployment receipt.",
       "testsPassed": 114,
       "testedCommit": "f9ca7e5cdb5e9f450aeeb2dbe38413a7716d735f"
+    },
+    {
+      "number": 4,
+      "title": "A city that improves itself",
+      "status": "PASS",
+      "summary": "BF generates and compiles structural Thread variants, tests isolated real cities, safely publishes improvements and builds a factory and road from delivered material.",
+      "testsPassed": 130,
+      "testedCommit": "e1a5df89b67ea607adb064c1403e93e163451ead"
     }
   ]
 }

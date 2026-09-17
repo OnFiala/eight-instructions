@@ -143,6 +143,9 @@ register constant ws-built-count
     wm @ maddr 64 + wx ! buffer-copy
     wn @ wm @ 6 mf w!
     wm @ 7 mf dup w@ 1+ swap w!
+    \ An externally stored draft owns this module until native opt-in. The
+    \ synthesis controller writes generated drafts through its separate path.
+    1 wm @ 10 mf w!
     ." SOURCE-STORED " wm @ . wn @ . cr
   then report-error
 ;
@@ -658,6 +661,7 @@ register constant vm-outputs
   ws-error @ if report-error exit then
   wa @ 48 + wm @ maddr 64 + cc-v @ 25 vf w@ + w!
   wm @ 7 mf dup w@ 1+ swap w!
+  1 wm @ 10 mf w!
   ." SOURCE-STORED " wm @ . wm @ 6 mf w@ . cr
   wm @ module-compile
 ;

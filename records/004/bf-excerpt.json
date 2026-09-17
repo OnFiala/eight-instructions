@@ -1,0 +1,12 @@
+{
+  "artifact": "artifacts/kernel.bf",
+  "artifactSha256": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
+  "generator": "kernel/build.py:Kernel.token_read",
+  "offsetConvention": "Zero-based raw command offsets, excluding added display line breaks",
+  "start": 64905,
+  "endExclusive": 65625,
+  "completeTokenizerEndExclusive": 81405,
+  "initialPointer": 9,
+  "excerptSha256": "e2c23cc6859c0e41d63809f258dc54365d69d197793fa2392afc24f3a93d679c",
+  "scope": "First720commands of the real tokenizer: initialize token state and begin reading/skipping input. A partial function excerpt, not a standalone program or a routing/scheduler algorithm."
+}

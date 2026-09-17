@@ -67,7 +67,7 @@
     then then 1 js +!
   repeat
 ;
-: factory-work
+: factory-produce
   2 role? 0= if 33 wfail exit then
   pr @ 21 ef w@ ptick @ = if exit then ptick @ pr @ 21 ef w!
   pr @ 11 ef w@ if
@@ -82,12 +82,20 @@
       pr @ 3 ef dup w@ 2 - swap w! 1 pr @ 11 ef w! 3 pr @ 12 ef w!
     then
   then
+;
+: factory-offer
+  2 role? 0= if 33 wfail exit then
   pr @ 15 ef w@ if exit then
   pr @ 4 ef w@ pr @ 17 ef w@ < if exit then
   job-new 0= if exit then
   1 pcurr w@ jx @ 2 jf w! pr @ 10 ef w@ jx @ 3 jf w!
   2 jx @ 4 jf w! pr @ 17 ef w@ jx @ 5 jf w!
   job-message 1 = if jx @ 1 jf w@ pr @ 15 ef w! else job-free then
+;
+: factory-work
+  2 role? 0= if 33 wfail exit then
+  pr @ 21 ef w@ ptick @ = if exit then
+  factory-produce factory-offer
 ;
 : claim-job
   vm-pop ox ! vm-pop job-find dup if 1- jx ! else drop exit then
@@ -281,6 +289,8 @@
     vm-pop dup 1 = over 2 = or if 2 + pr @ swap ef w@ vm-push else drop 34 wfail then exit
   then
   vm-op @ 54 = if passage-priority exit then
+  vm-op @ 55 = if factory-offer exit then
+  vm-op @ 56 = if factory-produce exit then
   6 wfail
 ;
 42 1 0 7 primitive-name request
@@ -296,3 +306,5 @@
 52 0 1 4 primitive-name kind
 53 1 1 5 primitive-name stock
 54 1 0 8 primitive-name priority
+55 0 0 5 primitive-name offer
+56 0 0 4 primitive-name make

@@ -165,7 +165,7 @@ current kernel refuses those identities; no automatic migration is claimed.
 `tools/build-archives.mjs --check` verifies both archives. HTML alone has relocated
 navigation and a historical-build banner; executable and asset bytes stay exact.
 
-A comparison begins from one current complete snapshot and creates two new BF
+The historical Build003 comparison begins from one current complete snapshot and creates two new BF
 workers. Only source setup differs; both run the same number of logical rounds,
 with identical road inputs and external orders. The downloadable bundle records
 raw inputs and byte-exact expected outputs. Recorded results are labeled; live
@@ -175,3 +175,28 @@ Build003 presentation history is instance-local: at most180000raw text character
 and1200events are retained. Older history is discarded. It is not part of a machine
 image; import starts a new event history and labels earlier evidence unavailable.
 Download a comparison bundle for a complete bounded experiment transcript.
+
+## Build 004 pending worlds
+
+Current images retain all four heap/workspace contexts plus common supervisor
+state: search generation, checkpoint round, source grammar, current candidate,
+results ring, retained winner, budgets, version assumptions, publication pin and
+protected observation. Construction and road state are branch-owned workspace.
+Export is an opaque whole-tape image; it neither reconstructs objects nor cancels
+the native search. Interrupted BF instructions resume exactly in a new instance.
+The new UI submits a custom source to the native evaluator; the host no longer
+orchestrates meaningful baseline/candidate workers. Only import validation creates
+a separate temporary worker, replacing the current instance after validation.
+
+Build003 images likewise require their preserved `dist/build-003/` runtime. All
+three historical archives are checked against their original commits. No migration
+is claimed. Browser evidence keeps1200native records and64generated source records;
+the native image retains a32-entry result ring and current best source. Missing
+historical source is reported unavailable. Manual editor drafts remain local UI
+state and are explicitly excluded from machine export.
+
+Import of an image paused inside a native operation completes that exact saved
+continuation before requesting a new readable state frame. Output from the earlier
+browser instance is not reconstructed. Host-only drafts and queued controls belong
+to that old instance; replacing the world cancels them. A bridge change already
+accepted by BF is native world state and remains in the image.

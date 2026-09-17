@@ -193,3 +193,14 @@ Rollback swaps the two retained roots without resetting private state or message
 Fault repair explicitly abandons the failed frames but retains private state and
 owned application data. Deletion refuses live references, and collection reuses
 arenas only after the final root, dependency or pin is released.
+
+## Automatic and manual ownership
+
+An external `source-write` or `parameter!` marks the source manually owned, including
+a draft that does not compile. A native search checks ownership again before it
+publishes. `1 module-id autonomy-module` explicitly returns a module to automatic
+control; `0 module-id autonomy-module` opts out. Generated trial source uses a trusted
+copy operation and does not masquerade as an external manual edit. Compatible
+publication changes the active version only after native compilation succeeds;
+existing frames and route pins retain their exact old code. The prior source remains
+pinned through protected observation and may be restored without restoring inventory.

@@ -1,0 +1,2 @@
+{"label":"Automatic search, publication and real construction","inputs":61,"elapsedMs":414298.4043339998}
+{"label":"Looping candidate is rejected while live work continues","inputs":13,"elapsedMs":79011.64633200009}

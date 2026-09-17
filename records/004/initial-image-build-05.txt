@@ -1,0 +1,20 @@
+{
+  "purpose": "An opaque image after BF compiled raw sources and accepted initial map/inventory input. Zero scheduler rounds; no application solution is precomputed.",
+  "kernel": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
+  "sourceSha256": "e7b9b8abec386eec002f6db7b628568b47e0914f9cf1e0e38f3d20ee91d7fb6f",
+  "imageSha256": "68b23214dfea7dbabc6551e23e40025bcc74f4b8224fc1ab816583d529cdd7e7",
+  "bootMs": 57360.477708,
+  "output": "Thread / 8 Instructions\nMODULE-CREATED 0 \nSOURCE-STORED 0 110 \nMODULE-PUBLISHED 0 1 21 1 0 \nMODULE-CREATED 1 \nSOURCE-STORED 1 172 \nMODULE-PUBLISHED 1 2 35 2 0 \nMODULE-CREATED 2 \nSOURCE-STORED 2 111 \nMODULE-PUBLISHED 2 3 24 3 0 \nMODULE-CREATED 3 \nSOURCE-STORED 3 106 \nMODULE-PUBLISHED 3 4 21 4 0 \nPROCESS-CREATED 1 0 0 \nPROCESS-CREATED 2 1 1 \nPROCESS-CREATED 3 2 2 \nPROCESS-CREATED 4 3 3 \nPROCESS-CREATED 5 3 4 \nPROCESS-CREATED 6 2 5 \nDISTRICT-PLANNED 3 4 1 2 1 \nAUTONOMY-MODULE 1 1 \nGOAL 1 1 3 3 0 \nAUTONOMOUS-READY 4 6 16 32\n",
+  "inspect": {
+    "state": "input",
+    "instruction": 65112,
+    "pointer": 13,
+    "cell": 10,
+    "steps": 90546959103488,
+    "blocks": 8649781314,
+    "tapeBytes": 1878828,
+    "highWaterCell": 933187,
+    "backend": "wasm",
+    "executorMemoryBytes": 5570560
+  }
+}

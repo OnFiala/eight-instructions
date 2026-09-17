@@ -1,1 +1,1 @@
-{"libraries":["core.thread","workspace.thread","process-state.thread","industry-state.thread","industry.thread","processes.thread","industry-view.thread","industry-boot.thread"]}
+{"libraries":["core.thread","workspace.thread","process-state.thread","industry-state.thread","industry.thread","district.thread","processes.thread","industry-view.thread","industry-boot.thread"]}

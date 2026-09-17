@@ -130,3 +130,14 @@ The map in `dist/kernel-map.json` exposes register and memory-region locations.
 
 These are measured/configured limits, not an unlimited operating system. The
 boundaries are intended to be extended with visible migrations and regressions.
+
+## Build 004 privileged context operations
+
+`source target context-copy` and `context context-zero` operate on context indices
+0..3. Both are generated eight-command BF algorithms, preserving common store,
+resident definitions and interpreter stacks. They copy/clear all heap/workspace
+value lanes; candidates cannot name them. The raw generated kernel is now distributed
+canonically as `dist/kernel.bf.gz` because its literal source exceeds GitHub's100MiB
+tracked-file limit. `node tools/materialize-kernel.mjs` checks the released hash and
+eight-command alphabet and recreates the ignored `artifacts/kernel.bf` for inspection.
+`python3 kernel/build.py --check` independently reproduces the artifact.

@@ -17,7 +17,7 @@ export function loadKernel() {
       readFile(new URL('dist/kernel.bf.gz',root)),readFile(new URL('dist/kernel-map.json',root)),
       readFile(new URL('dist/executor.wasm',root)),loadLibraries(),
     ]);
-    const source=gunzipSync(archive,{maxOutputLength:100e6}).toString('utf8');
+    const source=gunzipSync(archive,{maxOutputLength:160*1024*1024}).toString('utf8');
     const map=JSON.parse(mapBytes),programHash=await sha256(source);
     if(programHash!==map.sha256)throw new Error('Kernel artifact hash mismatch');
     const program=compile(source),module=new WebAssembly.Module(wasmBytes);

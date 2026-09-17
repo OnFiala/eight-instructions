@@ -155,24 +155,25 @@ class Array:
     Access walks index frames in Brainfuck, then walks back clearing breadcrumbs.
     This assembler does not know or compute the runtime index.
     """
-    def __init__(self, b, base, size, name):
+    def __init__(self, b, base, size, name, banks=1):
         self.b, self.base, self.size, self.name = b, base, size, name
-        self.stride = 4
+        self.unit, self.banks, self.stride = 4, banks, 4*banks
 
     def access(self, index, value, write=False):
-        b, p = self.b, self.base
+        b, p, stride = self.b, self.base, self.stride
+        right, left = '>'*stride, '<'*stride
         b.copy(index, p)
         b.clear(p+3)
         if write:
             b.copy(value, p+3)
         b.at(p)
-        b.raw('[-[->>>>+<<<<]>>>[->>>>+<<<<]>>+<]')
+        b.raw('[-[-'+right+'+'+left+']>>>[-'+right+'+'+left+']'+'>'*(stride-2)+'+<]')
         if write:
             b.raw('>>[-]>[-<+>]<<')  # target lane 1
             b.raw('<')
         else:
             b.raw('>>[->+<<<+>>]<<[->>+<<]')
-        b.raw('>[- >>[-<<<<+>>>>]<<<<<<]'.replace(' ', ''), end=p+1)
+        b.raw('>[->>[-'+left+'+'+right+']'+'<'*(stride+2)+']', end=p+1)
         if not write:
             b.clear(value)
             b.move(p+3, value)
@@ -190,13 +191,14 @@ class PagedArray:
     Both walks, cargo transfer and return are emitted Brainfuck. Callers own the
     two address components. No host-side random access primitive is introduced.
     """
-    def __init__(self, b, base, size, name):
+    def __init__(self, b, base, size, name, banks=1):
         self.b, self.base, self.size, self.name = b, base, size, name
-        self.stride = 6
+        self.unit, self.banks, self.stride = 6, banks, 6*banks
 
     def access(self, high, low, value, write=False):
-        b, p, hop = self.b, self.base, 64*6
+        b, p, hop = self.b, self.base, 64*self.stride
         right, left = '>'*hop, '<'*hop
+        step, back = '>'*self.stride, '<'*self.stride
         b.copy(high, p)
         b.copy(low, p+4)
         b.clear(p+3)
@@ -204,12 +206,12 @@ class PagedArray:
         b.at(p)
         b.raw('[-[-'+right+'+'+left+']>>>[-'+right+'+'+left+']>[-'+right+'+'+left+']'+ '>'*(hop-3)+'+<]')
         # At page base lane 0. Walk the low part, leaving separate breadcrumbs.
-        b.raw('>>>>[-[->>>>>>+<<<<<<]<[->>>>>>+<<<<<<]>>>>>>>>+<]')
+        b.raw('>>>>[-[-'+step+'+'+back+']<[-'+step+'+'+back+']'+'>'*(self.stride+2)+'+<]')
         b.raw('<<<<')  # target lane 0
         if write: b.raw('>>[-]>[-<+>]<<<')
         else: b.raw('>>[->+<<<+>>]<<[->>+<<]')
         # Return low part from lane 5, then page part from lane 1.
-        b.raw('>>>>>[-<<[-<<<<<<+>>>>>>]<<<<]<<<<')
+        b.raw('>>>>>[-<<[-'+back+'+'+step+']'+'<'*(self.stride-2)+']<<<<')
         b.raw('[->>[-'+left+'+'+right+']'+'<'*(hop+2)+']', end=p+1)
         if not write:
             b.clear(value)
@@ -217,3 +219,40 @@ class PagedArray:
 
     def get(self, high, low, out): self.access(high, low, out)
     def put(self, high, low, value): self.access(high, low, value, True)
+
+
+def copy_bank(array, source, target):
+    """Emit a bounded streaming copy of value lanes, preserving the source.
+
+    Context slots are opaque data. The caller supplies two compile-time lane
+    selectors; the kernel checks runtime context numbers before selecting this
+    emitted operation. No host reads values or performs the copy at runtime.
+    All walk/cargo/temporary lanes return to zero, including the end sentinel.
+    """
+    assert 0 <= source < array.banks and 0 <= target < array.banks
+    if source == target:
+        return
+    b, p, stride = array.b, array.base, array.stride
+    src, dst, tmp = 2 + source*array.unit, 2 + target*array.unit, 3
+    # Lane zero carries the remaining fixed count. Lane three preserves source.
+    def move(a, z):
+        return '>'*(z-a) if z >= a else '<'*(a-z)
+    b.set(p, array.size)
+    b.at(p)
+    b.raw('[-[->' + '>'*(stride-1) + '+' + '<'*stride + ']' +
+          move(0, dst) + '[-]' + move(dst, tmp) + '[-]' + move(tmp, src) +
+          '[-' + move(src, dst) + '+' + move(dst, tmp) + '+' + move(tmp, src) + ']' +
+          move(src, tmp) + '[-' + move(tmp, src) + '+' + move(src, tmp) + ']' +
+          move(tmp, stride) + ']', end=p+array.size*stride)
+
+
+def clear_bank(array, bank):
+    """Emit bounded zeroing of one opaque value context, including all objects."""
+    assert 0 <= bank < array.banks
+    b, p, stride = array.b, array.base, array.stride
+    lane = 2 + bank*array.unit
+    b.set(p, array.size)
+    b.at(p)
+    b.raw('[-[->' + '>'*(stride-1) + '+' + '<'*stride + ']' +
+          '>'*lane + '[-]' + '>'*(stride-lane) + ']',
+          end=p+array.size*stride)

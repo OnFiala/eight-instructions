@@ -1,0 +1,31 @@
+/* Build 004: a wide autonomous city; source controls remain optional. */
+body{background:#0c1417}
+.workspace-notice{position:fixed;z-index:30;left:24px;bottom:18px;max-width:min(650px,calc(100vw - 48px));margin:0;padding:15px 18px;border:1px solid #c58072;border-radius:5px;background:#332422;color:#ffe6dd;font-size:13px;line-height:1.5;box-shadow:0 8px 30px #0008;pointer-events:none}
+.experience{display:grid;grid-template-columns:minmax(0,1fr);padding:16px 38px 0;gap:0;max-width:1740px}
+.hero{grid-column:1;padding:0;min-height:120px;position:relative}
+.hero h1{font-size:clamp(36px,4.65vw,72px);white-space:normal;letter-spacing:-.052em;max-width:1080px}
+.hero>p{font-size:25px;letter-spacing:-.025em;margin-bottom:17px}
+.bf-line{position:absolute;right:0;top:16px;display:block;max-width:285px;border-left:1px solid #42514c;padding:10px 0 10px 24px;font-size:12px;line-height:1.7}
+.bf-line code{display:block}.bf-line span{display:block}
+@media(max-width:1450px){.hero h1{max-width:75%;font-size:4.55vw}.bf-line{max-width:240px;font-size:11px}}
+.city-stage{grid-column:1;margin:0 -18px;position:relative;height:760px;overflow:hidden}
+.city-stage canvas{height:100%;width:100%}
+.mission,.mission.running{top:4px;left:18px;right:18px;max-width:none;display:flex;flex-direction:row;align-items:center;gap:22px;padding:14px 22px;min-height:64px;border-radius:5px;background:#101b1ce8;box-shadow:none}
+.mission strong,.mission.running strong{font-size:19px;margin:0;max-width:330px;flex-shrink:0}
+.mission .eyebrow{font-size:10px;max-width:75px;line-height:1.6;flex:none}
+.mission #mission-detail,.mission.running #mission-detail{display:block;font-size:12px;max-width:430px;color:#a9b5bb;border-left:1px solid #3c4b48;padding-left:22px;line-height:1.6}
+.mission button,.mission.running button{display:inline-flex;margin:0 0 0 auto;min-width:136px;min-height:38px;white-space:nowrap;background:#111c1e}
+.camera{top:94px;left:28px;z-index:2}.scene-note{left:30px;bottom:3px}
+.city-footer{bottom:27px;left:18px;right:18px;padding:14px 20px;min-height:60px;font:11px InterVariable,sans-serif;background:#0e191def;gap:18px}
+.city-footer .transport{gap:12px}.transport button,.transport .file-button{font:11px InterVariable,sans-serif;min-height:35px;padding:7px 12px}
+.live-dot{width:8px;height:8px;box-shadow:0 0 12px #d8f87530}
+.context{display:none;position:fixed;z-index:10;right:24px;top:78px;bottom:24px;overflow:auto;width:400px;height:calc(100dvh - 102px);max-height:calc(100dvh - 102px);min-height:0;background:#14201ff7;backdrop-filter:blur(18px);padding:20px;box-shadow:0 18px 60px #0009}
+.inspecting .context{display:block}.panel-header{display:flex;justify-content:space-between;align-items:center;font:10px var(--mono);color:#abc0ac;letter-spacing:.1em;margin-bottom:20px}
+.panel-header button{font-size:11px;min-height:30px;padding:4px 9px}
+.evidence-strip{padding:16px 4px 13px;gap:55px;grid-template-columns:1.3fr 1fr;margin:0}
+.evidence-strip h3{margin-bottom:12px}.progress-chain small{font-size:10px}.machine-footnote{padding:4px 4px 20px}
+#experiment-status{color:#d9edb6;font-size:16px}#native-experiment{padding-top:35px}
+#native-experiment h2{margin-bottom:15px}#autonomy-evidence{min-height:190px;font-size:11px}#generated-source{font-size:13px;line-height:1.8}
+@media(min-width:1600px){.city-stage{height:835px}}
+@media(max-width:1050px){.experience{padding:15px 24px 0}.hero{min-height:132px}.hero h1{font-size:5.3vw;max-width:none}.hero>p{font-size:22px}.bf-line{position:static;border:0;padding:0;max-width:none;display:flex;gap:13px;font-size:10px}.bf-line code,.bf-line span{display:inline}.city-stage{height:690px}.mission,.mission.running{gap:14px;padding:12px 14px}.mission strong,.mission.running strong{font-size:16px;max-width:260px}.mission #mission-detail{font-size:11px;padding-left:14px}.mission .eyebrow{display:none}.city-footer{font-size:10px;padding:12px}.city-footer .transport{gap:5px}.evidence-strip{gap:25px}.machine-footnote>span:nth-child(3){display:none}}
+@media(max-width:680px){.masthead{padding:15px 18px}.masthead nav{gap:9px}.experience{display:flex;padding:7px 18px 0}.hero{min-height:171px}.hero h1{font-size:43px;line-height:1.02;max-width:360px}.hero>p{font-size:18px;max-width:300px;margin:10px 0}.bf-line{display:block;font-size:9px;line-height:1.7}.bf-line code{margin-left:8px;font-size:12px}.bf-line span{display:none}.city-stage{margin:6px -18px 0;width:calc(100% + 36px);height:450px}.mission,.mission.running{top:0;left:14px;right:14px;display:grid;grid-template-columns:1fr auto;gap:8px 10px;padding:12px}.mission strong,.mission.running strong{font-size:15px;max-width:none}.mission #mission-detail,.mission.running #mission-detail{grid-column:1/-1;border:0;padding:0;font-size:11px;max-width:none}.mission button,.mission.running button{grid-column:2;grid-row:1;min-width:94px;font-size:10px;padding:6px 8px;min-height:40px}.camera{top:118px;left:18px}.city-footer{left:14px;right:14px;bottom:26px;flex-wrap:wrap;gap:9px;padding:11px}.city-footer>div:first-child{width:100%;font-size:10px}.city-footer .transport{gap:6px;flex-wrap:wrap}.transport button,.transport .file-button{font-size:10px;min-height:40px;padding:6px 9px}.scene-note{left:18px;font-size:8px}.context{top:12px;left:12px;right:12px;bottom:12px;width:auto;height:calc(100dvh - 24px);max-height:calc(100dvh - 24px);padding:18px}.evidence-strip{display:block;margin:16px 0 0;padding:18px 0 0}.progress-chain{flex-direction:row;gap:8px}.progress-chain>span{display:block;font-size:10px}.progress-chain b{display:none}.progress-chain small{display:block;font-size:9px;margin-top:7px}.memory{display:none}.machine-footnote{gap:8px;padding:12px 0 18px;font-size:8px}.machine-footnote button{font-size:9px}.boot{inset:30% 8% auto}.content{padding:32px 20px}.content>details>summary{font-size:16px}}

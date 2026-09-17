@@ -1,0 +1,8 @@
+{
+  "scope": "Anonymous public root versus immutable Build003 index HTML",
+  "sourceSha256": "da3cdfe36965574b8d3e7b8cc65ec7694b48345651a77fb12686384045fceb63",
+  "publicSha256": "265be813f69d52bcffaf2dfff4f9485715e9697ea6e68b2a684f88dbb65b2b45",
+  "difference": "Only an appended Cloudflare challenge-platform script immediately before the closing body tag. Original source prefix and closing suffix are byte-identical.",
+  "providerInsertionBytes": 938,
+  "status": "PASS"
+}

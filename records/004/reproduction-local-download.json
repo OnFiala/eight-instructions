@@ -1,0 +1,9 @@
+{
+  "source": "Anonymous curl -q download from http://127.0.0.1:4178/reproduction/build-004.zip, the exact UI link target",
+  "downloadSha256": "26292164f3a119a31dac780abd04495e1c3da366ac27e3d1ec4ded35f2c14748",
+  "bytes": 255305,
+  "exactPackageMatch": true,
+  "freshDirectory": ".local/reproduction-download-004",
+  "browserDownloadObservation": "IAB link click and downloadMedia produced no delivered file; not claimed as browser ZIP delivery proof. Raw workspace blob export/import worked separately.",
+  "replay": "PASS: reproduction-local-fresh-cli-02.json, 61 success-branch inputs and 13 loop-rejection inputs, every native output byte matched"
+}

@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "kernelSha256": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
+  "runs": [
+    {
+      "label": "Automatic search, publication and real construction",
+      "inputs": 61,
+      "outputSha256": "d7d113996298cee3eebdf1643408a4bc0fd601418ea0896c8ccedb4ecdc44c0e",
+      "elapsedMs": 211709.0575,
+      "state": "input",
+      "steps": 1663856171868358
+    },
+    {
+      "label": "Looping candidate is rejected while live work continues",
+      "inputs": 13,
+      "outputSha256": "97c3c5e90161ef159395adb38438574f42f519a01f3c044a3f4b1df88c63c418",
+      "elapsedMs": 47894.70545800001,
+      "state": "input",
+      "steps": 421660543260145
+    }
+  ]
+}

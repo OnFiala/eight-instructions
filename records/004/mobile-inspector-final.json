@@ -1,0 +1,20 @@
+{
+  "before": {
+    "bottom": 832,
+    "focus": "",
+    "height": 818,
+    "scrollHeight": 1176,
+    "top": 12,
+    "viewport": 844
+  },
+  "after": {
+    "inspectBottom": 812.9296875,
+    "scrollTop": 358.5
+  },
+  "closed": {
+    "body": 390,
+    "expanded": "false",
+    "focus": "toggle-inspector",
+    "width": 390
+  }
+}

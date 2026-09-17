@@ -1,0 +1,102 @@
+TAP version 13
+# Subtest: BF constructs different source structures and its actual compiler publishes each in an isolated world
+not ok 1 - BF constructs different source structures and its actual compiler publishes each in an isolated world
+  ---
+  duration_ms: 33891.042292
+  type: 'test'
+  location: '/Users/ondrej/BRAINFUCK/tests/synthesis.test.mjs:5:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /!E\d+ /. Input:
+    
+    'Thread / 8 Instructions\n' +
+      '!E5 !E2 !E6 AUTONOMY-MODULE 0 56 \n' +
+      '!E6 WS-ERROR 34 \n' +
+      '!E6 !E6 !E5 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E2 !E2 !E6 !E6 !E2 !E2 !E2 !E2 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E6 GOAL 1 0 0 0 0 \n' +
+      '!E6 !E5 EARCH-REFUSED 2\n' +
+      '!E6 !E6 !E5 0 0 \n' +
+      'ROUND 1 \n' +
+      '!E6 !E1 !E6 SEARCH-REFUSED 3\n' +
+      '!E6 !E6 SCENARIO-COMPLETE 1 \n' +
+      '!E6 !E6 !E6 !E5 SIS !E6 !E6 0 !E6 \n' +
+      '!E6 '
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    Thread / 8 Instructions
+    !E5 !E2 !E6 AUTONOMY-MODULE 0 56 
+    !E6 WS-ERROR 34 
+    !E6 !E6 !E5 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E2 !E2 !E6 !E6 !E2 !E2 !E2 !E2 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E6 GOAL 1 0 0 0 0 
+    !E6 !E5 EARCH-REFUSED 2
+    !E6 !E6 !E5 0 0 
+    ROUND 1 
+    !E6 !E1 !E6 SEARCH-REFUSED 3
+    !E6 !E6 SCENARIO-COMPLETE 1 
+    !E6 !E6 !E6 !E5 SIS !E6 !E6 0 !E6 
+    !E6 
+  operator: 'doesNotMatch'
+  stack: |-
+    command (file:///Users/ondrej/BRAINFUCK/tests/system-helpers.mjs:18:25)
+    run (file:///Users/ondrej/BRAINFUCK/tests/synthesis-helpers.mjs:6:36)
+    district (file:///Users/ondrej/BRAINFUCK/tests/synthesis-helpers.mjs:11:5)
+    async TestContext.<anonymous> (file:///Users/ondrej/BRAINFUCK/tests/synthesis.test.mjs:6:11)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: native baseline/candidate trials interleave with useful live work and retain real-world inventory
+not ok 2 - native baseline/candidate trials interleave with useful live work and retain real-world inventory
+  ---
+  duration_ms: 21715.924292
+  type: 'test'
+  location: '/Users/ondrej/BRAINFUCK/tests/synthesis.test.mjs:18:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The input was expected to not match the regular expression /!E\d+ /. Input:
+    
+    'Thread / 8 Instructions\n' +
+      '!E5 !E2 !E6 AUTONOMY-MODULE 0 56 \n' +
+      '!E6 WS-ERROR 34 \n' +
+      '!E6 !E6 !E5 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E2 !E2 !E6 !E6 !E2 !E2 !E2 !E2 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E6 GOAL 1 0 0 0 0 \n' +
+      '!E6 !E5 EARCH-REFUSED 2\n' +
+      '!E6 !E6 !E5 0 0 \n' +
+      'ROUND 1 \n' +
+      '!E6 !E1 !E6 SEARCH-REFUSED 3\n' +
+      '!E6 !E6 SCENARIO-COMPLETE 1 \n' +
+      '!E6 !E6 !E6 !E5 SIS !E6 !E6 0 !E6 \n' +
+      '!E6 '
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual: |-
+    Thread / 8 Instructions
+    !E5 !E2 !E6 AUTONOMY-MODULE 0 56 
+    !E6 WS-ERROR 34 
+    !E6 !E6 !E5 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E2 !E2 !E6 !E6 !E2 !E2 !E2 !E2 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E6 GOAL 1 0 0 0 0 
+    !E6 !E5 EARCH-REFUSED 2
+    !E6 !E6 !E5 0 0 
+    ROUND 1 
+    !E6 !E1 !E6 SEARCH-REFUSED 3
+    !E6 !E6 SCENARIO-COMPLETE 1 
+    !E6 !E6 !E6 !E5 SIS !E6 !E6 0 !E6 
+    !E6 
+  operator: 'doesNotMatch'
+  stack: |-
+    command (file:///Users/ondrej/BRAINFUCK/tests/system-helpers.mjs:18:25)
+    run (file:///Users/ondrej/BRAINFUCK/tests/synthesis-helpers.mjs:6:36)
+    district (file:///Users/ondrej/BRAINFUCK/tests/synthesis-helpers.mjs:11:5)
+    async TestContext.<anonymous> (file:///Users/ondrej/BRAINFUCK/tests/synthesis.test.mjs:19:11)
+    async Test.run (node:internal/test_runner/test:1054:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 56444.264333

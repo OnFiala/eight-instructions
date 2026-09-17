@@ -1,0 +1,24 @@
+{
+  "kernel": "9b72a82b39d7edb711911db516e272ef72ddcb14d91268766799bd28452ff21f",
+  "codeLimit": 24576,
+  "dictionaryLimit": 512,
+  "registers": {
+    "cp": 24557,
+    "dp": 336,
+    "here": 2560,
+    "err": 0
+  },
+  "inspect": {
+    "state": "input",
+    "instruction": 65112,
+    "pointer": 13,
+    "cell": 10,
+    "steps": 27816843609008,
+    "blocks": 5563573792,
+    "tapeBytes": 1780524,
+    "highWaterCell": 884035,
+    "backend": "wasm",
+    "executorMemoryBytes": 5505024
+  },
+  "output": "Thread / 8 Instructions\n!E5 !E2 !E6 AUTONOMY-MODULE 0 56 \n!E6 WS-ERROR 34 \n!E6 !E6 !E5 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E6 !E2 !E2 !E6 !E6 !E2 !E2 !E2 !E2 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E2 !E6 !E6 !E6 !E6 !E6 !E6 GOAL 1 0 0 0 0 \n!E6 !E5 EARCH-REFUSED 2\n!E6 !E6 !E5 0 0 \nROUND 1 \n!E6 !E1 !E6 SEARCH-REFUSED 3\n!E6 !E6 SCENARIO-COMPLETE 1 \n!E6 !E6 !E6 !E5 SIS !E6 !E6 0 !E6 \n!E6 "
+}

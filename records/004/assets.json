@@ -1,0 +1,18 @@
+[
+  {
+    "path": "dist/assets/industrial/site-planned.png",
+    "source": "/Users/ondrej/.codex/generated_images/01a0b0a9-e9ce-7693-b454-4dab6d3a111d/exec-6ece22b6-a396-48c9-9968-672d97068596.png",
+    "generator": "Built-in image_gen",
+    "purpose": "Unbuilt survey plot; no installed materials.",
+    "sha256": "91c848da51049cdbbe43fa24226efcbdc99a3216b0da8ddeffaeacf9e8b10831",
+    "computation": "Visual asset only; BF output selects the actual phase."
+  },
+  {
+    "path": "dist/assets/industrial/workshop-frame.png",
+    "source": "/Users/ondrej/.codex/generated_images/01a0b0a9-e9ce-7693-b454-4dab6d3a111d/exec-ff29542d-39e8-4a7d-aa5c-98a2d7b03508.png",
+    "generator": "Built-in image_gen",
+    "purpose": "Open roof trusses and incomplete workshop after native installation begins.",
+    "sha256": "1673f3f8503a03d8581647646500b4bf7c69456c289cf9b1a345dc1329125b9f",
+    "computation": "Visual asset only; BF output selects the actual phase."
+  }
+]

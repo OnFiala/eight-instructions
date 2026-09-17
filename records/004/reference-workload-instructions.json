@@ -1,0 +1,16 @@
+{
+  "kernel": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
+  "rows": [
+    {
+      "input": "43 9 1 process-post .",
+      "instructions": "156137721287",
+      "output": "SEND 1 0 1 9 43 0 \n1 "
+    },
+    {
+      "input": "process-step",
+      "instructions": "1059184496869",
+      "output": "RECEIVE 1 1 1 \nROUND 2 \n"
+    }
+  ],
+  "method": "Actual optimized BF execution counters for unchanged literal-reference workloads; no literal wall-clock claim."
+}

@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "purpose": "Actual browser output replayed byte-for-byte in a new CLI BF instance; captured commands are single-line inputs without embedded transcript delimiters.",
+  "kernel": "b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8",
+  "initialImageSha256": "c6971e014c568aa00d1acca114978d2e619738be3a473eac8a28842f71d98d3f",
+  "transcript": "records/004/browser-restored-transcript.txt",
+  "transcriptSha256": "d6a76ffc53149aa2e94d3e28c89dc9dabbb80c4ad03cc3a56098b9540e242a22",
+  "inputs": [
+    {
+      "input": "synthesis-state district-state industry-state",
+      "outputSha256": "a8ab1b090204f4447b11c2b3244b40657ebcfbf2670f080ca39f93470cfc52fd"
+    },
+    {
+      "input": "2 industry-inspect",
+      "outputSha256": "eefb2c0338402bc9604ccaf5cd7b63ae6ff85a618f39d57d4719ce8ec12fa88a"
+    },
+    {
+      "input": "autonomy-step synthesis-state district-state industry-state",
+      "outputSha256": "d50be97c7c72c5f71f189167cc23af3e56fff410aa03e349e50aa3ebefaba2e8"
+    }
+  ],
+  "elapsedMs": 9815.642958
+}

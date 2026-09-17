@@ -3,6 +3,7 @@
   "builds": [
     "records/001/build.json",
     "records/002/build.json",
-    "records/003/build.json"
+    "records/003/build.json",
+    "records/004/build.json"
   ]
 }

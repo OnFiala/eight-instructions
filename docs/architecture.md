@@ -159,3 +159,19 @@ A checked-in opaque initial image speeds browser startup. Its builder runs the
 actual BF compiler on raw boot input; it contains zero scheduler rounds, routes,
 orders, deliveries or production. `--check` boots a fresh machine and verifies
 its exact bytes and identities. Browser cold compilation remains available.
+
+## Build 004: native autonomous work
+
+The current composition adds `district.thread` and `synthesis.thread` to the same
+native industrial profile. Four heap/workspace contexts support an immutable
+checkpoint, parked live state and suspended trial, with context zero as the execution
+window. The BF supervisor constructs and compiles source, interleaves real trial
+rounds with live work, evaluates conservation and useful progress, validates a
+selected candidate under an additional closure, and publishes source at a scheduler
+boundary. See [synthesis](synthesis.md) and [construction/world ownership](worlds.md).
+
+The browser automatically requests the next native `autonomy-step`; it does not
+choose candidates, horizons, scores or winners. Presentation explicitly discards
+trial compiler and city events from the live view. Source editing and opaque image
+import/export remain optional. Historical Build003 has its own verbatim runtime in
+`dist/build-003/`; its old interaction-led workflow is not the current entry point.

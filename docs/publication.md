@@ -118,3 +118,23 @@ commit, saved version, deployment and anonymous evidence separately. A successfu
 publish call is not proof that the live city works. If live checks expose a material
 failure, repair it or redeploy the existing verified Build002 saved version. No
 new Site, audience change, backend or alternate account is part of this release.
+
+## Build004 release extension
+
+The native implementation identity is recorded separately from evidence-only
+commits, the normal GitHub merge, absent-only immutable tag and Site transport
+projection. Six CI suites cover every test file exactly once; the original114
+regressions remain unchanged. Preserve the successful local evidence and all failed
+attempts rather than replacing them with a synthetic single PASS transcript.
+
+Before publication, retain the verified Build003 saved version from
+`records/004/rollback.json`. Stage only committed public files, extend the existing
+Sites Git history and deploy to the existing public audience. Verify anonymous
+asset identities, a fresh autonomous run, disruption, error handling, independent
+work and export/import, then actually replay the public reproduction download.
+Build004 freezes the local acceptance record before exact-source CI. The final
+post-publication receipt is an immutable GitHub release attachment, binding the
+verified source, normal merge/tag, Site projection, archive and observed behavior.
+This avoids changing a tested/deployed tree merely to insert its own future hash.
+Local PASS has explicit local scope until the external receipt proves release PASS.
+Retain failed attempts alongside success, and never replace a published tag.

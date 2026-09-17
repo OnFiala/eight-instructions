@@ -1,0 +1,41 @@
+TAP version 13
+# Subtest: opaque context lanes copy in actual BF, preserve source and clear traversal state
+ok 1 - opaque context lanes copy in actual BF, preserve source and clear traversal state
+  ---
+  duration_ms: 236.9735
+  type: 'test'
+  ...
+# {"contextCopiesMs":35.114083999999934,"kernel":"c0a972e2492bdcda183953983ad5eafe9ed61bd7f44bf50877f0b0d6a86d760d"}
+# Subtest: native context copy isolates all heap/workspace data and preserves common controller state
+ok 2 - native context copy isolates all heap/workspace data and preserves common controller state
+  ---
+  duration_ms: 65.357625
+  type: 'test'
+  ...
+# Subtest: opaque image resumes interruption inside a native context copy exactly
+ok 3 - opaque image resumes interruption inside a native context copy exactly
+  ---
+  duration_ms: 186.569542
+  type: 'test'
+  ...
+# Subtest: generic key and paged workspace operations execute as BF and reject boundaries
+ok 4 - generic key and paged workspace operations execute as BF and reject boundaries
+  ---
+  duration_ms: 53.005083
+  type: 'test'
+  ...
+# Subtest: boot manifests accept only local raw Thread source paths
+ok 5 - boot manifests accept only local raw Thread source paths
+  ---
+  duration_ms: 8.769917
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1121.539875

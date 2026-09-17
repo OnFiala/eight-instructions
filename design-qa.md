@@ -1,52 +1,99 @@
-# Build 002 visual and interaction QA
+# Build 004 visual and interaction review
 
-Result: **passed** — a qualitative, same-author review of the selected Living Dispatch direction. This is not pixel equality, an independent design audit, or a WCAG certification.
+final result: passed
 
-## Source and capture
+This is the sole Astra xHigh author's finite local review, not an independent
+accessibility audit. GitHub CI and public deployment are separate release gates.
 
-Only [the approved first concept](records/002/reference/approved-living-dispatch.png) was used. It is the exact1487×1058PNG with SHA-256 `93acd21539f8a122bc4b66f8ce1f75048e2cf477ca14d068c00744a08c53e847`. The final [desktop capture](records/002/visuals/desktop-initial.png) uses Chrome,1487×1058,DPR1,scrollY0,loaded local Inter, actual BF step1/v1 with three in-flight pins. It is a screenshot of the functioning interface, not the concept painted behind controls.
+## Visual truth and comparison
 
-The reference and implementation were inspected together at the same scale, then in focused regions. These files contain both images in one raster, with labels above the image area:
+Source: `records/004/reference/autonomous-living-dispatch.png`, 1487 × 1058 pixels.
+It is an art-direction image with illustrative buildings and quantities, not a
+runtime recording. The original approved Build 002 reference remains preserved.
 
-- [Full comparison](records/002/visuals/reference-vs-implementation.png)
-- [50% overlay](records/002/visuals/reference-overlay.png)
-- [City, material and perspective detail](records/002/visuals/reference-city-detail.png)
-- [Module-panel detail](records/002/visuals/reference-panel-detail.png)
-- [Typography detail](records/002/visuals/reference-type-detail.png)
+Final desktop: `records/004/screenshots/completed-desktop-final.jpg`, 1487 × 1058
+pixels and CSS viewport, density 1, scroll0. This is actual completed native round97,
+exported from the zero-click journey and restored for final rendering verification.
+The earlier accepted/live round53 is `screenshots/final-desktop-03.jpg`.
+Paths in this paragraph and below are relative to `records/004/`.
 
-No pixel-difference percentage is presented as an aesthetic score. Pillow only assembled comparison evidence; it did not author or repair production artwork.
+Combined full-view evidence is `screenshots/comparison-side-by-side-02.jpg` and
+`comparison-overlay-02.jpg`. Both contain the exact source and browser pixels,
+placed at equal sizes in local diagnostic HTML; the overlay uses 50% opacity.
+`comparison-header-detail.jpg` compares the exact unscaled header crops together.
+`visual-comparison.json` records hashes, normalization and rejected capture attempts.
+No generative tool assembled the evidence. Native state differs from the illustration;
+this is a composition review, not a pixel-match claim.
 
-## Iterations and resolved findings
+Narrow: `screenshots/completed-mobile-top-final.png`, CSS390 ×844, physical780 ×1688,
+density2. Tablet: `screenshots/tablet-final.jpg`, CSS/pixels820 ×1180, density1.
+DOM measurements confirm no horizontal page overflow. Device-density failures and
+tiled compositor captures are labelled invalid in the comparison receipt. They
+are not acceptance screenshots. Overrides are temporary and removed after QA.
 
-| Finding in earlier captures | Severity then | Final change / recheck |
-| --- | --- | --- |
-| Compound building sprites looked miniature; city was sparse and the camera too steep | P1 | Replaced repeated compounds with individual stone/café/flat-roof houses; enlarged landmark blocks and changed projection to a33° ground-axis slope. Captured and compared again. |
-| Only two crossing roads left a material difference from the three-bridge reference | P1 | Added a real third free bridge in native Thread, including46-road tests, new measurements and regenerated replay. Art alone did not invent the connection. |
-| Overlarge bridge art, bare fountain shapes and sparse foreground | P2 | Rescaled art to the middle70% of existing native edges; installed generated fountain assets, foreground old-town detail, peripheral planting and warm street lights. |
-| Trees or labels covered vans; the mobile goal label clipped | P2 | Vehicles are a legibility overlay at their observed native positions; labels moved and the rightmost mobile label aligns inward. |
-| Mobile controls were small and city left excessive vertical space | P2 |44×44px transport controls,360px city stage, stacked editor, visible keyboard focus. Recaptured390×844. |
-| Import restored memory but left the editor showing the old draft | P1 interaction | Read candidate active source and stored draft from BF before accepting the image; actual browser restoration and byte-exact CLI replay pass. |
+## Findings, repairs and repeated verification
 
-No unresolved P0/P1/P2 defect was identified in the tested final surfaces. Judgment is explicitly limited to the recorded viewport and flows below.
+| Finding | Repair and final evidence |
+| --- | --- |
+| P2: invalid import retained the city but hid its error inside the closed inspector. | A visible global error surface reports refusal; `browser-invalid-import-fixed.json` proves retained round87 and visible feedback. |
+| P2: narrow inspector exceeded viewport height and hid final controls. | Explicit dynamic-viewport height and internal scrolling. `mobile-inspector-final.json` reports top12/bottom832 inside844px, scroll358.5 and final control bottom812.93; `mobile-inspector-final.png` shows it. |
+| P2: mobile camera put northern buildings behind the goal panel. | Smaller projection with a lower origin; completed-mobile-top-final shows the native district between the goal and controls. Selected labels are raised to separate them from vans. |
+| P2: nearby vans at different native positions had overlapping labels. | Bounded presentation-only callout spacing and connectors retain their observed positions. Completed-desktop-final and completed-mobile-top-final show both labels. |
+| P2: completed-looking artwork represented an unpaid workshop. | Survey/frame assets now follow installed material; the first screenshots and final completed state show distinct phases. Asset provenance is in assets.json. |
+| P2: desktop city extended below its stage. | Flatter projection and revised asset placement; the complete native district and controls fit the desktop capture. |
+| P2: queued intervention remained pending after an exact BF resume. | Resume flushes it at the input boundary; image replacement cancels inputs for the old instance. browser-queue-resume-fixed.json verifies the actual road change after interruption. |
+| P2: direct ZIP link produced no downloaded file in IAB. | Fetch unchanged bytes and use the existing Blob-download transport. reproduction-gui-download-03.json records the actual file and matching hash. |
 
-## Five visual surfaces
+Earlier captures and failed checks remain in the build record. The final combined
+comparison was made after the camera, labels and interaction repairs. No actionable
+P0/P1/P2 finding remains in the tested viewports and flows.
 
-**Fonts.** Locally served Inter Variable preserves the heavy sentence-case headline and compact body hierarchy. Monospaced identity, source and evidence distinguish the language from the illustration. At1487px the headline is71.97px. The reference's exact unknown typeface was not claimed to be recovered.
+## Fidelity surfaces
 
-**Layout and spacing.** The live city dominates the left1051px; the right panel starts atx1059,y197 and is404px wide. The bottom evidence strip begins aty894. The headline, right panel and trace align closely in the overlay. On narrow screens the scene remains first and the full editor follows it; no horizontal document overflow was observed at390px or900px.
+Typography keeps bundled Inter, a strong white heading, subdued explanation and
+monospaced evidence. The full-size header comparison shows intentional differences
+in headline width and factual status content; there is no broken wrapping. Mobile
+uses two headline lines. Source is a selectable, editable native textarea.
 
-**Colors and light.** Dark green-charcoal ground, pale stone, warm windows and lamp light, lime routes/actions, muted blue water and brass toll bridge follow the reference. Retained/free memory and closed roads have distinct presentation. Error and status copy supplement color.
+Layout keeps one goal, one optional bridge action and compact controls around the
+city. Mobile uses40px primary controls and an optional scrollable inspector. Tablet
+and desktop keep all native entities and controls available. The smaller real
+world has fewer buildings and a narrower canal than the illustration; its density
+is deliberately constrained by the real topology and paid construction.
 
-**Images and scene.** The city has detailed building materials, trees, quays, three bridges, fountains and three native vans. It is a2.5D composition of raster art and projected geometry. Roads, directed marks, closures and last planned routes come from emitted guest data. The exact illustrative block map and building placement are adapted to the tested16-node graph; paths, labels and counters are deliberately factual. Repeated architectural types, orthogonal native street blocks and the silhouette differ from the artist's continuous illustration. They retain its composition and material direction; this review does not assert an identical city or pixel match.
+Charcoal surroundings, warm architectural materials, canal blue, foliage and lime
+follow the selected direction. Orange represents faults/closed passages. Raster
+architecture has recorded provenance and actual transparent asset boundaries;
+there is no city mockup behind controls. Camera icons and arrows remain consistent
+with the earlier working interface. Native labels carry exact stock and cargo;
+only adjacent observed states are interpolated. There is no fake thinking animation.
 
-**Copy.** Brainfuck (BF) programming language and all eight instructions appear at first meaningful mention. “Design concept”, “Example trace” and hidden-source claims have been replaced with an editable Thread program and observed native results. The UI explains that a moving van finishes its current road and that a later departure uses the active version. Recorded comparisons are labeled separately from new computation.
+Public copy introduces Brainfuck by name and explains finite capacities, local
+computation and unavailable old event history. Main status follows native records.
 
-## Interaction and responsive evidence
+## Actual flow and state evidence
 
-[Mobile](records/002/visuals/mobile-initial.png), [tablet](records/002/visuals/tablet.png), [keyboard focus](records/002/visuals/mobile-focus.png), [refused source](records/002/visuals/desktop-refused.png), [closed bridge](records/002/visuals/desktop-closed-bridge.png), and [comparison result](records/002/visuals/comparison-result.png) supplement the initial desktop state. State receipts and exact native outputs are linked in [verification.md](records/002/verification.md).
+The untouched final-image journey accepted candidate5 at round25, built the factory
+and road at37, retained its baseline after equal-score searches at73 and97, and
+stopped at97 with both sites3/3 and9deliveries. `browser-final-zero-click-completed.json`
+contains retained native decisions and no console errors. The observed completion
+upper bound834226ms includes concurrent test/replay load; it is not a benchmark.
 
-Keyboard-only editing and Apply published a new61-byte rule with reduced motion enabled. Focus was visibly3px light blue; the skip link reaches the editor. Native stepping, custom publication, refusal, closure, rollback, module creation/deletion, comparison and workspace export/import were exercised. Canvas has a changing text alternative and an ordinary vehicle select; it is not the only access to state. Reduced motion disables transition animation and observed-position interpolation.
+Actual UI checks covered loading, live/testing/accepted/rejected, a closed bridge,
+manual invalid-source errors, finite completion, native pause/continuation, export,
+new-worker import, draft retention across selection, manual publication/rollback,
+explicit automatic opt-in, and a looping participant repaired to increment its
+private state. Relevant browser-*.json receipts preserve the actual raw output.
+The pending-round81 import also matches a fresh CLI byte for byte.
 
-Physical mobile devices, Safari, screen-reader task completion,200% text zoom and a complete WCAG audit were not run. The mobile and tablet evidence is viewport emulation. Native operation latency is visible and may take seconds; the animation is not a claim of native simulation frequency.
+Keyboard Enter opens the inspector; Escape returns focus to Inspect and updates
+aria-expanded. Native rounds66→69 and deliveries5→6 continued under reduced-motion
+preference with no errors (`browser-reduced-motion.json`); scene interpolation is
+disabled under that preference. The final inspector also passed internal scrolling.
 
-The first live release exposed a decision-inspector evidence bug after import, independently of the city composition. The Site was rolled back and the release gate reopened. The repaired local dialog now clearly states when prior cost-table output is unavailable; the actual version2 route and score34 remain visible. See records/002/local-repaired-import-inspector.txt. This repair changes evidence association, not the rendered city geometry or styling.
+## Remaining limits
+
+This is not comprehensive screen-reader, color-contrast or browser/device
+certification. Additional physical-device and text-zoom combinations are untested.
+P3 polish could refine decorative waterfront density and long object-label layouts.
+The evidence does not claim literal visual equivalence to the art-direction image.

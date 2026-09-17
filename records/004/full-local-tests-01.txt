@@ -1,0 +1,1312 @@
+
+> eight-instructions@0.4.0 pretest
+> node tools/materialize-kernel.mjs
+
+Materialized 133240922 literal BF bytes, b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8
+
+> eight-instructions@0.4.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: native unsigned division matches integer arithmetic across all bit widths and overflow guards
+ok 1 - native unsigned division matches integer arithmetic across all bit widths and overflow guards
+  ---
+  duration_ms: 4833.391084
+  type: 'test'
+  ...
+# Subtest: boundary guard rejects new executable files, changed host code and extra kernel commands
+ok 2 - boundary guard rejects new executable files, changed host code and extra kernel commands
+  ---
+  duration_ms: 1.743959
+  type: 'test'
+  ...
+# Subtest: trial module, material and road records cannot become live state or source
+ok 3 - trial module, material and road records cannot become live state or source
+  ---
+  duration_ms: 0.834417
+  type: 'test'
+  ...
+# Subtest: source text cannot spoof native WORLD or decision records
+ok 4 - source text cannot spoof native WORLD or decision records
+  ---
+  duration_ms: 0.157792
+  type: 'test'
+  ...
+# Subtest: dictionary capacity refuses publication without corrupting existing words
+ok 5 - dictionary capacity refuses publication without corrupting existing words
+  ---
+  duration_ms: 8672.96
+  type: 'test'
+  ...
+# Subtest: code and nested control exhaustion roll back incomplete definitions
+ok 6 - code and nested control exhaustion roll back incomplete definitions
+  ---
+  duration_ms: 13886.957875
+  type: 'test'
+  ...
+# Subtest: heap exhaustion and overlong tokens refuse mutation and recover
+ok 7 - heap exhaustion and overlong tokens refuse mutation and recover
+  ---
+  duration_ms: 234.786791
+  type: 'test'
+  ...
+# Subtest: new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+ok 8 - new conditional module and unprepared directed road costs agree with an independent Bellman-Ford oracle
+  ---
+  duration_ms: 70878.294333
+  type: 'test'
+  ...
+# Subtest: native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+ok 9 - native deliveries complete, idle is emitted, and a new job resumes from the actual destination
+  ---
+  duration_ms: 26816.177375
+  type: 'test'
+  ...
+# Subtest: a refused road pair at fixed capacity preserves all road data
+ok 10 - a refused road pair at fixed capacity preserves all road data
+  ---
+  duration_ms: 1273.102542
+  type: 'test'
+  ...
+# Subtest: safe-point, serial and pin refusals preserve the active version and bounded references
+ok 11 - safe-point, serial and pin refusals preserve the active version and bounded references
+  ---
+  duration_ms: 10900.033416
+  type: 'test'
+  ...
+# Subtest: presentation retains serial identity after arena reuse; source framing cannot forge active state
+ok 12 - presentation retains serial identity after arena reuse; source framing cannot forge active state
+  ---
+  duration_ms: 3707.73225
+  type: 'test'
+  ...
+# Subtest: removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+ok 13 - removing an unpinned city rule blocks departures without a stack leak; a replacement resumes the same city
+  ---
+  duration_ms: 7317.57925
+  type: 'test'
+  ...
+# Subtest: road edits invalidate the native cost cache even when the 16-bit generation wraps
+ok 14 - road edits invalidate the native cost cache even when the 16-bit generation wraps
+  ---
+  duration_ms: 2040.517459
+  type: 'test'
+  ...
+# Subtest: two programs from one initial image change routes with the same open toll bridge
+ok 15 - two programs from one initial image change routes with the same open toll bridge
+  ---
+  duration_ms: 47026.095166
+  type: 'test'
+  ...
+# Subtest: in-flight cars retain their edge and old version across swaps, then release it at arrival
+ok 16 - in-flight cars retain their edge and old version across swaps, then release it at arrival
+  ---
+  duration_ms: 14910.319541
+  type: 'test'
+  ...
+# Subtest: paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+ok 17 - paused full workspace image preserves partial travel, drafts, pins and deterministic continuation
+  ---
+  duration_ms: 25361.219083
+  type: 'test'
+  ...
+# Subtest: closure is a separate native data experiment and cannot teleport an in-flight vehicle
+ok 18 - closure is a separate native data experiment and cannot teleport an in-flight vehicle
+  ---
+  duration_ms: 11819.235084
+  type: 'test'
+  ...
+# Subtest: changing road duration preserves the duration already committed to an in-flight vehicle
+ok 19 - changing road duration preserves the duration already committed to an in-flight vehicle
+  ---
+  duration_ms: 9108.817958
+  type: 'test'
+  ...
+# Subtest: opaque context lanes copy in actual BF, preserve source and clear traversal state
+ok 20 - opaque context lanes copy in actual BF, preserve source and clear traversal state
+  ---
+  duration_ms: 628.502542
+  type: 'test'
+  ...
+# {"input":"0 3 context-copy","literalInstructions":"16128661650","literalElapsedMs":19099.042667,"wholeTapeEqual":true,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# {"input":"3 context-zero","literalInstructions":"16116753679","literalElapsedMs":20293.756458000003,"wholeTapeEqual":true,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: literal BF executes the released context-copy and context-zero primitives with full-state equality
+ok 21 - literal BF executes the released context-copy and context-zero primitives with full-state equality
+  ---
+  duration_ms: 40062.718292
+  type: 'test'
+  ...
+# {"contextCopiesMs":76.953708,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: native context copy isolates all heap/workspace data and preserves common controller state
+ok 22 - native context copy isolates all heap/workspace data and preserves common controller state
+  ---
+  duration_ms: 133.274708
+  type: 'test'
+  ...
+# Subtest: opaque image resumes interruption inside a native context copy exactly
+ok 23 - opaque image resumes interruption inside a native context copy exactly
+  ---
+  duration_ms: 508.810375
+  type: 'test'
+  ...
+# Subtest: exact counter windows cross Number precision without changing BF execution
+ok 24 - exact counter windows cross Number precision without changing BF execution
+  ---
+  duration_ms: 3.117125
+  type: 'test'
+  ...
+# Subtest: zero budgets, repeated fuel pauses and output limits remain exact across rotation
+ok 25 - zero budgets, repeated fuel pauses and output limits remain exact across rotation
+  ---
+  duration_ms: 2.390958
+  type: 'test'
+  ...
+# Subtest: images preserve exact epochs and reject malformed epochs before creating a candidate
+ok 26 - images preserve exact epochs and reject malformed epochs before creating a candidate
+  ---
+  duration_ms: 13.464792
+  type: 'test'
+  ...
+# Subtest: CLI diagnostics ignore opaque source bodies across every byte split
+ok 27 - CLI diagnostics ignore opaque source bodies across every byte split
+  ---
+  duration_ms: 1.226291
+  type: 'test'
+  ...
+# Subtest: a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+not ok 28 - a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+  ---
+  duration_ms: 3717.516041
+  type: 'test'
+  location: '/Users/ondrej/BRAINFUCK/tests/diagnostic-stream.test.mjs:15:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/ondrej/BRAINFUCK/tests/diagnostic-stream.test.mjs:19:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)
+  ...
+# Subtest: Dispatch combines transactions, native compilation and dynamic route changes
+ok 29 - Dispatch combines transactions, native compilation and dynamic route changes
+  ---
+  duration_ms: 9725.3525
+  type: 'test'
+  ...
+# Subtest: zero-distance, unreachable nodes and invalid road states
+ok 30 - zero-distance, unreachable nodes and invalid road states
+  ---
+  duration_ms: 4518.243125
+  type: 'test'
+  ...
+# Subtest: maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+ok 31 - maximum-size chain uses all 32 nodes and reconstructs a 31-edge path
+  ---
+  duration_ms: 10807.161584
+  type: 'test'
+  ...
+# Subtest: random weighted networks agree with Bellman-Ford and valid path reconstruction
+ok 32 - random weighted networks agree with Bellman-Ford and valid path reconstruction
+  ---
+  duration_ms: 28454.498917
+  type: 'test'
+  ...
+# Subtest: full-capacity 128-road cyclic network agrees with an independent oracle
+ok 33 - full-capacity 128-road cyclic network agrees with an independent oracle
+  ---
+  duration_ms: 29919.10375
+  type: 'test'
+  ...
+# Subtest: material-built workshop adds a working process and an actually used connection, with branch isolation
+ok 34 - material-built workshop adds a working process and an actually used connection, with branch isolation
+  ---
+  duration_ms: 523892.290875
+  type: 'test'
+  ...
+# Subtest: construction rejects bad placement and refuses capacity exhaustion without partial actor or road allocation
+ok 35 - construction rejects bad placement and refuses capacity exhaustion without partial actor or road allocation
+  ---
+  duration_ms: 24074.796292
+  type: 'test'
+  ...
+# Subtest: generated addressed memory and arithmetic execute on the real BF machine
+ok 36 - generated addressed memory and arithmetic execute on the real BF machine
+  ---
+  duration_ms: 35.256625
+  type: 'test'
+  ...
+# Subtest: paged native memory walks page and word lanes and clears all breadcrumbs
+ok 37 - paged native memory walks page and word lanes and clears all breadcrumbs
+  ---
+  duration_ms: 31.043458
+  type: 'test'
+  ...
+# Subtest: bracket validation
+ok 38 - bracket validation
+  ---
+  duration_ms: 1.284791
+  type: 'test'
+  ...
+# Subtest: uint16 wrap, low-byte output, input pause and EOF
+ok 39 - uint16 wrap, low-byte output, input pause and EOF
+  ---
+  duration_ms: 1.190625
+  type: 'test'
+  ...
+# Subtest: bounds checks retain intermediate pointer motion
+ok 40 - bounds checks retain intermediate pointer motion
+  ---
+  duration_ms: 0.453083
+  type: 'test'
+  ...
+# Subtest: resource budget interrupts a divergent program
+ok 41 - resource budget interrupts a divergent program
+  ---
+  duration_ms: 0.161041
+  type: 'test'
+  ...
+# Subtest: invalid limits and bytes fail without corrupting queued input
+ok 42 - invalid limits and bytes fail without corrupting queued input
+  ---
+  duration_ms: 34.123375
+  type: 'test'
+  ...
+# Subtest: optimized loops match literal execution, including instruction counts
+ok 43 - optimized loops match literal execution, including instruction counts
+  ---
+  duration_ms: 9.818917
+  type: 'test'
+  ...
+# Subtest: machine images resume partial input and preserve full uint16 state
+ok 44 - machine images resume partial input and preserve full uint16 state
+  ---
+  duration_ms: 5.713417
+  type: 'test'
+  ...
+# Subtest: image corruption, incompatible kernels and invalid machine state are rejected
+ok 45 - image corruption, incompatible kernels and invalid machine state are rejected
+  ---
+  duration_ms: 9.58775
+  type: 'test'
+  ...
+# Subtest: budget images resume without replaying input or output
+ok 46 - budget images resume without replaying input or output
+  ---
+  duration_ms: 2.347625
+  type: 'test'
+  ...
+# Subtest: OS image replacement is atomic and leaves no temporary files
+ok 47 - OS image replacement is atomic and leaves no temporary files
+  ---
+  duration_ms: 31.017166
+  type: 'test'
+  ...
+# {"coldBootMs":110755.466167,"bfInstructions":130586018797939,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: native road capacity queues a second van; closure preserves an existing reservation
+ok 48 - native road capacity queues a second van; closure preserves an existing reservation
+  ---
+  duration_ms: 123398.773042
+  type: 'test'
+  ...
+# {"jobCapacity":16,"reclaimedLifetimes":467,"staleIdentityRefused":1,"liveJobs":0}
+# Subtest: all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+ok 49 - all sixteen job slots refuse overflow, reclaim450lifetimes and reject a stale job identity
+  ---
+  duration_ms: 28087.571875
+  type: 'test'
+  ...
+# Subtest: publishing, refusing schema change and rolling back preserve a paused carried load and route version
+ok 50 - publishing, refusing schema change and rolling back preserve a paused carried load and route version
+  ---
+  duration_ms: 99020.839375
+  type: 'test'
+  ...
+# Subtest: native source text is length framed, never mistaken for errors or city events
+ok 51 - native source text is length framed, never mistaken for errors or city events
+  ---
+  duration_ms: 1.365
+  type: 'test'
+  ...
+# Subtest: bounded process and industrial records reject truncation before UI replacement
+ok 52 - bounded process and industrial records reject truncation before UI replacement
+  ---
+  duration_ms: 0.356875
+  type: 'test'
+  ...
+# Subtest: a van between observed road segments keeps its job label, including route calculation
+ok 53 - a van between observed road segments keeps its job label, including route calculation
+  ---
+  duration_ms: 0.099042
+  type: 'test'
+  ...
+# {"coldBootMs":108842.29458300001,"bfInstructions":130586018797939,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: a user van program gets higher native passage priority over an earlier scheduler slot
+ok 54 - a user van program gets higher native passage priority over an earlier scheduler slot
+  ---
+  duration_ms: 120998.914625
+  type: 'test'
+  ...
+# Subtest: an infinite high-priority program cannot retain a free road through a stale intent
+ok 55 - an infinite high-priority program cannot retain a free road through a stale intent
+  ---
+  duration_ms: 15213.422792
+  type: 'test'
+  ...
+# Subtest: paused priority claim is ineligible; invalid priority faults locally without changing its value
+ok 56 - paused priority claim is ineligible; invalid priority faults locally without changing its value
+  ---
+  duration_ms: 16101.179542
+  type: 'test'
+  ...
+# {"coldBootMs":109399.095083,"bfInstructions":130586018797939,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: repeated delivery notifications, local receive failure and repair never repeat material transfer
+ok 57 - repeated delivery notifications, local receive failure and repair never repeat material transfer
+  ---
+  duration_ms: 301795.577625
+  type: 'test'
+  ...
+# Subtest: native transport/production and an unfinished BF instruction stream survive an exact image
+ok 58 - native transport/production and an unfinished BF instruction stream survive an exact image
+  ---
+  duration_ms: 167485.155375
+  type: 'test'
+  ...
+# {"coldBootMs":109196.014375,"bfInstructions":130586018797939,"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# SEND 1 3 1 1 1 2 
+# ORDER 1 3 6 
+# SEND 2 4 2 1 2 3 
+# ORDER 2 4 6 
+# ROUND 1 
+# RECEIVE 1 1 1 
+# AUTHORIZE 1 1 
+# SEND 3 1 7 2 1 1 
+# ASSIGN 1 7 
+# RECEIVE 2 2 1 
+# AUTHORIZE 2 2 
+# SEND 4 2 9 2 2 1 
+# ASSIGN 2 9 
+# RECEIVE 3 7 4 
+# LOAD 7 1 1 6 
+# RECEIVE 4 9 4 
+# LOAD 9 2 2 6 
+# ROUND 2 
+# ROUND 3 
+# ROUND 4 
+# ROUND 5 
+# ROUND 6 
+# ROUND 7 
+# I-ROUTE 7 4 12 4 4 3 12 8 4 
+# ROUND 8 
+# I-DEPART 7 33 4 
+# I-ROUTE 9 4 3 11 4 3 3 7 11 
+# ROUND 9 
+# I-DEPART 9 22 4 
+# ROUND 10 
+# I-ARRIVE 7 8 
+# ROUND 11 
+# I-DEPART 7 25 4 
+# I-ARRIVE 9 7 
+# ROUND 12 
+# I-DEPART 9 30 4 
+# ROUND 13 
+# I-ARRIVE 7 4 
+# SEND 5 7 3 3 1 4 
+# UNLOAD 7 1 3 6 
+# ROUND 14 
+# RECEIVE 5 3 2 
+# ACK 1 3 
+# I-ARRIVE 9 11 
+# SEND 6 9 4 3 2 4 
+# UNLOAD 9 2 4 6 
+# ROUND 15 
+# SEND 7 3 1 1 3 2 
+# ORDER 3 3 6 
+# RECEIVE 6 4 3 
+# ACK 2 4 
+# ROUND 16 
+# RECEIVE 7 1 1 
+# AUTHORIZE 3 1 
+# SEND 8 1 8 2 3 1 
+# ASSIGN 3 8 
+# SEND 9 4 2 1 4 3 
+# ORDER 4 4 6 
+# RECEIVE 8 8 4 
+# LOAD 8 3 1 6 
+# ROUND 17 
+# RECEIVE 9 2 1 
+# AUTHORIZE 4 2 
+# SEND 10 2 10 2 4 1 
+# ASSIGN 4 10 
+# PRODUCE 3 1 
+# RECEIVE 10 10 4 
+# LOAD 10 4 2 6 
+# ROUND 18 
+# Subtest: twelve native processes create real orders and preserve the material ledger
+ok 59 - twelve native processes create real orders and preserve the material ledger
+  ---
+  duration_ms: 192543.032542
+  type: 'test'
+  ...
+# Subtest: unfinished messages, native frames and route phases survive a new machine image
+ok 60 - unfinished messages, native frames and route phases survive a new machine image
+  ---
+  duration_ms: 68586.057084
+  type: 'test'
+  ...
+# Subtest: ownership rejects removing stock or executing a foreign industrial operation
+ok 61 - ownership rejects removing stock or executing a foreign industrial operation
+  ---
+  duration_ms: 22169.382125
+  type: 'test'
+  ...
+# Subtest: numeric parsing and unsigned arithmetic
+ok 62 - numeric parsing and unsigned arithmetic
+  ---
+  duration_ms: 247.597209
+  type: 'test'
+  ...
+# Subtest: stack combinators, equality and unsigned comparison
+ok 63 - stack combinators, equality and unsigned comparison
+  ---
+  duration_ms: 44.641834
+  type: 'test'
+  ...
+# Subtest: native definitions, calls and source compilation
+ok 64 - native definitions, calls and source compilation
+  ---
+  duration_ms: 44.157042
+  type: 'test'
+  ...
+# Subtest: native conditionals and nested branching
+ok 65 - native conditionals and nested branching
+  ---
+  duration_ms: 101.062541
+  type: 'test'
+  ...
+# Subtest: loops and recursive definitions
+ok 66 - loops and recursive definitions
+  ---
+  duration_ms: 80.864708
+  type: 'test'
+  ...
+# Subtest: native defining words, while/repeat and early return
+ok 67 - native defining words, while/repeat and early return
+  ---
+  duration_ms: 130.778792
+  type: 'test'
+  ...
+# Subtest: separate bounded heap and persistent regions
+ok 68 - separate bounded heap and persistent regions
+  ---
+  duration_ms: 53.166417
+  type: 'test'
+  ...
+# Subtest: comments and partial tokens across interactive input chunks
+ok 69 - comments and partial tokens across interactive input chunks
+  ---
+  duration_ms: 2.735042
+  type: 'test'
+  ...
+# Subtest: diagnostic recovery and rejected input
+ok 70 - diagnostic recovery and rejected input
+  ---
+  duration_ms: 70.575875
+  type: 'test'
+  ...
+# Subtest: malformed definitions are unpublished and roll back code allocation
+ok 71 - malformed definitions are unpublished and roll back code allocation
+  ---
+  duration_ms: 41.013666
+  type: 'test'
+  ...
+# Subtest: resource exhaustion: data and return stack protection
+ok 72 - resource exhaustion: data and return stack protection
+  ---
+  duration_ms: 250.905458
+  type: 'test'
+  ...
+# Subtest: EOF closes ordinary execution and rejects unfinished compilation
+ok 73 - EOF closes ordinary execution and rejects unfinished compilation
+  ---
+  duration_ms: 23.108583
+  type: 'test'
+  ...
+# Subtest: bounded bulk memory handles overlap in both directions
+ok 74 - bounded bulk memory handles overlap in both directions
+  ---
+  duration_ms: 103.101209
+  type: 'test'
+  ...
+# Subtest: strings compile natively and dictionary collisions and shadowing remain sound
+ok 75 - strings compile natively and dictionary collisions and shadowing remain sound
+  ---
+  duration_ms: 89.260292
+  type: 'test'
+  ...
+# Subtest: preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+ok 76 - preserved Build001 kernel runs and restores its images; current kernel rejects the old identity
+  ---
+  duration_ms: 638.212542
+  type: 'test'
+  ...
+# Subtest: preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+ok 77 - preserved Build002 executor and kernel resume their own image; Build003 refuses that identity
+  ---
+  duration_ms: 673.047667
+  type: 'test'
+  ...
+# {"literalNativeInput":"7 5 0 module-run . . cr","literalInstructions":294728598968,"literalElapsedMs":448576.857834,"output":"1 22 \\n","wholeTapeEqual":true}
+# {"literalNativeInput":"2 0 source-write hi\\n0 module-compile","literalInstructions":189708298555,"literalElapsedMs":189985.66275000002,"output":"SOURCE-STORED 0 2 \\nWS-ERROR 5 \\n","wholeTapeEqual":true}
+# Subtest: literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+ok 78 - literal BF resumes opaque native workspace state: module evaluation and refused source compilation
+  ---
+  duration_ms: 655261.200125
+  type: 'test'
+  ...
+# Subtest: length-framed stored source cannot masquerade as city or lifecycle output
+ok 79 - length-framed stored source cannot masquerade as city or lifecycle output
+  ---
+  duration_ms: 1.86975
+  type: 'test'
+  ...
+# Subtest: partial or malformed presentation frames cannot replace a complete city
+ok 80 - partial or malformed presentation frames cannot replace a complete city
+  ---
+  duration_ms: 0.313875
+  type: 'test'
+  ...
+# Subtest: route evidence cannot borrow a different version or a pre-import cost trace
+ok 81 - route evidence cannot borrow a different version or a pre-import cost trace
+  ---
+  duration_ms: 0.527958
+  type: 'test'
+  ...
+# Subtest: each route captures only the complete cost table preceding it
+ok 82 - each route captures only the complete cost table preceding it
+  ---
+  duration_ms: 0.249959
+  type: 'test'
+  ...
+# Subtest: a paused mailbox waiter wakes on resume when mail arrived during its pause
+ok 83 - a paused mailbox waiter wakes on resume when mail arrived during its pause
+  ---
+  duration_ms: 55408.436709
+  type: 'test'
+  ...
+# Subtest: declared incompatible schema refuses publication with live continuation and queued message
+ok 84 - declared incompatible schema refuses publication with live continuation and queued message
+  ---
+  duration_ms: 16119.950333
+  type: 'test'
+  ...
+# Subtest: configured quantum is bounded; sleeping, looping and failing programs stay independent
+ok 85 - configured quantum is bounded; sleeping, looping and failing programs stay independent
+  ---
+  duration_ms: 7260.304667
+  type: 'test'
+  ...
+# Subtest: nested exact-version stack exhaustion stays local and preserves queued mail
+ok 86 - nested exact-version stack exhaustion stays local and preserves queued mail
+  ---
+  duration_ms: 33238.91325
+  type: 'test'
+  ...
+# {"input":"43 9 1 process-post .","literalInstructions":"156074425046","literalElapsedMs":238464.516166,"output":"SEND 1 0 1 9 43 0 \\n1 ","wholeTapeEqual":true}
+# {"input":"process-step","literalInstructions":"1109363729215","literalElapsedMs":894502.99675,"output":"RECEIVE 1 1 1 \\nROUND 2 \\n","wholeTapeEqual":true}
+# Subtest: literal BF matches native mailbox wake and a bounded resumed receive turn, including the whole tape
+ok 87 - literal BF matches native mailbox wake and a bounded resumed receive turn, including the whole tape
+  ---
+  duration_ms: 1189139.911542
+  type: 'test'
+  ...
+# Subtest: BF scheduler preempts an infinite process and preserves each continuation
+ok 88 - BF scheduler preempts an infinite process and preserves each continuation
+  ---
+  duration_ms: 61797.372166
+  type: 'test'
+  ...
+# Subtest: native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+ok 89 - native FIFO wait, full mailbox refusal, stale handle and slot reclamation
+  ---
+  duration_ms: 5273.140875
+  type: 'test'
+  ...
+# Subtest: private bounds fault stays local; actor words are rejected in pure modules
+ok 90 - private bounds fault stays local; actor words are rejected in pure modules
+  ---
+  duration_ms: 8371.424708
+  type: 'test'
+  ...
+# Subtest: suspended old frame retains its version, next invocation adopts publication, images retain both
+ok 91 - suspended old frame retains its version, next invocation adopts publication, images retain both
+  ---
+  duration_ms: 4861.416333
+  type: 'test'
+  ...
+# Subtest: three user programs exchange messages, wait, and compute without kernel regeneration
+ok 92 - three user programs exchange messages, wait, and compute without kernel regeneration
+  ---
+  duration_ms: 10893.209334
+  type: 'test'
+  ...
+# {"processCycles":450,"capacity":16,"liveProcesses":0,"liveVersionsAfterDelete":0,"residentCodeAndDictionary":[21522,321]}
+# Subtest: 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+ok 93 - 450 create/work/message/stop cycles reuse fixed slots without resident or version leaks
+  ---
+  duration_ms: 423324.007584
+  type: 'test'
+  ...
+# Subtest: creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+ok 94 - creation binds versions immediately; full slots, serial exhaustion, and explicit loop repair
+  ---
+  duration_ms: 12153.810083
+  type: 'test'
+  ...
+# Subtest: large native workspace and source parameter edit preserve custom drafts and rejected versions
+ok 95 - large native workspace and source parameter edit preserve custom drafts and rejected versions
+  ---
+  duration_ms: 5461.660708
+  type: 'test'
+  ...
+# {"reclaimCycles":450,"elapsedMs":411949.74675,"versionCapacity":6,"maxObservedLive":2,"slotsUsed":[1,3,2],"compiledWordsAcrossCycles":9000,"finalLiveCodeWords":40,"afterDeleteLiveVersions":0,"platformCodeWords":8411,"platformDictionaryEntries":185,"tapeCells":939414}
+# Subtest: 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+ok 96 - 450 replacement/reclamation cycles exceed both original monotonic limits with fixed arenas
+  ---
+  duration_ms: 427781.258708
+  type: 'test'
+  ...
+# Subtest: the entire generated kernel agrees with an independent literal C executor
+ok 97 - the entire generated kernel agrees with an independent literal C executor
+  ---
+  duration_ms: 2669.602416
+  type: 'test'
+  ...
+# Subtest: transactional insert, update, missing keys, zero values and deletion
+ok 98 - transactional insert, update, missing keys, zero values and deletion
+  ---
+  duration_ms: 4867.598625
+  type: 'test'
+  ...
+# Subtest: abort restores the committed view; writes require an explicit transaction
+ok 99 - abort restores the committed view; writes require an explicit transaction
+  ---
+  duration_ms: 392.17425
+  type: 'test'
+  ...
+# Subtest: full store refuses record 129, updates existing keys, reuses deleted slots
+ok 100 - full store refuses record 129, updates existing keys, reuses deleted slots
+  ---
+  duration_ms: 3119.711667
+  type: 'test'
+  ...
+# Subtest: deterministic mixed operations agree with an independent map oracle
+ok 101 - deterministic mixed operations agree with an independent map oracle
+  ---
+  duration_ms: 2039.049459
+  type: 'test'
+  ...
+# Subtest: full kernel image retains definitions, committed records and an open transaction
+ok 102 - full kernel image retains definitions, committed records and an open transaction
+  ---
+  duration_ms: 590.480042
+  type: 'test'
+  ...
+# Subtest: collisions survive tombstones without duplicate keys or broken lookup chains
+ok 103 - collisions survive tombstones without duplicate keys or broken lookup chains
+  ---
+  duration_ms: 857.887625
+  type: 'test'
+  ...
+# Subtest: native format and index integrity checks reject invalid store state
+ok 104 - native format and index integrity checks reject invalid store state
+  ---
+  duration_ms: 861.225625
+  type: 'test'
+  ...
+# Subtest: adversarial full-table collisions finish through bounded image-resumable execution
+ok 105 - adversarial full-table collisions finish through bounded image-resumable execution
+  ---
+  duration_ms: 60831.080458
+  type: 'test'
+  ...
+# {"stress":"128 keys in one initial bucket","elapsedMs":60677.43358299999,"brainfuckInstructions":803430609550169,"boundedRuns":9}
+# Subtest: native input validation preserves a running search, rejects manual ownership and tracks peer/road freshness
+ok 106 - native input validation preserves a running search, rejects manual ownership and tracks peer/road freshness
+  ---
+  duration_ms: 120525.841625
+  type: 'test'
+  ...
+# Subtest: unprepared looping trial cannot starve live production and resumes identically from an exported pending search
+ok 107 - unprepared looping trial cannot starve live production and resumes identically from an exported pending search
+  ---
+  duration_ms: 67689.558292
+  type: 'test'
+  ...
+# Subtest: invalid syntax, forbidden capabilities and runtime division faults are rejected natively with full branch cleanup
+ok 108 - invalid syntax, forbidden capabilities and runtime division faults are rejected natively with full branch cleanup
+  ---
+  duration_ms: 57218.63
+  type: 'test'
+  ...
+# Subtest: a trial message and material operation cannot affect the parked live world
+ok 109 - a trial message and material operation cannot affect the parked live world
+  ---
+  duration_ms: 24715.649416
+  type: 'test'
+  ...
+# {"cycles":40,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":80,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":120,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":160,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":200,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":240,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":280,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":320,"retainedWorldContexts":1,"trialContexts":0,"versionCapacity":16,"processCapacity":16}
+# {"cycles":320,"exportsDuringTrials":8,"transcriptSha256":"364c34555422e193347d7d11375240d686f0361b047e2212912e9cfcd210913a","residentBefore":[27197,351],"kernel":"b5dd8d443fcabdb5aa8303e0c50bd9914ce778b45f1e7345784678931f442dd8"}
+# Subtest: 320 native short-horizon searches generate, compile, reject and reclaim at fixed capacity, across exported pending trials
+ok 110 - 320 native short-horizon searches generate, compile, reject and reclaim at fixed capacity, across exported pending trials
+  ---
+  duration_ms: 2729805.184041
+  type: 'test'
+  ...
+# Subtest: BF constructs different source structures and its actual compiler publishes each in an isolated world
+ok 111 - BF constructs different source structures and its actual compiler publishes each in an isolated world
+  ---
+  duration_ms: 116363.66875
+  type: 'test'
+  ...
+# SEARCH-BEGIN 1 1 1 3 0 2 1 32 
+# WORLD 1 1 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 1 
+# WORLD 1 1 0 
+# ROUND 1 
+# ROUND 2 
+# ROUND 3 
+# PRODUCE 2 1 
+# SEND 1 2 2 1 1 2 
+# ROUND 4 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 2 
+# WORLD 1 1 0 
+# RECEIVE 1 2 2 
+# AUTHORIZE 1 2 
+# SEND 2 2 3 2 1 2 
+# ASSIGN 1 3 
+# RECEIVE 2 3 3 
+# LOAD 3 1 2 1 
+# ROUND 5 
+# ROUND 6 
+# ROUND 7 
+# PRODUCE 2 1 
+# ROUND 8 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 3 
+# WORLD 1 1 0 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 9 
+# I-DEPART 3 0 3 
+# ROUND 10 
+# I-ARRIVE 3 1 
+# SEND 3 3 4 3 1 3 
+# UNLOAD 3 1 4 1 
+# RECEIVE 3 4 4 
+# ACK 1 4 
+# BUILD 4 1 3 
+# ROUND 11 
+# PRODUCE 2 2 
+# SEND 4 2 2 1 2 2 
+# ROUND 12 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 1 
+# SEND 1 2 2 1 1 2 
+# ROUND 4 
+# WORLD 1 1 0 
+# RECEIVE 4 2 2 
+# AUTHORIZE 2 2 
+# SEND 5 2 3 2 2 2 
+# ASSIGN 2 3 
+# RECEIVE 5 3 3 
+# ROUND 13 
+# ROUND 14 
+# ROUND 15 
+# PRODUCE 2 3 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 16 
+# WORLD 0 1 
+# WORLD 0 1 
+# RECEIVE 1 2 2 
+# AUTHORIZE 1 2 
+# SEND 2 2 3 2 1 2 
+# ASSIGN 1 3 
+# RECEIVE 2 3 3 
+# LOAD 3 1 2 1 
+# ROUND 5 
+# WORLD 1 1 0 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# PRODUCE 2 3 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 6 
+# WORLD 1 1 0 
+# ROUND 21 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 22 
+# I-DEPART 3 0 3 
+# ROUND 23 
+# PRODUCE 2 4 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 7 
+# WORLD 1 1 0 
+# SEND 7 2 2 1 3 2 
+# ROUND 25 
+# RECEIVE 7 2 2 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 2 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 26 
+# ROUND 27 
+# PRODUCE 2 5 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 1 
+# ROUND 8 
+# WORLD 1 1 0 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 29 
+# I-DEPART 3 1 3 
+# ROUND 30 
+# I-ARRIVE 3 0 
+# LOAD 3 3 2 1 
+# ROUND 31 
+# PRODUCE 2 5 
+# ROUND 32 
+# ACCOUNT 18 2 6 2 18 1 
+# TRIAL-RESULT 1 0 0 32 17661 0 2 2 1 1 
+# WORLD 0 1 
+# WORLD 1 1 5 
+# GENERATED 1 5 1 186 
+# : factory.thread schema\# 1 recv if swap dup 3 = if drop accept else 1 = if authorize else drop drop then then else drop drop drop then 2 stock 1 < if 1 request make then offer dispatch ;
+# SOURCE-STORED 1 186 
+# MODULE-PUBLISHED 1 5 44 5 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 9 
+# WORLD 1 1 5 
+# ROUND 1 
+# ROUND 2 
+# ROUND 3 
+# PRODUCE 2 1 
+# SEND 1 2 2 1 1 5 
+# ROUND 4 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-DEPART 3 0 3 
+# ROUND 10 
+# WORLD 1 1 5 
+# RECEIVE 1 2 5 
+# AUTHORIZE 1 2 
+# SEND 2 2 3 2 1 5 
+# ASSIGN 1 3 
+# RECEIVE 2 3 3 
+# LOAD 3 1 2 1 
+# ROUND 5 
+# ROUND 6 
+# ROUND 7 
+# ROUND 8 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ARRIVE 3 1 
+# SEND 3 3 4 3 1 3 
+# UNLOAD 3 1 4 1 
+# RECEIVE 3 4 4 
+# ACK 1 4 
+# BUILD 4 1 3 
+# ROUND 11 
+# WORLD 1 1 5 
+# PRODUCE 2 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 9 
+# I-DEPART 3 0 3 
+# ROUND 10 
+# I-ARRIVE 3 1 
+# SEND 3 3 4 3 1 3 
+# UNLOAD 3 1 4 1 
+# RECEIVE 3 4 4 
+# ACK 1 4 
+# BUILD 4 1 3 
+# ROUND 11 
+# SEND 4 2 2 1 2 5 
+# ROUND 12 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 2 
+# SEND 4 2 2 1 2 2 
+# ROUND 12 
+# WORLD 1 1 5 
+# RECEIVE 4 2 5 
+# AUTHORIZE 2 2 
+# SEND 5 2 3 2 2 5 
+# ASSIGN 2 3 
+# RECEIVE 5 3 3 
+# ROUND 13 
+# ROUND 14 
+# ROUND 15 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 16 
+# WORLD 0 1 
+# WORLD 0 1 
+# RECEIVE 4 2 2 
+# AUTHORIZE 2 2 
+# SEND 5 2 3 2 2 2 
+# ASSIGN 2 3 
+# RECEIVE 5 3 3 
+# ROUND 13 
+# WORLD 1 1 5 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 14 
+# WORLD 1 1 5 
+# ROUND 21 
+# PRODUCE 2 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 22 
+# I-DEPART 3 0 3 
+# ROUND 23 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 15 
+# WORLD 1 1 5 
+# SEND 7 2 2 1 3 5 
+# ROUND 25 
+# RECEIVE 7 2 5 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 5 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 26 
+# ROUND 27 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 3 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 16 
+# WORLD 1 1 5 
+# I-ROUTE 3 3 1 0 1 2 1 0 
+# ROUND 29 
+# I-DEPART 3 1 3 
+# ROUND 30 
+# I-ARRIVE 3 0 
+# LOAD 3 3 2 1 
+# ROUND 31 
+# ROUND 32 
+# ACCOUNT 18 10 2 2 18 1 
+# TRIAL-RESULT 1 5 0 32 17669 0 2 2 1 1 
+# WORLD 0 1 
+# VALIDATION-BEGIN 1 16 16 
+# WORLD 1 1 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# WORLD 1 1 0 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# PRODUCE 2 3 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# WORLD 1 1 0 
+# ROAD-OPEN 0 0 
+# ROUND 21 
+# ROUND 22 
+# ROUND 23 
+# ROAD-OPEN 0 1 
+# PRODUCE 2 4 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 19 
+# WORLD 1 1 0 
+# ROUND 25 
+# ROUND 26 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 27 
+# PRODUCE 2 5 
+# I-DEPART 3 0 3 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 3 
+# ROUND 20 
+# WORLD 1 1 0 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 29 
+# SEND 7 2 2 1 3 2 
+# ROUND 30 
+# RECEIVE 7 2 2 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 2 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 31 
+# PRODUCE 2 6 
+# ROUND 32 
+# ACCOUNT 18 2 6 2 18 1 
+# TRIAL-RESULT 1 0 16 16 17662 0 2 2 1 0 
+# WORLD 0 1 
+# WORLD 1 1 5 
+# SOURCE-STORED 1 186 
+# MODULE-PUBLISHED 1 5 44 5 0 
+# WORLD 0 1 
+# WORLD 0 1 
+# ROUND 21 
+# WORLD 1 1 5 
+# I-DEPART 3 1 3 
+# ROUND 17 
+# I-ARRIVE 3 0 
+# LOAD 3 2 2 1 
+# ROUND 18 
+# ROUND 19 
+# ROUND 20 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 22 
+# WORLD 1 1 5 
+# ROAD-OPEN 0 0 
+# ROUND 21 
+# ROUND 22 
+# ROUND 23 
+# ROAD-OPEN 0 1 
+# ROUND 24 
+# WORLD 0 1 
+# WORLD 0 1 
+# I-DEPART 3 0 3 
+# ROUND 23 
+# WORLD 1 1 5 
+# ROUND 25 
+# ROUND 26 
+# I-ROUTE 3 3 0 1 1 2 0 1 
+# ROUND 27 
+# I-DEPART 3 0 3 
+# ROUND 28 
+# WORLD 0 1 
+# WORLD 0 1 
+# PRODUCE 2 4 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 24 
+# WORLD 1 1 5 
+# I-ARRIVE 3 1 
+# SEND 6 3 4 3 2 3 
+# UNLOAD 3 2 4 1 
+# RECEIVE 6 4 4 
+# ACK 2 4 
+# BUILD 4 2 3 
+# ROUND 29 
+# SEND 7 2 2 1 3 5 
+# ROUND 30 
+# RECEIVE 7 2 5 
+# AUTHORIZE 3 2 
+# SEND 8 2 3 2 3 5 
+# ASSIGN 3 3 
+# RECEIVE 8 3 3 
+# ROUND 31 
+# ROUND 32 
+# ACCOUNT 18 10 2 2 18 1 
+# TRIAL-RESULT 1 5 16 16 17670 0 2 2 1 0 
+# VALIDATION-RESULT 1 17662 17670 1 
+# WORLD 0 1 
+# SOURCE-STORED 1 186 
+# MODULE-PUBLISHED 1 5 44 5 0 
+# SEARCH-DECISION 1 1 5 17661 17669 24 
+# ROLLBACK 1 2 
+# NATIVE-ROLLBACK 1 1 24 
+# Subtest: native baseline/candidate trials interleave with useful live work and retain real-world inventory
+ok 112 - native baseline/candidate trials interleave with useful live work and retain real-world inventory
+  ---
+  duration_ms: 214028.106209
+  type: 'test'
+  ...
+# Subtest: goal selection derives useful work and respects manual ownership and completed goals
+ok 113 - goal selection derives useful work and respects manual ownership and completed goals
+  ---
+  duration_ms: 25984.900708
+  type: 'test'
+  ...
+# Subtest: Wasm backend is equivalent to literal BF for 150 deterministic programs
+ok 114 - Wasm backend is equivalent to literal BF for 150 deterministic programs
+  ---
+  duration_ms: 25.870875
+  type: 'test'
+  ...
+# Subtest: Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+ok 115 - Wasm agrees on nested loops, positive clear loops, zero loops and boundaries
+  ---
+  duration_ms: 0.723209
+  type: 'test'
+  ...
+# Subtest: Wasm pause, streaming input, output caps and work limits
+ok 116 - Wasm pause, streaming input, output caps and work limits
+  ---
+  duration_ms: 0.614916
+  type: 'test'
+  ...
+# Subtest: WebMCP has the same source/state routes, validates before effects, and closes registration
+ok 117 - WebMCP has the same source/state routes, validates before effects, and closes registration
+  ---
+  duration_ms: 1.534041
+  type: 'test'
+  ...
+# Subtest: browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+ok 118 - browser worker: real native execution, pause, busy refusal, step and image across worker lifetimes
+  ---
+  duration_ms: 15167.885167
+  type: 'test'
+  ...
+# Subtest: native workspace page hints and cache eviction preserve arbitrary values and bounds
+ok 119 - native workspace page hints and cache eviction preserve arbitrary values and bounds
+  ---
+  duration_ms: 1486.441709
+  type: 'test'
+  ...
+# Subtest: workspace address-cache state survives a whole-machine image
+ok 120 - workspace address-cache state survives a whole-machine image
+  ---
+  duration_ms: 371.070458
+  type: 'test'
+  ...
+# Subtest: generic key and paged workspace operations execute as BF and reject boundaries
+ok 121 - generic key and paged workspace operations execute as BF and reject boundaries
+  ---
+  duration_ms: 153.196167
+  type: 'test'
+  ...
+# Subtest: boot manifests accept only local raw Thread source paths
+ok 122 - boot manifests accept only local raw Thread source paths
+  ---
+  duration_ms: 22.672
+  type: 'test'
+  ...
+# Subtest: native bounded workspace output matches individual reads across pages and tape edges
+ok 123 - native bounded workspace output matches individual reads across pages and tape edges
+  ---
+  duration_ms: 652.707875
+  type: 'test'
+  ...
+# Subtest: an image resumes midway through the native one-hot dispatch and bulk output
+ok 124 - an image resumes midway through the native one-hot dispatch and bulk output
+  ---
+  duration_ms: 346.453583
+  type: 'test'
+  ...
+# Subtest: BF-owned instruction-page validation cache is discarded on compilation rollback
+ok 125 - BF-owned instruction-page validation cache is discarded on compilation rollback
+  ---
+  duration_ms: 451.577125
+  type: 'test'
+  ...
+# Subtest: source is stored, compiled and executed in BF; arbitrary expressions and typed control
+ok 126 - source is stored, compiled and executed in BF; arbitrary expressions and typed control
+  ---
+  duration_ms: 31648.993042
+  type: 'test'
+  ...
+# Subtest: invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+ok 127 - invalid syntax, effects, source size and code exhaustion leave previous version and no arena leak
+  ---
+  duration_ms: 31672.243625
+  type: 'test'
+  ...
+# Subtest: exact dependency binding, pins, rollback, deletion refusal and stale handles
+ok 128 - exact dependency binding, pins, rollback, deletion refusal and stale handles
+  ---
+  duration_ms: 2886.38275
+  type: 'test'
+  ...
+# Subtest: all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+ok 129 - all six fixed arenas can be pinned, refuse overflow, then reclaim and reuse
+  ---
+  duration_ms: 3631.821083
+  type: 'test'
+  ...
+# Subtest: bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+ok 130 - bounded evaluation rejects divide by zero and nontermination; image retains native sources and pins
+  ---
+  duration_ms: 13622.7075
+  type: 'test'
+  ...
+1..130
+# tests 130
+# suites 0
+# pass 129
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3010778.085042

@@ -81,7 +81,10 @@
     -1 pbudget +! 11 pcurr dup w@ 1+ swap w!
     vm-fetch vm-op ! ws-error @ 0= if process-op then
     vm-v @ 0= if
-      vm-sp @ if 7 wfail then 1 pyield !
+      vm-sp @ if 7 wfail else
+        231 pcurr w@ 65535 < if 231 pcurr dup w@ 1+ swap w! then
+        ptick @ 232 pcurr w!
+      then 1 pyield !
     then
   repeat
   context-save 0 ws-busy ! 10 pcurr dup w@ 1+ swap w!
@@ -102,6 +105,7 @@
     pb @ w@ 1 = if process-quantum then
     1 pr +!
   repeat
+  district-step
   ." ROUND " ptick @ . cr
 ;
 : process-state

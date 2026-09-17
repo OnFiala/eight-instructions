@@ -1,0 +1,22 @@
+TAP version 13
+# Subtest: CLI diagnostics ignore opaque source bodies across every byte split
+ok 1 - CLI diagnostics ignore opaque source bodies across every byte split
+  ---
+  duration_ms: 0.862417
+  type: 'test'
+  ...
+# Subtest: a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+ok 2 - a fresh CLI reads a real BF-stored source containing diagnostic text without a false error exit
+  ---
+  duration_ms: 2318.582917
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2385.021875

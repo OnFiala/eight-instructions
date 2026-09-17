@@ -18,7 +18,9 @@
     "isolated private process state and checked role capabilities",
     "bounded FIFO messaging, logical sleep and lifetime handles",
     "industrial jobs, idempotent transfers, material accounting, production and construction",
-    "road reservations, native route continuations and source parameter editing"
+    "road reservations, native route continuations and source parameter editing",
+    "opaque heap/workspace context copying and clearing in BF",
+    "bounded source construction, goal selection, same-semantics trial scheduling, scoring, fresh validation, source-only publication and protected rollback"
   ],
   "hostRuntimeDependencies": [],
   "buildDependencies": {
@@ -690,25 +692,25 @@
       "path": "dist/index.html",
       "layer": "presentation",
       "reason": "Build003 narrative, direct object controls, actual-source editor, explicit privileged terminal, native evidence and historical-build links. No precomputed application result.",
-      "reviewedSha256": "da3cdfe36965574b8d3e7b8cc65ec7694b48345651a77fb12686384045fceb63"
+      "reviewedSha256": "41c3c159a8493e75850a37a8ff50daed355d19d830ffa318826ab23a668c2efc"
     },
     {
       "path": "dist/industry-presentation.mjs",
       "layer": "presentation",
       "reason": "Strict decoding of length-framed source and native industrial records; labels and explanations of emitted state. It performs no state transition, route search or guest allocation.",
-      "reviewedSha256": "5ae59996aa38676802f9b64d54190a4d82a36a9a22dd9cf360c9254bd4aa4b92"
+      "reviewedSha256": "ee7371e96dcb2f643e407dc068cd9acb38ed653577ec26ac0e92fbb409309a93"
     },
     {
       "path": "dist/industry-scene.mjs",
       "layer": "presentation",
       "reason": "Canvas projection of BF-emitted roads, observed vehicle positions, paths, inventory and construction phases. Decorative architecture, light, camera and elevated selection callouts have no simulation role. Interpolation uses only two observed states.",
-      "reviewedSha256": "a69777d014a1a207ec2d999ca15b11c54fe9ada4472f7ec20650c6a8c1c2e749"
+      "reviewedSha256": "b37f7d337677ef4d513a8e90c759af1d7a5533fddca0c53fba7b7704be001aa2"
     },
     {
       "path": "dist/industry-ui.mjs",
       "layer": "presentation",
-      "reason": "Context selection, unsaved drafts, raw input transport, whole-machine snapshots, result framing and fresh-machine comparisons. BF edits source, compiles it, validates actions and owns all city/process state; JS never interprets Thread or guest messages.",
-      "reviewedSha256": "549aa9a9bf88cd4e72b553d6319892689b6f069530cf477bf439f526eb38872d"
+      "reason": "Presents native live/trial records, transports raw inputs, owns unsaved drafts and optional queued UI interventions, validates opaque image replacement in a candidate worker, and downloads unchanged file bytes. No candidate generation, scoring, guest scheduling or world simulation.",
+      "reviewedSha256": "760b5a60a561c0c5ff8bcba2dd3fc08f0ca84f200a98161d09f84bb3158c5344"
     },
     {
       "path": "dist/industry.css",
@@ -813,6 +815,16 @@
       "reason": "Byte-identical public copy of the canonical native source, checked during verification."
     },
     {
+      "path": "dist/programs/synthesis-system.json",
+      "layer": "native-program",
+      "reason": "Verbatim public raw source bytes for the BF-native synthesis supervisor and manifest. No host interpretation or precomputed result."
+    },
+    {
+      "path": "dist/programs/synthesis.thread",
+      "layer": "native-program",
+      "reason": "Verbatim public raw source bytes for the BF-native synthesis supervisor and manifest. No host interpretation or precomputed result."
+    },
+    {
       "path": "dist/programs/system.json",
       "layer": "packaged-source-list",
       "reason": "Byte-identical public copy of the canonical raw-library list."
@@ -870,8 +882,8 @@
     {
       "path": "kernel/build.py",
       "layer": "bootstrap-kernel",
-      "reason": "Auditable generic BF emitter: bounded memory, tokenizer/compiler/VM, BF-owned address and code-page validation caches, one-hot primitive dispatch and bounded bulk workspace output. It never consumes Thread programs or city inputs to compute their results; processes and city logic are raw Thread compiled/executed by the emitted BF.",
-      "reviewedSha256": "f6eb825c5471b9a576735c3ee1118e78b8698f336cba7ab408f78ca6d04533d1"
+      "reason": "Auditable compiler and runtime generator. Emits generic context-copy/context-zero over heap/workspace value lanes with checked context indices. No city, grammar, candidate or fitness knowledge.",
+      "reviewedSha256": "23f36acc6993bb338d00ee5bf6da5f38ec695ce241c587d8ea7f3bcca269429f"
     },
     {
       "path": "package-lock.json",
@@ -959,6 +971,16 @@
       "reason": "Raw Thread source compiled and executed by the Brainfuck kernel; owns indexed key/value data, transaction state, format validation and integrity checks."
     },
     {
+      "path": "programs/synthesis-system.json",
+      "layer": "native-program",
+      "reason": "BF-native bounded synthesis supervisor and raw source manifest; compiled and executed by the BF kernel."
+    },
+    {
+      "path": "programs/synthesis.thread",
+      "layer": "native-program",
+      "reason": "BF-native bounded synthesis supervisor and raw source manifest; compiled and executed by the BF kernel."
+    },
+    {
       "path": "programs/system.json",
       "layer": "native-source-list",
       "reason": "Ordered list of raw native libraries to compile at boot; no compiled guest image."
@@ -972,7 +994,7 @@
       "path": "runtime/cli.mjs",
       "layer": "runtime-adapter",
       "reason": "Raw file/terminal input, generic whole-machine execution limits, boot-source manifest selection (including industry), opaque image persistence and diagnostic display. It never schedules guest processes, interprets Thread or computes world transitions.",
-      "reviewedSha256": "1b7532eb1b7c9f2e0f7a363052bc275429dedf3ff00f60d96b603df6d30a2517"
+      "reviewedSha256": "d2b592a1c83d536d62b8d049b531366514da45852dcb29feb67a8157efbae1a2"
     },
     {
       "path": "runtime/diagnostics.mjs",
@@ -995,8 +1017,8 @@
     {
       "path": "runtime/system.mjs",
       "layer": "runtime-adapter",
-      "reason": "Loads local kernel artifacts and validated raw-source manifests; exposes the unchanged generic BF executor. Source manifest selection has no guest compiler or application semantics.",
-      "reviewedSha256": "e16fe496905f6e102beb11d6bbd80b8ffa8925d59a3546748ebe83b3b3b7b3f2"
+      "reason": "Generic BF artifact loading and raw source transport; bounded kernel decompression cap raised to 160 MiB for Build 004 native memory contexts. No guest scheduler, solver or state reconstruction.",
+      "reviewedSha256": "6a865c76cf67a38c9ce5d04e6e346daed6b4b8867870bb30a3976f27b854349e"
     },
     {
       "path": "tests/arithmetic.test.mjs",
@@ -1032,6 +1054,21 @@
       "path": "tests/city.test.mjs",
       "layer": "verification-tool",
       "reason": "Executes actual BF workloads and checks native workspace/city state, reference lifetimes, refusal, deterministic replay or fixed-capacity reclamation; test assertions are not on the production path."
+    },
+    {
+      "path": "tests/context-emitter.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Test-only native execution, isolation, source generation or generic BF differential assertions. Never imported by production."
+    },
+    {
+      "path": "tests/context-reference.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Test-only actual BF execution, isolated-world failure/reclaim/image checks or literal eight-command differential reference. Never imported by production."
+    },
+    {
+      "path": "tests/contexts.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Test-only native execution, isolation, source generation or generic BF differential assertions. Never imported by production."
     },
     {
       "path": "tests/counter-windows.test.mjs",
@@ -1155,6 +1192,26 @@
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
     },
     {
+      "path": "tests/synthesis-adversarial.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Test-only actual BF execution, isolated-world failure/reclaim/image checks or literal eight-command differential reference. Never imported by production."
+    },
+    {
+      "path": "tests/synthesis-helpers.mjs",
+      "layer": "verification-tool",
+      "reason": "Test-only native execution, isolation, source generation or generic BF differential assertions. Never imported by production."
+    },
+    {
+      "path": "tests/synthesis-reclaim.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Test-only actual BF execution, isolated-world failure/reclaim/image checks or literal eight-command differential reference. Never imported by production."
+    },
+    {
+      "path": "tests/synthesis.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Test-only native execution, isolation, source generation or generic BF differential assertions. Never imported by production."
+    },
+    {
       "path": "tests/system-helpers.mjs",
       "layer": "verification-tool",
       "reason": "Real execution assertions, test transport, fixtures or independent result oracles; excluded from production runtime."
@@ -1247,8 +1304,8 @@
     {
       "path": "tools/emitter.py",
       "layer": "bootstrap-tool",
-      "reason": "Structured tape assembler emits only Brainfuck commands; required to author the first kernel without manually maintaining millions of pointer operations.",
-      "reviewedSha256": "cf87366f99f52d76449e6351721bd5a2c16b7a0f6392c08b9db1a2005f43fc53"
+      "reason": "Structured assembler emits only BF. Configurable memory strides and streaming value-context copy/zero are native BF algorithms; Python never executes guest data or chooses trials.",
+      "reviewedSha256": "4fb17d97ea06be16b5bb93db048a51f3dec705ec995fff6e69b1b209c4568618"
     },
     {
       "path": "tools/extract-bf-excerpt.py",
@@ -1299,7 +1356,7 @@
       "path": "tools/run-ci-tests.mjs",
       "layer": "verification-tool",
       "reason": "CI-only partition of all test files with an exact coverage check and propagation of failure. Separates expensive literal reference work from other tests; never imported by production.",
-      "reviewedSha256": "80e22207d30e36e8f4b59bf7a912bd8aa87622b1c143e4e4bb8970529ebf94ef"
+      "reviewedSha256": "a8d7776e35d3b85d821e7e652fb6c3072621fcc67ce5c18997cc8f82d21ca981"
     },
     {
       "path": "tools/serve.mjs",
@@ -1311,6 +1368,462 @@
       "layer": "build-tool",
       "reason": "Projects exact committed Site files with per-file hashes after the full engineering-history push received HTTP 413; GitHub remains canonical.",
       "reviewedSha256": "d88c7224854cae1a76bb567d50dabfe46cda16596e77e5cf34529dd630c0c45b"
+    },
+    {
+      "path": "programs/district.thread",
+      "layer": "native-program",
+      "reason": "BF-owned material construction, checked entity activation and road extension in the shared scheduler."
+    },
+    {
+      "path": "tools/materialize-kernel.mjs",
+      "layer": "build-tool",
+      "reason": "Losslessly materializes the hash-checked eight-command artifact for literal inspection and tests; no guest semantics."
+    },
+    {
+      "path": "programs/autonomous-boot.thread",
+      "layer": "native-program",
+      "reason": "Fixed initial raw inputs and opt-in; native compiler builds programs, with zero simulation rounds in the boot image."
+    },
+    {
+      "path": "programs/autonomous-system.json",
+      "layer": "raw-input",
+      "reason": "Ordered source manifest for the native autonomous workspace."
+    },
+    {
+      "path": "dist/autonomy-presentation.mjs",
+      "layer": "presentation",
+      "reason": "Length-framed native output decoding and world separation only; no candidate evaluation or city semantics.",
+      "reviewedSha256": "4c6056ef8c8b7ed0d6a150cd8a02597bde5248fd99fb7551a8403789ba2abf5e"
+    },
+    {
+      "path": "dist/autonomy.css",
+      "layer": "presentation",
+      "reason": "Autonomous viewport and optional inspector presentation."
+    },
+    {
+      "path": "tests/district.test.mjs",
+      "layer": "test",
+      "reason": "Native material construction, functioning new actor/road, isolation and exhaustion assertions."
+    },
+    {
+      "path": "tests/autonomy-presentation.test.mjs",
+      "layer": "test",
+      "reason": "Trial/live source and output separation with source-spoofing refusal."
+    },
+    {
+      "path": "dist/programs/district.thread",
+      "layer": "native-program",
+      "reason": "Verbatim packaged native source or manifest; canonical programs/district.thread"
+    },
+    {
+      "path": "dist/programs/autonomous-system.json",
+      "layer": "raw-input",
+      "reason": "Verbatim packaged native source or manifest; canonical programs/autonomous-system.json"
+    },
+    {
+      "path": "dist/programs/autonomous-boot.thread",
+      "layer": "native-program",
+      "reason": "Verbatim packaged native source or manifest; canonical programs/autonomous-boot.thread"
+    },
+    {
+      "path": "dist/build-003/city-scene.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/worker.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/wasm-engine.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/index.html",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/webmcp.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/industry-ui.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/site.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/client.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/images.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/history.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/industry-scene.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/engine.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/kernel.bf.gz",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/style.css",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/industry.css",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/kernel-map.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/initial-industry.8i",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/presentation.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/favicon.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/industry-presentation.mjs",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/executor.wasm",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/core.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/industry-system.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/dispatch.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/industry-state.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/processes.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/store.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/process-state.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/industry-boot.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/processes.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/city-state.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/workspace.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/city.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/city-boot.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/industry-view.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/industry.thread",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/city-system.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/programs/system.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/reproduction/build-002.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/reproduction/build-003.json",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/reproduction/build-003.zip",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/flat-house.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/depot-block.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/harbor-bridge.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/van-front-right.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/linden-tree.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/north-bridge.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/university-block.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/fountain.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/van-rear-right.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/stone-house.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/oldtown-block.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/cafe-house.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/warehouse-block.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/city/van-rear-left.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/industrial/factory.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/industrial/panel-pallet.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/industrial/station-complete.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/industrial/station-foundation.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/industrial/station-frame.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/industrial/raw-pallet.png",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/upload-simple.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/arrows-clockwise.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/arrow-right.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/skip-forward.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/download-simple.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/caret-right.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/info.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/arrow-counter-clockwise.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/play.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/LICENSE-Phosphor.txt",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/icons/pause.svg",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/fonts/LICENSE-Inter.txt",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/build-003/assets/fonts/InterVariable.woff2",
+      "layer": "historical-artifact",
+      "reason": "Immutable Build003 runtime/source/presentation copied from fc0e787; byte identities in records/004/build-003-archive.json. Only index HTML navigation is relocated."
+    },
+    {
+      "path": "dist/assets/industrial/site-planned.png",
+      "layer": "presentation-asset",
+      "reason": "Unbuilt survey plot; no installed materials. Generated image provenance in records/004/assets.json."
+    },
+    {
+      "path": "dist/assets/industrial/workshop-frame.png",
+      "layer": "presentation-asset",
+      "reason": "Open roof trusses and incomplete workshop after native installation begins. Generated image provenance in records/004/assets.json."
+    },
+    {
+      "path": "dist/reproduction/build-004.json",
+      "layer": "reproduction-evidence",
+      "reason": "Recorded opaque initial BF image, raw inputs and expected outputs from actual native runs. Never consumed by the live UI."
+    },
+    {
+      "path": "dist/reproduction/build-004.zip",
+      "layer": "reproduction-evidence",
+      "reason": "Deterministic downloadable offline runtime and evidence package; absent from production execution imports."
+    },
+    {
+      "path": "tools/build-autonomous-reproduction.mjs",
+      "layer": "verification-tool",
+      "reason": "Runs raw inputs in fresh actual BF machines, captures outputs and asserts native outcomes to produce evidence only. No oracle enters production."
+    },
+    {
+      "path": "tools/measure-synthesis.mjs",
+      "layer": "verification-tool",
+      "reason": "Times actual BF inputs and opaque persistence with separate privileged component probes and ordinary end-to-end runs. No guest solver or production import."
     }
   ],
   "runtimeDependencyScope": "hostRuntimeDependencies lists external runtime npm packages; host platforms are listed separately.",

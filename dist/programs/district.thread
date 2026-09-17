@@ -1,0 +1,74 @@
+\ Native construction contract, workspace20048..20079. Inactive in old profiles.
+\ 0enabled,1site-slot,2next-site,3supplier-factory,4from,5to,6module,
+\ 7phase,8new-handle,9last-block,10scratch,11scratch. A panel is two raw units.
+\ The site's three installed panels pay for foundation, workshop and connection.
+\ No inventory is created by activation; the new factory must order real raw.
+: df 20048 + ;
+: d@ df w@ ;
+: d! df w! ;
+: district-block
+  dup 9 d@ = if drop exit then dup 9 d!
+  ." DISTRICT-BLOCKED " . ptick @ . cr
+;
+: district-valid?
+  1 d@ 16 < 2 d@ 16 < and 3 d@ 16 < and
+  4 d@ 16 < and 5 d@ 16 < and 4 d@ 5 d@ = 0= and 0= if 0 exit then
+  1 d@ 1 ef w@ 4 = 2 d@ 1 ef w@ 4 = and
+  3 d@ 1 ef w@ 2 = and 1 d@ 20 ef w@ 3 >= and
+  1 d@ 2 ef w@ 4 d@ = and 2 d@ 2 ef w@ 5 d@ = and 0= if 0 exit then
+  6 d@ valid-module if
+    6 d@ 9 mf w@ 1 = 6 d@ 8 mf w@ 1 = and
+    6 d@ 3 mf w@ 0 > and 0= if 0 exit then
+  else 0 exit then
+  1
+;
+: district-plan
+  \ (site-slot next-site-slot supplier-factory-slot from to module --).
+  \ Only one material project. Refuse replacement while it owns work.
+  0 d@ if 2drop 2drop 2drop 1 district-block exit then
+  6 d! 5 d! 4 d! 3 d! 2 d! 1 d!
+  district-valid? 0= if 2 district-block exit then
+  1 0 d! 0 7 d! 0 8 d! 0 9 d!
+  ." DISTRICT-PLANNED " 1 d@ . 2 d@ . 4 d@ . 5 d@ . 6 d@ . cr
+;
+: district-step
+  0 d@ 0= 7 d@ 3 = or if exit then
+  district-valid? 0= if 2 district-block exit then
+  1 d@ 13 ef w@ 1 >= 7 d@ 0= and if
+    1 7 d! ." CONSTRUCTION-PHASE 1 " 1 d@ . ptick @ . cr
+  then
+  1 d@ 13 ef w@ 2 >= 7 d@ 1 = and if
+    2 7 d! ." CONSTRUCTION-PHASE 2 " 1 d@ . ptick @ . cr
+  then
+  1 d@ 13 ef w@ 1 d@ 20 ef w@ < if exit then
+  world-roads @ 46 > world-roads @ 2 mod 0 > or
+  world-epoch @ 65532 > or pserial @ 65535 = or if 3 district-block exit then
+  0 10 d! 0 11 d!
+  begin 11 d@ 16 < while
+    11 d@ 0 pf w@ 0= if 1 10 d! then
+    11 d@ 0 ef w@ if
+      11 d@ 1 ef w@ 2 = 11 d@ 2 ef w@ 4 d@ = and if 4 district-block exit then
+    then 11 d@ 1+ 11 d!
+  repeat
+  10 d@ 0= if 5 district-block exit then
+  0 11 d! begin 11 d@ world-roads @ < while
+    11 d@ 0 rf w@ 4 d@ = 11 d@ 1 rf w@ 5 d@ = and
+    11 d@ 0 rf w@ 5 d@ = 11 d@ 1 rf w@ 4 d@ = and or if 6 district-block exit then
+    11 d@ 1+ 11 d!
+  repeat
+  2 d@ 13 ef w@ 2 d@ 20 ef w@ >= if 7 district-block exit then
+  \ Preflight is complete. At this scheduler safe point no other actor runs.
+  6 d@ process-create dup 0= if drop 5 district-block exit then
+  dup 8 d! 2 4 d@ rot industry-add
+  8 d@ entity-find 1- 10 d!
+  3 d@ 9 ef w@ 10 d@ 9 ef w!
+  2 d@ 0 ef w@ dup 10 d@ 10 ef w! 3 d@ 10 ef w!
+  1 10 d@ 17 ef w!
+  4 d@ 5 d@ 1 0 industry-road 5 d@ 4 d@ 1 0 industry-road
+  1 world-epoch +! 3 7 d! 0 9 d!
+  ." DISTRICT-BUILT " 1 d@ . 8 d@ . 6 d@ . 4 d@ . 5 d@ .
+  world-roads @ 2 - . 1 d@ 13 ef w@ . ptick @ . cr
+;
+: district-state
+  ." DISTRICT " 0 begin dup 10 < while dup d@ . 1+ repeat drop cr
+;
