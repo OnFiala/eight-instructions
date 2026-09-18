@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: trial module, material and road records cannot become live state or source
+ok 1 - trial module, material and road records cannot become live state or source
+  ---
+  duration_ms: 0.777417
+  type: 'test'
+  ...
+# Subtest: source text cannot spoof native WORLD or decision records
+ok 2 - source text cannot spoof native WORLD or decision records
+  ---
+  duration_ms: 0.148875
+  type: 'test'
+  ...
+# Subtest: transient hidden and smaller-than-overlay viewports never create negative canvas radii
+ok 3 - transient hidden and smaller-than-overlay viewports never create negative canvas radii
+  ---
+  duration_ms: 0.508917
+  type: 'test'
+  ...
+# Subtest: all building phases register inside the parcel with vertical walls and clear road corridors
+ok 4 - all building phases register inside the parcel with vertical walls and clear road corridors
+  ---
+  duration_ms: 0.2495
+  type: 'test'
+  ...
+# Subtest: directed pairs share one street and both strips meet their actual native junction
+ok 5 - directed pairs share one street and both strips meet their actual native junction
+  ---
+  duration_ms: 0.529459
+  type: 'test'
+  ...
+# Subtest: a multi-second BF observation produces multi-second bounded motion and retains its arrival bearing
+ok 6 - a multi-second BF observation produces multi-second bounded motion and retains its arrival bearing
+  ---
+  duration_ms: 0.296291
+  type: 'test'
+  ...
+# Subtest: repeated observations do not reset motion and a new observed turn does not cut the block
+ok 7 - repeated observations do not reset motion and a new observed turn does not cut the block
+  ---
+  duration_ms: 0.318042
+  type: 'test'
+  ...
+# Subtest: missing ticks, imports and reduced-motion updates snap to observation instead of inventing a route
+ok 8 - missing ticks, imports and reduced-motion updates snap to observation instead of inventing a route
+  ---
+  duration_ms: 0.070167
+  type: 'test'
+  ...
+# Subtest: same-round inspection does not interrupt the current observed journey
+ok 9 - same-round inspection does not interrupt the current observed journey
+  ---
+  duration_ms: 0.049666
+  type: 'test'
+  ...
+# Subtest: native source text is length framed, never mistaken for errors or city events
+ok 10 - native source text is length framed, never mistaken for errors or city events
+  ---
+  duration_ms: 1.350791
+  type: 'test'
+  ...
+# Subtest: bounded process and industrial records reject truncation before UI replacement
+ok 11 - bounded process and industrial records reject truncation before UI replacement
+  ---
+  duration_ms: 0.358917
+  type: 'test'
+  ...
+# Subtest: a van between observed road segments keeps its job label, including route calculation
+ok 12 - a van between observed road segments keeps its job label, including route calculation
+  ---
+  duration_ms: 0.096834
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 59.524875

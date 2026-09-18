@@ -175,3 +175,23 @@ choose candidates, horizons, scores or winners. Presentation explicitly discards
 trial compiler and city events from the live view. Source editing and opaque image
 import/export remain optional. Historical Build003 has its own verbatim runtime in
 `dist/build-003/`; its old interaction-led workflow is not the current entry point.
+
+
+### Build 004 visual registration correction
+
+`industry-geometry.mjs` contains presentation-only ground-contact measurements for
+existing artwork, a shared isometric projection convention, native road strips,
+and an observed-position interpolator. Buildings register their measured ground
+corners to parcels next to their emitted service node. Vertical walls stay
+vertical, and ground footprints remain outside the emitted street corridors.
+`industry-scene.mjs` composites each road material across the complete native
+network before drawing the next material, so curbs do not cut intersections.
+
+Vehicle interpolation uses adjacent observed states and their explicitly reported
+road. The elapsed native operation sets a bounded display duration; repeated
+positions do not restart the journey. If a new observation arrives before the
+previous display leg ends, the remaining observed leg is retained before the next
+turn. Missing ticks and imported images snap to their emitted position. This is a
+presentation buffer, not a route search, scheduler, prediction or BF state change.
+Both screen position and painter depth use the same interpolated world point.
+Cached ground pixels are invalidated by camera/size changes, independently of BF.
