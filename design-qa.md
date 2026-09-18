@@ -1,6 +1,22 @@
-# Build 004 visual and interaction review
+# Build 004 visual repair — acceptance reopened
 
-final result: passed
+Current status: **PARTIAL — corrective verification in progress**.
+
+On 2026-09-18 the owner rejected the released visual result: misplaced buildings,
+disconnected-looking streets and vans with inadequate movement. The earlier broad
+visual PASS below is withdrawn. Static screenshots and native correctness did not
+establish satisfactory spatial registration or continuous visual behaviour.
+
+The correction and its separate evidence are recorded in
+[`records/004/visual-repair/README.md`](records/004/visual-repair/README.md).
+
+---
+
+## Historical release review — rejected by the owner
+
+### Original Build 004 visual and interaction review
+
+Original author result: passed (superseded by owner rejection)
 
 This is the sole Astra xHigh author's finite local review, not an independent
 accessibility audit. GitHub CI and public deployment are separate release gates.

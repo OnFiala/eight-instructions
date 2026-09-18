@@ -703,14 +703,14 @@
     {
       "path": "dist/industry-scene.mjs",
       "layer": "presentation",
-      "reason": "Canvas projection of BF-emitted roads, observed vehicle positions, paths, inventory and construction phases. Decorative architecture, light, camera and elevated selection callouts have no simulation role. Interpolation uses only two observed states.",
-      "reviewedSha256": "b37f7d337677ef4d513a8e90c759af1d7a5533fddca0c53fba7b7704be001aa2"
+      "reason": "Registers architectural ground contacts and composites roads in network-wide material passes. Renders observed motion using shared world coordinates for projection, facing and painter depth. Camera, cached ground and collision-spaced labels are presentation only; no guest state change.",
+      "reviewedSha256": "6180eb60b03000bd209acfd286ebc21a7a39b265a31b9eabf357663cb0d6ef6f"
     },
     {
       "path": "dist/industry-ui.mjs",
       "layer": "presentation",
       "reason": "Presents native live/trial records, transports raw inputs, owns unsaved drafts and optional queued UI interventions, validates opaque image replacement in a candidate worker, and downloads unchanged file bytes. No candidate generation, scoring, guest scheduling or world simulation.",
-      "reviewedSha256": "760b5a60a561c0c5ff8bcba2dd3fc08f0ca84f200a98161d09f84bb3158c5344"
+      "reviewedSha256": "4607a851182ccb4a054d380e7749a4ca7b862e379f77f3967755469a46368c09"
     },
     {
       "path": "dist/industry.css",
@@ -1824,6 +1824,17 @@
       "path": "tools/measure-synthesis.mjs",
       "layer": "verification-tool",
       "reason": "Times actual BF inputs and opaque persistence with separate privileged component probes and ordinary end-to-end runs. No guest solver or production import."
+    },
+    {
+      "path": "dist/industry-geometry.mjs",
+      "layer": "presentation",
+      "reason": "Measured artwork ground contacts, projected native road corridors, and elapsed-time display interpolation of adjacent emitted vehicle positions on their explicitly observed road. No future route, state transition, guest scheduling or simulation.",
+      "reviewedSha256": "dbeae7ecb926727e497e2d3290ceea0017d12d9128c6f98a8553f2833b4cf920"
+    },
+    {
+      "path": "tests/industry-geometry.test.mjs",
+      "layer": "verification-tool",
+      "reason": "Regression checks for footprint road clearance, vertical registration, native junction endpoints, multi-second observed motion, turning without shortcut, import/gap snaps and same-round inspection."
     }
   ],
   "runtimeDependencyScope": "hostRuntimeDependencies lists external runtime npm packages; host platforms are listed separately.",

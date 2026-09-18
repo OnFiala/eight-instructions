@@ -67,7 +67,7 @@ function consume(r,{animate=true}={}){
   generatedSources.push(...decoded.sources);generatedSources=generatedSources.slice(-64);
   $('autonomy-evidence').textContent=autonomyRecords.map(e=>`${e.world?'TRIAL':'LIVE'} ${e.raw}`).join('\n');
   $('generated-source').textContent=generatedSources.at(-1)?.source??'No generated source is retained from this browser instance yet.';
-  if(view.world){world=view.world;lastFrame=r.output;scene.setState(world,{animate});}
+  if(view.world){world=view.world;lastFrame=r.output;scene.setState(world,{animate,elapsedMs:r.elapsedMs});}
   if(view.workspace)workspace=view.workspace;
   for(const event of view.industryEvents)events.push({...event,instance,input:r.input??'',round:view.world?.tick??world?.tick,roads: event.kind==='I-ROUTE'?structuredClone(view.world?.roads??world?.roads??[]):undefined});
   events=events.slice(-1200);
