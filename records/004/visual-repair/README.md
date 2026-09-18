@@ -1,6 +1,6 @@
 # Build 004 visual repair
 
-Status: corrective local verification; GitHub and public deployment pending.
+Status: local corrective verification passed within the scope below; GitHub CI and public deployment pending.
 Sole author and reviewer: Astra xHigh. No subagents or independent-review claim.
 Starting commit: `8b0bb4e4cc9f40209ba994d79cabf2ff9d000993`.
 
@@ -65,7 +65,7 @@ footprint. `02-registered-plots-diagnostic.png` shows the corrected registration
   and scroll width were both 390. Camera, goal and controls remain separate.
 
 Some browser captures during device-density changes were cropped, scaled or tiled.
-Files 04–08 and 10–14 are rejected capture attempts, not acceptance evidence.
+Files 04–08 and 10–15 are rejected capture attempts, not acceptance evidence.
 File 03 still shows round 62 (the slider initialized after an early keypress);
 its filename is not proof of completion. These attempts remain visible.
 
@@ -85,5 +85,22 @@ post-publication verification. The existing `build-004` tag must not move.
 A transient diagnostic viewport smaller than its overlays exposed a new negative
 scale and an exception that left the cache context selected. This failure was
 fixed with positive scale bounds, a zero-size resize guard and `finally`-protected
-context restoration. It is covered by the seventh regression; final browser
-verification and publication remain pending.
+context restoration. It is covered by the seventh regression; the final source was reloaded and the 390×100 diagnostic viewport was restored to
+1487×1058 without new console errors. Publication remains pending.
+
+
+Final source browser evidence:
+
+- `screenshots/17-final-completed-desktop-valid.png` is the final renderer at
+  CSS/pixel 1487×1058, density 1, scroll top, after restoring the real round-97
+  export into a new BF worker. The earlier full fresh runs establish native
+  completion; this capture establishes final presentation, not a third fresh run.
+- `final-browser-checks.json` records the final source commit, import, small-height
+  resize recovery, actual bridge closure and native output. The new Riverside
+  factory remained selectable through the inspector. Reopening uses the same
+  native command path. Reduced-motion display was exercised without console errors;
+  interpolation refusal is also covered by the focused regression.
+- The previous device-density capture attempts are deliberately not accepted.
+  A new tab, density 1 and an unclipped desktop capture produced the valid final
+  evidence. Mobile used density 2 and a complete viewport clip. Different capture
+  scopes must not be passed off as pixel-matching evidence.

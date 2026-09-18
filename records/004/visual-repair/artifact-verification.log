@@ -11,3 +11,4 @@ build-002: 52 verbatim files; HTML relocation recorded.
 build-003: 73 verbatim files; HTML relocation recorded.
 Initial image PASS: fresh BF boot reproduces 68b23214dfea7dbabc6551e23e40025bcc74f4b8224fc1ab816583d529cdd7e7; 59051.31 ms for this check.
 Boundary audit PASS: 339 classified sources. Hashes are review gates, not a semantic proof.
+Boundary audit PASS: 339 classified sources. Hashes are review gates, not a semantic proof.

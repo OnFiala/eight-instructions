@@ -1,6 +1,6 @@
 # Build 004 visual repair — acceptance reopened
 
-Current status: **PARTIAL — corrective verification in progress**.
+Current status: **local corrective checks passed; CI and public correction pending**.
 
 On 2026-09-18 the owner rejected the released visual result: misplaced buildings,
 disconnected-looking streets and vans with inadequate movement. The earlier broad

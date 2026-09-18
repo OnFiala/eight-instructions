@@ -1,0 +1,13 @@
+{
+  "implementationCommit": "28c0cf2531df927dd480fff15f0fc70ee682fe61",
+  "files": {
+    "dist/industry-scene.mjs": "6180eb60b03000bd209acfd286ebc21a7a39b265a31b9eabf357663cb0d6ef6f",
+    "dist/industry-geometry.mjs": "dbeae7ecb926727e497e2d3290ceea0017d12d9128c6f98a8553f2833b4cf920",
+    "dist/industry-ui.mjs": "4607a851182ccb4a054d380e7749a4ca7b862e379f77f3967755469a46368c09",
+    "dist/kernel.bf.gz": "18d59ee19289bd7e0644ba740ba4f9af697033515cc2f03113df5c7bf607d9a1",
+    "dist/executor.wasm": "126da99d309ef3810616d00682f0926b991731778f70d50e70126dd356215712",
+    "dist/initial-industry.8i": "68b23214dfea7dbabc6551e23e40025bcc74f4b8224fc1ab816583d529cdd7e7",
+    "dist/reproduction/build-004.zip": "e3a4e577002db7c1d1c9af3b56f39ea78ec4b0e47826656d91acd576791c4274"
+  },
+  "unchangedNativeAndArchives": []
+}
