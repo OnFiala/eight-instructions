@@ -11,13 +11,23 @@ working. Inside the same machine, a bounded grammar constructs new Thread source
 the actual compiler compiles it, isolated worlds test it, and a native controller
 decides whether to publish it. Live cargo and construction continue during trials.
 
-**Local verification: PASS.** All 130 tests are covered, including the unchanged
-114 earlier regressions. Native synthesis, paid construction, the complete zero-click
-journey, advanced controls, fresh downloaded reproduction and visual review pass.
-The committed evidence covers local acceptance. The
-[final release receipt](https://github.com/OnFiala/eight-instructions/releases/download/build-004/final-deployment.json) records CI, merge/tag,
-public deployment and anonymous verification after those actions actually succeed.
-See [verification evidence](records/004/verification.md) for test scope and limits.
+**Build 004 verification — visual correction, 18 September 2026.** The owner
+rejected the original visual result, and its broad visual PASS was withdrawn.
+[PR #7](https://github.com/OnFiala/eight-instructions/pull/7) corrected building
+registration, road junctions and vehicle interpolation. The
+[corrected release record](https://github.com/OnFiala/eight-instructions/releases/tag/build-004)
+reports **137 tests passed, 0 failed, 0 skipped**, including 320 native reclamation
+cycles, and anonymous verification of all 231 public files. The
+[correction receipt](https://github.com/OnFiala/eight-instructions/releases/download/build-004/visual-repair-deployment.json)
+binds the corrective source, CI, public deployment and rollback identity. Native
+waiting remains visible; smooth rendering does not predict future routes.
+
+The original 130-test release, its immutable tag and its
+[release receipt](https://github.com/OnFiala/eight-instructions/releases/download/build-004/final-deployment.json)
+remain historical evidence. See the original
+[verification matrix](records/004/verification.md) and the later
+[visual correction evidence](records/004/visual-repair/README.md) for their distinct
+scope and limits. Self-review is by the same author; no independent audit is claimed.
 
 [Public site](https://eight-instructions.andrewxix.chatgpt.site/) ·
 [Build 004 challenge](records/004/challenge.md) · [Journal](records/004/journal.md) ·
